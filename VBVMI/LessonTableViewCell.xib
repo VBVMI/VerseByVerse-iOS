@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="116" id="KGk-i7-Jjw" customClass="LessonTableViewCell" customModule="VBVMI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="106"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="105.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xdc-dt-Utc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="105.5"/>
+                        <color key="progressTintColor" red="0.30343669652938843" green="0.30115485191345215" blue="0.30115479230880737" alpha="0.35999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="trackTintColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </progressView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oL8-DU-4fM">
+                        <rect key="frame" x="16" y="8" width="288" height="90"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MJD-hA-zjR">
+                                <rect key="frame" x="0.0" y="0.0" width="288" height="46"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="1A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaJ-Ck-tVL">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="CGP-fJ-Ek8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="j9P-G0-FSY">
+                                        <rect key="frame" x="58" y="8" width="230" height="39"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="This is totally a title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjy-8O-zCu">
+                                                <rect key="frame" x="0.0" y="0.0" width="230" height="19"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="751" misplaced="YES" text="This is totally a description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cb-FB-6JI">
+                                                <rect key="frame" x="0.0" y="19" width="230" height="20"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Pbd-WI-y3L">
+                                <rect key="frame" x="0.0" y="46" width="288" height="44"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="38:56" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yG-U6-MW1">
+                                        <rect key="frame" x="0.0" y="0.0" width="215" height="44"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="255" horizontalCompressionResistancePriority="745" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pLo-VC-bDv">
+                                        <rect key="frame" x="223" y="0.0" width="66" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="y3u-9v-4dW"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="xdc-dt-Utc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="H3X-wN-cf1"/>
+                    <constraint firstAttribute="bottom" secondItem="xdc-dt-Utc" secondAttribute="bottom" id="H5Q-sc-IiJ"/>
+                    <constraint firstItem="oL8-DU-4fM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="USW-lx-Yal"/>
+                    <constraint firstItem="xdc-dt-Utc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="X54-Yl-nHd"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="oL8-DU-4fM" secondAttribute="trailing" id="Zzm-ho-5fO"/>
+                    <constraint firstItem="oL8-DU-4fM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="az0-ck-lgs"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="oL8-DU-4fM" secondAttribute="bottom" id="iPh-GQ-xsw"/>
+                    <constraint firstAttribute="trailing" secondItem="xdc-dt-Utc" secondAttribute="trailing" id="is2-SO-HEb"/>
+                </constraints>
+                <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="descriptionLabel" destination="5cb-FB-6JI" id="Bl6-YI-0dT"/>
+                <outlet property="numberLabel" destination="iaJ-Ck-tVL" id="0jQ-SB-Lxx"/>
+                <outlet property="progressIndicator" destination="xdc-dt-Utc" id="uDp-Jm-5Yd"/>
+                <outlet property="resourcesStackView" destination="pLo-VC-bDv" id="dO8-cf-6W0"/>
+                <outlet property="timeLabel" destination="1yG-U6-MW1" id="sL1-EU-HDj"/>
+                <outlet property="titleLabel" destination="vjy-8O-zCu" id="HbB-Id-Ois"/>
+            </connections>
+            <point key="canvasLocation" x="108" y="261"/>
+        </tableViewCell>
+    </objects>
+</document>

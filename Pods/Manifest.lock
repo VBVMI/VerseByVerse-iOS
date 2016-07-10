@@ -1,0 +1,72 @@
+PODS:
+  - ACPDownload (1.1.0)
+  - Alamofire (3.1.5)
+  - AlamofireImage (2.3.0):
+    - Alamofire (~> 3.1)
+  - Crashlytics (3.7.2):
+    - Fabric (~> 1.6.3)
+  - CSStickyHeaderFlowLayout (0.2.10)
+  - Decodable (0.4.1)
+  - Fabric (1.6.7)
+  - FontAwesome.swift (0.7.0)
+  - Moya (6.1.2):
+    - Moya/Core (= 6.1.2)
+  - Moya/Core (6.1.2):
+    - Alamofire (~> 3.0)
+    - Result (~> 1.0)
+  - NSLogger (1.7.0):
+    - NSLogger/Standard (= 1.7.0)
+  - NSLogger/Standard (1.7.0)
+  - Result (1.0.1)
+  - Reveal-iOS-SDK (1.6.2)
+  - SnapKit (0.19.1)
+  - STRegex (0.3.1)
+  - SwiftString (0.5)
+  - UIImage-Color (1.1.1)
+  - XCGLogger (3.3)
+  - XCGLoggerNSLoggerConnector (0.1.2):
+    - NSLogger (~> 1.5)
+    - XCGLogger (~> 3.1)
+
+DEPENDENCIES:
+  - ACPDownload
+  - Alamofire
+  - AlamofireImage (~> 2.0)
+  - Crashlytics
+  - CSStickyHeaderFlowLayout
+  - Decodable
+  - Fabric
+  - FontAwesome.swift
+  - Moya
+  - NSLogger
+  - Reveal-iOS-SDK
+  - SnapKit
+  - STRegex
+  - SwiftString
+  - UIImage-Color
+  - XCGLogger
+  - XCGLoggerNSLoggerConnector
+
+SPEC CHECKSUMS:
+  ACPDownload: 9c6349be96019b6c8c87ad46570af1cbc7106bf4
+  Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
+  AlamofireImage: 4013fb5b99b10117bf2554a67b9bd2231d476b45
+  Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
+  CSStickyHeaderFlowLayout: 5366582779d8b7c9ba9b9cc729c218cc23888776
+  Decodable: 4df86629544f717045a931ed6e9f0be35fa3c3b0
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  FontAwesome.swift: c6e30a1a81716306ff9c81f2d38dda88ac5b8294
+  Moya: 7f99c85a1bc968eb38b67880c9527fe3e04aa49c
+  NSLogger: daa17368272ddf10a0850c218fe49de23b50f2eb
+  Result: caef80340451e1f07492fa1e89117f83613bce24
+  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
+  SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
+  STRegex: 4c27ffabad2c8b603f050d28e6c794eb72a13608
+  SwiftString: ec9c31c55b2aa147a1154f5f5f8483dc71e3165f
+  UIImage-Color: 29d79c2acdd1836eae9815836a14fddfcd2db38f
+  XCGLogger: d6e196e78940ff6daab17d6917107876f973fa31
+  XCGLoggerNSLoggerConnector: 43a886c9641b6dc9b3d4db87d3b995fc340424b4
+
+PODFILE CHECKSUM: f275cf80bce236134feeacc73a277afc013ab243
+
+COCOAPODS: 1.0.1
