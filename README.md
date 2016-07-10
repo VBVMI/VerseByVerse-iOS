@@ -7,6 +7,7 @@ Setup
 -----
 
 run `bundle install` to get the magical gems
+
 run `pod install` to get the magical pods
 
 You'll probably be missing a `Keys.xcconfig` in the project. Just add one to your project. It can be empty, the keys we are using are simply for our various third-party APIs but they're all optional afaik.
