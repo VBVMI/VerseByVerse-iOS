@@ -14,8 +14,8 @@ import AlamofireImage
 class StudiesViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var fetchedResultsController: NSFetchedResultsController!
-    var aboutActionsController: AboutActionsController!
+    private var fetchedResultsController: NSFetchedResultsController!
+    private var aboutActionsController: AboutActionsController!
     
     private var header : StudiesHeaderReusableView!
     

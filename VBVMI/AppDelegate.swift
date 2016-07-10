@@ -69,6 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 APIDataManager.core()
                 APIDataManager.latestArticles()
                 APIDataManager.latestAnswers()
+                APIDataManager.allTheChannels()
             }
         } else {
             return false

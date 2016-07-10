@@ -85,6 +85,8 @@
 		989294CC1C8BCE4500C19095 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989294CB1C8BCE4500C19095 /* SoundManager.swift */; };
 		989294CF1C8BE07E00C19095 /* _AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989294CD1C8BE07E00C19095 /* _AudioPlayer.swift */; };
 		989294D01C8BE07E00C19095 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989294CE1C8BE07E00C19095 /* AudioPlayer.swift */; };
+		989C40F71D32557C00849FB2 /* ChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989C40F51D32557C00849FB2 /* ChannelTableViewCell.swift */; };
+		989C40F81D32557C00849FB2 /* ChannelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989C40F61D32557C00849FB2 /* ChannelTableViewCell.xib */; };
 		98AB57741CB3CEE600B10591 /* UIAlertController+Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AB57731CB3CEE600B10591 /* UIAlertController+Show.m */; };
 		98AC05D71C8438670037D54A /* IconImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AC05D61C8438670037D54A /* IconImages.swift */; };
 		98B419B41C6420CA003A2872 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B419B31C6420CA003A2872 /* HomeTabBarController.swift */; };
@@ -235,6 +237,8 @@
 		989294CB1C8BCE4500C19095 /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		989294CD1C8BE07E00C19095 /* _AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _AudioPlayer.swift; path = Model/_AudioPlayer.swift; sourceTree = "<group>"; };
 		989294CE1C8BE07E00C19095 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayer.swift; path = Model/AudioPlayer.swift; sourceTree = "<group>"; };
+		989C40F51D32557C00849FB2 /* ChannelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTableViewCell.swift; sourceTree = "<group>"; };
+		989C40F61D32557C00849FB2 /* ChannelTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelTableViewCell.xib; sourceTree = "<group>"; };
 		98AB57721CB3CEE600B10591 /* UIAlertController+Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Show.h"; sourceTree = "<group>"; };
 		98AB57731CB3CEE600B10591 /* UIAlertController+Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Show.m"; sourceTree = "<group>"; };
 		98AC05D61C8438670037D54A /* IconImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconImages.swift; sourceTree = "<group>"; };
@@ -345,7 +349,6 @@
 				980E6C101C814E5F008F23D1 /* TitleParser.swift */,
 				98611CBE1C9AA6D60070FCCD /* NSDateExtensions.swift */,
 				980BE96A1C9EACE4003A5D84 /* StringExtensions.swift */,
-				98FF47541D292640008E27F4 /* Video.swift */,
 				98CB0E351CA632B500C99D34 /* TopicLabel.swift */,
 				98AB57721CB3CEE600B10591 /* UIAlertController+Show.h */,
 				98AB57731CB3CEE600B10591 /* UIAlertController+Show.m */,
@@ -445,6 +448,7 @@
 				986C37E11C65D6300096BB83 /* Lesson.swift */,
 				9828D44C1C5DA2BC004FA954 /* Study.swift */,
 				980BE9671C9E9DEF003A5D84 /* Topic.swift */,
+				98FF47541D292640008E27F4 /* Video.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -518,6 +522,8 @@
 				988D69831C9D51D2000ED16D /* AnswerHeaderTableViewCell.xib */,
 				988D69861C9D51E6000ED16D /* AnswerBodyTableViewCell.swift */,
 				988D69871C9D51E6000ED16D /* AnswerBodyTableViewCell.xib */,
+				989C40F51D32557C00849FB2 /* ChannelTableViewCell.swift */,
+				989C40F61D32557C00849FB2 /* ChannelTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -720,6 +726,7 @@
 				9828D41E1C5D9F4A004FA954 /* Assets.xcassets in Resources */,
 				988D69851C9D51D2000ED16D /* AnswerHeaderTableViewCell.xib in Resources */,
 				98CBFE911C900E5F005F6414 /* StudiesHeaderReusableView.xib in Resources */,
+				989C40F81D32557C00849FB2 /* ChannelTableViewCell.xib in Resources */,
 				980E6C0C1C7EE29B008F23D1 /* LessonTableViewCell.xib in Resources */,
 				988D69791C9C1034000ED16D /* ArticleBodyTableViewCell.xib in Resources */,
 				988D69751C9C0D87000ED16D /* ArticleHeaderTableViewCell.xib in Resources */,
@@ -941,6 +948,7 @@
 				98611CBF1C9AA6D60070FCCD /* NSDateExtensions.swift in Sources */,
 				98B419B41C6420CA003A2872 /* HomeTabBarController.swift in Sources */,
 				986C37DA1C657C870096BB83 /* StyleKit.swift in Sources */,
+				989C40F71D32557C00849FB2 /* ChannelTableViewCell.swift in Sources */,
 				988D69811C9D4E29000ED16D /* AnswerViewController.swift in Sources */,
 				980BE9681C9E9DEF003A5D84 /* _Topic.swift in Sources */,
 				986C37D61C6523120096BB83 /* StudyDescriptionCell.swift in Sources */,
