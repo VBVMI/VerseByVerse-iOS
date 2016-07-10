@@ -482,7 +482,7 @@ extension StudyViewController : ResourceManagerObserver {
                 switch downloadState {
                 case .downloading(let percent):
                     button.setProgress(Float(percent), animated: false)
-                case .downloaded(let url):
+                case .downloaded:
                     let view = lessonType.view(cell)
                     view.dotView.hidden = false
                 default:
