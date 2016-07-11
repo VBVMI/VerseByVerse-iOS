@@ -78,9 +78,7 @@ extension ChannelViewController: UITableViewDelegate {
         let video = fetchedResultsController.objectAtIndexPath(indexPath) as! Video
         
         if let videoURLString = video.videoSource, url = NSURL(string: videoURLString) {
-            if UIApplication.sharedApplication().canOpenURL(url) {
-                UIApplication.sharedApplication().openURL(url)
-            }
+            UIApplication.sharedApplication().openURL(url)
         }
     }
     
