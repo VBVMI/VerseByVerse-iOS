@@ -63,6 +63,10 @@
 		98644D951C61D7E400EB27F1 /* NSManagedObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98644D941C61D7E400EB27F1 /* NSManagedObject+Extensions.swift */; };
 		98644D9F1C61F14C00EB27F1 /* StudyCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98644D9D1C61F14C00EB27F1 /* StudyCellCollectionViewCell.swift */; };
 		98644DA01C61F14C00EB27F1 /* StudyCellCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98644D9E1C61F14C00EB27F1 /* StudyCellCollectionViewCell.xib */; };
+		986C2F171D3395F700F595FF /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C2F161D3395F700F595FF /* ChannelViewController.swift */; };
+		986C2F1A1D339A1500F595FF /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C2F181D339A1500F595FF /* VideoTableViewCell.swift */; };
+		986C2F1B1D339A1500F595FF /* VideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 986C2F191D339A1500F595FF /* VideoTableViewCell.xib */; };
+		986C2F1D1D33A43400F595FF /* TimeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C2F1C1D33A43400F595FF /* TimeParser.swift */; };
 		986C37D61C6523120096BB83 /* StudyDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37D51C6523120096BB83 /* StudyDescriptionCell.swift */; };
 		986C37D81C652E8D0096BB83 /* StringExtensionHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37D71C652E8D0096BB83 /* StringExtensionHTML.swift */; };
 		986C37DA1C657C870096BB83 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37D91C657C870096BB83 /* StyleKit.swift */; };
@@ -215,6 +219,10 @@
 		98644D941C61D7E400EB27F1 /* NSManagedObject+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extensions.swift"; sourceTree = "<group>"; };
 		98644D9D1C61F14C00EB27F1 /* StudyCellCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		98644D9E1C61F14C00EB27F1 /* StudyCellCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyCellCollectionViewCell.xib; sourceTree = "<group>"; };
+		986C2F161D3395F700F595FF /* ChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
+		986C2F181D339A1500F595FF /* VideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
+		986C2F191D339A1500F595FF /* VideoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoTableViewCell.xib; sourceTree = "<group>"; };
+		986C2F1C1D33A43400F595FF /* TimeParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeParser.swift; sourceTree = "<group>"; };
 		986C37D51C6523120096BB83 /* StudyDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyDescriptionCell.swift; sourceTree = "<group>"; };
 		986C37D71C652E8D0096BB83 /* StringExtensionHTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensionHTML.swift; sourceTree = "<group>"; };
 		986C37D91C657C870096BB83 /* StyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
@@ -313,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				980579D61D31D9DE001C809C /* ChannelsViewController.swift */,
+				986C2F161D3395F700F595FF /* ChannelViewController.swift */,
 			);
 			name = Channels;
 			sourceTree = "<group>";
@@ -347,6 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				980E6C101C814E5F008F23D1 /* TitleParser.swift */,
+				986C2F1C1D33A43400F595FF /* TimeParser.swift */,
 				98611CBE1C9AA6D60070FCCD /* NSDateExtensions.swift */,
 				980BE96A1C9EACE4003A5D84 /* StringExtensions.swift */,
 				98CB0E351CA632B500C99D34 /* TopicLabel.swift */,
@@ -524,6 +534,8 @@
 				988D69871C9D51E6000ED16D /* AnswerBodyTableViewCell.xib */,
 				989C40F51D32557C00849FB2 /* ChannelTableViewCell.swift */,
 				989C40F61D32557C00849FB2 /* ChannelTableViewCell.xib */,
+				986C2F181D339A1500F595FF /* VideoTableViewCell.swift */,
+				986C2F191D339A1500F595FF /* VideoTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -717,6 +729,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98611CC31C9ABB4F0070FCCD /* ArticleTableViewCell.xib in Resources */,
+				986C2F1B1D339A1500F595FF /* VideoTableViewCell.xib in Resources */,
 				98644DA01C61F14C00EB27F1 /* StudyCellCollectionViewCell.xib in Resources */,
 				98D45BA01C86D61D004BBCBD /* AudioPlayerViewController.xib in Resources */,
 				98CB0E3D1CA74E7F00C99D34 /* TopicViewController.xib in Resources */,
@@ -942,8 +955,10 @@
 				98611CAF1C96A6610070FCCD /* Answer.swift in Sources */,
 				989294D01C8BE07E00C19095 /* AudioPlayer.swift in Sources */,
 				9828D4501C5DA8D1004FA954 /* JsonAPI.swift in Sources */,
+				986C2F1A1D339A1500F595FF /* VideoTableViewCell.swift in Sources */,
 				980E6C111C814E5F008F23D1 /* TitleParser.swift in Sources */,
 				987F02FB1CF0658800AB61FA /* ResourceIconView.swift in Sources */,
+				986C2F1D1D33A43400F595FF /* TimeParser.swift in Sources */,
 				98611CB01C96A6610070FCCD /* Article.swift in Sources */,
 				98611CBF1C9AA6D60070FCCD /* NSDateExtensions.swift in Sources */,
 				98B419B41C6420CA003A2872 /* HomeTabBarController.swift in Sources */,
@@ -974,6 +989,7 @@
 				988D698B1C9E62AA000ED16D /* PDFViewController.swift in Sources */,
 				98611CB11C96A6610070FCCD /* Channel.swift in Sources */,
 				98AC05D71C8438670037D54A /* IconImages.swift in Sources */,
+				986C2F171D3395F700F595FF /* ChannelViewController.swift in Sources */,
 				98FF47551D292640008E27F4 /* _Video.swift in Sources */,
 				980BE9691C9E9DEF003A5D84 /* Topic.swift in Sources */,
 				98CBFE901C900E5F005F6414 /* StudiesHeaderReusableView.swift in Sources */,

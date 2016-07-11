@@ -1,49 +1,47 @@
 //
-//  ChannelsViewController.swift
+//  ChannelViewController.swift
 //  VBVMI
 //
-//  Created by Thomas Carey on 10/07/16.
+//  Created by Thomas Carey on 11/07/16.
 //  Copyright © 2016 Tom Carey. All rights reserved.
 //
 
 import UIKit
 import CoreData
+import AVKit
+import AVFoundation
 
-class ChannelsViewController: UIViewController {
+class ChannelViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     private var fetchedResultsController: NSFetchedResultsController!
-    private var aboutActionsController: AboutActionsController!
     
-    private let dateFormatter = NSDateFormatter()
-    private let channelCellIdentifier = "ChannelCell"
+    private let formatter = NSDateComponentsFormatter()
+    private let videoCellIdentifier = "ChannelCell"
+    var channel: Channel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.registerNib(UINib(nibName: "ChannelTableViewCell", bundle: nil), forCellReuseIdentifier: channelCellIdentifier)
-        
+        tableView.registerNib(UINib(nibName: "VideoTableViewCell", bundle: nil), forCellReuseIdentifier: videoCellIdentifier)
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-        dateFormatter.dateStyle = .ShortStyle
-        
-        // Setup about Menu
-        self.aboutActionsController = AboutActionsController(presentingController: self)
-        self.navigationItem.leftBarButtonItem = self.aboutActionsController.barButtonItem
-        
-        
-        
+        formatter.unitsStyle = .Positional
         setupFetchedResultsController()
     }
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     private func setupFetchedResultsController() {
-        let fetchRequest = NSFetchRequest(entityName: Channel.entityName())
+        let fetchRequest = NSFetchRequest(entityName: Video.entityName())
         let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-        fetchRequest.entity = Channel.entity(context)
-        let indexSort = NSSortDescriptor(key: ChannelAttributes.channelIndex.rawValue, ascending: false)
+        fetchRequest.entity = Video.entity(context)
+        let indexSort = NSSortDescriptor(key: VideoAttributes.videoIndex.rawValue, ascending: true)
         
         fetchRequest.sortDescriptors = [indexSort]
-        
+        fetchRequest.predicate = NSPredicate(format: "channel.identifier == %@", channel.identifier!)
         fetchRequest.shouldRefreshRefetchedObjects = true
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         
@@ -59,28 +57,37 @@ class ChannelsViewController: UIViewController {
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func viewDidLayoutSubviews() {
-        if self.parentViewController == nil {
-            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
-            tableView.contentInset = insets
-            tableView.scrollIndicatorInsets = insets
+        let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+        tableView.contentInset = insets
+        tableView.scrollIndicatorInsets = insets
+    }
+
+}
+
+// MARK: - UITableViewDelegate
+extension ChannelViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 60
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let video = fetchedResultsController.objectAtIndexPath(indexPath) as! Video
+        
+        if let videoURLString = video.videoSource, url = NSURL(string: videoURLString) {
+            if UIApplication.sharedApplication().canOpenURL(url) {
+                UIApplication.sharedApplication().openURL(url)
+            }
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? ChannelViewController, channel = sender as? Channel {
-            destination.channel = channel
-        }
-    }
 }
 
 // MARK: - UITableViewDataSource
-extension ChannelsViewController: UITableViewDataSource {
+extension ChannelViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return fetchedResultsController.sections?.count ?? 0
@@ -91,40 +98,32 @@ extension ChannelsViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(channelCellIdentifier, forIndexPath: indexPath) as! ChannelTableViewCell
-        let channel = fetchedResultsController.objectAtIndexPath(indexPath) as! Channel
+        let cell = tableView.dequeueReusableCellWithIdentifier(videoCellIdentifier, forIndexPath: indexPath) as! VideoTableViewCell
+        let video = fetchedResultsController.objectAtIndexPath(indexPath) as! Video
         
-        cell.titleLabel.text = channel.title
-        let plural = channel.videos.count == 1 ? "" : "s"
-        cell.countLabel.text = "\(channel.videos.count) video\(plural)"
-        if let date = channel.postedDate {
-            cell.dateLabel.text = dateFormatter.stringFromDate(date)
+        cell.titleLabel.text = video.title
+        if let timeString = video.videoLength, dateComponents = TimeParser.getTime(timeString) {
+            cell.timeLabel.text = formatter.stringFromDateComponents(dateComponents)
         } else {
-            cell.dateLabel.text = nil
+            cell.timeLabel.text = nil
         }
+        
+        if let urlString = video.thumbnailSource, url = NSURL(string: urlString) {
+            cell.thumbnailImageView?.af_setImageWithURL(url, placeholderImage: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3))
+        } else {
+            cell.thumbnailImageView?.image = nil
+        }
+        
+        cell.descriptionLabel.text = video.descriptionText
         
         return cell
     }
-}
-
-// MARK: - UITableViewDelegate
-extension ChannelsViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 60
-    }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        let channel = fetchedResultsController.objectAtIndexPath(indexPath) as! Channel
-        self.performSegueWithIdentifier("showChannel", sender: channel)
-        
-    }
 }
-
 
 // MARK: - NSFetchedResultsControllerDelegate
-extension ChannelsViewController : NSFetchedResultsControllerDelegate {
+extension ChannelViewController: NSFetchedResultsControllerDelegate {
+    
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         tableView.endUpdates()
     }
@@ -174,4 +173,5 @@ extension ChannelsViewController : NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         tableView.beginUpdates()
     }
+    
 }

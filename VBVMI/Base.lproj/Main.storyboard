@@ -136,7 +136,7 @@
                                 <rect key="frame" x="0.0" y="260" width="320" height="87"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vYv-Wy-i9r" id="ede-53-JSy">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="86.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nT-kj-M8E">
@@ -390,11 +390,49 @@
                     <navigationItem key="navigationItem" title="Videos" id="95M-U5-V06"/>
                     <connections>
                         <outlet property="tableView" destination="7Tc-aQ-lKj" id="Uzb-eQ-jri"/>
+                        <segue destination="rQw-0t-S92" kind="show" identifier="showChannel" id="QLA-Eb-Kpw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OgG-Ld-laF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="488" y="1221"/>
+        </scene>
+        <!--Channel View Controller-->
+        <scene sceneID="miE-di-1dA">
+            <objects>
+                <viewController id="rQw-0t-S92" customClass="ChannelViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Slh-JF-7Ba"/>
+                        <viewControllerLayoutGuide type="bottom" id="hMf-8C-ra0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nkl-Jv-DBP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Eea-8U-mSP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="rQw-0t-S92" id="cj8-pq-Oob"/>
+                                    <outlet property="delegate" destination="rQw-0t-S92" id="zXt-Cr-N6E"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Eea-8U-mSP" secondAttribute="bottom" id="1n2-1A-1hm"/>
+                            <constraint firstItem="Eea-8U-mSP" firstAttribute="top" secondItem="nkl-Jv-DBP" secondAttribute="top" id="WFO-i9-ems"/>
+                            <constraint firstItem="Eea-8U-mSP" firstAttribute="leading" secondItem="nkl-Jv-DBP" secondAttribute="leading" id="Z1W-H0-JST"/>
+                            <constraint firstAttribute="trailing" secondItem="Eea-8U-mSP" secondAttribute="trailing" id="wRc-1z-Tar"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Eea-8U-mSP" id="Oih-pt-uns"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S9n-r6-yrk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="883" y="1221"/>
         </scene>
         <!--Answers-->
         <scene sceneID="nEZ-cA-Srz">

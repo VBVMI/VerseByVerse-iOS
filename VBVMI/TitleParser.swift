@@ -18,7 +18,7 @@ import Regex
 struct TitleParser {
     
     //Typical Title = "Galatians - Lesson 16B"
-    static let title = Regex("^([^-]+)(\\s*-\\s*(\\w*)\\s*(\\w*[-\\/\\s]*\\w*))?$")
+    private static let title = Regex("^([^-]+)(\\s*-\\s*(\\w*)\\s*(\\w*[-\\/\\s]*\\w*))?$")
     
     static func match(string: String) -> [String?]? {
         return title.match(string)?.captures
