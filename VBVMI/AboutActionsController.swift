@@ -35,6 +35,10 @@ class AboutActionsController: NSObject {
             self?.openURL("https://www.versebyverseministry.org/about/")
         }
         
+        let eventsAction = UIAlertAction(title: "Events", style: .Default) { [weak self] (action) in
+            self?.openURL("https://www.versebyverseministry.org/events/")
+        }
+        
         let contactAction = UIAlertAction(title: "Contact", style: .Default) { [weak self] (action) in
             self?.openURL("https://www.versebyverseministry.org/contact/")
         }
@@ -45,8 +49,9 @@ class AboutActionsController: NSObject {
         }
         
         alert.addAction(aboutAction)
-        alert.addAction(donateAction)
+        alert.addAction(eventsAction)
         alert.addAction(contactAction)
+        alert.addAction(donateAction)
         alert.addAction(cancel)
         
         alert.popoverPresentationController?.barButtonItem = barButtonItem

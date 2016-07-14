@@ -96,6 +96,13 @@ extension NSManagedObject {
         return result as? [NSManagedObject] ?? []
     }
     
+    class func findAll(context: NSManagedObjectContext) -> [NSManagedObject] {
+        let fetchRequest = NSFetchRequest(entityName: VB_entityName())
+        fetchRequest.entity = entityDescriptionInContext(context)
+        
+        let result = try? context.executeFetchRequest(fetchRequest)
+        return result as? [NSManagedObject] ?? []
+    }
 }
 
 extension NSPredicate {

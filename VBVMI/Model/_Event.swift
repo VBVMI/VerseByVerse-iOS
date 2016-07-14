@@ -5,12 +5,11 @@ import CoreData
 
 public enum EventAttributes: String {
     case descriptionText = "descriptionText"
-    case eventDate = "eventDate"
-    case expiresDate = "expiresDate"
+    case eventDateComponents = "eventDateComponents"
+    case eventIndex = "eventIndex"
     case identifier = "identifier"
     case location = "location"
     case map = "map"
-    case postedDate = "postedDate"
     case thumbnailAltText = "thumbnailAltText"
     case thumbnailSource = "thumbnailSource"
     case title = "title"
@@ -46,22 +45,19 @@ public class _Event: NSManagedObject {
     var descriptionText: String?
 
     @NSManaged public
-    var eventDate: NSDate?
+    var eventDateComponents: NSDateComponents?
 
     @NSManaged public
-    var expiresDate: NSDate?
+    var eventIndex: Int32
 
     @NSManaged public
-    var identifier: String?
+    var identifier: String
 
     @NSManaged public
     var location: String?
 
     @NSManaged public
     var map: String?
-
-    @NSManaged public
-    var postedDate: NSDate?
 
     @NSManaged public
     var thumbnailAltText: String?

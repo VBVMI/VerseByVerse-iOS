@@ -133,6 +133,30 @@ class APIDataManager {
         }
     }
     
+    static func allTheEvents() {
+        downloadToJSONArray(JsonAPI.Events, arrayNode: "events") { (context, JSONArray) in
+            
+            let existingEvents = Event.findAll(context) as? [Event] ?? [Event]()
+            var existingEventIds = existingEvents.map({ (event) -> String in
+                return event.identifier
+            })
+            
+            try JSONArray.enumerate().forEach({ (index, eventDict) in
+                let event = try Event.decodeJSON(eventDict, context: context, index: index)
+                if let index = existingEventIds.indexOf(event.identifier) {
+                    existingEventIds.removeAtIndex(index)
+                }
+            })
+            
+            if existingEventIds.count > 0 {
+                if let eventsToDelete = Event.findAllWithPredicate(NSPredicate(format: "%K in %@", EventAttributes.identifier.rawValue, existingEventIds), context: context) as? [Lesson] where eventsToDelete.count > 0 {
+                    for event in eventsToDelete {
+                        context.deleteObject(event)
+                    }
+                }
+            }
+        }
+    }
     
     
     private static func downloadToJSONArray(request: JsonAPI, arrayNode: String, conversionBlock: (context: NSManagedObjectContext, JSONArray: [NSDictionary]) throws ->()) {
