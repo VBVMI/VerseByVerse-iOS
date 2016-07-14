@@ -22,7 +22,7 @@ class VideoTableViewCell: UITableViewCell {
         thumbnailImageView.layer.cornerRadius = 3.0
         thumbnailImageView.layer.masksToBounds = true
         
-        timeLabel.textColor = StyleKit.midGrey
+        timeLabel.textColor = StyleKit.darkGrey
         titleLabel.textColor = StyleKit.darkGrey
         descriptionLabel.textColor = StyleKit.midGrey
     }

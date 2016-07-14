@@ -19,7 +19,7 @@ class ChannelTableViewCell: UITableViewCell {
         // Initialization code
         
         titleLabel.textColor = StyleKit.darkGrey
-        countLabel.textColor = StyleKit.midGrey
+        countLabel.textColor = StyleKit.darkGrey
         dateLabel.textColor = StyleKit.midGrey
     }
 

@@ -19,6 +19,8 @@ class ArticleTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
 //        topicTextView.textContainerInset = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
+        authorLabel.textColor = StyleKit.darkGrey
+        dateLabel.textColor = StyleKit.midGrey
         
     }
 
