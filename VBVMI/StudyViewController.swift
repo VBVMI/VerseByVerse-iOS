@@ -23,6 +23,8 @@ class StudyViewController: UITableViewController {
     @IBOutlet var blurredImageView: UIImageView!
     @IBOutlet var headerImageView: UIImageView!
     
+    private let barButtonItem: UIBarButtonItem = UIBarButtonItem(title: String.fontAwesomeIconWithName(.EllipsisH), style: .Plain, target: nil, action: #selector(tappedMenu))
+    
     private class ButtonSender {
         let url: NSURL
         let lessonType: ResourceManager.LessonType
@@ -130,6 +132,10 @@ class StudyViewController: UITableViewController {
             configureViewsForSudy()
             configureFetchController()
         }
+        
+        barButtonItem.target = self
+        barButtonItem.setTitleTextAttributes([NSFontAttributeName: UIFont.fontAwesomeOfSize(20)], forState: .Normal)
+        navigationItem.rightBarButtonItem = barButtonItem
     }
     
     var resizeImageOnce = true
@@ -405,6 +411,49 @@ class StudyViewController: UITableViewController {
             return
         }
     }
+    
+    func tappedMenu() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        
+        let downloadAll = UIAlertAction(title: "Download all", style: .Default) { [weak self] (action) in
+            if let study = self?.study {
+                ResourceManager.sharedInstance.downloadAllResources(study, completion: { 
+                    log.info("Downloaded all Resources!!!")
+                })
+            }
+        }
+        
+        let deleteAll = UIAlertAction(title: "Delete all files", style: .Destructive) { [weak self] (action) in
+            log.info("Trying to delete everything")
+            guard let this = self else {
+                return
+            }
+            
+            if let lessons = this.fetchedResultsController?.fetchedObjects as? [Lesson] {
+                lessons.forEach({ (lesson) in
+                    let downloadedFileURLs = this.downloadedFileUrls(lesson)
+                    downloadedFileURLs.forEach({ let _ = try? NSFileManager.defaultManager().removeItemAtURL($0) })
+                })
+            }
+            
+            if let rows = this.tableView.indexPathsForVisibleRows {
+                this.tableView.reloadRowsAtIndexPaths(rows, withRowAnimation: .None)
+            } else {
+                this.tableView.reloadData()
+            }
+        }
+        
+        let cancel = UIAlertAction(title: "Close", style: .Cancel) { [weak self] (action) in
+            self?.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        alert.addAction(downloadAll)
+        alert.addAction(deleteAll)
+        alert.addAction(cancel)
+        
+        alert.popoverPresentationController?.barButtonItem = barButtonItem
+        presentViewController(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
@@ -421,9 +470,9 @@ extension StudyViewController : NSFetchedResultsControllerDelegate {
     func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
         switch type {
         case .Insert:
-            tableView.insertSections(NSIndexSet(index: sectionIndex + 1), withRowAnimation: .Automatic)
+            tableView.insertSections(NSIndexSet(index: sectionIndex + 1), withRowAnimation: .Fade)
         case .Delete:
-            tableView.deleteSections(NSIndexSet(index: sectionIndex + 1), withRowAnimation: .Automatic)
+            tableView.deleteSections(NSIndexSet(index: sectionIndex + 1), withRowAnimation: .Fade)
         default:
             return
         }
@@ -434,11 +483,11 @@ extension StudyViewController : NSFetchedResultsControllerDelegate {
         case .Insert:
             guard let newIndexPath = newIndexPath else { return }
             let myNewIndexPath = NSIndexPath(forRow: newIndexPath.row, inSection: newIndexPath.section + 1)
-            tableView.insertRowsAtIndexPaths([myNewIndexPath], withRowAnimation: .Automatic)
+            tableView.insertRowsAtIndexPaths([myNewIndexPath], withRowAnimation: .Fade)
         case .Delete:
             guard let indexPath = indexPath else { return }
             let myIndexPath = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section + 1)
-            tableView.deleteRowsAtIndexPaths([myIndexPath], withRowAnimation: .Automatic)
+            tableView.deleteRowsAtIndexPaths([myIndexPath], withRowAnimation: .Fade)
         case .Move:
             guard let indexPath = indexPath, newIndexPath = newIndexPath else { return }
             let myNewIndexPath = NSIndexPath(forRow: newIndexPath.row, inSection: newIndexPath.section + 1)

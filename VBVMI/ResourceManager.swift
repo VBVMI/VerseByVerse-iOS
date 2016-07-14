@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import CoreData
 
 enum ResourceManagerError : ErrorType {
     case MissingURLString
@@ -45,6 +46,7 @@ class ResourceManager {
         case Audio
         
         static var all: [LessonType] = [.Video, .TeacherAid, .StudentAid, .Transcript, .Audio]
+        private static var downloadable: [LessonType] = [.TeacherAid, .StudentAid, .Transcript, .Audio]
         
         func urlString(lesson: Lesson) -> String? {
             switch self {
@@ -271,6 +273,77 @@ class ResourceManager {
             request.cancel()
         }
     }
+    
+    
+    /**
+     Download all of the available resources for a Study. Note this should continue to run in the background and can be cancelled by any of the normal cancellation methods
+     
+     - parameter study:      The `Study` to download
+     - parameter completion: A completion block for knowing when it's all done
+     */
+    func downloadAllResources(study: Study, completion: (()->())?) {
+        guard NSThread.isMainThread() else {
+            log.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
+            return
+        }
+        
+        let fetchRequest = NSFetchRequest(entityName: Lesson.entityName())
+        let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        fetchRequest.entity = Lesson.entity(context)
+        
+        let sectionSort = NSSortDescriptor(key: LessonAttributes.completed.rawValue, ascending: true, selector: #selector(NSNumber.compare(_:)))
+        let indexSort = NSSortDescriptor(key: LessonAttributes.lessonIndex.rawValue, ascending: true, selector: #selector(NSNumber.compare(_:)))
+        
+        fetchRequest.sortDescriptors = [sectionSort, indexSort]
+        fetchRequest.predicate = NSPredicate(format: "%K == %@", LessonAttributes.studyIdentifier.rawValue, study.identifier)
+        
+        if let lessons = (try? context.executeFetchRequest(fetchRequest)) as? [Lesson] {
+            downloadNextLesson(remainingLessons: lessons, completion: completion)
+        }
+    }
+    
+    private func downloadNextLesson(remainingLessons lessons: [Lesson], completion: (()->())?) {
+        if lessons.count == 0 {
+            completion?()
+            return
+        }
+        
+        var remainingLessons = lessons
+        
+        let lesson = remainingLessons.removeFirst()
+        
+        downloadAllResources(lesson) { 
+            self.downloadNextLesson(remainingLessons: remainingLessons, completion: completion)
+        }
+        
+    }
+    
+    private func downloadAllResources(lesson: Lesson, completion: (()->())?) {
+        downloadNextResource(lesson, remainingResources: LessonType.downloadable, completion: completion)
+    }
+    
+    private func downloadNextResource(lesson: Lesson, remainingResources resources: [LessonType], completion: (()->())?) {
+        if resources.count == 0 {
+            completion?()
+            return
+        }
+        
+        var remainingResources = resources
+        
+        var resource = remainingResources.removeFirst()
+        while resource.urlString(lesson) == nil {
+            if remainingResources.count == 0 {
+                completion?()
+                return
+            }
+            resource = remainingResources.removeFirst()
+        }
+        
+        startDownloading(lesson, resource: resource) { (result) in
+            self.downloadNextResource(lesson, remainingResources: remainingResources, completion: completion)
+        }
+    }
+    
 }
 
 private func ==(lhs: ResourceManager.ResourceKey, rhs: ResourceManager.ResourceKey) -> Bool {
