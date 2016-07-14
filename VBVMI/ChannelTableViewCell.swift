@@ -17,6 +17,10 @@ class ChannelTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        titleLabel.textColor = StyleKit.darkGrey
+        countLabel.textColor = StyleKit.midGrey
+        dateLabel.textColor = StyleKit.midGrey
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
