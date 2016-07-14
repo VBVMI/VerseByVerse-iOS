@@ -189,6 +189,9 @@ class StudyViewController: UITableViewController {
         return 1 + count
     }
     
+    private var lastTappedLesson: Lesson?
+    private var lastTappedResource: ResourceManager.LessonType?
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
@@ -210,6 +213,10 @@ class StudyViewController: UITableViewController {
                     
                     let lessonIndexPath = NSIndexPath(forRow: tableIndexPath.row, inSection: tableIndexPath.section - 1)
                     let lesson = this.fetchedResultsController.objectAtIndexPath(lessonIndexPath) as! Lesson
+                    
+                    this.lastTappedLesson = lesson
+                    this.lastTappedResource = lessonType
+                    
                     switch status {
                     case .None, .Completed:
                         ResourceManager.sharedInstance.startDownloading(lesson, resource: lessonType, completion: { (result) in
@@ -223,6 +230,10 @@ class StudyViewController: UITableViewController {
                                 log.error("\(error)")
                             case .success(let lesson, let resource, let url):
                                 //Epic, we have the URL so lets go do a thing
+                                
+                                guard lesson == this.lastTappedLesson && resource == this.lastTappedResource else {
+                                    return
+                                }
                                 
                                 switch lessonType.fileType() {
                                 case .PDF:
