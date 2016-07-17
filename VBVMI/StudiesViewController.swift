@@ -160,6 +160,10 @@ extension StudiesViewController : UICollectionViewDataSource {
         }
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Cell.Identifier.Study, forIndexPath: indexPath) as! StudyCellCollectionViewCell
         
+        cell.isAccessibilityElement = true
+        
+        cell.accessibilityHint = "\(study.title)"
+        
         cell.titleLabel.text = study.title
         cell.coverImageView.image = nil
         if let thumbnailSource = study.thumbnailSource {

@@ -22,8 +22,6 @@
 
 /* Begin PBXBuildFile section */
 		43F3F530BCD03656741ABA01 /* Pods_VBVMI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FCF4EEA67E046837FF107E /* Pods_VBVMI.framework */; };
-		6105FD431CE319479A3300ED /* Pods_VBVMITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F238B6B4D78C033FA5021EE7 /* Pods_VBVMITests.framework */; };
-		87C84B3FBB938801AEC74E0B /* Pods_VBVMIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8891F3FC110090C58E0F6985 /* Pods_VBVMIUITests.framework */; };
 		980579D71D31D9DE001C809C /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980579D61D31D9DE001C809C /* ChannelsViewController.swift */; };
 		980BE9681C9E9DEF003A5D84 /* _Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980BE9661C9E9DEF003A5D84 /* _Topic.swift */; };
 		980BE9691C9E9DEF003A5D84 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980BE9671C9E9DEF003A5D84 /* Topic.swift */; };
@@ -33,14 +31,15 @@
 		980E6C0E1C814A3E008F23D1 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C0D1C814A3E008F23D1 /* Appearance.swift */; };
 		980E6C111C814E5F008F23D1 /* TitleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C101C814E5F008F23D1 /* TitleParser.swift */; };
 		980E6C141C81AF4C008F23D1 /* LessonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C131C81AF4C008F23D1 /* LessonCellViewModel.swift */; };
+		9821380F1D3B8393006F2B79 /* VBVMITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9821380E1D3B8393006F2B79 /* VBVMITests.swift */; };
+		9821381D1D3B83D6006F2B79 /* VBVMIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9821381C1D3B83D6006F2B79 /* VBVMIUITests.swift */; };
+		982138241D3B83EC006F2B79 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D16ABF1D3B7512004BF06E /* SnapshotHelper.swift */; };
 		9828D4141C5D9F4A004FA954 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D4131C5D9F4A004FA954 /* AppDelegate.swift */; };
 		9828D4161C5D9F4A004FA954 /* StudiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D4151C5D9F4A004FA954 /* StudiesViewController.swift */; };
 		9828D4191C5D9F4A004FA954 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9828D4171C5D9F4A004FA954 /* Main.storyboard */; };
 		9828D41C1C5D9F4A004FA954 /* VBVMI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9828D41A1C5D9F4A004FA954 /* VBVMI.xcdatamodeld */; };
 		9828D41E1C5D9F4A004FA954 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9828D41D1C5D9F4A004FA954 /* Assets.xcassets */; };
 		9828D4211C5D9F4A004FA954 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9828D41F1C5D9F4A004FA954 /* LaunchScreen.storyboard */; };
-		9828D42C1C5D9F4A004FA954 /* VBVMITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D42B1C5D9F4A004FA954 /* VBVMITests.swift */; };
-		9828D4371C5D9F4A004FA954 /* VBVMIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D4361C5D9F4A004FA954 /* VBVMIUITests.swift */; };
 		9828D44D1C5DA2BC004FA954 /* _Study.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D44B1C5DA2BC004FA954 /* _Study.swift */; };
 		9828D44E1C5DA2BC004FA954 /* Study.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D44C1C5DA2BC004FA954 /* Study.swift */; };
 		9828D4501C5DA8D1004FA954 /* JsonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D44F1C5DA8D1004FA954 /* JsonAPI.swift */; };
@@ -115,14 +114,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9828D4281C5D9F4A004FA954 /* PBXContainerItemProxy */ = {
+		982138111D3B8393006F2B79 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9828D4081C5D9F4A004FA954 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 9828D40F1C5D9F4A004FA954;
 			remoteInfo = VBVMI;
 		};
-		9828D4331C5D9F4A004FA954 /* PBXContainerItemProxy */ = {
+		9821381F1D3B83D6006F2B79 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9828D4081C5D9F4A004FA954 /* Project object */;
 			proxyType = 1;
@@ -175,6 +174,12 @@
 		980E6C0D1C814A3E008F23D1 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		980E6C101C814E5F008F23D1 /* TitleParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleParser.swift; sourceTree = "<group>"; };
 		980E6C131C81AF4C008F23D1 /* LessonCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonCellViewModel.swift; sourceTree = "<group>"; };
+		9821380C1D3B8393006F2B79 /* VBVMITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VBVMITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9821380E1D3B8393006F2B79 /* VBVMITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VBVMITests.swift; sourceTree = "<group>"; };
+		982138101D3B8393006F2B79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9821381A1D3B83D6006F2B79 /* VBVMIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VBVMIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9821381C1D3B83D6006F2B79 /* VBVMIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VBVMIUITests.swift; sourceTree = "<group>"; };
+		9821381E1D3B83D6006F2B79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9828D4101C5D9F4A004FA954 /* Verse By Verse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Verse By Verse.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9828D4131C5D9F4A004FA954 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9828D4151C5D9F4A004FA954 /* StudiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudiesViewController.swift; sourceTree = "<group>"; };
@@ -183,12 +188,6 @@
 		9828D41D1C5D9F4A004FA954 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9828D4201C5D9F4A004FA954 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9828D4221C5D9F4A004FA954 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9828D4271C5D9F4A004FA954 /* VBVMITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VBVMITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9828D42B1C5D9F4A004FA954 /* VBVMITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VBVMITests.swift; sourceTree = "<group>"; };
-		9828D42D1C5D9F4A004FA954 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9828D4321C5D9F4A004FA954 /* VBVMIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VBVMIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9828D4361C5D9F4A004FA954 /* VBVMIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VBVMIUITests.swift; sourceTree = "<group>"; };
-		9828D4381C5D9F4A004FA954 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9828D44B1C5DA2BC004FA954 /* _Study.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Study.swift; path = Model/_Study.swift; sourceTree = "<group>"; };
 		9828D44C1C5DA2BC004FA954 /* Study.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Study.swift; path = Model/Study.swift; sourceTree = "<group>"; };
 		9828D44F1C5DA8D1004FA954 /* JsonAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonAPI.swift; sourceTree = "<group>"; };
@@ -258,6 +257,7 @@
 		98CB0E3B1CA74E7F00C99D34 /* TopicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicViewController.xib; sourceTree = "<group>"; };
 		98CBFE8E1C900E5F005F6414 /* StudiesHeaderReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudiesHeaderReusableView.swift; sourceTree = "<group>"; };
 		98CBFE8F1C900E5F005F6414 /* StudiesHeaderReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudiesHeaderReusableView.xib; sourceTree = "<group>"; };
+		98D16ABF1D3B7512004BF06E /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		98D45B8B1C86C7BE004BBCBD /* VBVMI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = VBVMI.entitlements; sourceTree = "<group>"; };
 		98D45B8E1C86D1EC004BBCBD /* LNPopupController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LNPopupController.xcodeproj; path = LNPopupController/LNPopupController.xcodeproj; sourceTree = "<group>"; };
 		98D45B9D1C86D61D004BBCBD /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
@@ -278,28 +278,26 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		982138091D3B8393006F2B79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		982138171D3B83D6006F2B79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9828D40D1C5D9F4A004FA954 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				98D45B941C86D22A004BBCBD /* LNPopupController.framework in Frameworks */,
 				43F3F530BCD03656741ABA01 /* Pods_VBVMI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9828D4241C5D9F4A004FA954 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6105FD431CE319479A3300ED /* Pods_VBVMITests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9828D42F1C5D9F4A004FA954 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				87C84B3FBB938801AEC74E0B /* Pods_VBVMIUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,12 +372,31 @@
 			name = ViewModels;
 			sourceTree = "<group>";
 		};
+		9821380D1D3B8393006F2B79 /* VBVMITests */ = {
+			isa = PBXGroup;
+			children = (
+				9821380E1D3B8393006F2B79 /* VBVMITests.swift */,
+				982138101D3B8393006F2B79 /* Info.plist */,
+			);
+			path = VBVMITests;
+			sourceTree = "<group>";
+		};
+		9821381B1D3B83D6006F2B79 /* VBVMIUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9821381C1D3B83D6006F2B79 /* VBVMIUITests.swift */,
+				98D16ABF1D3B7512004BF06E /* SnapshotHelper.swift */,
+				9821381E1D3B83D6006F2B79 /* Info.plist */,
+			);
+			path = VBVMIUITests;
+			sourceTree = "<group>";
+		};
 		9828D4071C5D9F4A004FA954 = {
 			isa = PBXGroup;
 			children = (
 				9828D4121C5D9F4A004FA954 /* VBVMI */,
-				9828D42A1C5D9F4A004FA954 /* VBVMITests */,
-				9828D4351C5D9F4A004FA954 /* VBVMIUITests */,
+				9821380D1D3B8393006F2B79 /* VBVMITests */,
+				9821381B1D3B83D6006F2B79 /* VBVMIUITests */,
 				9828D4111C5D9F4A004FA954 /* Products */,
 				98D45B8E1C86D1EC004BBCBD /* LNPopupController.xcodeproj */,
 				56E691E2EDD19A5EF4B8ACDA /* Frameworks */,
@@ -391,8 +408,8 @@
 			isa = PBXGroup;
 			children = (
 				9828D4101C5D9F4A004FA954 /* Verse By Verse.app */,
-				9828D4271C5D9F4A004FA954 /* VBVMITests.xctest */,
-				9828D4321C5D9F4A004FA954 /* VBVMIUITests.xctest */,
+				9821380C1D3B8393006F2B79 /* VBVMITests.xctest */,
+				9821381A1D3B83D6006F2B79 /* VBVMIUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -425,24 +442,6 @@
 				98D45BA11C86FAB4004BBCBD /* VBVMI-Bridging-Header.h */,
 			);
 			path = VBVMI;
-			sourceTree = "<group>";
-		};
-		9828D42A1C5D9F4A004FA954 /* VBVMITests */ = {
-			isa = PBXGroup;
-			children = (
-				9828D42B1C5D9F4A004FA954 /* VBVMITests.swift */,
-				9828D42D1C5D9F4A004FA954 /* Info.plist */,
-			);
-			path = VBVMITests;
-			sourceTree = "<group>";
-		};
-		9828D4351C5D9F4A004FA954 /* VBVMIUITests */ = {
-			isa = PBXGroup;
-			children = (
-				9828D4361C5D9F4A004FA954 /* VBVMIUITests.swift */,
-				9828D4381C5D9F4A004FA954 /* Info.plist */,
-			);
-			path = VBVMIUITests;
 			sourceTree = "<group>";
 		};
 		9828D4491C5DA2A7004FA954 /* Model */ = {
@@ -582,6 +581,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9821380B1D3B8393006F2B79 /* VBVMITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 982138131D3B8393006F2B79 /* Build configuration list for PBXNativeTarget "VBVMITests" */;
+			buildPhases = (
+				982138081D3B8393006F2B79 /* Sources */,
+				982138091D3B8393006F2B79 /* Frameworks */,
+				9821380A1D3B8393006F2B79 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				982138121D3B8393006F2B79 /* PBXTargetDependency */,
+			);
+			name = VBVMITests;
+			productName = VBVMITests;
+			productReference = 9821380C1D3B8393006F2B79 /* VBVMITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		982138191D3B83D6006F2B79 /* VBVMIUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 982138211D3B83D6006F2B79 /* Build configuration list for PBXNativeTarget "VBVMIUITests" */;
+			buildPhases = (
+				982138161D3B83D6006F2B79 /* Sources */,
+				982138171D3B83D6006F2B79 /* Frameworks */,
+				982138181D3B83D6006F2B79 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				982138201D3B83D6006F2B79 /* PBXTargetDependency */,
+			);
+			name = VBVMIUITests;
+			productName = VBVMIUITests;
+			productReference = 9821381A1D3B83D6006F2B79 /* VBVMIUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		9828D40F1C5D9F4A004FA954 /* VBVMI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9828D43B1C5D9F4A004FA954 /* Build configuration list for PBXNativeTarget "VBVMI" */;
@@ -607,57 +642,24 @@
 			productReference = 9828D4101C5D9F4A004FA954 /* Verse By Verse.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9828D4261C5D9F4A004FA954 /* VBVMITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9828D43E1C5D9F4A004FA954 /* Build configuration list for PBXNativeTarget "VBVMITests" */;
-			buildPhases = (
-				E5B234E77ED3191B9B3EB7E2 /* [CP] Check Pods Manifest.lock */,
-				9828D4231C5D9F4A004FA954 /* Sources */,
-				9828D4241C5D9F4A004FA954 /* Frameworks */,
-				9828D4251C5D9F4A004FA954 /* Resources */,
-				E52CE7D198760C95345EBC13 /* [CP] Embed Pods Frameworks */,
-				0400955663D5E13F494DBE92 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9828D4291C5D9F4A004FA954 /* PBXTargetDependency */,
-			);
-			name = VBVMITests;
-			productName = VBVMITests;
-			productReference = 9828D4271C5D9F4A004FA954 /* VBVMITests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		9828D4311C5D9F4A004FA954 /* VBVMIUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9828D4411C5D9F4A004FA954 /* Build configuration list for PBXNativeTarget "VBVMIUITests" */;
-			buildPhases = (
-				ACDEDACA3A588E9AE7C7F5BA /* [CP] Check Pods Manifest.lock */,
-				9828D42E1C5D9F4A004FA954 /* Sources */,
-				9828D42F1C5D9F4A004FA954 /* Frameworks */,
-				9828D4301C5D9F4A004FA954 /* Resources */,
-				E210207130037E23E57DD587 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9828D4341C5D9F4A004FA954 /* PBXTargetDependency */,
-			);
-			name = VBVMIUITests;
-			productName = VBVMIUITests;
-			productReference = 9828D4321C5D9F4A004FA954 /* VBVMIUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		9828D4081C5D9F4A004FA954 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Tom Carey";
 				TargetAttributes = {
+					9821380B1D3B8393006F2B79 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 9828D40F1C5D9F4A004FA954;
+					};
+					982138191D3B83D6006F2B79 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 9828D40F1C5D9F4A004FA954;
+					};
 					9828D40F1C5D9F4A004FA954 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 4UDQLK73PW;
@@ -672,14 +674,6 @@
 								enabled = 0;
 							};
 						};
-					};
-					9828D4261C5D9F4A004FA954 = {
-						CreatedOnToolsVersion = 7.2;
-						TestTargetID = 9828D40F1C5D9F4A004FA954;
-					};
-					9828D4311C5D9F4A004FA954 = {
-						CreatedOnToolsVersion = 7.2;
-						TestTargetID = 9828D40F1C5D9F4A004FA954;
 					};
 					9828D4441C5DA1D3004FA954 = {
 						CreatedOnToolsVersion = 7.2;
@@ -706,8 +700,8 @@
 			projectRoot = "";
 			targets = (
 				9828D40F1C5D9F4A004FA954 /* VBVMI */,
-				9828D4261C5D9F4A004FA954 /* VBVMITests */,
-				9828D4311C5D9F4A004FA954 /* VBVMIUITests */,
+				9821380B1D3B8393006F2B79 /* VBVMITests */,
+				982138191D3B83D6006F2B79 /* VBVMIUITests */,
 				9828D4441C5DA1D3004FA954 /* Mogenerator */,
 			);
 		};
@@ -724,6 +718,20 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9821380A1D3B8393006F2B79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		982138181D3B83D6006F2B79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9828D40E1C5D9F4A004FA954 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -747,38 +755,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9828D4251C5D9F4A004FA954 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9828D4301C5D9F4A004FA954 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0400955663D5E13F494DBE92 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMITests/Pods-VBVMITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4453D1D6FA95E6AB37D03DB3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -865,67 +844,7 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ -z ${FABRIC_API_KEY+x} ]; then\n    echo \"FABRIC_API_KEY is unset\"\nelse\n    if [ -z ${CRASHLYTICS_TOKEN+x} ]; then\n        echo \"CRASHLYTICS_TOKEN is unset\"\n    else\n        \"${PODS_ROOT}/Fabric/run\" \"${FABRIC_API_KEY}\" \"${CRASHLYTICS_TOKEN}\"\n    fi\nfi\n\n";
 		};
-		ACDEDACA3A588E9AE7C7F5BA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		B8C4E2990088CC0450535970 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		E210207130037E23E57DD587 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMIUITests/Pods-VBVMIUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E52CE7D198760C95345EBC13 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMITests/Pods-VBVMITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E5B234E77ED3191B9B3EB7E2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -943,6 +862,23 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		982138081D3B8393006F2B79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9821380F1D3B8393006F2B79 /* VBVMITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		982138161D3B83D6006F2B79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9821381D1D3B83D6006F2B79 /* VBVMIUITests.swift in Sources */,
+				982138241D3B83EC006F2B79 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9828D40C1C5D9F4A004FA954 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1018,34 +954,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9828D4231C5D9F4A004FA954 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9828D42C1C5D9F4A004FA954 /* VBVMITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9828D42E1C5D9F4A004FA954 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9828D4371C5D9F4A004FA954 /* VBVMIUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9828D4291C5D9F4A004FA954 /* PBXTargetDependency */ = {
+		982138121D3B8393006F2B79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9828D40F1C5D9F4A004FA954 /* VBVMI */;
-			targetProxy = 9828D4281C5D9F4A004FA954 /* PBXContainerItemProxy */;
+			targetProxy = 982138111D3B8393006F2B79 /* PBXContainerItemProxy */;
 		};
-		9828D4341C5D9F4A004FA954 /* PBXTargetDependency */ = {
+		982138201D3B83D6006F2B79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9828D40F1C5D9F4A004FA954 /* VBVMI */;
-			targetProxy = 9828D4331C5D9F4A004FA954 /* PBXContainerItemProxy */;
+			targetProxy = 9821381F1D3B83D6006F2B79 /* PBXContainerItemProxy */;
 		};
 		98D45B971C86D22A004BBCBD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1074,6 +994,62 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		982138141D3B8393006F2B79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				INFOPLIST_FILE = VBVMITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.versebyverseministry.VBVMITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Verse By Verse.app/Verse By Verse";
+			};
+			name = Debug;
+		};
+		982138151D3B8393006F2B79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = VBVMITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.versebyverseministry.VBVMITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Verse By Verse.app/Verse By Verse";
+			};
+			name = Release;
+		};
+		982138221D3B83D6006F2B79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				INFOPLIST_FILE = VBVMIUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.versebyverseministry.VBVMIUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = VBVMI;
+			};
+			name = Debug;
+		};
+		982138231D3B83D6006F2B79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = VBVMIUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.versebyverseministry.VBVMIUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = VBVMI;
+			};
+			name = Release;
+		};
 		9828D4391C5D9F4A004FA954 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 980579DC1D31DF79001C809C /* Keys.xcconfig */;
@@ -1195,58 +1171,6 @@
 			};
 			name = Release;
 		};
-		9828D43F1C5D9F4A004FA954 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AEBD0C57F738073E79ED37ED /* Pods-VBVMITests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = VBVMITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cactuslab.VBVMITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VBVMI.app/VBVMI";
-			};
-			name = Debug;
-		};
-		9828D4401C5D9F4A004FA954 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 547D9554CD14FFA1B010272D /* Pods-VBVMITests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = VBVMITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cactuslab.VBVMITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VBVMI.app/VBVMI";
-			};
-			name = Release;
-		};
-		9828D4421C5D9F4A004FA954 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B360C71CB6EB0FE53044D090 /* Pods-VBVMIUITests.debug.xcconfig */;
-			buildSettings = {
-				INFOPLIST_FILE = VBVMIUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cactuslab.VBVMIUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = VBVMI;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		9828D4431C5D9F4A004FA954 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A3D6C01961C229B9D7FB01A /* Pods-VBVMIUITests.release.xcconfig */;
-			buildSettings = {
-				INFOPLIST_FILE = VBVMIUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cactuslab.VBVMIUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = VBVMI;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 		9828D4451C5DA1D3004FA954 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1264,6 +1188,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		982138131D3B8393006F2B79 /* Build configuration list for PBXNativeTarget "VBVMITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				982138141D3B8393006F2B79 /* Debug */,
+				982138151D3B8393006F2B79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		982138211D3B83D6006F2B79 /* Build configuration list for PBXNativeTarget "VBVMIUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				982138221D3B83D6006F2B79 /* Debug */,
+				982138231D3B83D6006F2B79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		9828D40B1C5D9F4A004FA954 /* Build configuration list for PBXProject "VBVMI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1278,24 +1218,6 @@
 			buildConfigurations = (
 				9828D43C1C5D9F4A004FA954 /* Debug */,
 				9828D43D1C5D9F4A004FA954 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9828D43E1C5D9F4A004FA954 /* Build configuration list for PBXNativeTarget "VBVMITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9828D43F1C5D9F4A004FA954 /* Debug */,
-				9828D4401C5D9F4A004FA954 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9828D4411C5D9F4A004FA954 /* Build configuration list for PBXNativeTarget "VBVMIUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9828D4421C5D9F4A004FA954 /* Debug */,
-				9828D4431C5D9F4A004FA954 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

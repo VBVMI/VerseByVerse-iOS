@@ -2,7 +2,7 @@
 //  VBVMIUITests.swift
 //  VBVMIUITests
 //
-//  Created by Thomas Carey on 31/01/16.
+//  Created by Thomas Carey on 17/07/16.
 //  Copyright © 2016 Tom Carey. All rights reserved.
 //
 
@@ -30,6 +30,7 @@ class VBVMIUITests: XCTestCase {
     
     func testExample() {
         // Use recording to get started writing UI tests.
+        XCUIApplication().collectionViews.childrenMatchingType(.Cell).elementBoundByIndex(0).tap()
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
