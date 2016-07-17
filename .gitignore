@@ -179,3 +179,5 @@ fastlane/screenshots
 ### Objective-C Patch ###
 *.xcscmblueprint
 Keys.xcconfig
+/fastlane/Appfile
+/fastlane/Deliverfile
