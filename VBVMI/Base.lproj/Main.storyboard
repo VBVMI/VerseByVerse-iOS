@@ -205,7 +205,7 @@
         <!--View Controller-->
         <scene sceneID="sFA-hP-Ay7">
             <objects>
-                <viewController storyboardIdentifier="LessonWebView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5ao-AQ-ZKT" customClass="PDFViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LessonWebView" id="5ao-AQ-ZKT" customClass="PDFViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ANr-Xd-8Z2"/>
                         <viewControllerLayoutGuide type="bottom" id="jlk-ts-3Rv"/>

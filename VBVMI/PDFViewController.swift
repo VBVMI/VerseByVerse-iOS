@@ -12,19 +12,22 @@ class PDFViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
     
-    var urlToLoad: NSURL!
+    var urlToLoad: NSURL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        let urlRequest = NSURLRequest(URL: urlToLoad)
-        webView.delegate = self
-        webView.loadRequest(urlRequest)
-        if self.title == nil {
-            self.title = urlToLoad.lastPathComponent
+        loadPDF()
+    }
+    
+    private func loadPDF() {
+        if let url = urlToLoad {
+            let urlRequest = NSURLRequest(URL: url)
+            webView.delegate = self
+            webView.loadRequest(urlRequest)
+            if self.title == nil {
+                self.title = url.lastPathComponent
+            }
         }
-        
     }
 
     override func didReceiveMemoryWarning() {
