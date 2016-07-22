@@ -17,6 +17,22 @@ class PDFViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadPDF()
+        
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: #selector(share))
+        self.navigationItem.rightBarButtonItem = shareButton
+    }
+    
+    func share() {
+        guard let urlToLoad = urlToLoad else {
+            return
+        }
+        
+        let items = [urlToLoad]
+        let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        
+        activityController.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+        
+        presentViewController(activityController, animated: true, completion: nil)
     }
     
     private func loadPDF() {
