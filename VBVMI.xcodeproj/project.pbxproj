@@ -1195,6 +1195,7 @@
 				982138151D3B8393006F2B79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		982138211D3B83D6006F2B79 /* Build configuration list for PBXNativeTarget "VBVMIUITests" */ = {
 			isa = XCConfigurationList;
@@ -1203,6 +1204,7 @@
 				982138231D3B83D6006F2B79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9828D40B1C5D9F4A004FA954 /* Build configuration list for PBXProject "VBVMI" */ = {
 			isa = XCConfigurationList;
