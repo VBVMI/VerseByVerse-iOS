@@ -231,6 +231,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private static var _resourcesURL: NSURL? = nil
     
+    private static func addSkipBackupAttributeToItemAtURL(filePath:String) -> Bool
+    {
+        let URL:NSURL = NSURL.fileURLWithPath(filePath)
+        
+        assert(NSFileManager.defaultManager().fileExistsAtPath(filePath), "File \(filePath) does not exist")
+        
+        var success: Bool
+        do {
+            try URL.setResourceValue(true, forKey:NSURLIsExcludedFromBackupKey)
+            success = true
+        } catch let error as NSError {
+            success = false
+            print("Error excluding \(URL.lastPathComponent) from backup \(error)");
+        }
+        
+        return success
+    }
+    
     static func resourcesURL() -> NSURL? {
         if let url = _resourcesURL {
             return url
@@ -250,7 +268,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     log.error("Error creating resources directory: \(error)")
                     return nil
                 }
+                
             }
+            
+            if let path = rootURL.path {
+                addSkipBackupAttributeToItemAtURL(path)
+            }
+            
             _resourcesURL = rootURL
             return rootURL
         
