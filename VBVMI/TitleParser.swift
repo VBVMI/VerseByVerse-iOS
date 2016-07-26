@@ -18,7 +18,7 @@ import Regex
 struct TitleParser {
     
     //Typical Title = "Galatians - Lesson 16B"
-    static let title = Regex("^([^-]+)(\\s*-\\s*(\\w*)\\s*(\\w*[-\\/\\s]*\\w*))?$")
+    private static let title = Regex("^([^-]+)(\\s*-\\s*(\\w*)\\s*(\\w*[-\\/\\s]*\\w*))?$")
     
     static func match(string: String) -> [String?]? {
         return title.match(string)?.captures
@@ -28,7 +28,7 @@ struct TitleParser {
         guard let matches = match(string) else {
             return (nil, nil)
         }
-        log.warning("Matches: \(matches)")
+        //log.warning("Matches: \(matches)")
         if matches.count == 4 {
             return (matches[0]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()), matches[3]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
         }

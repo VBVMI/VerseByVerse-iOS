@@ -88,7 +88,7 @@ class APIDataManager {
         }
     }
     
-    static func allTheArticles() {
+    private static func allTheArticles() {
         downloadToJSONArray(JsonAPI.Articles, arrayNode: "articles") { (context, JSONArray) -> () in
             for JSONModel in JSONArray {
                 let _ = try Article.decodeJSON(JSONModel, context: context)
@@ -115,7 +115,7 @@ class APIDataManager {
         }
     }
     
-    static func allTheAnswers() {
+    private static func allTheAnswers() {
         downloadToJSONArray(JsonAPI.QA, arrayNode: "QandAPosts") { (context, JSONArray) -> () in
             for JSONModel in JSONArray {
                 let _ = try Answer.decodeJSON(JSONModel, context: context)
@@ -123,7 +123,43 @@ class APIDataManager {
         }
     }
     
-    static func downloadToJSONArray(request: JsonAPI, arrayNode: String, conversionBlock: (context: NSManagedObjectContext, JSONArray: [NSDictionary]) throws ->()) {
+    static func allTheChannels() {
+        downloadToJSONArray(JsonAPI.Channels, arrayNode: "channels") { (context, JSONArray) in
+            
+            try JSONArray.enumerate().forEach({ (index, channelDict) in
+                let _ = try Channel.decodeJSON(channelDict, context: context, index: index)
+            })
+            
+        }
+    }
+    
+    static func allTheEvents() {
+        downloadToJSONArray(JsonAPI.Events, arrayNode: "events") { (context, JSONArray) in
+            
+            let existingEvents = Event.findAll(context) as? [Event] ?? [Event]()
+            var existingEventIds = existingEvents.map({ (event) -> String in
+                return event.identifier
+            })
+            
+            try JSONArray.enumerate().forEach({ (index, eventDict) in
+                let event = try Event.decodeJSON(eventDict, context: context, index: index)
+                if let index = existingEventIds.indexOf(event.identifier) {
+                    existingEventIds.removeAtIndex(index)
+                }
+            })
+            
+            if existingEventIds.count > 0 {
+                if let eventsToDelete = Event.findAllWithPredicate(NSPredicate(format: "%K in %@", EventAttributes.identifier.rawValue, existingEventIds), context: context) as? [Lesson] where eventsToDelete.count > 0 {
+                    for event in eventsToDelete {
+                        context.deleteObject(event)
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    private static func downloadToJSONArray(request: JsonAPI, arrayNode: String, conversionBlock: (context: NSManagedObjectContext, JSONArray: [NSDictionary]) throws ->()) {
         Provider.sharedProvider.request(request) { (result) -> () in
             switch result {
             case .Success(let response):

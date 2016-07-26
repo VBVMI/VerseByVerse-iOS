@@ -12,19 +12,38 @@ class PDFViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
     
-    var urlToLoad: NSURL!
+    var urlToLoad: NSURL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        let urlRequest = NSURLRequest(URL: urlToLoad)
-        webView.delegate = self
-        webView.loadRequest(urlRequest)
-        if self.title == nil {
-            self.title = urlToLoad.lastPathComponent
+        loadPDF()
+        
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: #selector(share))
+        self.navigationItem.rightBarButtonItem = shareButton
+    }
+    
+    func share() {
+        guard let urlToLoad = urlToLoad else {
+            return
         }
         
+        let items = [urlToLoad]
+        let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        
+        activityController.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+        
+        presentViewController(activityController, animated: true, completion: nil)
+    }
+    
+    private func loadPDF() {
+        if let url = urlToLoad {
+            let urlRequest = NSURLRequest(URL: url)
+            webView.delegate = self
+            webView.loadRequest(urlRequest)
+            if self.title == nil {
+                self.title = url.lastPathComponent
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

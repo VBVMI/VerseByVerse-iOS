@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="h14-bl-qjG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="h14-bl-qjG">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -9,7 +9,7 @@
         <!--Home Tab Bar Controller-->
         <scene sceneID="VRt-FE-6b0">
             <objects>
-                <tabBarController storyboardIdentifier="HomeTabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h14-bl-qjG" customClass="HomeTabBarController" customModule="VBVMI" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeTabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h14-bl-qjG" customClass="HomeTabBarController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="f7U-EA-bxW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -20,6 +20,7 @@
                         <segue destination="r43-xi-fT6" kind="relationship" relationship="viewControllers" id="FBS-Dl-WYV"/>
                         <segue destination="qK5-Ll-f3h" kind="relationship" relationship="viewControllers" id="FkN-oX-9Mo"/>
                         <segue destination="2R4-eV-Lll" kind="relationship" relationship="viewControllers" id="yte-rK-InM"/>
+                        <segue destination="8Mn-WK-Xr8" kind="relationship" relationship="viewControllers" id="MEY-Nx-yGs"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tp6-0p-u1v" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -30,7 +31,7 @@
         <scene sceneID="al8-Ec-E0U">
             <objects>
                 <navigationController storyboardIdentifier="Studies Nav Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="r43-xi-fT6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Studies" id="Jdk-P2-COC" customClass="TabBarItem" customModule="VBVMI" customModuleProvider="target">
+                    <tabBarItem key="tabBarItem" title="Studies" id="Jdk-P2-COC" customClass="TabBarItem" customModule="Verse_By_Verse" customModuleProvider="target">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="fontAwesomeKey" value="fa-book"/>
                         </userDefinedRuntimeAttributes>
@@ -52,7 +53,7 @@
         <!--Studies-->
         <scene sceneID="rdJ-l8-2bt">
             <objects>
-                <viewController storyboardIdentifier="Studies Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="f4n-T1-mqz" customClass="StudiesViewController" customModule="VBVMI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Studies Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="f4n-T1-mqz" customClass="StudiesViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nsa-5v-nL7"/>
                         <viewControllerLayoutGuide type="bottom" id="osI-F6-KFb"/>
@@ -100,7 +101,7 @@
         <!--Study View Controller-->
         <scene sceneID="kss-pD-TLF">
             <objects>
-                <tableViewController storyboardIdentifier="Study Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yfM-zu-8Zd" customClass="StudyViewController" customModule="VBVMI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Study Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yfM-zu-8Zd" customClass="StudyViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="peR-Ed-5AH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -131,7 +132,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DescriptionCell" rowHeight="87" id="vYv-Wy-i9r" customClass="StudyDescriptionCell" customModule="VBVMI" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DescriptionCell" rowHeight="87" id="vYv-Wy-i9r" customClass="StudyDescriptionCell" customModule="Verse_By_Verse" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="260" width="320" height="87"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vYv-Wy-i9r" id="ede-53-JSy">
@@ -139,12 +140,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nT-kj-M8E">
-                                            <rect key="frame" x="16" y="8" width="288" height="19.5"/>
+                                            <rect key="frame" x="16" y="8" width="288" height="20"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pf2-xQ-ePx" customClass="HideView" customModule="VBVMI" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pf2-xQ-ePx" customClass="HideView" customModule="Verse_By_Verse" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="27" width="320" height="60"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -152,7 +153,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1u-wE-HZE">
-                                            <rect key="frame" x="142" y="71" width="36.5" height="13.5"/>
+                                            <rect key="frame" x="142" y="71" width="37" height="14"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -204,7 +205,7 @@
         <!--View Controller-->
         <scene sceneID="sFA-hP-Ay7">
             <objects>
-                <viewController storyboardIdentifier="LessonWebView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5ao-AQ-ZKT" customClass="PDFViewController" customModule="VBVMI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LessonWebView" id="5ao-AQ-ZKT" customClass="PDFViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ANr-Xd-8Z2"/>
                         <viewControllerLayoutGuide type="bottom" id="jlk-ts-3Rv"/>
@@ -237,7 +238,7 @@
         <!--Articles-->
         <scene sceneID="Vdm-VU-Cj8">
             <objects>
-                <tableViewController storyboardIdentifier="Articles" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aQc-vM-nMb" customClass="ArticlesViewController" customModule="VBVMI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Articles" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aQc-vM-nMb" customClass="ArticlesViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Articles Controller" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7Kg-56-QNs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -259,7 +260,7 @@
         <!--Article View Controller-->
         <scene sceneID="jaJ-hj-om7">
             <objects>
-                <tableViewController storyboardIdentifier="Article" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rXV-Ac-x65" customClass="ArticleViewController" customModule="VBVMI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Article" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rXV-Ac-x65" customClass="ArticleViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="OXw-EG-MO8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -277,7 +278,7 @@
         <!--Answer View Controller-->
         <scene sceneID="qAV-Vf-cv2">
             <objects>
-                <tableViewController storyboardIdentifier="Answer" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BgG-Wm-fdE" customClass="AnswerViewController" customModule="VBVMI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Answer" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BgG-Wm-fdE" customClass="AnswerViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZRq-5Y-4bO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -296,7 +297,7 @@
         <scene sceneID="BRF-QX-awg">
             <objects>
                 <navigationController storyboardIdentifier="Articles Nav Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qK5-Ll-f3h" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Articles" id="2gl-l9-jOr" customClass="TabBarItem" customModule="VBVMI" customModuleProvider="target">
+                    <tabBarItem key="tabBarItem" title="Articles" id="2gl-l9-jOr" customClass="TabBarItem" customModule="Verse_By_Verse" customModuleProvider="target">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="fontAwesomeKey" value="fa-newspaper-o"/>
                         </userDefinedRuntimeAttributes>
@@ -317,7 +318,7 @@
         <!--Answers-->
         <scene sceneID="VDG-By-dlA">
             <objects>
-                <tableViewController storyboardIdentifier="Answers" useStoryboardIdentifierAsRestorationIdentifier="YES" id="McM-lu-wcI" customClass="AnswersViewController" customModule="VBVMI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Answers" useStoryboardIdentifierAsRestorationIdentifier="YES" id="McM-lu-wcI" customClass="AnswersViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zz5-81-JK1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -336,11 +337,108 @@
             </objects>
             <point key="canvasLocation" x="488" y="617"/>
         </scene>
+        <!--Videos-->
+        <scene sceneID="iLS-wQ-WO3">
+            <objects>
+                <navigationController storyboardIdentifier="Videos Nav Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8Mn-WK-Xr8" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Videos" id="bdr-Kp-ylY" customClass="TabBarItem" customModule="Verse_By_Verse" customModuleProvider="target">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="fontAwesomeKey" value="fa-tv"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lG9-Tf-jzy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="XZ7-fQ-tUf" kind="relationship" relationship="rootViewController" id="JHp-ZI-hpe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aGI-Yk-TMm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="72" y="1221"/>
+        </scene>
+        <!--Videos-->
+        <scene sceneID="48b-Nl-N2U">
+            <objects>
+                <viewController storyboardIdentifier="Videos" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XZ7-fQ-tUf" customClass="ChannelsViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dfe-Df-3Uh"/>
+                        <viewControllerLayoutGuide type="bottom" id="PeS-Yb-Pp2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cd9-WV-qKw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Tc-aQ-lKj">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="XZ7-fQ-tUf" id="toP-dL-td7"/>
+                                    <outlet property="delegate" destination="XZ7-fQ-tUf" id="Q32-YO-apn"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7Tc-aQ-lKj" firstAttribute="top" secondItem="cd9-WV-qKw" secondAttribute="top" id="6sg-8H-5Ot"/>
+                            <constraint firstAttribute="trailing" secondItem="7Tc-aQ-lKj" secondAttribute="trailing" id="L4e-ya-hWw"/>
+                            <constraint firstItem="7Tc-aQ-lKj" firstAttribute="leading" secondItem="cd9-WV-qKw" secondAttribute="leading" id="N2q-68-2dJ"/>
+                            <constraint firstAttribute="bottom" secondItem="7Tc-aQ-lKj" secondAttribute="bottom" id="rqq-66-Z3B"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Videos" id="95M-U5-V06"/>
+                    <connections>
+                        <outlet property="tableView" destination="7Tc-aQ-lKj" id="Uzb-eQ-jri"/>
+                        <segue destination="rQw-0t-S92" kind="show" identifier="showChannel" id="QLA-Eb-Kpw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OgG-Ld-laF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="488" y="1221"/>
+        </scene>
+        <!--Channel View Controller-->
+        <scene sceneID="miE-di-1dA">
+            <objects>
+                <viewController id="rQw-0t-S92" customClass="ChannelViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Slh-JF-7Ba"/>
+                        <viewControllerLayoutGuide type="bottom" id="hMf-8C-ra0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nkl-Jv-DBP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Eea-8U-mSP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="rQw-0t-S92" id="cj8-pq-Oob"/>
+                                    <outlet property="delegate" destination="rQw-0t-S92" id="zXt-Cr-N6E"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Eea-8U-mSP" secondAttribute="bottom" id="1n2-1A-1hm"/>
+                            <constraint firstItem="Eea-8U-mSP" firstAttribute="top" secondItem="nkl-Jv-DBP" secondAttribute="top" id="WFO-i9-ems"/>
+                            <constraint firstItem="Eea-8U-mSP" firstAttribute="leading" secondItem="nkl-Jv-DBP" secondAttribute="leading" id="Z1W-H0-JST"/>
+                            <constraint firstAttribute="trailing" secondItem="Eea-8U-mSP" secondAttribute="trailing" id="wRc-1z-Tar"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Eea-8U-mSP" id="Oih-pt-uns"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S9n-r6-yrk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="883" y="1221"/>
+        </scene>
         <!--Answers-->
         <scene sceneID="nEZ-cA-Srz">
             <objects>
                 <navigationController storyboardIdentifier="Answers Nav Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2R4-eV-Lll" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Answers" id="WBS-KP-R0Q" customClass="TabBarItem" customModule="VBVMI" customModuleProvider="target">
+                    <tabBarItem key="tabBarItem" title="Answers" id="WBS-KP-R0Q" customClass="TabBarItem" customModule="Verse_By_Verse" customModuleProvider="target">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="fontAwesomeKey" value="fa-list"/>
                         </userDefinedRuntimeAttributes>

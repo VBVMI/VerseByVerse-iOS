@@ -14,8 +14,8 @@ import AlamofireImage
 class StudiesViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var fetchedResultsController: NSFetchedResultsController!
-    var aboutActionsController: AboutActionsController!
+    private var fetchedResultsController: NSFetchedResultsController!
+    private var aboutActionsController: AboutActionsController!
     
     private var header : StudiesHeaderReusableView!
     
@@ -159,6 +159,10 @@ extension StudiesViewController : UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Cell.Identifier.Study, forIndexPath: indexPath) as! StudyCellCollectionViewCell
+        
+        cell.isAccessibilityElement = true
+        
+        cell.accessibilityHint = "\(study.title)"
         
         cell.titleLabel.text = study.title
         cell.coverImageView.image = nil

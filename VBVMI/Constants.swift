@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-struct Cell {
-    struct NibName {
+enum Cell {
+    enum NibName {
         static let Study = "StudyCellCollectionViewCell"
         static let StudiesHeader = "StudiesHeaderReusableView"
         static let Article = "ArticleTableViewCell"
@@ -19,7 +19,7 @@ struct Cell {
         static let AnswerBody = "AnswerBodyTableViewCell"
         static let AnswerHeader = "AnswerHeaderTableViewCell"
     }
-    struct Identifier {
+    enum Identifier {
         static let Study = "StudyCell"
         static let StudiesHeader = "StudiesHeader"
         static let Article = "ArticleCell"
@@ -28,12 +28,21 @@ struct Cell {
         static let AnswerBody = "AnswerBodyCell"
         static let AnswerHeader = "AnswerHeaderCell"
     }
-    struct CellSize {
+    enum CellSize {
         static let Study = CGSize(width: 90, height: 140)
         static let StudyImageInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4) //Bottom doesn't matter yo
     }
 }
 
-struct TabBar {
+enum TabBar {
     static let pointSize: CGFloat = 10
+}
+
+enum DateFormatters {
+    static let calendarDateFormatter : NSDateFormatter = {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        return dateFormatter
+    }()
+
 }

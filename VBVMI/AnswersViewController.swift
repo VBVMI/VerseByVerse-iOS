@@ -12,10 +12,10 @@ import CoreData
 
 class AnswersViewController: UITableViewController {
 
-    var fetchedResultsController: NSFetchedResultsController!
-    let dateFormatter = NSDateFormatter()
-    let searchController = UISearchController(searchResultsController: nil)
-    var aboutActionsController: AboutActionsController!
+    private var fetchedResultsController: NSFetchedResultsController!
+    private let dateFormatter = NSDateFormatter()
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var aboutActionsController: AboutActionsController!
     var topic: Topic? {
         didSet {
             if let topic = topic {

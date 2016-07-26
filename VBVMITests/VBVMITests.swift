@@ -2,12 +2,11 @@
 //  VBVMITests.swift
 //  VBVMITests
 //
-//  Created by Thomas Carey on 31/01/16.
+//  Created by Thomas Carey on 17/07/16.
 //  Copyright © 2016 Tom Carey. All rights reserved.
 //
 
 import XCTest
-@testable import VBVMI
 
 class VBVMITests: XCTestCase {
     

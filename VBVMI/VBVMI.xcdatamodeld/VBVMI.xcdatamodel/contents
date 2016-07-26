@@ -56,12 +56,11 @@
     </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="eventDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="expiresDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventDateComponents" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="eventIndex" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="identifier" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="map" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="postedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="thumbnailAltText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -132,7 +131,7 @@
         <element name="Article" positionX="205" positionY="-1641" width="128" height="255"/>
         <element name="AudioPlayer" positionX="-209" positionY="-1062" width="128" height="131"/>
         <element name="Channel" positionX="-9" positionY="-1053" width="128" height="178"/>
-        <element name="Event" positionX="-495" positionY="-1467" width="128" height="208"/>
+        <element name="Event" positionX="-495" positionY="-1467" width="128" height="195"/>
         <element name="Lesson" positionX="-324" positionY="-1467" width="128" height="360"/>
         <element name="Study" positionX="205" positionY="-1323" width="128" height="225"/>
         <element name="Topic" positionX="-0" positionY="-1440" width="128" height="133"/>
