@@ -243,8 +243,10 @@ class SoundManager: NSObject {
     }
     
     func startPlaying() {
-        avPlayer.setRate(playbackRate, time: kCMTimeInvalid, atHostTime: kCMTimeInvalid)
-        configureInfo()
+        if avPlayer.status == AVPlayerStatus.ReadyToPlay {
+            avPlayer.setRate(playbackRate, time: kCMTimeInvalid, atHostTime: kCMTimeInvalid)
+            configureInfo()
+        }
     }
     
     func pausePlaying() {
