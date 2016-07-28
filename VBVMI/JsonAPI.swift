@@ -22,7 +22,7 @@ public enum JsonAPI {
 
 extension JsonAPI : TargetType {
     public var base: String {
-        return "http://www.versebyverseministry.org/core/"
+        return "https://www.versebyverseministry.org/core/"
     }
     
     public var baseURL: NSURL {
