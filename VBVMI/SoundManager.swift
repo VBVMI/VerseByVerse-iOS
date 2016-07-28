@@ -105,8 +105,12 @@ class SoundManager: NSObject {
                 
                 let durationSeconds = CMTimeGetSeconds(item.duration)
                 let progress = currentProgress * durationSeconds
-                let time = CMTime(seconds: progress, preferredTimescale: item.duration.timescale)
+                var time = CMTime(seconds: progress, preferredTimescale: item.duration.timescale)
                 
+                if time == kCMTimeInvalid {
+                    log.error("Time is invalid: progess: \(progress), timeScale: \(item.duration.timescale)")
+                    time = kCMTimeZero
+                }
                 self.currentMonitoredItem = nil
                 item.seekToTime(time, completionHandler: { (sucess) in
                     log.debug("Seek to time: \(sucess ? "Success" : "Failed")")
@@ -249,8 +253,10 @@ class SoundManager: NSObject {
     }
     
     func startPlaying() {
-        avPlayer.setRate(playbackRate, time: kCMTimeInvalid, atHostTime: kCMTimeInvalid)
-        configureInfo()
+        if avPlayer.status == AVPlayerStatus.ReadyToPlay {
+            avPlayer.setRate(playbackRate, time: kCMTimeInvalid, atHostTime: kCMTimeInvalid)
+            configureInfo()
+        }
     }
     
     func pausePlaying() {
