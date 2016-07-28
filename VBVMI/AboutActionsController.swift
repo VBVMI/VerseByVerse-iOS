@@ -43,6 +43,13 @@ class AboutActionsController: NSObject {
             self?.openURL("https://www.versebyverseministry.org/contact/")
         }
         
+        let settingsAction = UIAlertAction(title: "Settings", style: .Default) { [weak self] (action) in
+            let settingsStoryboard = UIStoryboard(name: "Settings", bundle: nil)
+            if let viewController = settingsStoryboard.instantiateInitialViewController() {
+                self?.controller?.presentViewController(viewController, animated: true, completion: nil)
+            }
+        }
+        
         let cancel = UIAlertAction(title: "Close", style: .Cancel) { [weak self] (action) in
             self?.controller?.dismissViewControllerAnimated(true, completion: nil)
             
@@ -52,6 +59,7 @@ class AboutActionsController: NSObject {
         alert.addAction(eventsAction)
         alert.addAction(contactAction)
         alert.addAction(donateAction)
+        alert.addAction(settingsAction)
         alert.addAction(cancel)
         
         alert.popoverPresentationController?.barButtonItem = barButtonItem

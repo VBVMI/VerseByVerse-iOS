@@ -61,7 +61,7 @@ class SoundManager: NSObject {
             self.configureContentManager()
         }
         
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioDidFinish(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: nil)
         self.avPlayer.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.New, context: nil)
     }
     
@@ -69,6 +69,16 @@ class SoundManager: NSObject {
         self.avPlayer.removeObserver(self, forKeyPath: "rate")
         self.currentMonitoredItem = nil
         stopTimerObserver()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func audioDidFinish(notification: NSNotification) {
+        //Mark the lesson as complete
+        backgroundQueueContext?.performBlock({ () -> Void in
+            self.lesson?.audioProgress = 0
+            let _ = try? self.backgroundQueueContext?.save()
+        })
+        
     }
     
     private var isReady: Bool = false {
@@ -149,7 +159,7 @@ class SoundManager: NSObject {
                     self.lesson = audioCache.lesson.first
                     self.study = audioCache.study.first
                     
-                    if let audioLesson = self.lesson, audioStudy = self.study where audioLesson.audioProgress != 0 && audioLesson.audioProgress != 1 {
+                    if let audioLesson = self.lesson, audioStudy = self.study where audioLesson.audioProgress != 0 && audioLesson.audioProgress != 1 && audioLesson.audioProgress != 0 {
                         if let audioURLString = audioLesson.audioSourceURL {
                             if let url = APIDataManager.fileExists(audioLesson, urlString: audioURLString) {
                                 // The file is downloaded and ready for playing
@@ -244,8 +254,9 @@ class SoundManager: NSObject {
     }
     
     func pausePlaying() {
-        avPlayer.pause()
         self.saveState()
+        avPlayer.pause()
+        
     }
     
     private func configureInfo() {
@@ -448,6 +459,7 @@ class SoundManager: NSObject {
                     self.lesson?.audioProgress = 0
                 } else {
                     self.lesson?.audioProgress = max(0, min(currentTimeSeconds / durationSeconds, 1))
+                    log.debug("progress: \(self.lesson?.audioProgress)")
                 }
             }
             

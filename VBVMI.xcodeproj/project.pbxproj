@@ -92,6 +92,7 @@
 		989C40F81D32557C00849FB2 /* ChannelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989C40F61D32557C00849FB2 /* ChannelTableViewCell.xib */; };
 		98AB57741CB3CEE600B10591 /* UIAlertController+Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AB57731CB3CEE600B10591 /* UIAlertController+Show.m */; };
 		98AC05D71C8438670037D54A /* IconImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AC05D61C8438670037D54A /* IconImages.swift */; };
+		98B3D29E1D49F501009AEF7D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B3D29D1D49F501009AEF7D /* Settings.swift */; };
 		98B419B41C6420CA003A2872 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B419B31C6420CA003A2872 /* HomeTabBarController.swift */; };
 		98B419BF1C64803D003A2872 /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B419BE1C64803D003A2872 /* StudyViewController.swift */; };
 		98C80A061CD430BC000EAD3D /* VolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C80A051CD430BC000EAD3D /* VolumeView.swift */; };
@@ -105,6 +106,8 @@
 		98D45B9F1C86D61D004BBCBD /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D45B9D1C86D61D004BBCBD /* AudioPlayerViewController.swift */; };
 		98D45BA01C86D61D004BBCBD /* AudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D45B9E1C86D61D004BBCBD /* AudioPlayerViewController.xib */; };
 		98DE6E851CA2A83500C039C0 /* AboutActionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */; };
+		98F725BF1D49E5C600F73ED0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */; };
+		98F725C21D49E67600F73ED0 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98F725C11D49E67600F73ED0 /* Settings.storyboard */; };
 		98FD5DD51C9286CB00B493E6 /* ArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD5DD41C9286CB00B493E6 /* ArticlesViewController.swift */; };
 		98FD5DD71C92873200B493E6 /* AnswersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD5DD61C92873200B493E6 /* AnswersViewController.swift */; };
 		98FD5DDB1C92D4DF00B493E6 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD5DDA1C92D4DF00B493E6 /* TabBarItem.swift */; };
@@ -249,6 +252,7 @@
 		98AB57721CB3CEE600B10591 /* UIAlertController+Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Show.h"; sourceTree = "<group>"; };
 		98AB57731CB3CEE600B10591 /* UIAlertController+Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Show.m"; sourceTree = "<group>"; };
 		98AC05D61C8438670037D54A /* IconImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconImages.swift; sourceTree = "<group>"; };
+		98B3D29D1D49F501009AEF7D /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		98B419B31C6420CA003A2872 /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		98B419BE1C64803D003A2872 /* StudyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyViewController.swift; sourceTree = "<group>"; };
 		98C80A051CD430BC000EAD3D /* VolumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeView.swift; sourceTree = "<group>"; };
@@ -264,6 +268,8 @@
 		98D45B9E1C86D61D004BBCBD /* AudioPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioPlayerViewController.xib; sourceTree = "<group>"; };
 		98D45BA11C86FAB4004BBCBD /* VBVMI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VBVMI-Bridging-Header.h"; sourceTree = "<group>"; };
 		98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutActionsController.swift; sourceTree = "<group>"; };
+		98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		98F725C11D49E67600F73ED0 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		98FD5DD41C9286CB00B493E6 /* ArticlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesViewController.swift; sourceTree = "<group>"; };
 		98FD5DD61C92873200B493E6 /* AnswersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswersViewController.swift; sourceTree = "<group>"; };
 		98FD5DDA1C92D4DF00B493E6 /* TabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
@@ -429,6 +435,9 @@
 				986C37DB1C657CA00096BB83 /* Views */,
 				98FF47571D292786008E27F4 /* ResourceManager.swift */,
 				98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */,
+				98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */,
+				98B3D29D1D49F501009AEF7D /* Settings.swift */,
+				98F725C11D49E67600F73ED0 /* Settings.storyboard */,
 				980579DB1D31DA1C001C809C /* Answers and Articles */,
 				980579D91D31D9F3001C809C /* Studies */,
 				980579D81D31D9E6001C809C /* Channels */,
@@ -737,6 +746,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98611CC31C9ABB4F0070FCCD /* ArticleTableViewCell.xib in Resources */,
+				98F725C21D49E67600F73ED0 /* Settings.storyboard in Resources */,
 				986C2F1B1D339A1500F595FF /* VideoTableViewCell.xib in Resources */,
 				98644DA01C61F14C00EB27F1 /* StudyCellCollectionViewCell.xib in Resources */,
 				98D45BA01C86D61D004BBCBD /* AudioPlayerViewController.xib in Resources */,
@@ -887,6 +897,7 @@
 				98FD5DD51C9286CB00B493E6 /* ArticlesViewController.swift in Sources */,
 				980E6C141C81AF4C008F23D1 /* LessonCellViewModel.swift in Sources */,
 				98644D9F1C61F14C00EB27F1 /* StudyCellCollectionViewCell.swift in Sources */,
+				98B3D29E1D49F501009AEF7D /* Settings.swift in Sources */,
 				988D69741C9C0D87000ED16D /* ArticleHeaderTableViewCell.swift in Sources */,
 				98611CAF1C96A6610070FCCD /* Answer.swift in Sources */,
 				989294D01C8BE07E00C19095 /* AudioPlayer.swift in Sources */,
@@ -921,6 +932,7 @@
 				986C37E31C65D6300096BB83 /* Lesson.swift in Sources */,
 				98DE6E851CA2A83500C039C0 /* AboutActionsController.swift in Sources */,
 				980579D71D31D9DE001C809C /* ChannelsViewController.swift in Sources */,
+				98F725BF1D49E5C600F73ED0 /* SettingsViewController.swift in Sources */,
 				989294CC1C8BCE4500C19095 /* SoundManager.swift in Sources */,
 				988D698B1C9E62AA000ED16D /* PDFViewController.swift in Sources */,
 				98611CB11C96A6610070FCCD /* Channel.swift in Sources */,

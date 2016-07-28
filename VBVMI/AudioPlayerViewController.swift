@@ -193,10 +193,14 @@ class AudioPlayerViewController: UIViewController {
     
     func audioDidFinish(notification: NSNotification) {
         //Mark the lesson as complete
-        
-        self.lesson?.completed = true
-        self.lesson?.audioProgress = 0
-        let _ = try? self.lesson?.managedObjectContext?.save()
+        self.lesson?.managedObjectContext?.performBlock({ 
+            if Settings.sharedInstance.autoMarkLessonsComplete {
+                self.lesson?.completed = true
+            }
+            self.lesson?.audioProgress = 0
+            log.debug("Finish progress: \(self.lesson?.audioProgress)")
+            let _ = try? self.lesson?.managedObjectContext?.save()
+        })
         
         self.view.window?.rootViewController?.dismissPopupBarAnimated(true, completion: nil)
     }
