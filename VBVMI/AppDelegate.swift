@@ -12,7 +12,7 @@ import AlamofireImage
 import Fabric
 import Crashlytics
 import XCGLogger
-
+import ReachabilitySwift
 #if DEBUG
 import XCGLoggerNSLoggerConnector
 import NSLogger
@@ -67,9 +67,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
                 APIDataManager.core()
-                APIDataManager.latestArticles()
-                APIDataManager.latestAnswers()
                 APIDataManager.allTheChannels()
+                
+                let reachability: Reachability
+                do {
+                    reachability = try Reachability.reachabilityForInternetConnection()
+                } catch {
+                    print("Unable to create Reachability")
+                    return
+                }
+                if reachability.isReachableViaWiFi() {
+                    APIDataManager.allTheArticles()
+                    APIDataManager.allTheAnswers()
+                } else {
+                    APIDataManager.latestArticles()
+                    APIDataManager.latestAnswers()
+                }
             }
         } else {
             return false

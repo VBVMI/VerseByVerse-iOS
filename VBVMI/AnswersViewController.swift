@@ -72,6 +72,19 @@ class AnswersViewController: UITableViewController {
         
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
+        
+        if topic == nil {
+            let refreshControl = UIRefreshControl()
+            refreshControl.addTarget(self, action: #selector(refresh(_:)), forControlEvents: .ValueChanged)
+            self.refreshControl = refreshControl
+        }
+        
+    }
+    
+    func refresh(sender: UIRefreshControl) {
+        APIDataManager.allTheAnswers { 
+            sender.endRefreshing()
+        }
     }
 
     override func didReceiveMemoryWarning() {

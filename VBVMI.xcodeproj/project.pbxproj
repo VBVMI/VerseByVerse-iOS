@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2A72218740AAD71B852DD432 /* Pods_VBVMIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8891F3FC110090C58E0F6985 /* Pods_VBVMIUITests.framework */; };
 		43F3F530BCD03656741ABA01 /* Pods_VBVMI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FCF4EEA67E046837FF107E /* Pods_VBVMI.framework */; };
 		980579D71D31D9DE001C809C /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980579D61D31D9DE001C809C /* ChannelsViewController.swift */; };
 		980BE9681C9E9DEF003A5D84 /* _Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980BE9661C9E9DEF003A5D84 /* _Topic.swift */; };
@@ -114,6 +115,7 @@
 		98FF47551D292640008E27F4 /* _Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FF47531D292640008E27F4 /* _Video.swift */; };
 		98FF47561D292640008E27F4 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FF47541D292640008E27F4 /* Video.swift */; };
 		98FF47581D292786008E27F4 /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FF47571D292786008E27F4 /* ResourceManager.swift */; };
+		BBA00188891329647EC86646 /* Pods_VBVMITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F238B6B4D78C033FA5021EE7 /* Pods_VBVMITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -288,6 +290,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBA00188891329647EC86646 /* Pods_VBVMITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +298,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A72218740AAD71B852DD432 /* Pods_VBVMIUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,9 +598,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 982138131D3B8393006F2B79 /* Build configuration list for PBXNativeTarget "VBVMITests" */;
 			buildPhases = (
+				472E8C18EF01AA866B278DE7 /* [CP] Check Pods Manifest.lock */,
 				982138081D3B8393006F2B79 /* Sources */,
 				982138091D3B8393006F2B79 /* Frameworks */,
 				9821380A1D3B8393006F2B79 /* Resources */,
+				E419487C6C5A167BE41A25CE /* [CP] Embed Pods Frameworks */,
+				C91FD1116C33F98E43B5C4C4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -612,9 +619,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 982138211D3B83D6006F2B79 /* Build configuration list for PBXNativeTarget "VBVMIUITests" */;
 			buildPhases = (
+				F54FBB19CAF2868D789EE180 /* [CP] Check Pods Manifest.lock */,
 				982138161D3B83D6006F2B79 /* Sources */,
 				982138171D3B83D6006F2B79 /* Frameworks */,
 				982138181D3B83D6006F2B79 /* Resources */,
+				C91473EA02097E754AF4CC27 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -783,6 +792,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI/Pods-VBVMI-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		472E8C18EF01AA866B278DE7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		6AB11E49386DA8ACAA38C081 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -855,6 +879,66 @@
 			shellScript = "if [ -z ${FABRIC_API_KEY+x} ]; then\n    echo \"FABRIC_API_KEY is unset\"\nelse\n    if [ -z ${CRASHLYTICS_TOKEN+x} ]; then\n        echo \"CRASHLYTICS_TOKEN is unset\"\n    else\n        \"${PODS_ROOT}/Fabric/run\" \"${FABRIC_API_KEY}\" \"${CRASHLYTICS_TOKEN}\"\n    fi\nfi\n\n";
 		};
 		B8C4E2990088CC0450535970 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C91473EA02097E754AF4CC27 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMIUITests/Pods-VBVMIUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C91FD1116C33F98E43B5C4C4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMITests/Pods-VBVMITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E419487C6C5A167BE41A25CE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMITests/Pods-VBVMITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F54FBB19CAF2868D789EE180 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1008,6 +1092,7 @@
 /* Begin XCBuildConfiguration section */
 		982138141D3B8393006F2B79 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEBD0C57F738073E79ED37ED /* Pods-VBVMITests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1023,6 +1108,7 @@
 		};
 		982138151D3B8393006F2B79 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 547D9554CD14FFA1B010272D /* Pods-VBVMITests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1037,6 +1123,7 @@
 		};
 		982138221D3B83D6006F2B79 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B360C71CB6EB0FE53044D090 /* Pods-VBVMIUITests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1051,6 +1138,7 @@
 		};
 		982138231D3B83D6006F2B79 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A3D6C01961C229B9D7FB01A /* Pods-VBVMIUITests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				INFOPLIST_FILE = VBVMIUITests/Info.plist;

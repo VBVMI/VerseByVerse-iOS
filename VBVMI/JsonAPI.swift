@@ -124,13 +124,19 @@ public struct Provider {
         }
     }
     
+    private static var ongoingRequestCount = 0 {
+        didSet {
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = ongoingRequestCount > 0
+        }
+    }
+    
     public static func DefaultProvider() -> MoyaProvider<JsonAPI> {
         let networkActivityPlugin = NetworkActivityPlugin { (change) -> () in
             switch change {
             case .Began:
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+                ongoingRequestCount += 1
             case .Ended:
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                ongoingRequestCount -= 1
             }
         }
         let provider = MoyaProvider<JsonAPI>(endpointClosure: endpointsClosure, stubClosure: APIKeysBasedStubBehaviour, plugins: [networkActivityPlugin])

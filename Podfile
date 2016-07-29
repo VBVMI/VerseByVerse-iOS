@@ -32,6 +32,8 @@ pod 'Crashlytics'
 pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 pod 'NSLogger', :configurations => ['Debug']
 
+pod 'ReachabilitySwift'
+
 target 'VBVMI' do
 
 end

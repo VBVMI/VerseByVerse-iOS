@@ -79,6 +79,18 @@ class ArticlesViewController: UITableViewController {
         self.navigationItem.leftBarButtonItem = self.aboutActionsController.barButtonItem
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
+        
+        if topic == nil {
+            let refreshControl = UIRefreshControl()
+            refreshControl.addTarget(self, action: #selector(refresh(_:)), forControlEvents: .ValueChanged)
+            self.refreshControl = refreshControl
+        }
+    }
+    
+    func refresh(sender: UIRefreshControl) {
+        APIDataManager.allTheArticles {
+            sender.endRefreshing()
+        }
     }
 
     override func didReceiveMemoryWarning() {

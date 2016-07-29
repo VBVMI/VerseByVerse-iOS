@@ -82,6 +82,14 @@
         <key>Type</key>
         <string>PSChildPaneSpecifier</string>
         <key>Title</key>
+        <string>ReachabilitySwift</string>
+        <key>File</key>
+        <string>Acknowledgement-ReachabilitySwift</string>
+      </dict>
+      <dict>
+        <key>Type</key>
+        <string>PSChildPaneSpecifier</string>
+        <key>Title</key>
         <string>Result</string>
         <key>File</key>
         <string>Acknowledgement-Result</string>

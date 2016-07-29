@@ -88,11 +88,17 @@ class APIDataManager {
         }
     }
     
-    private static func allTheArticles() {
+    static func allTheArticles(completion:(()->())? = nil) {
         downloadToJSONArray(JsonAPI.Articles, arrayNode: "articles") { (context, JSONArray) -> () in
             for JSONModel in JSONArray {
                 let _ = try Article.decodeJSON(JSONModel, context: context)
             }
+            if let completion = completion {
+                dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                    completion()
+                }
+            }
+            
         }
     }
     
@@ -115,10 +121,15 @@ class APIDataManager {
         }
     }
     
-    private static func allTheAnswers() {
+    static func allTheAnswers(completion:(()->())? = nil) {
         downloadToJSONArray(JsonAPI.QA, arrayNode: "QandAPosts") { (context, JSONArray) -> () in
             for JSONModel in JSONArray {
                 let _ = try Answer.decodeJSON(JSONModel, context: context)
+            }
+            if let completion = completion {
+                dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                    completion()
+                }
             }
         }
     }

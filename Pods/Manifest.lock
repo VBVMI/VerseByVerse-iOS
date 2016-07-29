@@ -17,6 +17,7 @@ PODS:
   - NSLogger (1.7.0):
     - NSLogger/Standard (= 1.7.0)
   - NSLogger/Standard (1.7.0)
+  - ReachabilitySwift (2.3.3)
   - Result (1.0.1)
   - Reveal-iOS-SDK (1.6.2)
   - SnapKit (0.19.1)
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - FontAwesome.swift
   - Moya
   - NSLogger
+  - ReachabilitySwift
   - Reveal-iOS-SDK
   - SnapKit
   - STRegex
@@ -58,6 +60,7 @@ SPEC CHECKSUMS:
   FontAwesome.swift: c6e30a1a81716306ff9c81f2d38dda88ac5b8294
   Moya: 7f99c85a1bc968eb38b67880c9527fe3e04aa49c
   NSLogger: daa17368272ddf10a0850c218fe49de23b50f2eb
+  ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   Result: caef80340451e1f07492fa1e89117f83613bce24
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
@@ -67,6 +70,6 @@ SPEC CHECKSUMS:
   XCGLogger: d6e196e78940ff6daab17d6917107876f973fa31
   XCGLoggerNSLoggerConnector: 43a886c9641b6dc9b3d4db87d3b995fc340424b4
 
-PODFILE CHECKSUM: f275cf80bce236134feeacc73a277afc013ab243
+PODFILE CHECKSUM: a950c6846a678205c20425d39f55b13ffe446b93
 
 COCOAPODS: 1.0.1
