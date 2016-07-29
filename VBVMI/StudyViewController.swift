@@ -454,10 +454,38 @@ class StudyViewController: UITableViewController {
             }
         }
         
+        let markAllComplete = UIAlertAction(title: "Mark all complete", style: .Default) { [weak self] action in
+            guard let this = self else { return }
+            if let lessons = this.fetchedResultsController.fetchedObjects as? [Lesson] {
+                lessons.forEach({ (lesson) in
+                    lesson.completed = true
+                    lesson.audioProgress = 0
+                })
+                
+                let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+                let _ = try? context.save()
+            }
+        }
+        
+        let markAllIncomplete = UIAlertAction(title: "Mark all incomplete", style: .Default) { [weak self] action in
+            guard let this = self else { return }
+            if let lessons = this.fetchedResultsController.fetchedObjects as? [Lesson] {
+                lessons.forEach({ (lesson) in
+                    lesson.completed = false
+                    lesson.audioProgress = 0
+                })
+                
+                let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+                let _ = try? context.save()
+            }
+        }
+        
         let cancel = UIAlertAction(title: "Close", style: .Cancel) { [weak self] (action) in
             self?.dismissViewControllerAnimated(true, completion: nil)
         }
         
+        alert.addAction(markAllComplete)
+        alert.addAction(markAllIncomplete)
         alert.addAction(downloadAll)
         alert.addAction(deleteAll)
         alert.addAction(cancel)
