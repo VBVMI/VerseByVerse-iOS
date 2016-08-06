@@ -184,9 +184,8 @@ class APIDataManager {
                             let result = try NSDictionary.decode(json)
                             if let vbvmi = result["VerseByVerse"] as? NSDictionary, modelNodes = vbvmi[arrayNode] as? Array<NSDictionary> {
                                 
-                                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                                 let context = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-                                context.parentContext = appDelegate.backgroundManagedObjectContext
+                                context.parentContext = ContextCoordinator.sharedInstance.backgroundManagedObjectContext
                                 context.performBlock({ () -> Void in
                                     do {
                                         try conversionBlock(context: context, JSONArray: modelNodes)
@@ -198,9 +197,9 @@ class APIDataManager {
                                         if context.hasChanges {
                                             try context.save()
                                         }
-                                        appDelegate.backgroundManagedObjectContext.performBlock({ () -> Void in
+                                        ContextCoordinator.sharedInstance.backgroundManagedObjectContext.performBlock({ () -> Void in
                                             do {
-                                                try appDelegate.backgroundManagedObjectContext.save()
+                                                try ContextCoordinator.sharedInstance.backgroundManagedObjectContext.save()
                                             } catch (let error) {
                                                 log.error("Error saving background context:\(error)")
                                             }

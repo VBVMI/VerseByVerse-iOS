@@ -39,7 +39,7 @@ class ArticleViewController: UITableViewController {
         guard let identifier = coder.decodeObjectForKey("articleIdentifier") as? String else {
             fatalError()
         }
-        let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        let context = ContextCoordinator.sharedInstance.managedObjectContext
         guard let article: Article = Article.findFirstWithPredicate(NSPredicate(format: "%K == %@", ArticleAttributes.identifier.rawValue, identifier), context: context) else {
             fatalError()
         }

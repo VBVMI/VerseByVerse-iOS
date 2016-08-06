@@ -55,7 +55,7 @@ class TopicViewController: UIViewController {
         guard let identifier = coder.decodeObjectForKey("topicIdentifier") as? String else {
             fatalError()
         }
-        let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        let context = ContextCoordinator.sharedInstance.managedObjectContext
         guard let topic: Topic = Topic.findFirstWithPredicate(NSPredicate(format: "%K == %@", TopicAttributes.identifier.rawValue, identifier), context: context) else {
             fatalError()
         }

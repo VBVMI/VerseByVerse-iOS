@@ -43,7 +43,7 @@ class AnswersViewController: UITableViewController {
         self.tableView.registerNib(UINib(nibName: Cell.NibName.Article, bundle: nil), forCellReuseIdentifier: Cell.Identifier.Article)
         
         let fetchRequest = NSFetchRequest(entityName: Answer.entityName())
-        let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        let context = ContextCoordinator.sharedInstance.managedObjectContext
         fetchRequest.entity = Answer.entity(context)
         let identifierSort = NSSortDescriptor(key: AnswerAttributes.identifier.rawValue, ascending: false, selector: #selector(NSString.localizedStandardCompare(_:)))
         

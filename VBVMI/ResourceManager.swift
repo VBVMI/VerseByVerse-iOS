@@ -288,7 +288,7 @@ class ResourceManager {
         }
         
         let fetchRequest = NSFetchRequest(entityName: Lesson.entityName())
-        let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        let context = ContextCoordinator.sharedInstance.managedObjectContext
         fetchRequest.entity = Lesson.entity(context)
         
         let sectionSort = NSSortDescriptor(key: LessonAttributes.completed.rawValue, ascending: true, selector: #selector(NSNumber.compare(_:)))

@@ -51,7 +51,7 @@ class ArticlesViewController: UITableViewController {
         self.tableView.registerNib(UINib(nibName: Cell.NibName.Article, bundle: nil), forCellReuseIdentifier: Cell.Identifier.Article)
 
         let fetchRequest = NSFetchRequest(entityName: Article.entityName())
-        let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        let context = ContextCoordinator.sharedInstance.managedObjectContext
         fetchRequest.entity = Article.entity(context)
         let identifierSort = NSSortDescriptor(key: ArticleAttributes.identifier.rawValue, ascending: false, selector: #selector(NSString.localizedStandardCompare(_:)))
         

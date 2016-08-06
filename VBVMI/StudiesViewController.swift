@@ -21,7 +21,7 @@ class StudiesViewController: UIViewController {
     
     private func setupFetchedResultsController() {
         let fetchRequest = NSFetchRequest(entityName: Study.entityName())
-        let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        let context = ContextCoordinator.sharedInstance.managedObjectContext
         fetchRequest.entity = Study.entity(context)
         let identifierSort = NSSortDescriptor(key: StudyAttributes.studyIndex.rawValue, ascending: true)
         

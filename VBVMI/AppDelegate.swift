@@ -57,35 +57,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let imageDownloader = ImageDownloader(configuration: ImageDownloader.defaultURLSessionConfiguration(), downloadPrioritization: .FIFO, maximumActiveDownloads: 10, imageCache: VBVMIImageCache)
         UIImageView.af_sharedImageDownloader = imageDownloader
 
-        setupPersistantStoreCoordinator()
-        if let _ = self.persistentStoreCoordinator {
-            setupManagedObjectContexts()
+        let _ = ContextCoordinator.sharedInstance
+        
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            SoundManager.sharedInstance
+        }
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+            APIDataManager.core()
+            APIDataManager.allTheChannels()
             
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                SoundManager.sharedInstance
+            let reachability: Reachability
+            do {
+                reachability = try Reachability.reachabilityForInternetConnection()
+            } catch {
+                print("Unable to create Reachability")
+                return
             }
-            
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-                APIDataManager.core()
-                APIDataManager.allTheChannels()
-                
-                let reachability: Reachability
-                do {
-                    reachability = try Reachability.reachabilityForInternetConnection()
-                } catch {
-                    print("Unable to create Reachability")
-                    return
-                }
-                if reachability.isReachableViaWiFi() {
-                    APIDataManager.allTheArticles()
-                    APIDataManager.allTheAnswers()
-                } else {
-                    APIDataManager.latestArticles()
-                    APIDataManager.latestAnswers()
-                }
+            if reachability.isReachableViaWiFi() {
+                APIDataManager.allTheArticles()
+                APIDataManager.allTheAnswers()
+            } else {
+                APIDataManager.latestArticles()
+                APIDataManager.latestAnswers()
             }
-        } else {
-            return false
         }
         
         return true
@@ -96,10 +91,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         Theme.Default.applyTheme()
-        if let _ = self.persistentStoreCoordinator { } else {
-            self.window?.rootViewController = UIViewController()
-        }
-        
         return true
     }
 
@@ -124,7 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        self.saveContext()
+        ContextCoordinator.sharedInstance.saveContext()
     }
 
     
@@ -141,107 +132,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("user activity: \(userActivity)")
     }
     
-    // MARK: - Core Data stack
-
-    lazy var applicationDocumentsDirectory: NSURL = {
-        // The directory the application uses to store the Core Data store file. This code uses a directory named "com.cactuslab.VBVMI" in the application's documents Application Support directory.
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1]
-    }()
-
-    lazy var managedObjectModel: NSManagedObjectModel = {
-        // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("VBVMI", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)!
-    }()
-
-    var persistentStoreCoordinator: NSPersistentStoreCoordinator!
-    
-    func setupPersistantStoreCoordinator() {
-        // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
-        // Create the coordinator and store
-        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("VBVMIDatastore.sqlite")
-        
-        log.info("Database path: \(url)")
-        let failureReason = "There was an error creating or loading the application's saved data."
-        do {
-            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true])
-        } catch {
-            // Report any error we got.
-            var dict = [String: AnyObject]()
-            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
-            dict[NSLocalizedFailureReasonErrorKey] = failureReason
-            
-            dict[NSUnderlyingErrorKey] = error as NSError
-            let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
-            // Replace this with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            log.error("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
-            
-            //While we're testing, lets just nuke existing data to stop peeps from getting mad about space
-            let alert = UIAlertController(title: "Sorry", message: "You must delete and reinstall the application.", preferredStyle: .Alert)
-            let action = UIAlertAction(title: "OK", style: .Default, handler: { (action) in
-                abort()
-            })
-            alert.addAction(action)
-            alert.show()
-            return
-        }
-        
-        self.persistentStoreCoordinator = coordinator
-    }
-    
-    func setupManagedObjectContexts() {
-        let coordinator = self.persistentStoreCoordinator
-        let context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-        context.persistentStoreCoordinator = coordinator
-        self.managedObjectContext = context
-        
-        let backgroundContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-        backgroundContext.persistentStoreCoordinator = coordinator
-        self.backgroundManagedObjectContext = backgroundContext
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.mergeMain(_:)), name: NSManagedObjectContextDidSaveNotification, object: self.backgroundManagedObjectContext)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.mergeBackground(_:)), name: NSManagedObjectContextDidSaveNotification, object: self.managedObjectContext)
-    }
-
-    var managedObjectContext: NSManagedObjectContext!
-    var backgroundManagedObjectContext: NSManagedObjectContext!
-    
-    func mergeMain(notification: NSNotification) {
-//        log.info("Merging Main context")
-        managedObjectContext.performBlock { () -> Void in
-            self.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
-        }
-        
-    }
-    
-    func mergeBackground(notification: NSNotification) {
-        backgroundManagedObjectContext.performBlock { () -> Void in
-//            log.info("Merging Background context")
-            self.backgroundManagedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
-        }
-    }
-    // MARK: - Core Data Saving support
-
-    func saveContext () {
-        managedObjectContext.performBlock { () -> Void in
-            if self.managedObjectContext.hasChanges {
-                do {
-                    try self.managedObjectContext.save()
-                } catch {
-                    // Replace this implementation with code to handle the error appropriately.
-                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    let nserror = error as NSError
-                    NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-                    abort()
-                }
-            }
-        }
-    }
-
     private static var _resourcesURL: NSURL? = nil
     
     private static func addSkipBackupAttributeToItemAtURL(filePath:String) -> Bool
@@ -269,10 +159,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let fileManager = NSFileManager.defaultManager()
         
-        let urls = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let urls = fileManager.URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
         
         if let documentDirectory: NSURL = urls.first {
-            // This is where the database should be in the documents directory
+            // This is where the database should be in the application support directory
             let rootURL = documentDirectory.URLByAppendingPathComponent("resources")
             if let path = rootURL.path where !fileManager.fileExistsAtPath(path) {
                 do {
@@ -284,9 +174,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
             }
             
-            if let path = rootURL.path {
-                addSkipBackupAttributeToItemAtURL(path)
-            }
+//            if let path = rootURL.path {
+//                addSkipBackupAttributeToItemAtURL(path)
+//            }
             
             _resourcesURL = rootURL
             return rootURL

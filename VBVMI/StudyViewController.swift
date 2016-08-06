@@ -73,7 +73,7 @@ class StudyViewController: UITableViewController {
         guard let identifier = coder.decodeObjectForKey("studyIdentifier") as? String else {
             fatalError()
         }
-        let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        let context = ContextCoordinator.sharedInstance.managedObjectContext
         guard let study: Study = Study.findFirstWithPredicate(NSPredicate(format: "%K == %@", StudyAttributes.identifier.rawValue, identifier), context: context) else {
             fatalError()
         }
@@ -86,7 +86,7 @@ class StudyViewController: UITableViewController {
     
     private func configureFetchController() {
         let fetchRequest = NSFetchRequest(entityName: Lesson.entityName())
-        let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        let context = ContextCoordinator.sharedInstance.managedObjectContext
         fetchRequest.entity = Lesson.entity(context)
         
         let sectionSort = NSSortDescriptor(key: LessonAttributes.completed.rawValue, ascending: true, selector: #selector(NSNumber.compare(_:)))
@@ -462,7 +462,7 @@ class StudyViewController: UITableViewController {
                     lesson.audioProgress = 0
                 })
                 
-                let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+                let context = ContextCoordinator.sharedInstance.managedObjectContext
                 let _ = try? context.save()
             }
         }
@@ -475,7 +475,7 @@ class StudyViewController: UITableViewController {
                     lesson.audioProgress = 0
                 })
                 
-                let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+                let context = ContextCoordinator.sharedInstance.managedObjectContext
                 let _ = try? context.save()
             }
         }

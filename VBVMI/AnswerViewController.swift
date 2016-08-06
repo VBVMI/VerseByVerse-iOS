@@ -39,7 +39,7 @@ class AnswerViewController: UITableViewController {
         guard let identifier = coder.decodeObjectForKey("answerIdentifier") as? String else {
             fatalError()
         }
-        let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        let context = ContextCoordinator.sharedInstance.managedObjectContext
         guard let answer: Answer = Answer.findFirstWithPredicate(NSPredicate(format: "%K == %@", AnswerAttributes.identifier.rawValue, identifier), context: context) else {
             fatalError()
         }
