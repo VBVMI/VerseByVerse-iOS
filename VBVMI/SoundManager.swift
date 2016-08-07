@@ -100,7 +100,7 @@ class SoundManager: NSObject {
         }
         if let item = object as? AVPlayerItem where keyPath == "status" {
             if item.status == AVPlayerItemStatus.ReadyToPlay {
-                
+                log.info("Player became ready to play")
                 let currentProgress = self.loadProgress
                 
                 let durationSeconds = CMTimeGetSeconds(item.duration)
@@ -122,7 +122,7 @@ class SoundManager: NSObject {
     }
     
     private func stopTimerObserver() {
-        log.verbose("Sound Manager Stopping timer observer")
+        log.info("Sound Manager Stopping timer observer")
         if let timerObserver = timerObserver {
             self.avPlayer.removeTimeObserver(timerObserver)
             self.timerObserver = nil
@@ -130,7 +130,7 @@ class SoundManager: NSObject {
     }
     
     private func startTimerObserver() {
-        log.verbose("Sound Manager Starting timer observer")
+        log.info("Sound Manager Starting timer observer")
         self.timerObserver = self.avPlayer.addPeriodicTimeObserverForInterval(CMTime(seconds: 5, preferredTimescale: 600), queue: nil, usingBlock: { (currentTime) -> Void in
             self.saveState()
 //            self.configureInfo()
@@ -141,72 +141,72 @@ class SoundManager: NSObject {
     func restoreState(completion:(()->())? = nil) {
         isReady = false
         log.verbose("Sound Manager Attempting To Restore State")
-        if let delegate = UIApplication.sharedApplication().delegate as? AppDelegate {
-            let context = delegate.backgroundManagedObjectContext
-            self.backgroundQueueContext = context
-            log.verbose("Sound Manager has found context: \(context)")
-            context.performBlock({ () -> Void in
-                self.audioCache = AudioPlayer.findFirst(context)
+       
+        let context = ContextCoordinator.sharedInstance.backgroundManagedObjectContext
+        self.backgroundQueueContext = context
+        log.verbose("Sound Manager has found context: \(context)")
+        context.performBlock({ () -> Void in
+            self.audioCache = AudioPlayer.findFirst(context)
+            
+            if self.audioCache == nil {
                 
-                if self.audioCache == nil {
-                    
-                    self.audioCache = AudioPlayer(managedObjectContext: context)
-                    self.audioCache?.currentTime = 0
-                    
-                    do {
-                        try context.save()
-                    } catch let error {
-                        log.error("Error saving: \(error)")
-                    }
-                } else if let audioCache = self.audioCache {
-                    
-                    self.lesson = audioCache.lesson.first
-                    self.study = audioCache.study.first
-                    
-                    if let audioLesson = self.lesson, audioStudy = self.study where audioLesson.audioProgress != 0 && audioLesson.audioProgress != 1 && audioLesson.audioProgress != 0 {
-                        if let audioURLString = audioLesson.audioSourceURL {
-                            if let url = APIDataManager.fileExists(audioLesson, urlString: audioURLString) {
-                                // The file is downloaded and ready for playing
-                                log.verbose("Sound Manager State restored...")
-                                let lessonId = audioLesson.objectID
-                                let studyId = audioStudy.objectID
-                                
-                                dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                                   guard let mainLesson = delegate.managedObjectContext.objectWithID(lessonId) as? Lesson,
-                                    mainStudy = delegate.managedObjectContext.objectWithID(studyId) as? Study else {
-                                        return
-                                    }
-                                    //We should dispatch a notification to load the audio controller...
-                                    if let controller = (UIApplication.sharedApplication().delegate as? AppDelegate)?.window?.rootViewController as? HomeTabBarController {
-                                        
-                                        if let audioPlayerController = controller.popupContentViewController as? AudioPlayerViewController {
-                                            audioPlayerController.configure(url, name: mainLesson.title ?? "", subTitle: mainLesson.descriptionText ?? "", lesson: mainLesson, study: mainStudy)
-                                            if controller.popupPresentationState == .Closed {
-                                                controller.openPopupAnimated(true, completion: completion)
-                                            }
-                                        } else {
-                                            let demoVC = AudioPlayerViewController()
-                                            demoVC.configure(url, name: mainLesson.title ?? "", subTitle: mainLesson.descriptionText ?? "", lesson: mainLesson, study: mainStudy, startPlaying: false)
-                                            
-                                            controller.presentPopupBarWithContentViewController(demoVC, openPopup: true, animated: true, completion: completion)
+                self.audioCache = AudioPlayer(managedObjectContext: context)
+                self.audioCache?.currentTime = 0
+                
+                do {
+                    try context.save()
+                } catch let error {
+                    log.error("Error saving: \(error)")
+                }
+            } else if let audioCache = self.audioCache {
+                
+                self.lesson = audioCache.lesson.first
+                self.study = audioCache.study.first
+                
+                if let audioLesson = self.lesson, audioStudy = self.study where audioLesson.audioProgress != 0 && audioLesson.audioProgress != 1 && audioLesson.audioProgress != 0 {
+                    if let audioURLString = audioLesson.audioSourceURL {
+                        if let url = APIDataManager.fileExists(audioLesson, urlString: audioURLString) {
+                            // The file is downloaded and ready for playing
+                            log.verbose("Sound Manager State restored...")
+                            let lessonId = audioLesson.objectID
+                            let studyId = audioStudy.objectID
+                            
+                            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                               guard let mainLesson = ContextCoordinator.sharedInstance.managedObjectContext.objectWithID(lessonId) as? Lesson,
+                                mainStudy = ContextCoordinator.sharedInstance.managedObjectContext.objectWithID(studyId) as? Study else {
+                                    return
+                                }
+                                //We should dispatch a notification to load the audio controller...
+                                if let controller = (UIApplication.sharedApplication().delegate as? AppDelegate)?.window?.rootViewController as? HomeTabBarController {
+                                    
+                                    if let audioPlayerController = controller.popupContentViewController as? AudioPlayerViewController {
+                                        audioPlayerController.configure(url, name: mainLesson.title ?? "", subTitle: mainLesson.descriptionText ?? "", lesson: mainLesson, study: mainStudy)
+                                        if controller.popupPresentationState == .Closed {
+                                            controller.openPopupAnimated(true, completion: completion)
                                         }
+                                    } else {
+                                        let demoVC = AudioPlayerViewController()
+                                        demoVC.configure(url, name: mainLesson.title ?? "", subTitle: mainLesson.descriptionText ?? "", lesson: mainLesson, study: mainStudy, startPlaying: false)
+                                        
+                                        controller.presentPopupBarWithContentViewController(demoVC, openPopup: true, animated: true, completion: completion)
                                     }
                                 }
-                                //self.configure(study, lesson: lesson, audioURL: url, progress: lesson.audioProgress, readyBlock: completion)
-                            } else {
-                                // The file needs to be downloaded
-                                // maybe? lets deal with this later?
-                                
                             }
+                            //self.configure(study, lesson: lesson, audioURL: url, progress: lesson.audioProgress, readyBlock: completion)
+                        } else {
+                            // The file needs to be downloaded
+                            // maybe? lets deal with this later?
+                            
                         }
-                    } else {
-                        self.lesson = nil
-                        self.study = nil
-                        self.audioCache?.currentTime = 0
                     }
+                } else {
+                    self.lesson = nil
+                    self.study = nil
+                    self.audioCache?.currentTime = 0
                 }
-            })
-        }
+            }
+        })
+        
     }
     
     private var readyBlock: (()->())? = nil
@@ -218,11 +218,13 @@ class SoundManager: NSObject {
     
     func configure(study: Study, lesson: Lesson, audioURL: NSURL, progress: Double = 0, readyBlock: (()->())? = nil) {
         isReady = false
+        
+        
         guard let context = backgroundQueueContext else {
             log.error("Sound Manager Background Context Not Configured")
             return
         }
-        log.verbose("Sound Manager configuring with audio \(audioURL.lastPathComponent)")
+        log.info("Sound Manager configuring with audio \(audioURL.lastPathComponent)")
         //convert the lesson and study into appropriate context objects
         self.loadProgress = progress == 1 ? 0 : progress
         
@@ -237,9 +239,10 @@ class SoundManager: NSObject {
         
         self.audioURL = audioURL
         
+        
         setupAudioSession { (success) -> () in
             guard success else { return }
-            
+            log.info("Audio session set up, now loading asset")
             let asset = AVAsset(URL: audioURL)
         
             let item = AVPlayerItem(asset: asset)
@@ -253,13 +256,25 @@ class SoundManager: NSObject {
     }
     
     func startPlaying() {
+        log.info("Start playing")
+//        if !audioSessionConfigured {
+//            log.error("Audio session not configured")
+//            self.setupAudioSession({ (success) in
+//                self.startPlaying()
+//            })
+//            return
+//        }
         if avPlayer.status == AVPlayerStatus.ReadyToPlay {
+            log.info("Playing audio")
             avPlayer.setRate(playbackRate, time: kCMTimeInvalid, atHostTime: kCMTimeInvalid)
             configureInfo()
+        } else {
+            log.info("AVPlayerStatus is not ready to play")
         }
     }
     
     func pausePlaying() {
+        wasPlaying = false
         self.saveState()
         avPlayer.pause()
         
@@ -415,6 +430,7 @@ class SoundManager: NSObject {
 
     
     func skipForward(time: NSTimeInterval) -> Bool {
+        log.info("Skip forward")
         guard let currentItem = self.avPlayer.currentItem else {
             return false
         }
@@ -431,6 +447,7 @@ class SoundManager: NSObject {
     }
     
     func skipBackward(time: NSTimeInterval) -> Bool {
+        log.info("Skip backward")
         let interval = time
         let cmTime = self.avPlayer.currentTime()
         let currentTime = CMTimeGetSeconds(cmTime)
@@ -478,8 +495,36 @@ class SoundManager: NSObject {
         
     }
     
+    private var wasPlaying = false
+    
+    func handleInterruption(notification: NSNotification) {
+        log.info("Handle interruption wasplaying: \(wasPlaying) notification: \(notification.userInfo)")
+        guard let userInfo = notification.userInfo as? [String: AnyObject] else { return }
+        guard let type = userInfo[AVAudioSessionInterruptionTypeKey] as? AVAudioSessionInterruptionType else { return }
+        
+        switch type {
+        case .Began:
+            log.info("Got interrupted")
+            wasPlaying = true
+        case .Ended:
+            if let flag = userInfo[AVAudioSessionInterruptionOptionKey] as? AVAudioSessionInterruptionOptions {
+                if flag == .ShouldResume && wasPlaying {
+                    self.startPlaying()
+                }
+            }
+        }
+        
+    }
+    
+    private var isObservingAudioSession = false
+    private var audioSessionConfigured = false
+    
+    func handleNotification(notification: NSNotification) {
+        log.info("\(notification.name) - \(notification.userInfo)")
+    }
+    
     private func setupAudioSession(completion: ((success: Bool)->())?) {
-        log.verbose("Sound Manager Setting up Audio Session")
+        log.info("Sound Manager Setting up Audio Session")
         let audioSession = AVAudioSession.sharedInstance()
         self.initialCategory = audioSession.category
         self.initialMode = audioSession.mode
@@ -488,15 +533,26 @@ class SoundManager: NSObject {
             do {
                 try audioSession.setCategory(AVAudioSessionCategoryPlayback)
                 try audioSession.setMode(AVAudioSessionModeSpokenAudio)
+                
+                if !self.isObservingAudioSession {
+                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SoundManager.handleInterruption(_:)), name: AVAudioSessionInterruptionNotification, object: audioSession)
+                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SoundManager.handleNotification(_:)), name: AVAudioSessionMediaServicesWereLostNotification, object: audioSession)
+                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SoundManager.handleNotification(_:)), name: AVAudioSessionMediaServicesWereResetNotification, object: audioSession)
+                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SoundManager.handleNotification(_:)), name: AVAudioSessionSilenceSecondaryAudioHintNotification, object: audioSession)
+                    self.isObservingAudioSession = true
+                }
+
+                
                 try audioSession.setActive(true)
                 success = true
+                self.audioSessionConfigured = true
             } catch let error {
                 print("error :\(error)")
                 success = false
             }
             if let completion = completion {
                 dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                    log.verbose("Sound Manager Completed Setup of Audio Session: \(success)")
+                    log.info("Sound Manager Completed Setup of Audio Session: \(success)")
                     completion(success: success)
                 }
             }

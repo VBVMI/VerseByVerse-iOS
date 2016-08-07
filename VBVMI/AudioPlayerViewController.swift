@@ -358,11 +358,14 @@ class AudioPlayerViewController: UIViewController {
     
     private func configurePlayPauseState() {
         let isPlaying = SoundManager.sharedInstance.avPlayer.rate != 0
-        if isPlaying {
-            self.playPauseButton.setTitle(String.fontAwesomeIconWithName(.Pause), forState: .Normal)
-        } else {
-            self.playPauseButton.setTitle(String.fontAwesomeIconWithName(.Play), forState: .Normal)
+        if let button = self.playPauseButton {
+            if isPlaying {
+                button.setTitle(String.fontAwesomeIconWithName(.Pause), forState: .Normal)
+            } else {
+                button.setTitle(String.fontAwesomeIconWithName(.Play), forState: .Normal)
+            }
         }
+        
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
