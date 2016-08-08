@@ -38,7 +38,7 @@ class ChannelsViewController: UIViewController {
 
     private func setupFetchedResultsController() {
         let fetchRequest = NSFetchRequest(entityName: Channel.entityName())
-        let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        let context = ContextCoordinator.sharedInstance.managedObjectContext
         fetchRequest.entity = Channel.entity(context)
         let indexSort = NSSortDescriptor(key: ChannelAttributes.channelIndex.rawValue, ascending: false)
         
