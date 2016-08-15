@@ -54,6 +54,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        DDLog.addLogger(fileLogger)
 //        DDTTYLogger.sharedInstance().setForegroundColor(UIColor(red:0.066667, green:0.662745, blue:0.054902, alpha:1.0), backgroundColor: nil, forFlag: DDLogFlag.Info)
         
+        
+        //Move all of the old resources to the Application support directory
+        let fileManager = NSFileManager.defaultManager()
+        let urls = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        if let originURL = urls.first {
+            let oldResources = originURL.URLByAppendingPathComponent("resources")
+            if fileManager.fileExistsAtPath(oldResources.path!) {
+                let destinationURL = fileManager.URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask).first?.URLByAppendingPathComponent("resources")
+                if let destinationURL = destinationURL {
+                    let _ = try? fileManager.moveItemAtURL(oldResources, toURL: destinationURL)
+                }
+            }
+        }
+        
+        
+        
         let imageDownloader = ImageDownloader(configuration: ImageDownloader.defaultURLSessionConfiguration(), downloadPrioritization: .FIFO, maximumActiveDownloads: 10, imageCache: VBVMIImageCache)
         UIImageView.af_sharedImageDownloader = imageDownloader
 
@@ -97,25 +113,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        print("Resign Active")
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        print("Background")
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        print("Foreground")
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        print("Active")
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         ContextCoordinator.sharedInstance.saveContext()
+        print("Terminated")
     }
 
     
@@ -173,10 +194,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 
             }
-            
-//            if let path = rootURL.path {
-//                addSkipBackupAttributeToItemAtURL(path)
-//            }
             
             _resourcesURL = rootURL
             return rootURL

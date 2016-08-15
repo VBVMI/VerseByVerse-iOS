@@ -278,7 +278,7 @@ class SoundManager: NSObject {
         }
         
         let session = AVAudioSession.sharedInstance()
-        if !setAudioSessionCategory() || !setAudioSessionMode() {
+        if !setAudioSessionMode() || !setAudioSessionCategory() {
             log.error("Failed to configure Audio session")
             return false
         }
@@ -620,15 +620,21 @@ class SoundManager: NSObject {
         print("registering observers")
         let session = AVAudioSession.sharedInstance()
         audioInterruptionObserverToken = NSNotificationCenter.defaultCenter().addObserverForName(AVAudioSessionInterruptionNotification, object: session, queue: nil) { [weak self] (notification) in
-            if let key = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? AVAudioSessionInterruptionType where key == .Began {
-                self?.stop(unregisterObservers: false)
-            } else {
-                if let this = self {
-                    if this.start(registerObservers: false) != true {
-                        log.error("Couldn't restart after interruption")
+            print("Interruption: \(notification.userInfo)")
+            if let value = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? NSNumber {
+                if let key = AVAudioSessionInterruptionType(rawValue: value.unsignedLongValue) where key == .Began {
+                    print("Began")
+                    self?.stop(unregisterObservers: false)
+                } else {
+                    print("Ended")
+                    if let this = self {
+                        if this.start(registerObservers: false) != true {
+                            log.error("Couldn't restart after interruption")
+                        }
                     }
                 }
             }
+            
         }
     }
     

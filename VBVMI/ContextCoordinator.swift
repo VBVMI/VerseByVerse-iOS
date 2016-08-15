@@ -103,7 +103,7 @@ class ContextCoordinator: NSObject {
             let _ = try? NSFileManager.defaultManager().createDirectoryAtURL(applicationSupportDirectory, withIntermediateDirectories: true, attributes: nil)
         }
         
-        log.info("Database path: \(url)")
+        //log.info("Database path: \(url)")
         do {
             try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true])
         } catch let error {
