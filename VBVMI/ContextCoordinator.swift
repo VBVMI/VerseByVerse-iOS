@@ -50,6 +50,11 @@ class ContextCoordinator: NSObject {
         
         if NSFileManager.defaultManager().fileExistsAtPath(documentsFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite").path!) {
             let applicationSupportFolder = applicationSupportDirectory
+            
+            if !NSFileManager.defaultManager().fileExistsAtPath(applicationSupportFolder.path!) {
+                let _ = try? NSFileManager.defaultManager().createDirectoryAtURL(applicationSupportFolder, withIntermediateDirectories: true, attributes: nil)
+            }
+            
             do {
                 try NSFileManager.defaultManager().moveItemAtURL(documentsFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite"), toURL: applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite"))
             } catch let error {
@@ -93,6 +98,10 @@ class ContextCoordinator: NSObject {
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = applicationSupportDirectory.URLByAppendingPathComponent("VBVMIDatastore.sqlite")
+        
+        if !NSFileManager.defaultManager().fileExistsAtPath(applicationSupportDirectory.path!) {
+            let _ = try? NSFileManager.defaultManager().createDirectoryAtURL(applicationSupportDirectory, withIntermediateDirectories: true, attributes: nil)
+        }
         
         log.info("Database path: \(url)")
         do {

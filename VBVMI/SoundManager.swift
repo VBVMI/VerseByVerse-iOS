@@ -239,45 +239,94 @@ class SoundManager: NSObject {
         
         self.audioURL = audioURL
         
+        let asset = AVAsset(URL: audioURL)
         
-        setupAudioSession { (success) -> () in
-            guard success else { return }
-            log.info("Audio session set up, now loading asset")
-            let asset = AVAsset(URL: audioURL)
-        
-            let item = AVPlayerItem(asset: asset)
-            self.currentMonitoredItem = item
-            self.avPlayer.replaceCurrentItemWithPlayerItem(item)
-            self.readyBlock = readyBlock
-        }
+        let item = AVPlayerItem(asset: asset)
+        self.currentMonitoredItem = item
+        self.avPlayer.replaceCurrentItemWithPlayerItem(item)
+        self.readyBlock = readyBlock
         
         getImage()
-        
     }
     
     func startPlaying() {
-        log.info("Start playing")
-//        if !audioSessionConfigured {
-//            log.error("Audio session not configured")
-//            self.setupAudioSession({ (success) in
-//                self.startPlaying()
-//            })
-//            return
+//        log.info("Start playing")
+////        if !audioSessionConfigured {
+////            log.error("Audio session not configured")
+////            self.setupAudioSession({ (success) in
+////                self.startPlaying()
+////            })
+////            return
+////        }
+//        if avPlayer.status == AVPlayerStatus.ReadyToPlay {
+//            log.info("Playing audio")
+//            avPlayer.setRate(playbackRate, time: kCMTimeInvalid, atHostTime: kCMTimeInvalid)
+//            configureInfo()
+//        } else {
+//            log.info("AVPlayerStatus is not ready to play")
 //        }
-        if avPlayer.status == AVPlayerStatus.ReadyToPlay {
-            log.info("Playing audio")
-            avPlayer.setRate(playbackRate, time: kCMTimeInvalid, atHostTime: kCMTimeInvalid)
-            configureInfo()
-        } else {
-            log.info("AVPlayerStatus is not ready to play")
+        
+        start(registerObservers: true)
+    }
+    
+    private func start(registerObservers addObservers: Bool) -> Bool {
+        log.info("Starting AudioManager - addObservers:\(addObservers)")
+        
+        if avPlayer.status != AVPlayerStatus.ReadyToPlay {
+            log.error("avPlayer status is not readyToPlay")
+            return false
         }
+        
+        let session = AVAudioSession.sharedInstance()
+        if !setAudioSessionCategory() || !setAudioSessionMode() {
+            log.error("Failed to configure Audio session")
+            return false
+        }
+        
+        do {
+            try session.setActive(true)
+        } catch let error {
+            log.error("Error activating audio session: \(error)")
+            return false
+        }
+        
+        if addObservers {
+            registerObservers()
+        }
+        
+        //        if let duration = avPlayer.currentItem?.duration {
+        //            let seconds = CMTimeGetSeconds(duration)
+        //            time = CMTimeMakeWithSeconds(seconds * progress, duration.timescale)
+        //
+        //        }
+        //
+        //        log.info("Starting audio player at rate \(playbackRate)")
+        //        if let duration = avPlayer.currentItem?.duration where time >= duration {
+        //            time = kCMTimeZero
+        //            log.info("Resetting time to zero")
+        //        }
+        //
+        //        avPlayer.setRate(playbackRate, time: time, atHostTime: kCMTimeInvalid)
+        avPlayer.setRate(playbackRate, time: kCMTimeInvalid, atHostTime: kCMTimeInvalid)
+        return true
     }
     
     func pausePlaying() {
-        wasPlaying = false
         self.saveState()
+        stop(unregisterObservers: true)
+    }
+    
+    private func stop(unregisterObservers removeObservers: Bool) {
         avPlayer.pause()
+        do {
+            try AVAudioSession.sharedInstance().setActive(false)
+        } catch let error {
+            log.error("Error deactivating audio session: \(error)")
+        }
         
+        if removeObservers {
+            unregisterObservers()
+        }
     }
     
     private func configureInfo() {
@@ -523,63 +572,93 @@ class SoundManager: NSObject {
         log.info("\(notification.name) - \(notification.userInfo)")
     }
     
-    private func setupAudioSession(completion: ((success: Bool)->())?) {
-        log.info("Sound Manager Setting up Audio Session")
-        let audioSession = AVAudioSession.sharedInstance()
-        self.initialCategory = audioSession.category
-        self.initialMode = audioSession.mode
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-            let success : Bool
-            do {
-                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-                try audioSession.setMode(AVAudioSessionModeSpokenAudio)
-                
-                if !self.isObservingAudioSession {
-                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SoundManager.handleInterruption(_:)), name: AVAudioSessionInterruptionNotification, object: audioSession)
-                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SoundManager.handleNotification(_:)), name: AVAudioSessionMediaServicesWereLostNotification, object: audioSession)
-                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SoundManager.handleNotification(_:)), name: AVAudioSessionMediaServicesWereResetNotification, object: audioSession)
-                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SoundManager.handleNotification(_:)), name: AVAudioSessionSilenceSecondaryAudioHintNotification, object: audioSession)
-                    self.isObservingAudioSession = true
-                }
-
-                
-                try audioSession.setActive(true)
-                success = true
-                self.audioSessionConfigured = true
-            } catch let error {
-                print("error :\(error)")
-                success = false
+//    private func setupAudioSession(completion: ((success: Bool)->())?) {
+//        log.info("Sound Manager Setting up Audio Session")
+//        let audioSession = AVAudioSession.sharedInstance()
+//        self.initialCategory = audioSession.category
+//        self.initialMode = audioSession.mode
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+//            let success : Bool
+//            do {
+//                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+//                try audioSession.setMode(AVAudioSessionModeSpokenAudio)
+//                
+//                if !self.isObservingAudioSession {
+//                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SoundManager.handleInterruption(_:)), name: AVAudioSessionInterruptionNotification, object: audioSession)
+//                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SoundManager.handleNotification(_:)), name: AVAudioSessionMediaServicesWereLostNotification, object: audioSession)
+//                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SoundManager.handleNotification(_:)), name: AVAudioSessionMediaServicesWereResetNotification, object: audioSession)
+//                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SoundManager.handleNotification(_:)), name: AVAudioSessionSilenceSecondaryAudioHintNotification, object: audioSession)
+//                    self.isObservingAudioSession = true
+//                }
+//
+//                
+//                try audioSession.setActive(true)
+//                success = true
+//                self.audioSessionConfigured = true
+//            } catch let error {
+//                print("error :\(error)")
+//                success = false
+//            }
+//            if let completion = completion {
+//                dispatch_async(dispatch_get_main_queue()) { () -> Void in
+//                    log.info("Sound Manager Completed Setup of Audio Session: \(success)")
+//                    completion(success: success)
+//                }
+//            }
+//        }
+//    }
+    
+    private var audioInterruptionObserverToken : NSObjectProtocol? {
+        didSet {
+            if let oldValue = oldValue {
+                NSNotificationCenter.defaultCenter().removeObserver(oldValue)
             }
-            if let completion = completion {
-                dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                    log.info("Sound Manager Completed Setup of Audio Session: \(success)")
-                    completion(success: success)
+        }
+    }
+    
+    private func registerObservers() {
+        print("registering observers")
+        let session = AVAudioSession.sharedInstance()
+        audioInterruptionObserverToken = NSNotificationCenter.defaultCenter().addObserverForName(AVAudioSessionInterruptionNotification, object: session, queue: nil) { [weak self] (notification) in
+            if let key = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? AVAudioSessionInterruptionType where key == .Began {
+                self?.stop(unregisterObservers: false)
+            } else {
+                if let this = self {
+                    if this.start(registerObservers: false) != true {
+                        log.error("Couldn't restart after interruption")
+                    }
                 }
             }
         }
     }
     
-    private func restoreAudioSession(completion: ((success: Bool)->())?) {
-        let audioSession = AVAudioSession.sharedInstance()
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-            let success: Bool
-            do {
-                if let category = self.initialCategory {
-                    try audioSession.setCategory(category)
-                }
-                if let mode = self.initialMode {
-                    try audioSession.setMode(mode)
-                }
-                success = true
-            } catch let error {
-                log.error("Error restoring audio session: \(error)")
-                success = false
-            }
-            if let completion = completion {
-                dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                    completion(success: success)
-                }
-            }
+    private func setAudioSessionCategory() -> Bool {
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(AVAudioSessionCategoryPlayback)
+        } catch let error {
+            log.error("Error setting AVAudioSession category: \(error)")
+            return false
+        }
+        return true
+    }
+    
+    private func setAudioSessionMode() -> Bool {
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setMode(AVAudioSessionModeSpokenAudio)
+        } catch let error {
+            log.error("Error setting AVAudioSession category: \(error)")
+            return false
+        }
+        return true
+    }
+    
+    private func unregisterObservers() {
+        print("unregisering observers")
+        if let token = audioInterruptionObserverToken {
+            NSNotificationCenter.defaultCenter().removeObserver(token)
+            audioInterruptionObserverToken = nil
         }
     }
     

@@ -47,7 +47,6 @@
 		9828D4641C5F4D8D004FA954 /* APIDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D4631C5F4D8D004FA954 /* APIDataManager.swift */; };
 		982E37621D31ECF900FD9A93 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 982E37611D31ECF900FD9A93 /* Settings.bundle */; };
 		984650F41CF0175E00F4A46F /* LessonsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984650F31CF0175E00F4A46F /* LessonsHeader.swift */; };
-		984F611C1D5572BD00FDCD69 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F611B1D5572BD00FDCD69 /* AudioManager.swift */; };
 		9854F0921CAD09980025CAC0 /* TopicLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854F0911CAD09980025CAC0 /* TopicLayoutView.swift */; };
 		9860BA571C61F3020054D496 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9860BA561C61F3020054D496 /* Constants.swift */; };
 		98611CA71C96A6550070FCCD /* _Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98611CA31C96A6550070FCCD /* _Answer.swift */; };
@@ -76,8 +75,6 @@
 		986C37E31C65D6300096BB83 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37E11C65D6300096BB83 /* Lesson.swift */; };
 		987F02F91CF0625E00AB61FA /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987F02F81CF0625E00AB61FA /* DotView.swift */; };
 		987F02FB1CF0658800AB61FA /* ResourceIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987F02FA1CF0658800AB61FA /* ResourceIconView.swift */; };
-		988663EC1D55C13200010728 /* CommandCenterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988663EB1D55C13200010728 /* CommandCenterController.swift */; };
-		988663EF1D55C27C00010728 /* AudioContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988663EE1D55C27C00010728 /* AudioContentManager.swift */; };
 		988663F11D55D87E00010728 /* ContextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988663F01D55D87E00010728 /* ContextCoordinator.swift */; };
 		988D69711C9BEADA000ED16D /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988D69701C9BEADA000ED16D /* ArticleViewController.swift */; };
 		988D69741C9C0D87000ED16D /* ArticleHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988D69721C9C0D87000ED16D /* ArticleHeaderTableViewCell.swift */; };
@@ -1038,7 +1035,6 @@
 				980579D71D31D9DE001C809C /* ChannelsViewController.swift in Sources */,
 				98F725BF1D49E5C600F73ED0 /* SettingsViewController.swift in Sources */,
 				989294CC1C8BCE4500C19095 /* SoundManager.swift in Sources */,
-				988663EF1D55C27C00010728 /* AudioContentManager.swift in Sources */,
 				988D698B1C9E62AA000ED16D /* PDFViewController.swift in Sources */,
 				98611CB11C96A6610070FCCD /* Channel.swift in Sources */,
 				98AC05D71C8438670037D54A /* IconImages.swift in Sources */,
@@ -1065,9 +1061,7 @@
 				98FD5DD71C92873200B493E6 /* AnswersViewController.swift in Sources */,
 				98644D951C61D7E400EB27F1 /* NSManagedObject+Extensions.swift in Sources */,
 				988D69711C9BEADA000ED16D /* ArticleViewController.swift in Sources */,
-				984F611C1D5572BD00FDCD69 /* AudioManager.swift in Sources */,
 				986C37DD1C657CCE0096BB83 /* HideView.swift in Sources */,
-				988663EC1D55C13200010728 /* CommandCenterController.swift in Sources */,
 				9828D44D1C5DA2BC004FA954 /* _Study.swift in Sources */,
 				98611CA91C96A6550070FCCD /* _Channel.swift in Sources */,
 				98611CAA1C96A6550070FCCD /* _Event.swift in Sources */,

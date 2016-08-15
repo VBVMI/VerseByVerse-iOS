@@ -22,7 +22,7 @@ class AudioContentManager: NSObject {
         super.init()
     }
     
-    func loadState(completion: ()->()) {
+    func loadState(completion: (result: AudioResult)->()) {
         let context = ContextCoordinator.sharedInstance.backgroundManagedObjectContext
         backgroundQueueContext = context
         context.performBlock({
@@ -34,6 +34,8 @@ class AudioContentManager: NSObject {
                 if let lesson = lesson, study = study where lesson.audioProgress != 0 && lesson.audioProgress < 0.999 {
                     self.lesson = lesson
                     self.study = study
+                    completion(result: AudioResult.Success)
+                    return
                 }
             } else {
                 self.audioCache = AudioPlayer(managedObjectContext: context)
@@ -44,28 +46,48 @@ class AudioContentManager: NSObject {
                     log.error("Error saving: \(error)")
                 }
             }
+            completion(result: AudioResult.Error(error: AudioError.FailedToLoad))
         })
     }
     
-    func prepareAudioManager() {
+    func prepareAudioManager(completion: (AudioResult)->()) {
         guard let lesson = lesson, study = study, backgroundQueueContext = backgroundQueueContext else {
             log.error("Lesson and Study are not ready to prepare audio manager")
+            completion(AudioResult.Error(error: AudioError.UnknownException))
             return
         }
         
         backgroundQueueContext.performBlock { 
             if let audioURLString = lesson.audioSourceURL, url = APIDataManager.fileExists(lesson, urlString: audioURLString) {
-                
-                AudioManager.sharedInstance.loadAudio(atURL: url, progress: lesson.audioProgress)
-                
-                
+                AudioManager.sharedInstance.loadAudio(atURL: url, completion: completion)
             } else {
-                //probably want to download the file first ya?
+                //probably want to download the file first
+                ResourceManager.sharedInstance.startDownloading(lesson, resource: ResourceManager.LessonType.Audio, completion: { (result) in
+                    switch result {
+                    case .error(let error):
+                        completion(AudioResult.Error(error: error)) //Pass the error on!
+                    case .success(let lesson, let resource, let url):
+                        AudioManager.sharedInstance.loadAudio(atURL: url, completion: completion)
+                    }
+                })
             }
         }
-        
-        
-
+    }
+    
+    
+    func configure(lessonID: NSManagedObjectID, studyID: NSManagedObjectID, completion: (AudioResult)->()) {
+        backgroundQueueContext?.performBlock({
+            self.study = backgroundQueueContext?.objectWithID(studyID)
+            self.lesson = backgroundQueueContext?.objectWithID(lessonID)
+            
+            if let lesson = self.lesson {
+                self.audioCache?.lessonIdentifier = self.lesson?.identifier
+                self.audioCache?.studyIdentifier = self.study?.identifier
+                self.audioCache?.currentTime = lesson.audioProgress
+            }
+            
+            prepareAudioManager(completion)
+        })
     }
     
     func presentController() {
