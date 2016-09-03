@@ -19,13 +19,30 @@ class StudiesViewController: UIViewController {
     
     private var header : StudiesHeaderReusableView!
     
+    private func configureFetchRequest(fetchRequest: NSFetchRequest) {
+        
+        let identifierSort = NSSortDescriptor(key: StudyAttributes.studyIndex.rawValue, ascending: true)
+        let bibleStudySort = NSSortDescriptor(key: StudyAttributes.bibleIndex.rawValue, ascending: true)
+        
+        var sortDescriptors : [NSSortDescriptor] = [NSSortDescriptor(key: StudyAttributes.studyType.rawValue, ascending: true)]
+        
+        switch StudySortOption.currentSortOption {
+        case .BibleBookIndex:
+            sortDescriptors.appendContentsOf([bibleStudySort, identifierSort])
+        case .ReleaseDate:
+            sortDescriptors.appendContentsOf([identifierSort])
+        }
+
+        fetchRequest.sortDescriptors = sortDescriptors
+    }
+    
     private func setupFetchedResultsController() {
         let fetchRequest = NSFetchRequest(entityName: Study.entityName())
         let context = ContextCoordinator.sharedInstance.managedObjectContext
         fetchRequest.entity = Study.entity(context)
-        let identifierSort = NSSortDescriptor(key: StudyAttributes.studyIndex.rawValue, ascending: true)
-        let bibleStudySort = NSSortDescriptor(key: StudyAttributes.bibleIndex.rawValue, ascending: true)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: StudyAttributes.studyType.rawValue, ascending: true), bibleStudySort, identifierSort]
+        
+        configureFetchRequest(fetchRequest)
+        
         fetchRequest.shouldRefreshRefetchedObjects = true
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: StudyAttributes.studyType.rawValue, cacheName: nil)
         
@@ -60,6 +77,34 @@ class StudiesViewController: UIViewController {
         // Setup about Menu
         self.aboutActionsController = AboutActionsController(presentingController: self)
         self.navigationItem.leftBarButtonItem = self.aboutActionsController.barButtonItem
+        
+        let optionsButton = UIBarButtonItem(image: UIImage.fontAwesomeIconWithName(.Sliders, textColor: StyleKit.darkGrey, size: CGSizeMake(30, 30)), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(openOptions))
+        self.navigationItem.rightBarButtonItem = optionsButton
+        
+        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "StudySortOption", options: [.New], context: nil)
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "StudySortOption" {
+            if let fetchedResultsController = fetchedResultsController {
+                configureFetchRequest(fetchedResultsController.fetchRequest)
+                do {
+                    try fetchedResultsController.performFetch()
+                    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                        self.collectionView.reloadData()
+                    }
+                } catch let error {
+                    log.error("Error fetching: \(error)")
+                }
+            }
+        }
+    }
+    
+    func openOptions() {
+        
+        let optionsController = UIStoryboard(name: "StudiesOptions", bundle: nil).instantiateInitialViewController()!
+        
+        presentViewController(optionsController, animated: true, completion: nil)
     }
     
     override func viewDidLayoutSubviews() {
