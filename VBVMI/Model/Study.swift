@@ -28,6 +28,8 @@ public class Study: _Study {
         study.thumbnailAltText = nullOrString(try JSONDict => "thumbnailAltText")
         study.studyType = try JSONDict => "type"
         
+        study.bibleIndex = try JSONDict => "bibleIndex"
+        
         let studyTitle: String = try JSONDict => "title"
         study.title = studyTitle.stringByDecodingHTMLEntities
         

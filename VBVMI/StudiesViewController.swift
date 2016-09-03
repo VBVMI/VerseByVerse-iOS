@@ -24,8 +24,8 @@ class StudiesViewController: UIViewController {
         let context = ContextCoordinator.sharedInstance.managedObjectContext
         fetchRequest.entity = Study.entity(context)
         let identifierSort = NSSortDescriptor(key: StudyAttributes.studyIndex.rawValue, ascending: true)
-        
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: StudyAttributes.studyType.rawValue, ascending: true), identifierSort]
+        let bibleStudySort = NSSortDescriptor(key: StudyAttributes.bibleIndex.rawValue, ascending: true)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: StudyAttributes.studyType.rawValue, ascending: true), bibleStudySort, identifierSort]
         fetchRequest.shouldRefreshRefetchedObjects = true
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: StudyAttributes.studyType.rawValue, cacheName: nil)
         
