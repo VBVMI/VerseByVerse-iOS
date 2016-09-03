@@ -1,10 +1,12 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to Study.swift instead.
 
+import Foundation
 import CoreData
 
 public enum StudyAttributes: String {
     case averageRating = "averageRating"
+    case bibleIndex = "bibleIndex"
     case completed = "completed"
     case descriptionText = "descriptionText"
     case identifier = "identifier"
@@ -48,6 +50,9 @@ public class _Study: NSManagedObject {
 
     @NSManaged public
     var averageRating: String?
+
+    @NSManaged public
+    var bibleIndex: Int32
 
     @NSManaged public
     var completed: NSNumber?

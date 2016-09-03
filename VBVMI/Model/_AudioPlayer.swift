@@ -1,6 +1,7 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to AudioPlayer.swift instead.
 
+import Foundation
 import CoreData
 
 public enum AudioPlayerAttributes: String {

@@ -1,6 +1,7 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to Event.swift instead.
 
+import Foundation
 import CoreData
 
 public enum EventAttributes: String {

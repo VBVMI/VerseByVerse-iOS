@@ -1,6 +1,7 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to Channel.swift instead.
 
+import Foundation
 import CoreData
 
 public enum ChannelAttributes: String {

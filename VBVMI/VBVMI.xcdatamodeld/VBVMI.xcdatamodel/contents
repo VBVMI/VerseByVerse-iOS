@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Automatic">
     <entity name="Answer" representedClassName="Answer" syncable="YES">
         <attribute name="authorName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="authorThumbnailAltText" optional="YES" attributeType="String" syncable="YES"/>
@@ -91,6 +91,7 @@
     </entity>
     <entity name="Study" representedClassName="Study" syncable="YES">
         <attribute name="averageRating" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bibleIndex" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="completed" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="descriptionText" attributeType="String" syncable="YES"/>
         <attribute name="identifier" attributeType="String" indexed="YES" syncable="YES"/>
@@ -133,7 +134,7 @@
         <element name="Channel" positionX="-9" positionY="-1053" width="128" height="178"/>
         <element name="Event" positionX="-495" positionY="-1467" width="128" height="195"/>
         <element name="Lesson" positionX="-324" positionY="-1467" width="128" height="360"/>
-        <element name="Study" positionX="205" positionY="-1323" width="128" height="225"/>
+        <element name="Study" positionX="205" positionY="-1323" width="128" height="240"/>
         <element name="Topic" positionX="-0" positionY="-1440" width="128" height="133"/>
         <element name="Video" positionX="189" positionY="-1062" width="128" height="238"/>
     </elements>
