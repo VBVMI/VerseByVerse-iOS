@@ -63,6 +63,11 @@ class SoundManager: NSObject {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioDidFinish(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: nil)
         self.avPlayer.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.New, context: nil)
+        if #available(iOS 10.0, *) {
+            self.avPlayer.automaticallyWaitsToMinimizeStalling = false
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     deinit {
