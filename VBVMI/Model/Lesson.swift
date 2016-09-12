@@ -80,11 +80,11 @@ public class Lesson: _Lesson {
 extension Lesson : AssetsDownloadable {
     func directory() -> NSURL? {
         if let url = AppDelegate.resourcesURL() {
-            let fileURL = url.URLByAppendingPathComponent(studyIdentifier, isDirectory: true).URLByAppendingPathComponent(identifier, isDirectory: true)
+            let fileURL = url.URLByAppendingPathComponent(studyIdentifier, isDirectory: true)!.URLByAppendingPathComponent(identifier, isDirectory: true)
             let fileManager = NSFileManager.defaultManager()
-            if let path = fileURL.path where !fileManager.fileExistsAtPath(path) {
+            if let path = fileURL?.path where !fileManager.fileExistsAtPath(path) {
                 do {
-                    try fileManager.createDirectoryAtURL(fileURL, withIntermediateDirectories: true, attributes: nil)
+                    try fileManager.createDirectoryAtURL(fileURL!, withIntermediateDirectories: true, attributes: nil)
                 } catch let error {
                     log.error("Error in lesson Directory: \(error)")
                     return nil

@@ -231,7 +231,7 @@ class APIDataManager {
     static func downloadFile(model: AssetsDownloadable, urlString: String, progress: ((bytesRead: Int64, totalBytesRead: Int64, totalBytesExpectedToRead: Int64)->())?, completion: (NSURLRequest?, NSHTTPURLResponse?, NSData?, NSError?) -> Void) -> Request {
         let destination : Alamofire.Request.DownloadFileDestination = { (temporaryURL, response) -> NSURL in
             if let directory = model.directory() {
-                return directory.URLByAppendingPathComponent(response.suggestedFilename!)
+                return directory.URLByAppendingPathComponent(response.suggestedFilename!)!
             }
             return temporaryURL
         }
@@ -245,7 +245,7 @@ class APIDataManager {
         
         guard let url = model.directory(), fileName = getURL.lastPathComponent else { return nil }
         let fileURL  = url.URLByAppendingPathComponent(fileName)
-        guard let path = fileURL.path else { return nil }
+        guard let path = fileURL?.path else { return nil }
         
         if fileManager.fileExistsAtPath(path) {
             return fileURL

@@ -57,7 +57,7 @@ public class StyleKit : NSObject {
 
     public class func drawHideBackground(frame frame: CGRect = CGRect(x: 0, y: 0, width: 196, height: 58)) {
         //// General Declarations
-        let context = UIGraphicsGetCurrentContext()
+        let context = UIGraphicsGetCurrentContext()!
 
         //// Rectangle Drawing
         let rectangleRect = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height)
@@ -212,10 +212,10 @@ public class StyleKit : NSObject {
         let textFontAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(10), NSForegroundColorAttributeName: UIColor.whiteColor(), NSParagraphStyleAttributeName: textStyle]
 
         let textTextHeight: CGFloat = textTextContent.boundingRectWithSize(CGSize(width: textRect.width, height: CGFloat.infinity), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: textFontAttributes, context: nil).size.height
-        CGContextSaveGState(context)
-        CGContextClipToRect(context, textRect)
+        CGContextSaveGState(context!)
+        CGContextClipToRect(context!, textRect)
         textTextContent.drawInRect(CGRect(x: textRect.minX, y: textRect.minY + (textRect.height - textTextHeight) / 2, width: textRect.width, height: textTextHeight), withAttributes: textFontAttributes)
-        CGContextRestoreGState(context)
+        CGContextRestoreGState(context!)
     }
 
     public class func drawRollback() {
@@ -293,10 +293,10 @@ public class StyleKit : NSObject {
         let textFontAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(10), NSForegroundColorAttributeName: UIColor.whiteColor(), NSParagraphStyleAttributeName: textStyle]
 
         let textTextHeight: CGFloat = textTextContent.boundingRectWithSize(CGSize(width: textRect.width, height: CGFloat.infinity), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: textFontAttributes, context: nil).size.height
-        CGContextSaveGState(context)
-        CGContextClipToRect(context, textRect)
+        CGContextSaveGState(context!)
+        CGContextClipToRect(context!, textRect)
         textTextContent.drawInRect(CGRect(x: textRect.minX, y: textRect.minY + (textRect.height - textTextHeight) / 2, width: textRect.width, height: textTextHeight), withAttributes: textFontAttributes)
-        CGContextRestoreGState(context)
+        CGContextRestoreGState(context!)
     }
 
     public class func drawDotView(frame frame: CGRect = CGRect(x: 0, y: 0, width: 3, height: 3)) {
@@ -320,7 +320,7 @@ public class StyleKit : NSObject {
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 5, height: 5), false, 0)
             StyleKit.drawTopicLabelBackground()
 
-        Cache.imageOfTopicLabelBackground = UIGraphicsGetImageFromCurrentImageContext().resizableImageWithCapInsets(UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2), resizingMode: .Tile).imageWithRenderingMode(.AlwaysOriginal)
+        Cache.imageOfTopicLabelBackground = UIGraphicsGetImageFromCurrentImageContext()!.resizableImageWithCapInsets(UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2), resizingMode: .Tile).imageWithRenderingMode(.AlwaysOriginal)
         UIGraphicsEndImageContext()
 
         return Cache.imageOfTopicLabelBackground!
@@ -334,7 +334,7 @@ public class StyleKit : NSObject {
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 21, height: 17), false, 0)
             StyleKit.drawAirPlayCanvas()
 
-        Cache.imageOfAirPlayCanvas = UIGraphicsGetImageFromCurrentImageContext().imageWithRenderingMode(.AlwaysTemplate)
+        Cache.imageOfAirPlayCanvas = UIGraphicsGetImageFromCurrentImageContext()!.imageWithRenderingMode(.AlwaysTemplate)
         UIGraphicsEndImageContext()
 
         return Cache.imageOfAirPlayCanvas!
@@ -348,7 +348,7 @@ public class StyleKit : NSObject {
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 24, height: 26), false, 0)
             StyleKit.drawForward()
 
-        Cache.imageOfForward = UIGraphicsGetImageFromCurrentImageContext().imageWithRenderingMode(.AlwaysTemplate)
+        Cache.imageOfForward = UIGraphicsGetImageFromCurrentImageContext()!.imageWithRenderingMode(.AlwaysTemplate)
         UIGraphicsEndImageContext()
 
         return Cache.imageOfForward!
@@ -362,7 +362,7 @@ public class StyleKit : NSObject {
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 24, height: 26), false, 0)
             StyleKit.drawRollback()
 
-        Cache.imageOfRollback = UIGraphicsGetImageFromCurrentImageContext().imageWithRenderingMode(.AlwaysTemplate)
+        Cache.imageOfRollback = UIGraphicsGetImageFromCurrentImageContext()!.imageWithRenderingMode(.AlwaysTemplate)
         UIGraphicsEndImageContext()
 
         return Cache.imageOfRollback!

@@ -48,7 +48,7 @@ class ContextCoordinator: NSObject {
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         let documentsFolder = urls[urls.count-1]
         
-        if NSFileManager.defaultManager().fileExistsAtPath(documentsFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite").path!) {
+        if NSFileManager.defaultManager().fileExistsAtPath(documentsFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite")!.path!) {
             let applicationSupportFolder = applicationSupportDirectory
             
             if !NSFileManager.defaultManager().fileExistsAtPath(applicationSupportFolder.path!) {
@@ -56,17 +56,17 @@ class ContextCoordinator: NSObject {
             }
             
             do {
-                try NSFileManager.defaultManager().moveItemAtURL(documentsFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite"), toURL: applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite"))
+                try NSFileManager.defaultManager().moveItemAtURL(documentsFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite")!, toURL: applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite")!)
             } catch let error {
                 log.error("Tried to move file:\(error)")
             }
             do {
-                try NSFileManager.defaultManager().moveItemAtURL(documentsFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-shm"), toURL: applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-shm"))
+                try NSFileManager.defaultManager().moveItemAtURL(documentsFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-shm")!, toURL: applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-shm")!)
             } catch let error {
                 log.error("Tried to move file:\(error)")
             }
             do {
-                try NSFileManager.defaultManager().moveItemAtURL(documentsFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-wal"), toURL: applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-wal"))
+                try NSFileManager.defaultManager().moveItemAtURL(documentsFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-wal")!, toURL: applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-wal")!)
             } catch let error {
                 log.error("Tried to move file:\(error)")
             }
@@ -76,17 +76,17 @@ class ContextCoordinator: NSObject {
     private func deleteDataStore() {
         let applicationSupportFolder = applicationSupportDirectory
         do {
-            try NSFileManager.defaultManager().removeItemAtURL(applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite"))
+            try NSFileManager.defaultManager().removeItemAtURL(applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite")!)
         } catch let error {
             log.error("Tried to move file:\(error)")
         }
         do {
-            try NSFileManager.defaultManager().removeItemAtURL(applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-shm"))
+            try NSFileManager.defaultManager().removeItemAtURL(applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-shm")!)
         } catch let error {
             log.error("Tried to move file:\(error)")
         }
         do {
-            try NSFileManager.defaultManager().removeItemAtURL(applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-wal"))
+            try NSFileManager.defaultManager().removeItemAtURL(applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-wal")!)
         } catch let error {
             log.error("Tried to move file:\(error)")
         }

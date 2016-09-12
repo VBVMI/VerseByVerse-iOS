@@ -85,6 +85,10 @@ extension JsonAPI : TargetType {
         }
     }
     
+    public var task: Task {
+        return .Request
+    }
+    
     public var parameterEncoding: Moya.ParameterEncoding {
         if method == .GET {
             return .URL
@@ -169,5 +173,5 @@ private func stubbedResponse(filename: String) -> NSData! {
 }
 
 public func url(route: TargetType) -> String {
-    return route.baseURL.URLByAppendingPathComponent(route.path).absoluteString
+    return route.baseURL.URLByAppendingPathComponent(route.path)!.absoluteString!
 }

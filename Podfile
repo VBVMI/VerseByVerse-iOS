@@ -5,7 +5,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 # API
-pod 'Moya'
+pod 'Moya', git: 'git@github.com:Moya/Moya.git'
 pod 'Alamofire'
 pod 'Decodable'
 
@@ -22,7 +22,7 @@ pod 'XCGLoggerNSLoggerConnector', :configurations => ['Debug']
 pod 'SnapKit'
 pod 'AlamofireImage', '~> 2.0'
 pod 'CSStickyHeaderFlowLayout'
-pod 'FontAwesome.swift'
+pod 'FontAwesome.swift', git: 'git@github.com:thii/FontAwesome.swift.git', branch: 'swift-2.3'
 pod 'ACPDownload'
 pod 'UIImage-Color'
 
@@ -35,7 +35,13 @@ pod 'NSLogger', :configurations => ['Debug']
 pod 'ReachabilitySwift'
 
 target 'VBVMI' do
-
+    post_install do |installer|
+        installer.pods_project.targets.each do |target|
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '2.3'
+            end
+        end
+    end
 end
 
 target 'VBVMITests' do

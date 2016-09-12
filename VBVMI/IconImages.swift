@@ -35,7 +35,7 @@ class IconImages : ACPStaticImages {
             size.width,
             size.height)
         var myAttrs = attrs
-        let context = UIGraphicsGetCurrentContext()
+        let context = UIGraphicsGetCurrentContext()!
         CGContextSaveGState(context)
         CGContextSetAllowsAntialiasing(context, true);
         CGContextSetShouldAntialias(context, true);

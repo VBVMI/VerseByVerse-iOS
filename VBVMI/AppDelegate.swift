@@ -60,10 +60,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let urls = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         if let originURL = urls.first {
             let oldResources = originURL.URLByAppendingPathComponent("resources")
-            if fileManager.fileExistsAtPath(oldResources.path!) {
+            if fileManager.fileExistsAtPath(oldResources!.path!) {
                 let destinationURL = fileManager.URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask).first?.URLByAppendingPathComponent("resources")
                 if let destinationURL = destinationURL {
-                    let _ = try? fileManager.moveItemAtURL(oldResources, toURL: destinationURL)
+                    let _ = try? fileManager.moveItemAtURL(oldResources!, toURL: destinationURL)
                 }
             }
         }
@@ -185,9 +185,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let documentDirectory: NSURL = urls.first {
             // This is where the database should be in the application support directory
             let rootURL = documentDirectory.URLByAppendingPathComponent("resources")
-            if let path = rootURL.path where !fileManager.fileExistsAtPath(path) {
+            if let path = rootURL!.path where !fileManager.fileExistsAtPath(path) {
                 do {
-                    try fileManager.createDirectoryAtURL(rootURL, withIntermediateDirectories: true, attributes: nil)
+                    try fileManager.createDirectoryAtURL(rootURL!, withIntermediateDirectories: true, attributes: nil)
                 } catch let error {
                     log.error("Error creating resources directory: \(error)")
                     return nil
