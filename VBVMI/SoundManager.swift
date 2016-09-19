@@ -632,9 +632,11 @@ class SoundManager: NSObject {
                     self?.stop(unregisterObservers: false)
                 } else {
                     print("Ended")
-                    if let this = self {
-                        if this.start(registerObservers: false) != true {
-                            log.error("Couldn't restart after interruption")
+                    if let option = notification.userInfo?[AVAudioSessionInterruptionOptionKey] as? NSNumber where option == AVAudioSessionInterruptionOptions.ShouldResume.rawValue {
+                        if let this = self {
+                            if this.start(registerObservers: false) != true {
+                                log.error("Couldn't restart after interruption")
+                            }
                         }
                     }
                 }
