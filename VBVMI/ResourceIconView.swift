@@ -42,7 +42,7 @@ class ResourceIconView: UIView {
         }
         
         self.snp_makeConstraints { (make) in
-            make.width.equalTo(50)
+            make.width.equalTo(50).priority(UILayoutPriorityRequired - 10)
             make.height.equalTo(44)
         }
     }
