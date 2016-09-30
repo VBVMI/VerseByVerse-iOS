@@ -18,7 +18,7 @@ class StudyViewController: UITableViewController {
 
     private let lessonCellReuseIdentifier = "LessonCellReuseIdentifier"
     private let lessonSectionHeaderReuseIdentifier = "LessonSectionReuseIdentifier"
-    
+
     @IBOutlet var headerBackingView: UIView!
     @IBOutlet var blurredImageView: UIImageView!
     @IBOutlet var headerImageView: UIImageView!
@@ -518,6 +518,7 @@ extension StudyViewController : NSFetchedResultsControllerDelegate {
     }
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        
         switch type {
         case .Insert:
             guard let newIndexPath = newIndexPath else { return }
@@ -527,10 +528,11 @@ extension StudyViewController : NSFetchedResultsControllerDelegate {
             guard let indexPath = indexPath else { return }
             let myIndexPath = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section + 1)
             tableView.deleteRowsAtIndexPaths([myIndexPath], withRowAnimation: .Fade)
-        case .Move:
+        case .Move, .Update:
             guard let indexPath = indexPath, newIndexPath = newIndexPath else { return }
             let myNewIndexPath = NSIndexPath(forRow: newIndexPath.row, inSection: newIndexPath.section + 1)
             let myIndexPath = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section + 1)
+            
             if myIndexPath == myNewIndexPath {
                 if let cell = tableView.cellForRowAtIndexPath(myIndexPath) where cell.editing == false {
                     tableView.deleteRowsAtIndexPaths([myIndexPath], withRowAnimation: .None)
@@ -541,10 +543,6 @@ extension StudyViewController : NSFetchedResultsControllerDelegate {
                 tableView.deleteRowsAtIndexPaths([myIndexPath], withRowAnimation: .Automatic)
                 tableView.insertRowsAtIndexPaths([myNewIndexPath], withRowAnimation: .Automatic)
             }
-        case .Update:
-            guard let indexPath = indexPath else { return }
-            let myIndexPath = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section + 1)
-            tableView.reloadRowsAtIndexPaths([myIndexPath], withRowAnimation: .None)
         }
     }
     
