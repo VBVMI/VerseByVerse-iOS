@@ -166,4 +166,13 @@ class LessonTableViewCell: UITableViewCell {
     @IBAction func videoTap(sender: AnyObject) {
          urlButtonCallback?(downloadView: videoView.button, status: videoView.button.currentStatus, buttonType: .Video)
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        videoView.hidden = true
+        teacherAidView.hidden = true
+        studentAidView.hidden = true
+        transcriptView.hidden = true
+        audioView.hidden = true
+    }
 }
