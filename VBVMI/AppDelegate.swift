@@ -21,7 +21,7 @@ import NSLogger
 let log: XCGLogger = {
     let log = XCGLogger.defaultInstance()
     log.setup(.Debug, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil, fileLogLevel: .Debug)
-    log.xcodeColorsEnabled = true
+    log.xcodeColorsEnabled = false
     // NSLogger support
     // only log to the external window
     #if DEBUG
