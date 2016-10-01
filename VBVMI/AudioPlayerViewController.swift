@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 import MediaPlayer
-
+import CoreData
 
 extension NSTimeInterval {
     
@@ -193,14 +193,29 @@ class AudioPlayerViewController: UIViewController {
     
     func audioDidFinish(notification: NSNotification) {
         //Mark the lesson as complete
-        self.lesson?.managedObjectContext?.performBlock({ 
-            if Settings.sharedInstance.autoMarkLessonsComplete {
-                self.lesson?.completed = true
-            }
-            self.lesson?.audioProgress = 0
-            log.debug("Finish progress: \(self.lesson?.audioProgress)")
-            let _ = try? self.lesson?.managedObjectContext?.save()
-        })
+        if let context = self.lesson?.managedObjectContext {
+            context.performBlock({
+                if Settings.sharedInstance.autoMarkLessonsComplete {
+                    self.lesson?.completed = true
+                    
+                    // need to tell study to reload lessonCompletedCount
+                    if let study = self.study {
+                        let predicate = NSPredicate(format: "%K == %@", LessonAttributes.studyIdentifier.rawValue, study.identifier)
+                        let lessons = Lesson.findAllWithPredicate(predicate, context: context) as! [Lesson]
+                        
+                        let lessonsCompleted = lessons.reduce(0, combine: { (value, lesson) -> Int in
+                            return lesson.completed ? value + 1 : value
+                        })
+                        study.lessonsCompleted = Int32(lessonsCompleted)
+                    }
+                    
+                }
+                self.lesson?.audioProgress = 0
+                log.debug("Finish progress: \(self.lesson?.audioProgress)")
+                let _ = try? self.lesson?.managedObjectContext?.save()
+            })
+        }
+        
         
         self.view.window?.rootViewController?.dismissPopupBarAnimated(true, completion: nil)
     }
