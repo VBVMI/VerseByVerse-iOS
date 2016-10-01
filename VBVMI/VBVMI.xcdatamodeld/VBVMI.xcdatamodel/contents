@@ -102,6 +102,7 @@
         <attribute name="identifier" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="imageSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lessonCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lessonsCompleted" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="podcastLink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="studyIndex" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="studyType" attributeType="String" syncable="YES"/>
@@ -140,7 +141,7 @@
         <element name="Channel" positionX="-9" positionY="-1053" width="128" height="178"/>
         <element name="Event" positionX="-495" positionY="-1467" width="128" height="195"/>
         <element name="Lesson" positionX="-324" positionY="-1467" width="128" height="375"/>
-        <element name="Study" positionX="205" positionY="-1323" width="128" height="255"/>
+        <element name="Study" positionX="205" positionY="-1323" width="128" height="270"/>
         <element name="Topic" positionX="-0" positionY="-1440" width="128" height="133"/>
         <element name="Video" positionX="189" positionY="-1062" width="128" height="238"/>
     </elements>

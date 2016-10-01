@@ -332,12 +332,20 @@ class StudyViewController: UITableViewController {
         case 1,2:
             var actions = [UITableViewRowAction]()
             let logicalIndex = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section - 1)
+            let lessons = fetchedResultsController.fetchedObjects as! [Lesson]
             let lesson = fetchedResultsController.objectAtIndexPath(logicalIndex) as! Lesson
+            let study = self.study
             let markCompleteAction : UITableViewRowAction
             if lesson.completed == true {
                 markCompleteAction = UITableViewRowAction(style: .Normal, title: "Mark as incomplete", handler: { (action, indexPath) in
                     lesson.completed = false
                     tableView.editing = false
+                    
+                    let lessonsCompleted = lessons.reduce(0, combine: { (value, lesson) -> Int in
+                        return lesson.completed ? value + 1 : value
+                    })
+                    study.lessonsCompleted = Int32(lessonsCompleted)
+                    
                     do {
                         try lesson.managedObjectContext?.save()
                     } catch {}
@@ -347,6 +355,12 @@ class StudyViewController: UITableViewController {
                     lesson.completed = true
                     lesson.audioProgress = 0
                     tableView.editing = false
+                    
+                    let lessonsCompleted = lessons.reduce(0, combine: { (value, lesson) -> Int in
+                        return lesson.completed ? value + 1 : value
+                    })
+                    study.lessonsCompleted = Int32(lessonsCompleted)
+                    
                     do {
                         try lesson.managedObjectContext?.save()
                     } catch {}
@@ -475,6 +489,11 @@ class StudyViewController: UITableViewController {
                     }
                 })
                 
+                let lessonsCompleted = lessons.reduce(0, combine: { (value, lesson) -> Int in
+                    return lesson.completed ? value + 1 : value
+                })
+                this.study.lessonsCompleted = Int32(lessonsCompleted)
+                
                 let context = ContextCoordinator.sharedInstance.managedObjectContext
                 let _ = try? context.save()
             }
@@ -488,6 +507,11 @@ class StudyViewController: UITableViewController {
                     lesson.audioProgress = 0
                 })
                 
+                let lessonsCompleted = lessons.reduce(0, combine: { (value, lesson) -> Int in
+                    return lesson.completed ? value + 1 : value
+                })
+                this.study.lessonsCompleted = Int32(lessonsCompleted)
+                
                 let context = ContextCoordinator.sharedInstance.managedObjectContext
                 let _ = try? context.save()
             }
@@ -497,8 +521,19 @@ class StudyViewController: UITableViewController {
             self?.dismissViewControllerAnimated(true, completion: nil)
         }
         
-        alert.addAction(markAllComplete)
-        alert.addAction(markAllIncomplete)
+        let lessons = fetchedResultsController.fetchedObjects as! [Lesson]
+        let lessonsCompleted = lessons.reduce(0, combine: { (value, lesson) -> Int in
+            return lesson.completed ? value + 1 : value
+        })
+        
+        if lessonsCompleted != lessons.count {
+            alert.addAction(markAllComplete)
+        }
+        
+        if lessonsCompleted != 0 {
+            alert.addAction(markAllIncomplete)
+        }
+        
         alert.addAction(downloadAll)
         alert.addAction(deleteAll)
         alert.addAction(cancel)

@@ -33,7 +33,7 @@ class LessonsHeader: UITableViewHeaderFooterView {
             make.left.equalTo(self.contentView.snp_leftMargin)
             make.top.equalTo(self.contentView.snp_topMargin)
             //
-            make.bottom.equalTo(self.contentView.snp_bottomMargin)
+            make.bottom.equalTo(self.contentView.snp_bottomMargin).priority(UILayoutPriorityRequired - 10)
         }
         
         titleLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, forAxis: .Vertical)
@@ -45,7 +45,7 @@ class LessonsHeader: UITableViewHeaderFooterView {
         countLabel.snp_makeConstraints { (make) in
             make.baseline.equalTo(titleLabel.snp_baseline)
             make.right.equalTo(self.contentView.snp_rightMargin)
-            make.left.equalTo(titleLabel.snp_right)
+            make.left.equalTo(titleLabel.snp_right).priority(UILayoutPriorityRequired - 10)
         }
         countLabel.textAlignment = .Right
         

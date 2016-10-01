@@ -35,6 +35,8 @@ public class Study: _Study {
         
         study.podcastLink = nullOrString(try JSONDict => "podcastLink")
         study.averageRating = nullOrString(try JSONDict => "averageRating")
+        
+        study.lessonCount = try JSONDict => "lessonCount"
 
         if let topicsArray: [NSDictionary] = try JSONDict => "topics" as? [NSDictionary] {
             //Then lets process the topics

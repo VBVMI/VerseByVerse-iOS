@@ -12,6 +12,7 @@ public enum StudyAttributes: String {
     case identifier = "identifier"
     case imageSource = "imageSource"
     case lessonCount = "lessonCount"
+    case lessonsCompleted = "lessonsCompleted"
     case podcastLink = "podcastLink"
     case studyIndex = "studyIndex"
     case studyType = "studyType"
@@ -69,6 +70,9 @@ public class _Study: NSManagedObject {
 
     @NSManaged public
     var lessonCount: Int32
+
+    @NSManaged public
+    var lessonsCompleted: Int32
 
     @NSManaged public
     var podcastLink: String?
