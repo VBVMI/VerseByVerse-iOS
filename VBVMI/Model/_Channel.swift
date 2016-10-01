@@ -71,34 +71,28 @@ public class _Channel: NSManagedObject {
     // MARK: - Relationships
 
     @NSManaged public
-    var videos: NSSet
+    var videos: Set<Video>
+
+    // MARK: - Fetched Properties
 
 }
 
 extension _Channel {
 
-    func addVideos(objects: NSSet) {
-        let mutable = self.videos.mutableCopy() as! NSMutableSet
-        mutable.unionSet(objects as Set<NSObject>)
-        self.videos = mutable.copy() as! NSSet
+    func addVideos(objects: Set<Video>) {
+        self.videos = self.videos.union(objects)
     }
 
-    func removeVideos(objects: NSSet) {
-        let mutable = self.videos.mutableCopy() as! NSMutableSet
-        mutable.minusSet(objects as Set<NSObject>)
-        self.videos = mutable.copy() as! NSSet
+    func removeVideos(objects: Set<Video>) {
+        self.videos = self.videos.subtract(objects)
     }
 
     func addVideosObject(value: Video) {
-        let mutable = self.videos.mutableCopy() as! NSMutableSet
-        mutable.addObject(value)
-        self.videos = mutable.copy() as! NSSet
+        self.videos = self.videos.union([value])
     }
 
     func removeVideosObject(value: Video) {
-        let mutable = self.videos.mutableCopy() as! NSMutableSet
-        mutable.removeObject(value)
-        self.videos = mutable.copy() as! NSSet
+        self.videos = self.videos.subtract([value])
     }
 
 }

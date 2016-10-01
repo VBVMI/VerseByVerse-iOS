@@ -323,7 +323,7 @@ class StudyViewController: UITableViewController {
             let logicalIndex = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section - 1)
             let lesson = fetchedResultsController.objectAtIndexPath(logicalIndex) as! Lesson
             let markCompleteAction : UITableViewRowAction
-            if lesson.completed?.boolValue == true {
+            if lesson.completed == true {
                 markCompleteAction = UITableViewRowAction(style: .Normal, title: "Mark as incomplete", handler: { (action, indexPath) in
                     lesson.completed = false
                     tableView.editing = false

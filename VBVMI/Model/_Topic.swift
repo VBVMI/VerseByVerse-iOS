@@ -50,127 +50,97 @@ public class _Topic: NSManagedObject {
     // MARK: - Relationships
 
     @NSManaged public
-    var answers: NSSet
+    var answers: Set<Answer>
 
     @NSManaged public
-    var articles: NSSet
+    var articles: Set<Article>
 
     @NSManaged public
-    var lessons: NSSet
+    var lessons: Set<Lesson>
 
     @NSManaged public
-    var studies: NSSet
+    var studies: Set<Study>
+
+    // MARK: - Fetched Properties
 
 }
 
 extension _Topic {
 
-    func addAnswers(objects: NSSet) {
-        let mutable = self.answers.mutableCopy() as! NSMutableSet
-        mutable.unionSet(objects as Set<NSObject>)
-        self.answers = mutable.copy() as! NSSet
+    func addAnswers(objects: Set<Answer>) {
+        self.answers = self.answers.union(objects)
     }
 
-    func removeAnswers(objects: NSSet) {
-        let mutable = self.answers.mutableCopy() as! NSMutableSet
-        mutable.minusSet(objects as Set<NSObject>)
-        self.answers = mutable.copy() as! NSSet
+    func removeAnswers(objects: Set<Answer>) {
+        self.answers = self.answers.subtract(objects)
     }
 
     func addAnswersObject(value: Answer) {
-        let mutable = self.answers.mutableCopy() as! NSMutableSet
-        mutable.addObject(value)
-        self.answers = mutable.copy() as! NSSet
+        self.answers = self.answers.union([value])
     }
 
     func removeAnswersObject(value: Answer) {
-        let mutable = self.answers.mutableCopy() as! NSMutableSet
-        mutable.removeObject(value)
-        self.answers = mutable.copy() as! NSSet
+        self.answers = self.answers.subtract([value])
     }
 
 }
 
 extension _Topic {
 
-    func addArticles(objects: NSSet) {
-        let mutable = self.articles.mutableCopy() as! NSMutableSet
-        mutable.unionSet(objects as Set<NSObject>)
-        self.articles = mutable.copy() as! NSSet
+    func addArticles(objects: Set<Article>) {
+        self.articles = self.articles.union(objects)
     }
 
-    func removeArticles(objects: NSSet) {
-        let mutable = self.articles.mutableCopy() as! NSMutableSet
-        mutable.minusSet(objects as Set<NSObject>)
-        self.articles = mutable.copy() as! NSSet
+    func removeArticles(objects: Set<Article>) {
+        self.articles = self.articles.subtract(objects)
     }
 
     func addArticlesObject(value: Article) {
-        let mutable = self.articles.mutableCopy() as! NSMutableSet
-        mutable.addObject(value)
-        self.articles = mutable.copy() as! NSSet
+        self.articles = self.articles.union([value])
     }
 
     func removeArticlesObject(value: Article) {
-        let mutable = self.articles.mutableCopy() as! NSMutableSet
-        mutable.removeObject(value)
-        self.articles = mutable.copy() as! NSSet
+        self.articles = self.articles.subtract([value])
     }
 
 }
 
 extension _Topic {
 
-    func addLessons(objects: NSSet) {
-        let mutable = self.lessons.mutableCopy() as! NSMutableSet
-        mutable.unionSet(objects as Set<NSObject>)
-        self.lessons = mutable.copy() as! NSSet
+    func addLessons(objects: Set<Lesson>) {
+        self.lessons = self.lessons.union(objects)
     }
 
-    func removeLessons(objects: NSSet) {
-        let mutable = self.lessons.mutableCopy() as! NSMutableSet
-        mutable.minusSet(objects as Set<NSObject>)
-        self.lessons = mutable.copy() as! NSSet
+    func removeLessons(objects: Set<Lesson>) {
+        self.lessons = self.lessons.subtract(objects)
     }
 
     func addLessonsObject(value: Lesson) {
-        let mutable = self.lessons.mutableCopy() as! NSMutableSet
-        mutable.addObject(value)
-        self.lessons = mutable.copy() as! NSSet
+        self.lessons = self.lessons.union([value])
     }
 
     func removeLessonsObject(value: Lesson) {
-        let mutable = self.lessons.mutableCopy() as! NSMutableSet
-        mutable.removeObject(value)
-        self.lessons = mutable.copy() as! NSSet
+        self.lessons = self.lessons.subtract([value])
     }
 
 }
 
 extension _Topic {
 
-    func addStudies(objects: NSSet) {
-        let mutable = self.studies.mutableCopy() as! NSMutableSet
-        mutable.unionSet(objects as Set<NSObject>)
-        self.studies = mutable.copy() as! NSSet
+    func addStudies(objects: Set<Study>) {
+        self.studies = self.studies.union(objects)
     }
 
-    func removeStudies(objects: NSSet) {
-        let mutable = self.studies.mutableCopy() as! NSMutableSet
-        mutable.minusSet(objects as Set<NSObject>)
-        self.studies = mutable.copy() as! NSSet
+    func removeStudies(objects: Set<Study>) {
+        self.studies = self.studies.subtract(objects)
     }
 
     func addStudiesObject(value: Study) {
-        let mutable = self.studies.mutableCopy() as! NSMutableSet
-        mutable.addObject(value)
-        self.studies = mutable.copy() as! NSSet
+        self.studies = self.studies.union([value])
     }
 
     func removeStudiesObject(value: Study) {
-        let mutable = self.studies.mutableCopy() as! NSMutableSet
-        mutable.removeObject(value)
-        self.studies = mutable.copy() as! NSSet
+        self.studies = self.studies.subtract([value])
     }
 
 }

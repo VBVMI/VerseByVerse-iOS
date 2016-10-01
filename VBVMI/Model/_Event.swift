@@ -74,5 +74,7 @@ public class _Event: NSManagedObject {
 
     // MARK: - Relationships
 
+    // MARK: - Fetched Properties
+
 }
 

@@ -138,6 +138,13 @@
 			remoteGlobalIDString = 9828D40F1C5D9F4A004FA954;
 			remoteInfo = VBVMI;
 		};
+		9848516B1D9F4C1B00500A47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9828D4081C5D9F4A004FA954 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9828D4441C5DA1D3004FA954;
+			remoteInfo = Mogenerator;
+		};
 		98D45B921C86D1EC004BBCBD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 98D45B8E1C86D1EC004BBCBD /* LNPopupController.xcodeproj */;
@@ -691,6 +698,7 @@
 			);
 			dependencies = (
 				98D45B971C86D22A004BBCBD /* PBXTargetDependency */,
+				9848516C1D9F4C1B00500A47 /* PBXTargetDependency */,
 			);
 			name = VBVMI;
 			productName = VBVMI;
@@ -904,7 +912,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mogenerator -m VBVMI/VBVMI.xcdatamodeld -O VBVMI/Model --swift --template-var arc=true";
+			shellScript = "mogenerator -m VBVMI/VBVMI.xcdatamodeld -O VBVMI/Model --swift --template-var arc=true --template-path MogenTemplates/";
 		};
 		9854F0951CAF571A0025CAC0 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1107,6 +1115,11 @@
 			isa = PBXTargetDependency;
 			target = 9828D40F1C5D9F4A004FA954 /* VBVMI */;
 			targetProxy = 9821381F1D3B83D6006F2B79 /* PBXContainerItemProxy */;
+		};
+		9848516C1D9F4C1B00500A47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9828D4441C5DA1D3004FA954 /* Mogenerator */;
+			targetProxy = 9848516B1D9F4C1B00500A47 /* PBXContainerItemProxy */;
 		};
 		98D45B971C86D22A004BBCBD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

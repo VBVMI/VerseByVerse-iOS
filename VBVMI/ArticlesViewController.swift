@@ -121,10 +121,10 @@ class ArticlesViewController: UITableViewController {
         
         if let article = fetchedResultsController.objectAtIndexPath(indexPath) as? Article {
             cell.titleLabel.text = article.title
-            cell.titleLabel.textColor = article.completed!.boolValue ? StyleKit.darkGrey : StyleKit.orange
+            cell.titleLabel.textColor = article.completed ? StyleKit.darkGrey : StyleKit.orange
             cell.authorLabel.text = article.authorName
-            
-            if let topics = article.topics as? Set<Topic> where topics.count > 0 {
+            let topics = article.topics
+            if topics.count > 0 {
                 
                 cell.topicLayoutView.hidden = false
                 

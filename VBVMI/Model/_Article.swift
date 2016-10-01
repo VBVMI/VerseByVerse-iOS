@@ -74,13 +74,13 @@ public class _Article: NSManagedObject {
     var category: String?
 
     @NSManaged public
-    var completed: NSNumber?
+    var completed: Bool
 
     @NSManaged public
     var descriptionText: String?
 
     @NSManaged public
-    var identifier: String?
+    var identifier: String
 
     @NSManaged public
     var postedDate: NSDate?
@@ -91,34 +91,28 @@ public class _Article: NSManagedObject {
     // MARK: - Relationships
 
     @NSManaged public
-    var topics: NSSet
+    var topics: Set<Topic>
+
+    // MARK: - Fetched Properties
 
 }
 
 extension _Article {
 
-    func addTopics(objects: NSSet) {
-        let mutable = self.topics.mutableCopy() as! NSMutableSet
-        mutable.unionSet(objects as Set<NSObject>)
-        self.topics = mutable.copy() as! NSSet
+    func addTopics(objects: Set<Topic>) {
+        self.topics = self.topics.union(objects)
     }
 
-    func removeTopics(objects: NSSet) {
-        let mutable = self.topics.mutableCopy() as! NSMutableSet
-        mutable.minusSet(objects as Set<NSObject>)
-        self.topics = mutable.copy() as! NSSet
+    func removeTopics(objects: Set<Topic>) {
+        self.topics = self.topics.subtract(objects)
     }
 
     func addTopicsObject(value: Topic) {
-        let mutable = self.topics.mutableCopy() as! NSMutableSet
-        mutable.addObject(value)
-        self.topics = mutable.copy() as! NSSet
+        self.topics = self.topics.union([value])
     }
 
     func removeTopicsObject(value: Topic) {
-        let mutable = self.topics.mutableCopy() as! NSMutableSet
-        mutable.removeObject(value)
-        self.topics = mutable.copy() as! NSSet
+        self.topics = self.topics.subtract([value])
     }
 
 }

@@ -89,5 +89,7 @@ public class _Video: NSManagedObject {
     @NSManaged public
     var channel: Channel?
 
+    // MARK: - Fetched Properties
+
 }
 

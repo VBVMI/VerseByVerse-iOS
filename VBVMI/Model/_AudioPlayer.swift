@@ -41,7 +41,7 @@ public class _AudioPlayer: NSManagedObject {
     // MARK: - Properties
 
     @NSManaged public
-    var currentTime: NSNumber?
+    var currentTime: Double
 
     @NSManaged public
     var lessonIdentifier: String?
@@ -50,6 +50,8 @@ public class _AudioPlayer: NSManagedObject {
     var studyIdentifier: String?
 
     // MARK: - Relationships
+
+    // MARK: - Fetched Properties
 
     @NSManaged public
     var lesson: [Lesson]

@@ -11,6 +11,7 @@ public enum StudyAttributes: String {
     case descriptionText = "descriptionText"
     case identifier = "identifier"
     case imageSource = "imageSource"
+    case lessonCount = "lessonCount"
     case podcastLink = "podcastLink"
     case studyIndex = "studyIndex"
     case studyType = "studyType"
@@ -55,7 +56,7 @@ public class _Study: NSManagedObject {
     var bibleIndex: Int32
 
     @NSManaged public
-    var completed: NSNumber?
+    var completed: Bool
 
     @NSManaged public
     var descriptionText: String
@@ -65,6 +66,9 @@ public class _Study: NSManagedObject {
 
     @NSManaged public
     var imageSource: String?
+
+    @NSManaged public
+    var lessonCount: Int32
 
     @NSManaged public
     var podcastLink: String?
@@ -87,34 +91,28 @@ public class _Study: NSManagedObject {
     // MARK: - Relationships
 
     @NSManaged public
-    var topics: NSSet
+    var topics: Set<Topic>
+
+    // MARK: - Fetched Properties
 
 }
 
 extension _Study {
 
-    func addTopics(objects: NSSet) {
-        let mutable = self.topics.mutableCopy() as! NSMutableSet
-        mutable.unionSet(objects as Set<NSObject>)
-        self.topics = mutable.copy() as! NSSet
+    func addTopics(objects: Set<Topic>) {
+        self.topics = self.topics.union(objects)
     }
 
-    func removeTopics(objects: NSSet) {
-        let mutable = self.topics.mutableCopy() as! NSMutableSet
-        mutable.minusSet(objects as Set<NSObject>)
-        self.topics = mutable.copy() as! NSSet
+    func removeTopics(objects: Set<Topic>) {
+        self.topics = self.topics.subtract(objects)
     }
 
     func addTopicsObject(value: Topic) {
-        let mutable = self.topics.mutableCopy() as! NSMutableSet
-        mutable.addObject(value)
-        self.topics = mutable.copy() as! NSSet
+        self.topics = self.topics.union([value])
     }
 
     func removeTopicsObject(value: Topic) {
-        let mutable = self.topics.mutableCopy() as! NSMutableSet
-        mutable.removeObject(value)
-        self.topics = mutable.copy() as! NSSet
+        self.topics = self.topics.subtract([value])
     }
 
 }

@@ -104,7 +104,8 @@ class AnswersViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(Cell.Identifier.Article, forIndexPath: indexPath) as! ArticleTableViewCell
         
         if let answer = fetchedResultsController.objectAtIndexPath(indexPath) as? Answer {
-            if let topics = answer.topics as? Set<Topic> where topics.count > 0 {
+            let topics = answer.topics
+            if topics.count > 0 {
                 cell.topicLayoutView.hidden = false
                 let sortedTopics = topics.filter( {$0.name?.characters.count > 0 }).sort({ (left, right) -> Bool in
                     return left.name!.localizedCompare(right.name!) == NSComparisonResult.OrderedAscending
@@ -123,7 +124,7 @@ class AnswersViewController: UITableViewController {
                 cell.topicLayoutView.hidden = true
             }
             
-            cell.titleLabel.textColor = answer.completed!.boolValue ? StyleKit.darkGrey : StyleKit.orange
+            cell.titleLabel.textColor = answer.completed ? StyleKit.darkGrey : StyleKit.orange
             cell.titleLabel.text = answer.title
             cell.authorLabel.text = answer.authorName
             if let date = answer.postedDate {
