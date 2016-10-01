@@ -297,6 +297,22 @@ public class StyleKit : NSObject {
         CGContextRestoreGState(context!)
     }
 
+    public class func drawPieProgressDeplete(frame frame: CGRect = CGRect(x: 0, y: 0, width: 10, height: 10), progressColor: UIColor = UIColor(red: 1.000, green: 0.615, blue: 0.000, alpha: 1.000), progress: CGFloat = 0) {
+
+        //// Variable Declarations
+        let depletionAngle: CGFloat = progress * 360 + 90
+
+        //// Oval Drawing
+        let ovalRect = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height)
+        let ovalPath = UIBezierPath()
+        ovalPath.addArcWithCenter(CGPoint(x: ovalRect.midX, y: ovalRect.midY), radius: ovalRect.width / 2, startAngle: -90 * CGFloat(M_PI)/180, endAngle: -(depletionAngle - 360) * CGFloat(M_PI)/180, clockwise: true)
+        ovalPath.addLineToPoint(CGPoint(x: ovalRect.midX, y: ovalRect.midY))
+        ovalPath.closePath()
+
+        progressColor.setFill()
+        ovalPath.fill()
+    }
+
     public class func drawDotView(frame frame: CGRect = CGRect(x: 0, y: 0, width: 3, height: 3)) {
 
         //// Variable Declarations
