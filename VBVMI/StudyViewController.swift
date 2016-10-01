@@ -107,7 +107,6 @@ class StudyViewController: UITableViewController {
         
         if let thumbnailSource = study.thumbnailSource {
             if let url = NSURL(string: thumbnailSource) {
-                //let imageFilter = ImageBlurFilter(blurRadius: 20)
                 blurredImageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
                 
                 let width = self.headerImageView.frame.size.width
