@@ -209,6 +209,14 @@ extension StudiesViewController : UICollectionViewDataSource {
         
         cell.accessibilityHint = "\(study.title)"
         
+        let totalLessons = CGFloat(max(study.lessonsCompleted, study.lessonCount))
+        if totalLessons > 0 {
+            let progress = CGFloat(study.lessonsCompleted) / totalLessons
+            cell.progressView.progress = progress
+        } else {
+            cell.progressView.progress = 1
+        }
+        
         cell.titleLabel.text = study.title
         cell.coverImageView.image = nil
         if let thumbnailSource = study.thumbnailSource {

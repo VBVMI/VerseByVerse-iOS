@@ -299,9 +299,17 @@ public class StyleKit : NSObject {
 
     public class func drawPieProgressDeplete(frame frame: CGRect = CGRect(x: 0, y: 0, width: 10, height: 10), progressColor: UIColor = UIColor(red: 1.000, green: 0.615, blue: 0.000, alpha: 1.000), progress: CGFloat = 0) {
 
+        let context = UIGraphicsGetCurrentContext()!
         //// Variable Declarations
         let depletionAngle: CGFloat = progress * 360 + 90
 
+        //// Gradient Declarations
+        let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), [StyleKit.orange.CGColor, StyleKit.orangeFaint.CGColor], [0, 1])!
+        
+        CGContextSaveGState(context)
+        CGContextTranslateCTM(context, frame.minX + frame.width, frame.minY)
+        CGContextScaleCTM(context, -1, 1)
+        
         //// Oval Drawing
         let ovalRect = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height)
         let ovalPath = UIBezierPath()
@@ -309,8 +317,16 @@ public class StyleKit : NSObject {
         ovalPath.addLineToPoint(CGPoint(x: ovalRect.midX, y: ovalRect.midY))
         ovalPath.closePath()
 
-        progressColor.setFill()
-        ovalPath.fill()
+        CGContextSaveGState(context)
+        ovalPath.addClip()
+        let ovalResizeRatio: CGFloat = min(ovalRect.width / 24, ovalRect.height / 24)
+        CGContextDrawRadialGradient(context, gradient,
+                                    CGPoint(x: ovalRect.midX + -1.64 * ovalResizeRatio, y: ovalRect.midY + 1.95 * ovalResizeRatio), 14.96 * ovalResizeRatio,
+                                    CGPoint(x: ovalRect.midX + 0 * ovalResizeRatio, y: ovalRect.midY + 0 * ovalResizeRatio), 3.73 * ovalResizeRatio,
+                                    [CGGradientDrawingOptions.DrawsBeforeStartLocation, CGGradientDrawingOptions.DrawsAfterEndLocation])
+        CGContextRestoreGState(context)
+        
+        CGContextRestoreGState(context)
     }
 
     public class func drawDotView(frame frame: CGRect = CGRect(x: 0, y: 0, width: 3, height: 3)) {

@@ -15,6 +15,7 @@ class StudyCellCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageLeftInsetConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var progressView: DepletionProgressView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,5 +29,5 @@ class StudyCellCollectionViewCell: UICollectionViewCell {
         highlightView.layer.cornerRadius = 7
         self.selectedBackgroundView = highlightView
     }
-
+    
 }
