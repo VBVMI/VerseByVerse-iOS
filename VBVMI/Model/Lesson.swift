@@ -41,7 +41,7 @@ public class Lesson: _Lesson {
         let lessonTitle: String = try JSONDict => "title"
         lesson.title = lessonTitle.stringByDecodingHTMLEntities
         
-        lesson.videoSourceURL = nullOrString(try JSONDict => "averageRating")
+        lesson.videoSourceURL = nullOrString(try JSONDict => "videoSource")
         lesson.videoLength = nullOrString(try JSONDict => "videoLength")
         
         lesson.location = nullOrString(try JSONDict => "location")

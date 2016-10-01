@@ -208,6 +208,11 @@ class ResourceManager {
             return
         }
         
+        if let url = NSURL(string: urlString) where !LessonType.downloadable.contains(resource) {
+            completion?(result: DownloadResult.success(lesson: lesson, resource: resource, url: url))
+            return
+        }
+        
         if let url = APIDataManager.fileExists(lesson, urlString: urlString) {
             completion?(result: DownloadResult.success(lesson: lesson, resource: resource, url: url))
         } else {

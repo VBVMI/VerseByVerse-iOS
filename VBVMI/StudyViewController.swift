@@ -253,7 +253,7 @@ class StudyViewController: UITableViewController {
                                         })
                                     }
                                 case .Video:
-                                    break
+                                    UIApplication.sharedApplication().openURL(url)
                                 }
                                 
                             }
