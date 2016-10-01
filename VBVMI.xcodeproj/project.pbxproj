@@ -113,6 +113,7 @@
 		98D45B9F1C86D61D004BBCBD /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D45B9D1C86D61D004BBCBD /* AudioPlayerViewController.swift */; };
 		98D45BA01C86D61D004BBCBD /* AudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D45B9E1C86D61D004BBCBD /* AudioPlayerViewController.xib */; };
 		98DE6E851CA2A83500C039C0 /* AboutActionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */; };
+		98E672A91D9FC6E1001E7F77 /* CenteredProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E672A81D9FC6E1001E7F77 /* CenteredProgressView.swift */; };
 		98F725BF1D49E5C600F73ED0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */; };
 		98F725C21D49E67600F73ED0 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98F725C11D49E67600F73ED0 /* Settings.storyboard */; };
 		98FD5DD51C9286CB00B493E6 /* ArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD5DD41C9286CB00B493E6 /* ArticlesViewController.swift */; };
@@ -292,6 +293,7 @@
 		98D45B9E1C86D61D004BBCBD /* AudioPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioPlayerViewController.xib; sourceTree = "<group>"; };
 		98D45BA11C86FAB4004BBCBD /* VBVMI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VBVMI-Bridging-Header.h"; sourceTree = "<group>"; };
 		98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutActionsController.swift; sourceTree = "<group>"; };
+		98E672A81D9FC6E1001E7F77 /* CenteredProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteredProgressView.swift; sourceTree = "<group>"; };
 		98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		98F725C11D49E67600F73ED0 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		98FD5DD41C9286CB00B493E6 /* ArticlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesViewController.swift; sourceTree = "<group>"; };
@@ -598,6 +600,7 @@
 				987F02FA1CF0658800AB61FA /* ResourceIconView.swift */,
 				98FD5DDA1C92D4DF00B493E6 /* TabBarItem.swift */,
 				9848516F1D9F713600500A47 /* DepletionProgressView.swift */,
+				98E672A81D9FC6E1001E7F77 /* CenteredProgressView.swift */,
 				986C37DC1C657CCE0096BB83 /* HideView.swift */,
 				98AC05D61C8438670037D54A /* IconImages.swift */,
 				98CBFE8E1C900E5F005F6414 /* StudiesHeaderReusableView.swift */,
@@ -1078,6 +1081,7 @@
 				98AC05D71C8438670037D54A /* IconImages.swift in Sources */,
 				986C2F171D3395F700F595FF /* ChannelViewController.swift in Sources */,
 				98FF47551D292640008E27F4 /* _Video.swift in Sources */,
+				98E672A91D9FC6E1001E7F77 /* CenteredProgressView.swift in Sources */,
 				980BE9691C9E9DEF003A5D84 /* Topic.swift in Sources */,
 				98CBFE901C900E5F005F6414 /* StudiesHeaderReusableView.swift in Sources */,
 				980BE96B1C9EACE4003A5D84 /* StringExtensions.swift in Sources */,

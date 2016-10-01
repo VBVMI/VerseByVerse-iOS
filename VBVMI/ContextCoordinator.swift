@@ -132,6 +132,8 @@ class ContextCoordinator: NSObject {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(mergeMain(_:)), name: NSManagedObjectContextDidSaveNotification, object: self.backgroundManagedObjectContext)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(mergeBackground(_:)), name: NSManagedObjectContextDidSaveNotification, object: self.managedObjectContext)
+        
+        migrateData(backgroundContext)
     }
     
 
@@ -164,6 +166,30 @@ class ContextCoordinator: NSObject {
                     abort()
                 }
             }
+        }
+    }
+    
+    
+    private func migrateData(context: NSManagedObjectContext) {
+        if !NSUserDefaults.standardUserDefaults().boolForKey("CompletedCountMigration") {
+            context.performBlock({ 
+                let studies = Study.findAll(context) as! [Study]
+                
+                studies.forEach({ (study) in
+                    let predicate = NSPredicate(format: "%K == %@", LessonAttributes.studyIdentifier.rawValue, study.identifier)
+                    let lessons = Lesson.findAllWithPredicate(predicate, context: context) as! [Lesson]
+                    
+                    let lessonsCompleted = lessons.reduce(0, combine: { (value, lesson) -> Int in
+                        return lesson.completed ? value + 1 : value
+                    })
+                    study.lessonsCompleted = Int32(lessonsCompleted)
+                })
+                
+                let _ = try? context.save()
+                
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "CompletedCountMigration")
+                NSUserDefaults.standardUserDefaults().synchronize()
+            })
         }
     }
 }

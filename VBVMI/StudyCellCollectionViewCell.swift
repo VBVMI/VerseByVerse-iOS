@@ -15,7 +15,8 @@ class StudyCellCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageLeftInsetConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var coverImageView: UIImageView!
-    @IBOutlet weak var progressView: DepletionProgressView!
+    @IBOutlet weak var progressView: CenteredProgressView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

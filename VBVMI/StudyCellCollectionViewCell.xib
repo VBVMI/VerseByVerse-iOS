@@ -21,29 +21,29 @@
                             <constraint firstAttribute="width" secondItem="8Uq-ro-RmR" secondAttribute="height" multiplier="1:1" id="vdx-DR-J3M"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BYL-O3-J4P" customClass="DepletionProgressView" customModule="Verse_By_Verse" customModuleProvider="target">
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="20" id="0lz-gu-4L7"/>
-                            <constraint firstAttribute="height" constant="20" id="iYE-2J-zKe"/>
-                        </constraints>
-                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8n-CP-2rR">
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="663-9i-nNI" customClass="CenteredProgressView" customModule="Verse_By_Verse" customModuleProvider="target">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="2" id="KfA-N9-CTk"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="o8n-CP-2rR" secondAttribute="bottom" id="49B-80-PEY"/>
-                <constraint firstItem="BYL-O3-J4P" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="70T-U4-EUJ"/>
+                <constraint firstItem="663-9i-nNI" firstAttribute="top" secondItem="8Uq-ro-RmR" secondAttribute="bottom" constant="1" id="5ko-yr-uRd"/>
                 <constraint firstAttribute="trailing" secondItem="8Uq-ro-RmR" secondAttribute="trailing" constant="4" id="KSB-BS-boy"/>
                 <constraint firstAttribute="trailing" secondItem="o8n-CP-2rR" secondAttribute="trailing" id="MYi-u5-LKp"/>
                 <constraint firstItem="8Uq-ro-RmR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="PN0-wx-e5Q"/>
+                <constraint firstItem="663-9i-nNI" firstAttribute="leading" secondItem="8Uq-ro-RmR" secondAttribute="leading" id="Uxz-yf-cH3"/>
+                <constraint firstItem="663-9i-nNI" firstAttribute="trailing" secondItem="8Uq-ro-RmR" secondAttribute="trailing" id="crb-Aj-J9C"/>
                 <constraint firstItem="o8n-CP-2rR" firstAttribute="top" secondItem="8Uq-ro-RmR" secondAttribute="bottom" id="fF7-Yy-cbx"/>
                 <constraint firstItem="o8n-CP-2rR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hpp-3h-UGN"/>
-                <constraint firstItem="BYL-O3-J4P" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="qVD-D8-T2k"/>
                 <constraint firstItem="8Uq-ro-RmR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="zuq-l9-lag"/>
             </constraints>
             <size key="customSize" width="92" height="136"/>
@@ -52,7 +52,7 @@
                 <outlet property="imageLeftInsetConstraint" destination="PN0-wx-e5Q" id="Ucv-6X-1m0"/>
                 <outlet property="imageRightInsetContraint" destination="KSB-BS-boy" id="FNf-a2-fu7"/>
                 <outlet property="imageTopInsetContraint" destination="zuq-l9-lag" id="JEm-SU-jsL"/>
-                <outlet property="progressView" destination="BYL-O3-J4P" id="C0D-oD-klv"/>
+                <outlet property="progressView" destination="663-9i-nNI" id="WuI-oX-dUb"/>
                 <outlet property="titleLabel" destination="o8n-CP-2rR" id="fH6-NX-Yhk"/>
             </connections>
             <point key="canvasLocation" x="231" y="249"/>
