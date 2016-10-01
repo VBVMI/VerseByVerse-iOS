@@ -47,6 +47,7 @@
 		9828D4641C5F4D8D004FA954 /* APIDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D4631C5F4D8D004FA954 /* APIDataManager.swift */; };
 		982E37621D31ECF900FD9A93 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 982E37611D31ECF900FD9A93 /* Settings.bundle */; };
 		984650F41CF0175E00F4A46F /* LessonsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984650F31CF0175E00F4A46F /* LessonsHeader.swift */; };
+		9848516E1D9F5F7800500A47 /* ImageBlurFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848516D1D9F5F7800500A47 /* ImageBlurFilter.swift */; };
 		9854F0921CAD09980025CAC0 /* TopicLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854F0911CAD09980025CAC0 /* TopicLayoutView.swift */; };
 		985C53A71D7ACFA5001A907F /* StudiesOptions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 985C53A61D7ACFA5001A907F /* StudiesOptions.storyboard */; };
 		985C53AE1D7AD28F001A907F /* StudiesOptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985C53AD1D7AD28F001A907F /* StudiesOptionsTableViewController.swift */; };
@@ -219,6 +220,7 @@
 		9828D4631C5F4D8D004FA954 /* APIDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIDataManager.swift; sourceTree = "<group>"; };
 		982E37611D31ECF900FD9A93 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
 		984650F31CF0175E00F4A46F /* LessonsHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonsHeader.swift; sourceTree = "<group>"; };
+		9848516D1D9F5F7800500A47 /* ImageBlurFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBlurFilter.swift; sourceTree = "<group>"; };
 		984F611B1D5572BD00FDCD69 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		9854F0911CAD09980025CAC0 /* TopicLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicLayoutView.swift; sourceTree = "<group>"; };
 		985C53A61D7ACFA5001A907F /* StudiesOptions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudiesOptions.storyboard; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				9828D4151C5D9F4A004FA954 /* StudiesViewController.swift */,
 				985C53A81D7AD1FF001A907F /* Options */,
 				98B419BE1C64803D003A2872 /* StudyViewController.swift */,
+				9848516D1D9F5F7800500A47 /* ImageBlurFilter.swift */,
 				988D698A1C9E62AA000ED16D /* PDFViewController.swift */,
 				98D45B9D1C86D61D004BBCBD /* AudioPlayerViewController.swift */,
 				988663ED1D55C19300010728 /* Audio */,
@@ -1093,6 +1096,7 @@
 				980E6C0E1C814A3E008F23D1 /* Appearance.swift in Sources */,
 				9828D4141C5D9F4A004FA954 /* AppDelegate.swift in Sources */,
 				98FD5DD71C92873200B493E6 /* AnswersViewController.swift in Sources */,
+				9848516E1D9F5F7800500A47 /* ImageBlurFilter.swift in Sources */,
 				98644D951C61D7E400EB27F1 /* NSManagedObject+Extensions.swift in Sources */,
 				988D69711C9BEADA000ED16D /* ArticleViewController.swift in Sources */,
 				986C37DD1C657CCE0096BB83 /* HideView.swift in Sources */,

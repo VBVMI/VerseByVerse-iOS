@@ -22,6 +22,7 @@ class StudyViewController: UITableViewController {
     @IBOutlet var headerBackingView: UIView!
     @IBOutlet var blurredImageView: UIImageView!
     @IBOutlet var headerImageView: UIImageView!
+    @IBOutlet weak var headerBlurView: UIVisualEffectView!
     
     private let barButtonItem: UIBarButtonItem = UIBarButtonItem(title: String.fontAwesomeIconWithName(.EllipsisH), style: .Plain, target: nil, action: #selector(tappedMenu))
     
@@ -106,8 +107,8 @@ class StudyViewController: UITableViewController {
         
         if let thumbnailSource = study.thumbnailSource {
             if let url = NSURL(string: thumbnailSource) {
-                let imageFilter = BlurFilter(blurRadius: 10)
-                blurredImageView.af_setImageWithURL(url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
+                //let imageFilter = ImageBlurFilter(blurRadius: 20)
+                blurredImageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
                 
                 let width = self.headerImageView.frame.size.width
                 let headerImageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSizeMake(width, width), radius: 3, divideRadiusByImageScale: false)
@@ -131,6 +132,10 @@ class StudyViewController: UITableViewController {
         if let _ = study {
             configureViewsForSudy()
             configureFetchController()
+        }
+        blurredImageView.addSubview(headerBlurView)
+        headerBlurView.snp_makeConstraints { (make) in
+            make.edges.equalTo(0)
         }
         
         barButtonItem.target = self
@@ -163,6 +168,8 @@ class StudyViewController: UITableViewController {
         frame.origin.y = totalOffTop - self.tableView.contentInset.top
         let imageFrame = self.view.convertRect(frame, toView: headerBackingView)
         layer.frame = imageFrame
+        headerBlurView.frame = layer.bounds
+//        headerBlurView.layer.frame = imageFrame
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
