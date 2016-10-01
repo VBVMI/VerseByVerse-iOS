@@ -310,6 +310,11 @@ class StudyViewController: UITableViewController {
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         switch indexPath.section {
         case 1,2:
+            let logicalIndex = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section - 1)
+            let lesson = fetchedResultsController.objectAtIndexPath(logicalIndex) as! Lesson
+            if lesson.isPlaceholder {
+                return false
+            }
             return true
         default:
             return false
@@ -458,8 +463,10 @@ class StudyViewController: UITableViewController {
             guard let this = self else { return }
             if let lessons = this.fetchedResultsController.fetchedObjects as? [Lesson] {
                 lessons.forEach({ (lesson) in
-                    lesson.completed = true
-                    lesson.audioProgress = 0
+                    if !lesson.isPlaceholder {
+                        lesson.completed = true
+                        lesson.audioProgress = 0
+                    }
                 })
                 
                 let context = ContextCoordinator.sharedInstance.managedObjectContext

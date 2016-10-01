@@ -46,6 +46,9 @@ public class Lesson: _Lesson {
         
         lesson.location = nullOrString(try JSONDict => "location")
         lesson.audioSourceURL = nullOrString(try JSONDict => "audioSource")
+        
+        lesson.isPlaceholder = lesson.audioSourceURL == nil
+        
         lesson.audioLength = nullOrString(try JSONDict => "audioLength")
         lesson.studentAidURL = nullOrString(try JSONDict => "studentAid")
         lesson.studyIdentifier = studyID
