@@ -3,11 +3,11 @@ PODS:
   - Alamofire (3.5.0)
   - AlamofireImage (2.5.0):
     - Alamofire (~> 3.5)
-  - Crashlytics (3.7.2):
+  - Crashlytics (3.8.2):
     - Fabric (~> 1.6.3)
   - CSStickyHeaderFlowLayout (0.2.10)
   - Decodable (0.4.1)
-  - Fabric (1.6.7)
+  - Fabric (1.6.9)
   - FontAwesome.swift (0.8.0)
   - Moya (7.0.0):
     - Moya/Core (= 7.0.0)
@@ -68,10 +68,10 @@ SPEC CHECKSUMS:
   ACPDownload: 9c6349be96019b6c8c87ad46570af1cbc7106bf4
   Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
   AlamofireImage: 2d34936e5201270bb17a316a786e90e83b4a249d
-  Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
+  Crashlytics: 27acca95a01b042a8294291dd6dff27f8f6af6d7
   CSStickyHeaderFlowLayout: 5366582779d8b7c9ba9b9cc729c218cc23888776
   Decodable: 4df86629544f717045a931ed6e9f0be35fa3c3b0
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  Fabric: bc5bec42cef4bcf1ee3ce0e218fc518e4b44dfbb
   FontAwesome.swift: f8c6cc5c42cbe93bdc04371363bc7b371fb3d3a1
   Moya: f004b82418fb8165ee1fc9f86190db4b3611fda9
   NSLogger: daa17368272ddf10a0850c218fe49de23b50f2eb
