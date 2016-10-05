@@ -29,7 +29,7 @@ enum Cell {
         static let AnswerHeader = "AnswerHeaderCell"
     }
     enum CellSize {
-        static let Study = CGSize(width: 90, height: 140)
+        static let Study = CGSize(width: 90, height: 144)
         static let StudyImageInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4) //Bottom doesn't matter yo
     }
 }

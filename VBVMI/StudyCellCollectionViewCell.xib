@@ -29,20 +29,20 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="663-9i-nNI" customClass="CenteredProgressView" customModule="Verse_By_Verse" customModuleProvider="target">
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="2" id="KfA-N9-CTk"/>
+                            <constraint firstAttribute="height" constant="3" id="KfA-N9-CTk"/>
                         </constraints>
                     </view>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="o8n-CP-2rR" secondAttribute="bottom" id="49B-80-PEY"/>
-                <constraint firstItem="663-9i-nNI" firstAttribute="top" secondItem="8Uq-ro-RmR" secondAttribute="bottom" constant="1" id="5ko-yr-uRd"/>
+                <constraint firstItem="663-9i-nNI" firstAttribute="top" secondItem="8Uq-ro-RmR" secondAttribute="bottom" constant="2" id="5ko-yr-uRd"/>
                 <constraint firstAttribute="trailing" secondItem="8Uq-ro-RmR" secondAttribute="trailing" constant="4" id="KSB-BS-boy"/>
                 <constraint firstAttribute="trailing" secondItem="o8n-CP-2rR" secondAttribute="trailing" id="MYi-u5-LKp"/>
                 <constraint firstItem="8Uq-ro-RmR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="PN0-wx-e5Q"/>
                 <constraint firstItem="663-9i-nNI" firstAttribute="leading" secondItem="8Uq-ro-RmR" secondAttribute="leading" id="Uxz-yf-cH3"/>
                 <constraint firstItem="663-9i-nNI" firstAttribute="trailing" secondItem="8Uq-ro-RmR" secondAttribute="trailing" id="crb-Aj-J9C"/>
-                <constraint firstItem="o8n-CP-2rR" firstAttribute="top" secondItem="8Uq-ro-RmR" secondAttribute="bottom" id="fF7-Yy-cbx"/>
+                <constraint firstItem="o8n-CP-2rR" firstAttribute="top" secondItem="8Uq-ro-RmR" secondAttribute="bottom" constant="4" id="fF7-Yy-cbx"/>
                 <constraint firstItem="o8n-CP-2rR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hpp-3h-UGN"/>
                 <constraint firstItem="8Uq-ro-RmR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="zuq-l9-lag"/>
             </constraints>

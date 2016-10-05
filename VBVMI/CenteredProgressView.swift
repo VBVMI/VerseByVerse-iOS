@@ -27,7 +27,7 @@ class CenteredProgressView: UIView {
         }
         //// Variable Declarations
         let progressWidth: CGFloat = (1 - progress) * (progressFrame.size.width - progressFrame.size.height) + progressFrame.size.height
-        let progressOffset: CGFloat = (progressFrame.size.width - progressWidth) / 2.0
+        let progressOffset: CGFloat = (progressFrame.size.width - progressWidth)// / 2.0
         
         //// Rectangle Drawing
         let rectanglePath = UIBezierPath(roundedRect: CGRect(x: progressOffset, y: 0, width: progressWidth, height: progressFrame.size.height), cornerRadius: progressFrame.size.height / 2.0)
