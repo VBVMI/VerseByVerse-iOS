@@ -22,7 +22,6 @@ class StudyViewController: UITableViewController {
     @IBOutlet var headerBackingView: UIView!
     @IBOutlet var blurredImageView: UIImageView!
     @IBOutlet var headerImageView: UIImageView!
-    @IBOutlet weak var headerBlurView: UIVisualEffectView!
     
     private let barButtonItem: UIBarButtonItem = UIBarButtonItem(title: String.fontAwesomeIconWithName(.EllipsisH), style: .Plain, target: nil, action: #selector(tappedMenu))
     
@@ -107,7 +106,7 @@ class StudyViewController: UITableViewController {
         
         if let thumbnailSource = study.thumbnailSource {
             if let url = NSURL(string: thumbnailSource) {
-                blurredImageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
+                blurredImageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3), runImageTransitionIfCached: true, completion: nil)
                 
                 let width = self.headerImageView.frame.size.width
                 let headerImageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSizeMake(width, width), radius: 3, divideRadiusByImageScale: false)
@@ -132,11 +131,7 @@ class StudyViewController: UITableViewController {
             configureViewsForSudy()
             configureFetchController()
         }
-        blurredImageView.addSubview(headerBlurView)
-        headerBlurView.snp_makeConstraints { (make) in
-            make.edges.equalTo(0)
-        }
-        
+
         barButtonItem.target = self
         barButtonItem.setTitleTextAttributes([NSFontAttributeName: UIFont.fontAwesomeOfSize(20)], forState: .Normal)
         navigationItem.rightBarButtonItem = barButtonItem
@@ -146,29 +141,30 @@ class StudyViewController: UITableViewController {
     override func viewDidLayoutSubviews() {
         let contentOffset = self.tableView.contentOffset
         let totalOffTop = self.tableView.contentInset.top + contentOffset.y
-        if totalOffTop <= 0 {
-            resizeBlurImage()
-        }
         
         let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
         tableView.contentInset = insets
         tableView.scrollIndicatorInsets = insets
+        
+        if totalOffTop <= 0 {
+            resizeBlurImage()
+        }
     }
     
     private func resizeBlurImage() {
+
         let layer = blurredImageView.layer
         let contentOffset = self.tableView.contentOffset
         let totalOffTop = self.tableView.contentInset.top + contentOffset.y
         
         var frame = self.headerBackingView.bounds
         frame.size.height -= totalOffTop
-        frame.size.height += self.tableView.contentInset.top
         
-        frame.origin.y = totalOffTop - self.tableView.contentInset.top
+        frame.origin.y = totalOffTop
         let imageFrame = self.view.convertRect(frame, toView: headerBackingView)
         layer.frame = imageFrame
-        headerBlurView.frame = layer.bounds
-//        headerBlurView.layer.frame = imageFrame
+        blurredImageView.setNeedsLayout()
+        blurredImageView.layoutIfNeeded()
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

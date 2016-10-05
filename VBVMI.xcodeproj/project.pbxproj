@@ -35,6 +35,7 @@
 		9821380F1D3B8393006F2B79 /* VBVMITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9821380E1D3B8393006F2B79 /* VBVMITests.swift */; };
 		9821381D1D3B83D6006F2B79 /* VBVMIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9821381C1D3B83D6006F2B79 /* VBVMIUITests.swift */; };
 		982138241D3B83EC006F2B79 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D16ABF1D3B7512004BF06E /* SnapshotHelper.swift */; };
+		98213A991DA4F43300E81CBB /* BlurImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98213A981DA4F43300E81CBB /* BlurImageView.swift */; };
 		9828D4141C5D9F4A004FA954 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D4131C5D9F4A004FA954 /* AppDelegate.swift */; };
 		9828D4161C5D9F4A004FA954 /* StudiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D4151C5D9F4A004FA954 /* StudiesViewController.swift */; };
 		9828D4191C5D9F4A004FA954 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9828D4171C5D9F4A004FA954 /* Main.storyboard */; };
@@ -199,6 +200,7 @@
 		9821381A1D3B83D6006F2B79 /* VBVMIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VBVMIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9821381C1D3B83D6006F2B79 /* VBVMIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VBVMIUITests.swift; sourceTree = "<group>"; };
 		9821381E1D3B83D6006F2B79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98213A981DA4F43300E81CBB /* BlurImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurImageView.swift; sourceTree = "<group>"; };
 		9828D4101C5D9F4A004FA954 /* Verse By Verse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Verse By Verse.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9828D4131C5D9F4A004FA954 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9828D4151C5D9F4A004FA954 /* StudiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudiesViewController.swift; sourceTree = "<group>"; };
@@ -602,6 +604,7 @@
 				9848516F1D9F713600500A47 /* DepletionProgressView.swift */,
 				98E672A81D9FC6E1001E7F77 /* CenteredProgressView.swift */,
 				986C37DC1C657CCE0096BB83 /* HideView.swift */,
+				98213A981DA4F43300E81CBB /* BlurImageView.swift */,
 				98AC05D61C8438670037D54A /* IconImages.swift */,
 				98CBFE8E1C900E5F005F6414 /* StudiesHeaderReusableView.swift */,
 				98CBFE8F1C900E5F005F6414 /* StudiesHeaderReusableView.xib */,
@@ -1074,6 +1077,7 @@
 				986C37E31C65D6300096BB83 /* Lesson.swift in Sources */,
 				98DE6E851CA2A83500C039C0 /* AboutActionsController.swift in Sources */,
 				980579D71D31D9DE001C809C /* ChannelsViewController.swift in Sources */,
+				98213A991DA4F43300E81CBB /* BlurImageView.swift in Sources */,
 				98F725BF1D49E5C600F73ED0 /* SettingsViewController.swift in Sources */,
 				989294CC1C8BCE4500C19095 /* SoundManager.swift in Sources */,
 				988D698B1C9E62AA000ED16D /* PDFViewController.swift in Sources */,

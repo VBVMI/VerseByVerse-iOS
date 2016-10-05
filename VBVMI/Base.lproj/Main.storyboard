@@ -61,8 +61,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="Studies CollectionView" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Y9-wb-dIi">
-                                <frame key="frameInset" width="320" height="480"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="Studies CollectionView" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Y9-wb-dIi">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="Vgu-jE-iii">
                                     <size key="itemSize" width="90" height="130"/>
@@ -109,16 +108,8 @@
                             <rect key="frame" x="0.0" y="64" width="320" height="168"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SX0-kA-eGe"/>
-                                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kQQ-lm-A5d">
-                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="MNI-Ah-Gdi">
-                                        <frame key="frameInset"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </view>
-                                    <blurEffect style="light"/>
-                                </visualEffectView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UD1-iF-2FE">
-                                    <frame key="frameInset" minX="100" minY="24" width="120" height="120"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SX0-kA-eGe" customClass="BlurImageView" customModule="Verse_By_Verse" customModuleProvider="target"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UD1-iF-2FE">
                                     <constraints>
                                         <constraint firstAttribute="height" constant="120" id="TCe-BB-rIB"/>
                                         <constraint firstAttribute="width" constant="120" id="XsL-uV-dxu"/>
@@ -127,15 +118,11 @@
                             </subviews>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstItem="kQQ-lm-A5d" firstAttribute="top" secondItem="rNN-sj-O2Y" secondAttribute="top" id="0Ca-qk-RO3"/>
                                 <constraint firstItem="SX0-kA-eGe" firstAttribute="top" secondItem="rNN-sj-O2Y" secondAttribute="top" id="4cK-yx-wtf"/>
                                 <constraint firstItem="SX0-kA-eGe" firstAttribute="leading" secondItem="rNN-sj-O2Y" secondAttribute="leading" id="6JR-lE-kTB"/>
-                                <constraint firstAttribute="trailing" secondItem="kQQ-lm-A5d" secondAttribute="trailing" id="WB9-fH-ea2"/>
                                 <constraint firstAttribute="bottom" secondItem="SX0-kA-eGe" secondAttribute="bottom" id="eu6-8B-Nwx"/>
                                 <constraint firstItem="UD1-iF-2FE" firstAttribute="leading" secondItem="rNN-sj-O2Y" secondAttribute="leading" constant="8" id="hYx-7x-fjQ"/>
                                 <constraint firstAttribute="bottom" secondItem="UD1-iF-2FE" secondAttribute="bottom" constant="8" id="m4I-W2-Wh5"/>
-                                <constraint firstItem="kQQ-lm-A5d" firstAttribute="leading" secondItem="rNN-sj-O2Y" secondAttribute="leading" id="poE-kn-GQP"/>
-                                <constraint firstAttribute="bottom" secondItem="kQQ-lm-A5d" secondAttribute="bottom" id="tOR-T2-oX1"/>
                                 <constraint firstAttribute="trailing" secondItem="SX0-kA-eGe" secondAttribute="trailing" id="yQH-sf-Q5b"/>
                             </constraints>
                         </view>
@@ -144,7 +131,7 @@
                                 <rect key="frame" x="0.0" y="260" width="320" height="87"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vYv-Wy-i9r" id="ede-53-JSy">
-                                    <frame key="frameInset" width="320" height="86"/>
+                                    <frame key="frameInset" width="320" height="86.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nT-kj-M8E">
@@ -199,7 +186,6 @@
                     <connections>
                         <outlet property="blurredImageView" destination="SX0-kA-eGe" id="lwj-5V-xaY"/>
                         <outlet property="headerBackingView" destination="rNN-sj-O2Y" id="Bz9-kN-Uzn"/>
-                        <outlet property="headerBlurView" destination="kQQ-lm-A5d" id="6Dm-4i-fGZ"/>
                         <outlet property="headerImageView" destination="UD1-iF-2FE" id="LuZ-oq-ori"/>
                         <segue destination="5ao-AQ-ZKT" kind="show" identifier="showPDF" id="oo1-Tx-Jfh"/>
                     </connections>
@@ -220,8 +206,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" misplaced="YES" scalesPageToFit="YES" paginationMode="topToBottom" paginationBreakingMode="column" translatesAutoresizingMaskIntoConstraints="NO" id="Vzw-fI-njH">
-                                <frame key="frameInset" width="320" height="480"/>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" paginationMode="topToBottom" paginationBreakingMode="column" translatesAutoresizingMaskIntoConstraints="NO" id="Vzw-fI-njH">
                                 <color key="backgroundColor" red="0.28958413004875183" green="0.31462949514389038" blue="0.32950475811958313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
