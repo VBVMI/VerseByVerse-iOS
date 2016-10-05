@@ -463,15 +463,11 @@ class SoundManager: NSObject {
         commandCenter.changePlaybackPositionCommand.addTargetWithHandler { (event) -> MPRemoteCommandHandlerStatus in
             if let changeEvent = event as? MPChangePlaybackPositionCommandEvent {
                 let timeStamp = changeEvent.positionTime
-                let cmTime = self.avPlayer.currentTime()
-                let totalTime = CMTimeGetSeconds(self.avPlayer.currentItem!.duration)
-                let skipToTime = max(0, min(totalTime, timeStamp))
-
-                self.avPlayer.seekToTime(CMTimeMakeWithSeconds(skipToTime, cmTime.timescale), completionHandler: { (success) -> Void in
-                    self.configureInfo()
-                    self.saveState()
-                })
-                return .Success
+                if self.seekToTime(timeStamp) {
+                    return .Success
+                } else {
+                    return .NoSuchContent
+                }
             }
             return .CommandFailed
         }
@@ -482,6 +478,21 @@ class SoundManager: NSObject {
         }
     }
 
+    func seekToTime(time: NSTimeInterval, completion:((success:Bool)->())? = nil) -> Bool {
+        guard let currentItem = self.avPlayer.currentItem else {
+            return false
+        }
+        let cmTime = self.avPlayer.currentTime()
+        let totalTime = CMTimeGetSeconds(currentItem.duration)
+        let skipToTime = max(0, min(totalTime, time))
+        
+        self.avPlayer.seekToTime(CMTimeMakeWithSeconds(skipToTime, cmTime.timescale), completionHandler: { (success) -> Void in
+            self.configureInfo()
+            self.saveState()
+            completion?(success: success)
+        })
+        return true
+    }
     
     func skipForward(time: NSTimeInterval) -> Bool {
         log.info("Skip forward")

@@ -405,8 +405,8 @@ class AudioPlayerViewController: UIViewController {
         if let duration = SoundManager.sharedInstance.avPlayer.currentItem?.duration {
             let timeInSeconds = CMTimeGetSeconds(duration)
             let finalTimeInSeconds = (Double( self.progressSlider.value ) * timeInSeconds)
-            let finalTime = CMTime(seconds: finalTimeInSeconds, preferredTimescale: duration.timescale)
-            SoundManager.sharedInstance.avPlayer.seekToTime(finalTime) { (completed) in
+            
+            SoundManager.sharedInstance.seekToTime(finalTimeInSeconds) { (completed) in
                 self.progressSliderDragging = false
             }
         }
