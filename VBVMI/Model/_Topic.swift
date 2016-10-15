@@ -4,27 +4,27 @@
 import Foundation
 import CoreData
 
-public enum TopicAttributes: String {
+open enum TopicAttributes: String {
     case identifier = "identifier"
     case name = "name"
 }
 
-public enum TopicRelationships: String {
+open enum TopicRelationships: String {
     case answers = "answers"
     case articles = "articles"
     case lessons = "lessons"
     case studies = "studies"
 }
 
-public class _Topic: NSManagedObject {
+open class _Topic: NSManagedObject {
 
     // MARK: - Class methods
 
-    public class func entityName () -> String {
+    open class func entityName () -> String {
         return "Topic"
     }
 
-    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+    open class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
         return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
@@ -41,24 +41,24 @@ public class _Topic: NSManagedObject {
 
     // MARK: - Properties
 
-    @NSManaged public
+    @NSManaged open
     var identifier: String?
 
-    @NSManaged public
+    @NSManaged open
     var name: String?
 
     // MARK: - Relationships
 
-    @NSManaged public
+    @NSManaged open
     var answers: Set<Answer>
 
-    @NSManaged public
+    @NSManaged open
     var articles: Set<Article>
 
-    @NSManaged public
+    @NSManaged open
     var lessons: Set<Lesson>
 
-    @NSManaged public
+    @NSManaged open
     var studies: Set<Study>
 
     // MARK: - Fetched Properties

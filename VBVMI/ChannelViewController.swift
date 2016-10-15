@@ -14,7 +14,7 @@ import AVFoundation
 class ChannelViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    fileprivate var fetchedResultsController: NSFetchedResultsController<AnyObject>!
+    fileprivate var fetchedResultsController: NSFetchedResultsController<Video>!
     
     fileprivate let formatter = DateComponentsFormatter()
     fileprivate let videoCellIdentifier = "ChannelCell"
@@ -35,9 +35,9 @@ class ChannelViewController: UIViewController {
     }
     
     fileprivate func setupFetchedResultsController() {
-        let fetchRequest = NSFetchRequest(entityName: Video.entityName())
+        let fetchRequest = NSFetchRequest<Video>(entityName: Video.entityName())
         let context = ContextCoordinator.sharedInstance.managedObjectContext
-        fetchRequest.entity = Video.entity(context)
+        fetchRequest.entity = Video.entity(managedObjectContext: context)
         let indexSort = NSSortDescriptor(key: VideoAttributes.videoIndex.rawValue, ascending: true)
         
         fetchRequest.sortDescriptors = [indexSort]
@@ -75,7 +75,7 @@ extension ChannelViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let video = fetchedResultsController.object(at: indexPath) as! Video
+        let video = fetchedResultsController.object(at: indexPath)
         
         if let videoURLString = video.videoSource, let url = URL(string: videoURLString) {
             UIApplication.shared.openURL(url)
@@ -97,7 +97,7 @@ extension ChannelViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: videoCellIdentifier, for: indexPath) as! VideoTableViewCell
-        let video = fetchedResultsController.object(at: indexPath) as! Video
+        let video = fetchedResultsController.object(at: indexPath)
         
         cell.titleLabel.text = video.title
         if let timeString = video.videoLength, let dateComponents = TimeParser.getTime(timeString) {
@@ -107,7 +107,7 @@ extension ChannelViewController: UITableViewDataSource {
         }
         
         if let urlString = video.thumbnailSource, let url = URL(string: urlString) {
-            cell.thumbnailImageView?.af_setImageWithURL(url, placeholderImage: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3))
+            cell.thumbnailImageView.af_setImage(withURL: url, placeholderImage: nil, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3))
         } else {
             cell.thumbnailImageView?.image = nil
         }

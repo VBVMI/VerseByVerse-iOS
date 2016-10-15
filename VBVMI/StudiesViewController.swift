@@ -14,12 +14,12 @@ import AlamofireImage
 class StudiesViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    fileprivate var fetchedResultsController: NSFetchedResultsController<AnyObject>!
+    fileprivate var fetchedResultsController: NSFetchedResultsController<Study>!
     fileprivate var aboutActionsController: AboutActionsController!
     
     fileprivate var header : StudiesHeaderReusableView!
     
-    fileprivate func configureFetchRequest(_ fetchRequest: NSFetchRequest<AnyObject>) {
+    fileprivate func configureFetchRequest(_ fetchRequest: NSFetchRequest<Study>) {
         
         let identifierSort = NSSortDescriptor(key: StudyAttributes.studyIndex.rawValue, ascending: true)
         let bibleStudySort = NSSortDescriptor(key: StudyAttributes.bibleIndex.rawValue, ascending: true)
@@ -37,14 +37,14 @@ class StudiesViewController: UIViewController {
     }
     
     fileprivate func setupFetchedResultsController() {
-        let fetchRequest = NSFetchRequest(entityName: Study.entityName())
+        let fetchRequest = NSFetchRequest<Study>(entityName: Study.entityName())
         let context = ContextCoordinator.sharedInstance.managedObjectContext
-        fetchRequest.entity = Study.entity(context)
+        fetchRequest.entity = Study.entity(managedObjectContext: context!)
         
         configureFetchRequest(fetchRequest)
         
         fetchRequest.shouldRefreshRefetchedObjects = true
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: StudyAttributes.studyType.rawValue, cacheName: nil)
+        fetchedResultsController = NSFetchedResultsController<Study>(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: StudyAttributes.studyType.rawValue, cacheName: nil)
         
         fetchedResultsController.delegate = self
 

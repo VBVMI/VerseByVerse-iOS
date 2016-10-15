@@ -12,7 +12,7 @@ import CoreData
 class ChannelsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    fileprivate var fetchedResultsController: NSFetchedResultsController<AnyObject>!
+    fileprivate var fetchedResultsController: NSFetchedResultsController<Channel>!
     fileprivate var aboutActionsController: AboutActionsController!
     
     fileprivate let dateFormatter = DateFormatter()
@@ -37,9 +37,9 @@ class ChannelsViewController: UIViewController {
     }
 
     fileprivate func setupFetchedResultsController() {
-        let fetchRequest = NSFetchRequest(entityName: Channel.entityName())
+        let fetchRequest = NSFetchRequest<Channel>(entityName: Channel.entityName())
         let context = ContextCoordinator.sharedInstance.managedObjectContext
-        fetchRequest.entity = Channel.entity(context)
+        fetchRequest.entity = Channel.entity(managedObjectContext: context)
         let indexSort = NSSortDescriptor(key: ChannelAttributes.channelIndex.rawValue, ascending: false)
         
         fetchRequest.sortDescriptors = [indexSort]
@@ -92,7 +92,7 @@ extension ChannelsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: channelCellIdentifier, for: indexPath) as! ChannelTableViewCell
-        let channel = fetchedResultsController.object(at: indexPath) as! Channel
+        let channel = fetchedResultsController.object(at: indexPath)
         
         cell.titleLabel.text = channel.title
         let plural = channel.videos.count == 1 ? "" : "s"
@@ -116,7 +116,7 @@ extension ChannelsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let channel = fetchedResultsController.object(at: indexPath) as! Channel
+        let channel = fetchedResultsController.object(at: indexPath)
         self.performSegue(withIdentifier: "showChannel", sender: channel)
         
     }
@@ -144,16 +144,16 @@ extension ChannelsViewController : NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             guard let newIndexPath = newIndexPath else { return }
-            let myNewIndexPath = IndexPath(row: (newIndexPath as NSIndexPath).row, section: (newIndexPath as NSIndexPath).section)
+            let myNewIndexPath = IndexPath(row: newIndexPath.row, section: newIndexPath.section)
             tableView.insertRows(at: [myNewIndexPath], with: .automatic)
         case .delete:
             guard let indexPath = indexPath else { return }
-            let myIndexPath = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section)
+            let myIndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
             tableView.deleteRows(at: [myIndexPath], with: .automatic)
         case .move:
             guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
-            let myNewIndexPath = IndexPath(row: (newIndexPath as NSIndexPath).row, section: (newIndexPath as NSIndexPath).section)
-            let myIndexPath = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section)
+            let myNewIndexPath = IndexPath(row: newIndexPath.row, section: newIndexPath.section)
+            let myIndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
             if myIndexPath == myNewIndexPath {
                 if let cell = tableView.cellForRow(at: myIndexPath) , cell.isEditing == false {
                     tableView.deleteRows(at: [myIndexPath], with: .none)
@@ -166,7 +166,7 @@ extension ChannelsViewController : NSFetchedResultsControllerDelegate {
             }
         case .update:
             guard let indexPath = indexPath else { return }
-            let myIndexPath = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section)
+            let myIndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
             tableView.reloadRows(at: [myIndexPath], with: .none)
         }
     }

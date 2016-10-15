@@ -173,11 +173,11 @@ class APIDataManager {
     fileprivate static func downloadToJSONArray(_ request: JsonAPI, arrayNode: String, conversionBlock: @escaping (_ context: NSManagedObjectContext, _ JSONArray: [NSDictionary]) throws ->()) {
         Provider.sharedProvider.request(request) { (result) -> () in
             switch result {
-            case .Success(let response):
-                DispatchQueue.global(DispatchQueue.GlobalQueuePriority.background, 0).asynchronously(DispatchQueue.global) {
+            case .success(let response):
+                DispatchQueue.global(qos: .background).async {
                     //log.info("resonse: \(response)")
                     let data = response.data
-                    let json: AnyObject? = try? JSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))
+                    let json = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
                     
                     if let json = json {
                         do {
@@ -215,7 +215,7 @@ class APIDataManager {
                         }
                     }
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 log.error("Error downloading articles P: \(error)")
             }
         }
@@ -228,24 +228,26 @@ class APIDataManager {
      - parameter progress: The optional progress block
      - parameter completion: The completion block
      */
-    static func downloadFile(_ model: AssetsDownloadable, urlString: String, progress: ((_ bytesRead: Int64, _ totalBytesRead: Int64, _ totalBytesExpectedToRead: Int64)->())?, completion: (NSURLRequest?, HTTPURLResponse?, NSData?, NSError?) -> Void) -> Request {
-        let destination : Alamofire.Request.DownloadFileDestination = { (temporaryURL, response) -> NSURL in
+    static func downloadFile(_ model: AssetsDownloadable, urlString: String, progress: @escaping Request.ProgressHandler, completion: @escaping(DefaultDownloadResponse) -> Void) -> Request {
+        let destination: DownloadRequest.DownloadFileDestination = { temporaryURL, response in
             if let directory = model.directory() {
-                return directory.URLByAppendingPathComponent(response.suggestedFilename!)!
+                return (directory.appendingPathComponent(response.suggestedFilename!), [.removePreviousFile, .createIntermediateDirectories])
             }
-            return temporaryURL
+            
+            return (temporaryURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         
-        return Alamofire.download(.GET, urlString, destination: destination).progress(progress).response(completionHandler: completion)
+        return Alamofire.download(urlString, method: .get, to: destination).downloadProgress(closure: progress).response(completionHandler: completion)
     }
     
     static func fileExists(_ model: AssetsDownloadable, urlString: String) -> URL? {
         let fileManager = FileManager.default
         guard let getURL = URL(string: urlString) else { return nil }
         
-        guard let url = model.directory(), let fileName = getURL.lastPathComponent else { return nil }
+        guard let url = model.directory() else { return nil }
+        let fileName = getURL.lastPathComponent
         let fileURL  = url.appendingPathComponent(fileName)
-        guard let path = fileURL?.path else { return nil }
+        let path = fileURL.path
         
         if fileManager.fileExists(atPath: path) {
             return fileURL

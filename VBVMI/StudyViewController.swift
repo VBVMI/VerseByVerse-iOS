@@ -34,7 +34,7 @@ class StudyViewController: UITableViewController {
         }
     }
     
-    var fetchedResultsController: NSFetchedResultsController<AnyObject>!
+    var fetchedResultsController: NSFetchedResultsController<Lesson>!
     
     var testDescriptionLabel = UILabel()
     
@@ -85,9 +85,9 @@ class StudyViewController: UITableViewController {
     }
     
     fileprivate func configureFetchController() {
-        let fetchRequest = NSFetchRequest(entityName: Lesson.entityName())
+        let fetchRequest = NSFetchRequest<Lesson>(entityName: Lesson.entityName())
         let context = ContextCoordinator.sharedInstance.managedObjectContext
-        fetchRequest.entity = Lesson.entity(context)
+        fetchRequest.entity = Lesson.entity(managedObjectContext: context)
         
         let sectionSort = NSSortDescriptor(key: LessonAttributes.completed.rawValue, ascending: true, selector: #selector(NSNumber.compare(_:)))
         let indexSort = NSSortDescriptor(key: LessonAttributes.lessonIndex.rawValue, ascending: true, selector: #selector(NSNumber.compare(_:)))
@@ -106,11 +106,11 @@ class StudyViewController: UITableViewController {
         
         if let thumbnailSource = study.thumbnailSource {
             if let url = URL(string: thumbnailSource) {
-                blurredImageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3), runImageTransitionIfCached: true, completion: nil)
+                blurredImageView.af_setImage(withURL: url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: true, completion: nil)
                 
                 let width = self.headerImageView.frame.size.width
                 let headerImageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 3, divideRadiusByImageScale: false)
-                headerImageView.af_setImageWithURL(url, placeholderImage: nil, filter: headerImageFilter, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3))
+                headerImageView.af_setImage(withURL: url, placeholderImage: nil, filter: headerImageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3))
             }
         }
     }
@@ -202,69 +202,70 @@ class StudyViewController: UITableViewController {
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: lessonCellReuseIdentifier, for: indexPath) as! LessonTableViewCell
-            if let lesson = fetchedResultsController.object(at: IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section - 1)) as? Lesson {
-                LessonCellViewModel.configure(cell, lesson: lesson)
+            let lesson = fetchedResultsController.object(at: IndexPath(row: indexPath.row, section: indexPath.section - 1))
+            
+            LessonCellViewModel.configure(cell, lesson: lesson)
                 
-                cell.urlButtonCallback = { [weak self, weak cell] (button, status, lessonType) in
-                    //It is important to ask the table view for the indexPath otherwise we run the risk of using an out of date index path in this block
-                    guard let this = self,
-                          let cell = cell,
-                          let tableIndexPath = this.tableView.indexPath(for: cell) else {
-                        return
-                    }
-                    
-                    let lessonIndexPath = IndexPath(row: (tableIndexPath as NSIndexPath).row, section: (tableIndexPath as NSIndexPath).section - 1)
-                    let lesson = this.fetchedResultsController.object(at: lessonIndexPath) as! Lesson
-                    
-                    this.lastTappedLesson = lesson
-                    this.lastTappedResource = lessonType
-                    
-                    switch status {
-                    case .none, .completed:
-                        ResourceManager.sharedInstance.startDownloading(lesson, resource: lessonType, completion: { (result) in
-                            guard let this = self else {
+            cell.urlButtonCallback = { [weak self, weak cell] (button, status, lessonType) in
+                //It is important to ask the table view for the indexPath otherwise we run the risk of using an out of date index path in this block
+                guard let this = self,
+                      let cell = cell,
+                      let tableIndexPath = this.tableView.indexPath(for: cell) else {
+                    return
+                }
+                
+                let lessonIndexPath = IndexPath(row: (tableIndexPath as NSIndexPath).row, section: (tableIndexPath as NSIndexPath).section - 1)
+                let lesson = this.fetchedResultsController.object(at: lessonIndexPath)
+                
+                this.lastTappedLesson = lesson
+                this.lastTappedResource = lessonType
+                
+                switch status {
+                case .none, .completed:
+                    ResourceManager.sharedInstance.startDownloading(lesson, resource: lessonType, completion: { (result) in
+                        guard let this = self else {
+                            return
+                        }
+                        
+                        switch result {
+                        case .error(let error):
+                            //Lame... we got an error..
+                            log.error("\(error)")
+                        case .success(let lesson, let resource, let url):
+                            //Epic, we have the URL so lets go do a thing
+                            
+                            guard lesson == this.lastTappedLesson && resource == this.lastTappedResource else {
                                 return
                             }
                             
-                            switch result {
-                            case .error(let error):
-                                //Lame... we got an error..
-                                log.error("\(error)")
-                            case .success(let lesson, let resource, let url):
-                                //Epic, we have the URL so lets go do a thing
-                                
-                                guard lesson == this.lastTappedLesson && resource == this.lastTappedResource else {
-                                    return
-                                }
-                                
-                                switch lessonType.fileType() {
-                                case .pdf:
-                                    this.performSegue(withIdentifier: "showPDF", sender: ButtonSender(url: url, lessonType: resource))
-                                case .audio:
-                                    if let audioPlayerController = this.tabBarController?.popupContent as? AudioPlayerViewController {
-                                        audioPlayerController.configure(url, name: lesson.title ?? "", subTitle: lesson.descriptionText ?? "", lesson: lesson, study: this.study)
-                                        if this.tabBarController?.popupPresentationState == .closed {
-                                            this.tabBarController?.openPopup(animated: true, completion: nil)
-                                        }
-                                    } else {
-                                        let demoVC = AudioPlayerViewController()
-                                        demoVC.configure(url, name: lesson.title ?? "", subTitle: lesson.descriptionText ?? "", lesson: lesson, study: this.study)
-                                        
-                                        this.tabBarController?.presentPopupBar(withContentViewController: demoVC, openPopup: true, animated: true, completion: { () -> Void in
-                                            
-                                        })
+                            switch lessonType.fileType() {
+                            case .pdf:
+                                this.performSegue(withIdentifier: "showPDF", sender: ButtonSender(url: url, lessonType: resource))
+                            case .audio:
+                                if let audioPlayerController = this.tabBarController?.popupContent as? AudioPlayerViewController {
+                                    audioPlayerController.configure(url, name: lesson.title , subTitle: lesson.descriptionText ?? "", lesson: lesson, study: this.study)
+                                    if this.tabBarController?.popupPresentationState == .closed {
+                                        this.tabBarController?.openPopup(animated: true, completion: nil)
                                     }
-                                case .video:
-                                    UIApplication.shared.openURL(url)
+                                } else {
+                                    let demoVC = AudioPlayerViewController()
+                                    demoVC.configure(url, name: lesson.title, subTitle: lesson.descriptionText ?? "", lesson: lesson, study: this.study)
+                                    
+                                    this.tabBarController?.presentPopupBar(withContentViewController: demoVC, openPopup: true, animated: true, completion: { () -> Void in
+                                        
+                                    })
                                 }
-                                
+                            case .video:
+                                UIApplication.shared.openURL(url)
                             }
-                        })
-                    case .running, .indeterminate:
-                        ResourceManager.sharedInstance.cancelDownload(lesson, resource: lessonType)
-                    }
+                            
+                        }
+                    })
+                case .running, .indeterminate:
+                    ResourceManager.sharedInstance.cancelDownload(lesson, resource: lessonType)
                 }
             }
+            
             return cell
         }
     }

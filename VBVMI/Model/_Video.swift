@@ -4,7 +4,7 @@
 import Foundation
 import CoreData
 
-public enum VideoAttributes: String {
+open enum VideoAttributes: String {
     case averageRating = "averageRating"
     case category = "category"
     case descriptionText = "descriptionText"
@@ -19,19 +19,19 @@ public enum VideoAttributes: String {
     case videoSource = "videoSource"
 }
 
-public enum VideoRelationships: String {
+open enum VideoRelationships: String {
     case channel = "channel"
 }
 
-public class _Video: NSManagedObject {
+open class _Video: NSManagedObject {
 
     // MARK: - Class methods
 
-    public class func entityName () -> String {
+    open class func entityName () -> String {
         return "Video"
     }
 
-    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+    open class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
         return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
@@ -48,45 +48,45 @@ public class _Video: NSManagedObject {
 
     // MARK: - Properties
 
-    @NSManaged public
+    @NSManaged open
     var averageRating: String?
 
-    @NSManaged public
+    @NSManaged open
     var category: String?
 
-    @NSManaged public
+    @NSManaged open
     var descriptionText: String?
 
-    @NSManaged public
+    @NSManaged open
     var identifier: String?
 
-    @NSManaged public
-    var postedDate: NSDate?
+    @NSManaged open
+    var postedDate: Date?
 
-    @NSManaged public
-    var recordedDate: NSDate?
+    @NSManaged open
+    var recordedDate: Date?
 
-    @NSManaged public
+    @NSManaged open
     var thumbnailAltText: String?
 
-    @NSManaged public
+    @NSManaged open
     var thumbnailSource: String?
 
-    @NSManaged public
+    @NSManaged open
     var title: String?
 
-    @NSManaged public
+    @NSManaged open
     var videoIndex: Int32
 
-    @NSManaged public
+    @NSManaged open
     var videoLength: String?
 
-    @NSManaged public
+    @NSManaged open
     var videoSource: String?
 
     // MARK: - Relationships
 
-    @NSManaged public
+    @NSManaged open
     var channel: Channel?
 
     // MARK: - Fetched Properties

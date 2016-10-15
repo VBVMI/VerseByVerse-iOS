@@ -4,7 +4,7 @@
 import Foundation
 import CoreData
 
-public enum AnswerAttributes: String {
+open enum AnswerAttributes: String {
     case authorName = "authorName"
     case authorThumbnailAltText = "authorThumbnailAltText"
     case authorThumbnailSource = "authorThumbnailSource"
@@ -20,19 +20,19 @@ public enum AnswerAttributes: String {
     case title = "title"
 }
 
-public enum AnswerRelationships: String {
+open enum AnswerRelationships: String {
     case topics = "topics"
 }
 
-public class _Answer: NSManagedObject {
+open class _Answer: NSManagedObject {
 
     // MARK: - Class methods
 
-    public class func entityName () -> String {
+    open class func entityName () -> String {
         return "Answer"
     }
 
-    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+    open class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
         return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
@@ -49,48 +49,48 @@ public class _Answer: NSManagedObject {
 
     // MARK: - Properties
 
-    @NSManaged public
+    @NSManaged open
     var authorName: String?
 
-    @NSManaged public
+    @NSManaged open
     var authorThumbnailAltText: String?
 
-    @NSManaged public
+    @NSManaged open
     var authorThumbnailSource: String?
 
-    @NSManaged public
+    @NSManaged open
     var averageRating: String?
 
-    @NSManaged public
+    @NSManaged open
     var body: String?
 
-    @NSManaged public
+    @NSManaged open
     var category: String?
 
-    @NSManaged public
+    @NSManaged open
     var completed: Bool
 
-    @NSManaged public
+    @NSManaged open
     var descriptionText: String?
 
-    @NSManaged public
+    @NSManaged open
     var identifier: String
 
-    @NSManaged public
-    var postedDate: NSDate?
+    @NSManaged open
+    var postedDate: Date?
 
-    @NSManaged public
+    @NSManaged open
     var qaThumbnailAltText: String?
 
-    @NSManaged public
+    @NSManaged open
     var qaThumbnailSource: String?
 
-    @NSManaged public
+    @NSManaged open
     var title: String?
 
     // MARK: - Relationships
 
-    @NSManaged public
+    @NSManaged open
     var topics: Set<Topic>
 
     // MARK: - Fetched Properties

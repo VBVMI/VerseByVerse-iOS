@@ -4,26 +4,26 @@
 import Foundation
 import CoreData
 
-public enum AudioPlayerAttributes: String {
+open enum AudioPlayerAttributes: String {
     case currentTime = "currentTime"
     case lessonIdentifier = "lessonIdentifier"
     case studyIdentifier = "studyIdentifier"
 }
 
-public enum AudioPlayerFetchedProperties: String {
+open enum AudioPlayerFetchedProperties: String {
     case lesson = "lesson"
     case study = "study"
 }
 
-public class _AudioPlayer: NSManagedObject {
+open class _AudioPlayer: NSManagedObject {
 
     // MARK: - Class methods
 
-    public class func entityName () -> String {
+    open class func entityName () -> String {
         return "AudioPlayer"
     }
 
-    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+    open class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
         return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
@@ -40,23 +40,23 @@ public class _AudioPlayer: NSManagedObject {
 
     // MARK: - Properties
 
-    @NSManaged public
+    @NSManaged open
     var currentTime: Double
 
-    @NSManaged public
+    @NSManaged open
     var lessonIdentifier: String?
 
-    @NSManaged public
+    @NSManaged open
     var studyIdentifier: String?
 
     // MARK: - Relationships
 
     // MARK: - Fetched Properties
 
-    @NSManaged public
+    @NSManaged open
     var lesson: [Lesson]
 
-    @NSManaged public
+    @NSManaged open
     var study: [Study]
 
 }

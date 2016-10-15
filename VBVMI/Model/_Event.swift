@@ -4,7 +4,7 @@
 import Foundation
 import CoreData
 
-public enum EventAttributes: String {
+open enum EventAttributes: String {
     case descriptionText = "descriptionText"
     case eventDateComponents = "eventDateComponents"
     case eventIndex = "eventIndex"
@@ -17,15 +17,15 @@ public enum EventAttributes: String {
     case type = "type"
 }
 
-public class _Event: NSManagedObject {
+open class _Event: NSManagedObject {
 
     // MARK: - Class methods
 
-    public class func entityName () -> String {
+    open class func entityName () -> String {
         return "Event"
     }
 
-    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+    open class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
         return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
@@ -42,34 +42,34 @@ public class _Event: NSManagedObject {
 
     // MARK: - Properties
 
-    @NSManaged public
+    @NSManaged open
     var descriptionText: String?
 
-    @NSManaged public
+    @NSManaged open
     var eventDateComponents: NSDateComponents?
 
-    @NSManaged public
+    @NSManaged open
     var eventIndex: Int32
 
-    @NSManaged public
+    @NSManaged open
     var identifier: String
 
-    @NSManaged public
+    @NSManaged open
     var location: String?
 
-    @NSManaged public
+    @NSManaged open
     var map: String?
 
-    @NSManaged public
+    @NSManaged open
     var thumbnailAltText: String?
 
-    @NSManaged public
+    @NSManaged open
     var thumbnailSource: String?
 
-    @NSManaged public
+    @NSManaged open
     var title: String?
 
-    @NSManaged public
+    @NSManaged open
     var type: String?
 
     // MARK: - Relationships

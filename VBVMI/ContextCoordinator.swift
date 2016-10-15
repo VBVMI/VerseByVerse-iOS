@@ -13,8 +13,8 @@ class ContextCoordinator: NSObject {
     
     static let sharedInstance = ContextCoordinator()
     
-    var managedObjectContext: NSManagedObjectContext!
-    var backgroundManagedObjectContext: NSManagedObjectContext!
+    var managedObjectContext: NSManagedObjectContext
+    var backgroundManagedObjectContext: NSManagedObjectContext
     
     lazy var applicationSupportDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.cactuslab.VBVMI" in the application's documents Application Support directory.

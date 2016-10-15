@@ -4,7 +4,7 @@
 import Foundation
 import CoreData
 
-public enum ChannelAttributes: String {
+open enum ChannelAttributes: String {
     case averageRating = "averageRating"
     case channelIndex = "channelIndex"
     case descriptionText = "descriptionText"
@@ -15,19 +15,19 @@ public enum ChannelAttributes: String {
     case title = "title"
 }
 
-public enum ChannelRelationships: String {
+open enum ChannelRelationships: String {
     case videos = "videos"
 }
 
-public class _Channel: NSManagedObject {
+open class _Channel: NSManagedObject {
 
     // MARK: - Class methods
 
-    public class func entityName () -> String {
+    open class func entityName () -> String {
         return "Channel"
     }
 
-    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+    open class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
         return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
@@ -44,33 +44,33 @@ public class _Channel: NSManagedObject {
 
     // MARK: - Properties
 
-    @NSManaged public
+    @NSManaged open
     var averageRating: String?
 
-    @NSManaged public
+    @NSManaged open
     var channelIndex: Int32
 
-    @NSManaged public
+    @NSManaged open
     var descriptionText: String?
 
-    @NSManaged public
+    @NSManaged open
     var identifier: String?
 
-    @NSManaged public
-    var postedDate: NSDate?
+    @NSManaged open
+    var postedDate: Date?
 
-    @NSManaged public
+    @NSManaged open
     var thumbnailAltText: String?
 
-    @NSManaged public
+    @NSManaged open
     var thumbnailSource: String?
 
-    @NSManaged public
+    @NSManaged open
     var title: String?
 
     // MARK: - Relationships
 
-    @NSManaged public
+    @NSManaged open
     var videos: Set<Video>
 
     // MARK: - Fetched Properties

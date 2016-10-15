@@ -4,7 +4,7 @@
 import Foundation
 import CoreData
 
-public enum LessonAttributes: String {
+open enum LessonAttributes: String {
     case audioLength = "audioLength"
     case audioProgress = "audioProgress"
     case audioSourceURL = "audioSourceURL"
@@ -28,19 +28,19 @@ public enum LessonAttributes: String {
     case videoSourceURL = "videoSourceURL"
 }
 
-public enum LessonRelationships: String {
+open enum LessonRelationships: String {
     case topics = "topics"
 }
 
-public class _Lesson: NSManagedObject {
+open class _Lesson: NSManagedObject {
 
     // MARK: - Class methods
 
-    public class func entityName () -> String {
+    open class func entityName () -> String {
         return "Lesson"
     }
 
-    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+    open class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
         return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
@@ -57,72 +57,72 @@ public class _Lesson: NSManagedObject {
 
     // MARK: - Properties
 
-    @NSManaged public
+    @NSManaged open
     var audioLength: String?
 
-    @NSManaged public
+    @NSManaged open
     var audioProgress: Double
 
-    @NSManaged public
+    @NSManaged open
     var audioSourceURL: String?
 
-    @NSManaged public
+    @NSManaged open
     var averageRating: String?
 
-    @NSManaged public
+    @NSManaged open
     var completed: Bool
 
-    @NSManaged public
-    var dateStudyGiven: NSDate?
+    @NSManaged open
+    var dateStudyGiven: Date?
 
-    @NSManaged public
+    @NSManaged open
     var descriptionText: String?
 
-    @NSManaged public
+    @NSManaged open
     var identifier: String
 
-    @NSManaged public
+    @NSManaged open
     var isPlaceholder: Bool
 
-    @NSManaged public
+    @NSManaged open
     var lessonIndex: Int32
 
-    @NSManaged public
+    @NSManaged open
     var lessonNumber: String?
 
-    @NSManaged public
+    @NSManaged open
     var lessonTitle: String?
 
-    @NSManaged public
+    @NSManaged open
     var location: String?
 
-    @NSManaged public
-    var postedDate: NSDate?
+    @NSManaged open
+    var postedDate: Date?
 
-    @NSManaged public
+    @NSManaged open
     var studentAidURL: String?
 
-    @NSManaged public
+    @NSManaged open
     var studyIdentifier: String
 
-    @NSManaged public
+    @NSManaged open
     var teacherAid: String?
 
-    @NSManaged public
+    @NSManaged open
     var title: String
 
-    @NSManaged public
+    @NSManaged open
     var transcriptURL: String?
 
-    @NSManaged public
+    @NSManaged open
     var videoLength: String?
 
-    @NSManaged public
+    @NSManaged open
     var videoSourceURL: String?
 
     // MARK: - Relationships
 
-    @NSManaged public
+    @NSManaged open
     var topics: Set<Topic>
 
     // MARK: - Fetched Properties

@@ -32,7 +32,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class ArticlesViewController: UITableViewController {
 
-    var fetchedResultsController: NSFetchedResultsController<AnyObject>!
+    var fetchedResultsController: NSFetchedResultsController<Article>!
     let dateFormatter = DateFormatter()
     let searchController = UISearchController(searchResultsController: nil)
     var aboutActionsController: AboutActionsController!
@@ -70,9 +70,9 @@ class ArticlesViewController: UITableViewController {
         
         self.tableView.register(UINib(nibName: Cell.NibName.Article, bundle: nil), forCellReuseIdentifier: Cell.Identifier.Article)
 
-        let fetchRequest = NSFetchRequest(entityName: Article.entityName())
+        let fetchRequest = NSFetchRequest<Article>(entityName: Article.entityName())
         let context = ContextCoordinator.sharedInstance.managedObjectContext
-        fetchRequest.entity = Article.entity(context)
+        fetchRequest.entity = Article.entity(managedObjectContext: context)
         let identifierSort = NSSortDescriptor(key: ArticleAttributes.identifier.rawValue, ascending: false, selector: #selector(NSString.localizedStandardCompare(_:)))
         
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: ArticleAttributes.postedDate.rawValue, ascending: false), identifierSort]
@@ -138,42 +138,42 @@ class ArticlesViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cell.Identifier.Article, for: indexPath) as! ArticleTableViewCell
-        
-        if let article = fetchedResultsController.object(at: indexPath) as? Article {
-            cell.titleLabel.text = article.title
-            cell.titleLabel.textColor = article.completed ? StyleKit.darkGrey : StyleKit.orange
-            cell.authorLabel.text = article.authorName
-            let topics = article.topics
-            if topics.count > 0 {
-                
-                cell.topicLayoutView.isHidden = false
-                
-                let sortedTopics = topics.filter( {$0.name?.characters.count > 0 }).sorted(by: { (left, right) -> Bool in
-                    return left.name!.localizedCompare(right.name!) == ComparisonResult.orderedAscending
-                })
-                cell.topicLayoutView.topics = sortedTopics
-                
-                cell.topicLayoutView.topicSelectedBlock = { [weak self] (topic) in
-                    guard let this = self else { return }
-                    let topicVC = TopicViewController(nibName: "TopicViewController", bundle: nil)
-                    topicVC.topic = topic
-                    topicVC.selectedSegment = .articles
-                    this.navigationController?.pushViewController(topicVC, animated: true)
-                }
-                
-            } else {
-                cell.topicLayoutView.isHidden = true
+        let article = fetchedResultsController.object(at: indexPath)
+       
+        cell.titleLabel.text = article.title
+        cell.titleLabel.textColor = article.completed ? StyleKit.darkGrey : StyleKit.orange
+        cell.authorLabel.text = article.authorName
+        let topics = article.topics
+        if topics.count > 0 {
+            
+            cell.topicLayoutView.isHidden = false
+            
+            let sortedTopics = topics.filter( {$0.name?.characters.count > 0 }).sorted(by: { (left, right) -> Bool in
+                return left.name!.localizedCompare(right.name!) == ComparisonResult.orderedAscending
+            })
+            cell.topicLayoutView.topics = sortedTopics
+            
+            cell.topicLayoutView.topicSelectedBlock = { [weak self] (topic) in
+                guard let this = self else { return }
+                let topicVC = TopicViewController(nibName: "TopicViewController", bundle: nil)
+                topicVC.topic = topic
+                topicVC.selectedSegment = .articles
+                this.navigationController?.pushViewController(topicVC, animated: true)
             }
             
-            if let date = article.postedDate {
-                let dateText = dateFormatter.string(from: date)
-                
-                cell.dateLabel.text = dateText
-                cell.dateLabel.isHidden = false
-            } else {
-                cell.dateLabel.isHidden = true
-            }
+        } else {
+            cell.topicLayoutView.isHidden = true
         }
+        
+        if let date = article.postedDate {
+            let dateText = dateFormatter.string(from: date)
+            
+            cell.dateLabel.text = dateText
+            cell.dateLabel.isHidden = false
+        } else {
+            cell.dateLabel.isHidden = true
+        }
+        
         return cell
     }
     
@@ -198,9 +198,8 @@ class ArticlesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if let article = self.fetchedResultsController.object(at: indexPath) as? Article {
-            self.performSegue(withIdentifier: "showArticle", sender: article)
-        }
+        let article = self.fetchedResultsController.object(at: indexPath)
+        self.performSegue(withIdentifier: "showArticle", sender: article)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
