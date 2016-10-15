@@ -14,12 +14,12 @@ import AlamofireImage
 class StudiesViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    private var fetchedResultsController: NSFetchedResultsController!
-    private var aboutActionsController: AboutActionsController!
+    fileprivate var fetchedResultsController: NSFetchedResultsController<AnyObject>!
+    fileprivate var aboutActionsController: AboutActionsController!
     
-    private var header : StudiesHeaderReusableView!
+    fileprivate var header : StudiesHeaderReusableView!
     
-    private func configureFetchRequest(fetchRequest: NSFetchRequest) {
+    fileprivate func configureFetchRequest(_ fetchRequest: NSFetchRequest<AnyObject>) {
         
         let identifierSort = NSSortDescriptor(key: StudyAttributes.studyIndex.rawValue, ascending: true)
         let bibleStudySort = NSSortDescriptor(key: StudyAttributes.bibleIndex.rawValue, ascending: true)
@@ -27,16 +27,16 @@ class StudiesViewController: UIViewController {
         var sortDescriptors : [NSSortDescriptor] = [NSSortDescriptor(key: StudyAttributes.studyType.rawValue, ascending: true)]
         
         switch StudySortOption.currentSortOption {
-        case .BibleBookIndex:
-            sortDescriptors.appendContentsOf([bibleStudySort, identifierSort])
-        case .ReleaseDate:
-            sortDescriptors.appendContentsOf([identifierSort])
+        case .bibleBookIndex:
+            sortDescriptors.append(contentsOf: [bibleStudySort, identifierSort])
+        case .releaseDate:
+            sortDescriptors.append(contentsOf: [identifierSort])
         }
 
         fetchRequest.sortDescriptors = sortDescriptors
     }
     
-    private func setupFetchedResultsController() {
+    fileprivate func setupFetchedResultsController() {
         let fetchRequest = NSFetchRequest(entityName: Study.entityName())
         let context = ContextCoordinator.sharedInstance.managedObjectContext
         fetchRequest.entity = Study.entity(context)
@@ -50,7 +50,7 @@ class StudiesViewController: UIViewController {
 
         do {
             try fetchedResultsController.performFetch()
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            DispatchQueue.main.async { () -> Void in
                 self.collectionView.reloadData()
             }
         } catch let error {
@@ -61,13 +61,13 @@ class StudiesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let headerView = UINib(nibName: Cell.NibName.StudiesHeader, bundle: nil).instantiateWithOwner(nil, options: nil).first as? StudiesHeaderReusableView {
+        if let headerView = UINib(nibName: Cell.NibName.StudiesHeader, bundle: nil).instantiate(withOwner: nil, options: nil).first as? StudiesHeaderReusableView {
             self.header = headerView
         }
         // Do any additional setup after loading the view, typically from a nib.
-        collectionView.registerNib(UINib(nibName: Cell.NibName.Study, bundle: nil), forCellWithReuseIdentifier: Cell.Identifier.Study)
+        collectionView.register(UINib(nibName: Cell.NibName.Study, bundle: nil), forCellWithReuseIdentifier: Cell.Identifier.Study)
 
-        collectionView.registerNib(UINib(nibName: Cell.NibName.StudiesHeader, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: Cell.Identifier.StudiesHeader)
+        collectionView.register(UINib(nibName: Cell.NibName.StudiesHeader, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: Cell.Identifier.StudiesHeader)
         
         let flowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
@@ -78,19 +78,19 @@ class StudiesViewController: UIViewController {
         self.aboutActionsController = AboutActionsController(presentingController: self)
         self.navigationItem.leftBarButtonItem = self.aboutActionsController.barButtonItem
         
-        let optionsButton = UIBarButtonItem(image: UIImage.fontAwesomeIconWithName(.Sliders, textColor: StyleKit.darkGrey, size: CGSizeMake(30, 30)), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(openOptions))
+        let optionsButton = UIBarButtonItem(image: UIImage.fontAwesomeIconWithName(.Sliders, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30)), style: UIBarButtonItemStyle.plain, target: self, action: #selector(openOptions))
         self.navigationItem.rightBarButtonItem = optionsButton
         
-        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "StudySortOption", options: [.New], context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: "StudySortOption", options: [.new], context: nil)
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "StudySortOption" {
             if let fetchedResultsController = fetchedResultsController {
                 configureFetchRequest(fetchedResultsController.fetchRequest)
                 do {
                     try fetchedResultsController.performFetch()
-                    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                    DispatchQueue.main.async { () -> Void in
                         self.collectionView.reloadData()
                     }
                 } catch let error {
@@ -104,7 +104,7 @@ class StudiesViewController: UIViewController {
         
         let optionsController = UIStoryboard(name: "StudiesOptions", bundle: nil).instantiateInitialViewController()!
         
-        presentViewController(optionsController, animated: true, completion: nil)
+        present(optionsController, animated: true, completion: nil)
     }
     
     override func viewDidLayoutSubviews() {
@@ -113,7 +113,7 @@ class StudiesViewController: UIViewController {
         collectionView.scrollIndicatorInsets = insets
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.hidesBarsOnTap = false
@@ -125,57 +125,57 @@ class StudiesViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let study = sender as? Study where segue.identifier == "showLessons" {
-            if let studyViewController = segue.destinationViewController as? StudyViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let study = sender as? Study , segue.identifier == "showLessons" {
+            if let studyViewController = segue.destination as? StudyViewController {
                 studyViewController.study = study
             }
         }
     }
 
-    func configureHeader(section: Int, header: StudiesHeaderReusableView) {
-        if let numberOfItems = self.fetchedResultsController.sections?[section].numberOfObjects where numberOfItems > 0 {
+    func configureHeader(_ section: Int, header: StudiesHeaderReusableView) {
+        if let numberOfItems = self.fetchedResultsController.sections?[section].numberOfObjects , numberOfItems > 0 {
             if numberOfItems == 1 {
                 header.subtitleLabel.text = "\(numberOfItems) Study"
             } else {
                 header.subtitleLabel.text = "\(numberOfItems) Studies"
             }
-            header.subtitleLabel.hidden = false
+            header.subtitleLabel.isHidden = false
             
-            let indexPath = NSIndexPath(forRow: 0, inSection: section)
-            if let item = fetchedResultsController.objectAtIndexPath(indexPath) as? Study {
+            let indexPath = IndexPath(row: 0, section: section)
+            if let item = fetchedResultsController.object(at: indexPath) as? Study {
                 header.mainTitleLabel.text = item.studyType
-                header.mainTitleLabel.hidden = false
+                header.mainTitleLabel.isHidden = false
             } else {
-                header.mainTitleLabel.hidden = true
+                header.mainTitleLabel.isHidden = true
             }
             
             
         } else {
-            header.subtitleLabel.hidden = true
-            header.mainTitleLabel.hidden = true
+            header.subtitleLabel.isHidden = true
+            header.mainTitleLabel.isHidden = true
         }
     }
 
 }
 
 extension StudiesViewController : UICollectionViewDelegateFlowLayout {
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return Cell.CellSize.Study
     }
 }
 
 extension StudiesViewController : UICollectionViewDelegate {
-    func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if let _ = collectionView.cellForItemAtIndexPath(indexPath) as? StudyCellCollectionViewCell {
-            let study = fetchedResultsController.objectAtIndexPath(indexPath)
-            collectionView.deselectItemAtIndexPath(indexPath, animated: true)
-            self.performSegueWithIdentifier("showLessons", sender: study)
+        if let _ = collectionView.cellForItem(at: indexPath) as? StudyCellCollectionViewCell {
+            let study = fetchedResultsController.object(at: indexPath)
+            collectionView.deselectItem(at: indexPath, animated: true)
+            self.performSegue(withIdentifier: "showLessons", sender: study)
         }
         
     }
@@ -184,11 +184,11 @@ extension StudiesViewController : UICollectionViewDelegate {
 }
 
 extension StudiesViewController : UICollectionViewDataSource {
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return fetchedResultsController.sections?.count ?? 0
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let sections = fetchedResultsController.sections else {
             return 0
         }
@@ -199,11 +199,11 @@ extension StudiesViewController : UICollectionViewDataSource {
         return sectionInfo.numberOfObjects
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        guard let study = fetchedResultsController.objectAtIndexPath(indexPath) as? Study else {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let study = fetchedResultsController.object(at: indexPath) as? Study else {
             return UICollectionViewCell()
         }
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Cell.Identifier.Study, forIndexPath: indexPath) as! StudyCellCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.Identifier.Study, for: indexPath) as! StudyCellCollectionViewCell
         
         cell.isAccessibilityElement = true
         
@@ -220,9 +220,9 @@ extension StudiesViewController : UICollectionViewDataSource {
         cell.titleLabel.text = study.title
         cell.coverImageView.image = nil
         if let thumbnailSource = study.thumbnailSource {
-            if let url = NSURL(string: thumbnailSource) {
+            if let url = URL(string: thumbnailSource) {
                 let width = Cell.CellSize.Study.width - Cell.CellSize.StudyImageInset.left - Cell.CellSize.StudyImageInset.right
-                let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSizeMake(width, width), radius: 3, divideRadiusByImageScale: false)
+                let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 3, divideRadiusByImageScale: false)
                 cell.coverImageView.af_setImageWithURL(url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
 //                cell.coverImageView.af_setImageWithURL(url)
             }
@@ -230,11 +230,11 @@ extension StudiesViewController : UICollectionViewDataSource {
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionElementKindSectionHeader:
-            let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: Cell.Identifier.StudiesHeader, forIndexPath: indexPath) as! StudiesHeaderReusableView
-            configureHeader(indexPath.section, header: header)
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Cell.Identifier.StudiesHeader, for: indexPath) as! StudiesHeaderReusableView
+            configureHeader((indexPath as NSIndexPath).section, header: header)
             return header
         default:
             return UICollectionReusableView()
@@ -242,7 +242,7 @@ extension StudiesViewController : UICollectionViewDataSource {
        
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
         configureHeader(section, header: header)
         header.snp_updateConstraints { (make) -> Void in
@@ -257,11 +257,11 @@ extension StudiesViewController : UICollectionViewDataSource {
 }
 
 extension StudiesViewController : NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         log.debug("Controller didChangeContent")
         self.collectionView.reloadData()
     }
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         log.debug("Will change content")
     }
     

@@ -12,13 +12,13 @@ import Regex
 enum TimeParser {
     
     //Typical Title = "Galatians - Lesson 16B"
-    private static let title = Regex("^(\\d*\\.?\\d*)")
+    fileprivate static let title = Regex("^(\\d*\\.?\\d*)")
     
-    static func match(string: String) -> [String?]? {
+    static func match(_ string: String) -> [String?]? {
         return title.match(string)?.captures
     }
     
-    static func getTime(string: String) -> (NSDateComponents?) {
+    static func getTime(_ string: String) -> (DateComponents?) {
         guard let matches = match(string) else {
             return nil
         }
@@ -30,7 +30,7 @@ enum TimeParser {
                 let minutes = floor((totalSeconds - (hours * 3600)) / 60)
                 let seconds = totalSeconds - (hours * 3600) - (minutes * 60)
                 
-                let dateComponents = NSDateComponents()
+                var dateComponents = DateComponents()
                 dateComponents.hour = Int(hours)
                 dateComponents.minute = Int(minutes)
                 dateComponents.second = Int(seconds)

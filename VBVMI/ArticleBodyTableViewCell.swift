@@ -16,11 +16,11 @@ class ArticleBodyTableViewCell: UITableViewCell {
     @IBOutlet weak var imageViewAspectRatioConstraint: NSLayoutConstraint!
     var hasImage = false {
         didSet {
-            authorImageView.hidden = !hasImage
+            authorImageView.isHidden = !hasImage
             if hasImage {
                 let ratio = imageViewAspectRatioConstraint.multiplier
                 let width = self.imageViewWidthConstraint.constant
-                var rect = CGRectMake(0, 0, width, width / ratio)
+                var rect = CGRect(x: 0, y: 0, width: width, height: width / ratio)
                 rect = rect.insetBy(dx: -8, dy: 0)
                 let bezierPath = UIBezierPath(rect: rect)
                 
@@ -38,7 +38,7 @@ class ArticleBodyTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

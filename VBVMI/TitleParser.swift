@@ -18,19 +18,19 @@ import Regex
 struct TitleParser {
     
     //Typical Title = "Galatians - Lesson 16B"
-    private static let title = Regex("^([^-]+)(\\s*-\\s*(\\w*)\\s*(\\w*[-\\/\\s]*\\w*))?$")
+    fileprivate static let title = Regex("^([^-]+)(\\s*-\\s*(\\w*)\\s*(\\w*[-\\/\\s]*\\w*))?$")
     
-    static func match(string: String) -> [String?]? {
+    static func match(_ string: String) -> [String?]? {
         return title.match(string)?.captures
     }
     
-    static func components(string: String) -> (String?, String?) {
+    static func components(_ string: String) -> (String?, String?) {
         guard let matches = match(string) else {
             return (nil, nil)
         }
         //log.warning("Matches: \(matches)")
         if matches.count == 4 {
-            return (matches[0]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()), matches[3]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
+            return (matches[0]?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), matches[3]?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))
         }
         return (nil, nil)
     }

@@ -16,23 +16,23 @@ protocol StaticSelectable: Equatable {
 
 class StaticSelectionViewController<T: StaticSelectable>: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    private var options: [T]
-    private var selected: [T] {
+    fileprivate var options: [T]
+    fileprivate var selected: [T] {
         didSet {
-            selectionAction?(sender: self, selected: selected)
+            selectionAction?(self, selected)
         }
     }
-    private var allowsMultiSelect: Bool
+    fileprivate var allowsMultiSelect: Bool
     
-    private var selectionAction: ((sender: StaticSelectionViewController<T>, selected: [T])->())?
+    fileprivate var selectionAction: ((_ sender: StaticSelectionViewController<T>, _ selected: [T])->())?
     
-    private let tableView = UITableView(frame: CGRectZero, style: .Grouped)
+    fileprivate let tableView = UITableView(frame: CGRect.zero, style: .grouped)
     
-    convenience init(options: [T], selected: T, selectionAction: ((sender: StaticSelectionViewController<T>, selected: [T])->())? = nil) {
+    convenience init(options: [T], selected: T, selectionAction: ((_ sender: StaticSelectionViewController<T>, _ selected: [T])->())? = nil) {
         self.init(options: options, selectedOptions: [selected], allowsMultiSelect: false, selectionAction: selectionAction)
     }
     
-    init(options: [T], selectedOptions: [T], allowsMultiSelect: Bool = true, selectionAction: ((sender: StaticSelectionViewController<T>, selected: [T])->())? = nil) {
+    init(options: [T], selectedOptions: [T], allowsMultiSelect: Bool = true, selectionAction: ((_ sender: StaticSelectionViewController<T>, _ selected: [T])->())? = nil) {
         self.options = options
         self.selected = selectedOptions
         self.allowsMultiSelect = allowsMultiSelect
@@ -56,7 +56,7 @@ class StaticSelectionViewController<T: StaticSelectable>: UIViewController, UITa
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.registerNib(UINib(nibName: "StaticCell", bundle: nil), forCellReuseIdentifier: "StaticCell")
+        tableView.register(UINib(nibName: "StaticCell", bundle: nil), forCellReuseIdentifier: "StaticCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,53 +64,53 @@ class StaticSelectionViewController<T: StaticSelectable>: UIViewController, UITa
         // Dispose of any resources that can be recreated.
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return options.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("StaticCell", forIndexPath: indexPath)
-        let option = options[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StaticCell", for: indexPath)
+        let option = options[(indexPath as NSIndexPath).row]
         cell.textLabel?.text = option.cellTitle
         
         if selected.contains(option) {
-            cell.accessoryType = .Checkmark
+            cell.accessoryType = .checkmark
         } else {
-            cell.accessoryType = .None
+            cell.accessoryType = .none
         }
         
         return cell
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
-        let option = options[indexPath.row]
+        let option = options[(indexPath as NSIndexPath).row]
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        let cell = tableView.cellForRow(at: indexPath)
         if allowsMultiSelect {
-            if let index = selected.indexOf(option) {
+            if let index = selected.index(of: option) {
                 // Then we are removing that option
-                cell?.accessoryType = .None
-                selected.removeAtIndex(index)
+                cell?.accessoryType = .none
+                selected.remove(at: index)
                 
             } else {
-                cell?.accessoryType = .Checkmark
+                cell?.accessoryType = .checkmark
                 selected.append(option)
             }
         } else {
             //deselect the other one if there is one
             selected.forEach({ (selection) in
-                if let index = options.indexOf(selection), let oldCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) {
-                    oldCell.accessoryType = .None
+                if let index = options.index(of: selection), let oldCell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) {
+                    oldCell.accessoryType = .none
                 }
             })
             
-            cell?.accessoryType = .Checkmark
+            cell?.accessoryType = .checkmark
             selected = [option]
         }
     }

@@ -16,7 +16,7 @@ class DepletionProgressView : UIView {
         }
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         StyleKit.drawPieProgressDeplete(frame: self.bounds, progress: progress)
     }
 }

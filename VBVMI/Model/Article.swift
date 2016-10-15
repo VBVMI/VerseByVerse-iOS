@@ -4,24 +4,24 @@ import Decodable
 
 
 @objc(Article)
-public class Article: _Article {
+open class Article: _Article {
 
 	// Custom logic goes here.
 
-    class func decodeJSON(JSONDict: NSDictionary, context: NSManagedObjectContext) throws -> (Article) {
+    class func decodeJSON(_ JSONDict: NSDictionary, context: NSManagedObjectContext) throws -> (Article) {
         guard let identifier = JSONDict["ID"] as? String else {
-            throw APIDataManagerError.MissingID
+            throw APIDataManagerError.missingID
         }
         
         guard let article = Article.findFirstOrCreateWithDictionary(["identifier": identifier], context: context) as? Article else {
-            throw APIDataManagerError.ModelCreationFailed
+            throw APIDataManagerError.modelCreationFailed
         }
         
         article.identifier = try JSONDict => "ID"
         article.category = nullOrString(try JSONDict => "category")
         
         if let dateString: String = try JSONDict => "postedDate" {
-            article.postedDate = NSDate.dateFromTimeString(dateString)
+            article.postedDate = Date.dateFromTimeString(dateString)
         }
         
         article.authorThumbnailSource = nullOrString(try JSONDict => "authorThumbnailSource")

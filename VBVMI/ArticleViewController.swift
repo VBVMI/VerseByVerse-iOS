@@ -16,27 +16,27 @@ class ArticleViewController: UITableViewController {
         didSet {
             self.navigationItem.title = article.title
             if let body = article.body {
-                bodyPieces = body.componentsSeparatedByString("\r\n\r\n")
+                bodyPieces = body.components(separatedBy: "\r\n\r\n")
                 if bodyPieces.count > 1 {
                     let str = "\(bodyPieces[0])\r\n\r\n\(bodyPieces[1])"
-                    bodyPieces.removeAtIndex(0)
-                    bodyPieces.removeAtIndex(0)
-                    bodyPieces.insert(str, atIndex: 0)
+                    bodyPieces.remove(at: 0)
+                    bodyPieces.remove(at: 0)
+                    bodyPieces.insert(str, at: 0)
                 }
             }
         }
     }
-    var dateFormatter = NSDateFormatter()
+    var dateFormatter = DateFormatter()
     
     var bodyPieces = [String]()
     
-    override func encodeRestorableStateWithCoder(coder: NSCoder) {
-        coder.encodeObject(article.identifier, forKey: "articleIdentifier")
-        super.encodeRestorableStateWithCoder(coder)
+    override func encodeRestorableState(with coder: NSCoder) {
+        coder.encode(article.identifier, forKey: "articleIdentifier")
+        super.encodeRestorableState(with: coder)
     }
     
-    override func decodeRestorableStateWithCoder(coder: NSCoder) {
-        guard let identifier = coder.decodeObjectForKey("articleIdentifier") as? String else {
+    override func decodeRestorableState(with coder: NSCoder) {
+        guard let identifier = coder.decodeObject(forKey: "articleIdentifier") as? String else {
             fatalError()
         }
         let context = ContextCoordinator.sharedInstance.managedObjectContext
@@ -44,16 +44,16 @@ class ArticleViewController: UITableViewController {
             fatalError()
         }
         self.article = article
-        super.decodeRestorableStateWithCoder(coder)
+        super.decodeRestorableState(with: coder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dateFormatter.dateStyle = .MediumStyle
+        dateFormatter.dateStyle = .medium
         
-        tableView.registerNib(UINib(nibName: Cell.NibName.ArticleHeader, bundle: nil), forCellReuseIdentifier: Cell.Identifier.ArticleHeader)
-        tableView.registerNib(UINib(nibName: Cell.NibName.ArticleBody, bundle: nil), forCellReuseIdentifier: Cell.Identifier.ArticleBody)
+        tableView.register(UINib(nibName: Cell.NibName.ArticleHeader, bundle: nil), forCellReuseIdentifier: Cell.Identifier.ArticleHeader)
+        tableView.register(UINib(nibName: Cell.NibName.ArticleBody, bundle: nil), forCellReuseIdentifier: Cell.Identifier.ArticleBody)
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,7 +62,7 @@ class ArticleViewController: UITableViewController {
     }
     
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if article.completed == false {
             article.completed = true
@@ -83,7 +83,7 @@ class ArticleViewController: UITableViewController {
     }
     */
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
@@ -94,8 +94,8 @@ class ArticleViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        switch indexPath.section {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch (indexPath as NSIndexPath).section {
         case 0:
             return 100
         case 1:
@@ -105,36 +105,36 @@ class ArticleViewController: UITableViewController {
         }
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch indexPath.section {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch (indexPath as NSIndexPath).section {
         case 0:
-            switch indexPath.row {
+            switch (indexPath as NSIndexPath).row {
             case 0:
-                let cell = tableView.dequeueReusableCellWithIdentifier(Cell.Identifier.ArticleHeader, forIndexPath: indexPath) as! ArticleHeaderTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: Cell.Identifier.ArticleHeader, for: indexPath) as! ArticleHeaderTableViewCell
                 
                 if let title = article.title {
                     cell.titleLabel.text = title
-                    cell.titleLabel.hidden = false
+                    cell.titleLabel.isHidden = false
                 } else {
-                    cell.titleLabel.hidden = true
+                    cell.titleLabel.isHidden = true
                 }
                 
                 if let author = article.authorName {
                     cell.authorLabel.text = author
-                    cell.authorLabel.hidden = false
+                    cell.authorLabel.isHidden = false
                 } else {
-                    cell.authorLabel.hidden = true
+                    cell.authorLabel.isHidden = true
                 }
                 
                 if let date = article.postedDate {
-                    cell.postedDateLabel.text = dateFormatter.stringFromDate(date)
-                    cell.postedDateLabel.hidden = false
+                    cell.postedDateLabel.text = dateFormatter.string(from: date as Date)
+                    cell.postedDateLabel.isHidden = false
                 } else {
-                    cell.postedDateLabel.hidden = true
+                    cell.postedDateLabel.isHidden = true
                 }
                 
                 return cell
@@ -142,13 +142,13 @@ class ArticleViewController: UITableViewController {
                 fatalError()
             }
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier(Cell.Identifier.ArticleBody, forIndexPath: indexPath) as! ArticleBodyTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Cell.Identifier.ArticleBody, for: indexPath) as! ArticleBodyTableViewCell
             
-            cell.bodyTextView.text = bodyPieces[indexPath.row]
+            cell.bodyTextView.text = bodyPieces[(indexPath as NSIndexPath).row]
             
-            if indexPath.row == 0 {
+            if (indexPath as NSIndexPath).row == 0 {
                 cell.hasImage = true
-                if let urlString = article.authorThumbnailSource, url = NSURL(string: urlString) {
+                if let urlString = article.authorThumbnailSource, let url = URL(string: urlString) {
                     cell.authorImageView?.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.25), runImageTransitionIfCached: false)
                 }
             } else {
@@ -159,15 +159,15 @@ class ArticleViewController: UITableViewController {
         default:
             fatalError()
         }
-        if indexPath.section == 0 {
-            if indexPath.row == 0 {
+        if (indexPath as NSIndexPath).section == 0 {
+            if (indexPath as NSIndexPath).row == 0 {
 
-            } else if indexPath.row == 1 {
-                let cell = tableView.dequeueReusableCellWithIdentifier(Cell.Identifier.ArticleBody, forIndexPath: indexPath) as! ArticleBodyTableViewCell
+            } else if (indexPath as NSIndexPath).row == 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: Cell.Identifier.ArticleBody, for: indexPath) as! ArticleBodyTableViewCell
                 
                 cell.bodyTextView.text = article.body
                 
-                if let urlString = article.authorThumbnailSource, url = NSURL(string: urlString) {
+                if let urlString = article.authorThumbnailSource, let url = URL(string: urlString) {
                     cell.authorImageView?.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.25), runImageTransitionIfCached: false)
                 }
                 

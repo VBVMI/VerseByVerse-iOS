@@ -23,70 +23,70 @@ public enum VideoRelationships: String {
     case channel = "channel"
 }
 
-public class _Video: NSManagedObject {
+open class _Video: NSManagedObject {
 
     // MARK: - Class methods
 
-    public class func entityName () -> String {
+    open class func entityName () -> String {
         return "Video"
     }
 
-    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
-        return NSEntityDescription.entityForName(self.entityName(), inManagedObjectContext: managedObjectContext)
+    open class func entity(_ managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+        return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
     // MARK: - Life cycle methods
 
-    public override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
     }
 
     public convenience init?(managedObjectContext: NSManagedObjectContext) {
         guard let entity = _Video.entity(managedObjectContext) else { return nil }
-        self.init(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
+        self.init(entity: entity, insertInto: managedObjectContext)
     }
 
     // MARK: - Properties
 
-    @NSManaged public
+    @NSManaged open
     var averageRating: String?
 
-    @NSManaged public
+    @NSManaged open
     var category: String?
 
-    @NSManaged public
+    @NSManaged open
     var descriptionText: String?
 
-    @NSManaged public
+    @NSManaged open
     var identifier: String?
 
-    @NSManaged public
-    var postedDate: NSDate?
+    @NSManaged open
+    var postedDate: Date?
 
-    @NSManaged public
-    var recordedDate: NSDate?
+    @NSManaged open
+    var recordedDate: Date?
 
-    @NSManaged public
+    @NSManaged open
     var thumbnailAltText: String?
 
-    @NSManaged public
+    @NSManaged open
     var thumbnailSource: String?
 
-    @NSManaged public
+    @NSManaged open
     var title: String?
 
-    @NSManaged public
+    @NSManaged open
     var videoIndex: Int32
 
-    @NSManaged public
+    @NSManaged open
     var videoLength: String?
 
-    @NSManaged public
+    @NSManaged open
     var videoSource: String?
 
     // MARK: - Relationships
 
-    @NSManaged public
+    @NSManaged open
     var channel: Channel?
 
     // MARK: - Fetched Properties

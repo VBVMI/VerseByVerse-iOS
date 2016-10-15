@@ -16,49 +16,49 @@ public enum TopicRelationships: String {
     case studies = "studies"
 }
 
-public class _Topic: NSManagedObject {
+open class _Topic: NSManagedObject {
 
     // MARK: - Class methods
 
-    public class func entityName () -> String {
+    open class func entityName () -> String {
         return "Topic"
     }
 
-    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
-        return NSEntityDescription.entityForName(self.entityName(), inManagedObjectContext: managedObjectContext)
+    open class func entity(_ managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+        return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
     // MARK: - Life cycle methods
 
-    public override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
     }
 
     public convenience init?(managedObjectContext: NSManagedObjectContext) {
         guard let entity = _Topic.entity(managedObjectContext) else { return nil }
-        self.init(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
+        self.init(entity: entity, insertInto: managedObjectContext)
     }
 
     // MARK: - Properties
 
-    @NSManaged public
+    @NSManaged open
     var identifier: String?
 
-    @NSManaged public
+    @NSManaged open
     var name: String?
 
     // MARK: - Relationships
 
-    @NSManaged public
+    @NSManaged open
     var answers: Set<Answer>
 
-    @NSManaged public
+    @NSManaged open
     var articles: Set<Article>
 
-    @NSManaged public
+    @NSManaged open
     var lessons: Set<Lesson>
 
-    @NSManaged public
+    @NSManaged open
     var studies: Set<Study>
 
     // MARK: - Fetched Properties
@@ -67,80 +67,80 @@ public class _Topic: NSManagedObject {
 
 extension _Topic {
 
-    func addAnswers(objects: Set<Answer>) {
+    func addAnswers(_ objects: Set<Answer>) {
         self.answers = self.answers.union(objects)
     }
 
-    func removeAnswers(objects: Set<Answer>) {
-        self.answers = self.answers.subtract(objects)
+    func removeAnswers(_ objects: Set<Answer>) {
+        self.answers = self.answers.subtracting(objects)
     }
 
-    func addAnswersObject(value: Answer) {
+    func addAnswersObject(_ value: Answer) {
         self.answers = self.answers.union([value])
     }
 
-    func removeAnswersObject(value: Answer) {
-        self.answers = self.answers.subtract([value])
+    func removeAnswersObject(_ value: Answer) {
+        self.answers = self.answers.subtracting([value])
     }
 
 }
 
 extension _Topic {
 
-    func addArticles(objects: Set<Article>) {
+    func addArticles(_ objects: Set<Article>) {
         self.articles = self.articles.union(objects)
     }
 
-    func removeArticles(objects: Set<Article>) {
-        self.articles = self.articles.subtract(objects)
+    func removeArticles(_ objects: Set<Article>) {
+        self.articles = self.articles.subtracting(objects)
     }
 
-    func addArticlesObject(value: Article) {
+    func addArticlesObject(_ value: Article) {
         self.articles = self.articles.union([value])
     }
 
-    func removeArticlesObject(value: Article) {
-        self.articles = self.articles.subtract([value])
+    func removeArticlesObject(_ value: Article) {
+        self.articles = self.articles.subtracting([value])
     }
 
 }
 
 extension _Topic {
 
-    func addLessons(objects: Set<Lesson>) {
+    func addLessons(_ objects: Set<Lesson>) {
         self.lessons = self.lessons.union(objects)
     }
 
-    func removeLessons(objects: Set<Lesson>) {
-        self.lessons = self.lessons.subtract(objects)
+    func removeLessons(_ objects: Set<Lesson>) {
+        self.lessons = self.lessons.subtracting(objects)
     }
 
-    func addLessonsObject(value: Lesson) {
+    func addLessonsObject(_ value: Lesson) {
         self.lessons = self.lessons.union([value])
     }
 
-    func removeLessonsObject(value: Lesson) {
-        self.lessons = self.lessons.subtract([value])
+    func removeLessonsObject(_ value: Lesson) {
+        self.lessons = self.lessons.subtracting([value])
     }
 
 }
 
 extension _Topic {
 
-    func addStudies(objects: Set<Study>) {
+    func addStudies(_ objects: Set<Study>) {
         self.studies = self.studies.union(objects)
     }
 
-    func removeStudies(objects: Set<Study>) {
-        self.studies = self.studies.subtract(objects)
+    func removeStudies(_ objects: Set<Study>) {
+        self.studies = self.studies.subtracting(objects)
     }
 
-    func addStudiesObject(value: Study) {
+    func addStudiesObject(_ value: Study) {
         self.studies = self.studies.union([value])
     }
 
-    func removeStudiesObject(value: Study) {
-        self.studies = self.studies.subtract([value])
+    func removeStudiesObject(_ value: Study) {
+        self.studies = self.studies.subtracting([value])
     }
 
 }

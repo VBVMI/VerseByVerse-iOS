@@ -4,12 +4,12 @@ import Decodable
 import SwiftString
 
 @objc(Topic)
-public class Topic: _Topic {
+open class Topic: _Topic {
 
     // Custom logic goes here.
-    class func decodeJSON(JSONDict: NSDictionary, context: NSManagedObjectContext) throws -> (Topic?) {
+    class func decodeJSON(_ JSONDict: NSDictionary, context: NSManagedObjectContext) throws -> (Topic?) {
         guard let identifier = JSONDict["ID"] as? String else {
-            throw APIDataManagerError.MissingID
+            throw APIDataManagerError.missingID
         }
         
         var convertedIdentifier = identifier.clean(with: " ", allOf: "+")
@@ -18,10 +18,10 @@ public class Topic: _Topic {
             return nil
         }
         
-        if let name = try JSONDict => "topic" as? String where name.characters.count > 0 {
+        if let name = try JSONDict => "topic" as? String , name.characters.count > 0 {
             let convertedName = name.capitalize()
             guard let topic = Topic.findFirstOrCreateWithDictionary(["identifier": convertedIdentifier], context: context) as? Topic else {
-                throw APIDataManagerError.ModelCreationFailed
+                throw APIDataManagerError.modelCreationFailed
             }
             topic.identifier = convertedIdentifier
             topic.name = convertedName

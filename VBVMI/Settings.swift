@@ -14,15 +14,15 @@ class Settings {
     
     var autoMarkLessonsComplete : Bool {
         get {
-            return NSUserDefaults.standardUserDefaults().boolForKey("autoMarkLessonsComplete")
+            return UserDefaults.standard.bool(forKey: "autoMarkLessonsComplete")
         }
         set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "autoMarkLessonsComplete")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(newValue, forKey: "autoMarkLessonsComplete")
+            UserDefaults.standard.synchronize()
         }
     }
     
-    private init() {
+    fileprivate init() {
         
     }
     

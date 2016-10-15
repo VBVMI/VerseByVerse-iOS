@@ -11,111 +11,111 @@ import ACPDownload
 
 struct LessonCellViewModel {
     
-    static func configure(cell: LessonTableViewCell, lesson: Lesson) {
+    static func configure(_ cell: LessonTableViewCell, lesson: Lesson) {
         
-        if let lessonNumber = lesson.lessonNumber where lessonNumber.characters.count > 0 {
+        if let lessonNumber = lesson.lessonNumber , lessonNumber.characters.count > 0 {
             cell.numberLabel.text = lessonNumber
-            cell.numberLabel.hidden = false
-            cell.titleLabel.hidden = true
+            cell.numberLabel.isHidden = false
+            cell.titleLabel.isHidden = true
         } else {
-            cell.numberLabel.hidden = true
+            cell.numberLabel.isHidden = true
             
             if lesson.title.characters.count > 0 {
                 cell.titleLabel.text = lesson.title
-                cell.titleLabel.hidden = false
+                cell.titleLabel.isHidden = false
             } else {
-                cell.titleLabel.hidden = true
+                cell.titleLabel.isHidden = true
             }
         }
         
-        if let descriptionText = lesson.descriptionText where descriptionText.characters.count > 0 {
+        if let descriptionText = lesson.descriptionText , descriptionText.characters.count > 0 {
             cell.descriptionLabel.text = descriptionText
-            cell.descriptionLabel.hidden = false
+            cell.descriptionLabel.isHidden = false
         } else {
-            cell.descriptionLabel.hidden = true
+            cell.descriptionLabel.isHidden = true
         }
         
         
-        if let timeCode = lesson.audioLength where timeCode.characters.count > 0 {
+        if let timeCode = lesson.audioLength , timeCode.characters.count > 0 {
             cell.timeLabel.text = timeCode
-            cell.timeLabel.hidden = false
+            cell.timeLabel.isHidden = false
         } else {
-            cell.timeLabel.hidden = true
+            cell.timeLabel.isHidden = true
         }
         
-        if let audioSource = lesson.audioSourceURL where audioSource.characters.count > 10 {
+        if let audioSource = lesson.audioSourceURL , audioSource.characters.count > 10 {
             //might want to check that this makes a valid URL?
-            cell.audioView.hidden = false
+            cell.audioView.isHidden = false
             
             if let _ = APIDataManager.fileExists(lesson, urlString: audioSource) {
-                cell.audioView.dotView.hidden = false
+                cell.audioView.dotView.isHidden = false
             } else {
-                cell.audioView.dotView.hidden = true
+                cell.audioView.dotView.isHidden = true
             }
         } else {
-            cell.audioView.hidden = true
+            cell.audioView.isHidden = true
         }
         
-        if let transcript = lesson.transcriptURL where transcript.characters.count > 10 {
-            cell.transcriptView.hidden = false
+        if let transcript = lesson.transcriptURL , transcript.characters.count > 10 {
+            cell.transcriptView.isHidden = false
             
             if let _ = APIDataManager.fileExists(lesson, urlString: transcript) {
-                cell.transcriptView.dotView.hidden = false
+                cell.transcriptView.dotView.isHidden = false
             } else {
-                cell.transcriptView.dotView.hidden = true
+                cell.transcriptView.dotView.isHidden = true
             }
             
         } else {
-            cell.transcriptView.hidden = true
+            cell.transcriptView.isHidden = true
         }
         
-        if let studentSourceURL = lesson.studentAidURL where studentSourceURL.characters.count > 10 {
+        if let studentSourceURL = lesson.studentAidURL , studentSourceURL.characters.count > 10 {
             //might want to check that this makes a valid URL?
-            cell.studentAidView.hidden = false
+            cell.studentAidView.isHidden = false
             
             if let _ = APIDataManager.fileExists(lesson, urlString: studentSourceURL) {
-                cell.studentAidView.dotView.hidden = false
+                cell.studentAidView.dotView.isHidden = false
             } else {
-                cell.studentAidView.dotView.hidden = true
+                cell.studentAidView.dotView.isHidden = true
             }
         } else {
-            cell.studentAidView.hidden = true
+            cell.studentAidView.isHidden = true
         }
         
-        if let slidesURL = lesson.teacherAid where slidesURL.characters.count > 10 {
+        if let slidesURL = lesson.teacherAid , slidesURL.characters.count > 10 {
             //might want to check that this makes a valid URL?
-            cell.teacherAidView.hidden = false
+            cell.teacherAidView.isHidden = false
             
             if let _ = APIDataManager.fileExists(lesson, urlString: slidesURL) {
-                cell.teacherAidView.dotView.hidden = false
+                cell.teacherAidView.dotView.isHidden = false
             } else {
-                cell.teacherAidView.dotView.hidden = true
+                cell.teacherAidView.dotView.isHidden = true
             }
         } else {
-            cell.teacherAidView.hidden = true
+            cell.teacherAidView.isHidden = true
         }
         
         
-        if let videoURL = lesson.videoSourceURL where videoURL.characters.count > 10 {
+        if let videoURL = lesson.videoSourceURL , videoURL.characters.count > 10 {
             //might want to check that this makes a valid URL?
-            cell.videoView.hidden = false
+            cell.videoView.isHidden = false
             
             if let _ = APIDataManager.fileExists(lesson, urlString: videoURL) {
-                cell.videoView.dotView.hidden = false
+                cell.videoView.dotView.isHidden = false
             } else {
-                cell.videoView.dotView.hidden = true
+                cell.videoView.dotView.isHidden = true
             }
         } else {
-            cell.videoView.hidden = true
+            cell.videoView.isHidden = true
         }
         
         cell.progressIndicator.setProgress(Float(lesson.audioProgress), animated: false)
         
-        cell.audioView.button.setIndicatorStatus(.None)
-        cell.teacherAidView.button.setIndicatorStatus(.None)
-        cell.transcriptView.button.setIndicatorStatus(.None)
-        cell.videoView.button.setIndicatorStatus(.None)
-        cell.studentAidView.button.setIndicatorStatus(.None)
+        cell.audioView.button.setIndicatorStatus(.none)
+        cell.teacherAidView.button.setIndicatorStatus(.none)
+        cell.transcriptView.button.setIndicatorStatus(.none)
+        cell.videoView.button.setIndicatorStatus(.none)
+        cell.studentAidView.button.setIndicatorStatus(.none)
     }
     
 }

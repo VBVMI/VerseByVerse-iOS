@@ -12,13 +12,13 @@ class PDFViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
     
-    var urlToLoad: NSURL?
+    var urlToLoad: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadPDF()
         
-        let shareButton = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: #selector(share))
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share))
         self.navigationItem.rightBarButtonItem = shareButton
     }
     
@@ -32,12 +32,12 @@ class PDFViewController: UIViewController {
         
         activityController.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
         
-        presentViewController(activityController, animated: true, completion: nil)
+        present(activityController, animated: true, completion: nil)
     }
     
-    private func loadPDF() {
+    fileprivate func loadPDF() {
         if let url = urlToLoad {
-            let urlRequest = NSURLRequest(URL: url)
+            let urlRequest = URLRequest(url: url)
             webView.delegate = self
             webView.loadRequest(urlRequest)
             if self.title == nil {
@@ -51,14 +51,14 @@ class PDFViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.hidesBarsOnTap = true
         self.navigationController?.hidesBarsOnSwipe = true
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return self.navigationController?.navigationBarHidden ?? false
+    override var prefersStatusBarHidden : Bool {
+        return self.navigationController?.isNavigationBarHidden ?? false
     }
     
     override func viewDidLayoutSubviews() {
@@ -79,7 +79,7 @@ class PDFViewController: UIViewController {
 }
 
 extension PDFViewController : UIWebViewDelegate {
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         webView.scrollView.setContentOffset(CGPoint(x:0, y: -self.topLayoutGuide.length), animated: false)
     }
 }

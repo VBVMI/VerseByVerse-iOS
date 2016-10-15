@@ -16,37 +16,37 @@ import LNPopupController
 
 class StudyViewController: UITableViewController {
 
-    private let lessonCellReuseIdentifier = "LessonCellReuseIdentifier"
-    private let lessonSectionHeaderReuseIdentifier = "LessonSectionReuseIdentifier"
+    fileprivate let lessonCellReuseIdentifier = "LessonCellReuseIdentifier"
+    fileprivate let lessonSectionHeaderReuseIdentifier = "LessonSectionReuseIdentifier"
 
     @IBOutlet var headerBackingView: UIView!
     @IBOutlet var blurredImageView: UIImageView!
     @IBOutlet var headerImageView: UIImageView!
     
-    private let barButtonItem: UIBarButtonItem = UIBarButtonItem(title: String.fontAwesomeIconWithName(.EllipsisH), style: .Plain, target: nil, action: #selector(tappedMenu))
+    fileprivate let barButtonItem: UIBarButtonItem = UIBarButtonItem(title: String.fontAwesomeIconWithName(.EllipsisH), style: .plain, target: nil, action: #selector(tappedMenu))
     
-    private class ButtonSender {
-        let url: NSURL
+    fileprivate class ButtonSender {
+        let url: URL
         let lessonType: ResourceManager.LessonType
-        init(url: NSURL, lessonType: ResourceManager.LessonType) {
+        init(url: URL, lessonType: ResourceManager.LessonType) {
             self.url = url
             self.lessonType = lessonType
         }
     }
     
-    var fetchedResultsController: NSFetchedResultsController!
+    var fetchedResultsController: NSFetchedResultsController<AnyObject>!
     
     var testDescriptionLabel = UILabel()
     
     var isDescriptionOpen = false {
         didSet {
-            if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as? StudyDescriptionCell {
+            if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? StudyDescriptionCell {
                 cell.hideView.alpha = isDescriptionOpen ? 0 : 1
                 cell.moreLabel.text = isDescriptionOpen ? "Less..." : "More..."
                 if isDescriptionOpen {
-                    NSLayoutConstraint.activateConstraints([cell.bottomConstraint])
+                    NSLayoutConstraint.activate([cell.bottomConstraint])
                 } else {
-                    NSLayoutConstraint.deactivateConstraints([cell.bottomConstraint])
+                    NSLayoutConstraint.deactivate([cell.bottomConstraint])
                 }
             }
         }
@@ -62,15 +62,15 @@ class StudyViewController: UITableViewController {
             }
         }
     }
-    private let kTableHeaderHeight: CGFloat = 300.0
+    fileprivate let kTableHeaderHeight: CGFloat = 300.0
     
-    override func encodeRestorableStateWithCoder(coder: NSCoder) {
-        coder.encodeObject(study.identifier, forKey: "studyIdentifier")
-        super.encodeRestorableStateWithCoder(coder)
+    override func encodeRestorableState(with coder: NSCoder) {
+        coder.encode(study.identifier, forKey: "studyIdentifier")
+        super.encodeRestorableState(with: coder)
     }
     
-    override func decodeRestorableStateWithCoder(coder: NSCoder) {
-        guard let identifier = coder.decodeObjectForKey("studyIdentifier") as? String else {
+    override func decodeRestorableState(with coder: NSCoder) {
+        guard let identifier = coder.decodeObject(forKey: "studyIdentifier") as? String else {
             fatalError()
         }
         let context = ContextCoordinator.sharedInstance.managedObjectContext
@@ -79,12 +79,12 @@ class StudyViewController: UITableViewController {
         }
         self.study = study
     
-        super.decodeRestorableStateWithCoder(coder)
+        super.decodeRestorableState(with: coder)
         configureViewsForSudy()
         configureFetchController()
     }
     
-    private func configureFetchController() {
+    fileprivate func configureFetchController() {
         let fetchRequest = NSFetchRequest(entityName: Lesson.entityName())
         let context = ContextCoordinator.sharedInstance.managedObjectContext
         fetchRequest.entity = Lesson.entity(context)
@@ -101,15 +101,15 @@ class StudyViewController: UITableViewController {
         try! fetchedResultsController.performFetch()
     }
     
-    private func configureViewsForSudy() {
+    fileprivate func configureViewsForSudy() {
         testDescriptionLabel.text = study.descriptionText
         
         if let thumbnailSource = study.thumbnailSource {
-            if let url = NSURL(string: thumbnailSource) {
+            if let url = URL(string: thumbnailSource) {
                 blurredImageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3), runImageTransitionIfCached: true, completion: nil)
                 
                 let width = self.headerImageView.frame.size.width
-                let headerImageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSizeMake(width, width), radius: 3, divideRadiusByImageScale: false)
+                let headerImageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 3, divideRadiusByImageScale: false)
                 headerImageView.af_setImageWithURL(url, placeholderImage: nil, filter: headerImageFilter, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3))
             }
         }
@@ -121,9 +121,9 @@ class StudyViewController: UITableViewController {
         blurredImageView.clipsToBounds = true
         headerBackingView.clipsToBounds = false
         
-        tableView.registerNib(UINib(nibName: "LessonTableViewCell", bundle: nil), forCellReuseIdentifier: lessonCellReuseIdentifier)
-        tableView.registerClass(LessonsHeader.self, forHeaderFooterViewReuseIdentifier: lessonSectionHeaderReuseIdentifier)
-        testDescriptionLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        tableView.register(UINib(nibName: "LessonTableViewCell", bundle: nil), forCellReuseIdentifier: lessonCellReuseIdentifier)
+        tableView.register(LessonsHeader.self, forHeaderFooterViewReuseIdentifier: lessonSectionHeaderReuseIdentifier)
+        testDescriptionLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
         testDescriptionLabel.numberOfLines = 0
         
         tableView.sectionHeaderHeight = UITableViewAutomaticDimension
@@ -133,7 +133,7 @@ class StudyViewController: UITableViewController {
         }
 
         barButtonItem.target = self
-        barButtonItem.setTitleTextAttributes([NSFontAttributeName: UIFont.fontAwesomeOfSize(20)], forState: .Normal)
+        barButtonItem.setTitleTextAttributes([NSFontAttributeName: UIFont.fontAwesomeOfSize(20)], for: .normal)
         navigationItem.rightBarButtonItem = barButtonItem
     }
     
@@ -151,7 +151,7 @@ class StudyViewController: UITableViewController {
         }
     }
     
-    private func resizeBlurImage() {
+    fileprivate func resizeBlurImage() {
 
         let layer = blurredImageView.layer
         let contentOffset = self.tableView.contentOffset
@@ -161,13 +161,13 @@ class StudyViewController: UITableViewController {
         frame.size.height -= totalOffTop
         
         frame.origin.y = totalOffTop
-        let imageFrame = self.view.convertRect(frame, toView: headerBackingView)
+        let imageFrame = self.view.convert(frame, to: headerBackingView)
         layer.frame = imageFrame
         blurredImageView.setNeedsLayout()
         blurredImageView.layoutIfNeeded()
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (section) {
         case 0:
             return 1
@@ -186,41 +186,41 @@ class StudyViewController: UITableViewController {
         }
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         let count = fetchedResultsController.sections?.count ?? 0
         return 1 + count
     }
     
-    private var lastTappedLesson: Lesson?
-    private var lastTappedResource: ResourceManager.LessonType?
+    fileprivate var lastTappedLesson: Lesson?
+    fileprivate var lastTappedResource: ResourceManager.LessonType?
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch indexPath.section {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch (indexPath as NSIndexPath).section {
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("DescriptionCell", forIndexPath: indexPath) as! StudyDescriptionCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionCell", for: indexPath) as! StudyDescriptionCell
             cell.descriptionLabel.text = study.descriptionText
             return cell
         default:
-            let cell = tableView.dequeueReusableCellWithIdentifier(lessonCellReuseIdentifier, forIndexPath: indexPath) as! LessonTableViewCell
-            if let lesson = fetchedResultsController.objectAtIndexPath(NSIndexPath(forRow: indexPath.row, inSection: indexPath.section - 1)) as? Lesson {
+            let cell = tableView.dequeueReusableCell(withIdentifier: lessonCellReuseIdentifier, for: indexPath) as! LessonTableViewCell
+            if let lesson = fetchedResultsController.object(at: IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section - 1)) as? Lesson {
                 LessonCellViewModel.configure(cell, lesson: lesson)
                 
                 cell.urlButtonCallback = { [weak self, weak cell] (button, status, lessonType) in
                     //It is important to ask the table view for the indexPath otherwise we run the risk of using an out of date index path in this block
                     guard let this = self,
                           let cell = cell,
-                          let tableIndexPath = this.tableView.indexPathForCell(cell) else {
+                          let tableIndexPath = this.tableView.indexPath(for: cell) else {
                         return
                     }
                     
-                    let lessonIndexPath = NSIndexPath(forRow: tableIndexPath.row, inSection: tableIndexPath.section - 1)
-                    let lesson = this.fetchedResultsController.objectAtIndexPath(lessonIndexPath) as! Lesson
+                    let lessonIndexPath = IndexPath(row: (tableIndexPath as NSIndexPath).row, section: (tableIndexPath as NSIndexPath).section - 1)
+                    let lesson = this.fetchedResultsController.object(at: lessonIndexPath) as! Lesson
                     
                     this.lastTappedLesson = lesson
                     this.lastTappedResource = lessonType
                     
                     switch status {
-                    case .None, .Completed:
+                    case .none, .completed:
                         ResourceManager.sharedInstance.startDownloading(lesson, resource: lessonType, completion: { (result) in
                             guard let this = self else {
                                 return
@@ -238,29 +238,29 @@ class StudyViewController: UITableViewController {
                                 }
                                 
                                 switch lessonType.fileType() {
-                                case .PDF:
-                                    this.performSegueWithIdentifier("showPDF", sender: ButtonSender(url: url, lessonType: resource))
-                                case .Audio:
-                                    if let audioPlayerController = this.tabBarController?.popupContentViewController as? AudioPlayerViewController {
+                                case .pdf:
+                                    this.performSegue(withIdentifier: "showPDF", sender: ButtonSender(url: url, lessonType: resource))
+                                case .audio:
+                                    if let audioPlayerController = this.tabBarController?.popupContent as? AudioPlayerViewController {
                                         audioPlayerController.configure(url, name: lesson.title ?? "", subTitle: lesson.descriptionText ?? "", lesson: lesson, study: this.study)
-                                        if this.tabBarController?.popupPresentationState == .Closed {
-                                            this.tabBarController?.openPopupAnimated(true, completion: nil)
+                                        if this.tabBarController?.popupPresentationState == .closed {
+                                            this.tabBarController?.openPopup(animated: true, completion: nil)
                                         }
                                     } else {
                                         let demoVC = AudioPlayerViewController()
                                         demoVC.configure(url, name: lesson.title ?? "", subTitle: lesson.descriptionText ?? "", lesson: lesson, study: this.study)
                                         
-                                        this.tabBarController?.presentPopupBarWithContentViewController(demoVC, openPopup: true, animated: true, completion: { () -> Void in
+                                        this.tabBarController?.presentPopupBar(withContentViewController: demoVC, openPopup: true, animated: true, completion: { () -> Void in
                                             
                                         })
                                     }
-                                case .Video:
-                                    UIApplication.sharedApplication().openURL(url)
+                                case .video:
+                                    UIApplication.shared.openURL(url)
                                 }
                                 
                             }
                         })
-                    case .Running, .Indeterminate:
+                    case .running, .indeterminate:
                         ResourceManager.sharedInstance.cancelDownload(lesson, resource: lessonType)
                     }
                 }
@@ -269,12 +269,12 @@ class StudyViewController: UITableViewController {
         }
     }
     
-    private func downloadedFileUrls(lesson: Lesson) -> [NSURL] {
+    fileprivate func downloadedFileUrls(_ lesson: Lesson) -> [URL] {
         let urls = ResourceManager.LessonType.all.flatMap({ $0.urlString(lesson) }).flatMap({ APIDataManager.fileExists(lesson, urlString: $0) })
         return urls
     }
     
-    private func configureHeader(lessonHeader: LessonsHeader, section: Int) {
+    fileprivate func configureHeader(_ lessonHeader: LessonsHeader, section: Int) {
         switch section {
         case 1,2:
             if fetchedResultsController.sectionIndexTitles[section - 1] == "0" {
@@ -289,10 +289,10 @@ class StudyViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 1,2:
-            let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(lessonSectionHeaderReuseIdentifier) as! LessonsHeader
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: lessonSectionHeaderReuseIdentifier) as! LessonsHeader
             configureHeader(header, section: section)
             return header
         default:
@@ -300,7 +300,7 @@ class StudyViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 1,2:
             return 36.5
@@ -309,11 +309,11 @@ class StudyViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        switch indexPath.section {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        switch (indexPath as NSIndexPath).section {
         case 1,2:
-            let logicalIndex = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section - 1)
-            let lesson = fetchedResultsController.objectAtIndexPath(logicalIndex) as! Lesson
+            let logicalIndex = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section - 1)
+            let lesson = fetchedResultsController.object(at: logicalIndex) as! Lesson
             if lesson.isPlaceholder {
                 return false
             }
@@ -323,21 +323,21 @@ class StudyViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        switch indexPath.section {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        switch (indexPath as NSIndexPath).section {
         case 1,2:
             var actions = [UITableViewRowAction]()
-            let logicalIndex = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section - 1)
+            let logicalIndex = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section - 1)
             let lessons = fetchedResultsController.fetchedObjects as! [Lesson]
-            let lesson = fetchedResultsController.objectAtIndexPath(logicalIndex) as! Lesson
+            let lesson = fetchedResultsController.object(at: logicalIndex) as! Lesson
             let study = self.study
             let markCompleteAction : UITableViewRowAction
             if lesson.completed == true {
-                markCompleteAction = UITableViewRowAction(style: .Normal, title: "Mark as incomplete", handler: { (action, indexPath) in
+                markCompleteAction = UITableViewRowAction(style: .normal, title: "Mark as incomplete", handler: { (action, indexPath) in
                     lesson.completed = false
-                    tableView.editing = false
+                    tableView.isEditing = false
                     
-                    let lessonsCompleted = lessons.reduce(0, combine: { (value, lesson) -> Int in
+                    let lessonsCompleted = lessons.reduce(0, { (value, lesson) -> Int in
                         return lesson.completed ? value + 1 : value
                     })
                     study.lessonsCompleted = Int32(lessonsCompleted)
@@ -347,12 +347,12 @@ class StudyViewController: UITableViewController {
                     } catch {}
                 })
             } else {
-                markCompleteAction = UITableViewRowAction(style: .Normal, title: "Mark as complete", handler: { (action, indexPath) in
+                markCompleteAction = UITableViewRowAction(style: .normal, title: "Mark as complete", handler: { (action, indexPath) in
                     lesson.completed = true
                     lesson.audioProgress = 0
-                    tableView.editing = false
+                    tableView.isEditing = false
                     
-                    let lessonsCompleted = lessons.reduce(0, combine: { (value, lesson) -> Int in
+                    let lessonsCompleted = lessons.reduce(0, { (value, lesson) -> Int in
                         return lesson.completed ? value + 1 : value
                     })
                     study.lessonsCompleted = Int32(lessonsCompleted)
@@ -365,15 +365,15 @@ class StudyViewController: UITableViewController {
             }
             
             markCompleteAction.backgroundColor = UIColor ( red: 0.2086, green: 0.4158, blue: 0.9483, alpha: 1.0 )
-            markCompleteAction.backgroundEffect = UIBlurEffect(style: .Dark)
+            markCompleteAction.backgroundEffect = UIBlurEffect(style: .dark)
             actions.append(markCompleteAction)
             let downloadedFileURLs = downloadedFileUrls(lesson)
             if downloadedFileURLs.count > 0 {
-                let deleteAction = UITableViewRowAction(style: .Default, title: "Delete files", handler: { (action, indexPath) in
-                    downloadedFileURLs.forEach({ let _ = try? NSFileManager.defaultManager().removeItemAtURL($0) })
+                let deleteAction = UITableViewRowAction(style: .default, title: "Delete files", handler: { (action, indexPath) in
+                    downloadedFileURLs.forEach({ let _ = try? FileManager.default.removeItem(at: $0) })
                     //
-                    tableView.editing = false
-                    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+                    tableView.isEditing = false
+                    tableView.reloadRows(at: [indexPath], with: .none)
                 })
                 actions.append(deleteAction)
             }
@@ -385,14 +385,14 @@ class StudyViewController: UITableViewController {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let viewController = segue.destinationViewController as? PDFViewController, buttonSender = sender as? ButtonSender {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? PDFViewController, let buttonSender = sender as? ButtonSender {
             viewController.urlToLoad = buttonSender.url
             viewController.title = buttonSender.lessonType.title
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         ResourceManager.sharedInstance.addDownloadObserver(self)
@@ -401,14 +401,14 @@ class StudyViewController: UITableViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         ResourceManager.sharedInstance.removeDownloadObserver(self)
     }
     
     var calculatedDescriptionHeight : CGFloat? = nil
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        switch indexPath.section {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch (indexPath as NSIndexPath).section {
         case 0:
             if isDescriptionOpen {
                 return 85
@@ -416,7 +416,7 @@ class StudyViewController: UITableViewController {
                 if let calculatedDescriptionHeight = calculatedDescriptionHeight {
                     return calculatedDescriptionHeight
                 }
-                let size = testDescriptionLabel.sizeThatFits(CGSize(width: self.view.frame.size.width - 16, height: CGFloat.max))
+                let size = testDescriptionLabel.sizeThatFits(CGSize(width: self.view.frame.size.width - 16, height: CGFloat.greatestFiniteMagnitude))
                 calculatedDescriptionHeight = size.height + 32
                 return size.height + 32
             }
@@ -427,10 +427,10 @@ class StudyViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch (indexPath.section) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch ((indexPath as NSIndexPath).section) {
         case 0:
-            switch indexPath.row {
+            switch (indexPath as NSIndexPath).row {
             case 0:
                 isDescriptionOpen = !isDescriptionOpen
                 self.tableView.setNeedsLayout()
@@ -445,9 +445,9 @@ class StudyViewController: UITableViewController {
     }
     
     func tappedMenu() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let downloadAll = UIAlertAction(title: "Download all", style: .Default) { [weak self] (action) in
+        let downloadAll = UIAlertAction(title: "Download all", style: .default) { [weak self] (action) in
             if let study = self?.study {
                 ResourceManager.sharedInstance.downloadAllResources(study, completion: { 
                     log.info("Downloaded all Resources!!!")
@@ -455,7 +455,7 @@ class StudyViewController: UITableViewController {
             }
         }
         
-        let deleteAll = UIAlertAction(title: "Delete all files", style: .Destructive) { [weak self] (action) in
+        let deleteAll = UIAlertAction(title: "Delete all files", style: .destructive) { [weak self] (action) in
             log.info("Trying to delete everything")
             guard let this = self else {
                 return
@@ -464,18 +464,18 @@ class StudyViewController: UITableViewController {
             if let lessons = this.fetchedResultsController?.fetchedObjects as? [Lesson] {
                 lessons.forEach({ (lesson) in
                     let downloadedFileURLs = this.downloadedFileUrls(lesson)
-                    downloadedFileURLs.forEach({ let _ = try? NSFileManager.defaultManager().removeItemAtURL($0) })
+                    downloadedFileURLs.forEach({ let _ = try? FileManager.default.removeItem(at: $0) })
                 })
             }
             
             if let rows = this.tableView.indexPathsForVisibleRows {
-                this.tableView.reloadRowsAtIndexPaths(rows, withRowAnimation: .None)
+                this.tableView.reloadRows(at: rows, with: .none)
             } else {
                 this.tableView.reloadData()
             }
         }
         
-        let markAllComplete = UIAlertAction(title: "Mark all complete", style: .Default) { [weak self] action in
+        let markAllComplete = UIAlertAction(title: "Mark all complete", style: .default) { [weak self] action in
             guard let this = self else { return }
             if let lessons = this.fetchedResultsController.fetchedObjects as? [Lesson] {
                 lessons.forEach({ (lesson) in
@@ -485,17 +485,17 @@ class StudyViewController: UITableViewController {
                     }
                 })
                 
-                let lessonsCompleted = lessons.reduce(0, combine: { (value, lesson) -> Int in
+                let lessonsCompleted = lessons.reduce(0, { (value, lesson) -> Int in
                     return lesson.completed ? value + 1 : value
                 })
                 this.study.lessonsCompleted = Int32(lessonsCompleted)
                 
                 let context = ContextCoordinator.sharedInstance.managedObjectContext
-                let _ = try? context.save()
+                let _ = try? context?.save()
             }
         }
         
-        let markAllIncomplete = UIAlertAction(title: "Mark all incomplete", style: .Default) { [weak self] action in
+        let markAllIncomplete = UIAlertAction(title: "Mark all incomplete", style: .default) { [weak self] action in
             guard let this = self else { return }
             if let lessons = this.fetchedResultsController.fetchedObjects as? [Lesson] {
                 lessons.forEach({ (lesson) in
@@ -503,22 +503,22 @@ class StudyViewController: UITableViewController {
                     lesson.audioProgress = 0
                 })
                 
-                let lessonsCompleted = lessons.reduce(0, combine: { (value, lesson) -> Int in
+                let lessonsCompleted = lessons.reduce(0, { (value, lesson) -> Int in
                     return lesson.completed ? value + 1 : value
                 })
                 this.study.lessonsCompleted = Int32(lessonsCompleted)
                 
                 let context = ContextCoordinator.sharedInstance.managedObjectContext
-                let _ = try? context.save()
+                let _ = try? context?.save()
             }
         }
         
-        let cancel = UIAlertAction(title: "Close", style: .Cancel) { [weak self] (action) in
-            self?.dismissViewControllerAnimated(true, completion: nil)
+        let cancel = UIAlertAction(title: "Close", style: .cancel) { [weak self] (action) in
+            self?.dismiss(animated: true, completion: nil)
         }
         
         let lessons = fetchedResultsController.fetchedObjects as! [Lesson]
-        let lessonsCompleted = lessons.reduce(0, combine: { (value, lesson) -> Int in
+        let lessonsCompleted = lessons.reduce(0, { (value, lesson) -> Int in
             return lesson.completed ? value + 1 : value
         })
         
@@ -535,62 +535,62 @@ class StudyViewController: UITableViewController {
         alert.addAction(cancel)
         
         alert.popoverPresentationController?.barButtonItem = barButtonItem
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
 extension StudyViewController : NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
         (0..<tableView.numberOfSections).forEach({
-            if let header = tableView.headerViewForSection($0) as? LessonsHeader {
+            if let header = tableView.headerView(forSection: $0) as? LessonsHeader {
                 configureHeader(header, section: $0)
             }
         })
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         switch type {
-        case .Insert:
-            tableView.insertSections(NSIndexSet(index: sectionIndex + 1), withRowAnimation: .Fade)
-        case .Delete:
-            tableView.deleteSections(NSIndexSet(index: sectionIndex + 1), withRowAnimation: .Fade)
+        case .insert:
+            tableView.insertSections(IndexSet(integer: sectionIndex + 1), with: .fade)
+        case .delete:
+            tableView.deleteSections(IndexSet(integer: sectionIndex + 1), with: .fade)
         default:
             return
         }
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
         switch type {
-        case .Insert:
+        case .insert:
             guard let newIndexPath = newIndexPath else { return }
-            let myNewIndexPath = NSIndexPath(forRow: newIndexPath.row, inSection: newIndexPath.section + 1)
-            tableView.insertRowsAtIndexPaths([myNewIndexPath], withRowAnimation: .Fade)
-        case .Delete:
+            let myNewIndexPath = IndexPath(row: (newIndexPath as NSIndexPath).row, section: (newIndexPath as NSIndexPath).section + 1)
+            tableView.insertRows(at: [myNewIndexPath], with: .fade)
+        case .delete:
             guard let indexPath = indexPath else { return }
-            let myIndexPath = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section + 1)
-            tableView.deleteRowsAtIndexPaths([myIndexPath], withRowAnimation: .Fade)
-        case .Move, .Update:
-            guard let indexPath = indexPath, newIndexPath = newIndexPath else { return }
-            let myNewIndexPath = NSIndexPath(forRow: newIndexPath.row, inSection: newIndexPath.section + 1)
-            let myIndexPath = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section + 1)
+            let myIndexPath = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section + 1)
+            tableView.deleteRows(at: [myIndexPath], with: .fade)
+        case .move, .update:
+            guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
+            let myNewIndexPath = IndexPath(row: (newIndexPath as NSIndexPath).row, section: (newIndexPath as NSIndexPath).section + 1)
+            let myIndexPath = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section + 1)
             
             if myIndexPath == myNewIndexPath {
-                if let cell = tableView.cellForRowAtIndexPath(myIndexPath) where cell.editing == false {
-                    tableView.deleteRowsAtIndexPaths([myIndexPath], withRowAnimation: .None)
-                    tableView.insertRowsAtIndexPaths([myNewIndexPath], withRowAnimation: .None)
+                if let cell = tableView.cellForRow(at: myIndexPath) , cell.isEditing == false {
+                    tableView.deleteRows(at: [myIndexPath], with: .none)
+                    tableView.insertRows(at: [myNewIndexPath], with: .none)
                 }
             } else {
                 //Don't perform a move here because for some reason it doesn't work
-                tableView.deleteRowsAtIndexPaths([myIndexPath], withRowAnimation: .Automatic)
-                tableView.insertRowsAtIndexPaths([myNewIndexPath], withRowAnimation: .Automatic)
+                tableView.deleteRows(at: [myIndexPath], with: .automatic)
+                tableView.insertRows(at: [myNewIndexPath], with: .automatic)
             }
         }
     }
     
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
 }
@@ -598,11 +598,11 @@ extension StudyViewController : NSFetchedResultsControllerDelegate {
 //MARK: - ResourceManagerObserver
 extension StudyViewController : ResourceManagerObserver {
     
-    func downloadStateChanged(lesson: Lesson, lessonType: ResourceManager.LessonType, downloadState: ResourceManager.DownloadState) {
-        if let indexPath = fetchedResultsController?.indexPathForObject(lesson) {
+    func downloadStateChanged(_ lesson: Lesson, lessonType: ResourceManager.LessonType, downloadState: ResourceManager.DownloadState) {
+        if let indexPath = fetchedResultsController?.indexPath(forObject: lesson) {
             //Then we have a lesson in our table that needs an update.. lets see first if the cell is available
-            let tableIndexPath = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section + 1)
-            if let cell = tableView?.cellForRowAtIndexPath(tableIndexPath) as? LessonTableViewCell {
+            let tableIndexPath = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section + 1)
+            if let cell = tableView?.cellForRow(at: tableIndexPath) as? LessonTableViewCell {
                 //Nice one, now we have a cell that we can update.. All other download notifications we can ignore because they are for someone else
                 let button = lessonType.button(cell)
                 if button.currentStatus != downloadState.acpStatus {
@@ -614,7 +614,7 @@ extension StudyViewController : ResourceManagerObserver {
                     button.setProgress(Float(percent), animated: false)
                 case .downloaded:
                     let view = lessonType.view(cell)
-                    view.dotView.hidden = false
+                    view.dotView.isHidden = false
                 default:
                     break
                 }
@@ -630,13 +630,13 @@ extension ResourceManager.DownloadState {
         get {
             switch self {
             case .nothing:
-                return ACPDownloadStatus.None
+                return ACPDownloadStatus.none
             case .downloaded:
-                return ACPDownloadStatus.None
+                return ACPDownloadStatus.none
             case .pending:
-                return ACPDownloadStatus.Indeterminate
+                return ACPDownloadStatus.indeterminate
             case .downloading:
-                return ACPDownloadStatus.Running
+                return ACPDownloadStatus.running
             }
         }
     }

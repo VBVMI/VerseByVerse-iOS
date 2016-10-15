@@ -32,97 +32,97 @@ public enum LessonRelationships: String {
     case topics = "topics"
 }
 
-public class _Lesson: NSManagedObject {
+open class _Lesson: NSManagedObject {
 
     // MARK: - Class methods
 
-    public class func entityName () -> String {
+    open class func entityName () -> String {
         return "Lesson"
     }
 
-    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
-        return NSEntityDescription.entityForName(self.entityName(), inManagedObjectContext: managedObjectContext)
+    open class func entity(_ managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+        return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
     // MARK: - Life cycle methods
 
-    public override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
     }
 
     public convenience init?(managedObjectContext: NSManagedObjectContext) {
         guard let entity = _Lesson.entity(managedObjectContext) else { return nil }
-        self.init(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
+        self.init(entity: entity, insertInto: managedObjectContext)
     }
 
     // MARK: - Properties
 
-    @NSManaged public
+    @NSManaged open
     var audioLength: String?
 
-    @NSManaged public
+    @NSManaged open
     var audioProgress: Double
 
-    @NSManaged public
+    @NSManaged open
     var audioSourceURL: String?
 
-    @NSManaged public
+    @NSManaged open
     var averageRating: String?
 
-    @NSManaged public
+    @NSManaged open
     var completed: Bool
 
-    @NSManaged public
-    var dateStudyGiven: NSDate?
+    @NSManaged open
+    var dateStudyGiven: Date?
 
-    @NSManaged public
+    @NSManaged open
     var descriptionText: String?
 
-    @NSManaged public
+    @NSManaged open
     var identifier: String
 
-    @NSManaged public
+    @NSManaged open
     var isPlaceholder: Bool
 
-    @NSManaged public
+    @NSManaged open
     var lessonIndex: Int32
 
-    @NSManaged public
+    @NSManaged open
     var lessonNumber: String?
 
-    @NSManaged public
+    @NSManaged open
     var lessonTitle: String?
 
-    @NSManaged public
+    @NSManaged open
     var location: String?
 
-    @NSManaged public
-    var postedDate: NSDate?
+    @NSManaged open
+    var postedDate: Date?
 
-    @NSManaged public
+    @NSManaged open
     var studentAidURL: String?
 
-    @NSManaged public
+    @NSManaged open
     var studyIdentifier: String
 
-    @NSManaged public
+    @NSManaged open
     var teacherAid: String?
 
-    @NSManaged public
+    @NSManaged open
     var title: String
 
-    @NSManaged public
+    @NSManaged open
     var transcriptURL: String?
 
-    @NSManaged public
+    @NSManaged open
     var videoLength: String?
 
-    @NSManaged public
+    @NSManaged open
     var videoSourceURL: String?
 
     // MARK: - Relationships
 
-    @NSManaged public
+    @NSManaged open
     var topics: Set<Topic>
 
     // MARK: - Fetched Properties
@@ -131,20 +131,20 @@ public class _Lesson: NSManagedObject {
 
 extension _Lesson {
 
-    func addTopics(objects: Set<Topic>) {
+    func addTopics(_ objects: Set<Topic>) {
         self.topics = self.topics.union(objects)
     }
 
-    func removeTopics(objects: Set<Topic>) {
-        self.topics = self.topics.subtract(objects)
+    func removeTopics(_ objects: Set<Topic>) {
+        self.topics = self.topics.subtracting(objects)
     }
 
-    func addTopicsObject(value: Topic) {
+    func addTopicsObject(_ value: Topic) {
         self.topics = self.topics.union([value])
     }
 
-    func removeTopicsObject(value: Topic) {
-        self.topics = self.topics.subtract([value])
+    func removeTopicsObject(_ value: Topic) {
+        self.topics = self.topics.subtracting([value])
     }
 
 }

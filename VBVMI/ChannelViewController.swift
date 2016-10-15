@@ -14,18 +14,18 @@ import AVFoundation
 class ChannelViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    private var fetchedResultsController: NSFetchedResultsController!
+    fileprivate var fetchedResultsController: NSFetchedResultsController<AnyObject>!
     
-    private let formatter = NSDateComponentsFormatter()
-    private let videoCellIdentifier = "ChannelCell"
+    fileprivate let formatter = DateComponentsFormatter()
+    fileprivate let videoCellIdentifier = "ChannelCell"
     var channel: Channel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.registerNib(UINib(nibName: "VideoTableViewCell", bundle: nil), forCellReuseIdentifier: videoCellIdentifier)
+        tableView.register(UINib(nibName: "VideoTableViewCell", bundle: nil), forCellReuseIdentifier: videoCellIdentifier)
         tableView.rowHeight = UITableViewAutomaticDimension
-        formatter.unitsStyle = .Positional
+        formatter.unitsStyle = .positional
         setupFetchedResultsController()
     }
 
@@ -34,7 +34,7 @@ class ChannelViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func setupFetchedResultsController() {
+    fileprivate func setupFetchedResultsController() {
         let fetchRequest = NSFetchRequest(entityName: Video.entityName())
         let context = ContextCoordinator.sharedInstance.managedObjectContext
         fetchRequest.entity = Video.entity(context)
@@ -49,7 +49,7 @@ class ChannelViewController: UIViewController {
         
         do {
             try fetchedResultsController.performFetch()
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            DispatchQueue.main.async { () -> Void in
                 self.tableView.reloadData()
             }
         } catch let error {
@@ -68,17 +68,17 @@ class ChannelViewController: UIViewController {
 // MARK: - UITableViewDelegate
 extension ChannelViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
-        let video = fetchedResultsController.objectAtIndexPath(indexPath) as! Video
+        let video = fetchedResultsController.object(at: indexPath) as! Video
         
-        if let videoURLString = video.videoSource, url = NSURL(string: videoURLString) {
-            UIApplication.sharedApplication().openURL(url)
+        if let videoURLString = video.videoSource, let url = URL(string: videoURLString) {
+            UIApplication.shared.openURL(url)
         }
     }
     
@@ -87,26 +87,26 @@ extension ChannelViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension ChannelViewController: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController.sections?.count ?? 0
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(videoCellIdentifier, forIndexPath: indexPath) as! VideoTableViewCell
-        let video = fetchedResultsController.objectAtIndexPath(indexPath) as! Video
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: videoCellIdentifier, for: indexPath) as! VideoTableViewCell
+        let video = fetchedResultsController.object(at: indexPath) as! Video
         
         cell.titleLabel.text = video.title
-        if let timeString = video.videoLength, dateComponents = TimeParser.getTime(timeString) {
-            cell.timeLabel.text = formatter.stringFromDateComponents(dateComponents)
+        if let timeString = video.videoLength, let dateComponents = TimeParser.getTime(timeString) {
+            cell.timeLabel.text = formatter.string(from: dateComponents)
         } else {
             cell.timeLabel.text = nil
         }
         
-        if let urlString = video.thumbnailSource, url = NSURL(string: urlString) {
+        if let urlString = video.thumbnailSource, let url = URL(string: urlString) {
             cell.thumbnailImageView?.af_setImageWithURL(url, placeholderImage: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3))
         } else {
             cell.thumbnailImageView?.image = nil
@@ -122,53 +122,53 @@ extension ChannelViewController: UITableViewDataSource {
 // MARK: - NSFetchedResultsControllerDelegate
 extension ChannelViewController: NSFetchedResultsControllerDelegate {
     
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         switch type {
-        case .Insert:
-            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
-        case .Delete:
-            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+        case .insert:
+            tableView.insertSections(IndexSet(integer: sectionIndex), with: .automatic)
+        case .delete:
+            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .automatic)
         default:
             return
         }
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
-        case .Insert:
+        case .insert:
             guard let newIndexPath = newIndexPath else { return }
-            let myNewIndexPath = NSIndexPath(forRow: newIndexPath.row, inSection: newIndexPath.section)
-            tableView.insertRowsAtIndexPaths([myNewIndexPath], withRowAnimation: .Automatic)
-        case .Delete:
+            let myNewIndexPath = IndexPath(row: (newIndexPath as NSIndexPath).row, section: (newIndexPath as NSIndexPath).section)
+            tableView.insertRows(at: [myNewIndexPath], with: .automatic)
+        case .delete:
             guard let indexPath = indexPath else { return }
-            let myIndexPath = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section)
-            tableView.deleteRowsAtIndexPaths([myIndexPath], withRowAnimation: .Automatic)
-        case .Move:
-            guard let indexPath = indexPath, newIndexPath = newIndexPath else { return }
-            let myNewIndexPath = NSIndexPath(forRow: newIndexPath.row, inSection: newIndexPath.section)
-            let myIndexPath = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section)
+            let myIndexPath = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section)
+            tableView.deleteRows(at: [myIndexPath], with: .automatic)
+        case .move:
+            guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
+            let myNewIndexPath = IndexPath(row: (newIndexPath as NSIndexPath).row, section: (newIndexPath as NSIndexPath).section)
+            let myIndexPath = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section)
             if myIndexPath == myNewIndexPath {
-                if let cell = tableView.cellForRowAtIndexPath(myIndexPath) where cell.editing == false {
-                    tableView.deleteRowsAtIndexPaths([myIndexPath], withRowAnimation: .None)
-                    tableView.insertRowsAtIndexPaths([myNewIndexPath], withRowAnimation: .None)
+                if let cell = tableView.cellForRow(at: myIndexPath) , cell.isEditing == false {
+                    tableView.deleteRows(at: [myIndexPath], with: .none)
+                    tableView.insertRows(at: [myNewIndexPath], with: .none)
                 }
             } else {
                 //Don't perform a move here because for some reason it doesn't work
-                tableView.deleteRowsAtIndexPaths([myIndexPath], withRowAnimation: .Automatic)
-                tableView.insertRowsAtIndexPaths([myNewIndexPath], withRowAnimation: .Automatic)
+                tableView.deleteRows(at: [myIndexPath], with: .automatic)
+                tableView.insertRows(at: [myNewIndexPath], with: .automatic)
             }
-        case .Update:
+        case .update:
             guard let indexPath = indexPath else { return }
-            let myIndexPath = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section)
-            tableView.reloadRowsAtIndexPaths([myIndexPath], withRowAnimation: .None)
+            let myIndexPath = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section)
+            tableView.reloadRows(at: [myIndexPath], with: .none)
         }
     }
     
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
     

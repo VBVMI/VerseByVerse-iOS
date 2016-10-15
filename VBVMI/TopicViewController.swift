@@ -13,27 +13,27 @@ class TopicViewController: UIViewController {
     let segmentedControl = UISegmentedControl(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
     
     var topic: Topic!
-    var selectedSegment: TypeSelection = .Studies
+    var selectedSegment: TypeSelection = .studies
     
     enum TypeSelection: Int {
-        case Studies = 0
-        case Articles = 1
-        case Answers = 2
+        case studies = 0
+        case articles = 1
+        case answers = 2
         
         var title: String {
             return "\(self)"
         }
         
-        func viewController(topic: Topic) -> UIViewController {
+        func viewController(_ topic: Topic) -> UIViewController {
             switch self {
-            case .Articles:
+            case .articles:
                 let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let viewController = storyboard.instantiateViewControllerWithIdentifier("Articles") as! ArticlesViewController
+                let viewController = storyboard.instantiateViewController(withIdentifier: "Articles") as! ArticlesViewController
                 viewController.topic = topic
                 return viewController
-            case .Answers:
+            case .answers:
                 let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let viewController = storyboard.instantiateViewControllerWithIdentifier("Answers") as! AnswersViewController
+                let viewController = storyboard.instantiateViewController(withIdentifier: "Answers") as! AnswersViewController
                 viewController.topic = topic
                 return viewController
             default:
@@ -45,14 +45,14 @@ class TopicViewController: UIViewController {
     var segmentToIndexMap = [TypeSelection : Int]()
     var indexToSegmentMap = [Int: TypeSelection]()
     
-    override func encodeRestorableStateWithCoder(coder: NSCoder) {
-        coder.encodeObject(topic.identifier, forKey: "topicIdentifier")
-        coder.encodeInteger(selectedSegment.rawValue, forKey: "selectedSegment")
-        super.encodeRestorableStateWithCoder(coder)
+    override func encodeRestorableState(with coder: NSCoder) {
+        coder.encode(topic.identifier, forKey: "topicIdentifier")
+        coder.encode(selectedSegment.rawValue, forKey: "selectedSegment")
+        super.encodeRestorableState(with: coder)
     }
     
-    override func decodeRestorableStateWithCoder(coder: NSCoder) {
-        guard let identifier = coder.decodeObjectForKey("topicIdentifier") as? String else {
+    override func decodeRestorableState(with coder: NSCoder) {
+        guard let identifier = coder.decodeObject(forKey: "topicIdentifier") as? String else {
             fatalError()
         }
         let context = ContextCoordinator.sharedInstance.managedObjectContext
@@ -60,14 +60,14 @@ class TopicViewController: UIViewController {
             fatalError()
         }
         self.topic = topic
-        self.selectedSegment = TypeSelection(rawValue: coder.decodeIntegerForKey("selectedSegment"))!
-        super.decodeRestorableStateWithCoder(coder)
+        self.selectedSegment = TypeSelection(rawValue: coder.decodeInteger(forKey: "selectedSegment"))!
+        super.decodeRestorableState(with: coder)
         
         configureForTopic()
         configureSegmentedControl()
     }
     
-    private func configureForTopic() {
+    fileprivate func configureForTopic() {
         var currentIndex = 0
         //        if topic.studies.count > 0 || topic.lessons.count > 0 {
         //            segmentedControl.insertSegmentWithTitle(TypeSelection.Studies.title, atIndex: currentIndex, animated: false)
@@ -76,15 +76,15 @@ class TopicViewController: UIViewController {
         //            currentIndex += 1
         //        }
         if topic.articles.count > 0 {
-            segmentedControl.insertSegmentWithTitle(TypeSelection.Articles.title, atIndex: currentIndex, animated: false)
-            segmentToIndexMap[.Articles] = currentIndex
-            indexToSegmentMap[currentIndex] = .Articles
+            segmentedControl.insertSegment(withTitle: TypeSelection.articles.title, at: currentIndex, animated: false)
+            segmentToIndexMap[.articles] = currentIndex
+            indexToSegmentMap[currentIndex] = .articles
             currentIndex += 1
         }
         if topic.answers.count > 0 {
-            segmentedControl.insertSegmentWithTitle(TypeSelection.Answers.title, atIndex: currentIndex, animated: false)
-            segmentToIndexMap[.Answers] = currentIndex
-            indexToSegmentMap[currentIndex] = .Answers
+            segmentedControl.insertSegment(withTitle: TypeSelection.answers.title, at: currentIndex, animated: false)
+            segmentToIndexMap[.answers] = currentIndex
+            indexToSegmentMap[currentIndex] = .answers
             currentIndex += 1
         }
         
@@ -92,13 +92,13 @@ class TopicViewController: UIViewController {
 //        self.navigationItem.prompt = topic.name
     }
     
-    private func configureSegmentedControl() {
+    fileprivate func configureSegmentedControl() {
         if let index = segmentToIndexMap[selectedSegment] {
             segmentedControl.selectedSegmentIndex = index
         } else {
             segmentedControl.selectedSegmentIndex = 0
         }
-        segmentedControl.addTarget(self, action: #selector(TopicViewController.segmentedControlChanged(_:)), forControlEvents: .ValueChanged)
+        segmentedControl.addTarget(self, action: #selector(TopicViewController.segmentedControlChanged(_:)), for: .valueChanged)
         self.segmentedControlChanged(segmentedControl)
     }
     
@@ -114,15 +114,15 @@ class TopicViewController: UIViewController {
         }
     }
 
-    private var currentViewController : UIViewController?
-    private func configureSubviewController(viewController: UIViewController) {
+    fileprivate var currentViewController : UIViewController?
+    fileprivate func configureSubviewController(_ viewController: UIViewController) {
         if let current = currentViewController {
-            current.willMoveToParentViewController(nil)
+            current.willMove(toParentViewController: nil)
             current.removeFromParentViewController()
             current.view.removeFromSuperview()
         }
         
-        viewController.willMoveToParentViewController(self)
+        viewController.willMove(toParentViewController: self)
         self.addChildViewController(viewController)
 //        viewController.view.frame = self.view.bounds
         self.view.addSubview(viewController.view)
@@ -131,7 +131,7 @@ class TopicViewController: UIViewController {
             make.edges.equalTo(0)
         }
         
-        viewController.didMoveToParentViewController(self)
+        viewController.didMove(toParentViewController: self)
         
         currentViewController = viewController
         
@@ -139,7 +139,7 @@ class TopicViewController: UIViewController {
             let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
             tableViewController.tableView.contentInset = insets
             tableViewController.tableView.scrollIndicatorInsets = insets
-            tableViewController.tableView.contentOffset = CGPointMake(0, -topLayoutGuide.length)
+            tableViewController.tableView.contentOffset = CGPoint(x: 0, y: -topLayoutGuide.length)
         }
 //        viewController.view.layoutIfNeeded()
     }
@@ -149,7 +149,7 @@ class TopicViewController: UIViewController {
             let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
             tableViewController.tableView.contentInset = insets
             tableViewController.tableView.scrollIndicatorInsets = insets
-            tableViewController.tableView.contentOffset = CGPointMake(0, -topLayoutGuide.length)
+            tableViewController.tableView.contentOffset = CGPoint(x: 0, y: -topLayoutGuide.length)
         }
     }
     
@@ -158,7 +158,7 @@ class TopicViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func segmentedControlChanged(sender: UISegmentedControl) {
+    func segmentedControlChanged(_ sender: UISegmentedControl) {
 //        print("value: \(sender.selectedSegmentIndex)")
         self.selectedSegment = indexToSegmentMap[sender.selectedSegmentIndex]!
         let viewController = self.selectedSegment.viewController(topic)
@@ -178,7 +178,7 @@ class TopicViewController: UIViewController {
 }
 
 extension TopicViewController : UIViewControllerRestoration {
-    static func viewControllerWithRestorationIdentifierPath(identifierComponents: [AnyObject], coder: NSCoder) -> UIViewController? {
+    static func viewController(withRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {
         let vc = TopicViewController(nibName: "TopicViewController", bundle: nil)
         return vc
     }

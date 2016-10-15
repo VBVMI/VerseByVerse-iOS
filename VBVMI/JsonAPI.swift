@@ -10,14 +10,14 @@ import Foundation
 import Moya
 
 public enum JsonAPI {
-    case Core
-    case Lesson(identifier: String)
-    case ArticlesP
-    case Articles
-    case Channels
-    case Events
-    case QA
-    case QAp
+    case core
+    case lesson(identifier: String)
+    case articlesP
+    case articles
+    case channels
+    case events
+    case qa
+    case qAp
 }
 
 extension JsonAPI : TargetType {
@@ -25,27 +25,27 @@ extension JsonAPI : TargetType {
         return "https://www.versebyverseministry.org/core/"
     }
     
-    public var baseURL: NSURL {
-        return NSURL(string: base)!
+    public var baseURL: URL {
+        return URL(string: base)!
     }
     
     public var path: String {
         switch self {
-        case Core:
+        case .core:
             return "json"
-        case .Lesson(let identifier):
+        case .lesson(let identifier):
             return "json-lessons/\(identifier)"
-        case .ArticlesP:
+        case .articlesP:
             return "json-articlesp"
-        case .Articles:
+        case .articles:
             return "json-articles"
-        case .Channels:
+        case .channels:
             return "json-channels"
-        case .Events:
+        case .events:
             return "json-events"
-        case .QA:
+        case .qa:
             return "json-qa"
-        case .QAp:
+        case .qAp:
             return "json-qap"
         }
     }
@@ -64,23 +64,23 @@ extension JsonAPI : TargetType {
         }
     }
     
-    public var sampleData: NSData {
+    public var sampleData: Data {
         switch self {
-        case Core:
+        case .core:
             return stubbedResponse("core")
-        case Lesson:
+        case .lesson:
             return stubbedResponse("lesson")
-        case .ArticlesP:
+        case .articlesP:
             return stubbedResponse("articlesP")
-        case .Articles:
+        case .articles:
             return stubbedResponse("articles")
-        case .Channels:
+        case .channels:
             return stubbedResponse("channels")
-        case .Events:
+        case .events:
             return stubbedResponse("events")
-        case .QA:
+        case .qa:
             return stubbedResponse("qa")
-        case .QAp:
+        case .qAp:
             return stubbedResponse("qap")
         }
     }
@@ -100,7 +100,7 @@ extension JsonAPI : TargetType {
     }
 }
 
-public func endpointResolver() -> ((endpoint: Endpoint<JsonAPI>) -> (NSURLRequest)) {
+public func endpointResolver() -> ((_ endpoint: Endpoint<JsonAPI>) -> (NSURLRequest)) {
     return { (endpoint: Endpoint<JsonAPI>) -> (NSURLRequest) in
         let request: NSMutableURLRequest = endpoint.urlRequest.mutableCopy() as! NSMutableURLRequest
         //        request.HTTPShouldHandleCookies = false
@@ -109,7 +109,7 @@ public func endpointResolver() -> ((endpoint: Endpoint<JsonAPI>) -> (NSURLReques
 }
 
 public struct Provider {
-    private static var endpointsClosure = { (target: JsonAPI) -> Endpoint<JsonAPI> in
+    fileprivate static var endpointsClosure = { (target: JsonAPI) -> Endpoint<JsonAPI> in
         let sampleResponse : Endpoint.SampleResponseClosure  = { return EndpointSampleResponse.NetworkResponse(200, target.sampleData) }
         
         var endpoint : Endpoint<JsonAPI> = Endpoint(URL: url(target), sampleResponseClosure: sampleResponse, method: target.method, parameters:  target.parameters, parameterEncoding: target.parameterEncoding, httpHeaderFields: nil)
@@ -121,16 +121,16 @@ public struct Provider {
     }
     public typealias ProviderRequest = ()->()
     
-    public static func APIKeysBasedStubBehaviour(target: JsonAPI) -> Moya.StubBehavior {
+    public static func APIKeysBasedStubBehaviour(_ target: JsonAPI) -> Moya.StubBehavior {
         switch target {
         default:
             return .Never
         }
     }
     
-    private static var ongoingRequestCount = 0 {
+    fileprivate static var ongoingRequestCount = 0 {
         didSet {
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = ongoingRequestCount > 0
+            UIApplication.shared.isNetworkActivityIndicatorVisible = ongoingRequestCount > 0
         }
     }
     
@@ -148,7 +148,7 @@ public struct Provider {
         return provider
     }
     
-    private struct SharedProvider {
+    fileprivate struct SharedProvider {
         static var instance = Provider.DefaultProvider()
     }
 
@@ -163,15 +163,15 @@ public struct Provider {
     }
 }
 
-private func stubbedResponse(filename: String) -> NSData! {
+private func stubbedResponse(_ filename: String) -> Data! {
     @objc class TestClass : NSObject { }
-    let bundle = NSBundle(forClass: TestClass.self)
-    if let path = bundle.pathForResource(filename, ofType: "json") {
-        return NSData(contentsOfFile: path)
+    let bundle = Bundle(for: TestClass.self)
+    if let path = bundle.path(forResource: filename, ofType: "json") {
+        return (try? Data(contentsOf: URL(fileURLWithPath: path)))
     }
-    return NSData()
+    return Data()
 }
 
-public func url(route: TargetType) -> String {
+public func url(_ route: TargetType) -> String {
     return route.baseURL.URLByAppendingPathComponent(route.path)!.absoluteString!
 }

@@ -114,14 +114,6 @@
         <key>Type</key>
         <string>PSChildPaneSpecifier</string>
         <key>Title</key>
-        <string>SwiftString</string>
-        <key>File</key>
-        <string>Acknowledgement-SwiftString</string>
-      </dict>
-      <dict>
-        <key>Type</key>
-        <string>PSChildPaneSpecifier</string>
-        <key>Title</key>
         <string>UIImage-Color</string>
         <key>File</key>
         <string>Acknowledgement-UIImage-Color</string>

@@ -26,7 +26,7 @@ class StudyCellCollectionViewCell: UICollectionViewCell {
         imageTopInsetContraint.constant = Cell.CellSize.StudyImageInset.top
         
         let highlightView = UIView()
-        highlightView.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3)
+        highlightView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
         highlightView.layer.cornerRadius = 7
         self.selectedBackgroundView = highlightView
     }

@@ -3,15 +3,15 @@ import CoreData
 import Decodable
 
 @objc(Video)
-public class Video: _Video {
+open class Video: _Video {
     
-    class func decodeJSON(JSONDict: NSDictionary, context: NSManagedObjectContext, index: Int) throws -> (Video) {
+    class func decodeJSON(_ JSONDict: NSDictionary, context: NSManagedObjectContext, index: Int) throws -> (Video) {
         guard let identifier = JSONDict["ID"] as? String else {
-            throw APIDataManagerError.MissingID
+            throw APIDataManagerError.missingID
         }
         
         guard let video = Video.findFirstOrCreateWithDictionary(["identifier": identifier], context: context) as? Video else {
-            throw APIDataManagerError.ModelCreationFailed
+            throw APIDataManagerError.modelCreationFailed
         }
         
         video.identifier = try JSONDict => "ID"
@@ -23,11 +23,11 @@ public class Video: _Video {
         video.thumbnailAltText = nullOrString(try JSONDict => "thumbnailAltText")
         
         if let dateString: String = try JSONDict => "postedDate" {
-            video.postedDate = NSDate.dateFromTimeString(dateString)
+            video.postedDate = Date.dateFromTimeString(dateString)
         }
         
         if let dateString: String = try JSONDict => "recordedDate" {
-            video.recordedDate = NSDate.dateFromTimeString(dateString)
+            video.recordedDate = Date.dateFromTimeString(dateString)
         }
         
         video.averageRating = try JSONDict => "averageRating"

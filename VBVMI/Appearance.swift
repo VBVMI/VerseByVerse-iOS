@@ -10,17 +10,17 @@ import UIKit
 
 enum Theme : Int
 {
-    case Default = 0
+    case `default` = 0
     
     func applyTheme() {
         //UIButton.appearanceWhenContainedInInstancesOfClasses([UITableViewCell.self]).setTitleColor(StyleKit.darkGrey, forState: .Normal)
         //UILabel.appearanceWhenContainedInInstancesOfClasses([LessonTableViewCell.self]).textColor = StyleKit.darkGrey
         
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: StyleKit.darkGrey], forState: .Normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: StyleKit.darkGrey], for: UIControlState())
         UIBarButtonItem.appearance().tintColor = StyleKit.darkGrey
         
         
-        UISegmentedControl.appearanceWhenContainedInInstancesOfClasses([UINavigationBar.self]).tintColor = StyleKit.darkGrey
+        UISegmentedControl.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = StyleKit.darkGrey
         TopicButton.appearance().tintColor = StyleKit.midGrey
     }
 }
