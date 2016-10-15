@@ -13,22 +13,13 @@ import Fabric
 import Crashlytics
 import XCGLogger
 import ReachabilitySwift
-#if DEBUG
-import XCGLoggerNSLoggerConnector
-import NSLogger
-#endif
 
 let log: XCGLogger = {
-    let log = XCGLogger.defaultInstance()
+    let log = XCGLogger.default
     log.setup(.Debug, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil, fileLogLevel: .Debug)
     log.xcodeColorsEnabled = false
     // NSLogger support
     // only log to the external window
-    #if DEBUG
-    LoggerSetOptions(LoggerGetDefaultLogger(), UInt32( kLoggerOption_BufferLogsUntilConnection | kLoggerOption_BrowseBonjour | kLoggerOption_BrowseOnlyLocalDomain ))
-    LoggerStart(LoggerGetDefaultLogger())
-    log.addLogDestination(XCGNSLoggerLogDestination(owner: log, identifier: "nslogger.identifier"))
-    #endif
     return log
 }()
 
@@ -157,17 +148,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     fileprivate static func addSkipBackupAttributeToItemAtURL(_ filePath:String) -> Bool
     {
-        let URL:Foundation.URL = URL(fileURLWithPath: filePath)
+        let myUrl = URL(fileURLWithPath: filePath)
         
         assert(FileManager.default.fileExists(atPath: filePath), "File \(filePath) does not exist")
         
         var success: Bool
         do {
-            try (URL as NSURL).setResourceValue(true, forKey:URLResourceKey.isExcludedFromBackupKey)
+            try (myUrl as NSURL).setResourceValue(true, forKey:URLResourceKey.isExcludedFromBackupKey)
             success = true
         } catch let error as NSError {
             success = false
-            print("Error excluding \(URL.lastPathComponent) from backup \(error)");
+            print("Error excluding \(myUrl.lastPathComponent) from backup \(error)");
         }
         
         return success

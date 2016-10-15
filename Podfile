@@ -16,7 +16,7 @@ pod 'STRegex'
 
 # Logging
 pod 'XCGLogger'
-pod 'XCGLoggerNSLoggerConnector', :configurations => ['Debug']
+#pod 'XCGLoggerNSLoggerConnector', :configurations => ['Debug']
 
 # UI
 pod 'SnapKit'
@@ -30,7 +30,7 @@ pod 'Fabric'
 pod 'Crashlytics'
 
 pod 'Reveal-iOS-SDK', :configurations => ['Debug']
-pod 'NSLogger', :configurations => ['Debug']
+# pod 'NSLogger', :configurations => ['Debug']
 
 pod 'ReachabilitySwift'
 

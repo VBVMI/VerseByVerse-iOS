@@ -42,18 +42,18 @@ public class _<$sanitizedManagedObjectClassName$>: NSManagedObject {
     }
 
     <$if (hasCustomSuperclass || (hasCustomSuperentity && TemplateVar.overrideBaseClass))$>override <$endif$>public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
-        return NSEntityDescription.entityForName(self.entityName(), inManagedObjectContext: managedObjectContext)
+        return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
     // MARK: - Life cycle methods
 
-    public override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
     }
 
     public convenience init?(managedObjectContext: NSManagedObjectContext) {
-        guard let entity = _<$sanitizedManagedObjectClassName$>.entity(managedObjectContext) else { return nil }
-        self.init(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
+        guard let entity = _<$sanitizedManagedObjectClassName$>.entity(managedObjectContext: managedObjectContext) else { return nil }
+        self.init(entity: entity, insertInto: managedObjectContext)
     }
 
     // MARK: - Properties
@@ -182,20 +182,20 @@ public class _<$sanitizedManagedObjectClassName$>: NSManagedObject {
 <$foreach Relationship noninheritedRelationships do$><$if Relationship.isToMany$>
 extension _<$sanitizedManagedObjectClassName$> {
 
-    func add<$Relationship.name.initialCapitalString$>(objects: Set<<$Relationship.destinationEntity.sanitizedManagedObjectClassName$>>) {
+    func add(<$Relationship.name$> objects: Set<<$Relationship.destinationEntity.sanitizedManagedObjectClassName$>>) {
         self.<$Relationship.name$> = self.<$Relationship.name$>.union(objects)
     }
 
-    func remove<$Relationship.name.initialCapitalString$>(objects: Set<<$Relationship.destinationEntity.sanitizedManagedObjectClassName$>>) {
-        self.<$Relationship.name$> = self.<$Relationship.name$>.subtract(objects)
+    func remove(<$Relationship.name$> objects: Set<<$Relationship.destinationEntity.sanitizedManagedObjectClassName$>>) {
+        self.<$Relationship.name$> = self.<$Relationship.name$>.subtracting(objects)
     }
 
-    func add<$Relationship.name.initialCapitalString$>Object(value: <$Relationship.destinationEntity.sanitizedManagedObjectClassName$>) {
+    func add(<$Relationship.name$>Object value: <$Relationship.destinationEntity.sanitizedManagedObjectClassName$>) {
         self.<$Relationship.name$> = self.<$Relationship.name$>.union([value])
     }
 
-    func remove<$Relationship.name.initialCapitalString$>Object(value: <$Relationship.destinationEntity.sanitizedManagedObjectClassName$>) {
-        self.<$Relationship.name$> = self.<$Relationship.name$>.subtract([value])
+    func remove(<$Relationship.name$>Object value: <$Relationship.destinationEntity.sanitizedManagedObjectClassName$>) {
+        self.<$Relationship.name$> = self.<$Relationship.name$>.subtracting([value])
     }
 
 }

@@ -19,15 +19,15 @@ public enum ChannelRelationships: String {
     case videos = "videos"
 }
 
-open class _Channel: NSManagedObject {
+public class _Channel: NSManagedObject {
 
     // MARK: - Class methods
 
-    open class func entityName () -> String {
+    public class func entityName () -> String {
         return "Channel"
     }
 
-    open class func entity(_ managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
         return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
@@ -38,39 +38,39 @@ open class _Channel: NSManagedObject {
     }
 
     public convenience init?(managedObjectContext: NSManagedObjectContext) {
-        guard let entity = _Channel.entity(managedObjectContext) else { return nil }
+        guard let entity = _Channel.entity(managedObjectContext: managedObjectContext) else { return nil }
         self.init(entity: entity, insertInto: managedObjectContext)
     }
 
     // MARK: - Properties
 
-    @NSManaged open
+    @NSManaged public
     var averageRating: String?
 
-    @NSManaged open
+    @NSManaged public
     var channelIndex: Int32
 
-    @NSManaged open
+    @NSManaged public
     var descriptionText: String?
 
-    @NSManaged open
+    @NSManaged public
     var identifier: String?
 
-    @NSManaged open
-    var postedDate: Date?
+    @NSManaged public
+    var postedDate: NSDate?
 
-    @NSManaged open
+    @NSManaged public
     var thumbnailAltText: String?
 
-    @NSManaged open
+    @NSManaged public
     var thumbnailSource: String?
 
-    @NSManaged open
+    @NSManaged public
     var title: String?
 
     // MARK: - Relationships
 
-    @NSManaged open
+    @NSManaged public
     var videos: Set<Video>
 
     // MARK: - Fetched Properties
@@ -79,19 +79,19 @@ open class _Channel: NSManagedObject {
 
 extension _Channel {
 
-    func addVideos(_ objects: Set<Video>) {
+    func add(videos objects: Set<Video>) {
         self.videos = self.videos.union(objects)
     }
 
-    func removeVideos(_ objects: Set<Video>) {
+    func remove(videos objects: Set<Video>) {
         self.videos = self.videos.subtracting(objects)
     }
 
-    func addVideosObject(_ value: Video) {
+    func add(videosObject value: Video) {
         self.videos = self.videos.union([value])
     }
 
-    func removeVideosObject(_ value: Video) {
+    func remove(videosObject value: Video) {
         self.videos = self.videos.subtracting([value])
     }
 

@@ -23,15 +23,15 @@ public enum VideoRelationships: String {
     case channel = "channel"
 }
 
-open class _Video: NSManagedObject {
+public class _Video: NSManagedObject {
 
     // MARK: - Class methods
 
-    open class func entityName () -> String {
+    public class func entityName () -> String {
         return "Video"
     }
 
-    open class func entity(_ managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
         return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
@@ -42,51 +42,51 @@ open class _Video: NSManagedObject {
     }
 
     public convenience init?(managedObjectContext: NSManagedObjectContext) {
-        guard let entity = _Video.entity(managedObjectContext) else { return nil }
+        guard let entity = _Video.entity(managedObjectContext: managedObjectContext) else { return nil }
         self.init(entity: entity, insertInto: managedObjectContext)
     }
 
     // MARK: - Properties
 
-    @NSManaged open
+    @NSManaged public
     var averageRating: String?
 
-    @NSManaged open
+    @NSManaged public
     var category: String?
 
-    @NSManaged open
+    @NSManaged public
     var descriptionText: String?
 
-    @NSManaged open
+    @NSManaged public
     var identifier: String?
 
-    @NSManaged open
-    var postedDate: Date?
+    @NSManaged public
+    var postedDate: NSDate?
 
-    @NSManaged open
-    var recordedDate: Date?
+    @NSManaged public
+    var recordedDate: NSDate?
 
-    @NSManaged open
+    @NSManaged public
     var thumbnailAltText: String?
 
-    @NSManaged open
+    @NSManaged public
     var thumbnailSource: String?
 
-    @NSManaged open
+    @NSManaged public
     var title: String?
 
-    @NSManaged open
+    @NSManaged public
     var videoIndex: Int32
 
-    @NSManaged open
+    @NSManaged public
     var videoLength: String?
 
-    @NSManaged open
+    @NSManaged public
     var videoSource: String?
 
     // MARK: - Relationships
 
-    @NSManaged open
+    @NSManaged public
     var channel: Channel?
 
     // MARK: - Fetched Properties

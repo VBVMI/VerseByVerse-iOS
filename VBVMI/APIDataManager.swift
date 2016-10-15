@@ -11,7 +11,7 @@ import Decodable
 
 import CoreData
 import Alamofire
-import SwiftString
+//import SwiftString
 
 enum APIDataManagerError : Error {
     case missingID

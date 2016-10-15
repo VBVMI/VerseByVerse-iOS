@@ -32,15 +32,15 @@ public enum LessonRelationships: String {
     case topics = "topics"
 }
 
-open class _Lesson: NSManagedObject {
+public class _Lesson: NSManagedObject {
 
     // MARK: - Class methods
 
-    open class func entityName () -> String {
+    public class func entityName () -> String {
         return "Lesson"
     }
 
-    open class func entity(_ managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
         return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
@@ -51,78 +51,78 @@ open class _Lesson: NSManagedObject {
     }
 
     public convenience init?(managedObjectContext: NSManagedObjectContext) {
-        guard let entity = _Lesson.entity(managedObjectContext) else { return nil }
+        guard let entity = _Lesson.entity(managedObjectContext: managedObjectContext) else { return nil }
         self.init(entity: entity, insertInto: managedObjectContext)
     }
 
     // MARK: - Properties
 
-    @NSManaged open
+    @NSManaged public
     var audioLength: String?
 
-    @NSManaged open
+    @NSManaged public
     var audioProgress: Double
 
-    @NSManaged open
+    @NSManaged public
     var audioSourceURL: String?
 
-    @NSManaged open
+    @NSManaged public
     var averageRating: String?
 
-    @NSManaged open
+    @NSManaged public
     var completed: Bool
 
-    @NSManaged open
-    var dateStudyGiven: Date?
+    @NSManaged public
+    var dateStudyGiven: NSDate?
 
-    @NSManaged open
+    @NSManaged public
     var descriptionText: String?
 
-    @NSManaged open
+    @NSManaged public
     var identifier: String
 
-    @NSManaged open
+    @NSManaged public
     var isPlaceholder: Bool
 
-    @NSManaged open
+    @NSManaged public
     var lessonIndex: Int32
 
-    @NSManaged open
+    @NSManaged public
     var lessonNumber: String?
 
-    @NSManaged open
+    @NSManaged public
     var lessonTitle: String?
 
-    @NSManaged open
+    @NSManaged public
     var location: String?
 
-    @NSManaged open
-    var postedDate: Date?
+    @NSManaged public
+    var postedDate: NSDate?
 
-    @NSManaged open
+    @NSManaged public
     var studentAidURL: String?
 
-    @NSManaged open
+    @NSManaged public
     var studyIdentifier: String
 
-    @NSManaged open
+    @NSManaged public
     var teacherAid: String?
 
-    @NSManaged open
+    @NSManaged public
     var title: String
 
-    @NSManaged open
+    @NSManaged public
     var transcriptURL: String?
 
-    @NSManaged open
+    @NSManaged public
     var videoLength: String?
 
-    @NSManaged open
+    @NSManaged public
     var videoSourceURL: String?
 
     // MARK: - Relationships
 
-    @NSManaged open
+    @NSManaged public
     var topics: Set<Topic>
 
     // MARK: - Fetched Properties
@@ -131,19 +131,19 @@ open class _Lesson: NSManagedObject {
 
 extension _Lesson {
 
-    func addTopics(_ objects: Set<Topic>) {
+    func add(topics objects: Set<Topic>) {
         self.topics = self.topics.union(objects)
     }
 
-    func removeTopics(_ objects: Set<Topic>) {
+    func remove(topics objects: Set<Topic>) {
         self.topics = self.topics.subtracting(objects)
     }
 
-    func addTopicsObject(_ value: Topic) {
+    func add(topicsObject value: Topic) {
         self.topics = self.topics.union([value])
     }
 
-    func removeTopicsObject(_ value: Topic) {
+    func remove(topicsObject value: Topic) {
         self.topics = self.topics.subtracting([value])
     }
 

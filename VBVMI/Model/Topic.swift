@@ -1,7 +1,7 @@
 import Foundation
 import CoreData
 import Decodable
-import SwiftString
+//import SwiftString
 
 @objc(Topic)
 open class Topic: _Topic {

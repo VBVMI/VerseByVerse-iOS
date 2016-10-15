@@ -333,9 +333,9 @@ extension String {
 
                     // Replace by decoded character:
                     result.append(decoded)
-
+                    
                     // Record offset
-                    let offset = (index: semiRange.endIndex, offset: 1 - <#T##Collection corresponding to `position`##Collection#>.distance(from: position, to: semiRange.endIndex))
+                    let offset = (index: semiRange.endIndex, offset: 1 - position.distance(from: position, to: semiRange.endIndex))
                     replacementOffsets.append(offset)
 
                 } else {

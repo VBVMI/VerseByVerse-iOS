@@ -16,15 +16,15 @@ public enum TopicRelationships: String {
     case studies = "studies"
 }
 
-open class _Topic: NSManagedObject {
+public class _Topic: NSManagedObject {
 
     // MARK: - Class methods
 
-    open class func entityName () -> String {
+    public class func entityName () -> String {
         return "Topic"
     }
 
-    open class func entity(_ managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
         return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
@@ -35,30 +35,30 @@ open class _Topic: NSManagedObject {
     }
 
     public convenience init?(managedObjectContext: NSManagedObjectContext) {
-        guard let entity = _Topic.entity(managedObjectContext) else { return nil }
+        guard let entity = _Topic.entity(managedObjectContext: managedObjectContext) else { return nil }
         self.init(entity: entity, insertInto: managedObjectContext)
     }
 
     // MARK: - Properties
 
-    @NSManaged open
+    @NSManaged public
     var identifier: String?
 
-    @NSManaged open
+    @NSManaged public
     var name: String?
 
     // MARK: - Relationships
 
-    @NSManaged open
+    @NSManaged public
     var answers: Set<Answer>
 
-    @NSManaged open
+    @NSManaged public
     var articles: Set<Article>
 
-    @NSManaged open
+    @NSManaged public
     var lessons: Set<Lesson>
 
-    @NSManaged open
+    @NSManaged public
     var studies: Set<Study>
 
     // MARK: - Fetched Properties
@@ -67,19 +67,19 @@ open class _Topic: NSManagedObject {
 
 extension _Topic {
 
-    func addAnswers(_ objects: Set<Answer>) {
+    func add(answers objects: Set<Answer>) {
         self.answers = self.answers.union(objects)
     }
 
-    func removeAnswers(_ objects: Set<Answer>) {
+    func remove(answers objects: Set<Answer>) {
         self.answers = self.answers.subtracting(objects)
     }
 
-    func addAnswersObject(_ value: Answer) {
+    func add(answersObject value: Answer) {
         self.answers = self.answers.union([value])
     }
 
-    func removeAnswersObject(_ value: Answer) {
+    func remove(answersObject value: Answer) {
         self.answers = self.answers.subtracting([value])
     }
 
@@ -87,19 +87,19 @@ extension _Topic {
 
 extension _Topic {
 
-    func addArticles(_ objects: Set<Article>) {
+    func add(articles objects: Set<Article>) {
         self.articles = self.articles.union(objects)
     }
 
-    func removeArticles(_ objects: Set<Article>) {
+    func remove(articles objects: Set<Article>) {
         self.articles = self.articles.subtracting(objects)
     }
 
-    func addArticlesObject(_ value: Article) {
+    func add(articlesObject value: Article) {
         self.articles = self.articles.union([value])
     }
 
-    func removeArticlesObject(_ value: Article) {
+    func remove(articlesObject value: Article) {
         self.articles = self.articles.subtracting([value])
     }
 
@@ -107,19 +107,19 @@ extension _Topic {
 
 extension _Topic {
 
-    func addLessons(_ objects: Set<Lesson>) {
+    func add(lessons objects: Set<Lesson>) {
         self.lessons = self.lessons.union(objects)
     }
 
-    func removeLessons(_ objects: Set<Lesson>) {
+    func remove(lessons objects: Set<Lesson>) {
         self.lessons = self.lessons.subtracting(objects)
     }
 
-    func addLessonsObject(_ value: Lesson) {
+    func add(lessonsObject value: Lesson) {
         self.lessons = self.lessons.union([value])
     }
 
-    func removeLessonsObject(_ value: Lesson) {
+    func remove(lessonsObject value: Lesson) {
         self.lessons = self.lessons.subtracting([value])
     }
 
@@ -127,19 +127,19 @@ extension _Topic {
 
 extension _Topic {
 
-    func addStudies(_ objects: Set<Study>) {
+    func add(studies objects: Set<Study>) {
         self.studies = self.studies.union(objects)
     }
 
-    func removeStudies(_ objects: Set<Study>) {
+    func remove(studies objects: Set<Study>) {
         self.studies = self.studies.subtracting(objects)
     }
 
-    func addStudiesObject(_ value: Study) {
+    func add(studiesObject value: Study) {
         self.studies = self.studies.union([value])
     }
 
-    func removeStudiesObject(_ value: Study) {
+    func remove(studiesObject value: Study) {
         self.studies = self.studies.subtracting([value])
     }
 

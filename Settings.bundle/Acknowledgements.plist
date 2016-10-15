@@ -74,14 +74,6 @@
         <key>Type</key>
         <string>PSChildPaneSpecifier</string>
         <key>Title</key>
-        <string>NSLogger</string>
-        <key>File</key>
-        <string>Acknowledgement-NSLogger</string>
-      </dict>
-      <dict>
-        <key>Type</key>
-        <string>PSChildPaneSpecifier</string>
-        <key>Title</key>
         <string>ReachabilitySwift</string>
         <key>File</key>
         <string>Acknowledgement-ReachabilitySwift</string>
@@ -125,14 +117,6 @@
         <string>XCGLogger</string>
         <key>File</key>
         <string>Acknowledgement-XCGLogger</string>
-      </dict>
-      <dict>
-        <key>Type</key>
-        <string>PSChildPaneSpecifier</string>
-        <key>Title</key>
-        <string>XCGLoggerNSLoggerConnector</string>
-        <key>File</key>
-        <string>Acknowledgement-XCGLoggerNSLoggerConnector</string>
       </dict>
     </array>
   </dict>

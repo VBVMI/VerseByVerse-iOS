@@ -17,15 +17,15 @@ public enum EventAttributes: String {
     case type = "type"
 }
 
-open class _Event: NSManagedObject {
+public class _Event: NSManagedObject {
 
     // MARK: - Class methods
 
-    open class func entityName () -> String {
+    public class func entityName () -> String {
         return "Event"
     }
 
-    open class func entity(_ managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
         return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
@@ -36,40 +36,40 @@ open class _Event: NSManagedObject {
     }
 
     public convenience init?(managedObjectContext: NSManagedObjectContext) {
-        guard let entity = _Event.entity(managedObjectContext) else { return nil }
+        guard let entity = _Event.entity(managedObjectContext: managedObjectContext) else { return nil }
         self.init(entity: entity, insertInto: managedObjectContext)
     }
 
     // MARK: - Properties
 
-    @NSManaged open
+    @NSManaged public
     var descriptionText: String?
 
-    @NSManaged open
-    var eventDateComponents: DateComponents?
+    @NSManaged public
+    var eventDateComponents: NSDateComponents?
 
-    @NSManaged open
+    @NSManaged public
     var eventIndex: Int32
 
-    @NSManaged open
+    @NSManaged public
     var identifier: String
 
-    @NSManaged open
+    @NSManaged public
     var location: String?
 
-    @NSManaged open
+    @NSManaged public
     var map: String?
 
-    @NSManaged open
+    @NSManaged public
     var thumbnailAltText: String?
 
-    @NSManaged open
+    @NSManaged public
     var thumbnailSource: String?
 
-    @NSManaged open
+    @NSManaged public
     var title: String?
 
-    @NSManaged open
+    @NSManaged public
     var type: String?
 
     // MARK: - Relationships

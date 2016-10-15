@@ -15,15 +15,15 @@ public enum AudioPlayerFetchedProperties: String {
     case study = "study"
 }
 
-open class _AudioPlayer: NSManagedObject {
+public class _AudioPlayer: NSManagedObject {
 
     // MARK: - Class methods
 
-    open class func entityName () -> String {
+    public class func entityName () -> String {
         return "AudioPlayer"
     }
 
-    open class func entity(_ managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
         return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
@@ -34,29 +34,29 @@ open class _AudioPlayer: NSManagedObject {
     }
 
     public convenience init?(managedObjectContext: NSManagedObjectContext) {
-        guard let entity = _AudioPlayer.entity(managedObjectContext) else { return nil }
+        guard let entity = _AudioPlayer.entity(managedObjectContext: managedObjectContext) else { return nil }
         self.init(entity: entity, insertInto: managedObjectContext)
     }
 
     // MARK: - Properties
 
-    @NSManaged open
+    @NSManaged public
     var currentTime: Double
 
-    @NSManaged open
+    @NSManaged public
     var lessonIdentifier: String?
 
-    @NSManaged open
+    @NSManaged public
     var studyIdentifier: String?
 
     // MARK: - Relationships
 
     // MARK: - Fetched Properties
 
-    @NSManaged open
+    @NSManaged public
     var lesson: [Lesson]
 
-    @NSManaged open
+    @NSManaged public
     var study: [Study]
 
 }
