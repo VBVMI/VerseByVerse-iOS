@@ -1,5 +1,4 @@
-// swiftlint:disable:next line_length
-public struct Regex: StringLiteralConvertible, CustomStringConvertible, CustomDebugStringConvertible {
+public struct Regex: CustomStringConvertible, CustomDebugStringConvertible {
 
   // MARK: Initialisation
 
@@ -7,34 +6,42 @@ public struct Regex: StringLiteralConvertible, CustomStringConvertible, CustomDe
 
   /// Create a `Regex` based on a pattern string.
   ///
+  /// If `pattern` is not a valid regular expression, an error is thrown
+  /// describing the failure.
+  ///
   /// - parameters:
   ///     - pattern: A pattern string describing the regex.
   ///     - options: Configure regular expression matching options.
   ///       For details, see `Regex.Options`.
   ///
-  /// - note: You should always use string literals when defining regex
-  ///   patterns. If the input string is an invalid regular expression, this
-  ///   initialiser will raise a fatal error.
-  public init(_ pattern: String, options: Options = []) {
+  /// - throws: A value of `ErrorType` describing the invalid regular expression.
+  public init(string pattern: String, options: Options = []) throws {
+    regularExpression = try NSRegularExpression(
+      pattern: pattern,
+      options: options.toNSRegularExpressionOptions())
+  }
+
+  /// Create a `Regex` based on a static pattern string.
+  ///
+  /// Unlike `Regex.init(string:)` this initialiser is not failable. If `pattern`
+  /// is an invalid regular expression, it is considered programmer error rather
+  /// than a recoverable runtime error, so this initialiser instead raises a
+  /// precondition failure.
+  ///
+  /// - requires: `pattern` is a valid regular expression.
+  ///
+  /// - parameters:
+  ///     - pattern: A pattern string describing the regex.
+  ///     - options: Configure regular expression matching options.
+  ///       For details, see `Regex.Options`.
+  public init(_ pattern: StaticString, options: Options = []) {
     do {
       regularExpression = try NSRegularExpression(
-        pattern: pattern,
+        pattern: pattern.description,
         options: options.toNSRegularExpressionOptions())
     } catch {
-      fatalError("expected a valid regex: \(error)")
+      preconditionFailure("unexpected error creating regex: \(error)")
     }
-  }
-
-  public init(stringLiteral value: String) {
-    self.init(value)
-  }
-
-  public init(extendedGraphemeClusterLiteral value: String) {
-    self.init(value)
-  }
-
-  public init(unicodeScalarLiteral value: String) {
-    self.init(value)
   }
 
   // MARK: Matching
@@ -47,8 +54,18 @@ public struct Regex: StringLiteralConvertible, CustomStringConvertible, CustomDe
   ///
   /// - note: If the match is successful, `Regex.lastMatch` will be set with the
   ///   result of the match.
+#if swift(>=3.0)
+  public func matches(_ string: String) -> Bool {
+    return _matches(self, string)
+  }
+#else
   public func matches(string: String) -> Bool {
-    return match(string) != nil
+    return _matches(self, string)
+  }
+#endif
+
+  private let _matches: (Regex, String) -> Bool = { regex, string in
+    return regex.match(string) != nil
   }
 
   /// If the regex matches `string`, returns a `MatchResult` describing the
@@ -60,6 +77,15 @@ public struct Regex: StringLiteralConvertible, CustomStringConvertible, CustomDe
   /// - returns: An optional `MatchResult` describing the first match, or `nil`.
   ///
   /// - note: If the match is successful, the result is also stored in `Regex.lastMatch`.
+#if swift(>=3.0)
+  public func match(_ string: String) -> MatchResult? {
+    let match = regularExpression
+      .firstMatch(in: string, range: string.entireRange)
+      .map { MatchResult(string, $0) }
+    Regex._lastMatch = match
+    return match
+  }
+#else
   public func match(string: String) -> MatchResult? {
     let match = regularExpression
       .firstMatchInString(string, options: [], range: string.entireRange)
@@ -67,6 +93,7 @@ public struct Regex: StringLiteralConvertible, CustomStringConvertible, CustomDe
     Regex._lastMatch = match
     return match
   }
+#endif
 
   /// If the regex matches `string`, returns an array of `MatchResult`, describing
   /// every match inside `string`. If there are no matches, returns an empty
@@ -77,6 +104,15 @@ public struct Regex: StringLiteralConvertible, CustomStringConvertible, CustomDe
   /// - returns: An array of `MatchResult` describing every match in `string`.
   ///
   /// - note: If there is at least one match, the first is stored in `Regex.lastMatch`.
+#if swift(>=3.0)
+  public func allMatches(_ string: String) -> [MatchResult] {
+    let matches = regularExpression
+      .matches(in: string, range: string.entireRange)
+      .map { MatchResult(string, $0) }
+    if let firstMatch = matches.first { Regex._lastMatch = firstMatch }
+    return matches
+  }
+#else
   public func allMatches(string: String) -> [MatchResult] {
     let matches = regularExpression
       .matchesInString(string, options: [], range: string.entireRange)
@@ -84,6 +120,7 @@ public struct Regex: StringLiteralConvertible, CustomStringConvertible, CustomDe
     if let firstMatch = matches.first { Regex._lastMatch = firstMatch }
     return matches
   }
+#endif
 
   // MARK: Accessing the last match
 

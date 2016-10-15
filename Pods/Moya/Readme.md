@@ -50,17 +50,29 @@ Installation
 ------------
 
 ### CocoaPods
-Just add `pod 'Moya'` to your Podfile and go!
+
+For Moya, us the following entry in your Podfile:
+
+```rb
+pod 'Moya', git: 'https://github.com/Moya/Moya.git', tag: '8.0.0-beta.1'
+```
 
 In any file you'd like to use Moya in, don't forget to
 import the framework with `import Moya`.
 
 For RxSwift or ReactiveCocoa extensions, this project will include
-them as dependencies. You can do this via CocoaPods subspecs.
+them as dependencies. You can do this via CocoaPods subspecs, but you will also
+need to include the pre-release versions of RxSwift or ReactiveSwift manually.
 
 ```rb
 pod 'Moya/RxSwift'
+pod 'RxSwift', '3.0.0-beta.1'
+pod 'RxCocoa', '3.0.0-beta.1'
+
+# or
+
 pod 'Moya/ReactiveCocoa'
+pod 'ReactiveSwift', :podspec => 'https://raw.githubusercontent.com/ashfurrow/ReactiveSwift/616a2461690008c61cdecd39200c4f4bb3b107bb/ReactiveSwift.podspec'
 ```
 
 Then run `pod install`.
@@ -182,6 +194,7 @@ Moya has a great community around it and some people have created some very help
 - [Moya-ModelMapper](https://github.com/sunshinejr/Moya-ModelMapper) - ModelMapper bindings for Moya for easier JSON serialization
 - [Moya-Gloss](https://github.com/spxrogers/Moya-Gloss) - Gloss bindings for Moya for easier JSON serialization
 - [Moya-JASON](https://github.com/DroidsOnRoids/Moya-JASON) - JASON bindings for Moya for easier JSON serialization
+- [Moya-Unbox](https://github.com/RyogaK/Moya-Unbox) - Unbox bindings for Moya for easier JSON serialization
 
 We appreciate all the work being done by the community around Moya. If you would like to have your extension featured in the list above, simply create a pull request adding your extensions to the list.
 
