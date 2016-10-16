@@ -26,19 +26,19 @@ class TopicButton: UIButton {
         }
     }
     
-    private func configureColor() {
-        self.setTitleColor(tintColor, forState: .Normal)
-        self.setTitleColor(StyleKit.white, forState: .Highlighted)
-        self.setTitleColor(StyleKit.white, forState: .Selected)
-        self.layer.borderColor = tintColor.CGColor
-        let image = StyleKit.imageOfTopicLabelBackground.cl_changeColor(tintColor).resizableImageWithCapInsets(UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2))
-        self.setBackgroundImage(image, forState: .Highlighted)
-        self.setBackgroundImage(image, forState: .Selected)
+    fileprivate func configureColor() {
+        self.setTitleColor(tintColor, for: UIControlState())
+        self.setTitleColor(StyleKit.white, for: .highlighted)
+        self.setTitleColor(StyleKit.white, for: .selected)
+        self.layer.borderColor = tintColor.cgColor
+        let image = StyleKit.imageOfTopicLabelBackground.cl_change(tintColor).resizableImage(withCapInsets: UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2))
+        self.setBackgroundImage(image, for: .highlighted)
+        self.setBackgroundImage(image, for: .selected)
     }
     
     var text: String? {
         didSet {
-            self.setTitle(text, forState: .Normal)
+            self.setTitle(text, for: UIControlState())
             self.invalidateIntrinsicContentSize()
         }
     }
@@ -51,8 +51,8 @@ class TopicButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.titleLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
-        self.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
+        self.titleLabel?.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
+        self.layer.borderWidth = 1.0 / UIScreen.main.scale
         self.layer.cornerRadius = 2
 //        self.layer.masksToBounds = true
         self.contentEdgeInsets = UIEdgeInsets(top: 2, left: 4, bottom: 2, right: 4)

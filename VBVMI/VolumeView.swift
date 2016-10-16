@@ -23,23 +23,23 @@ class VolumeView: MPVolumeView {
         configure()
     }
     
-    private func configure() {
+    fileprivate func configure() {
         self.addSubview(highVolumeImageView)
-        highVolumeImageView.hidden = self.wirelessRoutesAvailable
-        highVolumeImageView.contentMode = .Center
-        highVolumeImageView.snp_makeConstraints { (make) in
+        highVolumeImageView.isHidden = self.areWirelessRoutesAvailable
+        highVolumeImageView.contentMode = .center
+        highVolumeImageView.snp.makeConstraints { (make) in
             make.width.height.equalTo(20)
-            make.centerY.equalTo(self.snp_centerY)
+            make.centerY.equalTo(self.snp.centerY)
             make.right.equalTo(0)
         }
-        NSNotificationCenter.defaultCenter().addObserverForName(MPVolumeViewWirelessRoutesAvailableDidChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [weak self] (notification) in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.MPVolumeViewWirelessRoutesAvailableDidChange, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
             guard let this = self else { return }
-            this.highVolumeImageView.hidden = this.wirelessRoutesAvailable
+            this.highVolumeImageView.isHidden = this.areWirelessRoutesAvailable
         }
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     /*
@@ -52,13 +52,13 @@ class VolumeView: MPVolumeView {
 
     let routeWidth : CGFloat = 21
     
-    override func volumeSliderRectForBounds(bounds: CGRect) -> CGRect {
-        super.volumeSliderRectForBounds(bounds)
+    override func volumeSliderRect(forBounds bounds: CGRect) -> CGRect {
+        super.volumeSliderRect(forBounds: bounds)
         return CGRect(x: 0, y: 0, width: bounds.size.width - routeWidth, height: bounds.height)
     }
     
-    override func routeButtonRectForBounds(bounds: CGRect) -> CGRect {
-        super.routeButtonRectForBounds(bounds)
+    override func routeButtonRect(forBounds bounds: CGRect) -> CGRect {
+        super.routeButtonRect(forBounds: bounds)
         return CGRect(x: bounds.size.width - routeWidth, y: 0, width: routeWidth, height: bounds.height)
     }
     

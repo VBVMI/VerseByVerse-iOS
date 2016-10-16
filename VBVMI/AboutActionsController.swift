@@ -11,47 +11,47 @@ import SafariServices
 
 class AboutActionsController: NSObject {
 
-    private static let buttonFont = UIFont.fontAwesomeOfSize(20)
+    fileprivate static let buttonFont = UIFont.fontAwesomeOfSize(20)
     
     let barButtonItem: UIBarButtonItem
     weak var controller : UIViewController?
     
     init(presentingController controller: UIViewController) {
         self.controller = controller
-        barButtonItem = UIBarButtonItem(title: String.fontAwesomeIconWithName(.EllipsisH), style: .Plain, target: nil, action: #selector(AboutActionsController.tappedMenu))
-        barButtonItem.setTitleTextAttributes([NSFontAttributeName: AboutActionsController.buttonFont], forState: .Normal)
+        barButtonItem = UIBarButtonItem(title: String.fontAwesomeIconWithName(.EllipsisH), style: .plain, target: nil, action: #selector(AboutActionsController.tappedMenu))
+        barButtonItem.setTitleTextAttributes([NSFontAttributeName: AboutActionsController.buttonFont], for: .normal)
         super.init()
         barButtonItem.target = self
     }
     
     func tappedMenu() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let donateAction = UIAlertAction(title: "Donate", style: .Default) { [weak self] (action) in
+        let donateAction = UIAlertAction(title: "Donate", style: .default) { [weak self] (action) in
             self?.openURL("https://www.versebyverseministry.org/about/financial_support")
         }
         
-        let aboutAction = UIAlertAction(title: "About", style: .Default) { [weak self] (action) in
+        let aboutAction = UIAlertAction(title: "About", style: .default) { [weak self] (action) in
             self?.openURL("https://www.versebyverseministry.org/about/")
         }
         
-        let eventsAction = UIAlertAction(title: "Events", style: .Default) { [weak self] (action) in
+        let eventsAction = UIAlertAction(title: "Events", style: .default) { [weak self] (action) in
             self?.openURL("https://www.versebyverseministry.org/events/")
         }
         
-        let contactAction = UIAlertAction(title: "Contact", style: .Default) { [weak self] (action) in
+        let contactAction = UIAlertAction(title: "Contact", style: .default) { [weak self] (action) in
             self?.openURL("https://www.versebyverseministry.org/contact/")
         }
         
-        let settingsAction = UIAlertAction(title: "Settings", style: .Default) { [weak self] (action) in
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { [weak self] (action) in
             let settingsStoryboard = UIStoryboard(name: "Settings", bundle: nil)
             if let viewController = settingsStoryboard.instantiateInitialViewController() {
-                self?.controller?.presentViewController(viewController, animated: true, completion: nil)
+                self?.controller?.present(viewController, animated: true, completion: nil)
             }
         }
         
-        let cancel = UIAlertAction(title: "Close", style: .Cancel) { [weak self] (action) in
-            self?.controller?.dismissViewControllerAnimated(true, completion: nil)
+        let cancel = UIAlertAction(title: "Close", style: .cancel) { [weak self] (action) in
+            self?.controller?.dismiss(animated: true, completion: nil)
             
         }
         
@@ -63,13 +63,13 @@ class AboutActionsController: NSObject {
         alert.addAction(cancel)
         
         alert.popoverPresentationController?.barButtonItem = barButtonItem
-        controller?.presentViewController(alert, animated: true, completion: nil)
+        controller?.present(alert, animated: true, completion: nil)
     }
     
-    func openURL(urlString: String) {
-        if let url = NSURL(string: urlString) {
-            let safariControler = SFSafariViewController(URL: url)
-            self.controller?.presentViewController(safariControler, animated: true, completion: nil)
+    func openURL(_ urlString: String) {
+        if let url = URL(string: urlString) {
+            let safariControler = SFSafariViewController(url: url)
+            self.controller?.present(safariControler, animated: true, completion: nil)
         }
     }
 }

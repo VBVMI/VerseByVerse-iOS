@@ -4,30 +4,30 @@ import CoreData
 import Decodable
 
 @objc(Lesson)
-public class Lesson: _Lesson {
+open class Lesson: _Lesson {
 
 	// Custom logic goes here.
 
-    class func decodeJSON(JSONDict: NSDictionary, studyID: String, context: NSManagedObjectContext, index: Int) throws -> Lesson {
+    class func decodeJSON(_ JSONDict: NSDictionary, studyID: String, context: NSManagedObjectContext, index: Int) throws -> Lesson {
         guard let identifier = JSONDict["ID"] as? String else {
-            throw APIDataManagerError.MissingID
+            throw APIDataManagerError.missingID
         }
         guard let lesson = Lesson.findFirstOrCreateWithDictionary(["identifier": identifier, "studyIdentifier": studyID], context: context) as? Lesson else {
-            throw APIDataManagerError.ModelCreationFailed
+            throw APIDataManagerError.modelCreationFailed
         }
         
         lesson.identifier = try JSONDict => "ID"
         let postedDateString: String = try JSONDict => "postedDate"
-        if let number = Double(postedDateString) where postedDateString.characters.count > 0 {
-            let date = NSDate(timeIntervalSince1970: number)
+        if let number = Double(postedDateString) , postedDateString.characters.count > 0 {
+            let date = Date(timeIntervalSince1970: number)
             lesson.postedDate = date
         }
         
         lesson.lessonIndex = Int32(index)
         
         let dateStudyGiven: String = try JSONDict => "dateStudyGiven"
-        if let number = Double(dateStudyGiven) where dateStudyGiven.characters.count > 0 {
-            let date = NSDate(timeIntervalSince1970: number)
+        if let number = Double(dateStudyGiven) , dateStudyGiven.characters.count > 0 {
+            let date = Date(timeIntervalSince1970: number)
             lesson.dateStudyGiven = date
         }
         let studyDescription: String = try JSONDict => "description"
@@ -81,13 +81,14 @@ public class Lesson: _Lesson {
 }
 
 extension Lesson : AssetsDownloadable {
-    func directory() -> NSURL? {
+    func directory() -> URL? {
         if let url = AppDelegate.resourcesURL() {
-            let fileURL = url.URLByAppendingPathComponent(studyIdentifier, isDirectory: true)!.URLByAppendingPathComponent(identifier, isDirectory: true)
-            let fileManager = NSFileManager.defaultManager()
-            if let path = fileURL?.path where !fileManager.fileExistsAtPath(path) {
+            let fileURL = url.appendingPathComponent(studyIdentifier, isDirectory: true).appendingPathComponent(identifier, isDirectory: true)
+            let fileManager = FileManager.default
+            let path = fileURL.path
+            if !fileManager.fileExists(atPath: path) {
                 do {
-                    try fileManager.createDirectoryAtURL(fileURL!, withIntermediateDirectories: true, attributes: nil)
+                    try fileManager.createDirectory(at: fileURL, withIntermediateDirectories: true, attributes: nil)
                 } catch let error {
                     log.error("Error in lesson Directory: \(error)")
                     return nil

@@ -4,23 +4,23 @@ import Decodable
 
 
 @objc(Study)
-public class Study: _Study {
+open class Study: _Study {
 
 	// Custom logic goes here.
-    class func decodeJSON(JSONDict: NSDictionary, context: NSManagedObjectContext, index: Int) throws -> (Study) {
+    class func decodeJSON(_ JSONDict: NSDictionary, context: NSManagedObjectContext, index: Int) throws -> (Study) {
         guard let identifier = JSONDict["ID"] as? String else {
-            throw APIDataManagerError.MissingID
+            throw APIDataManagerError.missingID
         }
         
         guard let study = Study.findFirstOrCreateWithDictionary(["identifier": identifier], context: context) as? Study else {
-            throw APIDataManagerError.ModelCreationFailed
+            throw APIDataManagerError.modelCreationFailed
         }
 
         study.identifier = try JSONDict => "ID"
         study.thumbnailSource = try JSONDict => "thumbnailSource"
         study.studyIndex = Int32(index)
         if let thumbSource = study.thumbnailSource {
-            study.imageSource = thumbSource.stringByReplacingOccurrencesOfString("SMALL", withString: "")
+            study.imageSource = thumbSource.replacingOccurrences(of: "SMALL", with: "")
         }
         
         let studyDescription: String = try JSONDict => "description"

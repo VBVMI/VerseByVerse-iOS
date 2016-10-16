@@ -16,97 +16,97 @@ extension NSManagedObject {
         return NSStringFromClass(self)
     }
     
-    class func entityDescriptionInContext(context: NSManagedObjectContext) -> NSEntityDescription? {
-        return NSEntityDescription.entityForName(VB_entityName(), inManagedObjectContext: context)
+    class func entityDescriptionInContext(_ context: NSManagedObjectContext) -> NSEntityDescription? {
+        return NSEntityDescription.entity(forEntityName: VB_entityName(), in: context)
     }
     
-    class func findFirstOrCreate(predicate: NSPredicate, context: NSManagedObjectContext) -> NSManagedObject? {
-        let fetchRequest = NSFetchRequest(entityName: VB_entityName())
+    class func findFirstOrCreate<T: NSManagedObject>(_ predicate: NSPredicate, context: NSManagedObjectContext) -> T? {
+        let fetchRequest = NSFetchRequest<T>(entityName: VB_entityName())
         fetchRequest.predicate = predicate
         fetchRequest.fetchLimit = 1
         fetchRequest.entity = entityDescriptionInContext(context)
         
         var results = [AnyObject]()
-        context.performBlockAndWait({ () -> Void in
+        context.performAndWait({ () -> Void in
             do {
-                results = try context.executeFetchRequest(fetchRequest)
+                results = try context.fetch(fetchRequest)
             } catch let error {
                 log.error("Error executing fetch: \(error)")
             }
         })
         
-        if let result = results.first as? NSManagedObject {
-            return result
+        if let result = results.first {
+            return result as? T
         }
         
         guard let entityDesciption = entityDescriptionInContext(context) else { return nil }
         var object: NSManagedObject?
-        context.performBlockAndWait { () -> Void in
-            object = self.init(entity: entityDesciption, insertIntoManagedObjectContext: context)
+        context.performAndWait { () -> Void in
+            object = self.init(entity: entityDesciption, insertInto: context)
         }
-        return object
+        return object as? T
     }
     
-    class func findFirstOrCreateWithDictionary(dict: [String: String], context: NSManagedObjectContext) -> NSManagedObject? {
+    class func findFirstOrCreateWithDictionary(_ dict: [String: String], context: NSManagedObjectContext) -> NSManagedObject? {
         return findFirstOrCreate(NSPredicate.predicateWithDictionary(dict), context: context)
     }
     
-    class func findFirstWithDictionary(dict: [String: String], context: NSManagedObjectContext) -> NSManagedObject? {
+    class func findFirstWithDictionary(_ dict: [String: String], context: NSManagedObjectContext) -> NSManagedObject? {
         let predicate = NSPredicate.predicateWithDictionary(dict)
         return findFirstWithPredicate(predicate, context: context)
     }
     
-    class func findFirst<T: NSManagedObject>(context: NSManagedObjectContext) -> T? {
-        let fetchRequest = NSFetchRequest(entityName: VB_entityName())
+    class func findFirst<T: NSManagedObject>(_ context: NSManagedObjectContext) -> T? {
+        let fetchRequest = NSFetchRequest<T>(entityName: VB_entityName())
         fetchRequest.fetchLimit = 1
         fetchRequest.entity = entityDescriptionInContext(context)
         
-        let result = try? context.executeFetchRequest(fetchRequest)
-        return result?.first as? T
+        let result = try? context.fetch(fetchRequest)
+        return result?.first
     }
     
-    class func findFirstWithPredicate<T: NSManagedObject>(predicate: NSPredicate, context: NSManagedObjectContext) -> T? {
+    class func findFirstWithPredicate<T: NSManagedObject>(_ predicate: NSPredicate, context: NSManagedObjectContext) -> T? {
         
-        let fetchRequest = NSFetchRequest(entityName: VB_entityName())
+        let fetchRequest = NSFetchRequest<T>(entityName: VB_entityName())
         fetchRequest.predicate = predicate
         fetchRequest.fetchLimit = 1
         fetchRequest.entity = entityDescriptionInContext(context)
         
-        let result = try? context.executeFetchRequest(fetchRequest)
-        return result?.first as? T
+        let result = try? context.fetch(fetchRequest)
+        return result?.first
     }
     
-    class func withIdentifier<T: NSManagedObject>(identifier: NSManagedObjectID, context: NSManagedObjectContext) throws -> T? {
-        return try context.existingObjectWithID(identifier) as? T
+    class func withIdentifier<T: NSManagedObject>(_ identifier: NSManagedObjectID, context: NSManagedObjectContext) throws -> T? {
+        return try context.existingObject(with: identifier) as? T
     }
     
-    class func findAllWithDictionary(dict: [String: String], context: NSManagedObjectContext) -> [NSManagedObject] {
+    class func findAllWithDictionary(_ dict: [String: String], context: NSManagedObjectContext) -> [NSManagedObject] {
         let predicate = NSPredicate.predicateWithDictionary(dict)
         
         return findAllWithPredicate(predicate, context: context)
     }
     
-    class func findAllWithPredicate(predicate: NSPredicate, context: NSManagedObjectContext) -> [NSManagedObject] {
+    class func findAllWithPredicate<T: NSManagedObject>(_ predicate: NSPredicate, context: NSManagedObjectContext) -> [T] {
         
-        let fetchRequest = NSFetchRequest(entityName: VB_entityName())
+        let fetchRequest = NSFetchRequest<T>(entityName: VB_entityName())
         fetchRequest.predicate = predicate
         fetchRequest.entity = entityDescriptionInContext(context)
         
-        let result = try? context.executeFetchRequest(fetchRequest)
-        return result as? [NSManagedObject] ?? []
+        let result = try? context.fetch(fetchRequest)
+        return result ?? []
     }
     
-    class func findAll(context: NSManagedObjectContext) -> [NSManagedObject] {
-        let fetchRequest = NSFetchRequest(entityName: VB_entityName())
+    class func findAll<T: NSManagedObject>(_ context: NSManagedObjectContext) -> [T] {
+        let fetchRequest = NSFetchRequest<T>(entityName: VB_entityName())
         fetchRequest.entity = entityDescriptionInContext(context)
         
-        let result = try? context.executeFetchRequest(fetchRequest)
-        return result as? [NSManagedObject] ?? []
+        let result = try? context.fetch(fetchRequest)
+        return result ?? []
     }
 }
 
 extension NSPredicate {
-    class func predicateWithDictionary(dict: [String: String]) -> NSPredicate {
+    class func predicateWithDictionary(_ dict: [String: String]) -> NSPredicate {
         var predicates = [NSPredicate]()
         for (key, value) in dict {
             predicates.append(NSPredicate(format: "%K == %@", key, value))

@@ -19,58 +19,58 @@ public enum ChannelRelationships: String {
     case videos = "videos"
 }
 
-public class _Channel: NSManagedObject {
+open class _Channel: NSManagedObject {
 
     // MARK: - Class methods
 
-    public class func entityName () -> String {
+    open class func entityName () -> String {
         return "Channel"
     }
 
-    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
-        return NSEntityDescription.entityForName(self.entityName(), inManagedObjectContext: managedObjectContext)
+    open class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+        return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
     // MARK: - Life cycle methods
 
-    public override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
     }
 
     public convenience init?(managedObjectContext: NSManagedObjectContext) {
-        guard let entity = _Channel.entity(managedObjectContext) else { return nil }
-        self.init(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
+        guard let entity = _Channel.entity(managedObjectContext: managedObjectContext) else { return nil }
+        self.init(entity: entity, insertInto: managedObjectContext)
     }
 
     // MARK: - Properties
 
-    @NSManaged public
+    @NSManaged open
     var averageRating: String?
 
-    @NSManaged public
+    @NSManaged open
     var channelIndex: Int32
 
-    @NSManaged public
+    @NSManaged open
     var descriptionText: String?
 
-    @NSManaged public
+    @NSManaged open
     var identifier: String?
 
-    @NSManaged public
-    var postedDate: NSDate?
+    @NSManaged open
+    var postedDate: Date?
 
-    @NSManaged public
+    @NSManaged open
     var thumbnailAltText: String?
 
-    @NSManaged public
+    @NSManaged open
     var thumbnailSource: String?
 
-    @NSManaged public
+    @NSManaged open
     var title: String?
 
     // MARK: - Relationships
 
-    @NSManaged public
+    @NSManaged open
     var videos: Set<Video>
 
     // MARK: - Fetched Properties
@@ -79,20 +79,20 @@ public class _Channel: NSManagedObject {
 
 extension _Channel {
 
-    func addVideos(objects: Set<Video>) {
+    func add(videos objects: Set<Video>) {
         self.videos = self.videos.union(objects)
     }
 
-    func removeVideos(objects: Set<Video>) {
-        self.videos = self.videos.subtract(objects)
+    func remove(videos objects: Set<Video>) {
+        self.videos = self.videos.subtracting(objects)
     }
 
-    func addVideosObject(value: Video) {
+    func add(videosObject value: Video) {
         self.videos = self.videos.union([value])
     }
 
-    func removeVideosObject(value: Video) {
-        self.videos = self.videos.subtract([value])
+    func remove(videosObject value: Video) {
+        self.videos = self.videos.subtracting([value])
     }
 
 }

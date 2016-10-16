@@ -17,59 +17,59 @@ public enum EventAttributes: String {
     case type = "type"
 }
 
-public class _Event: NSManagedObject {
+open class _Event: NSManagedObject {
 
     // MARK: - Class methods
 
-    public class func entityName () -> String {
+    open class func entityName () -> String {
         return "Event"
     }
 
-    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
-        return NSEntityDescription.entityForName(self.entityName(), inManagedObjectContext: managedObjectContext)
+    open class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+        return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
     // MARK: - Life cycle methods
 
-    public override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
     }
 
     public convenience init?(managedObjectContext: NSManagedObjectContext) {
-        guard let entity = _Event.entity(managedObjectContext) else { return nil }
-        self.init(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
+        guard let entity = _Event.entity(managedObjectContext: managedObjectContext) else { return nil }
+        self.init(entity: entity, insertInto: managedObjectContext)
     }
 
     // MARK: - Properties
 
-    @NSManaged public
+    @NSManaged open
     var descriptionText: String?
 
-    @NSManaged public
-    var eventDateComponents: NSDateComponents?
+    @NSManaged open
+    var eventDateComponents: DateComponents?
 
-    @NSManaged public
+    @NSManaged open
     var eventIndex: Int32
 
-    @NSManaged public
+    @NSManaged open
     var identifier: String
 
-    @NSManaged public
+    @NSManaged open
     var location: String?
 
-    @NSManaged public
+    @NSManaged open
     var map: String?
 
-    @NSManaged public
+    @NSManaged open
     var thumbnailAltText: String?
 
-    @NSManaged public
+    @NSManaged open
     var thumbnailSource: String?
 
-    @NSManaged public
+    @NSManaged open
     var title: String?
 
-    @NSManaged public
+    @NSManaged open
     var type: String?
 
     // MARK: - Relationships

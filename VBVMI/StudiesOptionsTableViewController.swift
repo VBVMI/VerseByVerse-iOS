@@ -11,28 +11,28 @@ import UIKit
 
 enum StudySortOption: Int, StaticSelectable {
     
-    case ReleaseDate
-    case BibleBookIndex
+    case releaseDate
+    case bibleBookIndex
     
     var cellTitle: String {
         switch self {
-        case .BibleBookIndex:
+        case .bibleBookIndex:
             return "Bible book order"
-        case .ReleaseDate:
+        case .releaseDate:
             return "Release date"
         }
     }
     
-    static var allOptions: [StudySortOption] = [StudySortOption.BibleBookIndex, StudySortOption.ReleaseDate]
+    static var allOptions: [StudySortOption] = [StudySortOption.bibleBookIndex, StudySortOption.releaseDate]
     
     static var currentSortOption: StudySortOption {
         get {
-            let value = NSUserDefaults.standardUserDefaults().integerForKey("StudySortOption")
-            return StudySortOption(rawValue: value) ?? .ReleaseDate
+            let value = UserDefaults.standard.integer(forKey: "StudySortOption")
+            return StudySortOption(rawValue: value) ?? .releaseDate
         }
         set {
-            NSUserDefaults.standardUserDefaults().setInteger(newValue.rawValue, forKey: "StudySortOption")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(newValue.rawValue, forKey: "StudySortOption")
+            UserDefaults.standard.synchronize()
         }
     }
 }
@@ -125,9 +125,9 @@ class StudiesOptionsTableViewController: UITableViewController {
     }
     */
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if let cell = tableView.cellForRow(at: indexPath) {
             if cell == sortCell {
                 openSortOptions()
             }
@@ -135,8 +135,8 @@ class StudiesOptionsTableViewController: UITableViewController {
         
     }
     
-    @IBAction func close(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func close(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func openSortOptions() {
@@ -152,7 +152,7 @@ class StudiesOptionsTableViewController: UITableViewController {
                 this.sortCell.detailTextLabel?.text = sort.cellTitle
             }
             
-            this.navigationController?.popToViewController(this, animated: true)
+            let _ = this.navigationController?.popToViewController(this, animated: true)
             
         }
         controller.title = "Sort"

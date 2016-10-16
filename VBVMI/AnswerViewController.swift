@@ -16,44 +16,44 @@ class AnswerViewController: UITableViewController {
             self.navigationItem.title = answer.title
             
             if let body = answer.body {
-                bodyPieces = body.componentsSeparatedByString("\r\n\r\n")
+                bodyPieces = body.components(separatedBy: "\r\n\r\n")
                 if bodyPieces.count > 1 {
                     let str = "\(bodyPieces[0])\r\n\r\n\(bodyPieces[1])"
-                    bodyPieces.removeAtIndex(0)
-                    bodyPieces.removeAtIndex(0)
-                    bodyPieces.insert(str, atIndex: 0)
+                    bodyPieces.remove(at: 0)
+                    bodyPieces.remove(at: 0)
+                    bodyPieces.insert(str, at: 0)
                 }
             }
         }
     }
     
-    var dateFormatter = NSDateFormatter()
+    var dateFormatter = DateFormatter()
     var bodyPieces = [String]()
     
-    override func encodeRestorableStateWithCoder(coder: NSCoder) {
-        coder.encodeObject(answer.identifier, forKey: "answerIdentifier")
-        super.encodeRestorableStateWithCoder(coder)
+    override func encodeRestorableState(with coder: NSCoder) {
+        coder.encode(answer.identifier, forKey: "answerIdentifier")
+        super.encodeRestorableState(with: coder)
     }
     
-    override func decodeRestorableStateWithCoder(coder: NSCoder) {
-        guard let identifier = coder.decodeObjectForKey("answerIdentifier") as? String else {
+    override func decodeRestorableState(with coder: NSCoder) {
+        guard let identifier = coder.decodeObject(forKey: "answerIdentifier") as? String else {
             fatalError()
         }
-        let context = ContextCoordinator.sharedInstance.managedObjectContext
+        let context = ContextCoordinator.sharedInstance.managedObjectContext!
         guard let answer: Answer = Answer.findFirstWithPredicate(NSPredicate(format: "%K == %@", AnswerAttributes.identifier.rawValue, identifier), context: context) else {
             fatalError()
         }
         self.answer = answer
-        super.decodeRestorableStateWithCoder(coder)
+        super.decodeRestorableState(with: coder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dateFormatter.dateStyle = .MediumStyle
+        dateFormatter.dateStyle = .medium
         
-        tableView.registerNib(UINib(nibName: Cell.NibName.AnswerHeader, bundle: nil), forCellReuseIdentifier: Cell.Identifier.AnswerHeader)
-        tableView.registerNib(UINib(nibName: Cell.NibName.AnswerBody, bundle: nil), forCellReuseIdentifier: Cell.Identifier.AnswerBody)
+        tableView.register(UINib(nibName: Cell.NibName.AnswerHeader, bundle: nil), forCellReuseIdentifier: Cell.Identifier.AnswerHeader)
+        tableView.register(UINib(nibName: Cell.NibName.AnswerBody, bundle: nil), forCellReuseIdentifier: Cell.Identifier.AnswerBody)
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,7 +61,7 @@ class AnswerViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if answer.completed == false {
             answer.completed = true
@@ -75,11 +75,11 @@ class AnswerViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
@@ -90,8 +90,8 @@ class AnswerViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        switch indexPath.section {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch (indexPath as NSIndexPath).section {
         case 0:
             return 100
         case 1:
@@ -102,32 +102,32 @@ class AnswerViewController: UITableViewController {
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch indexPath.section {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch (indexPath as NSIndexPath).section {
         case 0:
-            switch indexPath.row {
+            switch (indexPath as NSIndexPath).row {
             case 0:
-                let cell = tableView.dequeueReusableCellWithIdentifier(Cell.Identifier.AnswerHeader, forIndexPath: indexPath) as! AnswerHeaderTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: Cell.Identifier.AnswerHeader, for: indexPath) as! AnswerHeaderTableViewCell
                 
                 if let title = answer.title {
                     cell.titleLabel.text = title
-                    cell.titleLabel.hidden = false
+                    cell.titleLabel.isHidden = false
                 } else {
-                    cell.titleLabel.hidden = true
+                    cell.titleLabel.isHidden = true
                 }
                 
                 if let author = answer.authorName {
                     cell.authorLabel.text = author
-                    cell.authorLabel.hidden = false
+                    cell.authorLabel.isHidden = false
                 } else {
-                    cell.authorLabel.hidden = true
+                    cell.authorLabel.isHidden = true
                 }
                 
                 if let date = answer.postedDate {
-                    cell.postedDateLabel.text = dateFormatter.stringFromDate(date)
-                    cell.postedDateLabel.hidden = false
+                    cell.postedDateLabel.text = dateFormatter.string(from: date as Date)
+                    cell.postedDateLabel.isHidden = false
                 } else {
-                    cell.postedDateLabel.hidden = true
+                    cell.postedDateLabel.isHidden = true
                 }
                 
                 return cell
@@ -135,9 +135,9 @@ class AnswerViewController: UITableViewController {
                 fatalError()
             }
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier(Cell.Identifier.AnswerBody, forIndexPath: indexPath) as! AnswerBodyTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Cell.Identifier.AnswerBody, for: indexPath) as! AnswerBodyTableViewCell
             
-            cell.bodyTextView.text = bodyPieces[indexPath.row]
+            cell.bodyTextView.text = bodyPieces[(indexPath as NSIndexPath).row]
             
             return cell
         default:

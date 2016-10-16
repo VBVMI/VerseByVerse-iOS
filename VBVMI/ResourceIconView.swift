@@ -12,7 +12,7 @@ import ACPDownload
 
 class ResourceIconView: UIView {
 
-    let button = ACPDownloadView(frame: CGRectZero)
+    let button = ACPDownloadView(frame: CGRect.zero)
     let dotView = DotView()
     
     override init(frame: CGRect) {
@@ -25,29 +25,29 @@ class ResourceIconView: UIView {
         configureView()
     }
     
-    private func configureView() {
-        self.backgroundColor = UIColor.clearColor()
-        self.button.backgroundColor = UIColor.clearColor()
+    fileprivate func configureView() {
+        self.backgroundColor = UIColor.clear
+        self.button.backgroundColor = UIColor.clear
         
         addSubview(button)
-        button.snp_makeConstraints { (make) in
-            make.center.equalTo(snp_center)
+        button.snp.makeConstraints { (make) in
+            make.center.equalTo(snp.center)
             make.width.height.equalTo(30)
         }
         
         addSubview(dotView)
-        dotView.snp_makeConstraints { (make) in
+        dotView.snp.makeConstraints { (make) in
             make.bottom.equalTo(0)
-            make.centerX.equalTo(self.snp_centerX)
+            make.centerX.equalTo(self.snp.centerX)
         }
         
-        self.snp_makeConstraints { (make) in
+        self.snp.makeConstraints { (make) in
             make.width.equalTo(50).priority(UILayoutPriorityRequired - 10)
             make.height.equalTo(44)
         }
     }
     
-    override func intrinsicContentSize() -> CGSize {
+    override var intrinsicContentSize : CGSize {
         return CGSize(width: 50, height: 44)
     }
 }

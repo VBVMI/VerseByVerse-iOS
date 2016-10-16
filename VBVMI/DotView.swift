@@ -21,18 +21,18 @@ class DotView: UIView {
         configure()
     }
     
-    private func configure() {
-        self.backgroundColor = UIColor.clearColor()
+    fileprivate func configure() {
+        self.backgroundColor = UIColor.clear
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         if self.bounds.size.width != 3 {
             print("Bounds: \(rect)")
         }
        StyleKit.drawDotView(frame: self.bounds)
     }
  
-    override func intrinsicContentSize() -> CGSize {
+    override var intrinsicContentSize : CGSize {
         return CGSize(width: 3, height: 3)
     }
 }

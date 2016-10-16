@@ -1,90 +1,73 @@
 PODS:
   - ACPDownload (1.1.0)
-  - Alamofire (3.5.0)
-  - AlamofireImage (2.5.0):
-    - Alamofire (~> 3.5)
-  - Crashlytics (3.8.2):
+  - Alamofire (4.0.1)
+  - AlamofireImage (3.1.0):
+    - Alamofire (~> 4.0)
+  - Crashlytics (3.8.3):
     - Fabric (~> 1.6.3)
-  - CSStickyHeaderFlowLayout (0.2.10)
-  - Decodable (0.4.1)
-  - Fabric (1.6.9)
-  - FontAwesome.swift (0.8.0)
-  - Moya (7.0.0):
-    - Moya/Core (= 7.0.0)
-  - Moya/Core (7.0.0):
-    - Alamofire (~> 3.0)
-    - Result (~> 2.0)
-  - NSLogger (1.7.0):
-    - NSLogger/Standard (= 1.7.0)
-  - NSLogger/Standard (1.7.0)
-  - ReachabilitySwift (2.3.3)
-  - Result (2.1.3)
+  - CSStickyHeaderFlowLayout (0.2.11)
+  - Decodable (0.5)
+  - Fabric (1.6.10)
+  - FontAwesome.swift (0.11.1)
+  - Moya (8.0.0-beta.2):
+    - Moya/Core (= 8.0.0-beta.2)
+  - Moya/Core (8.0.0-beta.2):
+    - Alamofire (~> 4.0.0)
+    - Result
+  - ReachabilitySwift (3)
+  - Result (3.0.0)
   - Reveal-iOS-SDK (1.6.2)
-  - SnapKit (0.22.0)
-  - STRegex (0.3.1)
-  - SwiftString (0.5)
+  - SnapKit (3.0.2)
+  - STRegex (0.4.2)
   - UIImage-Color (1.1.1)
-  - XCGLogger (3.3)
-  - XCGLoggerNSLoggerConnector (0.1.2):
-    - NSLogger (~> 1.5)
-    - XCGLogger (~> 3.1)
+  - XCGLogger (4.0.0):
+    - XCGLogger/Core (= 4.0.0)
+  - XCGLogger/Core (4.0.0)
 
 DEPENDENCIES:
   - ACPDownload
   - Alamofire
-  - AlamofireImage (~> 2.0)
+  - AlamofireImage
   - Crashlytics
   - CSStickyHeaderFlowLayout
   - Decodable
   - Fabric
-  - FontAwesome.swift (from `git@github.com:thii/FontAwesome.swift.git`, branch `swift-2.3`)
-  - Moya (from `git@github.com:Moya/Moya.git`)
-  - NSLogger
+  - FontAwesome.swift (from `git@github.com:thii/FontAwesome.swift.git`)
+  - Moya (= 8.0.0-beta.2)
   - ReachabilitySwift
   - Reveal-iOS-SDK
   - SnapKit
   - STRegex
-  - SwiftString
   - UIImage-Color
   - XCGLogger
-  - XCGLoggerNSLoggerConnector
 
 EXTERNAL SOURCES:
   FontAwesome.swift:
-    :branch: swift-2.3
     :git: git@github.com:thii/FontAwesome.swift.git
-  Moya:
-    :git: git@github.com:Moya/Moya.git
 
 CHECKOUT OPTIONS:
   FontAwesome.swift:
-    :commit: 88cf5bdf5b1e3c5a0f5aa17e217cebeb802a215c
+    :commit: b03d71746f277690d1ff7df0c539641c4ba57d4d
     :git: git@github.com:thii/FontAwesome.swift.git
-  Moya:
-    :commit: d0c073b6bf538d8cc8d6a47c2de32d402ff8f0b8
-    :git: git@github.com:Moya/Moya.git
 
 SPEC CHECKSUMS:
   ACPDownload: 9c6349be96019b6c8c87ad46570af1cbc7106bf4
-  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
-  AlamofireImage: 2d34936e5201270bb17a316a786e90e83b4a249d
-  Crashlytics: 27acca95a01b042a8294291dd6dff27f8f6af6d7
-  CSStickyHeaderFlowLayout: 5366582779d8b7c9ba9b9cc729c218cc23888776
-  Decodable: 4df86629544f717045a931ed6e9f0be35fa3c3b0
-  Fabric: bc5bec42cef4bcf1ee3ce0e218fc518e4b44dfbb
-  FontAwesome.swift: f8c6cc5c42cbe93bdc04371363bc7b371fb3d3a1
-  Moya: f004b82418fb8165ee1fc9f86190db4b3611fda9
-  NSLogger: daa17368272ddf10a0850c218fe49de23b50f2eb
-  ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
-  Result: 18e1a7597fbcca5923c565b40a25a98afafdee02
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
+  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  CSStickyHeaderFlowLayout: e9bcb1762413f49d7d09e5bd0ae5efd1100116b7
+  Decodable: 7c90acc68d357b71d0d6efc120faf9c53c644b7e
+  Fabric: c73f371ee543e3f0b80608f2674750e4910d1669
+  FontAwesome.swift: 9879cd6a1462bf160662d519f7b7474d73bdd1c3
+  Moya: 920d40f738e6f4ece84010cec701bb9693be8251
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
-  SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
-  STRegex: 4c27ffabad2c8b603f050d28e6c794eb72a13608
-  SwiftString: ec9c31c55b2aa147a1154f5f5f8483dc71e3165f
+  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
+  STRegex: 9b6e0a4300c8442d1aa93241c895eeec4cc56935
   UIImage-Color: 29d79c2acdd1836eae9815836a14fddfcd2db38f
-  XCGLogger: d6e196e78940ff6daab17d6917107876f973fa31
-  XCGLoggerNSLoggerConnector: 43a886c9641b6dc9b3d4db87d3b995fc340424b4
+  XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: 47955e2e1110439dbcb694876e63d94ea2468817
+PODFILE CHECKSUM: b9c5a11408efb43dfccc0b255ea0b67e929ba041
 
 COCOAPODS: 1.0.1

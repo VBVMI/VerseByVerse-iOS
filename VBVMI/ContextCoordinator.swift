@@ -16,22 +16,22 @@ class ContextCoordinator: NSObject {
     var managedObjectContext: NSManagedObjectContext!
     var backgroundManagedObjectContext: NSManagedObjectContext!
     
-    lazy var applicationSupportDirectory: NSURL = {
+    lazy var applicationSupportDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.cactuslab.VBVMI" in the application's documents Application Support directory.
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
+        let urls = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
         return urls[urls.count-1]
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("VBVMI", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)!
+        let modelURL = Bundle.main.url(forResource: "VBVMI", withExtension: "momd")!
+        return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     
     var persistentStoreCoordinator: NSPersistentStoreCoordinator!
     
     
-    override private init() {
+    override fileprivate init() {
         super.init()
         
         //Migrate from the old directory to the new one
@@ -44,49 +44,49 @@ class ContextCoordinator: NSObject {
     /**
      Moving the datastore is important due to a mistake made with the first version. We actually want to store the core data store in ApplicationSupport not in Documents
      */
-    private func moveDataStore() {
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+    fileprivate func moveDataStore() {
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsFolder = urls[urls.count-1]
         
-        if NSFileManager.defaultManager().fileExistsAtPath(documentsFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite")!.path!) {
+        if FileManager.default.fileExists(atPath: documentsFolder.appendingPathComponent("VBVMIDatastore.sqlite").path) {
             let applicationSupportFolder = applicationSupportDirectory
             
-            if !NSFileManager.defaultManager().fileExistsAtPath(applicationSupportFolder.path!) {
-                let _ = try? NSFileManager.defaultManager().createDirectoryAtURL(applicationSupportFolder, withIntermediateDirectories: true, attributes: nil)
+            if !FileManager.default.fileExists(atPath: applicationSupportFolder.path) {
+                let _ = try? FileManager.default.createDirectory(at: applicationSupportFolder, withIntermediateDirectories: true, attributes: nil)
             }
             
             do {
-                try NSFileManager.defaultManager().moveItemAtURL(documentsFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite")!, toURL: applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite")!)
+                try FileManager.default.moveItem(at: documentsFolder.appendingPathComponent("VBVMIDatastore.sqlite"), to: applicationSupportFolder.appendingPathComponent("VBVMIDatastore.sqlite"))
             } catch let error {
                 log.error("Tried to move file:\(error)")
             }
             do {
-                try NSFileManager.defaultManager().moveItemAtURL(documentsFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-shm")!, toURL: applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-shm")!)
+                try FileManager.default.moveItem(at: documentsFolder.appendingPathComponent("VBVMIDatastore.sqlite-shm"), to: applicationSupportFolder.appendingPathComponent("VBVMIDatastore.sqlite-shm"))
             } catch let error {
                 log.error("Tried to move file:\(error)")
             }
             do {
-                try NSFileManager.defaultManager().moveItemAtURL(documentsFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-wal")!, toURL: applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-wal")!)
+                try FileManager.default.moveItem(at: documentsFolder.appendingPathComponent("VBVMIDatastore.sqlite-wal"), to: applicationSupportFolder.appendingPathComponent("VBVMIDatastore.sqlite-wal"))
             } catch let error {
                 log.error("Tried to move file:\(error)")
             }
         }
     }
     
-    private func deleteDataStore() {
+    fileprivate func deleteDataStore() {
         let applicationSupportFolder = applicationSupportDirectory
         do {
-            try NSFileManager.defaultManager().removeItemAtURL(applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite")!)
+            try FileManager.default.removeItem(at: applicationSupportFolder.appendingPathComponent("VBVMIDatastore.sqlite"))
         } catch let error {
             log.error("Tried to move file:\(error)")
         }
         do {
-            try NSFileManager.defaultManager().removeItemAtURL(applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-shm")!)
+            try FileManager.default.removeItem(at: applicationSupportFolder.appendingPathComponent("VBVMIDatastore.sqlite-shm"))
         } catch let error {
             log.error("Tried to move file:\(error)")
         }
         do {
-            try NSFileManager.defaultManager().removeItemAtURL(applicationSupportFolder.URLByAppendingPathComponent("VBVMIDatastore.sqlite-wal")!)
+            try FileManager.default.removeItem(at: applicationSupportFolder.appendingPathComponent("VBVMIDatastore.sqlite-wal"))
         } catch let error {
             log.error("Tried to move file:\(error)")
         }
@@ -97,15 +97,15 @@ class ContextCoordinator: NSObject {
         // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = applicationSupportDirectory.URLByAppendingPathComponent("VBVMIDatastore.sqlite")
+        let url = applicationSupportDirectory.appendingPathComponent("VBVMIDatastore.sqlite")
         
-        if !NSFileManager.defaultManager().fileExistsAtPath(applicationSupportDirectory.path!) {
-            let _ = try? NSFileManager.defaultManager().createDirectoryAtURL(applicationSupportDirectory, withIntermediateDirectories: true, attributes: nil)
+        if !FileManager.default.fileExists(atPath: applicationSupportDirectory.path) {
+            let _ = try? FileManager.default.createDirectory(at: applicationSupportDirectory, withIntermediateDirectories: true, attributes: nil)
         }
         
         //log.info("Database path: \(url)")
         do {
-            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true])
+            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true])
         } catch let error {
             
             log.error("Error building store \(error)")
@@ -121,40 +121,40 @@ class ContextCoordinator: NSObject {
     
     func setupManagedObjectContexts() {
         let coordinator = self.persistentStoreCoordinator
-        let context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         context.persistentStoreCoordinator = coordinator
         self.managedObjectContext = context
         
-        let backgroundContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        let backgroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         backgroundContext.persistentStoreCoordinator = coordinator
         self.backgroundManagedObjectContext = backgroundContext
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(mergeMain(_:)), name: NSManagedObjectContextDidSaveNotification, object: self.backgroundManagedObjectContext)
+        NotificationCenter.default.addObserver(self, selector: #selector(mergeMain(_:)), name: NSNotification.Name.NSManagedObjectContextDidSave, object: self.backgroundManagedObjectContext)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(mergeBackground(_:)), name: NSManagedObjectContextDidSaveNotification, object: self.managedObjectContext)
+        NotificationCenter.default.addObserver(self, selector: #selector(mergeBackground(_:)), name: NSNotification.Name.NSManagedObjectContextDidSave, object: self.managedObjectContext)
         
         migrateData(backgroundContext)
     }
     
 
     
-    func mergeMain(notification: NSNotification) {
+    func mergeMain(_ notification: Notification) {
         //        log.info("Merging Main context")
-        managedObjectContext.performBlock { () -> Void in
-            self.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
+        managedObjectContext.perform { () -> Void in
+            self.managedObjectContext.mergeChanges(fromContextDidSave: notification)
         }
         
     }
     
-    func mergeBackground(notification: NSNotification) {
-        backgroundManagedObjectContext.performBlock { () -> Void in
+    func mergeBackground(_ notification: Notification) {
+        backgroundManagedObjectContext.perform { () -> Void in
             //            log.info("Merging Background context")
-            self.backgroundManagedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
+            self.backgroundManagedObjectContext.mergeChanges(fromContextDidSave: notification)
         }
     }
     
     func saveContext () {
-        managedObjectContext.performBlock { () -> Void in
+        managedObjectContext.perform { () -> Void in
             if self.managedObjectContext.hasChanges {
                 do {
                     try self.managedObjectContext.save()
@@ -170,16 +170,16 @@ class ContextCoordinator: NSObject {
     }
     
     
-    private func migrateData(context: NSManagedObjectContext) {
-        if !NSUserDefaults.standardUserDefaults().boolForKey("CompletedCountMigration") {
-            context.performBlock({ 
-                let studies = Study.findAll(context) as! [Study]
+    fileprivate func migrateData(_ context: NSManagedObjectContext) {
+        if !UserDefaults.standard.bool(forKey: "CompletedCountMigration") {
+            context.perform({ 
+                let studies : [Study] = Study.findAll(context)
                 
                 studies.forEach({ (study) in
                     let predicate = NSPredicate(format: "%K == %@", LessonAttributes.studyIdentifier.rawValue, study.identifier)
-                    let lessons = Lesson.findAllWithPredicate(predicate, context: context) as! [Lesson]
+                    let lessons: [Lesson] = Lesson.findAllWithPredicate(predicate, context: context)
                     
-                    let lessonsCompleted = lessons.reduce(0, combine: { (value, lesson) -> Int in
+                    let lessonsCompleted = lessons.reduce(0, { (value, lesson) -> Int in
                         return lesson.completed ? value + 1 : value
                     })
                     study.lessonsCompleted = Int32(lessonsCompleted)
@@ -187,8 +187,8 @@ class ContextCoordinator: NSObject {
                 
                 let _ = try? context.save()
                 
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "CompletedCountMigration")
-                NSUserDefaults.standardUserDefaults().synchronize()
+                UserDefaults.standard.set(true, forKey: "CompletedCountMigration")
+                UserDefaults.standard.synchronize()
             })
         }
     }

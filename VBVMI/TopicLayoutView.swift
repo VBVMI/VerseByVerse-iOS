@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TopicLayoutViewDelegate: NSObjectProtocol {
-    func topicSelected(topic: Topic)
+    func topicSelected(_ topic: Topic)
 }
 
 class TopicLayoutView: UIView {
@@ -21,76 +21,76 @@ class TopicLayoutView: UIView {
         }
     }
     
-    var topicSelectedBlock : ((topic: Topic) -> ())?
+    var topicSelectedBlock : ((_ topic: Topic) -> ())?
     
-    private var topicViews = [TopicButton]()
+    fileprivate var topicViews = [TopicButton]()
     
-    private func configureViews() {
+    fileprivate func configureViews() {
         topicViews.forEach { (view) in
             view.removeFromSuperview()
         }
         topicViews = []
         topics.forEach { (topic) in
-            let view = TopicButton(frame: CGRectZero)
+            let view = TopicButton(frame: CGRect.zero)
             view.topic = topic
             addSubview(view)
             topicViews.append(view)
-            view.addTarget(self, action: #selector(TopicLayoutView.tappedTopicButton(_:)), forControlEvents: .TouchUpInside)
+            view.addTarget(self, action: #selector(TopicLayoutView.tappedTopicButton(_:)), for: .touchUpInside)
         }
         self.invalidateIntrinsicContentSize()
 //        self.setContentHuggingPriority(400, forAxis: UILayoutConstraintAxis.Vertical)
     }
     
-    func tappedTopicButton(sender: TopicButton) {
+    func tappedTopicButton(_ sender: TopicButton) {
         if let topic = sender.topic {
-            topicSelectedBlock?(topic: topic)
+            topicSelectedBlock?(topic)
         }
     }
     
-    var lastLayoutSize: CGSize = CGSizeZero {
+    var lastLayoutSize: CGSize = CGSize.zero {
         didSet {
             if lastLayoutSize.height != oldValue.height {
 //                print("setting height to: \(lastLayoutSize)")
                 self.invalidateIntrinsicContentSize()
                 self.setNeedsLayout()
             }
-//            self.snp_updateConstraints { (make) in
+//            self.snp.updateConstraints { (make) in
 //                make.height.equalTo(lastLayoutSize.height)
 //            }
         }
     }
     
-    override func sizeThatFits(size: CGSize) -> CGSize {
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
         rearrangeViews(size)
         return CGSize(width: size.width, height: lastLayoutSize.height)
     }
     
-    override func intrinsicContentSize() -> CGSize {
-        return CGSizeMake(UIViewNoIntrinsicMetric, lastLayoutSize.height)
+    override var intrinsicContentSize : CGSize {
+        return CGSize(width: UIViewNoIntrinsicMetric, height: lastLayoutSize.height)
     }
     
-    func rearrangeViews(size: CGSize) {
+    func rearrangeViews(_ size: CGSize) {
         var currentX : CGFloat = self.layoutMargins.left
         var currentY : CGFloat = self.layoutMargins.top
         let paddingH : CGFloat = 8
         let paddingV : CGFloat = 8
         let rightEdgeX = size.width - self.layoutMargins.left - self.layoutMargins.right
-        var lastSize: CGSize = CGSizeZero
+        var lastSize: CGSize = CGSize.zero
         var maxWidth : CGFloat = 0
         
         for topicView in topicViews {
-            let size = topicView.intrinsicContentSize()
-            if topicView.hidden {
-                topicView.frame = CGRectZero
+            let size = topicView.intrinsicContentSize
+            if topicView.isHidden {
+                topicView.frame = CGRect.zero
                 continue
             }
             if size.width + currentX <= rightEdgeX {
-                topicView.frame = CGRectMake(currentX, currentY, size.width, size.height)
+                topicView.frame = CGRect(x: currentX, y: currentY, width: size.width, height: size.height)
                 currentX += paddingH + size.width
             } else {
                 currentX = self.layoutMargins.left
                 currentY += size.height + paddingV
-                topicView.frame = CGRectMake(currentX, currentY, size.width, size.height)
+                topicView.frame = CGRect(x: currentX, y: currentY, width: size.width, height: size.height)
                 currentX += paddingH + size.width
             }
             if currentX > maxWidth {

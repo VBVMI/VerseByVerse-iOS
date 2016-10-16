@@ -11,7 +11,7 @@ import UIKit
 class BlurImageView: UIImageView {
 
     
-    let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+    let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,8 +21,6 @@ class BlurImageView: UIImageView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         addSubview(visualEffectView)
-        
-        visualEffectView.layer
     }
     
     /*

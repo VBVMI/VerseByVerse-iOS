@@ -3,15 +3,15 @@ import CoreData
 import Decodable
 
 @objc(Channel)
-public class Channel: _Channel {
+open class Channel: _Channel {
 
-    class func decodeJSON(JSONDict: NSDictionary, context: NSManagedObjectContext, index: Int) throws -> (Channel) {
+    class func decodeJSON(_ JSONDict: NSDictionary, context: NSManagedObjectContext, index: Int) throws -> (Channel) {
         guard let identifier = JSONDict["ID"] as? String else {
-            throw APIDataManagerError.MissingID
+            throw APIDataManagerError.missingID
         }
         
         guard let channel = Channel.findFirstOrCreateWithDictionary(["identifier": identifier], context: context) as? Channel else {
-            throw APIDataManagerError.ModelCreationFailed
+            throw APIDataManagerError.modelCreationFailed
         }
         
         channel.identifier = try JSONDict => "ID"
@@ -23,7 +23,7 @@ public class Channel: _Channel {
         channel.thumbnailAltText = nullOrString(try JSONDict => "thumbnailAltText")
         
         if let dateString: String = try JSONDict => "postedDate" {
-            channel.postedDate = NSDate.dateFromTimeString(dateString)
+            channel.postedDate = Date.dateFromTimeString(dateString)
         }
         
         let studyTitle: String = try JSONDict => "title"
@@ -35,7 +35,7 @@ public class Channel: _Channel {
             //Then lets process the videos
             var myVideos = Set<Video>()
             
-            videosArray.enumerate().forEach({ (videoIndex, topicJSONDict) -> () in
+            videosArray.enumerated().forEach({ (videoIndex, topicJSONDict) -> () in
                 do {
                     let video = try Video.decodeJSON(topicJSONDict, context: context, index: videoIndex)
                     myVideos.insert(video)

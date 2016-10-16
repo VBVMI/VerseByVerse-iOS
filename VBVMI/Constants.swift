@@ -39,8 +39,8 @@ enum TabBar {
 }
 
 enum DateFormatters {
-    static let calendarDateFormatter : NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
+    static let calendarDateFormatter : DateFormatter = {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         return dateFormatter
     }()

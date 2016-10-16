@@ -25,76 +25,76 @@ public enum StudyRelationships: String {
     case topics = "topics"
 }
 
-public class _Study: NSManagedObject {
+open class _Study: NSManagedObject {
 
     // MARK: - Class methods
 
-    public class func entityName () -> String {
+    open class func entityName () -> String {
         return "Study"
     }
 
-    public class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
-        return NSEntityDescription.entityForName(self.entityName(), inManagedObjectContext: managedObjectContext)
+    open class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
+        return NSEntityDescription.entity(forEntityName: self.entityName(), in: managedObjectContext)
     }
 
     // MARK: - Life cycle methods
 
-    public override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
     }
 
     public convenience init?(managedObjectContext: NSManagedObjectContext) {
-        guard let entity = _Study.entity(managedObjectContext) else { return nil }
-        self.init(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
+        guard let entity = _Study.entity(managedObjectContext: managedObjectContext) else { return nil }
+        self.init(entity: entity, insertInto: managedObjectContext)
     }
 
     // MARK: - Properties
 
-    @NSManaged public
+    @NSManaged open
     var averageRating: String?
 
-    @NSManaged public
+    @NSManaged open
     var bibleIndex: Int32
 
-    @NSManaged public
+    @NSManaged open
     var completed: Bool
 
-    @NSManaged public
+    @NSManaged open
     var descriptionText: String
 
-    @NSManaged public
+    @NSManaged open
     var identifier: String
 
-    @NSManaged public
+    @NSManaged open
     var imageSource: String?
 
-    @NSManaged public
+    @NSManaged open
     var lessonCount: Int32
 
-    @NSManaged public
+    @NSManaged open
     var lessonsCompleted: Int32
 
-    @NSManaged public
+    @NSManaged open
     var podcastLink: String?
 
-    @NSManaged public
+    @NSManaged open
     var studyIndex: Int32
 
-    @NSManaged public
+    @NSManaged open
     var studyType: String
 
-    @NSManaged public
+    @NSManaged open
     var thumbnailAltText: String?
 
-    @NSManaged public
+    @NSManaged open
     var thumbnailSource: String?
 
-    @NSManaged public
+    @NSManaged open
     var title: String
 
     // MARK: - Relationships
 
-    @NSManaged public
+    @NSManaged open
     var topics: Set<Topic>
 
     // MARK: - Fetched Properties
@@ -103,20 +103,20 @@ public class _Study: NSManagedObject {
 
 extension _Study {
 
-    func addTopics(objects: Set<Topic>) {
+    func add(topics objects: Set<Topic>) {
         self.topics = self.topics.union(objects)
     }
 
-    func removeTopics(objects: Set<Topic>) {
-        self.topics = self.topics.subtract(objects)
+    func remove(topics objects: Set<Topic>) {
+        self.topics = self.topics.subtracting(objects)
     }
 
-    func addTopicsObject(value: Topic) {
+    func add(topicsObject value: Topic) {
         self.topics = self.topics.union([value])
     }
 
-    func removeTopicsObject(value: Topic) {
-        self.topics = self.topics.subtract([value])
+    func remove(topicsObject value: Topic) {
+        self.topics = self.topics.subtracting([value])
     }
 
 }

@@ -16,11 +16,11 @@ class CenteredProgressView: UIView {
         }
     }
 
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         drawCenteredProgress(progress: progress, progressFrame: self.bounds)
     }
     
-    func drawCenteredProgress(progress progress: CGFloat = 1, progressFrame: CGRect = CGRect(x: 0, y: 0, width: 80, height: 4)) {
+    func drawCenteredProgress(progress: CGFloat = 1, progressFrame: CGRect = CGRect(x: 0, y: 0, width: 80, height: 4)) {
         
         if  progress == 1 {
             return

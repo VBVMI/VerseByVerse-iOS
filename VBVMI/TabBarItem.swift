@@ -11,10 +11,10 @@ import FontAwesome_swift
 
 class TabBarItem: UITabBarItem {
     
-    override func setValue(value: AnyObject?, forKeyPath keyPath: String) {
+    override func setValue(_ value: Any?, forKeyPath keyPath: String) {
         if keyPath == "fontAwesomeKey" {
             if let value = value as? String {
-                let scale = UIScreen.mainScreen().scale
+                let scale = UIScreen.main.scale
                 let pointSize: CGFloat = TabBar.pointSize
                 if let raw = FontAwesomeIcons[value], let icon = FontAwesome(rawValue: raw) {
                     let icon = UIImage.fontAwesomeIconWithName(icon, textColor: StyleKit.white, size: CGSize(width: pointSize * scale, height: pointSize * scale))

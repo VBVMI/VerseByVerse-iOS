@@ -10,59 +10,80 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 import CoreData
+import Crashlytics
+
+enum SoundError : Error, CustomNSError {
+    case debug(message: String)
+    
+    var errorCode: Int {
+        switch self {
+        case .debug(_):
+            return 0
+        }
+    }
+    
+    var errorUserInfo: [String : Any] {
+        switch self {
+        case .debug(let message):
+            return ["debug": message]
+        }
+    }
+    
+    static var errorDomain: String = "com.versebyverseministry.SoundError"
+}
 
 class SoundManager: NSObject {
 
     static let sharedInstance = SoundManager()
     
-    private(set) var study: Study? //backgroundContext version
-    private(set) var lesson: Lesson? //backgroundContext version
-    private(set) var lessonQueue = [Lesson]() //backgroundContext version
+    fileprivate(set) var study: Study? //backgroundContext version
+    fileprivate(set) var lesson: Lesson? //backgroundContext version
+    fileprivate(set) var lessonQueue = [Lesson]() //backgroundContext version
     
-    private(set) var audioURL: NSURL?
+    fileprivate(set) var audioURL: URL?
     
-    private var initialCategory: String?
-    private var initialMode: String?
+    fileprivate var initialCategory: String?
+    fileprivate var initialMode: String?
     
     let avPlayer = AVQueuePlayer()
     
-    private var imageView = UIImageView()
+    fileprivate var imageView = UIImageView()
     var albumCover: UIImage? {
         return imageView.image
     }
     
-    private var audioCache: AudioPlayer?
-    private var backgroundQueueContext: NSManagedObjectContext?
+    fileprivate var audioCache: AudioPlayer?
+    fileprivate var backgroundQueueContext: NSManagedObjectContext?
     
-    private var playbackRate: Float = AudioPlayerViewController.AudioRate.load().rawValue
+    fileprivate var playbackRate: Float = AudioPlayerViewController.AudioRate.load().rawValue
     
-    private var initializeCompletionHandler: ((NSError?) -> Void)?
-    private var initiatePlaybackCompletionHandler: ((NSError?) -> Void)?
+    fileprivate var initializeCompletionHandler: ((NSError?) -> Void)?
+    fileprivate var initiatePlaybackCompletionHandler: ((NSError?) -> Void)?
     weak var activeController: UIViewController?
     
-    private var currentMonitoredItem: AVPlayerItem? {
+    fileprivate var currentMonitoredItem: AVPlayerItem? {
         didSet {
             if let old = oldValue {
                 old.removeObserver(self, forKeyPath: "status")
             }
             if let new = currentMonitoredItem {
-                new.addObserver(self, forKeyPath: "status", options: .New, context: nil)
+                new.addObserver(self, forKeyPath: "status", options: .new, context: nil)
             }
         }
     }
     
-    private var timerObserver : AnyObject?
-    private override init() {
+    fileprivate var timerObserver : AnyObject?
+    fileprivate override init() {
         super.init()
         startTimerObserver()
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+        DispatchQueue.main.async { () -> Void in
             self.configureCommandCenter()
             self.restoreState()
             self.configureContentManager()
         }
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioDidFinish(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: nil)
-        self.avPlayer.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.New, context: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(audioDidFinish(_:)), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+        self.avPlayer.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.new, context: nil)
         if #available(iOS 10.0, *) {
             self.avPlayer.automaticallyWaitsToMinimizeStalling = false
         } else {
@@ -74,19 +95,19 @@ class SoundManager: NSObject {
         self.avPlayer.removeObserver(self, forKeyPath: "rate")
         self.currentMonitoredItem = nil
         stopTimerObserver()
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
-    func audioDidFinish(notification: NSNotification) {
+    func audioDidFinish(_ notification: Notification) {
         //Mark the lesson as complete
-        backgroundQueueContext?.performBlock({ () -> Void in
+        backgroundQueueContext?.perform({ () -> Void in
             self.lesson?.audioProgress = 0
             let _ = try? self.backgroundQueueContext?.save()
         })
         
     }
     
-    private var isReady: Bool = false {
+    fileprivate var isReady: Bool = false {
         didSet {
             if isReady {
                 self.readyBlock?()
@@ -99,12 +120,12 @@ class SoundManager: NSObject {
         }
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if let _ = object as? AVPlayer where keyPath == "rate" {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if let _ = object as? AVPlayer , keyPath == "rate" {
             self.configureInfo()
         }
-        if let item = object as? AVPlayerItem where keyPath == "status" {
-            if item.status == AVPlayerItemStatus.ReadyToPlay {
+        if let item = object as? AVPlayerItem , keyPath == "status" {
+            if item.status == AVPlayerItemStatus.readyToPlay {
                 log.info("Player became ready to play")
                 let currentProgress = self.loadProgress
                 
@@ -117,7 +138,7 @@ class SoundManager: NSObject {
                     time = kCMTimeZero
                 }
                 self.currentMonitoredItem = nil
-                item.seekToTime(time, completionHandler: { (sucess) in
+                item.seek(to: time, completionHandler: { (sucess) in
                     log.debug("Seek to time: \(sucess ? "Success" : "Failed")")
                     self.configureInfo()
                     self.isReady = true
@@ -126,7 +147,7 @@ class SoundManager: NSObject {
         }
     }
     
-    private func stopTimerObserver() {
+    fileprivate func stopTimerObserver() {
         log.info("Sound Manager Stopping timer observer")
         if let timerObserver = timerObserver {
             self.avPlayer.removeTimeObserver(timerObserver)
@@ -134,23 +155,23 @@ class SoundManager: NSObject {
         }
     }
     
-    private func startTimerObserver() {
+    fileprivate func startTimerObserver() {
         log.info("Sound Manager Starting timer observer")
-        self.timerObserver = self.avPlayer.addPeriodicTimeObserverForInterval(CMTime(seconds: 5, preferredTimescale: 600), queue: nil, usingBlock: { (currentTime) -> Void in
+        self.timerObserver = self.avPlayer.addPeriodicTimeObserver(forInterval: CMTime(seconds: 5, preferredTimescale: 600), queue: nil, using: { (currentTime) -> Void in
             self.saveState()
 //            self.configureInfo()
 //            log.debug("Observing time: \(CMTimeGetSeconds(currentTime))")
-        })
+        }) as AnyObject?
     }
     
-    func restoreState(completion:(()->())? = nil) {
+    func restoreState(_ completion:(()->())? = nil) {
         isReady = false
         log.verbose("Sound Manager Attempting To Restore State")
        
-        let context = ContextCoordinator.sharedInstance.backgroundManagedObjectContext
+        let context = ContextCoordinator.sharedInstance.backgroundManagedObjectContext!
         self.backgroundQueueContext = context
         log.verbose("Sound Manager has found context: \(context)")
-        context.performBlock({ () -> Void in
+        context.perform({ () -> Void in
             self.audioCache = AudioPlayer.findFirst(context)
             
             if self.audioCache == nil {
@@ -168,7 +189,7 @@ class SoundManager: NSObject {
                 self.lesson = audioCache.lesson.first
                 self.study = audioCache.study.first
                 
-                if let audioLesson = self.lesson, audioStudy = self.study where audioLesson.audioProgress != 0 && audioLesson.audioProgress != 1 && audioLesson.audioProgress != 0 {
+                if let audioLesson = self.lesson, let audioStudy = self.study , audioLesson.audioProgress != 0 && audioLesson.audioProgress != 1 && audioLesson.audioProgress != 0 {
                     if let audioURLString = audioLesson.audioSourceURL {
                         if let url = APIDataManager.fileExists(audioLesson, urlString: audioURLString) {
                             // The file is downloaded and ready for playing
@@ -176,24 +197,24 @@ class SoundManager: NSObject {
                             let lessonId = audioLesson.objectID
                             let studyId = audioStudy.objectID
                             
-                            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                               guard let mainLesson = ContextCoordinator.sharedInstance.managedObjectContext.objectWithID(lessonId) as? Lesson,
-                                mainStudy = ContextCoordinator.sharedInstance.managedObjectContext.objectWithID(studyId) as? Study else {
+                            DispatchQueue.main.async { () -> Void in
+                               guard let mainLesson = ContextCoordinator.sharedInstance.managedObjectContext!.object(with: lessonId) as? Lesson,
+                                let mainStudy = ContextCoordinator.sharedInstance.managedObjectContext!.object(with: studyId) as? Study else {
                                     return
                                 }
                                 //We should dispatch a notification to load the audio controller...
-                                if let controller = (UIApplication.sharedApplication().delegate as? AppDelegate)?.window?.rootViewController as? HomeTabBarController {
+                                if let controller = (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController as? HomeTabBarController {
                                     
-                                    if let audioPlayerController = controller.popupContentViewController as? AudioPlayerViewController {
-                                        audioPlayerController.configure(url, name: mainLesson.title ?? "", subTitle: mainLesson.descriptionText ?? "", lesson: mainLesson, study: mainStudy)
-                                        if controller.popupPresentationState == .Closed {
-                                            controller.openPopupAnimated(true, completion: completion)
+                                    if let audioPlayerController = controller.popupContent as? AudioPlayerViewController {
+                                        audioPlayerController.configure(url, name: mainLesson.title, subTitle: mainLesson.descriptionText ?? "", lesson: mainLesson, study: mainStudy)
+                                        if controller.popupPresentationState == .closed {
+                                            controller.openPopup(animated: true, completion: completion)
                                         }
                                     } else {
                                         let demoVC = AudioPlayerViewController()
-                                        demoVC.configure(url, name: mainLesson.title ?? "", subTitle: mainLesson.descriptionText ?? "", lesson: mainLesson, study: mainStudy, startPlaying: false)
+                                        demoVC.configure(url, name: mainLesson.title, subTitle: mainLesson.descriptionText ?? "", lesson: mainLesson, study: mainStudy, startPlaying: false)
                                         
-                                        controller.presentPopupBarWithContentViewController(demoVC, openPopup: true, animated: true, completion: completion)
+                                        controller.presentPopupBar(withContentViewController: demoVC, openPopup: true, animated: true, completion: completion)
                                     }
                                 }
                             }
@@ -214,18 +235,19 @@ class SoundManager: NSObject {
         
     }
     
-    private var readyBlock: (()->())? = nil
-    private var loadProgress: Double = 0 {
+    fileprivate var readyBlock: (()->())? = nil
+    fileprivate var loadProgress: Double = 0 {
         didSet {
-            log.info("Loading progress: \(loadProgress)")
+            log.info("Loading progress: \(self.loadProgress)")
         }
     }
     
-    func configure(study: Study, lesson: Lesson, audioURL: NSURL, progress: Double = 0, readyBlock: (()->())? = nil) {
+    func configure(_ study: Study, lesson: Lesson, audioURL: URL, progress: Double = 0, readyBlock: (()->())? = nil) {
         isReady = false
         
         
         guard let context = backgroundQueueContext else {
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Sound Manager Background Context Not Configured"))
             log.error("Sound Manager Background Context Not Configured")
             return
         }
@@ -233,7 +255,7 @@ class SoundManager: NSObject {
         //convert the lesson and study into appropriate context objects
         self.loadProgress = progress == 1 ? 0 : progress
         
-        context.performBlockAndWait { () -> Void in
+        context.performAndWait { () -> Void in
             do {
                 self.study = try Study.withIdentifier(study.objectID, context: context)
                 self.lesson = try Lesson.withIdentifier(lesson.objectID, context: context)
@@ -244,11 +266,11 @@ class SoundManager: NSObject {
         
         self.audioURL = audioURL
         
-        let asset = AVAsset(URL: audioURL)
+        let asset = AVAsset(url: audioURL)
         
         let item = AVPlayerItem(asset: asset)
         self.currentMonitoredItem = item
-        self.avPlayer.replaceCurrentItemWithPlayerItem(item)
+        self.avPlayer.replaceCurrentItem(with: item)
         self.readyBlock = readyBlock
         
         getImage()
@@ -271,19 +293,21 @@ class SoundManager: NSObject {
 //            log.info("AVPlayerStatus is not ready to play")
 //        }
         
-        start(registerObservers: true)
+        let _ = start(registerObservers: true)
     }
     
-    private func start(registerObservers addObservers: Bool) -> Bool {
+    fileprivate func start(registerObservers addObservers: Bool) -> Bool {
         log.info("Starting AudioManager - addObservers:\(addObservers)")
         
-        if avPlayer.status != AVPlayerStatus.ReadyToPlay {
+        if avPlayer.status != AVPlayerStatus.readyToPlay {
             log.error("avPlayer status is not readyToPlay")
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "avPlayer status is not readyToPlay"))
             return false
         }
         
         let session = AVAudioSession.sharedInstance()
         if !setAudioSessionMode() || !setAudioSessionCategory() {
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Failed to configure Audio session"))
             log.error("Failed to configure Audio session")
             return false
         }
@@ -292,6 +316,7 @@ class SoundManager: NSObject {
             try session.setActive(true)
         } catch let error {
             log.error("Error activating audio session: \(error)")
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error activating audio session: \(error)"))
             return false
         }
         
@@ -321,12 +346,13 @@ class SoundManager: NSObject {
         stop(unregisterObservers: true)
     }
     
-    private func stop(unregisterObservers removeObservers: Bool) {
+    fileprivate func stop(unregisterObservers removeObservers: Bool) {
         avPlayer.pause()
         do {
             try AVAudioSession.sharedInstance().setActive(false)
         } catch let error {
             log.error("Error deactivating audio session: \(error)")
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error deactivating audio session: \(error)"))
         }
         
         if removeObservers {
@@ -334,23 +360,24 @@ class SoundManager: NSObject {
         }
     }
     
-    private func configureInfo() {
-        guard let lesson = lesson, study = study, item = avPlayer.currentItem else {
+    fileprivate func configureInfo() {
+        guard let lesson = lesson, let study = study, let item = avPlayer.currentItem else {
             log.warning("Trying to configure Sound Manager without all details")
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Trying to configure Sound Manager without all details"), withAdditionalUserInfo: ["lesson": self.lesson != nil ? "valid": "invalid", "study": self.study != nil ? "valid": "invalid", "avPlayer.currentItem": avPlayer.currentItem != nil ? "valid": "invalid"])
             return
         }
         
         
-        let infoCenter = MPNowPlayingInfoCenter.defaultCenter()
+        let infoCenter = MPNowPlayingInfoCenter.default()
         var newInfo = [String: AnyObject]()
         
-        newInfo[MPMediaItemPropertyAlbumTitle] = study.title
-        newInfo[MPMediaItemPropertyTitle] = lesson.title
-        newInfo[MPMediaItemPropertyPlaybackDuration] = CMTimeGetSeconds(item.duration)
+        newInfo[MPMediaItemPropertyAlbumTitle] = study.title as AnyObject?
+        newInfo[MPMediaItemPropertyTitle] = lesson.title as AnyObject?
+        newInfo[MPMediaItemPropertyPlaybackDuration] = CMTimeGetSeconds(item.duration) as AnyObject?
         
-        newInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.avPlayer.rate
-        newInfo[MPNowPlayingInfoPropertyDefaultPlaybackRate] = playbackRate
-        newInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = CMTimeGetSeconds(self.avPlayer.currentTime())
+        newInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.avPlayer.rate as AnyObject?
+        newInfo[MPNowPlayingInfoPropertyDefaultPlaybackRate] = playbackRate as AnyObject?
+        newInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = CMTimeGetSeconds(self.avPlayer.currentTime()) as AnyObject?
         
         if let image = imageView.image {
             newInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image)
@@ -361,31 +388,32 @@ class SoundManager: NSObject {
         infoCenter.nowPlayingInfo = newInfo
     }
     
-    private func configureContentManager() {
+    fileprivate func configureContentManager() {
         
         
-        let manager = MPPlayableContentManager.sharedContentManager()
+        let manager = MPPlayableContentManager.shared()
         manager.delegate = self
         
     }
 
     
-    private func configureCommandCenter() {
+    fileprivate func configureCommandCenter() {
         log.info("Configuring command center")
-        let commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
-        commandCenter.playCommand.addTargetWithHandler { [weak self] (event) -> MPRemoteCommandHandlerStatus in
-            guard let this = self else { return MPRemoteCommandHandlerStatus.CommandFailed }
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.addTarget (handler: { [weak self] (event) -> MPRemoteCommandHandlerStatus in
+            guard let this = self else { return MPRemoteCommandHandlerStatus.commandFailed }
             // If no item, load the cached one
             if let item = this.avPlayer.currentItem {
                 // If item is at end, and next is unavailable, error
                 if CMTimeCompare(item.duration, this.avPlayer.currentTime()) <= 0 {
                     log.verbose("Sound Manager Item is at end while trying to play")
-                    return .NoSuchContent
+                    Crashlytics.sharedInstance().recordError(SoundError.debug(message: "CC: Sound Manager Item is at end while trying to play"))
+                    return .noSuchContent
                 } else {
                     this.startPlaying()
                     this.configureInfo()
                     log.verbose("Sound Manager Did Play")
-                    return MPRemoteCommandHandlerStatus.Success
+                    return MPRemoteCommandHandlerStatus.success
                 }
             } else {
                 log.verbose("Sound Manager Choosing to restore State then play")
@@ -393,29 +421,30 @@ class SoundManager: NSObject {
                     this.startPlaying()
                     this.configureInfo()
                 }
-                return MPRemoteCommandHandlerStatus.Success // ???
+                return MPRemoteCommandHandlerStatus.success // ???
             }
-        }
+        })
         
-        commandCenter.togglePlayPauseCommand.addTargetWithHandler { [weak self] (event) -> MPRemoteCommandHandlerStatus in
-            guard let this = self else { return MPRemoteCommandHandlerStatus.CommandFailed }
+        commandCenter.togglePlayPauseCommand.addTarget (handler: { [weak self] (event) -> MPRemoteCommandHandlerStatus in
+            guard let this = self else { return MPRemoteCommandHandlerStatus.commandFailed }
             if let item = this.avPlayer.currentItem {
                 // If item is at end, and next is unavailable, error
                 if CMTimeCompare(item.duration, this.avPlayer.currentTime()) <= 0 {
                     log.verbose("Sound Manager Item is at end while trying to play")
-                    return .NoSuchContent
+                    Crashlytics.sharedInstance().recordError(SoundError.debug(message: "CC: Sound Manager Item is at end while trying to play"))
+                    return .noSuchContent
                 } else {
                     if this.avPlayer.rate == 0 {
                         //Player is stopped
                         this.startPlaying()
                         this.configureInfo()
                         log.verbose("Sound Manager Did Play")
-                        return MPRemoteCommandHandlerStatus.Success
+                        return MPRemoteCommandHandlerStatus.success
                     } else {
                         this.pausePlaying()
                         this.configureInfo()
                         log.verbose("Sound Manager Did Pause")
-                        return MPRemoteCommandHandlerStatus.Success
+                        return MPRemoteCommandHandlerStatus.success
                     }
                 }
             } else {
@@ -424,13 +453,13 @@ class SoundManager: NSObject {
                     this.startPlaying()
                     this.configureInfo()
                 }
-                return MPRemoteCommandHandlerStatus.Success // ???
+                return MPRemoteCommandHandlerStatus.success // ???
             }
             
-        }
+        })
         
-        commandCenter.pauseCommand.addTargetWithHandler { [weak self] (event) -> MPRemoteCommandHandlerStatus in
-            guard let this = self else { return MPRemoteCommandHandlerStatus.CommandFailed }
+        commandCenter.pauseCommand.addTarget (handler: { [weak self] (event) -> MPRemoteCommandHandlerStatus in
+            guard let this = self else { return MPRemoteCommandHandlerStatus.commandFailed }
 
             //Pause the player
             if let _ = this.avPlayer.currentItem {
@@ -438,47 +467,48 @@ class SoundManager: NSObject {
                 
                 log.verbose("Sound Manager Did Pause audio")
 //                this.configureInfo()
-                return MPRemoteCommandHandlerStatus.Success
+                return MPRemoteCommandHandlerStatus.success
             }
             log.verbose("Sound Manager Failed Pause audio")
-            return MPRemoteCommandHandlerStatus.NoSuchContent
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "CC: Sound Manager Failed Pause audio"))
+            return MPRemoteCommandHandlerStatus.noSuchContent
             //save state
-        }
+        })
         
-        commandCenter.skipBackwardCommand.addTargetWithHandler { (event) -> MPRemoteCommandHandlerStatus in
-            if let skipEvent = event as? MPSkipIntervalCommandEvent where self.skipBackward(skipEvent.interval) {
-                return .Success
+        commandCenter.skipBackwardCommand.addTarget (handler: { (event) -> MPRemoteCommandHandlerStatus in
+            if let skipEvent = event as? MPSkipIntervalCommandEvent , self.skipBackward(skipEvent.interval) {
+                return .success
             }
-            return .NoSuchContent
-        }
+            return .noSuchContent
+        })
         commandCenter.skipBackwardCommand.preferredIntervals = [30]
         
-        commandCenter.skipForwardCommand.addTargetWithHandler { (event) -> MPRemoteCommandHandlerStatus in
-            if let skipEvent = event as? MPSkipIntervalCommandEvent where self.skipForward(skipEvent.interval) {
-                return .Success
+        commandCenter.skipForwardCommand.addTarget (handler: { (event) -> MPRemoteCommandHandlerStatus in
+            if let skipEvent = event as? MPSkipIntervalCommandEvent , self.skipForward(skipEvent.interval) {
+                return .success
             }
-            return .NoSuchContent
-        }
+            return .noSuchContent
+        })
         commandCenter.skipForwardCommand.preferredIntervals = [30]
-        commandCenter.changePlaybackPositionCommand.addTargetWithHandler { (event) -> MPRemoteCommandHandlerStatus in
+        commandCenter.changePlaybackPositionCommand.addTarget (handler: { (event) -> MPRemoteCommandHandlerStatus in
             if let changeEvent = event as? MPChangePlaybackPositionCommandEvent {
                 let timeStamp = changeEvent.positionTime
                 if self.seekToTime(timeStamp) {
-                    return .Success
+                    return .success
                 } else {
-                    return .NoSuchContent
+                    return .noSuchContent
                 }
             }
-            return .CommandFailed
-        }
+            return .commandFailed
+        })
         
-        commandCenter.nextTrackCommand.addTargetWithHandler { (event) -> MPRemoteCommandHandlerStatus in
+        commandCenter.nextTrackCommand.addTarget (handler: { (event) -> MPRemoteCommandHandlerStatus in
             log.info("Want to skip to next track?")
-            return MPRemoteCommandHandlerStatus.NoSuchContent
-        }
+            return MPRemoteCommandHandlerStatus.noSuchContent
+        })
     }
 
-    func seekToTime(time: NSTimeInterval, completion:((success:Bool)->())? = nil) -> Bool {
+    func seekToTime(_ time: TimeInterval, completion:((_ success:Bool)->())? = nil) -> Bool {
         guard let currentItem = self.avPlayer.currentItem else {
             return false
         }
@@ -486,15 +516,15 @@ class SoundManager: NSObject {
         let totalTime = CMTimeGetSeconds(currentItem.duration)
         let skipToTime = max(0, min(totalTime, time))
         
-        self.avPlayer.seekToTime(CMTimeMakeWithSeconds(skipToTime, cmTime.timescale), completionHandler: { (success) -> Void in
+        self.avPlayer.seek(to: CMTimeMakeWithSeconds(skipToTime, cmTime.timescale), completionHandler: { (success) -> Void in
             self.configureInfo()
             self.saveState()
-            completion?(success: success)
+            completion?(success)
         })
         return true
     }
     
-    func skipForward(time: NSTimeInterval) -> Bool {
+    func skipForward(_ time: TimeInterval) -> Bool {
         log.info("Skip forward")
         guard let currentItem = self.avPlayer.currentItem else {
             return false
@@ -504,34 +534,35 @@ class SoundManager: NSObject {
         let currentTime = CMTimeGetSeconds(cmTime)
         let totalTime = CMTimeGetSeconds(currentItem.duration)
         let skipToTime = min(totalTime, currentTime + interval)
-        self.avPlayer.seekToTime(CMTimeMakeWithSeconds(skipToTime, cmTime.timescale), completionHandler: { (success) -> Void in
+        self.avPlayer.seek(to: CMTimeMakeWithSeconds(skipToTime, cmTime.timescale), completionHandler: { (success) -> Void in
             self.configureInfo()
             self.saveState()
         })
         return true
     }
     
-    func skipBackward(time: NSTimeInterval) -> Bool {
+    func skipBackward(_ time: TimeInterval) -> Bool {
         log.info("Skip backward")
         let interval = time
         let cmTime = self.avPlayer.currentTime()
         let currentTime = CMTimeGetSeconds(cmTime)
         let skipToTime = max(0, currentTime - interval)
-        self.avPlayer.seekToTime(CMTimeMakeWithSeconds(skipToTime, cmTime.timescale), completionHandler: { (success) -> Void in
+        self.avPlayer.seek(to: CMTimeMakeWithSeconds(skipToTime, cmTime.timescale), completionHandler: { (success) -> Void in
             self.configureInfo()
             self.saveState()
         })
         return true
     }
     
-    private func saveState() {
+    fileprivate func saveState() {
         let duration = self.avPlayer.currentItem?.duration
         let currentTime = self.avPlayer.currentTime()
         
-        backgroundQueueContext?.performBlock({ () -> Void in
+        backgroundQueueContext?.perform({ () -> Void in
             
             guard let audioCache = self.audioCache else {
                 log.error("There is no audio-cache for some reason")
+                Crashlytics.sharedInstance().recordError(SoundError.debug(message: "There is no audio-cache for some reason"))
                 return
             }
             
@@ -555,25 +586,26 @@ class SoundManager: NSObject {
                 try self.backgroundQueueContext?.save()
             } catch let error {
                 log.error("Error saving SoundManager state: \(error)")
+                Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error saving SoundManager state: \(error)"))
             }
         })
         
     }
     
-    private var wasPlaying = false
+    fileprivate var wasPlaying = false
     
-    func handleInterruption(notification: NSNotification) {
-        log.info("Handle interruption wasplaying: \(wasPlaying) notification: \(notification.userInfo)")
-        guard let userInfo = notification.userInfo as? [String: AnyObject] else { return }
+    func handleInterruption(_ notification: Notification) {
+        log.info("Handle interruption wasplaying: \(self.wasPlaying) notification: \(notification.userInfo)")
+        guard let userInfo = (notification as NSNotification).userInfo as? [String: AnyObject] else { return }
         guard let type = userInfo[AVAudioSessionInterruptionTypeKey] as? AVAudioSessionInterruptionType else { return }
         
         switch type {
-        case .Began:
+        case .began:
             log.info("Got interrupted")
             wasPlaying = true
-        case .Ended:
+        case .ended:
             if let flag = userInfo[AVAudioSessionInterruptionOptionKey] as? AVAudioSessionInterruptionOptions {
-                if flag == .ShouldResume && wasPlaying {
+                if flag == .shouldResume && wasPlaying {
                     self.startPlaying()
                 }
             }
@@ -581,10 +613,10 @@ class SoundManager: NSObject {
         
     }
     
-    private var isObservingAudioSession = false
-    private var audioSessionConfigured = false
+    fileprivate var isObservingAudioSession = false
+    fileprivate var audioSessionConfigured = false
     
-    func handleNotification(notification: NSNotification) {
+    func handleNotification(_ notification: Notification) {
         log.info("\(notification.name) - \(notification.userInfo)")
     }
     
@@ -624,29 +656,30 @@ class SoundManager: NSObject {
 //        }
 //    }
     
-    private var audioInterruptionObserverToken : NSObjectProtocol? {
+    fileprivate var audioInterruptionObserverToken : NSObjectProtocol? {
         didSet {
             if let oldValue = oldValue {
-                NSNotificationCenter.defaultCenter().removeObserver(oldValue)
+                NotificationCenter.default.removeObserver(oldValue)
             }
         }
     }
     
-    private func registerObservers() {
+    fileprivate func registerObservers() {
         print("registering observers")
         let session = AVAudioSession.sharedInstance()
-        audioInterruptionObserverToken = NSNotificationCenter.defaultCenter().addObserverForName(AVAudioSessionInterruptionNotification, object: session, queue: nil) { [weak self] (notification) in
-            print("Interruption: \(notification.userInfo)")
-            if let value = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? NSNumber {
-                if let key = AVAudioSessionInterruptionType(rawValue: value.unsignedLongValue) where key == .Began {
+        audioInterruptionObserverToken = NotificationCenter.default.addObserver(forName: NSNotification.Name.AVAudioSessionInterruption, object: session, queue: nil) { [weak self] (notification) in
+            print("Interruption: \((notification as NSNotification).userInfo)")
+            if let value = (notification as NSNotification).userInfo?[AVAudioSessionInterruptionTypeKey] as? NSNumber {
+                if let key = AVAudioSessionInterruptionType(rawValue: value.uintValue) , key == .began {
                     print("Began")
                     self?.stop(unregisterObservers: false)
                 } else {
                     print("Ended")
-                    if let option = notification.userInfo?[AVAudioSessionInterruptionOptionKey] as? NSNumber where option == AVAudioSessionInterruptionOptions.ShouldResume.rawValue {
+                    if let option = (notification as NSNotification).userInfo?[AVAudioSessionInterruptionOptionKey] as? NSNumber , option == NSNumber(value:AVAudioSessionInterruptionOptions.shouldResume.rawValue) {
                         if let this = self {
                             if this.start(registerObservers: false) != true {
                                 log.error("Couldn't restart after interruption")
+                                Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Couldn't restart after interruption"))
                             }
                         }
                     }
@@ -656,56 +689,58 @@ class SoundManager: NSObject {
         }
     }
     
-    private func setAudioSessionCategory() -> Bool {
+    fileprivate func setAudioSessionCategory() -> Bool {
         let session = AVAudioSession.sharedInstance()
         do {
             try session.setCategory(AVAudioSessionCategoryPlayback)
         } catch let error {
             log.error("Error setting AVAudioSession category: \(error)")
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error setting AVAudioSession category: \(error)"))
             return false
         }
         return true
     }
     
-    private func setAudioSessionMode() -> Bool {
+    fileprivate func setAudioSessionMode() -> Bool {
         let session = AVAudioSession.sharedInstance()
         do {
             try session.setMode(AVAudioSessionModeSpokenAudio)
         } catch let error {
-            log.error("Error setting AVAudioSession category: \(error)")
+            log.error("Error setting AVAudioSession mode: \(error)")
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error setting AVAudioSession mode: \(error)"))
             return false
         }
         return true
     }
     
-    private func unregisterObservers() {
+    fileprivate func unregisterObservers() {
         print("unregisering observers")
         if let token = audioInterruptionObserverToken {
-            NSNotificationCenter.defaultCenter().removeObserver(token)
+            NotificationCenter.default.removeObserver(token)
             audioInterruptionObserverToken = nil
         }
     }
     
-    private func getImage() {
-        guard let thumbnailSource = study?.thumbnailSource, url = NSURL(string: thumbnailSource) else {
+    fileprivate func getImage() {
+        guard let thumbnailSource = study?.thumbnailSource, let url = URL(string: thumbnailSource) else {
             return
         }
         
-        imageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.None, runImageTransitionIfCached: false) { (response) -> Void in
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+        imageView.af_setImage(withURL: url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false) { (response) -> Void in
+            DispatchQueue.main.async {
                 self.updateImage()
             }
             
-            if let imageSource = self.study?.imageSource, imageURL = NSURL(string: imageSource) {
+            if let imageSource = self.study?.imageSource, let imageURL = URL(string: imageSource) {
                 let image = self.imageView.image
                 
-                self.imageView.af_setImageWithURL(imageURL, placeholderImage: image, filter: nil, imageTransition: .None, runImageTransitionIfCached: false) { (response) in
+                self.imageView.af_setImage(withURL: imageURL, placeholderImage: image, filter: nil, imageTransition: .noTransition, runImageTransitionIfCached: false) { (response) in
                     switch response.result {
-                    case .Failure(let error):
+                    case .failure(let error):
                         log.error("Error download large image: \(error)")
-                    case .Success(let value):
+                    case .success(let value):
                         self.imageView.image = value
-                        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                        DispatchQueue.main.async {
                             self.updateImage()
                         }
                     }
@@ -714,12 +749,12 @@ class SoundManager: NSObject {
         }
     }
     
-    private func updateImage() {
+    fileprivate func updateImage() {
         configureInfo()
     }
     
     
-    func setRate(value: Float) {
+    func setRate(_ value: Float) {
         playbackRate = value
         if avPlayer.rate != 0 {
             startPlaying()
@@ -729,11 +764,11 @@ class SoundManager: NSObject {
 
 extension SoundManager : MPPlayableContentDelegate {
     
-    func playableContentManager(contentManager: MPPlayableContentManager, didUpdateContext context: MPPlayableContentManagerContext) {
+    func playableContentManager(_ contentManager: MPPlayableContentManager, didUpdate context: MPPlayableContentManagerContext) {
         log.debug("playableContentManager:didUpdateContext")
     }
     
-    func playableContentManager(contentManager: MPPlayableContentManager, initializePlaybackQueueWithCompletionHandler completionHandler: (NSError?) -> Void) {
+    func playableContentManager(_ contentManager: MPPlayableContentManager, initializePlaybackQueueWithCompletionHandler completionHandler: @escaping (Error?) -> Void) {
         log.debug("initializePlaybackQueueWithCompletionHandler")
         //Not sure about my understanding here. Seems that if you just call completionHandler(nil) then that means that you are good to go, and iOS will let you push info onto the command center
         if isReady {
@@ -744,7 +779,7 @@ extension SoundManager : MPPlayableContentDelegate {
         }
     }
     
-    func playableContentManager(contentManager: MPPlayableContentManager, initiatePlaybackOfContentItemAtIndexPath indexPath: NSIndexPath, completionHandler: (NSError?) -> Void) {
+    func playableContentManager(_ contentManager: MPPlayableContentManager, initiatePlaybackOfContentItemAt indexPath: IndexPath, completionHandler: @escaping (Error?) -> Void) {
         log.debug("initiatePlaybackOfContentItemAtIndexPath - (\(indexPath.section),\(indexPath.row))")
         
         if isReady {

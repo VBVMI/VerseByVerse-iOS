@@ -17,7 +17,7 @@ class SettingsViewController: UITableViewController {
 
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-        autoMarkCompleteSwitch.on = Settings.sharedInstance.autoMarkLessonsComplete
+        autoMarkCompleteSwitch.isOn = Settings.sharedInstance.autoMarkLessonsComplete
         // Do any additional setup after loading the view.
     }
 
@@ -26,8 +26,8 @@ class SettingsViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func toggledAutoMarkAsComplete(sender: UISwitch) {
-        Settings.sharedInstance.autoMarkLessonsComplete = sender.on
+    @IBAction func toggledAutoMarkAsComplete(_ sender: UISwitch) {
+        Settings.sharedInstance.autoMarkLessonsComplete = sender.isOn
     }
 
     /*
@@ -40,11 +40,11 @@ class SettingsViewController: UITableViewController {
     }
     */
     
-    @IBAction func close(sender: AnyObject?) {
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func close(_ sender: AnyObject?) {
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
 
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     

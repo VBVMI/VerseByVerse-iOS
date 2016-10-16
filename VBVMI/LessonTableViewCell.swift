@@ -12,32 +12,32 @@ import ACPDownload
 
 extension ResourceManager.LessonType {
     
-    func button(cell: LessonTableViewCell) -> ACPDownloadView {
+    func button(_ cell: LessonTableViewCell) -> ACPDownloadView {
         switch self {
-        case .Audio:
+        case .audio:
             return cell.audioView.button
-        case .StudentAid:
+        case .studentAid:
             return cell.studentAidView.button
-        case .TeacherAid:
+        case .teacherAid:
             return cell.teacherAidView.button
-        case .Transcript:
+        case .transcript:
             return cell.transcriptView.button
-        case .Video:
+        case .video:
             return cell.videoView.button
         }
     }
     
-    func view(cell: LessonTableViewCell) -> ResourceIconView {
+    func view(_ cell: LessonTableViewCell) -> ResourceIconView {
         switch self {
-        case .Audio:
+        case .audio:
             return cell.audioView
-        case .StudentAid:
+        case .studentAid:
             return cell.studentAidView
-        case .TeacherAid:
+        case .teacherAid:
             return cell.teacherAidView
-        case .Transcript:
+        case .transcript:
             return cell.transcriptView
-        case .Video:
+        case .video:
             return cell.videoView
         }
     }
@@ -53,16 +53,16 @@ class LessonTableViewCell: UITableViewCell {
     @IBOutlet weak var progressIndicator: UIProgressView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    let videoView = ResourceIconView(frame: CGRectZero)
-    let teacherAidView = ResourceIconView(frame: CGRectZero)
-    let transcriptView = ResourceIconView(frame: CGRectZero)
-    let audioView = ResourceIconView(frame: CGRectZero)
-    let studentAidView = ResourceIconView(frame: CGRectZero)
+    let videoView = ResourceIconView(frame: CGRect.zero)
+    let teacherAidView = ResourceIconView(frame: CGRect.zero)
+    let transcriptView = ResourceIconView(frame: CGRect.zero)
+    let audioView = ResourceIconView(frame: CGRect.zero)
+    let studentAidView = ResourceIconView(frame: CGRect.zero)
     @IBOutlet weak var resourcesStackView: UIStackView!
     
-    private static let buttonFont = UIFont.fontAwesomeOfSize(20)
+    fileprivate static let buttonFont = UIFont.fontAwesomeOfSize(20)
     
-    var urlButtonCallback: ((downloadView: ACPDownloadView, status: ACPDownloadStatus, buttonType: ResourceManager.LessonType) -> ())?
+    var urlButtonCallback: ((_ downloadView: ACPDownloadView, _ status: ACPDownloadStatus, _ buttonType: ResourceManager.LessonType) -> ())?
     
     let transcriptDownload = ACPDownloadView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
     
@@ -75,11 +75,11 @@ class LessonTableViewCell: UITableViewCell {
         resourcesStackView.addArrangedSubview(transcriptView)
         resourcesStackView.addArrangedSubview(audioView)
         
-        videoView.hidden = true
-        teacherAidView.hidden = true
-        studentAidView.hidden = true
-        transcriptView.hidden = true
-        audioView.hidden = true
+        videoView.isHidden = true
+        teacherAidView.isHidden = true
+        studentAidView.isHidden = true
+        transcriptView.isHidden = true
+        audioView.isHidden = true
         
         let buttonTintColor = StyleKit.darkGrey
         
@@ -88,7 +88,7 @@ class LessonTableViewCell: UITableViewCell {
         videoView.button.setImages(videoImage)
         videoView.button.tintColor = buttonTintColor
         videoView.button.setActionForTap { [weak self] (view, status) -> Void in
-            self?.urlButtonCallback?(downloadView: view, status: status, buttonType: .Video)
+            self?.urlButtonCallback?(view!, status, .video)
         }
         let videoTapGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.videoTap(_:)))
         videoView.addGestureRecognizer(videoTapGesture)
@@ -98,7 +98,7 @@ class LessonTableViewCell: UITableViewCell {
         teacherAidView.button.setImages(teacherAidImage)
         teacherAidView.button.tintColor = buttonTintColor
         teacherAidView.button.setActionForTap { [weak self] (view, status) -> Void in
-            self?.urlButtonCallback?(downloadView: view, status: status, buttonType: .TeacherAid)
+            self?.urlButtonCallback?(view!, status, .teacherAid)
         }
         let teacherAidGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.teacherAidTap(_:)))
         teacherAidView.addGestureRecognizer(teacherAidGesture)
@@ -108,7 +108,7 @@ class LessonTableViewCell: UITableViewCell {
         studentAidView.button.setImages(studentAidImage)
         studentAidView.button.tintColor = buttonTintColor
         studentAidView.button.setActionForTap { [weak self] (view, status) -> Void in
-            self?.urlButtonCallback?(downloadView: view, status: status, buttonType: .StudentAid)
+            self?.urlButtonCallback?(view!, status, .studentAid)
         }
         let studentAidGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.studentAidTap(_:)))
         studentAidView.addGestureRecognizer(studentAidGesture)
@@ -118,7 +118,7 @@ class LessonTableViewCell: UITableViewCell {
         transcriptView.button.setImages(transcriptImage)
         transcriptView.button.tintColor = buttonTintColor
         transcriptView.button.setActionForTap { [weak self] (view, status) -> Void in
-            self?.urlButtonCallback?(downloadView: view, status: status, buttonType: .Transcript)
+            self?.urlButtonCallback?(view!, status, .transcript)
         }
         let transcriptGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.transcriptTap(_:)))
         transcriptView.addGestureRecognizer(transcriptGesture)
@@ -128,7 +128,7 @@ class LessonTableViewCell: UITableViewCell {
         audioView.button.setImages(audioImage)
         audioView.button.tintColor = buttonTintColor
         audioView.button.setActionForTap { [weak self] (view, status) -> Void in
-            self?.urlButtonCallback?(downloadView: view, status: status, buttonType: .Audio)
+            self?.urlButtonCallback?(view!, status, .audio)
         }
         let audioGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.audioTap(_:)))
         audioView.addGestureRecognizer(audioGesture)
@@ -140,39 +140,39 @@ class LessonTableViewCell: UITableViewCell {
         progressIndicator.progress = 0
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
-    @IBAction func audioTap(sender: AnyObject) {
+    @IBAction func audioTap(_ sender: AnyObject) {
         //audioButton.handleSingleTap
-        urlButtonCallback?(downloadView: audioView.button, status: audioView.button.currentStatus, buttonType: .Audio)
+        urlButtonCallback?(audioView.button, audioView.button.currentStatus, .audio)
     }
     
-    @IBAction func transcriptTap(sender: AnyObject) {
-         urlButtonCallback?(downloadView: transcriptView.button, status: transcriptView.button.currentStatus, buttonType: .Transcript)
+    @IBAction func transcriptTap(_ sender: AnyObject) {
+         urlButtonCallback?(transcriptView.button, transcriptView.button.currentStatus, .transcript)
     }
     
-    @IBAction func studentAidTap(sender: AnyObject) {
-         urlButtonCallback?(downloadView: studentAidView.button, status: studentAidView.button.currentStatus, buttonType: .StudentAid)
+    @IBAction func studentAidTap(_ sender: AnyObject) {
+         urlButtonCallback?(studentAidView.button, studentAidView.button.currentStatus, .studentAid)
     }
     
-    @IBAction func teacherAidTap(sender: AnyObject) {
-         urlButtonCallback?(downloadView: teacherAidView.button, status: teacherAidView.button.currentStatus, buttonType: .TeacherAid)
+    @IBAction func teacherAidTap(_ sender: AnyObject) {
+         urlButtonCallback?(teacherAidView.button, teacherAidView.button.currentStatus, .teacherAid)
     }
     
-    @IBAction func videoTap(sender: AnyObject) {
-         urlButtonCallback?(downloadView: videoView.button, status: videoView.button.currentStatus, buttonType: .Video)
+    @IBAction func videoTap(_ sender: AnyObject) {
+         urlButtonCallback?(videoView.button, videoView.button.currentStatus, .video)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        videoView.hidden = true
-        teacherAidView.hidden = true
-        studentAidView.hidden = true
-        transcriptView.hidden = true
-        audioView.hidden = true
+        videoView.isHidden = true
+        teacherAidView.isHidden = true
+        studentAidView.isHidden = true
+        transcriptView.isHidden = true
+        audioView.isHidden = true
     }
 }

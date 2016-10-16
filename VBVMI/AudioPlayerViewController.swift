@@ -11,7 +11,7 @@ import AVFoundation
 import MediaPlayer
 import CoreData
 
-extension NSTimeInterval {
+extension TimeInterval {
     
     var timeString: String {
         let totalSeconds = abs(Int(self))
@@ -48,7 +48,7 @@ class AudioPlayerViewController: UIViewController {
     @IBOutlet weak var jumpBackButton: UIButton!
     @IBOutlet weak var rateButton: UIButton!
     @IBOutlet weak var progressSlider: UISlider!
-    private var progressSliderDragging = false
+    fileprivate var progressSliderDragging = false
     
     @IBOutlet weak var lowVolumeImageView: UIImageView!
     @IBOutlet weak var volumeView: VolumeView!
@@ -70,7 +70,7 @@ class AudioPlayerViewController: UIViewController {
     
     var initialCategory: String?
     
-    var urlString: NSURL?
+    var urlString: URL?
     var study: Study?
     var lesson: Lesson?
     
@@ -81,47 +81,48 @@ class AudioPlayerViewController: UIViewController {
     var optionsBarButton: UIBarButtonItem!
     
     enum AudioRate : Float {
-        case Slow = 0.8
-        case Normal = 1.0
-        case Meduim = 1.2
-        case Fast = 1.5
+        case slow = 0.8
+        case normal = 1.0
+        case meduim = 1.2
+        case fast = 1.5
     
         mutating func next() -> AudioRate {
             switch self {
-            case .Slow:
-                self = .Normal
-            case .Normal:
-                self = .Meduim
-            case .Meduim:
-                self = .Fast
-            case .Fast:
-                self = .Slow
+            case .slow:
+                self = .normal
+            case .normal:
+                self = .meduim
+            case .meduim:
+                self = .fast
+            case .fast:
+                self = .slow
             }
             return self
         }
         
         var title : String {
-            if let rate = AudioRate.numberFormatter.stringFromNumber(self.rawValue) {
+            
+            if let rate = AudioRate.numberFormatter.string(from: NSNumber(value: self.rawValue)) {
                 return "\(rate)x"
             }
             return "\(self.rawValue)x"
         }
         
         func save() {
-            NSUserDefaults.standardUserDefaults().setFloat(self.rawValue, forKey: "defaultAudioRate")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(self.rawValue, forKey: "defaultAudioRate")
+            UserDefaults.standard.synchronize()
         }
         
         static func load() -> AudioRate {
-            let defaultValue = NSUserDefaults.standardUserDefaults().floatForKey("defaultAudioRate")
+            let defaultValue = UserDefaults.standard.float(forKey: "defaultAudioRate")
             if let result = AudioRate(rawValue: defaultValue) {
                 return result
             }
-            return AudioRate.Normal
+            return AudioRate.normal
         }
         
-        private static let numberFormatter: NSNumberFormatter = {
-            let formatter = NSNumberFormatter()
+        fileprivate static let numberFormatter: NumberFormatter = {
+            let formatter = NumberFormatter()
             formatter.minimumFractionDigits = 0
             formatter.maximumFractionDigits = 1
             return formatter
@@ -130,7 +131,7 @@ class AudioPlayerViewController: UIViewController {
     
     var audioRate: AudioRate = AudioRate.load()
     
-    func configure(urlString: NSURL, name: String, subTitle: String, lesson: Lesson, study: Study, startPlaying: Bool = true) {
+    func configure(_ urlString: URL, name: String, subTitle: String, lesson: Lesson, study: Study, startPlaying: Bool = true) {
         self.podcastName = name
         self.podcastSubTitle = subTitle
         self.urlString = urlString
@@ -150,11 +151,11 @@ class AudioPlayerViewController: UIViewController {
         
         super.init(nibName: "AudioPlayerViewController", bundle: nil)
         
-        pauseBarButton = UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: #selector(AudioPlayerViewController.playPauseToggle(_:)))
-        playBarButton = UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: #selector(AudioPlayerViewController.playPauseToggle(_:)))
-        prevBarButton = UIBarButtonItem(image: UIImage(named: "prev"), style: .Plain, target: self, action: #selector(AudioPlayerViewController.skipBackward(_:)))
-        nextBarButton = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .Plain, target: self, action: #selector(AudioPlayerViewController.skipForward(_:)))
-        optionsBarButton = UIBarButtonItem(image: UIImage(named: "action"), style: .Plain, target: self, action: #selector(openPlayer(_:)))
+        pauseBarButton = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: self, action: #selector(AudioPlayerViewController.playPauseToggle(_:)))
+        playBarButton = UIBarButtonItem(image: UIImage(named: "play"), style: .plain, target: self, action: #selector(AudioPlayerViewController.playPauseToggle(_:)))
+        prevBarButton = UIBarButtonItem(image: UIImage(named: "prev"), style: .plain, target: self, action: #selector(AudioPlayerViewController.skipBackward(_:)))
+        nextBarButton = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .plain, target: self, action: #selector(AudioPlayerViewController.skipForward(_:)))
+        optionsBarButton = UIBarButtonItem(image: UIImage(named: "action"), style: .plain, target: self, action: #selector(openPlayer(_:)))
         
         popupItem.subtitle = podcastSubTitle
         popupItem.title = podcastName
@@ -162,9 +163,9 @@ class AudioPlayerViewController: UIViewController {
         
         layoutBarButtons()
         
-        SoundManager.sharedInstance.avPlayer.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.New, context: nil)
+        SoundManager.sharedInstance.avPlayer.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.new, context: nil)
         
-        SoundManager.sharedInstance.avPlayer.addPeriodicTimeObserverForInterval(CMTime(seconds: 1, preferredTimescale: 600), queue: dispatch_get_main_queue()) { [weak self] (time) -> Void in
+        SoundManager.sharedInstance.avPlayer.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 600), queue: DispatchQueue.main) { [weak self] (time) -> Void in
             guard self?.progressSliderDragging == false else { return }
             if let duration = SoundManager.sharedInstance.avPlayer.currentItem?.duration {
                 let totalTime = CMTimeGetSeconds(duration)
@@ -184,26 +185,26 @@ class AudioPlayerViewController: UIViewController {
             }
         }
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioDidFinish(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(audioDidFinish(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
-    func openPlayer(sender: AnyObject) {
-        popupPresentationContainerViewController?.openPopupAnimated(true, completion: nil)
+    func openPlayer(_ sender: AnyObject) {
+        popupPresentationContainer?.openPopup(animated: true, completion: nil)
     }
     
-    func audioDidFinish(notification: NSNotification) {
+    func audioDidFinish(_ notification: Notification) {
         //Mark the lesson as complete
         if let context = self.lesson?.managedObjectContext {
-            context.performBlock({
+            context.perform({
                 if Settings.sharedInstance.autoMarkLessonsComplete {
                     self.lesson?.completed = true
                     
                     // need to tell study to reload lessonCompletedCount
                     if let study = self.study {
                         let predicate = NSPredicate(format: "%K == %@", LessonAttributes.studyIdentifier.rawValue, study.identifier)
-                        let lessons = Lesson.findAllWithPredicate(predicate, context: context) as! [Lesson]
+                        let lessons: [Lesson] = Lesson.findAllWithPredicate(predicate, context: context)
                         
-                        let lessonsCompleted = lessons.reduce(0, combine: { (value, lesson) -> Int in
+                        let lessonsCompleted = lessons.reduce(0, { (value, lesson) -> Int in
                             return lesson.completed ? value + 1 : value
                         })
                         study.lessonsCompleted = Int32(lessonsCompleted)
@@ -217,11 +218,11 @@ class AudioPlayerViewController: UIViewController {
         }
         
         
-        self.view.window?.rootViewController?.dismissPopupBarAnimated(true, completion: nil)
+        self.view.window?.rootViewController?.dismissPopupBar(animated: true, completion: nil)
     }
     
     func layoutBarButtons() {
-        if UIScreen.mainScreen().traitCollection.horizontalSizeClass == .Regular {
+        if UIScreen.main.traitCollection.horizontalSizeClass == .regular {
             var leftItems : [UIBarButtonItem] = [prevBarButton]
             if SoundManager.sharedInstance.avPlayer.rate == 0 {
                 leftItems.append(playBarButton)
@@ -242,11 +243,11 @@ class AudioPlayerViewController: UIViewController {
         }
     }
 
-    override func willTransitionToTraitCollection(newCollection: UITraitCollection, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.willTransitionToTraitCollection(newCollection, withTransitionCoordinator: coordinator)
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
     }
     
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if self.traitCollection.verticalSizeClass != previousTraitCollection?.verticalSizeClass || self.traitCollection.horizontalSizeClass != previousTraitCollection?.horizontalSizeClass {
             // your custom implementation here
@@ -259,12 +260,12 @@ class AudioPlayerViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func encodeRestorableStateWithCoder(coder: NSCoder) {
-        super.encodeRestorableStateWithCoder(coder)
+    override func encodeRestorableState(with coder: NSCoder) {
+        super.encodeRestorableState(with: coder)
     }
     
-    override func decodeRestorableStateWithCoder(coder: NSCoder) {
-        super.decodeRestorableStateWithCoder(coder)
+    override func decodeRestorableState(with coder: NSCoder) {
+        super.decodeRestorableState(with: coder)
     }
     
     func configureViews() {
@@ -272,26 +273,26 @@ class AudioPlayerViewController: UIViewController {
             return
         }
         if let thumbnailSource = study?.thumbnailSource {
-            if let url = NSURL(string: thumbnailSource) {
-                self.imageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3)) { [weak self] (response) in
+            if let url = URL(string: thumbnailSource) {
+                self.imageView.af_setImage(withURL: url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3)) { [weak self] (response) in
                     guard let this = self else { return }
                     switch response.result {
-                    case .Failure(let error):
+                    case .failure(let error):
                         log.error("Error downloading thumbnail image: \(error)")
-                    case .Success(let value):
+                    case .success(let value):
                         this.imageView.image = value
                     }
                     
-                    if let imageSource = this.study?.imageSource, imageURL = NSURL(string: imageSource) {
+                    if let imageSource = this.study?.imageSource, let imageURL = URL(string: imageSource) {
                         let image = this.imageView.image
                         
-                        this.imageView.af_setImageWithURL(imageURL, placeholderImage: this.imageView.image, filter: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3)) { [weak this] (response) in
+                        this.imageView.af_setImage(withURL: imageURL, placeholderImage: this.imageView.image, filter: nil, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3)) { [weak this] (response) in
                             guard let this = this else { return }
                             switch response.result {
-                            case .Failure(let error):
+                            case .failure(let error):
                                 log.error("Error download large image: \(error)")
                                 this.imageView.image = image
-                            case .Success(let value):
+                            case .success(let value):
                                 this.imageView.image = value
                             }
                         }
@@ -300,18 +301,18 @@ class AudioPlayerViewController: UIViewController {
             }
         }
         
-        if let titleText = self.lesson?.title where titleText.characters.count > 0 {
+        if let titleText = self.lesson?.title , titleText.characters.count > 0 {
             self.titleLabel.text = titleText
-            self.titleLabel.hidden = false
+            self.titleLabel.isHidden = false
         } else {
-            self.titleLabel.hidden = true
+            self.titleLabel.isHidden = true
         }
         
-        if let descriptionText = self.lesson?.descriptionText where descriptionText.characters.count > 0 {
+        if let descriptionText = self.lesson?.descriptionText , descriptionText.characters.count > 0 {
             self.descriptionLabel.text = descriptionText
-            self.descriptionLabel.hidden = false
+            self.descriptionLabel.isHidden = false
         } else {
-            self.descriptionLabel.hidden = true
+            self.descriptionLabel.isHidden = true
         }
     }
     
@@ -328,19 +329,19 @@ class AudioPlayerViewController: UIViewController {
         self.playPauseButton.titleLabel?.font = buttonFont
         configurePlayPauseState()
         
-        self.jumpForwardButton.setImage(StyleKit.imageOfForward, forState: .Normal)
-        self.jumpBackButton.setImage(StyleKit.imageOfRollback, forState: .Normal)
+        self.jumpForwardButton.setImage(StyleKit.imageOfForward, for: UIControlState())
+        self.jumpBackButton.setImage(StyleKit.imageOfRollback, for: UIControlState())
         
         self.jumpBackButton.tintColor = StyleKit.darkGrey
         self.jumpForwardButton.tintColor = StyleKit.darkGrey
         
-        self.jumpBackButton.contentMode = .Center
+        self.jumpBackButton.contentMode = .center
 
-        self.rateButton.setTitle(audioRate.title, forState: .Normal)
+        self.rateButton.setTitle(audioRate.title, for: UIControlState())
         self.rateButton.tintColor = StyleKit.darkGrey
         
-        let otherFont = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
-        let font = UIFont.monospacedDigitSystemFontOfSize(otherFont.pointSize, weight: UIFontWeightRegular)
+        let otherFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle.footnote)
+        let font = UIFont.monospacedDigitSystemFont(ofSize: otherFont.pointSize, weight: UIFontWeightRegular)
         
         
         self.endTimeLabel.font = font
@@ -350,7 +351,7 @@ class AudioPlayerViewController: UIViewController {
 //        self.highVolumeImageView.image = UIImage(named: "volUp")
         self.volumeView.tintColor = StyleKit.darkGrey
         
-        self.volumeView.setRouteButtonImage(StyleKit.imageOfAirPlayCanvas, forState: .Normal)
+        self.volumeView.setRouteButtonImage(StyleKit.imageOfAirPlayCanvas, for: UIControlState())
         self.volumeView.showsRouteButton = true
         
         self.playPauseButton.tintColor = StyleKit.darkGrey
@@ -360,31 +361,31 @@ class AudioPlayerViewController: UIViewController {
         SoundManager.sharedInstance.avPlayer.removeObserver(self, forKeyPath: "rate")
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if let player = object as? AVPlayer where keyPath == "rate" {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if let player = object as? AVPlayer , keyPath == "rate" {
             self.configurePlayPauseState()
             layoutBarButtons()
             if let rate = AudioRate(rawValue: player.rate) {
                 audioRate = rate
-                self.rateButton.setTitle(rate.title, forState: .Normal)
+                self.rateButton.setTitle(rate.title, for: .normal)
             }
         }
     }
     
-    private func configurePlayPauseState() {
+    fileprivate func configurePlayPauseState() {
         let isPlaying = SoundManager.sharedInstance.avPlayer.rate != 0
         if let button = self.playPauseButton {
             if isPlaying {
-                button.setTitle(String.fontAwesomeIconWithName(.Pause), forState: .Normal)
+                button.setTitle(String.fontAwesomeIconWithName(.Pause), for: .normal)
             } else {
-                button.setTitle(String.fontAwesomeIconWithName(.Play), forState: .Normal)
+                button.setTitle(String.fontAwesomeIconWithName(.Play), for: .normal)
             }
         }
         
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
 
     override func didReceiveMemoryWarning() {
@@ -392,7 +393,7 @@ class AudioPlayerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func playPauseToggle(sender: UIButton) {
+    @IBAction func playPauseToggle(_ sender: UIButton) {
         let isPlaying = SoundManager.sharedInstance.avPlayer.rate != 0
         if isPlaying {
             SoundManager.sharedInstance.pausePlaying()
@@ -401,38 +402,38 @@ class AudioPlayerViewController: UIViewController {
         }
     }
     
-    @IBAction func progressSliderEndTouches(sender: AnyObject) {
+    @IBAction func progressSliderEndTouches(_ sender: AnyObject) {
         if let duration = SoundManager.sharedInstance.avPlayer.currentItem?.duration {
             let timeInSeconds = CMTimeGetSeconds(duration)
             let finalTimeInSeconds = (Double( self.progressSlider.value ) * timeInSeconds)
             
-            SoundManager.sharedInstance.seekToTime(finalTimeInSeconds) { (completed) in
+            let _ = SoundManager.sharedInstance.seekToTime(finalTimeInSeconds) { (completed) in
                 self.progressSliderDragging = false
             }
         }
     }
     
-    @IBAction func progressSliderStartTouches(sender: AnyObject) {
+    @IBAction func progressSliderStartTouches(_ sender: AnyObject) {
         progressSliderDragging = true
     }
 
-    @IBAction func skipForward(sender: AnyObject) {
-        SoundManager.sharedInstance.skipForward(30)
+    @IBAction func skipForward(_ sender: AnyObject) {
+        let _ = SoundManager.sharedInstance.skipForward(30)
     }
     
-    @IBAction func skipBackward(sender: AnyObject) {
-        SoundManager.sharedInstance.skipBackward(30)
+    @IBAction func skipBackward(_ sender: AnyObject) {
+        let _ = SoundManager.sharedInstance.skipBackward(30)
     }
     
-    @IBAction func toggleRate(sender: AnyObject) {
+    @IBAction func toggleRate(_ sender: AnyObject) {
         audioRate.next().save()
         SoundManager.sharedInstance.setRate(audioRate.rawValue)
-        rateButton.setTitle(audioRate.title, forState: .Normal)
+        rateButton.setTitle(audioRate.title, for: .normal)
     }
 }
 
 extension AudioPlayerViewController: UIViewControllerRestoration {
-    static func viewControllerWithRestorationIdentifierPath(identifierComponents: [AnyObject], coder: NSCoder) -> UIViewController? {
+    static func viewController(withRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {
         return AudioPlayerViewController(coder: coder)
     }
 }

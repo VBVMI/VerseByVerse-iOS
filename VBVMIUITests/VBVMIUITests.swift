@@ -37,7 +37,7 @@ class VBVMIUITests: XCTestCase {
         sleep(4)
         snapshot("0Studies", waitForLoadingIndicator: true)
         
-        XCUIApplication().collectionViews.childrenMatchingType(.Cell).elementBoundByIndex(0).tap()
+        XCUIApplication().collectionViews.children(matching: .cell).element(boundBy: 0).tap()
         sleep(2)
         snapshot("0Study", waitForLoadingIndicator: true)
     }

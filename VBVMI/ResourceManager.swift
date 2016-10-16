@@ -10,13 +10,13 @@ import Foundation
 import Alamofire
 import CoreData
 
-enum ResourceManagerError : ErrorType {
-    case MissingURLString
+enum ResourceManagerError : Error {
+    case missingURLString
 }
 
 protocol ResourceManagerObserver: NSObjectProtocol {
     
-    func downloadStateChanged(lesson: Lesson, lessonType: ResourceManager.LessonType, downloadState: ResourceManager.DownloadState)
+    func downloadStateChanged(_ lesson: Lesson, lessonType: ResourceManager.LessonType, downloadState: ResourceManager.DownloadState)
     
 }
 
@@ -28,63 +28,63 @@ class ResourceManager {
     
     static let sharedInstance = ResourceManager()
     
-    private init() {
+    fileprivate init() {
         
     }
     
     enum FileType : Int {
-        case PDF
-        case Audio
-        case Video
+        case pdf
+        case audio
+        case video
     }
     
     enum LessonType : Int {
-        case Video
-        case TeacherAid
-        case StudentAid
-        case Transcript
-        case Audio
+        case video
+        case teacherAid
+        case studentAid
+        case transcript
+        case audio
         
-        static var all: [LessonType] = [.Video, .TeacherAid, .StudentAid, .Transcript, .Audio]
-        private static var downloadable: [LessonType] = [.TeacherAid, .StudentAid, .Transcript, .Audio]
+        static var all: [LessonType] = [.video, .teacherAid, .studentAid, .transcript, .audio]
+        fileprivate static var downloadable: [LessonType] = [.teacherAid, .studentAid, .transcript, .audio]
         
-        func urlString(lesson: Lesson) -> String? {
+        func urlString(_ lesson: Lesson) -> String? {
             switch self {
-            case .Audio:
+            case .audio:
                 return lesson.audioSourceURL
-            case .StudentAid:
+            case .studentAid:
                 return lesson.studentAidURL
-            case .TeacherAid:
+            case .teacherAid:
                 return lesson.teacherAid
-            case .Transcript:
+            case .transcript:
                 return lesson.transcriptURL
-            case .Video:
+            case .video:
                 return lesson.videoSourceURL
             }
         }
         
         func fileType() -> FileType {
             switch self {
-            case .Audio:
-                return .Audio
-            case .Video:
-                return .Video
+            case .audio:
+                return .audio
+            case .video:
+                return .video
             default:
-                return .PDF
+                return .pdf
             }
         }
         
         var title: String {
             switch self {
-            case .Audio:
+            case .audio:
                 return "Audio"
-            case .StudentAid:
+            case .studentAid:
                 return "Slides"
-            case .TeacherAid:
+            case .teacherAid:
                 return "Handout"
-            case .Transcript:
+            case .transcript:
                 return "Transcript"
-            case .Video:
+            case .video:
                 return "Video"
             }
         }
@@ -93,26 +93,26 @@ class ResourceManager {
     enum DownloadState {
         case pending    /// Download has started but we haven't received a response yet
         case downloading(percent: Double) /// Download has started
-        case downloaded(url: NSURL) /// File is downloaded
+        case downloaded(url: URL) /// File is downloaded
         case nothing /// File is not downloaded, and we are not trying to download it yet
     }
     
     enum DownloadResult {
-        case error(error: ErrorType)
-        case success(lesson: Lesson, resource: LessonType, url: NSURL)
+        case error(error: Error)
+        case success(lesson: Lesson, resource: LessonType, url: URL)
     }
     
     
-    private var observers = [ResourceManagerObserver]()
-    private var currentOperations = [ResourceKey: Request]()
+    fileprivate var observers = [ResourceManagerObserver]()
+    fileprivate var currentOperations = [ResourceKey: Request]()
     
-    private var state = [ResourceKey: DownloadState]()
+    fileprivate var state = [ResourceKey: DownloadState]()
     
-    private struct ResourceKey : Hashable, CustomStringConvertible {
+    fileprivate struct ResourceKey : Hashable, CustomStringConvertible {
         var lessonIdentifier: String
         var lessonType: LessonType
         
-        private var hashValue: Int {
+        fileprivate var hashValue: Int {
             return "\(lessonIdentifier) - \(lessonType)".hashValue
         }
         
@@ -128,8 +128,8 @@ class ResourceManager {
      
      - parameter observer: An observer
      */
-    func addDownloadObserver(observer: ResourceManagerObserver) {
-        guard NSThread.isMainThread() else {
+    func addDownloadObserver(_ observer: ResourceManagerObserver) {
+        guard Thread.isMainThread else {
             log.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
             return
         }
@@ -141,13 +141,13 @@ class ResourceManager {
      
      - parameter observer: An observer
      */
-    func removeDownloadObserver(observer: ResourceManagerObserver) {
-        guard NSThread.isMainThread() else {
+    func removeDownloadObserver(_ observer: ResourceManagerObserver) {
+        guard Thread.isMainThread else {
             log.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
             return
         }
-        if let index = observers.indexOf({ $0.isEqual(observer) }) {
-            observers.removeAtIndex(index)
+        if let index = observers.index(where: { $0.isEqual(observer) }) {
+            observers.remove(at: index)
         }
     }
     
@@ -160,7 +160,7 @@ class ResourceManager {
      - returns: The current `DownloadState`
      */
     func currentState(ofLesson lesson:Lesson, resource:  LessonType) -> DownloadState {
-        guard NSThread.isMainThread() else {
+        guard Thread.isMainThread else {
             log.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
             return .nothing
         }
@@ -183,7 +183,7 @@ class ResourceManager {
         return DownloadState.nothing
     }
     
-    private func dispatchState(lesson: Lesson, resource: ResourceManager.LessonType, downloadState: ResourceManager.DownloadState) {
+    fileprivate func dispatchState(_ lesson: Lesson, resource: ResourceManager.LessonType, downloadState: ResourceManager.DownloadState) {
         state[ResourceKey(lessonIdentifier: lesson.identifier, lessonType: resource)] = downloadState
         observers.forEach { (observer) in
             observer.downloadStateChanged(lesson, lessonType: resource, downloadState: downloadState)
@@ -197,30 +197,30 @@ class ResourceManager {
      - parameter resource:   The resource type to download
      - parameter completion: If you just want to know how it all goes in the end.. Look no further
      */
-    func startDownloading(lesson: Lesson, resource: LessonType, completion: ((result: DownloadResult) -> ())? = nil) {
-        guard NSThread.isMainThread() else {
+    func startDownloading(_ lesson: Lesson, resource: LessonType, completion: ((_ result: DownloadResult) -> ())? = nil) {
+        guard Thread.isMainThread else {
             log.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
             return
         }
         
         guard let urlString = resource.urlString(lesson) else {
-            completion?(result: DownloadResult.error(error: ResourceManagerError.MissingURLString))
+            completion?(DownloadResult.error(error: ResourceManagerError.missingURLString))
             return
         }
         
-        if let url = NSURL(string: urlString) where !LessonType.downloadable.contains(resource) {
-            completion?(result: DownloadResult.success(lesson: lesson, resource: resource, url: url))
+        if let url = URL(string: urlString) , !LessonType.downloadable.contains(resource) {
+            completion?(DownloadResult.success(lesson: lesson, resource: resource, url: url))
             return
         }
         
         if let url = APIDataManager.fileExists(lesson, urlString: urlString) {
-            completion?(result: DownloadResult.success(lesson: lesson, resource: resource, url: url))
+            completion?(DownloadResult.success(lesson: lesson, resource: resource, url: url))
         } else {
             
             let resourceKey = ResourceKey(lessonIdentifier: lesson.identifier, lessonType: resource)
-            var bgTask : UIBackgroundTaskIdentifier? = UIApplication.sharedApplication().beginBackgroundTaskWithName("ResourceDownload-\(resourceKey)", expirationHandler: {
+            var bgTask : UIBackgroundTaskIdentifier? = UIApplication.shared.beginBackgroundTask(withName: "ResourceDownload-\(resourceKey)", expirationHandler: {
                 
-                if let request = self.currentOperations.removeValueForKey(resourceKey) {
+                if let request = self.currentOperations.removeValue(forKey: resourceKey) {
                     request.cancel()
                 }
             })
@@ -229,27 +229,23 @@ class ResourceManager {
             }
             
             dispatchState(lesson, resource: resource, downloadState: .pending)
-            let request = APIDataManager.downloadFile(lesson, urlString: urlString, progress: { (bytesRead, totalBytesRead, totalBytesExpectedToRead) -> () in
-                dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                    let progress = Double(totalBytesRead) / Double(totalBytesExpectedToRead)
-                    self.dispatchState(lesson, resource: resource, downloadState: .downloading(percent: progress))
+            let request = APIDataManager.downloadFile(lesson, urlString: urlString, progress: { (progress) -> () in
+                DispatchQueue.main.async { () -> Void in
+                    self.dispatchState(lesson, resource: resource, downloadState: .downloading(percent: progress.fractionCompleted))
                 }
-                }, completion: { (_, _, data, error) -> Void in
-                    if let _ = data {
-                        log.info("We have data")
-                    }
-                    if let error = error {
+                }, completion: { (response) -> Void in
+                    if let error = response.error {
                         log.error("Error: \(error)")
                         self.dispatchState(lesson, resource: resource, downloadState: .nothing)
                     } else {
                         if let url = APIDataManager.fileExists(lesson, urlString: urlString) {
                             self.dispatchState(lesson, resource: resource, downloadState: .downloaded(url: url))
-                            completion?(result: DownloadResult.success(lesson: lesson, resource: resource, url: url))
+                            completion?(DownloadResult.success(lesson: lesson, resource: resource, url: url))
                         }
                     }
                     self.currentOperations[resourceKey] = nil
                     if let bgTask = bgTask {
-                        UIApplication.sharedApplication().endBackgroundTask(bgTask)
+                        UIApplication.shared.endBackgroundTask(bgTask)
                     }
                 })
             self.currentOperations[resourceKey] = request
@@ -272,9 +268,9 @@ class ResourceManager {
      - parameter lesson:   The `Lesson` instance
      - parameter resource: A resource
      */
-    func cancelDownload(lesson: Lesson, resource: LessonType) {
+    func cancelDownload(_ lesson: Lesson, resource: LessonType) {
         let resourceKey = ResourceKey(lessonIdentifier: lesson.identifier, lessonType: resource)
-        if let request = currentOperations.removeValueForKey(resourceKey) {
+        if let request = currentOperations.removeValue(forKey: resourceKey) {
             request.cancel()
         }
     }
@@ -286,15 +282,15 @@ class ResourceManager {
      - parameter study:      The `Study` to download
      - parameter completion: A completion block for knowing when it's all done
      */
-    func downloadAllResources(study: Study, completion: (()->())?) {
-        guard NSThread.isMainThread() else {
+    func downloadAllResources(_ study: Study, completion: (()->())?) {
+        guard Thread.isMainThread else {
             log.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
             return
         }
         
-        let fetchRequest = NSFetchRequest(entityName: Lesson.entityName())
-        let context = ContextCoordinator.sharedInstance.managedObjectContext
-        fetchRequest.entity = Lesson.entity(context)
+        let fetchRequest = NSFetchRequest<Lesson>(entityName: Lesson.entityName())
+        let context = ContextCoordinator.sharedInstance.managedObjectContext!
+        fetchRequest.entity = Lesson.entity(managedObjectContext: context)
         
         let sectionSort = NSSortDescriptor(key: LessonAttributes.completed.rawValue, ascending: true, selector: #selector(NSNumber.compare(_:)))
         let indexSort = NSSortDescriptor(key: LessonAttributes.lessonIndex.rawValue, ascending: true, selector: #selector(NSNumber.compare(_:)))
@@ -302,12 +298,12 @@ class ResourceManager {
         fetchRequest.sortDescriptors = [sectionSort, indexSort]
         fetchRequest.predicate = NSPredicate(format: "%K == %@", LessonAttributes.studyIdentifier.rawValue, study.identifier)
         
-        if let lessons = (try? context.executeFetchRequest(fetchRequest)) as? [Lesson] {
+        if let lessons = try? context.fetch(fetchRequest) {
             downloadNextLesson(remainingLessons: lessons, completion: completion)
         }
     }
     
-    private func downloadNextLesson(remainingLessons lessons: [Lesson], completion: (()->())?) {
+    fileprivate func downloadNextLesson(remainingLessons lessons: [Lesson], completion: (()->())?) {
         if lessons.count == 0 {
             completion?()
             return
@@ -323,11 +319,11 @@ class ResourceManager {
         
     }
     
-    private func downloadAllResources(lesson: Lesson, completion: (()->())?) {
+    fileprivate func downloadAllResources(_ lesson: Lesson, completion: (()->())?) {
         downloadNextResource(lesson, remainingResources: LessonType.downloadable, completion: completion)
     }
     
-    private func downloadNextResource(lesson: Lesson, remainingResources resources: [LessonType], completion: (()->())?) {
+    fileprivate func downloadNextResource(_ lesson: Lesson, remainingResources resources: [LessonType], completion: (()->())?) {
         if resources.count == 0 {
             completion?()
             return

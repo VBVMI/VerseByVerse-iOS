@@ -8,14 +8,34 @@
 
 import UIKit
 import CoreData
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 
 class AnswersViewController: UITableViewController {
 
-    private var fetchedResultsController: NSFetchedResultsController!
-    private let dateFormatter = NSDateFormatter()
-    private let searchController = UISearchController(searchResultsController: nil)
-    private var aboutActionsController: AboutActionsController!
+    fileprivate var fetchedResultsController: NSFetchedResultsController<Answer>!
+    fileprivate let dateFormatter = DateFormatter()
+    fileprivate let searchController = UISearchController(searchResultsController: nil)
+    fileprivate var aboutActionsController: AboutActionsController!
     var topic: Topic? {
         didSet {
             if let topic = topic {
@@ -26,7 +46,7 @@ class AnswersViewController: UITableViewController {
             }
         }
     }
-    private var defaultPredicate: NSPredicate?
+    fileprivate var defaultPredicate: NSPredicate?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,15 +56,15 @@ class AnswersViewController: UITableViewController {
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
         
-        dateFormatter.dateStyle = .ShortStyle
+        dateFormatter.dateStyle = .short
         tableView.rowHeight = UITableViewAutomaticDimension
         self.definesPresentationContext = true
         
-        self.tableView.registerNib(UINib(nibName: Cell.NibName.Article, bundle: nil), forCellReuseIdentifier: Cell.Identifier.Article)
+        self.tableView.register(UINib(nibName: Cell.NibName.Article, bundle: nil), forCellReuseIdentifier: Cell.Identifier.Article)
         
-        let fetchRequest = NSFetchRequest(entityName: Answer.entityName())
-        let context = ContextCoordinator.sharedInstance.managedObjectContext
-        fetchRequest.entity = Answer.entity(context)
+        let fetchRequest = NSFetchRequest<Answer>(entityName: Answer.entityName())
+        let context = ContextCoordinator.sharedInstance.managedObjectContext!
+        fetchRequest.entity = Answer.entity(managedObjectContext: context)
         let identifierSort = NSSortDescriptor(key: AnswerAttributes.identifier.rawValue, ascending: false, selector: #selector(NSString.localizedStandardCompare(_:)))
         
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: AnswerAttributes.postedDate.rawValue, ascending: false), identifierSort]
@@ -56,7 +76,7 @@ class AnswersViewController: UITableViewController {
         
         do {
             try fetchedResultsController.performFetch()
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            DispatchQueue.main.async { () -> Void in
                 self.tableView.reloadData()
             }
         } catch let error {
@@ -75,13 +95,13 @@ class AnswersViewController: UITableViewController {
         
         if topic == nil {
             let refreshControl = UIRefreshControl()
-            refreshControl.addTarget(self, action: #selector(refresh(_:)), forControlEvents: .ValueChanged)
+            refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
             self.refreshControl = refreshControl
         }
         
     }
     
-    func refresh(sender: UIRefreshControl) {
+    func refresh(_ sender: UIRefreshControl) {
         APIDataManager.allTheAnswers { 
             sender.endRefreshing()
         }
@@ -93,57 +113,57 @@ class AnswersViewController: UITableViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        if self.parentViewController == nil {
+        if self.parent == nil {
             let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
             tableView.contentInset = insets
             tableView.scrollIndicatorInsets = insets
         }
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Cell.Identifier.Article, forIndexPath: indexPath) as! ArticleTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Cell.Identifier.Article, for: indexPath) as! ArticleTableViewCell
         
-        if let answer = fetchedResultsController.objectAtIndexPath(indexPath) as? Answer {
-            let topics = answer.topics
-            if topics.count > 0 {
-                cell.topicLayoutView.hidden = false
-                let sortedTopics = topics.filter( {$0.name?.characters.count > 0 }).sort({ (left, right) -> Bool in
-                    return left.name!.localizedCompare(right.name!) == NSComparisonResult.OrderedAscending
-                })
-                cell.topicLayoutView.topics = sortedTopics
-                
-                cell.topicLayoutView.topicSelectedBlock = { [weak self] (topic) in
-                    guard let this = self else { return }
-                    let topicVC = TopicViewController(nibName: "TopicViewController", bundle: nil)
-                    topicVC.topic = topic
-                    topicVC.selectedSegment = .Answers
-                    this.navigationController?.pushViewController(topicVC, animated: true)
-                }
-                
-            } else {
-                cell.topicLayoutView.hidden = true
+        let answer = fetchedResultsController.object(at: indexPath)
+        let topics = answer.topics
+        if topics.count > 0 {
+            cell.topicLayoutView.isHidden = false
+            let sortedTopics = topics.filter( {$0.name?.characters.count > 0 }).sorted(by: { (left, right) -> Bool in
+                return left.name!.localizedCompare(right.name!) == ComparisonResult.orderedAscending
+            })
+            cell.topicLayoutView.topics = sortedTopics
+            
+            cell.topicLayoutView.topicSelectedBlock = { [weak self] (topic) in
+                guard let this = self else { return }
+                let topicVC = TopicViewController(nibName: "TopicViewController", bundle: nil)
+                topicVC.topic = topic
+                topicVC.selectedSegment = .answers
+                this.navigationController?.pushViewController(topicVC, animated: true)
             }
             
-            cell.titleLabel.textColor = answer.completed ? StyleKit.darkGrey : StyleKit.orange
-            cell.titleLabel.text = answer.title
-            cell.authorLabel.text = answer.authorName
-            if let date = answer.postedDate {
-                let dateText = dateFormatter.stringFromDate(date)
-                
-                cell.dateLabel.text = dateText
-                cell.dateLabel.hidden = false
-            } else {
-                cell.dateLabel.hidden = true
-            }
+        } else {
+            cell.topicLayoutView.isHidden = true
         }
+
+        cell.titleLabel.textColor = answer.completed ? StyleKit.darkGrey : StyleKit.orange
+        cell.titleLabel.text = answer.title
+        cell.authorLabel.text = answer.authorName
+        if let date = answer.postedDate {
+            let dateText = dateFormatter.string(from: date)
+            
+            cell.dateLabel.text = dateText
+            cell.dateLabel.isHidden = false
+        } else {
+            cell.dateLabel.isHidden = true
+        }
+        
         return cell
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return self.fetchedResultsController.sections?.count ?? 0
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let sections = fetchedResultsController.sections else {
             return 0
         }
@@ -154,20 +174,19 @@ class AnswersViewController: UITableViewController {
         return sectionInfo.numberOfObjects
     }
     
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 59
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if let answer = self.fetchedResultsController.objectAtIndexPath(indexPath) as? Answer {
-            self.performSegueWithIdentifier("showAnswer", sender: answer)
-        }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let answer = self.fetchedResultsController.object(at: indexPath)
+        self.performSegue(withIdentifier: "showAnswer", sender: answer)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let answer = sender as? Answer {
-            if let destinationViewController = segue.destinationViewController as? AnswerViewController {
+            if let destinationViewController = segue.destination as? AnswerViewController {
                 destinationViewController.answer = answer
             }
         }
@@ -176,19 +195,19 @@ class AnswersViewController: UITableViewController {
 }
 
 extension AnswersViewController : NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         log.debug("Controller didChangeContent")
         self.tableView.reloadData()
     }
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         log.debug("Will change content")
     }
 }
 
 extension AnswersViewController: UISearchResultsUpdating {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         let fetchRequest = fetchedResultsController.fetchRequest
-        if let text = searchController.searchBar.text where text.characters.count > 0 {
+        if let text = searchController.searchBar.text , text.characters.count > 0 {
             var predicate = NSPredicate(format: "%K CONTAINS[cd] %@ OR %K CONTAINS[cd] %@", AnswerAttributes.title.rawValue, text, AnswerAttributes.body.rawValue, text)
             if let defaultPredicate = defaultPredicate {
                 predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [defaultPredicate, predicate])

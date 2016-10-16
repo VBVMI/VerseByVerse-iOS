@@ -11,7 +11,7 @@ import ACPDownload
 
 class IconImages : ACPStaticImages {
     
-    private static let buttonFont = UIFont.fontAwesomeOfSize(20)
+    fileprivate static let buttonFont = UIFont.fontAwesomeOfSize(20)
     
     let string: String
     let paragraphStyle = NSMutableParagraphStyle()
@@ -20,30 +20,30 @@ class IconImages : ACPStaticImages {
     
     init(string: String) {
         self.string = string
-        paragraphStyle.alignment = .Center
+        paragraphStyle.alignment = .center
         attrs = [NSFontAttributeName: IconImages.buttonFont, NSParagraphStyleAttributeName: paragraphStyle]
         
-        size = string.sizeWithAttributes(attrs)
+        size = string.size(attributes: attrs)
     }
     
     override func drawStatusNone() {
         let contextRect = self.bounds
         let width = floor((contextRect.size.width - size.width) / CGFloat(2))
         let height = floor((contextRect.size.height - size.height) / CGFloat(2)) - 1
-        let textRect = CGRectMake(contextRect.origin.x + width,
-            contextRect.origin.y + height,
-            size.width,
-            size.height)
+        let textRect = CGRect(x: contextRect.origin.x + width,
+            y: contextRect.origin.y + height,
+            width: size.width,
+            height: size.height)
         var myAttrs = attrs
         let context = UIGraphicsGetCurrentContext()!
-        CGContextSaveGState(context)
-        CGContextSetAllowsAntialiasing(context, true);
-        CGContextSetShouldAntialias(context, true);
-        CGContextSetShouldSmoothFonts(context, true);
+        context.saveGState()
+        context.setAllowsAntialiasing(true);
+        context.setShouldAntialias(true);
+        context.setShouldSmoothFonts(true);
         
         myAttrs[NSForegroundColorAttributeName] = strokeColor
-        string.drawWithRect(textRect, options: .UsesLineFragmentOrigin, attributes: myAttrs, context: nil)
-        CGContextRestoreGState(context)
+        string.draw(with: textRect, options: .usesLineFragmentOrigin, attributes: myAttrs, context: nil)
+        context.restoreGState()
 //        label.textColor = strokeColor
 //        label.textAlignment = .Center
 //        label.frame = bounds

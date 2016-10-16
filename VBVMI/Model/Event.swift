@@ -3,16 +3,16 @@ import CoreData
 import Decodable
 
 @objc(Event)
-public class Event: _Event {
+open class Event: _Event {
 
 	// Custom logic goes here.
-    class func decodeJSON(JSONDict: NSDictionary, context: NSManagedObjectContext, index: Int) throws -> (Event) {
+    class func decodeJSON(_ JSONDict: NSDictionary, context: NSManagedObjectContext, index: Int) throws -> (Event) {
         guard let identifier = JSONDict["ID"] as? String else {
-            throw APIDataManagerError.MissingID
+            throw APIDataManagerError.missingID
         }
         
         guard let event = Event.findFirstOrCreateWithDictionary(["identifier": identifier], context: context) as? Event else {
-            throw APIDataManagerError.ModelCreationFailed
+            throw APIDataManagerError.modelCreationFailed
         }
         
         event.identifier = try JSONDict => "ID"
@@ -24,9 +24,9 @@ public class Event: _Event {
         event.thumbnailAltText = nullOrString(try JSONDict => "thumbnailAltText")
         
         if let dateString: String = try JSONDict => "eventDate" {
-            if let date = DateFormatters.calendarDateFormatter.dateFromString(dateString), let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian) {
-                
-                let components = calendar.components([.Day, .Month, .Year], fromDate: date)
+            if let date = DateFormatters.calendarDateFormatter.date(from: dateString) {
+                let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+                let components = calendar.dateComponents([.day, .month, .year], from: date)
                 event.eventDateComponents = components
             }
         }

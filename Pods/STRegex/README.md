@@ -9,9 +9,22 @@ Pattern match like a boss.
 Create:
 
 ```swift
+// Use `Regex.init(_:)` to build a regex from a static pattern
+
 let greeting = Regex("hello (world|universe)")
 
-let magic: Regex = "(.*)"
+// Use `Regex.init(string:)` to construct a regex from dynamic data, and
+// gracefully handle invalid input
+
+var validations: [String: Regex]
+
+for (name, pattern) in config.loadValidations() {
+  do {
+    validations[name] = try Regex(string: pattern)
+  } catch {
+    print("error building validation \(name): \(error)")
+  }
+}
 ```
 
 Match:
@@ -36,11 +49,18 @@ default:
 Capture:
 
 ```swift
-let greeting: Regex = "hello (world|universe|swift)"
+let greeting = Regex("hello (world|universe|swift)")
 
 if let subject = greeting.match("hello swift")?.captures[0] {
   print("ohai \(subject)")
 }
+```
+
+Find and replace:
+
+```swift
+"hello world".replacingFirstMatching("h(ello) (\\w+)", with: "H$1, $2!")
+// "Hello, world!"
 ```
 
 Accessing the last match:

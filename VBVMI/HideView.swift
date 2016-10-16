@@ -14,7 +14,7 @@ class HideView: UIView {
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         // Drawing code
         StyleKit.drawHideBackground(frame: self.bounds)
     }
