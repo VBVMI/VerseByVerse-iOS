@@ -21,8 +21,6 @@ class BlurImageView: UIImageView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         addSubview(visualEffectView)
-        
-        visualEffectView.layer
     }
     
     /*

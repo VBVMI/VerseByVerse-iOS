@@ -59,7 +59,8 @@ class APIDataManager {
             })
             
             if existingLessonIds.count > 0 {
-                if let lessonsToDelete = Lesson.findAllWithPredicate(NSPredicate(format: "%K in %@", LessonAttributes.identifier.rawValue, existingLessonIds), context: context) as? [Lesson] , lessonsToDelete.count > 0 {
+                let lessonsToDelete: [Lesson] = Lesson.findAllWithPredicate(NSPredicate(format: "%K in %@", LessonAttributes.identifier.rawValue, existingLessonIds), context: context)
+                if lessonsToDelete.count > 0 {
                     for lesson in lessonsToDelete {
                         context.delete(lesson)
                     }
@@ -147,7 +148,7 @@ class APIDataManager {
     static func allTheEvents() {
         downloadToJSONArray(JsonAPI.events, arrayNode: "events") { (context, JSONArray) in
             
-            let existingEvents = Event.findAll(context) as? [Event] ?? [Event]()
+            let existingEvents: [Event] = Event.findAll(context)
             var existingEventIds = existingEvents.map({ (event) -> String in
                 return event.identifier
             })
@@ -160,7 +161,8 @@ class APIDataManager {
             })
             
             if existingEventIds.count > 0 {
-                if let eventsToDelete = Event.findAllWithPredicate(NSPredicate(format: "%K in %@", EventAttributes.identifier.rawValue, existingEventIds), context: context) as? [Lesson] , eventsToDelete.count > 0 {
+                let eventsToDelete: [Event] = Event.findAllWithPredicate(NSPredicate(format: "%K in %@", EventAttributes.identifier.rawValue, existingEventIds), context: context)
+                if eventsToDelete.count > 0 {
                     for event in eventsToDelete {
                         context.delete(event)
                     }

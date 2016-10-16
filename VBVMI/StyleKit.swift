@@ -405,7 +405,7 @@ open class StyleKit : NSObject {
         set {
             Cache.topicLabelBackgroundTargets = newValue
             for target: AnyObject in newValue {
-                target.perform(NSSelectorFromString("setSelectedImage:"), with: StyleKit.imageOfTopicLabelBackground)
+                let _ = target.perform(NSSelectorFromString("setSelectedImage:"), with: StyleKit.imageOfTopicLabelBackground)
             }
         }
     }
@@ -415,7 +415,7 @@ open class StyleKit : NSObject {
         set {
             Cache.airPlayCanvasTargets = newValue
             for target: AnyObject in newValue {
-                target.perform(NSSelectorFromString("setImage:"), with: StyleKit.imageOfAirPlayCanvas)
+                let _ = target.perform(NSSelectorFromString("setImage:"), with: StyleKit.imageOfAirPlayCanvas)
             }
         }
     }
@@ -425,7 +425,7 @@ open class StyleKit : NSObject {
         set {
             Cache.forwardTargets = newValue
             for target: AnyObject in newValue {
-                target.perform(NSSelectorFromString("setImage:"), with: StyleKit.imageOfForward)
+                let _ = target.perform(NSSelectorFromString("setImage:"), with: StyleKit.imageOfForward)
             }
         }
     }
@@ -435,7 +435,7 @@ open class StyleKit : NSObject {
         set {
             Cache.rollbackTargets = newValue
             for target: AnyObject in newValue {
-                target.perform(NSSelectorFromString("setImage:"), with: StyleKit.imageOfRollback)
+                let _ = target.perform(NSSelectorFromString("setImage:"), with: StyleKit.imageOfRollback)
             }
         }
     }

@@ -202,7 +202,7 @@ class AudioPlayerViewController: UIViewController {
                     // need to tell study to reload lessonCompletedCount
                     if let study = self.study {
                         let predicate = NSPredicate(format: "%K == %@", LessonAttributes.studyIdentifier.rawValue, study.identifier)
-                        let lessons = Lesson.findAllWithPredicate(predicate, context: context) as! [Lesson]
+                        let lessons: [Lesson] = Lesson.findAllWithPredicate(predicate, context: context)
                         
                         let lessonsCompleted = lessons.reduce(0, { (value, lesson) -> Int in
                             return lesson.completed ? value + 1 : value

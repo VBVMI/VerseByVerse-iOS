@@ -180,9 +180,8 @@ class AnswersViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if let answer = self.fetchedResultsController.object(at: indexPath) as? Answer {
-            self.performSegue(withIdentifier: "showAnswer", sender: answer)
-        }
+        let answer = self.fetchedResultsController.object(at: indexPath)
+        self.performSegue(withIdentifier: "showAnswer", sender: answer)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

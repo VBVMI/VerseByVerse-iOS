@@ -195,9 +195,7 @@ extension StudiesViewController : UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let study = fetchedResultsController.object(at: indexPath) as? Study else {
-            return UICollectionViewCell()
-        }
+        let study = fetchedResultsController.object(at: indexPath)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.Identifier.Study, for: indexPath) as! StudyCellCollectionViewCell
         
         cell.isAccessibilityElement = true

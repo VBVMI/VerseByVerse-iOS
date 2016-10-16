@@ -271,7 +271,7 @@ class SoundManager: NSObject {
 //            log.info("AVPlayerStatus is not ready to play")
 //        }
         
-        start(registerObservers: true)
+        let _ = start(registerObservers: true)
     }
     
     fileprivate func start(registerObservers addObservers: Bool) -> Bool {

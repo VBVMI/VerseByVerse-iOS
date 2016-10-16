@@ -173,11 +173,11 @@ class ContextCoordinator: NSObject {
     fileprivate func migrateData(_ context: NSManagedObjectContext) {
         if !UserDefaults.standard.bool(forKey: "CompletedCountMigration") {
             context.perform({ 
-                let studies = Study.findAll(context) as! [Study]
+                let studies : [Study] = Study.findAll(context)
                 
                 studies.forEach({ (study) in
                     let predicate = NSPredicate(format: "%K == %@", LessonAttributes.studyIdentifier.rawValue, study.identifier)
-                    let lessons = Lesson.findAllWithPredicate(predicate, context: context) as! [Lesson]
+                    let lessons: [Lesson] = Lesson.findAllWithPredicate(predicate, context: context)
                     
                     let lessonsCompleted = lessons.reduce(0, { (value, lesson) -> Int in
                         return lesson.completed ? value + 1 : value
