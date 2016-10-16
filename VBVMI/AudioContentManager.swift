@@ -23,7 +23,7 @@ class AudioContentManager: NSObject {
     }
     
     func loadState(completion: (result: AudioResult)->()) {
-        let context = ContextCoordinator.sharedInstance.backgroundManagedObjectContext
+        let context = ContextCoordinator.sharedInstance.backgroundManagedObjectContext!
         backgroundQueueContext = context
         context.performBlock({
             self.audioCache = AudioPlayer.findFirst(context)

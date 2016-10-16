@@ -4,7 +4,7 @@
 import Foundation
 import CoreData
 
-open enum VideoAttributes: String {
+public enum VideoAttributes: String {
     case averageRating = "averageRating"
     case category = "category"
     case descriptionText = "descriptionText"
@@ -19,7 +19,7 @@ open enum VideoAttributes: String {
     case videoSource = "videoSource"
 }
 
-open enum VideoRelationships: String {
+public enum VideoRelationships: String {
     case channel = "channel"
 }
 

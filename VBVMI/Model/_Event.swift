@@ -4,7 +4,7 @@
 import Foundation
 import CoreData
 
-open enum EventAttributes: String {
+public enum EventAttributes: String {
     case descriptionText = "descriptionText"
     case eventDateComponents = "eventDateComponents"
     case eventIndex = "eventIndex"
@@ -46,7 +46,7 @@ open class _Event: NSManagedObject {
     var descriptionText: String?
 
     @NSManaged open
-    var eventDateComponents: NSDateComponents?
+    var eventDateComponents: DateComponents?
 
     @NSManaged open
     var eventIndex: Int32

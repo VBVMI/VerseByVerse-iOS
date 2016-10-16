@@ -54,7 +54,7 @@ class TopicLayoutView: UIView {
                 self.invalidateIntrinsicContentSize()
                 self.setNeedsLayout()
             }
-//            self.snp_updateConstraints { (make) in
+//            self.snp.updateConstraints { (make) in
 //                make.height.equalTo(lastLayoutSize.height)
 //            }
         }

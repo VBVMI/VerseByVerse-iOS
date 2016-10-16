@@ -4,7 +4,7 @@
 import Foundation
 import CoreData
 
-open enum ChannelAttributes: String {
+public enum ChannelAttributes: String {
     case averageRating = "averageRating"
     case channelIndex = "channelIndex"
     case descriptionText = "descriptionText"
@@ -15,7 +15,7 @@ open enum ChannelAttributes: String {
     case title = "title"
 }
 
-open enum ChannelRelationships: String {
+public enum ChannelRelationships: String {
     case videos = "videos"
 }
 

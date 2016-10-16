@@ -4,7 +4,7 @@
 import Foundation
 import CoreData
 
-open enum LessonAttributes: String {
+public enum LessonAttributes: String {
     case audioLength = "audioLength"
     case audioProgress = "audioProgress"
     case audioSourceURL = "audioSourceURL"
@@ -28,7 +28,7 @@ open enum LessonAttributes: String {
     case videoSourceURL = "videoSourceURL"
 }
 
-open enum LessonRelationships: String {
+public enum LessonRelationships: String {
     case topics = "topics"
 }
 

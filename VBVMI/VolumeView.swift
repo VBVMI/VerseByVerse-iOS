@@ -27,9 +27,9 @@ class VolumeView: MPVolumeView {
         self.addSubview(highVolumeImageView)
         highVolumeImageView.isHidden = self.areWirelessRoutesAvailable
         highVolumeImageView.contentMode = .center
-        highVolumeImageView.snp_makeConstraints { (make) in
+        highVolumeImageView.snp.makeConstraints { (make) in
             make.width.height.equalTo(20)
-            make.centerY.equalTo(self.snp_centerY)
+            make.centerY.equalTo(self.snp.centerY)
             make.right.equalTo(0)
         }
         NotificationCenter.default.addObserver(forName: NSNotification.Name.MPVolumeViewWirelessRoutesAvailableDidChange, object: nil, queue: OperationQueue.main) { [weak self] (notification) in

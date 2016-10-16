@@ -88,7 +88,7 @@ class LessonTableViewCell: UITableViewCell {
         videoView.button.setImages(videoImage)
         videoView.button.tintColor = buttonTintColor
         videoView.button.setActionForTap { [weak self] (view, status) -> Void in
-            self?.urlButtonCallback?(view, status, .video)
+            self?.urlButtonCallback?(view!, status, .video)
         }
         let videoTapGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.videoTap(_:)))
         videoView.addGestureRecognizer(videoTapGesture)
@@ -98,7 +98,7 @@ class LessonTableViewCell: UITableViewCell {
         teacherAidView.button.setImages(teacherAidImage)
         teacherAidView.button.tintColor = buttonTintColor
         teacherAidView.button.setActionForTap { [weak self] (view, status) -> Void in
-            self?.urlButtonCallback?(view, status, .teacherAid)
+            self?.urlButtonCallback?(view!, status, .teacherAid)
         }
         let teacherAidGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.teacherAidTap(_:)))
         teacherAidView.addGestureRecognizer(teacherAidGesture)
@@ -108,7 +108,7 @@ class LessonTableViewCell: UITableViewCell {
         studentAidView.button.setImages(studentAidImage)
         studentAidView.button.tintColor = buttonTintColor
         studentAidView.button.setActionForTap { [weak self] (view, status) -> Void in
-            self?.urlButtonCallback?(view, status, .studentAid)
+            self?.urlButtonCallback?(view!, status, .studentAid)
         }
         let studentAidGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.studentAidTap(_:)))
         studentAidView.addGestureRecognizer(studentAidGesture)
@@ -118,7 +118,7 @@ class LessonTableViewCell: UITableViewCell {
         transcriptView.button.setImages(transcriptImage)
         transcriptView.button.tintColor = buttonTintColor
         transcriptView.button.setActionForTap { [weak self] (view, status) -> Void in
-            self?.urlButtonCallback?(view, status, .transcript)
+            self?.urlButtonCallback?(view!, status, .transcript)
         }
         let transcriptGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.transcriptTap(_:)))
         transcriptView.addGestureRecognizer(transcriptGesture)
@@ -128,7 +128,7 @@ class LessonTableViewCell: UITableViewCell {
         audioView.button.setImages(audioImage)
         audioView.button.tintColor = buttonTintColor
         audioView.button.setActionForTap { [weak self] (view, status) -> Void in
-            self?.urlButtonCallback?(view, status, .audio)
+            self?.urlButtonCallback?(view!, status, .audio)
         }
         let audioGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.audioTap(_:)))
         audioView.addGestureRecognizer(audioGesture)

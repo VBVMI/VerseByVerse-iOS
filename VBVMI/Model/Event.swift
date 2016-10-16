@@ -24,9 +24,9 @@ open class Event: _Event {
         event.thumbnailAltText = nullOrString(try JSONDict => "thumbnailAltText")
         
         if let dateString: String = try JSONDict => "eventDate" {
-            if let date = DateFormatters.calendarDateFormatter.date(from: dateString), let calendar = Calendar(identifier: Calendar.Identifier.gregorian) {
-                
-                let components = (calendar as NSCalendar).components([.day, .month, .year], from: date)
+            if let date = DateFormatters.calendarDateFormatter.date(from: dateString) {
+                let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+                let components = calendar.dateComponents([.day, .month, .year], from: date)
                 event.eventDateComponents = components
             }
         }

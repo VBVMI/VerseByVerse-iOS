@@ -73,7 +73,7 @@ class StudyViewController: UITableViewController {
         guard let identifier = coder.decodeObject(forKey: "studyIdentifier") as? String else {
             fatalError()
         }
-        let context = ContextCoordinator.sharedInstance.managedObjectContext
+        let context = ContextCoordinator.sharedInstance.managedObjectContext!
         guard let study: Study = Study.findFirstWithPredicate(NSPredicate(format: "%K == %@", StudyAttributes.identifier.rawValue, identifier), context: context) else {
             fatalError()
         }
@@ -86,7 +86,7 @@ class StudyViewController: UITableViewController {
     
     fileprivate func configureFetchController() {
         let fetchRequest = NSFetchRequest<Lesson>(entityName: Lesson.entityName())
-        let context = ContextCoordinator.sharedInstance.managedObjectContext
+        let context = ContextCoordinator.sharedInstance.managedObjectContext!
         fetchRequest.entity = Lesson.entity(managedObjectContext: context)
         
         let sectionSort = NSSortDescriptor(key: LessonAttributes.completed.rawValue, ascending: true, selector: #selector(NSNumber.compare(_:)))
@@ -314,7 +314,7 @@ class StudyViewController: UITableViewController {
         switch (indexPath as NSIndexPath).section {
         case 1,2:
             let logicalIndex = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section - 1)
-            let lesson = fetchedResultsController.object(at: logicalIndex) as! Lesson
+            let lesson = fetchedResultsController.object(at: logicalIndex)
             if lesson.isPlaceholder {
                 return false
             }
@@ -329,8 +329,8 @@ class StudyViewController: UITableViewController {
         case 1,2:
             var actions = [UITableViewRowAction]()
             let logicalIndex = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section - 1)
-            let lessons = fetchedResultsController.fetchedObjects as! [Lesson]
-            let lesson = fetchedResultsController.object(at: logicalIndex) as! Lesson
+            let lessons = fetchedResultsController.fetchedObjects ?? []
+            let lesson = fetchedResultsController.object(at: logicalIndex)
             let study = self.study
             let markCompleteAction : UITableViewRowAction
             if lesson.completed == true {
@@ -341,7 +341,7 @@ class StudyViewController: UITableViewController {
                     let lessonsCompleted = lessons.reduce(0, { (value, lesson) -> Int in
                         return lesson.completed ? value + 1 : value
                     })
-                    study.lessonsCompleted = Int32(lessonsCompleted)
+                    study?.lessonsCompleted = Int32(lessonsCompleted)
                     
                     do {
                         try lesson.managedObjectContext?.save()
@@ -356,7 +356,7 @@ class StudyViewController: UITableViewController {
                     let lessonsCompleted = lessons.reduce(0, { (value, lesson) -> Int in
                         return lesson.completed ? value + 1 : value
                     })
-                    study.lessonsCompleted = Int32(lessonsCompleted)
+                    study?.lessonsCompleted = Int32(lessonsCompleted)
                     
                     do {
                         try lesson.managedObjectContext?.save()
@@ -462,7 +462,7 @@ class StudyViewController: UITableViewController {
                 return
             }
             
-            if let lessons = this.fetchedResultsController?.fetchedObjects as? [Lesson] {
+            if let lessons = this.fetchedResultsController?.fetchedObjects {
                 lessons.forEach({ (lesson) in
                     let downloadedFileURLs = this.downloadedFileUrls(lesson)
                     downloadedFileURLs.forEach({ let _ = try? FileManager.default.removeItem(at: $0) })
@@ -478,7 +478,7 @@ class StudyViewController: UITableViewController {
         
         let markAllComplete = UIAlertAction(title: "Mark all complete", style: .default) { [weak self] action in
             guard let this = self else { return }
-            if let lessons = this.fetchedResultsController.fetchedObjects as? [Lesson] {
+            if let lessons = this.fetchedResultsController.fetchedObjects {
                 lessons.forEach({ (lesson) in
                     if !lesson.isPlaceholder {
                         lesson.completed = true
@@ -491,14 +491,14 @@ class StudyViewController: UITableViewController {
                 })
                 this.study.lessonsCompleted = Int32(lessonsCompleted)
                 
-                let context = ContextCoordinator.sharedInstance.managedObjectContext
-                let _ = try? context?.save()
+                let context = ContextCoordinator.sharedInstance.managedObjectContext!
+                let _ = try? context.save()
             }
         }
         
         let markAllIncomplete = UIAlertAction(title: "Mark all incomplete", style: .default) { [weak self] action in
             guard let this = self else { return }
-            if let lessons = this.fetchedResultsController.fetchedObjects as? [Lesson] {
+            if let lessons = this.fetchedResultsController.fetchedObjects {
                 lessons.forEach({ (lesson) in
                     lesson.completed = false
                     lesson.audioProgress = 0
@@ -509,8 +509,8 @@ class StudyViewController: UITableViewController {
                 })
                 this.study.lessonsCompleted = Int32(lessonsCompleted)
                 
-                let context = ContextCoordinator.sharedInstance.managedObjectContext
-                let _ = try? context?.save()
+                let context = ContextCoordinator.sharedInstance.managedObjectContext!
+                let _ = try? context.save()
             }
         }
         
@@ -518,7 +518,7 @@ class StudyViewController: UITableViewController {
             self?.dismiss(animated: true, completion: nil)
         }
         
-        let lessons = fetchedResultsController.fetchedObjects as! [Lesson]
+        let lessons = fetchedResultsController.fetchedObjects!
         let lessonsCompleted = lessons.reduce(0, { (value, lesson) -> Int in
             return lesson.completed ? value + 1 : value
         })

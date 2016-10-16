@@ -49,7 +49,7 @@ class StaticSelectionViewController<T: StaticSelectable>: UIViewController, UITa
         super.viewDidLoad()
 
         view.addSubview(tableView)
-        tableView.snp_makeConstraints { (make) in
+        tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
         }
         

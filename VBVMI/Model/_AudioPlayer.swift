@@ -4,13 +4,13 @@
 import Foundation
 import CoreData
 
-open enum AudioPlayerAttributes: String {
+public enum AudioPlayerAttributes: String {
     case currentTime = "currentTime"
     case lessonIdentifier = "lessonIdentifier"
     case studyIdentifier = "studyIdentifier"
 }
 
-open enum AudioPlayerFetchedProperties: String {
+public enum AudioPlayerFetchedProperties: String {
     case lesson = "lesson"
     case study = "study"
 }

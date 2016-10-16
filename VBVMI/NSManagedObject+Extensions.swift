@@ -20,8 +20,8 @@ extension NSManagedObject {
         return NSEntityDescription.entity(forEntityName: VB_entityName(), in: context)
     }
     
-    class func findFirstOrCreate(_ predicate: NSPredicate, context: NSManagedObjectContext) -> NSManagedObject? {
-        let fetchRequest = NSFetchRequest(entityName: VB_entityName())
+    class func findFirstOrCreate<T: NSManagedObject>(_ predicate: NSPredicate, context: NSManagedObjectContext) -> T? {
+        let fetchRequest = NSFetchRequest<T>(entityName: VB_entityName())
         fetchRequest.predicate = predicate
         fetchRequest.fetchLimit = 1
         fetchRequest.entity = entityDescriptionInContext(context)
@@ -35,8 +35,8 @@ extension NSManagedObject {
             }
         })
         
-        if let result = results.first as? NSManagedObject {
-            return result
+        if let result = results.first {
+            return result as? T
         }
         
         guard let entityDesciption = entityDescriptionInContext(context) else { return nil }
@@ -44,7 +44,7 @@ extension NSManagedObject {
         context.performAndWait { () -> Void in
             object = self.init(entity: entityDesciption, insertInto: context)
         }
-        return object
+        return object as? T
     }
     
     class func findFirstOrCreateWithDictionary(_ dict: [String: String], context: NSManagedObjectContext) -> NSManagedObject? {
@@ -57,23 +57,23 @@ extension NSManagedObject {
     }
     
     class func findFirst<T: NSManagedObject>(_ context: NSManagedObjectContext) -> T? {
-        let fetchRequest = NSFetchRequest(entityName: VB_entityName())
+        let fetchRequest = NSFetchRequest<T>(entityName: VB_entityName())
         fetchRequest.fetchLimit = 1
         fetchRequest.entity = entityDescriptionInContext(context)
         
         let result = try? context.fetch(fetchRequest)
-        return result?.first as? T
+        return result?.first
     }
     
     class func findFirstWithPredicate<T: NSManagedObject>(_ predicate: NSPredicate, context: NSManagedObjectContext) -> T? {
         
-        let fetchRequest = NSFetchRequest(entityName: VB_entityName())
+        let fetchRequest = NSFetchRequest<T>(entityName: VB_entityName())
         fetchRequest.predicate = predicate
         fetchRequest.fetchLimit = 1
         fetchRequest.entity = entityDescriptionInContext(context)
         
         let result = try? context.fetch(fetchRequest)
-        return result?.first as? T
+        return result?.first
     }
     
     class func withIdentifier<T: NSManagedObject>(_ identifier: NSManagedObjectID, context: NSManagedObjectContext) throws -> T? {
@@ -86,22 +86,22 @@ extension NSManagedObject {
         return findAllWithPredicate(predicate, context: context)
     }
     
-    class func findAllWithPredicate(_ predicate: NSPredicate, context: NSManagedObjectContext) -> [NSManagedObject] {
+    class func findAllWithPredicate<T: NSManagedObject>(_ predicate: NSPredicate, context: NSManagedObjectContext) -> [T] {
         
-        let fetchRequest = NSFetchRequest(entityName: VB_entityName())
+        let fetchRequest = NSFetchRequest<T>(entityName: VB_entityName())
         fetchRequest.predicate = predicate
         fetchRequest.entity = entityDescriptionInContext(context)
         
         let result = try? context.fetch(fetchRequest)
-        return result as? [NSManagedObject] ?? []
+        return result ?? []
     }
     
-    class func findAll(_ context: NSManagedObjectContext) -> [NSManagedObject] {
-        let fetchRequest = NSFetchRequest(entityName: VB_entityName())
+    class func findAll<T: NSManagedObject>(_ context: NSManagedObjectContext) -> [T] {
+        let fetchRequest = NSFetchRequest<T>(entityName: VB_entityName())
         fetchRequest.entity = entityDescriptionInContext(context)
         
         let result = try? context.fetch(fetchRequest)
-        return result as? [NSManagedObject] ?? []
+        return result ?? []
     }
 }
 

@@ -214,7 +214,7 @@ class ResourceManager {
         }
         
         if let url = APIDataManager.fileExists(lesson, urlString: urlString) {
-            completion?(result: DownloadResult.success(lesson: lesson, resource: resource, url: url))
+            completion?(DownloadResult.success(lesson: lesson, resource: resource, url: url))
         } else {
             
             let resourceKey = ResourceKey(lessonIdentifier: lesson.identifier, lessonType: resource)
@@ -229,27 +229,23 @@ class ResourceManager {
             }
             
             dispatchState(lesson, resource: resource, downloadState: .pending)
-            let request = APIDataManager.downloadFile(lesson, urlString: urlString, progress: { (bytesRead, totalBytesRead, totalBytesExpectedToRead) -> () in
+            let request = APIDataManager.downloadFile(lesson, urlString: urlString, progress: { (progress) -> () in
                 DispatchQueue.main.async { () -> Void in
-                    let progress = Double(totalBytesRead) / Double(totalBytesExpectedToRead)
-                    self.dispatchState(lesson, resource: resource, downloadState: .downloading(percent: progress))
+                    self.dispatchState(lesson, resource: resource, downloadState: .downloading(percent: progress.fractionCompleted))
                 }
-                }, completion: { (_, _, data, error) -> Void in
-                    if let _ = data {
-                        log.info("We have data")
-                    }
-                    if let error = error {
+                }, completion: { (response) -> Void in
+                    if let error = response.error {
                         log.error("Error: \(error)")
                         self.dispatchState(lesson, resource: resource, downloadState: .nothing)
                     } else {
                         if let url = APIDataManager.fileExists(lesson, urlString: urlString) {
                             self.dispatchState(lesson, resource: resource, downloadState: .downloaded(url: url))
-                            completion?(result: DownloadResult.success(lesson: lesson, resource: resource, url: url))
+                            completion?(DownloadResult.success(lesson: lesson, resource: resource, url: url))
                         }
                     }
                     self.currentOperations[resourceKey] = nil
                     if let bgTask = bgTask {
-                        UIApplication.sharedApplication().endBackgroundTask(bgTask)
+                        UIApplication.shared.endBackgroundTask(bgTask)
                     }
                 })
             self.currentOperations[resourceKey] = request
@@ -292,9 +288,9 @@ class ResourceManager {
             return
         }
         
-        let fetchRequest = NSFetchRequest(entityName: Lesson.entityName())
-        let context = ContextCoordinator.sharedInstance.managedObjectContext
-        fetchRequest.entity = Lesson.entity(context)
+        let fetchRequest = NSFetchRequest<Lesson>(entityName: Lesson.entityName())
+        let context = ContextCoordinator.sharedInstance.managedObjectContext!
+        fetchRequest.entity = Lesson.entity(managedObjectContext: context)
         
         let sectionSort = NSSortDescriptor(key: LessonAttributes.completed.rawValue, ascending: true, selector: #selector(NSNumber.compare(_:)))
         let indexSort = NSSortDescriptor(key: LessonAttributes.lessonIndex.rawValue, ascending: true, selector: #selector(NSNumber.compare(_:)))
@@ -302,7 +298,7 @@ class ResourceManager {
         fetchRequest.sortDescriptors = [sectionSort, indexSort]
         fetchRequest.predicate = NSPredicate(format: "%K == %@", LessonAttributes.studyIdentifier.rawValue, study.identifier)
         
-        if let lessons = (try? context.fetch(fetchRequest)) as? [Lesson] {
+        if let lessons = try? context.fetch(fetchRequest) {
             downloadNextLesson(remainingLessons: lessons, completion: completion)
         }
     }

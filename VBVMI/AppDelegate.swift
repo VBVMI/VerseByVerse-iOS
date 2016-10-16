@@ -16,8 +16,7 @@ import ReachabilitySwift
 
 let log: XCGLogger = {
     let log = XCGLogger.default
-    log.setup(.Debug, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil, fileLogLevel: .Debug)
-    log.xcodeColorsEnabled = false
+    log.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil, fileLevel: .debug)
     // NSLogger support
     // only log to the external window
     return log
@@ -61,27 +60,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         
-        let imageDownloader = ImageDownloader(configuration: ImageDownloader.defaultURLSessionConfiguration(), downloadPrioritization: .FIFO, maximumActiveDownloads: 10, imageCache: VBVMIImageCache)
+        let imageDownloader = ImageDownloader(configuration: ImageDownloader.defaultURLSessionConfiguration(), downloadPrioritization: .fifo, maximumActiveDownloads: 10, imageCache: VBVMIImageCache)
         UIImageView.af_sharedImageDownloader = imageDownloader
 
         let _ = ContextCoordinator.sharedInstance
         
         DispatchQueue.main.async { () -> Void in
-            SoundManager.sharedInstance
+            let _ = SoundManager.sharedInstance
         }
         
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background).async {
+        DispatchQueue.global(qos: .background).async {
             APIDataManager.core()
             APIDataManager.allTheChannels()
             
-            let reachability: Reachability
-            do {
-                reachability = try Reachability.reachabilityForInternetConnection()
-            } catch {
-                print("Unable to create Reachability")
-                return
-            }
-            if reachability.isReachableViaWiFi {
+            let reachability = Reachability()
+            if reachability?.isReachableViaWiFi == true {
                 APIDataManager.allTheArticles()
                 APIDataManager.allTheAnswers()
             } else {
@@ -176,7 +169,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let documentDirectory: URL = urls.first {
             // This is where the database should be in the application support directory
             let rootURL = documentDirectory.appendingPathComponent("resources")
-            if let path = rootURL.path , !fileManager.fileExists(atPath: path) {
+            let path = rootURL.path
+            if !fileManager.fileExists(atPath: path) {
                 do {
                     try fileManager.createDirectory(at: rootURL, withIntermediateDirectories: true, attributes: nil)
                 } catch let error {

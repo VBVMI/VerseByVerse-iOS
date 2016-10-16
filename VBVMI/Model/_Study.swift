@@ -4,7 +4,7 @@
 import Foundation
 import CoreData
 
-open enum StudyAttributes: String {
+public enum StudyAttributes: String {
     case averageRating = "averageRating"
     case bibleIndex = "bibleIndex"
     case completed = "completed"
@@ -21,7 +21,7 @@ open enum StudyAttributes: String {
     case title = "title"
 }
 
-open enum StudyRelationships: String {
+public enum StudyRelationships: String {
     case topics = "topics"
 }
 

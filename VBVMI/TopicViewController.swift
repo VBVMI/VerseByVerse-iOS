@@ -55,7 +55,7 @@ class TopicViewController: UIViewController {
         guard let identifier = coder.decodeObject(forKey: "topicIdentifier") as? String else {
             fatalError()
         }
-        let context = ContextCoordinator.sharedInstance.managedObjectContext
+        let context = ContextCoordinator.sharedInstance.managedObjectContext!
         guard let topic: Topic = Topic.findFirstWithPredicate(NSPredicate(format: "%K == %@", TopicAttributes.identifier.rawValue, identifier), context: context) else {
             fatalError()
         }
@@ -127,7 +127,7 @@ class TopicViewController: UIViewController {
 //        viewController.view.frame = self.view.bounds
         self.view.addSubview(viewController.view)
         
-        viewController.view.snp_makeConstraints { (make) in
+        viewController.view.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
         }
         

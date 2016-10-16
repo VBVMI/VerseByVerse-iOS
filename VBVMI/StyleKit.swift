@@ -26,7 +26,7 @@ open class StyleKit : NSObject {
         static let orange: UIColor = UIColor(red: 1.000, green: 0.615, blue: 0.000, alpha: 1.000)
         static let darkOrange: UIColor = StyleKit.orange.colorWithShadow(0.3)
         static let orangeFaint: UIColor = StyleKit.orange.colorWithAlpha(0.2)
-        static let hideGradient: CGGradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [UIColor.white.cgColor, StyleKit.hideGradientColor.cgColor], locations: [0.25, 1])!
+        static let hideGradient: CGGradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [UIColor.white.cgColor, StyleKit.hideGradientColor.cgColor] as CFArray, locations: [0.25, 1])!
         static var imageOfTopicLabelBackground: UIImage?
         static var topicLabelBackgroundTargets: [AnyObject]?
         static var imageOfAirPlayCanvas: UIImage?
@@ -304,7 +304,7 @@ open class StyleKit : NSObject {
         let depletionAngle: CGFloat = progress * 360 + 90
 
         //// Gradient Declarations
-        let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [StyleKit.orange.cgColor, StyleKit.orangeFaint.cgColor], locations: [0, 1])!
+        let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [StyleKit.orange.cgColor, StyleKit.orangeFaint.cgColor] as CFArray, locations: [0, 1])!
         
         context.saveGState()
         context.translateBy(x: frame.minX + frame.width, y: frame.minY)

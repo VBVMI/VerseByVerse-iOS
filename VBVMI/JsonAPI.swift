@@ -21,6 +21,7 @@ public enum JsonAPI {
 }
 
 extension JsonAPI : TargetType {
+
     public var base: String {
         return "https://www.versebyverseministry.org/core/"
     }
@@ -50,7 +51,7 @@ extension JsonAPI : TargetType {
         }
     }
     
-    public var parameters: [String: AnyObject]? {
+    public var parameters: [String: Any]? {
         switch self {
         default:
             return nil
@@ -86,23 +87,23 @@ extension JsonAPI : TargetType {
     }
     
     public var task: Task {
-        return .Request
+        return .request
     }
     
     public var parameterEncoding: Moya.ParameterEncoding {
         if method == .GET {
-            return .URL
+            return URLEncoding.default
         }
         switch self {
         default:
-            return .JSON
+            return JSONEncoding.default
         }
     }
 }
 
-public func endpointResolver() -> ((_ endpoint: Endpoint<JsonAPI>) -> (NSURLRequest)) {
-    return { (endpoint: Endpoint<JsonAPI>) -> (NSURLRequest) in
-        let request: NSMutableURLRequest = endpoint.urlRequest.mutableCopy() as! NSMutableURLRequest
+public func endpointResolver() -> ((_ endpoint: Endpoint<JsonAPI>) -> (URLRequest)) {
+    return { (endpoint: Endpoint<JsonAPI>) -> (URLRequest) in
+        let request: URLRequest = endpoint.urlRequest
         //        request.HTTPShouldHandleCookies = false
         return request
     }
@@ -110,7 +111,7 @@ public func endpointResolver() -> ((_ endpoint: Endpoint<JsonAPI>) -> (NSURLRequ
 
 public struct Provider {
     fileprivate static var endpointsClosure = { (target: JsonAPI) -> Endpoint<JsonAPI> in
-        let sampleResponse : Endpoint.SampleResponseClosure  = { return EndpointSampleResponse.NetworkResponse(200, target.sampleData) }
+        let sampleResponse : Endpoint.SampleResponseClosure  = { return EndpointSampleResponse.networkResponse(200, target.sampleData) }
         
         var endpoint : Endpoint<JsonAPI> = Endpoint(URL: url(target), sampleResponseClosure: sampleResponse, method: target.method, parameters:  target.parameters, parameterEncoding: target.parameterEncoding, httpHeaderFields: nil)
         
@@ -124,7 +125,7 @@ public struct Provider {
     public static func APIKeysBasedStubBehaviour(_ target: JsonAPI) -> Moya.StubBehavior {
         switch target {
         default:
-            return .Never
+            return .never
         }
     }
     
@@ -137,9 +138,9 @@ public struct Provider {
     public static func DefaultProvider() -> MoyaProvider<JsonAPI> {
         let networkActivityPlugin = NetworkActivityPlugin { (change) -> () in
             switch change {
-            case .Began:
+            case .began:
                 ongoingRequestCount += 1
-            case .Ended:
+            case .ended:
                 ongoingRequestCount -= 1
             }
         }
@@ -173,5 +174,5 @@ private func stubbedResponse(_ filename: String) -> Data! {
 }
 
 public func url(_ route: TargetType) -> String {
-    return route.baseURL.URLByAppendingPathComponent(route.path)!.absoluteString!
+    return route.baseURL.appendingPathComponent(route.path).absoluteString
 }

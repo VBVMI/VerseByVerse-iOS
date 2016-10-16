@@ -152,7 +152,7 @@ class StudiesOptionsTableViewController: UITableViewController {
                 this.sortCell.detailTextLabel?.text = sort.cellTitle
             }
             
-            this.navigationController?.popToViewController(this, animated: true)
+            let _ = this.navigationController?.popToViewController(this, animated: true)
             
         }
         controller.title = "Sort"

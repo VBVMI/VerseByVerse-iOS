@@ -38,8 +38,8 @@ class StudiesViewController: UIViewController {
     
     fileprivate func setupFetchedResultsController() {
         let fetchRequest = NSFetchRequest<Study>(entityName: Study.entityName())
-        let context = ContextCoordinator.sharedInstance.managedObjectContext
-        fetchRequest.entity = Study.entity(managedObjectContext: context!)
+        let context: NSManagedObjectContext = ContextCoordinator.sharedInstance.managedObjectContext!
+        fetchRequest.entity = Study.entity(managedObjectContext: context)
         
         configureFetchRequest(fetchRequest)
         
@@ -143,14 +143,9 @@ class StudiesViewController: UIViewController {
             header.subtitleLabel.isHidden = false
             
             let indexPath = IndexPath(row: 0, section: section)
-            if let item = fetchedResultsController.object(at: indexPath) as? Study {
-                header.mainTitleLabel.text = item.studyType
-                header.mainTitleLabel.isHidden = false
-            } else {
-                header.mainTitleLabel.isHidden = true
-            }
-            
-            
+            let item = fetchedResultsController.object(at: indexPath)
+            header.mainTitleLabel.text = item.studyType
+            header.mainTitleLabel.isHidden = false
         } else {
             header.subtitleLabel.isHidden = true
             header.mainTitleLabel.isHidden = true
@@ -223,8 +218,8 @@ extension StudiesViewController : UICollectionViewDataSource {
             if let url = URL(string: thumbnailSource) {
                 let width = Cell.CellSize.Study.width - Cell.CellSize.StudyImageInset.left - Cell.CellSize.StudyImageInset.right
                 let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 3, divideRadiusByImageScale: false)
-                cell.coverImageView.af_setImageWithURL(url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
-//                cell.coverImageView.af_setImageWithURL(url)
+                cell.coverImageView.af_setImage(withURL: url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
+//                cell.coverImageView.af_setImage(withURL: url)
             }
         }
         return cell
@@ -245,7 +240,7 @@ extension StudiesViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
         configureHeader(section, header: header)
-        header.snp_updateConstraints { (make) -> Void in
+        header.snp.updateConstraints { (make) -> Void in
             make.width.equalTo(collectionView.bounds.size.width)
         }
         

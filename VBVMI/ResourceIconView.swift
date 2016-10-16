@@ -30,18 +30,18 @@ class ResourceIconView: UIView {
         self.button.backgroundColor = UIColor.clear
         
         addSubview(button)
-        button.snp_makeConstraints { (make) in
-            make.center.equalTo(snp_center)
+        button.snp.makeConstraints { (make) in
+            make.center.equalTo(snp.center)
             make.width.height.equalTo(30)
         }
         
         addSubview(dotView)
-        dotView.snp_makeConstraints { (make) in
+        dotView.snp.makeConstraints { (make) in
             make.bottom.equalTo(0)
-            make.centerX.equalTo(self.snp_centerX)
+            make.centerX.equalTo(self.snp.centerX)
         }
         
-        self.snp_makeConstraints { (make) in
+        self.snp.makeConstraints { (make) in
             make.width.equalTo(50).priority(UILayoutPriorityRequired - 10)
             make.height.equalTo(44)
         }

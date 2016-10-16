@@ -147,19 +147,19 @@ class SoundManager: NSObject {
         isReady = false
         log.verbose("Sound Manager Attempting To Restore State")
        
-        let context = ContextCoordinator.sharedInstance.backgroundManagedObjectContext
+        let context = ContextCoordinator.sharedInstance.backgroundManagedObjectContext!
         self.backgroundQueueContext = context
         log.verbose("Sound Manager has found context: \(context)")
-        context?.perform({ () -> Void in
+        context.perform({ () -> Void in
             self.audioCache = AudioPlayer.findFirst(context)
             
             if self.audioCache == nil {
                 
-                self.audioCache = AudioPlayer(managedObjectContext: context!)
+                self.audioCache = AudioPlayer(managedObjectContext: context)
                 self.audioCache?.currentTime = 0
                 
                 do {
-                    try context?.save()
+                    try context.save()
                 } catch let error {
                     log.error("Error saving: \(error)")
                 }
@@ -177,21 +177,21 @@ class SoundManager: NSObject {
                             let studyId = audioStudy.objectID
                             
                             DispatchQueue.main.async { () -> Void in
-                               guard let mainLesson = ContextCoordinator.sharedInstance.managedObjectContext.object(with: lessonId) as? Lesson,
-                                let mainStudy = ContextCoordinator.sharedInstance.managedObjectContext.object(with: studyId) as? Study else {
+                               guard let mainLesson = ContextCoordinator.sharedInstance.managedObjectContext!.object(with: lessonId) as? Lesson,
+                                let mainStudy = ContextCoordinator.sharedInstance.managedObjectContext!.object(with: studyId) as? Study else {
                                     return
                                 }
                                 //We should dispatch a notification to load the audio controller...
                                 if let controller = (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController as? HomeTabBarController {
                                     
                                     if let audioPlayerController = controller.popupContent as? AudioPlayerViewController {
-                                        audioPlayerController.configure(url, name: mainLesson.title ?? "", subTitle: mainLesson.descriptionText ?? "", lesson: mainLesson, study: mainStudy)
+                                        audioPlayerController.configure(url, name: mainLesson.title, subTitle: mainLesson.descriptionText ?? "", lesson: mainLesson, study: mainStudy)
                                         if controller.popupPresentationState == .closed {
                                             controller.openPopup(animated: true, completion: completion)
                                         }
                                     } else {
                                         let demoVC = AudioPlayerViewController()
-                                        demoVC.configure(url, name: mainLesson.title ?? "", subTitle: mainLesson.descriptionText ?? "", lesson: mainLesson, study: mainStudy, startPlaying: false)
+                                        demoVC.configure(url, name: mainLesson.title, subTitle: mainLesson.descriptionText ?? "", lesson: mainLesson, study: mainStudy, startPlaying: false)
                                         
                                         controller.presentPopupBar(withContentViewController: demoVC, openPopup: true, animated: true, completion: completion)
                                     }
@@ -217,7 +217,7 @@ class SoundManager: NSObject {
     fileprivate var readyBlock: (()->())? = nil
     fileprivate var loadProgress: Double = 0 {
         didSet {
-            log.info("Loading progress: \(loadProgress)")
+            log.info("Loading progress: \(self.loadProgress)")
         }
     }
     
@@ -563,7 +563,7 @@ class SoundManager: NSObject {
     fileprivate var wasPlaying = false
     
     func handleInterruption(_ notification: Notification) {
-        log.info("Handle interruption wasplaying: \(wasPlaying) notification: \(notification.userInfo)")
+        log.info("Handle interruption wasplaying: \(self.wasPlaying) notification: \(notification.userInfo)")
         guard let userInfo = (notification as NSNotification).userInfo as? [String: AnyObject] else { return }
         guard let type = userInfo[AVAudioSessionInterruptionTypeKey] as? AVAudioSessionInterruptionType else { return }
         
@@ -643,7 +643,7 @@ class SoundManager: NSObject {
                     self?.stop(unregisterObservers: false)
                 } else {
                     print("Ended")
-                    if let option = (notification as NSNotification).userInfo?[AVAudioSessionInterruptionOptionKey] as? NSNumber , option == AVAudioSessionInterruptionOptions.shouldResume.rawValue {
+                    if let option = (notification as NSNotification).userInfo?[AVAudioSessionInterruptionOptionKey] as? NSNumber , option == NSNumber(value:AVAudioSessionInterruptionOptions.shouldResume.rawValue) {
                         if let this = self {
                             if this.start(registerObservers: false) != true {
                                 log.error("Couldn't restart after interruption")
@@ -691,21 +691,21 @@ class SoundManager: NSObject {
             return
         }
         
-        imageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.None, runImageTransitionIfCached: false) { (response) -> Void in
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+        imageView.af_setImage(withURL: url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false) { (response) -> Void in
+            DispatchQueue.main.async {
                 self.updateImage()
             }
             
-            if let imageSource = self.study?.imageSource, let imageURL = NSURL(string: imageSource) {
+            if let imageSource = self.study?.imageSource, let imageURL = URL(string: imageSource) {
                 let image = self.imageView.image
                 
-                self.imageView.af_setImageWithURL(imageURL, placeholderImage: image, filter: nil, imageTransition: .None, runImageTransitionIfCached: false) { (response) in
+                self.imageView.af_setImage(withURL: imageURL, placeholderImage: image, filter: nil, imageTransition: .noTransition, runImageTransitionIfCached: false) { (response) in
                     switch response.result {
-                    case .Failure(let error):
+                    case .failure(let error):
                         log.error("Error download large image: \(error)")
-                    case .Success(let value):
+                    case .success(let value):
                         self.imageView.image = value
-                        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                        DispatchQueue.main.async {
                             self.updateImage()
                         }
                     }

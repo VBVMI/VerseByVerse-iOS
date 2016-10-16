@@ -4,12 +4,12 @@
 import Foundation
 import CoreData
 
-open enum TopicAttributes: String {
+public enum TopicAttributes: String {
     case identifier = "identifier"
     case name = "name"
 }
 
-open enum TopicRelationships: String {
+public enum TopicRelationships: String {
     case answers = "answers"
     case articles = "articles"
     case lessons = "lessons"

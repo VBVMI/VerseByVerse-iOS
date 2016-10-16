@@ -62,9 +62,9 @@ class AnswersViewController: UITableViewController {
         
         self.tableView.register(UINib(nibName: Cell.NibName.Article, bundle: nil), forCellReuseIdentifier: Cell.Identifier.Article)
         
-        let fetchRequest = NSFetchRequest(entityName: Answer.entityName())
-        let context = ContextCoordinator.sharedInstance.managedObjectContext
-        fetchRequest.entity = Answer.entity(context)
+        let fetchRequest = NSFetchRequest<Answer>(entityName: Answer.entityName())
+        let context = ContextCoordinator.sharedInstance.managedObjectContext!
+        fetchRequest.entity = Answer.entity(managedObjectContext: context)
         let identifierSort = NSSortDescriptor(key: AnswerAttributes.identifier.rawValue, ascending: false, selector: #selector(NSString.localizedStandardCompare(_:)))
         
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: AnswerAttributes.postedDate.rawValue, ascending: false), identifierSort]
@@ -123,39 +123,39 @@ class AnswersViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cell.Identifier.Article, for: indexPath) as! ArticleTableViewCell
         
-        if let answer = fetchedResultsController.object(at: indexPath) as? Answer {
-            let topics = answer.topics
-            if topics.count > 0 {
-                cell.topicLayoutView.isHidden = false
-                let sortedTopics = topics.filter( {$0.name?.characters.count > 0 }).sorted(by: { (left, right) -> Bool in
-                    return left.name!.localizedCompare(right.name!) == ComparisonResult.orderedAscending
-                })
-                cell.topicLayoutView.topics = sortedTopics
-                
-                cell.topicLayoutView.topicSelectedBlock = { [weak self] (topic) in
-                    guard let this = self else { return }
-                    let topicVC = TopicViewController(nibName: "TopicViewController", bundle: nil)
-                    topicVC.topic = topic
-                    topicVC.selectedSegment = .answers
-                    this.navigationController?.pushViewController(topicVC, animated: true)
-                }
-                
-            } else {
-                cell.topicLayoutView.isHidden = true
+        let answer = fetchedResultsController.object(at: indexPath)
+        let topics = answer.topics
+        if topics.count > 0 {
+            cell.topicLayoutView.isHidden = false
+            let sortedTopics = topics.filter( {$0.name?.characters.count > 0 }).sorted(by: { (left, right) -> Bool in
+                return left.name!.localizedCompare(right.name!) == ComparisonResult.orderedAscending
+            })
+            cell.topicLayoutView.topics = sortedTopics
+            
+            cell.topicLayoutView.topicSelectedBlock = { [weak self] (topic) in
+                guard let this = self else { return }
+                let topicVC = TopicViewController(nibName: "TopicViewController", bundle: nil)
+                topicVC.topic = topic
+                topicVC.selectedSegment = .answers
+                this.navigationController?.pushViewController(topicVC, animated: true)
             }
             
-            cell.titleLabel.textColor = answer.completed ? StyleKit.darkGrey : StyleKit.orange
-            cell.titleLabel.text = answer.title
-            cell.authorLabel.text = answer.authorName
-            if let date = answer.postedDate {
-                let dateText = dateFormatter.string(from: date)
-                
-                cell.dateLabel.text = dateText
-                cell.dateLabel.isHidden = false
-            } else {
-                cell.dateLabel.isHidden = true
-            }
+        } else {
+            cell.topicLayoutView.isHidden = true
         }
+
+        cell.titleLabel.textColor = answer.completed ? StyleKit.darkGrey : StyleKit.orange
+        cell.titleLabel.text = answer.title
+        cell.authorLabel.text = answer.authorName
+        if let date = answer.postedDate {
+            let dateText = dateFormatter.string(from: date)
+            
+            cell.dateLabel.text = dateText
+            cell.dateLabel.isHidden = false
+        } else {
+            cell.dateLabel.isHidden = true
+        }
+        
         return cell
     }
     

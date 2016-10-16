@@ -268,38 +268,24 @@ private let characterEntities : [String: Character] = [
 ]
 
 extension String {
-
+    
     /// Returns a new string made by replacing in the `String`
     /// all HTML character entity references with the corresponding
     /// character.
-    var stringByDecodingHTMLEntities: String {
-        return decodeHTMLEntities().decodedString
-    }
-
-    /// Returns a tuple containing the string made by relpacing in the
-    /// `String` all HTML character entity references with the corresponding
-    /// character. Also returned is an array of offset information describing
-    /// the location and length offsets for each replacement. This allows
-    /// for the correct adjust any attributes that may be associated with
-    /// with substrings within the `String`
-    func decodeHTMLEntities() -> (decodedString: String, replacementOffsets: [(index: String.Index, offset: String.Index.Distance)]) {
-
+    var stringByDecodingHTMLEntities : String {
+        
         // ===== Utility functions =====
-
-        // Record the index offsets of each replacement
-        // This allows anyone to correctly adjust any attributes that may be
-        // associated with substrings within the string
-        var replacementOffsets: [(index: String.Index, offset: String.Index.Distance)] = []
-
+        
         // Convert the number in the string to the corresponding
         // Unicode character, e.g.
         //    decodeNumeric("64", 10)   --> "@"
         //    decodeNumeric("20ac", 16) --> "€"
-        func decodeNumeric(_ string : String, base : Int32) -> Character? {
-            let code = UInt32(strtoul(string, nil, base))
-            return Character(UnicodeScalar(code)!)
+        func decodeNumeric(_ string : String, base : Int) -> Character? {
+            guard let code = UInt32(string, radix: base),
+                let uniScalar = UnicodeScalar(code) else { return nil }
+            return Character(uniScalar)
         }
-
+        
         // Decode the HTML character entity to the corresponding
         // Unicode character, return `nil` for invalid input.
         //     decode("&#64;")    --> "@"
@@ -307,54 +293,45 @@ extension String {
         //     decode("&lt;")     --> "<"
         //     decode("&foo;")    --> nil
         func decode(_ entity : String) -> Character? {
+            
             if entity.hasPrefix("&#x") || entity.hasPrefix("&#X"){
-                return decodeNumeric(entity.substring(from: entity.characters.index(entity.startIndex, offsetBy: 3)), base: 16)
+                return decodeNumeric(entity.substring(with: entity.index(entity.startIndex, offsetBy: 3) ..< entity.index(entity.endIndex, offsetBy: -1)), base: 16)
             } else if entity.hasPrefix("&#") {
-                return decodeNumeric(entity.substring(from: entity.characters.index(entity.startIndex, offsetBy: 2)), base: 10)
+                return decodeNumeric(entity.substring(with: entity.index(entity.startIndex, offsetBy: 2) ..< entity.index(entity.endIndex, offsetBy: -1)), base: 10)
             } else {
                 return characterEntities[entity]
             }
         }
-
+        
         // ===== Method starts here =====
-
+        
         var result = ""
         var position = startIndex
-
+        
         // Find the next '&' and copy the characters preceding it to `result`:
         while let ampRange = self.range(of: "&", range: position ..< endIndex) {
-            result += self[position ..< ampRange.lowerBound]
+            result.append(self[position ..< ampRange.lowerBound])
             position = ampRange.lowerBound
-
+            
             // Find the next ';' and copy everything from '&' to ';' into `entity`
             if let semiRange = self.range(of: ";", range: position ..< endIndex) {
                 let entity = self[position ..< semiRange.upperBound]
+                position = semiRange.upperBound
+                
                 if let decoded = decode(entity) {
-
                     // Replace by decoded character:
                     result.append(decoded)
-                    
-                    // Record offset
-                    let offset = (index: semiRange.endIndex, offset: 1 - position.distance(from: position, to: semiRange.endIndex))
-                    replacementOffsets.append(offset)
-
                 } else {
-
                     // Invalid entity, copy verbatim:
-                    result += entity
-
+                    result.append(entity)
                 }
-                position = semiRange.upperBound
             } else {
                 // No matching ';'.
                 break
             }
         }
-
         // Copy remaining characters to `result`:
-        result += self[position ..< endIndex]
-
-        // Return results
-        return (decodedString: result, replacementOffsets: replacementOffsets)
+        result.append(self[position ..< endIndex])
+        return result
     }
 }

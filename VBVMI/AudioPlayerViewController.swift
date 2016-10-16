@@ -101,7 +101,8 @@ class AudioPlayerViewController: UIViewController {
         }
         
         var title : String {
-            if let rate = AudioRate.numberFormatter.string(from: NSNumber(self.rawValue)) {
+            
+            if let rate = AudioRate.numberFormatter.string(from: NSNumber(value: self.rawValue)) {
                 return "\(rate)x"
             }
             return "\(self.rawValue)x"
@@ -273,25 +274,25 @@ class AudioPlayerViewController: UIViewController {
         }
         if let thumbnailSource = study?.thumbnailSource {
             if let url = URL(string: thumbnailSource) {
-                self.imageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3)) { [weak self] (response) in
+                self.imageView.af_setImage(withURL: url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3)) { [weak self] (response) in
                     guard let this = self else { return }
                     switch response.result {
-                    case .Failure(let error):
+                    case .failure(let error):
                         log.error("Error downloading thumbnail image: \(error)")
-                    case .Success(let value):
+                    case .success(let value):
                         this.imageView.image = value
                     }
                     
-                    if let imageSource = this.study?.imageSource, let imageURL = NSURL(string: imageSource) {
+                    if let imageSource = this.study?.imageSource, let imageURL = URL(string: imageSource) {
                         let image = this.imageView.image
                         
-                        this.imageView.af_setImageWithURL(imageURL, placeholderImage: this.imageView.image, filter: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.3)) { [weak this] (response) in
+                        this.imageView.af_setImage(withURL: imageURL, placeholderImage: this.imageView.image, filter: nil, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3)) { [weak this] (response) in
                             guard let this = this else { return }
                             switch response.result {
-                            case .Failure(let error):
+                            case .failure(let error):
                                 log.error("Error download large image: \(error)")
                                 this.imageView.image = image
-                            case .Success(let value):
+                            case .success(let value):
                                 this.imageView.image = value
                             }
                         }
@@ -406,7 +407,7 @@ class AudioPlayerViewController: UIViewController {
             let timeInSeconds = CMTimeGetSeconds(duration)
             let finalTimeInSeconds = (Double( self.progressSlider.value ) * timeInSeconds)
             
-            SoundManager.sharedInstance.seekToTime(finalTimeInSeconds) { (completed) in
+            let _ = SoundManager.sharedInstance.seekToTime(finalTimeInSeconds) { (completed) in
                 self.progressSliderDragging = false
             }
         }
@@ -417,11 +418,11 @@ class AudioPlayerViewController: UIViewController {
     }
 
     @IBAction func skipForward(_ sender: AnyObject) {
-        SoundManager.sharedInstance.skipForward(30)
+        let _ = SoundManager.sharedInstance.skipForward(30)
     }
     
     @IBAction func skipBackward(_ sender: AnyObject) {
-        SoundManager.sharedInstance.skipBackward(30)
+        let _ = SoundManager.sharedInstance.skipBackward(30)
     }
     
     @IBAction func toggleRate(_ sender: AnyObject) {

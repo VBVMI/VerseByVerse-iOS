@@ -39,7 +39,7 @@ class ArticleViewController: UITableViewController {
         guard let identifier = coder.decodeObject(forKey: "articleIdentifier") as? String else {
             fatalError()
         }
-        let context = ContextCoordinator.sharedInstance.managedObjectContext
+        let context = ContextCoordinator.sharedInstance.managedObjectContext!
         guard let article: Article = Article.findFirstWithPredicate(NSPredicate(format: "%K == %@", ArticleAttributes.identifier.rawValue, identifier), context: context) else {
             fatalError()
         }
@@ -149,7 +149,7 @@ class ArticleViewController: UITableViewController {
             if (indexPath as NSIndexPath).row == 0 {
                 cell.hasImage = true
                 if let urlString = article.authorThumbnailSource, let url = URL(string: urlString) {
-                    cell.authorImageView?.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.25), runImageTransitionIfCached: false)
+                    cell.authorImageView?.af_setImage(withURL: url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.crossDissolve(0.25), runImageTransitionIfCached: false)
                 }
             } else {
                 cell.hasImage = false
@@ -168,7 +168,7 @@ class ArticleViewController: UITableViewController {
                 cell.bodyTextView.text = article.body
                 
                 if let urlString = article.authorThumbnailSource, let url = URL(string: urlString) {
-                    cell.authorImageView?.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.25), runImageTransitionIfCached: false)
+                    cell.authorImageView?.af_setImage(withURL: url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.crossDissolve(0.25), runImageTransitionIfCached: false)
                 }
                 
                 return cell

@@ -1,7 +1,18 @@
 import Foundation
 import CoreData
 import Decodable
-//import SwiftString
+
+extension String {
+    func latinize() -> String {
+        return self.folding(options: String.CompareOptions.diacriticInsensitive, locale: Locale.current)
+    }
+    
+    func slugify(withSeparator separator: Character = "-") -> String {
+        let slugCharacterSet = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\(separator)")
+        
+        return latinize().lowercased().components(separatedBy: slugCharacterSet.inverted).filter({ $0 != " " }).joined(separator: String(separator))
+    }
+}
 
 @objc(Topic)
 open class Topic: _Topic {
@@ -12,14 +23,14 @@ open class Topic: _Topic {
             throw APIDataManagerError.missingID
         }
         
-        var convertedIdentifier = identifier.clean(with: " ", allOf: "+")
+        var convertedIdentifier = identifier.replacingOccurrences(of: "+", with: " ")
         convertedIdentifier = convertedIdentifier.slugify()
         if convertedIdentifier.characters.count == 0 {
             return nil
         }
         
         if let name = try JSONDict => "topic" as? String , name.characters.count > 0 {
-            let convertedName = name.capitalize()
+            let convertedName = name.capitalized
             guard let topic = Topic.findFirstOrCreateWithDictionary(["identifier": convertedIdentifier], context: context) as? Topic else {
                 throw APIDataManagerError.modelCreationFailed
             }

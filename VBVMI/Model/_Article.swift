@@ -4,7 +4,7 @@
 import Foundation
 import CoreData
 
-open enum ArticleAttributes: String {
+public enum ArticleAttributes: String {
     case articleThumbnailAltText = "articleThumbnailAltText"
     case articleThumbnailSource = "articleThumbnailSource"
     case authorName = "authorName"
@@ -20,7 +20,7 @@ open enum ArticleAttributes: String {
     case title = "title"
 }
 
-open enum ArticleRelationships: String {
+public enum ArticleRelationships: String {
     case topics = "topics"
 }
 

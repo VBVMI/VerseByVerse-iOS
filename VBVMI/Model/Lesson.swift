@@ -83,9 +83,10 @@ open class Lesson: _Lesson {
 extension Lesson : AssetsDownloadable {
     func directory() -> URL? {
         if let url = AppDelegate.resourcesURL() {
-            let fileURL = url.appendingPathComponent(studyIdentifier, isDirectory: true)!.appendingPathComponent(identifier, isDirectory: true)
+            let fileURL = url.appendingPathComponent(studyIdentifier, isDirectory: true).appendingPathComponent(identifier, isDirectory: true)
             let fileManager = FileManager.default
-            if let path = fileURL.path , !fileManager.fileExists(atPath: path) {
+            let path = fileURL.path
+            if !fileManager.fileExists(atPath: path) {
                 do {
                     try fileManager.createDirectory(at: fileURL, withIntermediateDirectories: true, attributes: nil)
                 } catch let error {

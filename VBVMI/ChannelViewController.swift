@@ -36,7 +36,7 @@ class ChannelViewController: UIViewController {
     
     fileprivate func setupFetchedResultsController() {
         let fetchRequest = NSFetchRequest<Video>(entityName: Video.entityName())
-        let context = ContextCoordinator.sharedInstance.managedObjectContext
+        let context = ContextCoordinator.sharedInstance.managedObjectContext!
         fetchRequest.entity = Video.entity(managedObjectContext: context)
         let indexSort = NSSortDescriptor(key: VideoAttributes.videoIndex.rawValue, ascending: true)
         
