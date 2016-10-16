@@ -10,6 +10,27 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 import CoreData
+import Crashlytics
+
+enum SoundError : Error, CustomNSError {
+    case debug(message: String)
+    
+    var errorCode: Int {
+        switch self {
+        case .debug(_):
+            return 0
+        }
+    }
+    
+    var errorUserInfo: [String : Any] {
+        switch self {
+        case .debug(let message):
+            return ["debug": message]
+        }
+    }
+    
+    static var errorDomain: String = "com.versebyverseministry.SoundError"
+}
 
 class SoundManager: NSObject {
 
@@ -226,6 +247,7 @@ class SoundManager: NSObject {
         
         
         guard let context = backgroundQueueContext else {
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Sound Manager Background Context Not Configured"))
             log.error("Sound Manager Background Context Not Configured")
             return
         }
@@ -279,11 +301,13 @@ class SoundManager: NSObject {
         
         if avPlayer.status != AVPlayerStatus.readyToPlay {
             log.error("avPlayer status is not readyToPlay")
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "avPlayer status is not readyToPlay"))
             return false
         }
         
         let session = AVAudioSession.sharedInstance()
         if !setAudioSessionMode() || !setAudioSessionCategory() {
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Failed to configure Audio session"))
             log.error("Failed to configure Audio session")
             return false
         }
@@ -292,6 +316,7 @@ class SoundManager: NSObject {
             try session.setActive(true)
         } catch let error {
             log.error("Error activating audio session: \(error)")
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error activating audio session: \(error)"))
             return false
         }
         
@@ -327,6 +352,7 @@ class SoundManager: NSObject {
             try AVAudioSession.sharedInstance().setActive(false)
         } catch let error {
             log.error("Error deactivating audio session: \(error)")
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error deactivating audio session: \(error)"))
         }
         
         if removeObservers {
@@ -337,6 +363,7 @@ class SoundManager: NSObject {
     fileprivate func configureInfo() {
         guard let lesson = lesson, let study = study, let item = avPlayer.currentItem else {
             log.warning("Trying to configure Sound Manager without all details")
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Trying to configure Sound Manager without all details"), withAdditionalUserInfo: ["lesson": self.lesson != nil ? "valid": "invalid", "study": self.study != nil ? "valid": "invalid", "avPlayer.currentItem": avPlayer.currentItem != nil ? "valid": "invalid"])
             return
         }
         
@@ -380,6 +407,7 @@ class SoundManager: NSObject {
                 // If item is at end, and next is unavailable, error
                 if CMTimeCompare(item.duration, this.avPlayer.currentTime()) <= 0 {
                     log.verbose("Sound Manager Item is at end while trying to play")
+                    Crashlytics.sharedInstance().recordError(SoundError.debug(message: "CC: Sound Manager Item is at end while trying to play"))
                     return .noSuchContent
                 } else {
                     this.startPlaying()
@@ -403,6 +431,7 @@ class SoundManager: NSObject {
                 // If item is at end, and next is unavailable, error
                 if CMTimeCompare(item.duration, this.avPlayer.currentTime()) <= 0 {
                     log.verbose("Sound Manager Item is at end while trying to play")
+                    Crashlytics.sharedInstance().recordError(SoundError.debug(message: "CC: Sound Manager Item is at end while trying to play"))
                     return .noSuchContent
                 } else {
                     if this.avPlayer.rate == 0 {
@@ -441,6 +470,7 @@ class SoundManager: NSObject {
                 return MPRemoteCommandHandlerStatus.success
             }
             log.verbose("Sound Manager Failed Pause audio")
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "CC: Sound Manager Failed Pause audio"))
             return MPRemoteCommandHandlerStatus.noSuchContent
             //save state
         })
@@ -532,6 +562,7 @@ class SoundManager: NSObject {
             
             guard let audioCache = self.audioCache else {
                 log.error("There is no audio-cache for some reason")
+                Crashlytics.sharedInstance().recordError(SoundError.debug(message: "There is no audio-cache for some reason"))
                 return
             }
             
@@ -555,6 +586,7 @@ class SoundManager: NSObject {
                 try self.backgroundQueueContext?.save()
             } catch let error {
                 log.error("Error saving SoundManager state: \(error)")
+                Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error saving SoundManager state: \(error)"))
             }
         })
         
@@ -647,6 +679,7 @@ class SoundManager: NSObject {
                         if let this = self {
                             if this.start(registerObservers: false) != true {
                                 log.error("Couldn't restart after interruption")
+                                Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Couldn't restart after interruption"))
                             }
                         }
                     }
@@ -662,6 +695,7 @@ class SoundManager: NSObject {
             try session.setCategory(AVAudioSessionCategoryPlayback)
         } catch let error {
             log.error("Error setting AVAudioSession category: \(error)")
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error setting AVAudioSession category: \(error)"))
             return false
         }
         return true
@@ -672,7 +706,8 @@ class SoundManager: NSObject {
         do {
             try session.setMode(AVAudioSessionModeSpokenAudio)
         } catch let error {
-            log.error("Error setting AVAudioSession category: \(error)")
+            log.error("Error setting AVAudioSession mode: \(error)")
+            Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error setting AVAudioSession mode: \(error)"))
             return false
         }
         return true
