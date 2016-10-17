@@ -20,6 +20,7 @@ PODS:
   - SnapKit (3.0.2)
   - STRegex (0.4.2)
   - UIImage-Color (1.1.1)
+  - XCDYouTubeKit (2.5.3)
   - XCGLogger (4.0.0):
     - XCGLogger/Core (= 4.0.0)
   - XCGLogger/Core (4.0.0)
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - SnapKit
   - STRegex
   - UIImage-Color
+  - XCDYouTubeKit
   - XCGLogger
 
 EXTERNAL SOURCES:
@@ -66,8 +68,9 @@ SPEC CHECKSUMS:
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   STRegex: 9b6e0a4300c8442d1aa93241c895eeec4cc56935
   UIImage-Color: 29d79c2acdd1836eae9815836a14fddfcd2db38f
+  XCDYouTubeKit: 90690f9e3523735dc93b8024269d991b0cfffe78
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: b9c5a11408efb43dfccc0b255ea0b67e929ba041
+PODFILE CHECKSUM: b724994bc9491605acebf8814a8795040e4cd2c2
 
 COCOAPODS: 1.0.1
