@@ -58,17 +58,17 @@ class ContextCoordinator: NSObject {
             do {
                 try FileManager.default.moveItem(at: documentsFolder.appendingPathComponent("VBVMIDatastore.sqlite"), to: applicationSupportFolder.appendingPathComponent("VBVMIDatastore.sqlite"))
             } catch let error {
-                log.error("Tried to move file:\(error)")
+                logger.error("Tried to move file:\(error)")
             }
             do {
                 try FileManager.default.moveItem(at: documentsFolder.appendingPathComponent("VBVMIDatastore.sqlite-shm"), to: applicationSupportFolder.appendingPathComponent("VBVMIDatastore.sqlite-shm"))
             } catch let error {
-                log.error("Tried to move file:\(error)")
+                logger.error("Tried to move file:\(error)")
             }
             do {
                 try FileManager.default.moveItem(at: documentsFolder.appendingPathComponent("VBVMIDatastore.sqlite-wal"), to: applicationSupportFolder.appendingPathComponent("VBVMIDatastore.sqlite-wal"))
             } catch let error {
-                log.error("Tried to move file:\(error)")
+                logger.error("Tried to move file:\(error)")
             }
         }
     }
@@ -78,17 +78,17 @@ class ContextCoordinator: NSObject {
         do {
             try FileManager.default.removeItem(at: applicationSupportFolder.appendingPathComponent("VBVMIDatastore.sqlite"))
         } catch let error {
-            log.error("Tried to move file:\(error)")
+            logger.error("Tried to move file:\(error)")
         }
         do {
             try FileManager.default.removeItem(at: applicationSupportFolder.appendingPathComponent("VBVMIDatastore.sqlite-shm"))
         } catch let error {
-            log.error("Tried to move file:\(error)")
+            logger.error("Tried to move file:\(error)")
         }
         do {
             try FileManager.default.removeItem(at: applicationSupportFolder.appendingPathComponent("VBVMIDatastore.sqlite-wal"))
         } catch let error {
-            log.error("Tried to move file:\(error)")
+            logger.error("Tried to move file:\(error)")
         }
     }
     
@@ -103,12 +103,12 @@ class ContextCoordinator: NSObject {
             let _ = try? FileManager.default.createDirectory(at: applicationSupportDirectory, withIntermediateDirectories: true, attributes: nil)
         }
         
-        //log.info("Database path: \(url)")
+        //logger.info("Database path: \(url)")
         do {
             try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true])
         } catch let error {
             
-            log.error("Error building store \(error)")
+            logger.error("Error building store \(error)")
             
             //Blow away the data store because it is probably corrupted or I was being a total noob and didn't set up the migrations properly
             deleteDataStore()
@@ -139,7 +139,7 @@ class ContextCoordinator: NSObject {
 
     
     func mergeMain(_ notification: Notification) {
-        //        log.info("Merging Main context")
+        //        logger.info("Merging Main context")
         managedObjectContext.perform { () -> Void in
             self.managedObjectContext.mergeChanges(fromContextDidSave: notification)
         }
@@ -148,7 +148,7 @@ class ContextCoordinator: NSObject {
     
     func mergeBackground(_ notification: Notification) {
         backgroundManagedObjectContext.perform { () -> Void in
-            //            log.info("Merging Background context")
+            //            logger.info("Merging Background context")
             self.backgroundManagedObjectContext.mergeChanges(fromContextDidSave: notification)
         }
     }

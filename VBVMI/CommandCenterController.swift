@@ -54,16 +54,16 @@ class CommandCenterController: NSObject {
 //            if let item = this.avPlayer.currentItem {
 //                // If item is at end, and next is unavailable, error
 //                if CMTimeCompare(item.duration, this.avPlayer.currentTime()) <= 0 {
-//                    log.verbose("Sound Manager Item is at end while trying to play")
+//                    logger.verbose("Sound Manager Item is at end while trying to play")
 //                    return .NoSuchContent
 //                } else {
 //                    this.startPlaying()
 //                    this.configureInfo()
-//                    log.verbose("Sound Manager Did Play")
+//                    logger.verbose("Sound Manager Did Play")
 //                    return MPRemoteCommandHandlerStatus.Success
 //                }
 //            } else {
-//                log.verbose("Sound Manager Choosing to restore State then play")
+//                logger.verbose("Sound Manager Choosing to restore State then play")
 //                this.restoreState() {
 //                    this.startPlaying()
 //                    this.configureInfo()
@@ -77,24 +77,24 @@ class CommandCenterController: NSObject {
             if let item = this.avPlayer.currentItem {
                 // If item is at end, and next is unavailable, error
                 if CMTimeCompare(item.duration, this.avPlayer.currentTime()) <= 0 {
-                    log.verbose("Sound Manager Item is at end while trying to play")
+                    logger.verbose("Sound Manager Item is at end while trying to play")
                     return .NoSuchContent
                 } else {
                     if this.avPlayer.rate == 0 {
                         //Player is stopped
                         this.startPlaying()
                         this.configureInfo()
-                        log.verbose("Sound Manager Did Play")
+                        logger.verbose("Sound Manager Did Play")
                         return MPRemoteCommandHandlerStatus.Success
                     } else {
                         this.pausePlaying()
                         this.configureInfo()
-                        log.verbose("Sound Manager Did Pause")
+                        logger.verbose("Sound Manager Did Pause")
                         return MPRemoteCommandHandlerStatus.Success
                     }
                 }
             } else {
-                log.verbose("Sound Manager Choosing to restore State then play")
+                logger.verbose("Sound Manager Choosing to restore State then play")
                 this.restoreState() {
                     this.startPlaying()
                     this.configureInfo()
@@ -111,11 +111,11 @@ class CommandCenterController: NSObject {
             if let _ = this.avPlayer.currentItem {
                 this.pausePlaying()
                 
-                log.verbose("Sound Manager Did Pause audio")
+                logger.verbose("Sound Manager Did Pause audio")
                 //                this.configureInfo()
                 return MPRemoteCommandHandlerStatus.Success
             }
-            log.verbose("Sound Manager Failed Pause audio")
+            logger.verbose("Sound Manager Failed Pause audio")
             return MPRemoteCommandHandlerStatus.NoSuchContent
             //save state
         }
@@ -152,7 +152,7 @@ class CommandCenterController: NSObject {
         }
         
         commandCenter.nextTrackCommand.addTargetWithHandler { (event) -> MPRemoteCommandHandlerStatus in
-            log.info("Want to skip to next track?")
+            logger.info("Want to skip to next track?")
             return MPRemoteCommandHandlerStatus.NoSuchContent
         }
         

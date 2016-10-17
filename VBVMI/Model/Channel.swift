@@ -40,7 +40,7 @@ open class Channel: _Channel {
                     let video = try Video.decodeJSON(topicJSONDict, context: context, index: videoIndex)
                     myVideos.insert(video)
                 } catch let error {
-                    log.error("Error decoding Video \(error)... Skippping...")
+                    logger.error("Error decoding Video \(error)... Skippping...")
                 }
             })
             

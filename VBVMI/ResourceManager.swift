@@ -130,7 +130,7 @@ class ResourceManager {
      */
     func addDownloadObserver(_ observer: ResourceManagerObserver) {
         guard Thread.isMainThread else {
-            log.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
+            logger.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
             return
         }
         observers.append(observer)
@@ -143,7 +143,7 @@ class ResourceManager {
      */
     func removeDownloadObserver(_ observer: ResourceManagerObserver) {
         guard Thread.isMainThread else {
-            log.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
+            logger.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
             return
         }
         if let index = observers.index(where: { $0.isEqual(observer) }) {
@@ -161,7 +161,7 @@ class ResourceManager {
      */
     func currentState(ofLesson lesson:Lesson, resource:  LessonType) -> DownloadState {
         guard Thread.isMainThread else {
-            log.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
+            logger.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
             return .nothing
         }
         
@@ -199,7 +199,7 @@ class ResourceManager {
      */
     func startDownloading(_ lesson: Lesson, resource: LessonType, completion: ((_ result: DownloadResult) -> ())? = nil) {
         guard Thread.isMainThread else {
-            log.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
+            logger.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
             return
         }
         
@@ -235,7 +235,7 @@ class ResourceManager {
                 }
                 }, completion: { (response) -> Void in
                     if let error = response.error {
-                        log.error("Error: \(error)")
+                        logger.error("Error: \(error)")
                         self.dispatchState(lesson, resource: resource, downloadState: .nothing)
                     } else {
                         if let url = APIDataManager.fileExists(lesson, urlString: urlString) {
@@ -284,7 +284,7 @@ class ResourceManager {
      */
     func downloadAllResources(_ study: Study, completion: (()->())?) {
         guard Thread.isMainThread else {
-            log.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
+            logger.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
             return
         }
         

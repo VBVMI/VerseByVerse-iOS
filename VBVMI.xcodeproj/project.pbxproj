@@ -137,6 +137,9 @@
 		98B3D29E1D49F501009AEF7D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B3D29D1D49F501009AEF7D /* Settings.swift */; };
 		98B419B41C6420CA003A2872 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B419B31C6420CA003A2872 /* HomeTabBarController.swift */; };
 		98B419BF1C64803D003A2872 /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B419BE1C64803D003A2872 /* StudyViewController.swift */; };
+		98C35DBB1DB4CDB70052398E /* NSDateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98611CBE1C9AA6D60070FCCD /* NSDateExtensions.swift */; };
+		98C35DBC1DB4CEC30052398E /* TitleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C101C814E5F008F23D1 /* TitleParser.swift */; };
+		98C35DBD1DB4CF300052398E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9860BA561C61F3020054D496 /* Constants.swift */; };
 		98C80A061CD430BC000EAD3D /* VolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C80A051CD430BC000EAD3D /* VolumeView.swift */; };
 		98CB0E361CA632B500C99D34 /* TopicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CB0E351CA632B500C99D34 /* TopicLabel.swift */; };
 		98CB0E3C1CA74E7F00C99D34 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CB0E3A1CA74E7F00C99D34 /* TopicViewController.swift */; };
@@ -1517,12 +1520,15 @@
 			files = (
 				989AC5431DB4C22200A825EB /* Lesson.swift in Sources */,
 				989AC5461DB4C22200A825EB /* Video.swift in Sources */,
+				98C35DBC1DB4CEC30052398E /* TitleParser.swift in Sources */,
 				989AC5491DB4C22700A825EB /* _Answer.swift in Sources */,
 				989AC5421DB4C22200A825EB /* Event.swift in Sources */,
+				98C35DBD1DB4CF300052398E /* Constants.swift in Sources */,
 				989AC5551DB4C26700A825EB /* NSManagedObject+Extensions.swift in Sources */,
 				989AC54B1DB4C22700A825EB /* _Article.swift in Sources */,
 				989AC5481DB4C22700A825EB /* _AudioPlayer.swift in Sources */,
 				989AC54D1DB4C22700A825EB /* _Event.swift in Sources */,
+				98C35DBB1DB4CDB70052398E /* NSDateExtensions.swift in Sources */,
 				989AC5451DB4C22200A825EB /* Topic.swift in Sources */,
 				989AC5411DB4C22200A825EB /* Channel.swift in Sources */,
 				989AC5181DB4C0B600A825EB /* SecondViewController.swift in Sources */,

@@ -22,7 +22,7 @@ enum TimeParser {
         guard let matches = match(string) else {
             return nil
         }
-        //log.warning("Matches: \(matches)")
+        //logger.warning("Matches: \(matches)")
         if matches.count == 1 {
             if let time = Double(matches[0]!) {
                 let totalSeconds = time * 60

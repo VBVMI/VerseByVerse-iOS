@@ -80,7 +80,7 @@ class AnswersViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         } catch let error {
-            log.error("Error fetching: \(error)")
+            logger.error("Error fetching: \(error)")
         }
         
         self.tableView.tableHeaderView = searchController.searchBar
@@ -196,11 +196,11 @@ class AnswersViewController: UITableViewController {
 
 extension AnswersViewController : NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        log.debug("Controller didChangeContent")
+        logger.debug("Controller didChangeContent")
         self.tableView.reloadData()
     }
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        log.debug("Will change content")
+        logger.debug("Will change content")
     }
 }
 
@@ -221,7 +221,7 @@ extension AnswersViewController: UISearchResultsUpdating {
             try fetchedResultsController.performFetch()
             self.tableView.reloadData()
         } catch let error {
-            log.error("Answers Search: \(error)")
+            logger.error("Answers Search: \(error)")
         }
         
     }

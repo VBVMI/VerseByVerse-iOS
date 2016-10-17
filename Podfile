@@ -20,8 +20,8 @@ def common_pods
     pod 'SnapKit'
     pod 'AlamofireImage'
     
-    #pod 'FontAwesome.swift', git: 'git@github.com:thii/FontAwesome.swift.git'
-    
+    # pod 'FontAwesome.swift', git: 'git@github.com:thii/FontAwesome.swift.git'
+    # pod 'SwiftIconFont', git: 'git@github.com:0x73/SwiftIconFont.git'
     
     
     pod 'Fabric'
@@ -39,8 +39,9 @@ def ios_pods
     pod 'ACPDownload'
     
     pod 'UIImage-Color'
-    
+    pod 'FontAwesome.swift', git: 'git@github.com:thii/FontAwesome.swift.git'
     pod 'Reveal-iOS-SDK', :configurations => ['Debug']
+    
 end
 
 target 'VBVMI' do
@@ -52,7 +53,7 @@ target 'VBVMI' do
     
     ios_pods
     
-    pod 'FontAwesome.swift', git: 'git@github.com:thii/FontAwesome.swift.git'
+    
     
     target 'VBVMITests' do
         
@@ -64,12 +65,12 @@ target 'VBVMI' do
 end
 
 target 'VBVMI-tvOS' do
-    platform :tvos, '10.0'
+    platform :tvos, '9.0'
     use_frameworks!
     inhibit_all_warnings!
     
     common_pods
-    
+#    pod 'FontAwesomeKit'
     pod 'XCDYouTubeKit'
     #pod 'FontAwesome.swift', git: 'git@github.com:thii/FontAwesome.swift.git'
     

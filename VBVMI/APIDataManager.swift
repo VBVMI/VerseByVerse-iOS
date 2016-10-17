@@ -177,7 +177,7 @@ class APIDataManager {
             switch result {
             case .success(let response):
                 DispatchQueue.global(qos: .background).async {
-                    //log.info("resonse: \(response)")
+                    //logger.info("resonse: \(response)")
                     let data = response.data
                     let json = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
                     
@@ -192,7 +192,7 @@ class APIDataManager {
                                     do {
                                         try conversionBlock(context, modelNodes)
                                     } catch let error {
-                                        log.error("Error decoding modelJSON \(error)")
+                                        logger.error("Error decoding modelJSON \(error)")
                                     }
                                     
                                     do {
@@ -203,22 +203,22 @@ class APIDataManager {
                                             do {
                                                 try ContextCoordinator.sharedInstance.backgroundManagedObjectContext!.save()
                                             } catch (let error) {
-                                                log.error("Error saving background context:\(error)")
+                                                logger.error("Error saving background context:\(error)")
                                             }
                                             
                                         })
                                     } catch (let error) {
-                                        log.error("Error Saving: \(error)")
+                                        logger.error("Error Saving: \(error)")
                                     }
                                 })
                             }
                         } catch let error {
-                            log.error("Error decoding article: \(error)")
+                            logger.error("Error decoding article: \(error)")
                         }
                     }
                 }
             case .failure(let error):
-                log.error("Error downloading articles P: \(error)")
+                logger.error("Error downloading articles P: \(error)")
             }
         }
     }

@@ -53,7 +53,7 @@ class ChannelViewController: UIViewController {
                 self.tableView.reloadData()
             }
         } catch let error {
-            log.error("Error fetching: \(error)")
+            logger.error("Error fetching: \(error)")
         }
     }
     

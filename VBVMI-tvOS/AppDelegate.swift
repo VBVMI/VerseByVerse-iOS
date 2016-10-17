@@ -7,6 +7,15 @@
 //
 
 import UIKit
+import XCGLogger
+
+let logger: XCGLogger = {
+    let logger = XCGLogger.default
+    logger.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil, fileLevel: .debug)
+    // NSLogger support
+    // only log to the external window
+    return logger
+}()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,6 +50,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    fileprivate static var _resourcesURL: URL? = nil
+    
+    static func resourcesURL() -> URL? {
+        if let url = _resourcesURL {
+            return url
+        }
+        
+        let fileManager = FileManager.default
+        
+        let urls = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+        
+        if let documentDirectory: URL = urls.first {
+            // This is where the database should be in the application support directory
+            let rootURL = documentDirectory.appendingPathComponent("resources")
+            let path = rootURL.path
+            if !fileManager.fileExists(atPath: path) {
+                do {
+                    try fileManager.createDirectory(at: rootURL, withIntermediateDirectories: true, attributes: nil)
+                } catch let error {
+                    logger.error("Error creating resources directory: \(error)")
+                    return nil
+                }
+                
+            }
+            
+            _resourcesURL = rootURL
+            return rootURL
+            
+        } else {
+            print("Couldn't get documents directory!")
+        }
+        
+        return nil
+    }
 }
 

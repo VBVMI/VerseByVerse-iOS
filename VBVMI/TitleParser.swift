@@ -28,7 +28,7 @@ struct TitleParser {
         guard let matches = match(string) else {
             return (nil, nil)
         }
-        //log.warning("Matches: \(matches)")
+        //logger.warning("Matches: \(matches)")
         if matches.count == 4 {
             return (matches[0]?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), matches[3]?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))
         }

@@ -55,7 +55,7 @@ open class Article: _Article {
                         myTopics.insert(topic)
                     }
                 } catch let error {
-                    log.error("Error decoding Topic \(error)... Skippping...")
+                    logger.error("Error decoding Topic \(error)... Skippping...")
                 }
             })
             

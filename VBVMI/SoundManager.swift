@@ -126,7 +126,7 @@ class SoundManager: NSObject {
         }
         if let item = object as? AVPlayerItem , keyPath == "status" {
             if item.status == AVPlayerItemStatus.readyToPlay {
-                log.info("Player became ready to play")
+                logger.info("Player became ready to play")
                 let currentProgress = self.loadProgress
                 
                 let durationSeconds = CMTimeGetSeconds(item.duration)
@@ -134,12 +134,12 @@ class SoundManager: NSObject {
                 var time = CMTime(seconds: progress, preferredTimescale: item.duration.timescale)
                 
                 if time == kCMTimeInvalid {
-                    log.error("Time is invalid: progess: \(progress), timeScale: \(item.duration.timescale)")
+                    logger.error("Time is invalid: progess: \(progress), timeScale: \(item.duration.timescale)")
                     time = kCMTimeZero
                 }
                 self.currentMonitoredItem = nil
                 item.seek(to: time, completionHandler: { (sucess) in
-                    log.debug("Seek to time: \(sucess ? "Success" : "Failed")")
+                    logger.debug("Seek to time: \(sucess ? "Success" : "Failed")")
                     self.configureInfo()
                     self.isReady = true
                 })
@@ -148,7 +148,7 @@ class SoundManager: NSObject {
     }
     
     fileprivate func stopTimerObserver() {
-        log.info("Sound Manager Stopping timer observer")
+        logger.info("Sound Manager Stopping timer observer")
         if let timerObserver = timerObserver {
             self.avPlayer.removeTimeObserver(timerObserver)
             self.timerObserver = nil
@@ -156,21 +156,21 @@ class SoundManager: NSObject {
     }
     
     fileprivate func startTimerObserver() {
-        log.info("Sound Manager Starting timer observer")
+        logger.info("Sound Manager Starting timer observer")
         self.timerObserver = self.avPlayer.addPeriodicTimeObserver(forInterval: CMTime(seconds: 5, preferredTimescale: 600), queue: nil, using: { (currentTime) -> Void in
             self.saveState()
 //            self.configureInfo()
-//            log.debug("Observing time: \(CMTimeGetSeconds(currentTime))")
+//            logger.debug("Observing time: \(CMTimeGetSeconds(currentTime))")
         }) as AnyObject?
     }
     
     func restoreState(_ completion:(()->())? = nil) {
         isReady = false
-        log.verbose("Sound Manager Attempting To Restore State")
+        logger.verbose("Sound Manager Attempting To Restore State")
        
         let context = ContextCoordinator.sharedInstance.backgroundManagedObjectContext!
         self.backgroundQueueContext = context
-        log.verbose("Sound Manager has found context: \(context)")
+        logger.verbose("Sound Manager has found context: \(context)")
         context.perform({ () -> Void in
             self.audioCache = AudioPlayer.findFirst(context)
             
@@ -182,7 +182,7 @@ class SoundManager: NSObject {
                 do {
                     try context.save()
                 } catch let error {
-                    log.error("Error saving: \(error)")
+                    logger.error("Error saving: \(error)")
                 }
             } else if let audioCache = self.audioCache {
                 
@@ -193,7 +193,7 @@ class SoundManager: NSObject {
                     if let audioURLString = audioLesson.audioSourceURL {
                         if let url = APIDataManager.fileExists(audioLesson, urlString: audioURLString) {
                             // The file is downloaded and ready for playing
-                            log.verbose("Sound Manager State restored...")
+                            logger.verbose("Sound Manager State restored...")
                             let lessonId = audioLesson.objectID
                             let studyId = audioStudy.objectID
                             
@@ -238,7 +238,7 @@ class SoundManager: NSObject {
     fileprivate var readyBlock: (()->())? = nil
     fileprivate var loadProgress: Double = 0 {
         didSet {
-            log.info("Loading progress: \(self.loadProgress)")
+            logger.info("Loading progress: \(self.loadProgress)")
         }
     }
     
@@ -248,10 +248,10 @@ class SoundManager: NSObject {
         
         guard let context = backgroundQueueContext else {
             Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Sound Manager Background Context Not Configured"))
-            log.error("Sound Manager Background Context Not Configured")
+            logger.error("Sound Manager Background Context Not Configured")
             return
         }
-        log.info("Sound Manager configuring with audio \(audioURL.lastPathComponent)")
+        logger.info("Sound Manager configuring with audio \(audioURL.lastPathComponent)")
         //convert the lesson and study into appropriate context objects
         self.loadProgress = progress == 1 ? 0 : progress
         
@@ -260,7 +260,7 @@ class SoundManager: NSObject {
                 self.study = try Study.withIdentifier(study.objectID, context: context)
                 self.lesson = try Lesson.withIdentifier(lesson.objectID, context: context)
             } catch let error {
-                log.error("Error in SoundManager \(error)")
+                logger.error("Error in SoundManager \(error)")
             }
         }
         
@@ -277,30 +277,30 @@ class SoundManager: NSObject {
     }
     
     func startPlaying() {
-//        log.info("Start playing")
+//        logger.info("Start playing")
 ////        if !audioSessionConfigured {
-////            log.error("Audio session not configured")
+////            logger.error("Audio session not configured")
 ////            self.setupAudioSession({ (success) in
 ////                self.startPlaying()
 ////            })
 ////            return
 ////        }
 //        if avPlayer.status == AVPlayerStatus.ReadyToPlay {
-//            log.info("Playing audio")
+//            logger.info("Playing audio")
 //            avPlayer.setRate(playbackRate, time: kCMTimeInvalid, atHostTime: kCMTimeInvalid)
 //            configureInfo()
 //        } else {
-//            log.info("AVPlayerStatus is not ready to play")
+//            logger.info("AVPlayerStatus is not ready to play")
 //        }
         
         let _ = start(registerObservers: true)
     }
     
     fileprivate func start(registerObservers addObservers: Bool) -> Bool {
-        log.info("Starting AudioManager - addObservers:\(addObservers)")
+        logger.info("Starting AudioManager - addObservers:\(addObservers)")
         
         if avPlayer.status != AVPlayerStatus.readyToPlay {
-            log.error("avPlayer status is not readyToPlay")
+            logger.error("avPlayer status is not readyToPlay")
             Crashlytics.sharedInstance().recordError(SoundError.debug(message: "avPlayer status is not readyToPlay"))
             return false
         }
@@ -308,14 +308,14 @@ class SoundManager: NSObject {
         let session = AVAudioSession.sharedInstance()
         if !setAudioSessionMode() || !setAudioSessionCategory() {
             Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Failed to configure Audio session"))
-            log.error("Failed to configure Audio session")
+            logger.error("Failed to configure Audio session")
             return false
         }
         
         do {
             try session.setActive(true)
         } catch let error {
-            log.error("Error activating audio session: \(error)")
+            logger.error("Error activating audio session: \(error)")
             Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error activating audio session: \(error)"))
             return false
         }
@@ -330,10 +330,10 @@ class SoundManager: NSObject {
         //
         //        }
         //
-        //        log.info("Starting audio player at rate \(playbackRate)")
+        //        logger.info("Starting audio player at rate \(playbackRate)")
         //        if let duration = avPlayer.currentItem?.duration where time >= duration {
         //            time = kCMTimeZero
-        //            log.info("Resetting time to zero")
+        //            logger.info("Resetting time to zero")
         //        }
         //
         //        avPlayer.setRate(playbackRate, time: time, atHostTime: kCMTimeInvalid)
@@ -351,7 +351,7 @@ class SoundManager: NSObject {
         do {
             try AVAudioSession.sharedInstance().setActive(false)
         } catch let error {
-            log.error("Error deactivating audio session: \(error)")
+            logger.error("Error deactivating audio session: \(error)")
             Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error deactivating audio session: \(error)"))
         }
         
@@ -362,7 +362,7 @@ class SoundManager: NSObject {
     
     fileprivate func configureInfo() {
         guard let lesson = lesson, let study = study, let item = avPlayer.currentItem else {
-            log.warning("Trying to configure Sound Manager without all details")
+            logger.warning("Trying to configure Sound Manager without all details")
             Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Trying to configure Sound Manager without all details"), withAdditionalUserInfo: ["lesson": self.lesson != nil ? "valid": "invalid", "study": self.study != nil ? "valid": "invalid", "avPlayer.currentItem": avPlayer.currentItem != nil ? "valid": "invalid"])
             return
         }
@@ -398,7 +398,7 @@ class SoundManager: NSObject {
 
     
     fileprivate func configureCommandCenter() {
-        log.info("Configuring command center")
+        logger.info("Configuring command center")
         let commandCenter = MPRemoteCommandCenter.shared()
         commandCenter.playCommand.addTarget (handler: { [weak self] (event) -> MPRemoteCommandHandlerStatus in
             guard let this = self else { return MPRemoteCommandHandlerStatus.commandFailed }
@@ -406,17 +406,17 @@ class SoundManager: NSObject {
             if let item = this.avPlayer.currentItem {
                 // If item is at end, and next is unavailable, error
                 if CMTimeCompare(item.duration, this.avPlayer.currentTime()) <= 0 {
-                    log.verbose("Sound Manager Item is at end while trying to play")
+                    logger.verbose("Sound Manager Item is at end while trying to play")
                     Crashlytics.sharedInstance().recordError(SoundError.debug(message: "CC: Sound Manager Item is at end while trying to play"))
                     return .noSuchContent
                 } else {
                     this.startPlaying()
                     this.configureInfo()
-                    log.verbose("Sound Manager Did Play")
+                    logger.verbose("Sound Manager Did Play")
                     return MPRemoteCommandHandlerStatus.success
                 }
             } else {
-                log.verbose("Sound Manager Choosing to restore State then play")
+                logger.verbose("Sound Manager Choosing to restore State then play")
                 this.restoreState() {
                     this.startPlaying()
                     this.configureInfo()
@@ -430,7 +430,7 @@ class SoundManager: NSObject {
             if let item = this.avPlayer.currentItem {
                 // If item is at end, and next is unavailable, error
                 if CMTimeCompare(item.duration, this.avPlayer.currentTime()) <= 0 {
-                    log.verbose("Sound Manager Item is at end while trying to play")
+                    logger.verbose("Sound Manager Item is at end while trying to play")
                     Crashlytics.sharedInstance().recordError(SoundError.debug(message: "CC: Sound Manager Item is at end while trying to play"))
                     return .noSuchContent
                 } else {
@@ -438,17 +438,17 @@ class SoundManager: NSObject {
                         //Player is stopped
                         this.startPlaying()
                         this.configureInfo()
-                        log.verbose("Sound Manager Did Play")
+                        logger.verbose("Sound Manager Did Play")
                         return MPRemoteCommandHandlerStatus.success
                     } else {
                         this.pausePlaying()
                         this.configureInfo()
-                        log.verbose("Sound Manager Did Pause")
+                        logger.verbose("Sound Manager Did Pause")
                         return MPRemoteCommandHandlerStatus.success
                     }
                 }
             } else {
-                log.verbose("Sound Manager Choosing to restore State then play")
+                logger.verbose("Sound Manager Choosing to restore State then play")
                 this.restoreState() {
                     this.startPlaying()
                     this.configureInfo()
@@ -465,11 +465,11 @@ class SoundManager: NSObject {
             if let _ = this.avPlayer.currentItem {
                 this.pausePlaying()
                 
-                log.verbose("Sound Manager Did Pause audio")
+                logger.verbose("Sound Manager Did Pause audio")
 //                this.configureInfo()
                 return MPRemoteCommandHandlerStatus.success
             }
-            log.verbose("Sound Manager Failed Pause audio")
+            logger.verbose("Sound Manager Failed Pause audio")
             Crashlytics.sharedInstance().recordError(SoundError.debug(message: "CC: Sound Manager Failed Pause audio"))
             return MPRemoteCommandHandlerStatus.noSuchContent
             //save state
@@ -503,7 +503,7 @@ class SoundManager: NSObject {
         })
         
         commandCenter.nextTrackCommand.addTarget (handler: { (event) -> MPRemoteCommandHandlerStatus in
-            log.info("Want to skip to next track?")
+            logger.info("Want to skip to next track?")
             return MPRemoteCommandHandlerStatus.noSuchContent
         })
     }
@@ -525,7 +525,7 @@ class SoundManager: NSObject {
     }
     
     func skipForward(_ time: TimeInterval) -> Bool {
-        log.info("Skip forward")
+        logger.info("Skip forward")
         guard let currentItem = self.avPlayer.currentItem else {
             return false
         }
@@ -542,7 +542,7 @@ class SoundManager: NSObject {
     }
     
     func skipBackward(_ time: TimeInterval) -> Bool {
-        log.info("Skip backward")
+        logger.info("Skip backward")
         let interval = time
         let cmTime = self.avPlayer.currentTime()
         let currentTime = CMTimeGetSeconds(cmTime)
@@ -561,7 +561,7 @@ class SoundManager: NSObject {
         backgroundQueueContext?.perform({ () -> Void in
             
             guard let audioCache = self.audioCache else {
-                log.error("There is no audio-cache for some reason")
+                logger.error("There is no audio-cache for some reason")
                 Crashlytics.sharedInstance().recordError(SoundError.debug(message: "There is no audio-cache for some reason"))
                 return
             }
@@ -578,14 +578,14 @@ class SoundManager: NSObject {
                     self.lesson?.audioProgress = 0
                 } else {
                     self.lesson?.audioProgress = max(0, min(currentTimeSeconds / durationSeconds, 1))
-                    log.debug("progress: \(self.lesson?.audioProgress)")
+                    logger.debug("progress: \(self.lesson?.audioProgress)")
                 }
             }
             
             do {
                 try self.backgroundQueueContext?.save()
             } catch let error {
-                log.error("Error saving SoundManager state: \(error)")
+                logger.error("Error saving SoundManager state: \(error)")
                 Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error saving SoundManager state: \(error)"))
             }
         })
@@ -595,13 +595,13 @@ class SoundManager: NSObject {
     fileprivate var wasPlaying = false
     
     func handleInterruption(_ notification: Notification) {
-        log.info("Handle interruption wasplaying: \(self.wasPlaying) notification: \(notification.userInfo)")
+        logger.info("Handle interruption wasplaying: \(self.wasPlaying) notification: \(notification.userInfo)")
         guard let userInfo = (notification as NSNotification).userInfo as? [String: AnyObject] else { return }
         guard let type = userInfo[AVAudioSessionInterruptionTypeKey] as? AVAudioSessionInterruptionType else { return }
         
         switch type {
         case .began:
-            log.info("Got interrupted")
+            logger.info("Got interrupted")
             wasPlaying = true
         case .ended:
             if let flag = userInfo[AVAudioSessionInterruptionOptionKey] as? AVAudioSessionInterruptionOptions {
@@ -617,11 +617,11 @@ class SoundManager: NSObject {
     fileprivate var audioSessionConfigured = false
     
     func handleNotification(_ notification: Notification) {
-        log.info("\(notification.name) - \(notification.userInfo)")
+        logger.info("\(notification.name) - \(notification.userInfo)")
     }
     
 //    private func setupAudioSession(completion: ((success: Bool)->())?) {
-//        log.info("Sound Manager Setting up Audio Session")
+//        logger.info("Sound Manager Setting up Audio Session")
 //        let audioSession = AVAudioSession.sharedInstance()
 //        self.initialCategory = audioSession.category
 //        self.initialMode = audioSession.mode
@@ -649,7 +649,7 @@ class SoundManager: NSObject {
 //            }
 //            if let completion = completion {
 //                dispatch_async(dispatch_get_main_queue()) { () -> Void in
-//                    log.info("Sound Manager Completed Setup of Audio Session: \(success)")
+//                    logger.info("Sound Manager Completed Setup of Audio Session: \(success)")
 //                    completion(success: success)
 //                }
 //            }
@@ -678,7 +678,7 @@ class SoundManager: NSObject {
                     if let option = (notification as NSNotification).userInfo?[AVAudioSessionInterruptionOptionKey] as? NSNumber , option == NSNumber(value:AVAudioSessionInterruptionOptions.shouldResume.rawValue) {
                         if let this = self {
                             if this.start(registerObservers: false) != true {
-                                log.error("Couldn't restart after interruption")
+                                logger.error("Couldn't restart after interruption")
                                 Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Couldn't restart after interruption"))
                             }
                         }
@@ -694,7 +694,7 @@ class SoundManager: NSObject {
         do {
             try session.setCategory(AVAudioSessionCategoryPlayback)
         } catch let error {
-            log.error("Error setting AVAudioSession category: \(error)")
+            logger.error("Error setting AVAudioSession category: \(error)")
             Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error setting AVAudioSession category: \(error)"))
             return false
         }
@@ -706,7 +706,7 @@ class SoundManager: NSObject {
         do {
             try session.setMode(AVAudioSessionModeSpokenAudio)
         } catch let error {
-            log.error("Error setting AVAudioSession mode: \(error)")
+            logger.error("Error setting AVAudioSession mode: \(error)")
             Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error setting AVAudioSession mode: \(error)"))
             return false
         }
@@ -737,7 +737,7 @@ class SoundManager: NSObject {
                 self.imageView.af_setImage(withURL: imageURL, placeholderImage: image, filter: nil, imageTransition: .noTransition, runImageTransitionIfCached: false) { (response) in
                     switch response.result {
                     case .failure(let error):
-                        log.error("Error download large image: \(error)")
+                        logger.error("Error download large image: \(error)")
                     case .success(let value):
                         self.imageView.image = value
                         DispatchQueue.main.async {
@@ -765,11 +765,11 @@ class SoundManager: NSObject {
 extension SoundManager : MPPlayableContentDelegate {
     
     func playableContentManager(_ contentManager: MPPlayableContentManager, didUpdate context: MPPlayableContentManagerContext) {
-        log.debug("playableContentManager:didUpdateContext")
+        logger.debug("playableContentManager:didUpdateContext")
     }
     
     func playableContentManager(_ contentManager: MPPlayableContentManager, initializePlaybackQueueWithCompletionHandler completionHandler: @escaping (Error?) -> Void) {
-        log.debug("initializePlaybackQueueWithCompletionHandler")
+        logger.debug("initializePlaybackQueueWithCompletionHandler")
         //Not sure about my understanding here. Seems that if you just call completionHandler(nil) then that means that you are good to go, and iOS will let you push info onto the command center
         if isReady {
             completionHandler(nil)
@@ -780,7 +780,7 @@ extension SoundManager : MPPlayableContentDelegate {
     }
     
     func playableContentManager(_ contentManager: MPPlayableContentManager, initiatePlaybackOfContentItemAt indexPath: IndexPath, completionHandler: @escaping (Error?) -> Void) {
-        log.debug("initiatePlaybackOfContentItemAtIndexPath - (\(indexPath.section),\(indexPath.row))")
+        logger.debug("initiatePlaybackOfContentItemAtIndexPath - (\(indexPath.section),\(indexPath.row))")
         
         if isReady {
             self.startPlaying()

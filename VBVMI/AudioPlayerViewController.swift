@@ -181,7 +181,7 @@ class AudioPlayerViewController: UIViewController {
                     self?.startTimeLabel.text = currentTime.timeString
                 }
             } else {
-                log.error("Couldn't get duration?")
+                logger.error("Couldn't get duration?")
             }
         }
         
@@ -212,7 +212,7 @@ class AudioPlayerViewController: UIViewController {
                     
                 }
                 self.lesson?.audioProgress = 0
-                log.debug("Finish progress: \(self.lesson?.audioProgress)")
+                logger.debug("Finish progress: \(self.lesson?.audioProgress)")
                 let _ = try? self.lesson?.managedObjectContext?.save()
             })
         }
@@ -278,7 +278,7 @@ class AudioPlayerViewController: UIViewController {
                     guard let this = self else { return }
                     switch response.result {
                     case .failure(let error):
-                        log.error("Error downloading thumbnail image: \(error)")
+                        logger.error("Error downloading thumbnail image: \(error)")
                     case .success(let value):
                         this.imageView.image = value
                     }
@@ -290,7 +290,7 @@ class AudioPlayerViewController: UIViewController {
                             guard let this = this else { return }
                             switch response.result {
                             case .failure(let error):
-                                log.error("Error download large image: \(error)")
+                                logger.error("Error download large image: \(error)")
                                 this.imageView.image = image
                             case .success(let value):
                                 this.imageView.image = value

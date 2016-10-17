@@ -14,12 +14,12 @@ import Crashlytics
 import XCGLogger
 import ReachabilitySwift
 
-let log: XCGLogger = {
-    let log = XCGLogger.default
-    log.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil, fileLevel: .debug)
+let logger: XCGLogger = {
+    let logger = XCGLogger.default
+    logger.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil, fileLevel: .debug)
     // NSLogger support
     // only log to the external window
-    return log
+    return logger
 }()
 
 let VBVMIImageCache = AutoPurgingImageCache()
@@ -174,7 +174,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 do {
                     try fileManager.createDirectory(at: rootURL, withIntermediateDirectories: true, attributes: nil)
                 } catch let error {
-                    log.error("Error creating resources directory: \(error)")
+                    logger.error("Error creating resources directory: \(error)")
                     return nil
                 }
                 
