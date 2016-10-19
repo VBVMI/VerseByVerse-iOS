@@ -8,6 +8,7 @@
 
 import UIKit
 import XCGLogger
+import AlamofireImage
 
 let logger: XCGLogger = {
     let logger = XCGLogger.default
@@ -17,6 +18,8 @@ let logger: XCGLogger = {
     return logger
 }()
 
+let VBVMIImageCache = AutoPurgingImageCache()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -25,6 +28,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let imageDownloader = ImageDownloader(configuration: ImageDownloader.defaultURLSessionConfiguration(), downloadPrioritization: .fifo, maximumActiveDownloads: 10, imageCache: VBVMIImageCache)
+        UIImageView.af_sharedImageDownloader = imageDownloader
+        
+        let _ = ContextCoordinator.sharedInstance
+        
+        DispatchQueue.global(qos: .background).async {
+            APIDataManager.core()
+            APIDataManager.allTheChannels()
+        }
+        
         return true
     }
 

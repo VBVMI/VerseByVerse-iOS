@@ -105,7 +105,12 @@ class ContextCoordinator: NSObject {
         
         //logger.info("Database path: \(url)")
         do {
+            #if os(tvOS)
+            try coordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: url, options: [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true])
+            #else
             try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true])
+            #endif
+            
         } catch let error {
             
             logger.error("Error building store \(error)")
