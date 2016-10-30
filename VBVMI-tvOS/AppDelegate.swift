@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return rootURL
             
         } else {
-            print("Couldn't get documents directory!")
+            logger.info("🍕Couldn't get documents directory!")
         }
         
         return nil

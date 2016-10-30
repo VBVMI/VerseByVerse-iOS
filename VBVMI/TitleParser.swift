@@ -12,7 +12,7 @@ import Regex
 //let greeting = Regex("hello (world|universe|swift)")
 //
 //if let subject = greeting.match("hello swift")?.captures[0] {
-//    print("ohai \(subject)")
+//    logger.info("🍕ohai \(subject)")
 //}
 
 struct TitleParser {

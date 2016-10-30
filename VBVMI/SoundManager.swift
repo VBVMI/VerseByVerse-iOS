@@ -76,11 +76,10 @@ class SoundManager: NSObject {
     fileprivate override init() {
         super.init()
         startTimerObserver()
-        DispatchQueue.main.async { () -> Void in
-            self.configureCommandCenter()
-            self.restoreState()
-            self.configureContentManager()
-        }
+        
+        self.configureCommandCenter()
+        self.restoreState()
+        self.configureContentManager()
         
         NotificationCenter.default.addObserver(self, selector: #selector(audioDidFinish(_:)), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
         self.avPlayer.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.new, context: nil)
@@ -126,7 +125,7 @@ class SoundManager: NSObject {
         }
         if let item = object as? AVPlayerItem , keyPath == "status" {
             if item.status == AVPlayerItemStatus.readyToPlay {
-                logger.info("Player became ready to play")
+                logger.info("🍕Player became ready to play")
                 let currentProgress = self.loadProgress
                 
                 let durationSeconds = CMTimeGetSeconds(item.duration)
@@ -148,7 +147,7 @@ class SoundManager: NSObject {
     }
     
     fileprivate func stopTimerObserver() {
-        logger.info("Sound Manager Stopping timer observer")
+        logger.info("🍕Sound Manager Stopping timer observer")
         if let timerObserver = timerObserver {
             self.avPlayer.removeTimeObserver(timerObserver)
             self.timerObserver = nil
@@ -156,7 +155,7 @@ class SoundManager: NSObject {
     }
     
     fileprivate func startTimerObserver() {
-        logger.info("Sound Manager Starting timer observer")
+        logger.info("🍕Sound Manager Starting timer observer")
         self.timerObserver = self.avPlayer.addPeriodicTimeObserver(forInterval: CMTime(seconds: 5, preferredTimescale: 600), queue: nil, using: { (currentTime) -> Void in
             self.saveState()
 //            self.configureInfo()
@@ -238,7 +237,7 @@ class SoundManager: NSObject {
     fileprivate var readyBlock: (()->())? = nil
     fileprivate var loadProgress: Double = 0 {
         didSet {
-            logger.info("Loading progress: \(self.loadProgress)")
+            logger.info("🍕Loading progress: \(self.loadProgress)")
         }
     }
     
@@ -251,7 +250,7 @@ class SoundManager: NSObject {
             logger.error("Sound Manager Background Context Not Configured")
             return
         }
-        logger.info("Sound Manager configuring with audio \(audioURL.lastPathComponent)")
+        logger.info("🍕Sound Manager configuring with audio \(audioURL.lastPathComponent)")
         //convert the lesson and study into appropriate context objects
         self.loadProgress = progress == 1 ? 0 : progress
         
@@ -277,7 +276,7 @@ class SoundManager: NSObject {
     }
     
     func startPlaying() {
-//        logger.info("Start playing")
+//        logger.info("🍕Start playing")
 ////        if !audioSessionConfigured {
 ////            logger.error("Audio session not configured")
 ////            self.setupAudioSession({ (success) in
@@ -286,18 +285,18 @@ class SoundManager: NSObject {
 ////            return
 ////        }
 //        if avPlayer.status == AVPlayerStatus.ReadyToPlay {
-//            logger.info("Playing audio")
+//            logger.info("🍕Playing audio")
 //            avPlayer.setRate(playbackRate, time: kCMTimeInvalid, atHostTime: kCMTimeInvalid)
 //            configureInfo()
 //        } else {
-//            logger.info("AVPlayerStatus is not ready to play")
+//            logger.info("🍕AVPlayerStatus is not ready to play")
 //        }
         
         let _ = start(registerObservers: true)
     }
     
     fileprivate func start(registerObservers addObservers: Bool) -> Bool {
-        logger.info("Starting AudioManager - addObservers:\(addObservers)")
+        logger.info("🍕Starting AudioManager - addObservers:\(addObservers)")
         
         if avPlayer.status != AVPlayerStatus.readyToPlay {
             logger.error("avPlayer status is not readyToPlay")
@@ -330,10 +329,10 @@ class SoundManager: NSObject {
         //
         //        }
         //
-        //        logger.info("Starting audio player at rate \(playbackRate)")
+        //        logger.info("🍕Starting audio player at rate \(playbackRate)")
         //        if let duration = avPlayer.currentItem?.duration where time >= duration {
         //            time = kCMTimeZero
-        //            logger.info("Resetting time to zero")
+        //            logger.info("🍕Resetting time to zero")
         //        }
         //
         //        avPlayer.setRate(playbackRate, time: time, atHostTime: kCMTimeInvalid)
@@ -361,36 +360,21 @@ class SoundManager: NSObject {
     }
     
     fileprivate func configureInfo() {
+        let info = MediaCenterInfo.shared
+        logger.info("🍕Configuring the info")
+        
         guard let lesson = lesson, let study = study, let item = avPlayer.currentItem else {
             logger.warning("Trying to configure Sound Manager without all details")
             Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Trying to configure Sound Manager without all details"), withAdditionalUserInfo: ["lesson": self.lesson != nil ? "valid": "invalid", "study": self.study != nil ? "valid": "invalid", "avPlayer.currentItem": avPlayer.currentItem != nil ? "valid": "invalid"])
             return
         }
-        
-        
-        let infoCenter = MPNowPlayingInfoCenter.default()
-        var newInfo = [String: AnyObject]()
-        
-        newInfo[MPMediaItemPropertyAlbumTitle] = study.title as AnyObject?
-        newInfo[MPMediaItemPropertyTitle] = lesson.title as AnyObject?
-        newInfo[MPMediaItemPropertyPlaybackDuration] = CMTimeGetSeconds(item.duration) as AnyObject?
-        
-        newInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.avPlayer.rate as AnyObject?
-        newInfo[MPNowPlayingInfoPropertyDefaultPlaybackRate] = playbackRate as AnyObject?
-        newInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = CMTimeGetSeconds(self.avPlayer.currentTime()) as AnyObject?
-        
-        if let image = imageView.image {
-            newInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image)
-        } else {
-            newInfo[MPMediaItemPropertyArtwork] = nil
-        }
-        
-        infoCenter.nowPlayingInfo = newInfo
+        info.configureInfo(studyTitle: study.title, lessonTitle: lesson.title, duration: CMTimeGetSeconds(item.duration), playbackRate: self.avPlayer.rate, defaultPlaybackRate: self.playbackRate, elapsedTime: CMTimeGetSeconds(self.avPlayer.currentTime()), artwork: self.imageView.image)
+
     }
     
     fileprivate func configureContentManager() {
         
-        
+        logger.info("🍕Configure Content Manager")
         let manager = MPPlayableContentManager.shared()
         manager.delegate = self
         
@@ -398,7 +382,8 @@ class SoundManager: NSObject {
 
     
     fileprivate func configureCommandCenter() {
-        logger.info("Configuring command center")
+        logger.info("🍕Configuring command center")
+//        UIApplication.shared.beginReceivingRemoteControlEvents()
         let commandCenter = MPRemoteCommandCenter.shared()
         commandCenter.playCommand.addTarget (handler: { [weak self] (event) -> MPRemoteCommandHandlerStatus in
             guard let this = self else { return MPRemoteCommandHandlerStatus.commandFailed }
@@ -503,7 +488,7 @@ class SoundManager: NSObject {
         })
         
         commandCenter.nextTrackCommand.addTarget (handler: { (event) -> MPRemoteCommandHandlerStatus in
-            logger.info("Want to skip to next track?")
+            logger.info("🍕Want to skip to next track?")
             return MPRemoteCommandHandlerStatus.noSuchContent
         })
     }
@@ -525,7 +510,7 @@ class SoundManager: NSObject {
     }
     
     func skipForward(_ time: TimeInterval) -> Bool {
-        logger.info("Skip forward")
+        logger.info("🍕Skip forward")
         guard let currentItem = self.avPlayer.currentItem else {
             return false
         }
@@ -542,7 +527,7 @@ class SoundManager: NSObject {
     }
     
     func skipBackward(_ time: TimeInterval) -> Bool {
-        logger.info("Skip backward")
+        logger.info("🍕Skip backward")
         let interval = time
         let cmTime = self.avPlayer.currentTime()
         let currentTime = CMTimeGetSeconds(cmTime)
@@ -595,13 +580,13 @@ class SoundManager: NSObject {
     fileprivate var wasPlaying = false
     
     func handleInterruption(_ notification: Notification) {
-        logger.info("Handle interruption wasplaying: \(self.wasPlaying) notification: \(notification.userInfo)")
+        logger.info("🍕Handle interruption wasplaying: \(self.wasPlaying) notification: \(notification.userInfo)")
         guard let userInfo = (notification as NSNotification).userInfo as? [String: AnyObject] else { return }
         guard let type = userInfo[AVAudioSessionInterruptionTypeKey] as? AVAudioSessionInterruptionType else { return }
         
         switch type {
         case .began:
-            logger.info("Got interrupted")
+            logger.info("🍕Got interrupted")
             wasPlaying = true
         case .ended:
             if let flag = userInfo[AVAudioSessionInterruptionOptionKey] as? AVAudioSessionInterruptionOptions {
@@ -617,11 +602,11 @@ class SoundManager: NSObject {
     fileprivate var audioSessionConfigured = false
     
     func handleNotification(_ notification: Notification) {
-        logger.info("\(notification.name) - \(notification.userInfo)")
+        logger.info("🍕\(notification.name) - \(notification.userInfo)")
     }
     
 //    private func setupAudioSession(completion: ((success: Bool)->())?) {
-//        logger.info("Sound Manager Setting up Audio Session")
+//        logger.info("🍕Sound Manager Setting up Audio Session")
 //        let audioSession = AVAudioSession.sharedInstance()
 //        self.initialCategory = audioSession.category
 //        self.initialMode = audioSession.mode
@@ -644,12 +629,12 @@ class SoundManager: NSObject {
 //                success = true
 //                self.audioSessionConfigured = true
 //            } catch let error {
-//                print("error :\(error)")
+//                logger.info("🍕error :\(error)")
 //                success = false
 //            }
 //            if let completion = completion {
 //                dispatch_async(dispatch_get_main_queue()) { () -> Void in
-//                    logger.info("Sound Manager Completed Setup of Audio Session: \(success)")
+//                    logger.info("🍕Sound Manager Completed Setup of Audio Session: \(success)")
 //                    completion(success: success)
 //                }
 //            }
@@ -665,16 +650,16 @@ class SoundManager: NSObject {
     }
     
     fileprivate func registerObservers() {
-        print("registering observers")
+        logger.info("🍕registering observers")
         let session = AVAudioSession.sharedInstance()
         audioInterruptionObserverToken = NotificationCenter.default.addObserver(forName: NSNotification.Name.AVAudioSessionInterruption, object: session, queue: nil) { [weak self] (notification) in
-            print("Interruption: \((notification as NSNotification).userInfo)")
+            logger.info("🍕Interruption: \((notification as NSNotification).userInfo)")
             if let value = (notification as NSNotification).userInfo?[AVAudioSessionInterruptionTypeKey] as? NSNumber {
                 if let key = AVAudioSessionInterruptionType(rawValue: value.uintValue) , key == .began {
-                    print("Began")
+                    logger.info("🍕Began")
                     self?.stop(unregisterObservers: false)
                 } else {
-                    print("Ended")
+                    logger.info("🍕Ended")
                     if let option = (notification as NSNotification).userInfo?[AVAudioSessionInterruptionOptionKey] as? NSNumber , option == NSNumber(value:AVAudioSessionInterruptionOptions.shouldResume.rawValue) {
                         if let this = self {
                             if this.start(registerObservers: false) != true {
@@ -714,7 +699,7 @@ class SoundManager: NSObject {
     }
     
     fileprivate func unregisterObservers() {
-        print("unregisering observers")
+        logger.info("🍕unregisering observers")
         if let token = audioInterruptionObserverToken {
             NotificationCenter.default.removeObserver(token)
             audioInterruptionObserverToken = nil

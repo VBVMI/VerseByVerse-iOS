@@ -84,6 +84,7 @@
 		986C37E31C65D6300096BB83 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37E11C65D6300096BB83 /* Lesson.swift */; };
 		987F02F91CF0625E00AB61FA /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987F02F81CF0625E00AB61FA /* DotView.swift */; };
 		987F02FB1CF0658800AB61FA /* ResourceIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987F02FA1CF0658800AB61FA /* ResourceIconView.swift */; };
+		988154C81DC5A4C400D0DD53 /* MediaCenterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988154C71DC5A4C400D0DD53 /* MediaCenterInfo.swift */; };
 		988663F11D55D87E00010728 /* ContextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988663F01D55D87E00010728 /* ContextCoordinator.swift */; };
 		988D69711C9BEADA000ED16D /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988D69701C9BEADA000ED16D /* ArticleViewController.swift */; };
 		988D69741C9C0D87000ED16D /* ArticleHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988D69721C9C0D87000ED16D /* ArticleHeaderTableViewCell.swift */; };
@@ -325,6 +326,7 @@
 		986C37E11C65D6300096BB83 /* Lesson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lesson.swift; path = Model/Lesson.swift; sourceTree = "<group>"; };
 		987F02F81CF0625E00AB61FA /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		987F02FA1CF0658800AB61FA /* ResourceIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceIconView.swift; sourceTree = "<group>"; };
+		988154C71DC5A4C400D0DD53 /* MediaCenterInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCenterInfo.swift; sourceTree = "<group>"; };
 		988663EB1D55C13200010728 /* CommandCenterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandCenterController.swift; sourceTree = "<group>"; };
 		988663EE1D55C27C00010728 /* AudioContentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContentManager.swift; sourceTree = "<group>"; };
 		988663F01D55D87E00010728 /* ContextCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextCoordinator.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 				988663ED1D55C19300010728 /* Audio */,
 				98D45B9E1C86D61D004BBCBD /* AudioPlayerViewController.xib */,
 				989294CB1C8BCE4500C19095 /* SoundManager.swift */,
+				988154C71DC5A4C400D0DD53 /* MediaCenterInfo.swift */,
 			);
 			name = Studies;
 			sourceTree = "<group>";
@@ -1451,6 +1454,7 @@
 				986C2F1D1D33A43400F595FF /* TimeParser.swift in Sources */,
 				98611CB01C96A6610070FCCD /* Article.swift in Sources */,
 				985C53AE1D7AD28F001A907F /* StudiesOptionsTableViewController.swift in Sources */,
+				988154C81DC5A4C400D0DD53 /* MediaCenterInfo.swift in Sources */,
 				98611CBF1C9AA6D60070FCCD /* NSDateExtensions.swift in Sources */,
 				98B419B41C6420CA003A2872 /* HomeTabBarController.swift in Sources */,
 				986C37DA1C657C870096BB83 /* StyleKit.swift in Sources */,

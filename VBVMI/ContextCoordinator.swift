@@ -103,7 +103,7 @@ class ContextCoordinator: NSObject {
             let _ = try? FileManager.default.createDirectory(at: applicationSupportDirectory, withIntermediateDirectories: true, attributes: nil)
         }
         
-        //logger.info("Database path: \(url)")
+        //logger.info("🍕Database path: \(url)")
         do {
             #if os(tvOS)
             try coordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: url, options: [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true])
@@ -144,7 +144,7 @@ class ContextCoordinator: NSObject {
 
     
     func mergeMain(_ notification: Notification) {
-        //        logger.info("Merging Main context")
+        //        logger.info("🍕Merging Main context")
         managedObjectContext.perform { () -> Void in
             self.managedObjectContext.mergeChanges(fromContextDidSave: notification)
         }
@@ -153,7 +153,7 @@ class ContextCoordinator: NSObject {
     
     func mergeBackground(_ notification: Notification) {
         backgroundManagedObjectContext.perform { () -> Void in
-            //            logger.info("Merging Background context")
+            //            logger.info("🍕Merging Background context")
             self.backgroundManagedObjectContext.mergeChanges(fromContextDidSave: notification)
         }
     }

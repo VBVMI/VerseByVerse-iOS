@@ -177,7 +177,7 @@ class APIDataManager {
             switch result {
             case .success(let response):
                 DispatchQueue.global(qos: .background).async {
-                    //logger.info("resonse: \(response)")
+                    //logger.info("🍕resonse: \(response)")
                     let data = response.data
                     let json = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
                     

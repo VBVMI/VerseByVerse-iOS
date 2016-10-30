@@ -50,7 +50,7 @@ class TopicLayoutView: UIView {
     var lastLayoutSize: CGSize = CGSize.zero {
         didSet {
             if lastLayoutSize.height != oldValue.height {
-//                print("setting height to: \(lastLayoutSize)")
+//                logger.info("🍕setting height to: \(lastLayoutSize)")
                 self.invalidateIntrinsicContentSize()
                 self.setNeedsLayout()
             }

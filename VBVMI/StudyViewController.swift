@@ -451,13 +451,13 @@ class StudyViewController: UITableViewController {
         let downloadAll = UIAlertAction(title: "Download all", style: .default) { [weak self] (action) in
             if let study = self?.study {
                 ResourceManager.sharedInstance.downloadAllResources(study, completion: { 
-                    logger.info("Downloaded all Resources!!!")
+                    logger.info("🍕Downloaded all Resources!!!")
                 })
             }
         }
         
         let deleteAll = UIAlertAction(title: "Delete all files", style: .destructive) { [weak self] (action) in
-            logger.info("Trying to delete everything")
+            logger.info("🍕Trying to delete everything")
             guard let this = self else {
                 return
             }

@@ -103,7 +103,7 @@ class AudioManager: NSObject {
     }
     
     private func start(registerObservers addObservers: Bool, progress: Double, completion: ((result: AudioResult)->())? = nil) -> Bool {
-        logger.info("Starting AudioManager - addObservers:\(addObservers) - progress:\(progress)")
+        logger.info("🍕Starting AudioManager - addObservers:\(addObservers) - progress:\(progress)")
         
         if avPlayer.status != AVPlayerStatus.ReadyToPlay {
             logger.error("avPlayer status is not readyToPlay")
@@ -136,10 +136,10 @@ class AudioManager: NSObject {
             
         }
         
-        logger.info("Starting audio player at rate \(playbackRate)")
+        logger.info("🍕Starting audio player at rate \(playbackRate)")
         if let duration = avPlayer.currentItem?.duration where time >= duration {
             time = kCMTimeZero
-            logger.info("Resetting time to zero")
+            logger.info("🍕Resetting time to zero")
         }
         
         mode = .Playing
@@ -201,18 +201,18 @@ class AudioManager: NSObject {
                 mode = .Error
                 audioIsReadyBlock?(result: AudioResult.Error(error: AudioError.FailedToLoad))
             case .ReadyToPlay:
-                logger.info("Ready to play")
+                logger.info("🍕Ready to play")
                 mode = .Ready
                 audioIsReadyBlock?(result: AudioResult.Success)
             case .Unknown:
-                logger.info("Audio player state is unknown")
+                logger.info("🍕Audio player state is unknown")
                 audioIsReadyBlock?(result: AudioResult.Error(error: AudioError.ItemInUnknownState))
             }
         }
     }
     
     private func registerObservers() {
-        print("registering observers")
+        logger.info("🍕registering observers")
         let session = AVAudioSession.sharedInstance()
         audioInterruptionObserverToken = NSNotificationCenter.defaultCenter().addObserverForName(AVAudioSessionInterruptionNotification, object: session, queue: nil) { [weak self] (notification) in
             if let key = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? AVAudioSessionInterruptionType where key == .Began {
@@ -230,7 +230,7 @@ class AudioManager: NSObject {
     }
     
     private func unregisterObservers() {
-        print("unregisering observers")
+        logger.info("🍕unregisering observers")
         if let token = audioInterruptionObserverToken {
             NSNotificationCenter.defaultCenter().removeObserver(token)
             audioInterruptionObserverToken = nil

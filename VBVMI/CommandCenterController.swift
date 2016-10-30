@@ -29,9 +29,9 @@ class CommandCenterController: NSObject {
                 audioManager.start(completion: { (result) in
                     switch result {
                     case .Error(let error):
-                        print("Got \(error) trying to start from PlayCommand")
+                        logger.info("🍕Got \(error) trying to start from PlayCommand")
                     case .Success:
-                        print("Success in starting audi")
+                        logger.info("🍕Success in starting audi")
                     }
                 })
                 return MPRemoteCommandHandlerStatus.Success
@@ -152,7 +152,7 @@ class CommandCenterController: NSObject {
         }
         
         commandCenter.nextTrackCommand.addTargetWithHandler { (event) -> MPRemoteCommandHandlerStatus in
-            logger.info("Want to skip to next track?")
+            logger.info("🍕Want to skip to next track?")
             return MPRemoteCommandHandlerStatus.NoSuchContent
         }
         

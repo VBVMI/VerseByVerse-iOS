@@ -159,7 +159,7 @@ class TopicViewController: UIViewController {
     }
     
     func segmentedControlChanged(_ sender: UISegmentedControl) {
-//        print("value: \(sender.selectedSegmentIndex)")
+//        logger.info("🍕value: \(sender.selectedSegmentIndex)")
         self.selectedSegment = indexToSegmentMap[sender.selectedSegmentIndex]!
         let viewController = self.selectedSegment.viewController(topic)
         configureSubviewController(viewController)

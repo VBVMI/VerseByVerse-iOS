@@ -27,7 +27,7 @@ class DotView: UIView {
     
     override func draw(_ rect: CGRect) {
         if self.bounds.size.width != 3 {
-            print("Bounds: \(rect)")
+            logger.info("🍕Bounds: \(rect)")
         }
        StyleKit.drawDotView(frame: self.bounds)
     }
