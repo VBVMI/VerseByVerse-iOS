@@ -76,7 +76,7 @@ class SoundManager: NSObject {
     fileprivate override init() {
         super.init()
         startTimerObserver()
-        
+        startBackgroundTask()
         self.configureCommandCenter()
         self.restoreState()
         self.configureContentManager()
@@ -95,6 +95,26 @@ class SoundManager: NSObject {
         self.currentMonitoredItem = nil
         stopTimerObserver()
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    private var backgroundTask: UIBackgroundTaskIdentifier?
+    private func startBackgroundTask() {
+        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "SoundManagerLoading", expirationHandler: {
+            logger.info("🍕Sound loading background task expired")
+        })
+        if backgroundTask == UIBackgroundTaskInvalid {
+            backgroundTask = nil
+        } else {
+             logger.info("🍕Background task started")
+        }
+    }
+    
+    private func endBackgroundTask() {
+        if let task = backgroundTask {
+            UIApplication.shared.endBackgroundTask(task)
+            backgroundTask = nil
+            logger.info("🍕Background task ended")
+        }
     }
     
     func audioDidFinish(_ notification: Notification) {
@@ -133,14 +153,15 @@ class SoundManager: NSObject {
                 var time = CMTime(seconds: progress, preferredTimescale: item.duration.timescale)
                 
                 if time == kCMTimeInvalid {
-                    logger.error("Time is invalid: progess: \(progress), timeScale: \(item.duration.timescale)")
+                    logger.error("🍕Time is invalid: progess: \(progress), timeScale: \(item.duration.timescale)")
                     time = kCMTimeZero
                 }
                 self.currentMonitoredItem = nil
                 item.seek(to: time, completionHandler: { (sucess) in
-                    logger.debug("Seek to time: \(sucess ? "Success" : "Failed")")
+                    logger.debug("🍕Seek to time: \(sucess ? "Success" : "Failed")")
                     self.configureInfo()
                     self.isReady = true
+                    self.endBackgroundTask()
                 })
             }
         }
@@ -183,6 +204,7 @@ class SoundManager: NSObject {
                 } catch let error {
                     logger.error("Error saving: \(error)")
                 }
+                self.endBackgroundTask()
             } else if let audioCache = self.audioCache {
                 
                 self.lesson = audioCache.lesson.first
@@ -221,13 +243,14 @@ class SoundManager: NSObject {
                         } else {
                             // The file needs to be downloaded
                             // maybe? lets deal with this later?
-                            
+                            self.endBackgroundTask()
                         }
                     }
                 } else {
                     self.lesson = nil
                     self.study = nil
                     self.audioCache?.currentTime = 0
+                    self.endBackgroundTask()
                 }
             }
         })
@@ -383,7 +406,7 @@ class SoundManager: NSObject {
     
     fileprivate func configureCommandCenter() {
         logger.info("🍕Configuring command center")
-//        UIApplication.shared.beginReceivingRemoteControlEvents()
+        UIApplication.shared.beginReceivingRemoteControlEvents()
         let commandCenter = MPRemoteCommandCenter.shared()
         commandCenter.playCommand.addTarget (handler: { [weak self] (event) -> MPRemoteCommandHandlerStatus in
             guard let this = self else { return MPRemoteCommandHandlerStatus.commandFailed }

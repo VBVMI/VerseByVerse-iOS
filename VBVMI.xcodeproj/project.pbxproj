@@ -960,7 +960,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Tom Carey";
 				TargetAttributes = {
 					9821380B1D3B8393006F2B79 = {
@@ -1850,6 +1850,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79F8F2249D44B0F089412C41 /* Pods-VBVMI-tvOS.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1873,6 +1874,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4546A07C83C4A3B948B01374 /* Pods-VBVMI-tvOS.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
