@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="appleTV" orientation="landscape">
+        <adaptation id="light"/>
+    </device>
+    <dependencies>
+        <deployment identifier="tvOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="Rz2-K0-ksD" customClass="StudyCollectionViewCell" customModule="VBVMI_tvOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="251" height="297"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="251" height="297"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Pl-EU-t28">
+                        <rect key="frame" x="0.0" y="0.0" width="251" height="297"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="3Pl-EU-t28" secondAttribute="trailing" id="FL4-vN-eRI"/>
+                <constraint firstItem="3Pl-EU-t28" firstAttribute="top" secondItem="Rz2-K0-ksD" secondAttribute="top" id="MdM-97-ekg"/>
+                <constraint firstItem="3Pl-EU-t28" firstAttribute="leading" secondItem="Rz2-K0-ksD" secondAttribute="leading" id="YgI-yN-tX1"/>
+                <constraint firstAttribute="bottom" secondItem="3Pl-EU-t28" secondAttribute="bottom" id="yoy-eC-wOq"/>
+            </constraints>
+            <size key="customSize" width="251" height="297"/>
+            <connections>
+                <outlet property="mainImage" destination="3Pl-EU-t28" id="qVu-ur-Ouu"/>
+            </connections>
+            <point key="canvasLocation" x="169.5" y="230.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

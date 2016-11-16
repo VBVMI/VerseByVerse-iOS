@@ -153,6 +153,8 @@
 		98D45BA01C86D61D004BBCBD /* AudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D45B9E1C86D61D004BBCBD /* AudioPlayerViewController.xib */; };
 		98DE6E851CA2A83500C039C0 /* AboutActionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */; };
 		98E672A91D9FC6E1001E7F77 /* CenteredProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E672A81D9FC6E1001E7F77 /* CenteredProgressView.swift */; };
+		98F389331DDC45D40037B97E /* StudyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */; };
+		98F389341DDC45D40037B97E /* StudyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */; };
 		98F725BF1D49E5C600F73ED0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */; };
 		98F725C21D49E67600F73ED0 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98F725C11D49E67600F73ED0 /* Settings.storyboard */; };
 		98FD5DD51C9286CB00B493E6 /* ArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD5DD41C9286CB00B493E6 /* ArticlesViewController.swift */; };
@@ -379,6 +381,8 @@
 		98D45BA11C86FAB4004BBCBD /* VBVMI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VBVMI-Bridging-Header.h"; sourceTree = "<group>"; };
 		98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutActionsController.swift; sourceTree = "<group>"; };
 		98E672A81D9FC6E1001E7F77 /* CenteredProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteredProgressView.swift; sourceTree = "<group>"; };
+		98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyCollectionViewCell.swift; sourceTree = "<group>"; };
+		98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyCollectionViewCell.xib; sourceTree = "<group>"; };
 		98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		98F725C11D49E67600F73ED0 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		98FD5DD41C9286CB00B493E6 /* ArticlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesViewController.swift; sourceTree = "<group>"; };
@@ -762,6 +766,8 @@
 				989AC5131DB4C0B600A825EB /* AppDelegate.swift */,
 				989AC5151DB4C0B600A825EB /* StudiesViewController.swift */,
 				989AC5171DB4C0B600A825EB /* SecondViewController.swift */,
+				98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */,
+				98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */,
 				989AC5191DB4C0B600A825EB /* Main.storyboard */,
 				989AC51C1DB4C0B600A825EB /* Assets.xcassets */,
 				989AC51E1DB4C0B600A825EB /* Info.plist */,
@@ -1098,6 +1104,7 @@
 			files = (
 				989AC51D1DB4C0B600A825EB /* Assets.xcassets in Resources */,
 				989AC51B1DB4C0B600A825EB /* Main.storyboard in Resources */,
+				98F389341DDC45D40037B97E /* StudyCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1528,6 +1535,7 @@
 				989AC5491DB4C22700A825EB /* _Answer.swift in Sources */,
 				989AC5421DB4C22200A825EB /* Event.swift in Sources */,
 				98C35DBD1DB4CF300052398E /* Constants.swift in Sources */,
+				98F389331DDC45D40037B97E /* StudyCollectionViewCell.swift in Sources */,
 				989AC5551DB4C26700A825EB /* NSManagedObject+Extensions.swift in Sources */,
 				989AC54B1DB4C22700A825EB /* _Article.swift in Sources */,
 				989AC5481DB4C22700A825EB /* _AudioPlayer.swift in Sources */,
