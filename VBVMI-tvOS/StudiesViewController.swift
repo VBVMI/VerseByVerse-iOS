@@ -127,7 +127,9 @@ class StudiesViewController: UIViewController {
 }
 
 extension StudiesViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "showStudy", sender: self)
+    }
 }
 
 extension StudiesViewController: UICollectionViewDataSource {

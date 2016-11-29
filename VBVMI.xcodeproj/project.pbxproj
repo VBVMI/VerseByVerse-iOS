@@ -50,6 +50,7 @@
 		9828D4501C5DA8D1004FA954 /* JsonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D44F1C5DA8D1004FA954 /* JsonAPI.swift */; };
 		9828D4641C5F4D8D004FA954 /* APIDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D4631C5F4D8D004FA954 /* APIDataManager.swift */; };
 		982E37621D31ECF900FD9A93 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 982E37611D31ECF900FD9A93 /* Settings.bundle */; };
+		98380D101DE980830012AADE /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98380D0F1DE980830012AADE /* StudyViewController.swift */; };
 		984650F41CF0175E00F4A46F /* LessonsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984650F31CF0175E00F4A46F /* LessonsHeader.swift */; };
 		984851701D9F713600500A47 /* DepletionProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848516F1D9F713600500A47 /* DepletionProgressView.swift */; };
 		9854F0921CAD09980025CAC0 /* TopicLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854F0911CAD09980025CAC0 /* TopicLayoutView.swift */; };
@@ -293,6 +294,7 @@
 		9828D45C1C5DAD79004FA954 /* qaP.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = qaP.json; path = APISampleData/qaP.json; sourceTree = "<group>"; };
 		9828D4631C5F4D8D004FA954 /* APIDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIDataManager.swift; sourceTree = "<group>"; };
 		982E37611D31ECF900FD9A93 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
+		98380D0F1DE980830012AADE /* StudyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyViewController.swift; sourceTree = "<group>"; };
 		984650F31CF0175E00F4A46F /* LessonsHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonsHeader.swift; sourceTree = "<group>"; };
 		9848516F1D9F713600500A47 /* DepletionProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepletionProgressView.swift; sourceTree = "<group>"; };
 		984F611B1D5572BD00FDCD69 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
@@ -765,6 +767,7 @@
 			children = (
 				989AC5131DB4C0B600A825EB /* AppDelegate.swift */,
 				989AC5151DB4C0B600A825EB /* StudiesViewController.swift */,
+				98380D0F1DE980830012AADE /* StudyViewController.swift */,
 				989AC5171DB4C0B600A825EB /* SecondViewController.swift */,
 				98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */,
 				98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */,
@@ -861,6 +864,7 @@
 				982138171D3B83D6006F2B79 /* Frameworks */,
 				982138181D3B83D6006F2B79 /* Resources */,
 				C91473EA02097E754AF4CC27 /* [CP] Copy Pods Resources */,
+				AAAF6220CA4E3178616F375D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -948,6 +952,7 @@
 				989AC52B1DB4C0B600A825EB /* Frameworks */,
 				989AC52C1DB4C0B600A825EB /* Resources */,
 				98693AEE5388C54E05D02C03 /* [CP] Copy Pods Resources */,
+				01D78CE24D4FFD1773B75C98 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1125,6 +1130,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		01D78CE24D4FFD1773B75C98 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSUITests/Pods-VBVMI-tvOS-VBVMI-tvOSUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4453D1D6FA95E6AB37D03DB3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1152,7 +1172,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		572370A2DEFCE7C37393381C /* [CP] Copy Pods Resources */ = {
@@ -1212,7 +1232,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8DE4EE4BA1BF87C5C4C352BA /* [CP] Embed Pods Frameworks */ = {
@@ -1313,7 +1333,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AAAF6220CA4E3178616F375D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-VBVMIUITests/Pods-VBVMI-VBVMIUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B8C4E2990088CC0450535970 /* [CP] Check Pods Manifest.lock */ = {
@@ -1328,7 +1363,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C91473EA02097E754AF4CC27 /* [CP] Copy Pods Resources */ = {
@@ -1403,7 +1438,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F54FBB19CAF2868D789EE180 /* [CP] Check Pods Manifest.lock */ = {
@@ -1418,7 +1453,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1541,6 +1576,7 @@
 				989AC5481DB4C22700A825EB /* _AudioPlayer.swift in Sources */,
 				989AC54D1DB4C22700A825EB /* _Event.swift in Sources */,
 				98C35DBB1DB4CDB70052398E /* NSDateExtensions.swift in Sources */,
+				98380D101DE980830012AADE /* StudyViewController.swift in Sources */,
 				989AC5451DB4C22200A825EB /* Topic.swift in Sources */,
 				989AC5411DB4C22200A825EB /* Channel.swift in Sources */,
 				989AC5181DB4C0B600A825EB /* SecondViewController.swift in Sources */,
@@ -1646,7 +1682,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9305E3DBDCA3CD2E54AE107B /* Pods-VBVMI-VBVMITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1664,7 +1699,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4848EA53EB9CAEAA0700A2C3 /* Pods-VBVMI-VBVMITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				INFOPLIST_FILE = VBVMITests/Info.plist;
@@ -1681,7 +1715,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 20D764D03668407E29FAD624 /* Pods-VBVMI-VBVMIUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				INFOPLIST_FILE = VBVMIUITests/Info.plist;
@@ -1698,7 +1731,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01174BA9313AE14C012B7B96 /* Pods-VBVMI-VBVMIUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				INFOPLIST_FILE = VBVMIUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -1803,7 +1835,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B7DA5B5AD736614D294A36EA /* Pods-VBVMI.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1825,7 +1856,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B60029E318F3CF227E6B8178 /* Pods-VBVMI.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1858,7 +1888,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79F8F2249D44B0F089412C41 /* Pods-VBVMI-tvOS.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1882,7 +1911,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4546A07C83C4A3B948B01374 /* Pods-VBVMI-tvOS.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1904,7 +1932,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E82B1C15936A394F74D559DA /* Pods-VBVMI-tvOS-VBVMI-tvOSTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1927,7 +1954,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F93DD85D67B37F721E47E3CA /* Pods-VBVMI-tvOS-VBVMI-tvOSTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1948,7 +1974,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FDD57AD47B05593A4DEED09A /* Pods-VBVMI-tvOS-VBVMI-tvOSUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1970,7 +1995,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1BE03F5775CF110A08692228 /* Pods-VBVMI-tvOS-VBVMI-tvOSUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
