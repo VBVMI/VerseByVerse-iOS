@@ -136,7 +136,9 @@ class StudiesViewController: UIViewController {
 
 extension StudiesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let study = fetchedResultsController.object(at: indexPath)
+        let realSection = collectionManager.allCollectionViews.index(of: collectionView)!
+        let realIndexPath = IndexPath(item: indexPath.item, section: realSection)
+        let study = fetchedResultsController.object(at: realIndexPath)
         self.performSegue(withIdentifier: "showStudy", sender: study)
     }
 }

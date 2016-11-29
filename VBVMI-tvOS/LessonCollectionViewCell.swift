@@ -22,11 +22,25 @@ class LessonCollectionViewCell: UICollectionViewCell {
                 return StyleKit.white
             }
         }
+        
+        var textColor: UIColor {
+            switch self {
+            case .focused:
+                return StyleKit.white
+            default:
+                return StyleKit.darkGrey
+            }
+        }
+    }
+    
+    var currentLessonState : LessonState {
+        return isFocused ? .focused : .normal
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentView.layer.cornerRadius = 10
+        self.contentView.backgroundColor = currentLessonState.backgroundColor
     }
     
     @IBOutlet weak var numberLabel: UILabel!
@@ -42,7 +56,8 @@ class LessonCollectionViewCell: UICollectionViewCell {
         coordinator.addCoordinatedAnimations({
             let state: LessonState = self.isFocused ? LessonState.focused : LessonState.normal
             self.contentView.backgroundColor = state.backgroundColor
-            
+            self.numberLabel.textColor = state.textColor
+            self.descriptionLabel.textColor = state.textColor
             if self.isFocused {
                 let scale: CGFloat = self.isHighlighted ? 1.05 : 1.05
                 self.contentView.transform = CGAffineTransform(scaleX: scale, y: scale)
