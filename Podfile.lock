@@ -16,7 +16,7 @@ PODS:
     - Result
   - ReachabilitySwift (3)
   - Result (3.0.0)
-  - Reveal-iOS-SDK (1.6.2)
+  - Reveal-SDK (4)
   - SnapKit (3.0.2)
   - STRegex (0.4.2)
   - UIImage-Color (1.1.1)
@@ -36,7 +36,7 @@ DEPENDENCIES:
   - FontAwesome.swift (from `git@github.com:thii/FontAwesome.swift.git`)
   - Moya (= 8.0.0-beta.2)
   - ReachabilitySwift
-  - Reveal-iOS-SDK
+  - Reveal-SDK
   - SnapKit
   - STRegex
   - UIImage-Color
@@ -64,13 +64,13 @@ SPEC CHECKSUMS:
   Moya: 920d40f738e6f4ece84010cec701bb9693be8251
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
-  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
+  Reveal-SDK: 178c927f1a3230648d3a92b96f6e730a35b2750a
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   STRegex: 9b6e0a4300c8442d1aa93241c895eeec4cc56935
   UIImage-Color: 29d79c2acdd1836eae9815836a14fddfcd2db38f
   XCDYouTubeKit: 90690f9e3523735dc93b8024269d991b0cfffe78
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: 24f16d54f57515fd6f2c5d78c54b6f8ea63305ec
+PODFILE CHECKSUM: ee50282c2bcfae0fb8e31978e964291a6278ffbf
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

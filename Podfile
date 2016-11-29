@@ -31,6 +31,10 @@ def common_pods
     # pod 'NSLogger', :configurations => ['Debug']
     
     pod 'ReachabilitySwift'
+    
+    pod 'Reveal-SDK', :configurations => ['Debug']
+    #pod 'VimeoNetworking', git: 'git@github.com:vimeo/VimeoNetworking.git'
+    #pod 'VIMVideoPlayer'
 end
 
 def ios_pods
@@ -40,8 +44,7 @@ def ios_pods
     
     pod 'UIImage-Color'
     pod 'FontAwesome.swift', git: 'git@github.com:thii/FontAwesome.swift.git'
-    pod 'Reveal-iOS-SDK', :configurations => ['Debug']
-    
+
 end
 
 target 'VBVMI' do
