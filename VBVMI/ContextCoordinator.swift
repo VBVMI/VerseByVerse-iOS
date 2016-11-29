@@ -18,7 +18,12 @@ class ContextCoordinator: NSObject {
     
     lazy var applicationSupportDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.cactuslab.VBVMI" in the application's documents Application Support directory.
-        let urls = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+        #if os(tvOS)
+            let urls = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+        #else
+            let urls = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+        #endif
+        
         return urls[urls.count-1]
     }()
     
@@ -105,11 +110,7 @@ class ContextCoordinator: NSObject {
         
         //logger.info("🍕Database path: \(url)")
         do {
-            #if os(tvOS)
-            try coordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: url, options: [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true])
-            #else
             try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true])
-            #endif
             
         } catch let error {
             

@@ -114,6 +114,14 @@ class StudiesViewController: UIViewController {
         }
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let study = sender as? Study , segue.identifier == "showStudy" {
+            if let studyViewController = segue.destination as? StudyViewController {
+                studyViewController.study = study
+            }
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -128,7 +136,8 @@ class StudiesViewController: UIViewController {
 
 extension StudiesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showStudy", sender: self)
+        let study = fetchedResultsController.object(at: indexPath)
+        self.performSegue(withIdentifier: "showStudy", sender: study)
     }
 }
 
@@ -158,7 +167,8 @@ extension StudiesViewController: UICollectionViewDataSource {
         let realIndexPath = IndexPath(item: indexPath.item, section: realSection)
         let study = fetchedResultsController.object(at: realIndexPath)
 
-        cell.mainImage.image = nil
+        cell.mainImage.image = StyleKit.imageOfBlankBackgroundImage
+        
         if let thumbnailSource = study.thumbnailSource {
             if let url = URL(string: thumbnailSource) {
                 let width = 300
