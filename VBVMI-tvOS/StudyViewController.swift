@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import AlamofireImage
 
 enum LessonSection : Int {
     case completed = 0
@@ -17,8 +18,10 @@ enum LessonSection : Int {
 class StudyViewController: UIViewController {
 
     fileprivate let lessonCellReuseIdentifier = "LessonCell"
+    fileprivate let lessonDescriptionCellReuseIdentifier = "LessonDescriptionCell"
     fileprivate let filterHeaderReuseIdentifier = "FilterHeader"
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var imageView: UIImageView!
     
     fileprivate var fetchedResultsController: NSFetchedResultsController<Lesson>!
     
@@ -29,6 +32,19 @@ class StudyViewController: UIViewController {
             
             if let identifier = study?.identifier {
                 APIDataManager.lessons(identifier)
+            }
+            
+            reloadImageView()
+        }
+    }
+    
+    func reloadImageView() {
+        if let thumbnailSource = study.thumbnailSource, let imageView = imageView {
+            if let url = URL(string: thumbnailSource) {
+                let width = 440
+                let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 3, divideRadiusByImageScale: false)
+                imageView.af_setImage(withURL: url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
+                //                cell.coverImageView.af_setImage(withURL: url)
             }
         }
     }
@@ -56,6 +72,9 @@ class StudyViewController: UIViewController {
         super.viewDidLoad()
         
         configureFetchController()
+        
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 90, bottom: 60, right: 0)
+        reloadImageView()
         // Do any additional setup after loading the view.
     }
 
@@ -91,9 +110,15 @@ extension StudyViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let lesson = fetchedResultsController.object(at: indexPath)
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: lessonCellReuseIdentifier, for: indexPath) as! LessonCollectionViewCell
-        cell.numberLabel.text = lesson.lessonNumber
-        cell.descriptionLabel.text = lesson.descriptionText
+        let cell : LessonCollectionViewCell
+        if let lessonNumber = lesson.lessonNumber, lessonNumber.characters.count > 0 {
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: lessonCellReuseIdentifier, for: indexPath) as! LessonCollectionViewCell
+        } else {
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: lessonDescriptionCellReuseIdentifier, for: indexPath) as! LessonCollectionViewCell
+        }
+        
+        cell.numberLabel?.text = lesson.lessonNumber
+        cell.descriptionLabel?.text = lesson.descriptionText
         
         return cell
     }

@@ -17,16 +17,16 @@ class LessonCollectionViewCell: UICollectionViewCell {
         var backgroundColor: UIColor {
             switch self {
             case .focused:
-                return StyleKit.darkGrey
+                return StyleKit.darkGrey.withAlpha(0.1)
             default:
-                return StyleKit.white
+                return UIColor.clear
             }
         }
         
         var textColor: UIColor {
             switch self {
             case .focused:
-                return StyleKit.white
+                return StyleKit.darkGrey
             default:
                 return StyleKit.darkGrey
             }
@@ -43,8 +43,8 @@ class LessonCollectionViewCell: UICollectionViewCell {
         self.contentView.backgroundColor = currentLessonState.backgroundColor
     }
     
-    @IBOutlet weak var numberLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var numberLabel: UILabel?
+    @IBOutlet weak var descriptionLabel: UILabel?
     
     override var canBecomeFocused: Bool {
         return true
@@ -56,10 +56,10 @@ class LessonCollectionViewCell: UICollectionViewCell {
         coordinator.addCoordinatedAnimations({
             let state: LessonState = self.isFocused ? LessonState.focused : LessonState.normal
             self.contentView.backgroundColor = state.backgroundColor
-            self.numberLabel.textColor = state.textColor
-            self.descriptionLabel.textColor = state.textColor
+            self.numberLabel?.textColor = state.textColor
+            self.descriptionLabel?.textColor = state.textColor
             if self.isFocused {
-                let scale: CGFloat = self.isHighlighted ? 1.05 : 1.05
+                let scale: CGFloat = self.isHighlighted ? 1.17 : 1.17
                 self.contentView.transform = CGAffineTransform(scaleX: scale, y: scale)
             } else {
                 self.contentView.transform = CGAffineTransform.identity
