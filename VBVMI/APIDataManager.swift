@@ -36,9 +36,26 @@ class APIDataManager {
 
     static func core() {
         downloadToJSONArray(.core, arrayNode: "studies") { (context, JSONArray) -> () in
+            
+            let existingStudies: [Study] = Study.findAll(context)
+            
+            var existingStudyIds = Set<String>(existingStudies.map( { $0.identifier } ))
+            
             try JSONArray.enumerated().forEach({ (index, studyDict) in
-                let _ = try Study.decodeJSON(studyDict, context: context, index: index)
+                let study = try Study.decodeJSON(studyDict, context: context, index: index)
+                let _ = existingStudyIds.remove(study.identifier)
             })
+            
+            if existingStudyIds.count > 0 {
+                let studiesToDelete: [Study] = Study.findAllWithPredicate(NSPredicate(format: "%K in %@", StudyAttributes.identifier.rawValue, existingStudyIds), context: context)
+                let lessonsToDelete: [Lesson] = Lesson.findAllWithPredicate(NSPredicate(format: "%K in %@", LessonAttributes.studyIdentifier.rawValue, existingStudyIds), context: context)
+                studiesToDelete.forEach({ (study) in
+                    context.delete(study)
+                })
+                lessonsToDelete.forEach({ (lesson) in
+                    context.delete(lesson)
+                })
+            }
         }
     }
     
@@ -91,8 +108,21 @@ class APIDataManager {
     
     static func allTheArticles(_ completion:(()->())? = nil) {
         downloadToJSONArray(JsonAPI.articles, arrayNode: "articles") { (context, JSONArray) -> () in
+            let existingArticles: [Article] = Article.findAll(context)
+            
+            var existingArticleIds = Set<String>(existingArticles.map( { $0.identifier } ))
+            
             for JSONModel in JSONArray {
-                let _ = try Article.decodeJSON(JSONModel, context: context)
+                let article = try Article.decodeJSON(JSONModel, context: context)
+                let _ = existingArticleIds.remove(article.identifier)
+            }
+            
+            if existingArticleIds.count > 0 {
+                let articlesToDelete: [Article] = Article.findAllWithPredicate(NSPredicate(format: "%K in %@", ArticleAttributes.identifier.rawValue, existingArticleIds), context: context)
+                
+                articlesToDelete.forEach({ (article) in
+                    context.delete(article)
+                })
             }
             if let completion = completion {
                 DispatchQueue.main.async { () -> Void in
@@ -124,9 +154,23 @@ class APIDataManager {
     
     static func allTheAnswers(_ completion:(()->())? = nil) {
         downloadToJSONArray(JsonAPI.qa, arrayNode: "QandAPosts") { (context, JSONArray) -> () in
+            let existingAnswers: [Answer] = Answer.findAll(context)
+            
+            var existingAnswerIds = Set<String>(existingAnswers.map( { $0.identifier } ))
+            
             for JSONModel in JSONArray {
-                let _ = try Answer.decodeJSON(JSONModel, context: context)
+                let answer = try Answer.decodeJSON(JSONModel, context: context)
+                let _ = existingAnswerIds.remove(answer.identifier)
             }
+            
+            if existingAnswerIds.count > 0 {
+                let answerToDelete: [Answer] = Answer.findAllWithPredicate(NSPredicate(format: "%K in %@", AnswerAttributes.identifier.rawValue, existingAnswerIds), context: context)
+                
+                answerToDelete.forEach({ (article) in
+                    context.delete(article)
+                })
+            }
+            
             if let completion = completion {
                 DispatchQueue.main.async { () -> Void in
                     completion()

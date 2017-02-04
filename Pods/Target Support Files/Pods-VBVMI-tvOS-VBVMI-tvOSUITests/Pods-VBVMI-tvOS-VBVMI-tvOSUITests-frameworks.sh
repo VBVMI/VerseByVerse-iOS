@@ -90,11 +90,10 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Moya-tvOS/Moya.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ReachabilitySwift-tvOS/ReachabilitySwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Result-tvOS/Result.framework"
-  install_framework "${PODS_ROOT}/Reveal-SDK/RevealServer-4/tvOS/RevealServer.framework"
+  install_framework "${PODS_ROOT}/Reveal-SDK/RevealServer-6/tvOS/RevealServer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/STRegex-tvOS/Regex.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SnapKit-tvOS/SnapKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/XCGLogger-tvOS/XCGLogger.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/XCDYouTubeKit/XCDYouTubeKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire-tvOS/Alamofire.framework"
@@ -106,5 +105,4 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/STRegex-tvOS/Regex.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SnapKit-tvOS/SnapKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/XCGLogger-tvOS/XCGLogger.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/XCDYouTubeKit/XCDYouTubeKit.framework"
 fi

@@ -122,6 +122,16 @@ class ResourceManager {
             }
         }
     }
+        
+    /**
+     Get all of the urls for downloaded files related to a lesson
+     
+     - parameter lesson: A lesson object
+     */
+    func downloadedFileUrls(_ lesson: Lesson) -> [URL] {
+        let urls = ResourceManager.LessonType.all.flatMap({ $0.urlString(lesson) }).flatMap({ APIDataManager.fileExists(lesson, urlString: $0) })
+        return urls
+    }
     
     /**
      Add a download observer to be notified of changes to the download progress of any resource.
@@ -345,6 +355,16 @@ class ResourceManager {
         }
     }
     
+}
+
+extension Lesson {
+    open override func prepareForDeletion() {
+        let urls = ResourceManager.sharedInstance.downloadedFileUrls(self)
+        let fileManager = FileManager.default
+        urls.forEach({ let _ = try? fileManager.removeItem(at: $0) })
+        
+        super.prepareForDeletion()
+    }
 }
 
 private func ==(lhs: ResourceManager.ResourceKey, rhs: ResourceManager.ResourceKey) -> Bool {

@@ -186,7 +186,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let fileManager = FileManager.default
         
-        let urls = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+        #if os(tvOS)
+        let urls = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+        #else
+        let urls = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+        #endif
         
         if let documentDirectory: URL = urls.first {
             // This is where the database should be in the application support directory

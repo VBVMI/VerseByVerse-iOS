@@ -9,6 +9,9 @@
 import UIKit
 import CoreData
 import AlamofireImage
+import AVFoundation
+import AVKit
+import MediaPlayer
 
 enum LessonSection : Int {
     case completed = 0
@@ -22,7 +25,13 @@ class StudyViewController: UIViewController {
     fileprivate let filterHeaderReuseIdentifier = "FilterHeader"
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var imageView: UIImageView!
-    
+    var audioPlayer: AVPlayer? {
+        didSet {
+            if let audioPlayer = audioPlayer {
+                
+            }
+        }
+    }
     fileprivate var fetchedResultsController: NSFetchedResultsController<Lesson>!
     
     var study: Study! {
@@ -85,12 +94,106 @@ class StudyViewController: UIViewController {
     
 
     
-    
+    fileprivate func makeMetadataItem(_ identifier: String,
+                                  value: Any) -> AVMetadataItem {
+        let item = AVMutableMetadataItem()
+        item.identifier = identifier
+        item.value = value as? NSCopying & NSObjectProtocol
+        item.extendedLanguageTag = "und"
+        return item.copy() as! AVMetadataItem
+    }
+
     
 
 }
 
 extension StudyViewController : UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let lesson = fetchedResultsController.object(at: indexPath)
+        if let urlString = ResourceManager.LessonType.audio.urlString(lesson) {
+            if let url = URL(string: urlString) {
+
+                let audioPlayer = AVPlayer(url: url)
+                self.audioPlayer = audioPlayer
+                
+                let controller = AVPlayerViewController()
+                controller.delegate = self
+                controller.player = audioPlayer
+                
+                let titleItem = makeMetadataItem(AVMetadataCommonIdentifierTitle, value: lesson.title)
+                let items = [titleItem]
+                
+                audioPlayer.currentItem?.externalMetadata = items
+                
+                let contentView = UIImageView()
+                contentView.image = imageView.image
+                contentView.contentMode = .scaleAspectFill
+                let _ = controller.view
+                controller.contentOverlayView?.addSubview(contentView)
+                let contentImageView = UIImageView()
+                contentImageView.image = imageView.image
+                contentView.addSubview(contentImageView)
+                contentView.alpha = 0
+                
+                let background = UIVisualEffectView(effect: UIBlurEffect(style: .extraDark))
+                contentView.addSubview(background)
+                background.snp.makeConstraints({ (make) in
+                    make.edges.equalTo(contentView)
+                })
+                
+                background.contentView.addSubview(contentImageView)
+                contentImageView.snp.makeConstraints({ (make) in
+                    make.centerX.equalTo(background)
+                    make.top.equalTo(240)
+                    make.width.height.equalTo(440)
+                })
+                
+                contentView.snp.makeConstraints({ (make) in
+                    make.edges.equalTo(0)
+                })
+                
+                let label = UILabel()
+                label.font = UIFont.preferredFont(forTextStyle: .title3)
+                label.text = lesson.title
+                background.contentView.addSubview(label)
+                label.textAlignment = .center
+                
+                label.snp.makeConstraints({ (make) in
+                    make.top.equalTo(contentImageView.snp.bottom).offset(40)
+                    make.centerX.equalTo(contentImageView)
+                    make.width.lessThanOrEqualTo(900)
+                })
+                label.numberOfLines = 0
+                label.textColor = .white
+                
+                let descriptionLabel = UILabel()
+                descriptionLabel.font = UIFont.preferredFont(forTextStyle: .body)
+                descriptionLabel.text = lesson.descriptionText
+                background.contentView.addSubview(descriptionLabel)
+                descriptionLabel.textAlignment = .center
+                
+                descriptionLabel.snp.makeConstraints({ (make) in
+                    make.top.equalTo(label.snp.bottom).offset(20)
+                    make.centerX.equalTo(contentImageView)
+                    make.width.lessThanOrEqualTo(900)
+                })
+                descriptionLabel.numberOfLines = 0
+                descriptionLabel.textColor = .white
+                
+                controller.contentOverlayView?.addSubview(contentView)
+                
+                present(controller, animated: true, completion: {
+                    audioPlayer.play()
+                    
+                    UIView.animate(withDuration: 0.4, animations: {
+                        contentView.alpha = 1
+                    })
+                })
+                
+            }
+        }
+    }
     
 }
 
@@ -140,5 +243,13 @@ extension StudyViewController : NSFetchedResultsControllerDelegate {
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         
+    }
+}
+
+extension StudyViewController : AVPlayerViewControllerDelegate {
+    
+    
+    func playerViewController(_ playerViewController: AVPlayerViewController, shouldPresent proposal: AVContentProposal) -> Bool {
+        return true
     }
 }

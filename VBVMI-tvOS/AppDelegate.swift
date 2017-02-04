@@ -9,6 +9,7 @@
 import UIKit
 import XCGLogger
 import AlamofireImage
+import AVFoundation
 
 let logger: XCGLogger = {
     let logger = XCGLogger.default
@@ -37,6 +38,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DispatchQueue.global(qos: .background).async {
             APIDataManager.core()
             APIDataManager.allTheChannels()
+        }
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+        }
+        catch {
+            print("Setting category to AVAudioSessionCategoryPlayback failed.")
         }
         
         return true

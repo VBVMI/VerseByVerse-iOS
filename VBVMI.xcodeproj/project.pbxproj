@@ -54,6 +54,7 @@
 		982E37621D31ECF900FD9A93 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 982E37611D31ECF900FD9A93 /* Settings.bundle */; };
 		98380D101DE980830012AADE /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98380D0F1DE980830012AADE /* StudyViewController.swift */; };
 		984650F41CF0175E00F4A46F /* LessonsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984650F31CF0175E00F4A46F /* LessonsHeader.swift */; };
+		9846C90C1E45B3C900BDB6C3 /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FF47571D292786008E27F4 /* ResourceManager.swift */; };
 		984851701D9F713600500A47 /* DepletionProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848516F1D9F713600500A47 /* DepletionProgressView.swift */; };
 		9854F0921CAD09980025CAC0 /* TopicLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854F0911CAD09980025CAC0 /* TopicLayoutView.swift */; };
 		985C53A71D7ACFA5001A907F /* StudiesOptions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 985C53A61D7ACFA5001A907F /* StudiesOptions.storyboard */; };
@@ -975,7 +976,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Tom Carey";
 				TargetAttributes = {
 					9821380B1D3B8393006F2B79 = {
@@ -1011,6 +1012,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 4UDQLK73PW;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes.appletvos = {
+								enabled = 1;
+							};
+						};
 					};
 					989AC5221DB4C0B600A825EB = {
 						CreatedOnToolsVersion = 8.0;
@@ -1592,6 +1598,7 @@
 				989AC5441DB4C22200A825EB /* Study.swift in Sources */,
 				989AC5161DB4C0B600A825EB /* StudiesViewController.swift in Sources */,
 				989AC53E1DB4C22200A825EB /* Answer.swift in Sources */,
+				9846C90C1E45B3C900BDB6C3 /* ResourceManager.swift in Sources */,
 				989AC5531DB4C26700A825EB /* APIDataManager.swift in Sources */,
 				989AC53F1DB4C22200A825EB /* Article.swift in Sources */,
 				989AC5501DB4C22C00A825EB /* VBVMI.xcdatamodeld in Sources */,
@@ -1688,6 +1695,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9305E3DBDCA3CD2E54AE107B /* Pods-VBVMI-VBVMITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1705,6 +1713,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4848EA53EB9CAEAA0700A2C3 /* Pods-VBVMI-VBVMITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				INFOPLIST_FILE = VBVMITests/Info.plist;
@@ -1721,6 +1730,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 20D764D03668407E29FAD624 /* Pods-VBVMI-VBVMIUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				INFOPLIST_FILE = VBVMIUITests/Info.plist;
@@ -1737,6 +1747,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01174BA9313AE14C012B7B96 /* Pods-VBVMI-VBVMIUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				INFOPLIST_FILE = VBVMIUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -1841,6 +1852,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B7DA5B5AD736614D294A36EA /* Pods-VBVMI.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1862,6 +1874,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B60029E318F3CF227E6B8178 /* Pods-VBVMI.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1894,6 +1907,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79F8F2249D44B0F089412C41 /* Pods-VBVMI-tvOS.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1917,6 +1931,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4546A07C83C4A3B948B01374 /* Pods-VBVMI-tvOS.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1938,6 +1953,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E82B1C15936A394F74D559DA /* Pods-VBVMI-tvOS-VBVMI-tvOSTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1960,6 +1976,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F93DD85D67B37F721E47E3CA /* Pods-VBVMI-tvOS-VBVMI-tvOSTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1980,6 +1997,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FDD57AD47B05593A4DEED09A /* Pods-VBVMI-tvOS-VBVMI-tvOSUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -2001,6 +2019,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1BE03F5775CF110A08692228 /* Pods-VBVMI-tvOS-VBVMI-tvOSUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;

@@ -74,7 +74,7 @@ target 'VBVMI-tvOS' do
     
     common_pods
 #    pod 'FontAwesomeKit'
-    pod 'XCDYouTubeKit'
+#    pod 'XCDYouTubeKit'
     #pod 'FontAwesome.swift', git: 'git@github.com:thii/FontAwesome.swift.git'
     
     target 'VBVMI-tvOSTests' do
