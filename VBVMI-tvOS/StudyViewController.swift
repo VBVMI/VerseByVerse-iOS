@@ -25,13 +25,7 @@ class StudyViewController: UIViewController {
     fileprivate let filterHeaderReuseIdentifier = "FilterHeader"
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var imageView: UIImageView!
-    var audioPlayer: AVPlayer? {
-        didSet {
-            if let audioPlayer = audioPlayer {
-                
-            }
-        }
-    }
+    var audioPlayer: AVPlayer?
     fileprivate var fetchedResultsController: NSFetchedResultsController<Lesson>!
     
     var study: Study! {
