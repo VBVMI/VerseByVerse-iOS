@@ -97,7 +97,10 @@ class StudyViewController: UIViewController {
         return item.copy() as! AVMetadataItem
     }
 
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIApplication.shared.isIdleTimerDisabled = false
+    }
 
 }
 
@@ -176,7 +179,7 @@ extension StudyViewController : UICollectionViewDelegate {
                 descriptionLabel.textColor = .white
                 
                 controller.contentOverlayView?.addSubview(contentView)
-                
+                UIApplication.shared.isIdleTimerDisabled = true
                 present(controller, animated: true, completion: {
                     audioPlayer.play()
                     
