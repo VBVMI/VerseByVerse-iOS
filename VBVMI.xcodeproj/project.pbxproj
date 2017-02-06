@@ -23,6 +23,9 @@
 /* Begin PBXBuildFile section */
 		2A72218740AAD71B852DD432 /* Pods_VBVMIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8891F3FC110090C58E0F6985 /* Pods_VBVMIUITests.framework */; };
 		43F3F530BCD03656741ABA01 /* Pods_VBVMI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FCF4EEA67E046837FF107E /* Pods_VBVMI.framework */; };
+		80B7B747E8D6DF19DEDD9414 /* Pods_VBVMI_tvOS_VBVMI_tvOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9E32DE3976688EC378C18C /* Pods_VBVMI_tvOS_VBVMI_tvOSTests.framework */; };
+		814A9FCBB15E0AC7E837826D /* Pods_VBVMI_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF77DD70A5B6A6263FAB994 /* Pods_VBVMI_tvOS.framework */; };
+		8E5F965B9D9C9002F95231CD /* Pods_VBVMI_tvOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C55649F4689A242C5CC8EE06 /* Pods_VBVMI_tvOSUITests.framework */; };
 		980579D71D31D9DE001C809C /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980579D61D31D9DE001C809C /* ChannelsViewController.swift */; };
 		980BE9681C9E9DEF003A5D84 /* _Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980BE9661C9E9DEF003A5D84 /* _Topic.swift */; };
 		980BE9691C9E9DEF003A5D84 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980BE9671C9E9DEF003A5D84 /* Topic.swift */; };
@@ -32,6 +35,8 @@
 		980E6C0E1C814A3E008F23D1 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C0D1C814A3E008F23D1 /* Appearance.swift */; };
 		980E6C111C814E5F008F23D1 /* TitleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C101C814E5F008F23D1 /* TitleParser.swift */; };
 		980E6C141C81AF4C008F23D1 /* LessonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C131C81AF4C008F23D1 /* LessonCellViewModel.swift */; };
+		98196FEB1DED7A5700654276 /* LessonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98196FEA1DED7A5700654276 /* LessonCollectionViewCell.swift */; };
+		98196FEC1DED825F00654276 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37D91C657C870096BB83 /* StyleKit.swift */; };
 		9821380F1D3B8393006F2B79 /* VBVMITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9821380E1D3B8393006F2B79 /* VBVMITests.swift */; };
 		9821381D1D3B83D6006F2B79 /* VBVMIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9821381C1D3B83D6006F2B79 /* VBVMIUITests.swift */; };
 		982138241D3B83EC006F2B79 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D16ABF1D3B7512004BF06E /* SnapshotHelper.swift */; };
@@ -47,7 +52,9 @@
 		9828D4501C5DA8D1004FA954 /* JsonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D44F1C5DA8D1004FA954 /* JsonAPI.swift */; };
 		9828D4641C5F4D8D004FA954 /* APIDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D4631C5F4D8D004FA954 /* APIDataManager.swift */; };
 		982E37621D31ECF900FD9A93 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 982E37611D31ECF900FD9A93 /* Settings.bundle */; };
+		98380D101DE980830012AADE /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98380D0F1DE980830012AADE /* StudyViewController.swift */; };
 		984650F41CF0175E00F4A46F /* LessonsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984650F31CF0175E00F4A46F /* LessonsHeader.swift */; };
+		9846C90C1E45B3C900BDB6C3 /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FF47571D292786008E27F4 /* ResourceManager.swift */; };
 		984851701D9F713600500A47 /* DepletionProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848516F1D9F713600500A47 /* DepletionProgressView.swift */; };
 		9854F0921CAD09980025CAC0 /* TopicLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854F0911CAD09980025CAC0 /* TopicLayoutView.swift */; };
 		985C53A71D7ACFA5001A907F /* StudiesOptions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 985C53A61D7ACFA5001A907F /* StudiesOptions.storyboard */; };
@@ -81,6 +88,7 @@
 		986C37E31C65D6300096BB83 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37E11C65D6300096BB83 /* Lesson.swift */; };
 		987F02F91CF0625E00AB61FA /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987F02F81CF0625E00AB61FA /* DotView.swift */; };
 		987F02FB1CF0658800AB61FA /* ResourceIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987F02FA1CF0658800AB61FA /* ResourceIconView.swift */; };
+		988154C81DC5A4C400D0DD53 /* MediaCenterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988154C71DC5A4C400D0DD53 /* MediaCenterInfo.swift */; };
 		988663F11D55D87E00010728 /* ContextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988663F01D55D87E00010728 /* ContextCoordinator.swift */; };
 		988D69711C9BEADA000ED16D /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988D69701C9BEADA000ED16D /* ArticleViewController.swift */; };
 		988D69741C9C0D87000ED16D /* ArticleHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988D69721C9C0D87000ED16D /* ArticleHeaderTableViewCell.swift */; };
@@ -96,6 +104,37 @@
 		989294CC1C8BCE4500C19095 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989294CB1C8BCE4500C19095 /* SoundManager.swift */; };
 		989294CF1C8BE07E00C19095 /* _AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989294CD1C8BE07E00C19095 /* _AudioPlayer.swift */; };
 		989294D01C8BE07E00C19095 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989294CE1C8BE07E00C19095 /* AudioPlayer.swift */; };
+		989AC5141DB4C0B600A825EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AC5131DB4C0B600A825EB /* AppDelegate.swift */; };
+		989AC5161DB4C0B600A825EB /* StudiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AC5151DB4C0B600A825EB /* StudiesViewController.swift */; };
+		989AC5181DB4C0B600A825EB /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AC5171DB4C0B600A825EB /* SecondViewController.swift */; };
+		989AC51B1DB4C0B600A825EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 989AC5191DB4C0B600A825EB /* Main.storyboard */; };
+		989AC51D1DB4C0B600A825EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 989AC51C1DB4C0B600A825EB /* Assets.xcassets */; };
+		989AC5281DB4C0B600A825EB /* VBVMI_tvOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AC5271DB4C0B600A825EB /* VBVMI_tvOSTests.swift */; };
+		989AC5331DB4C0B600A825EB /* VBVMI_tvOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AC5321DB4C0B600A825EB /* VBVMI_tvOSUITests.swift */; };
+		989AC53E1DB4C22200A825EB /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98611CAB1C96A6610070FCCD /* Answer.swift */; };
+		989AC53F1DB4C22200A825EB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98611CAC1C96A6610070FCCD /* Article.swift */; };
+		989AC5401DB4C22200A825EB /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989294CE1C8BE07E00C19095 /* AudioPlayer.swift */; };
+		989AC5411DB4C22200A825EB /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98611CAD1C96A6610070FCCD /* Channel.swift */; };
+		989AC5421DB4C22200A825EB /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98611CAE1C96A6610070FCCD /* Event.swift */; };
+		989AC5431DB4C22200A825EB /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37E11C65D6300096BB83 /* Lesson.swift */; };
+		989AC5441DB4C22200A825EB /* Study.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D44C1C5DA2BC004FA954 /* Study.swift */; };
+		989AC5451DB4C22200A825EB /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980BE9671C9E9DEF003A5D84 /* Topic.swift */; };
+		989AC5461DB4C22200A825EB /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FF47541D292640008E27F4 /* Video.swift */; };
+		989AC5471DB4C22700A825EB /* _Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980BE9661C9E9DEF003A5D84 /* _Topic.swift */; };
+		989AC5481DB4C22700A825EB /* _AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989294CD1C8BE07E00C19095 /* _AudioPlayer.swift */; };
+		989AC5491DB4C22700A825EB /* _Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98611CA31C96A6550070FCCD /* _Answer.swift */; };
+		989AC54A1DB4C22700A825EB /* _Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FF47531D292640008E27F4 /* _Video.swift */; };
+		989AC54B1DB4C22700A825EB /* _Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98611CA41C96A6550070FCCD /* _Article.swift */; };
+		989AC54C1DB4C22700A825EB /* _Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98611CA51C96A6550070FCCD /* _Channel.swift */; };
+		989AC54D1DB4C22700A825EB /* _Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98611CA61C96A6550070FCCD /* _Event.swift */; };
+		989AC54E1DB4C22700A825EB /* _Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37E01C65D6300096BB83 /* _Lesson.swift */; };
+		989AC54F1DB4C22700A825EB /* _Study.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D44B1C5DA2BC004FA954 /* _Study.swift */; };
+		989AC5501DB4C22C00A825EB /* VBVMI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9828D41A1C5D9F4A004FA954 /* VBVMI.xcdatamodeld */; };
+		989AC5511DB4C23C00A825EB /* ContextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988663F01D55D87E00010728 /* ContextCoordinator.swift */; };
+		989AC5521DB4C26700A825EB /* JsonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D44F1C5DA8D1004FA954 /* JsonAPI.swift */; };
+		989AC5531DB4C26700A825EB /* APIDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D4631C5F4D8D004FA954 /* APIDataManager.swift */; };
+		989AC5541DB4C26700A825EB /* StringExtensionHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37D71C652E8D0096BB83 /* StringExtensionHTML.swift */; };
+		989AC5551DB4C26700A825EB /* NSManagedObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98644D941C61D7E400EB27F1 /* NSManagedObject+Extensions.swift */; };
 		989C40F71D32557C00849FB2 /* ChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989C40F51D32557C00849FB2 /* ChannelTableViewCell.swift */; };
 		989C40F81D32557C00849FB2 /* ChannelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989C40F61D32557C00849FB2 /* ChannelTableViewCell.xib */; };
 		98AB57741CB3CEE600B10591 /* UIAlertController+Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AB57731CB3CEE600B10591 /* UIAlertController+Show.m */; };
@@ -103,6 +142,9 @@
 		98B3D29E1D49F501009AEF7D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B3D29D1D49F501009AEF7D /* Settings.swift */; };
 		98B419B41C6420CA003A2872 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B419B31C6420CA003A2872 /* HomeTabBarController.swift */; };
 		98B419BF1C64803D003A2872 /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B419BE1C64803D003A2872 /* StudyViewController.swift */; };
+		98C35DBB1DB4CDB70052398E /* NSDateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98611CBE1C9AA6D60070FCCD /* NSDateExtensions.swift */; };
+		98C35DBC1DB4CEC30052398E /* TitleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C101C814E5F008F23D1 /* TitleParser.swift */; };
+		98C35DBD1DB4CF300052398E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9860BA561C61F3020054D496 /* Constants.swift */; };
 		98C80A061CD430BC000EAD3D /* VolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C80A051CD430BC000EAD3D /* VolumeView.swift */; };
 		98CB0E361CA632B500C99D34 /* TopicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CB0E351CA632B500C99D34 /* TopicLabel.swift */; };
 		98CB0E3C1CA74E7F00C99D34 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CB0E3A1CA74E7F00C99D34 /* TopicViewController.swift */; };
@@ -115,6 +157,8 @@
 		98D45BA01C86D61D004BBCBD /* AudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D45B9E1C86D61D004BBCBD /* AudioPlayerViewController.xib */; };
 		98DE6E851CA2A83500C039C0 /* AboutActionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */; };
 		98E672A91D9FC6E1001E7F77 /* CenteredProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E672A81D9FC6E1001E7F77 /* CenteredProgressView.swift */; };
+		98F389331DDC45D40037B97E /* StudyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */; };
+		98F389341DDC45D40037B97E /* StudyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */; };
 		98F725BF1D49E5C600F73ED0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */; };
 		98F725C21D49E67600F73ED0 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98F725C11D49E67600F73ED0 /* Settings.storyboard */; };
 		98FD5DD51C9286CB00B493E6 /* ArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD5DD41C9286CB00B493E6 /* ArticlesViewController.swift */; };
@@ -123,7 +167,11 @@
 		98FF47551D292640008E27F4 /* _Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FF47531D292640008E27F4 /* _Video.swift */; };
 		98FF47561D292640008E27F4 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FF47541D292640008E27F4 /* Video.swift */; };
 		98FF47581D292786008E27F4 /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FF47571D292786008E27F4 /* ResourceManager.swift */; };
+		B2D4A578069318E0055764A0 /* Pods_VBVMI_tvOS_VBVMI_tvOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE3195A03620C532D86693B7 /* Pods_VBVMI_tvOS_VBVMI_tvOSUITests.framework */; };
+		B56DF1506F0A3AB144D1F995 /* Pods_VBVMI_VBVMITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFF4AD666429F9BC484EDD1 /* Pods_VBVMI_VBVMITests.framework */; };
 		BBA00188891329647EC86646 /* Pods_VBVMITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F238B6B4D78C033FA5021EE7 /* Pods_VBVMITests.framework */; };
+		C00438BBAC1DECC1A8F7599A /* Pods_VBVMI_VBVMIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1C1CEC0744718AE722AE1C /* Pods_VBVMI_VBVMIUITests.framework */; };
+		D636408853838400F6CBCCAE /* Pods_VBVMI_tvOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 098CFF3CEBF63040DBEB35A0 /* Pods_VBVMI_tvOSTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +195,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9828D4441C5DA1D3004FA954;
 			remoteInfo = Mogenerator;
+		};
+		989AC5241DB4C0B600A825EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9828D4081C5D9F4A004FA954 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 989AC5101DB4C0B600A825EB;
+			remoteInfo = "VBVMI-tvOS";
+		};
+		989AC52F1DB4C0B600A825EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9828D4081C5D9F4A004FA954 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 989AC5101DB4C0B600A825EB;
+			remoteInfo = "VBVMI-tvOS";
 		};
 		98D45B921C86D1EC004BBCBD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -179,11 +241,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01174BA9313AE14C012B7B96 /* Pods-VBVMI-VBVMIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-VBVMIUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-VBVMIUITests/Pods-VBVMI-VBVMIUITests.release.xcconfig"; sourceTree = "<group>"; };
+		098CFF3CEBF63040DBEB35A0 /* Pods_VBVMI_tvOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMI_tvOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DF77DD70A5B6A6263FAB994 /* Pods_VBVMI_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMI_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BE03F5775CF110A08692228 /* Pods-VBVMI-tvOS-VBVMI-tvOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-tvOS-VBVMI-tvOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSUITests/Pods-VBVMI-tvOS-VBVMI-tvOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1C14C6E5D82647DDC6EF7954 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DFF4AD666429F9BC484EDD1 /* Pods_VBVMI_VBVMITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMI_VBVMITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20D764D03668407E29FAD624 /* Pods-VBVMI-VBVMIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-VBVMIUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-VBVMIUITests/Pods-VBVMI-VBVMIUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		36FCF4EEA67E046837FF107E /* Pods_VBVMI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A3D6C01961C229B9D7FB01A /* Pods-VBVMIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMIUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMIUITests/Pods-VBVMIUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4546A07C83C4A3B948B01374 /* Pods-VBVMI-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-tvOS/Pods-VBVMI-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		4848EA53EB9CAEAA0700A2C3 /* Pods-VBVMI-VBVMITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-VBVMITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-VBVMITests/Pods-VBVMI-VBVMITests.release.xcconfig"; sourceTree = "<group>"; };
+		4BF7EABAEA5118BD50F80D1D /* Pods-VBVMI-tvOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-tvOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-tvOSUITests/Pods-VBVMI-tvOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5473D8884ADA8C018733E0B6 /* Pods-VBVMI-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-tvOSTests/Pods-VBVMI-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		547D9554CD14FFA1B010272D /* Pods-VBVMITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMITests/Pods-VBVMITests.release.xcconfig"; sourceTree = "<group>"; };
+		79F8F2249D44B0F089412C41 /* Pods-VBVMI-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-tvOS/Pods-VBVMI-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		7AEE53208FC83E8B69A4DE1B /* Pods-VBVMI-tvOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-tvOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-tvOSUITests/Pods-VBVMI-tvOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8891F3FC110090C58E0F6985 /* Pods_VBVMIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9305E3DBDCA3CD2E54AE107B /* Pods-VBVMI-VBVMITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-VBVMITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-VBVMITests/Pods-VBVMI-VBVMITests.debug.xcconfig"; sourceTree = "<group>"; };
 		980579D61D31D9DE001C809C /* ChannelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
 		980579DC1D31DF79001C809C /* Keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Keys.xcconfig; sourceTree = SOURCE_ROOT; };
 		980BE9661C9E9DEF003A5D84 /* _Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Topic.swift; path = Model/_Topic.swift; sourceTree = "<group>"; };
@@ -194,6 +269,7 @@
 		980E6C0D1C814A3E008F23D1 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		980E6C101C814E5F008F23D1 /* TitleParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleParser.swift; sourceTree = "<group>"; };
 		980E6C131C81AF4C008F23D1 /* LessonCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonCellViewModel.swift; sourceTree = "<group>"; };
+		98196FEA1DED7A5700654276 /* LessonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonCollectionViewCell.swift; sourceTree = "<group>"; };
 		9821380C1D3B8393006F2B79 /* VBVMITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VBVMITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9821380E1D3B8393006F2B79 /* VBVMITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VBVMITests.swift; sourceTree = "<group>"; };
 		982138101D3B8393006F2B79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -222,6 +298,7 @@
 		9828D45C1C5DAD79004FA954 /* qaP.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = qaP.json; path = APISampleData/qaP.json; sourceTree = "<group>"; };
 		9828D4631C5F4D8D004FA954 /* APIDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIDataManager.swift; sourceTree = "<group>"; };
 		982E37611D31ECF900FD9A93 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
+		98380D0F1DE980830012AADE /* StudyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyViewController.swift; sourceTree = "<group>"; };
 		984650F31CF0175E00F4A46F /* LessonsHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonsHeader.swift; sourceTree = "<group>"; };
 		9848516F1D9F713600500A47 /* DepletionProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepletionProgressView.swift; sourceTree = "<group>"; };
 		984F611B1D5572BD00FDCD69 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
@@ -257,6 +334,7 @@
 		986C37E11C65D6300096BB83 /* Lesson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lesson.swift; path = Model/Lesson.swift; sourceTree = "<group>"; };
 		987F02F81CF0625E00AB61FA /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		987F02FA1CF0658800AB61FA /* ResourceIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceIconView.swift; sourceTree = "<group>"; };
+		988154C71DC5A4C400D0DD53 /* MediaCenterInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCenterInfo.swift; sourceTree = "<group>"; };
 		988663EB1D55C13200010728 /* CommandCenterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandCenterController.swift; sourceTree = "<group>"; };
 		988663EE1D55C27C00010728 /* AudioContentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContentManager.swift; sourceTree = "<group>"; };
 		988663F01D55D87E00010728 /* ContextCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextCoordinator.swift; sourceTree = "<group>"; };
@@ -274,6 +352,19 @@
 		989294CB1C8BCE4500C19095 /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		989294CD1C8BE07E00C19095 /* _AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _AudioPlayer.swift; path = Model/_AudioPlayer.swift; sourceTree = "<group>"; };
 		989294CE1C8BE07E00C19095 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayer.swift; path = Model/AudioPlayer.swift; sourceTree = "<group>"; };
+		989AC5111DB4C0B600A825EB /* VBVMI-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VBVMI-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		989AC5131DB4C0B600A825EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		989AC5151DB4C0B600A825EB /* StudiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudiesViewController.swift; sourceTree = "<group>"; };
+		989AC5171DB4C0B600A825EB /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		989AC51A1DB4C0B600A825EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		989AC51C1DB4C0B600A825EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		989AC51E1DB4C0B600A825EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		989AC5231DB4C0B600A825EB /* VBVMI-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VBVMI-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		989AC5271DB4C0B600A825EB /* VBVMI_tvOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VBVMI_tvOSTests.swift; sourceTree = "<group>"; };
+		989AC5291DB4C0B600A825EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		989AC52E1DB4C0B600A825EB /* VBVMI-tvOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VBVMI-tvOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		989AC5321DB4C0B600A825EB /* VBVMI_tvOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VBVMI_tvOSUITests.swift; sourceTree = "<group>"; };
+		989AC5341DB4C0B600A825EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		989C40F51D32557C00849FB2 /* ChannelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTableViewCell.swift; sourceTree = "<group>"; };
 		989C40F61D32557C00849FB2 /* ChannelTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelTableViewCell.xib; sourceTree = "<group>"; };
 		98AB57721CB3CEE600B10591 /* UIAlertController+Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Show.h"; sourceTree = "<group>"; };
@@ -296,6 +387,8 @@
 		98D45BA11C86FAB4004BBCBD /* VBVMI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VBVMI-Bridging-Header.h"; sourceTree = "<group>"; };
 		98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutActionsController.swift; sourceTree = "<group>"; };
 		98E672A81D9FC6E1001E7F77 /* CenteredProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteredProgressView.swift; sourceTree = "<group>"; };
+		98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyCollectionViewCell.swift; sourceTree = "<group>"; };
+		98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyCollectionViewCell.xib; sourceTree = "<group>"; };
 		98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		98F725C11D49E67600F73ED0 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		98FD5DD41C9286CB00B493E6 /* ArticlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesViewController.swift; sourceTree = "<group>"; };
@@ -304,11 +397,19 @@
 		98FF47531D292640008E27F4 /* _Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Video.swift; path = Model/_Video.swift; sourceTree = "<group>"; };
 		98FF47541D292640008E27F4 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Video.swift; path = Model/Video.swift; sourceTree = "<group>"; };
 		98FF47571D292786008E27F4 /* ResourceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceManager.swift; sourceTree = "<group>"; };
+		9E1C1CEC0744718AE722AE1C /* Pods_VBVMI_VBVMIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMI_VBVMIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEBD0C57F738073E79ED37ED /* Pods-VBVMITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMITests/Pods-VBVMITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B360C71CB6EB0FE53044D090 /* Pods-VBVMIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMIUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMIUITests/Pods-VBVMIUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B60029E318F3CF227E6B8178 /* Pods-VBVMI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI/Pods-VBVMI.release.xcconfig"; sourceTree = "<group>"; };
 		B7DA5B5AD736614D294A36EA /* Pods-VBVMI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI/Pods-VBVMI.debug.xcconfig"; sourceTree = "<group>"; };
+		C2E9743B8D8DB2ED14AB07EA /* Pods-VBVMI-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-tvOSTests/Pods-VBVMI-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		C55649F4689A242C5CC8EE06 /* Pods_VBVMI_tvOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMI_tvOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E82B1C15936A394F74D559DA /* Pods-VBVMI-tvOS-VBVMI-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-tvOS-VBVMI-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSTests/Pods-VBVMI-tvOS-VBVMI-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EE3195A03620C532D86693B7 /* Pods_VBVMI_tvOS_VBVMI_tvOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMI_tvOS_VBVMI_tvOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF9E32DE3976688EC378C18C /* Pods_VBVMI_tvOS_VBVMI_tvOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMI_tvOS_VBVMI_tvOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F238B6B4D78C033FA5021EE7 /* Pods_VBVMITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F93DD85D67B37F721E47E3CA /* Pods-VBVMI-tvOS-VBVMI-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-tvOS-VBVMI-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSTests/Pods-VBVMI-tvOS-VBVMI-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		FDD57AD47B05593A4DEED09A /* Pods-VBVMI-tvOS-VBVMI-tvOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-tvOS-VBVMI-tvOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSUITests/Pods-VBVMI-tvOS-VBVMI-tvOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBA00188891329647EC86646 /* Pods_VBVMITests.framework in Frameworks */,
+				B56DF1506F0A3AB144D1F995 /* Pods_VBVMI_VBVMITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A72218740AAD71B852DD432 /* Pods_VBVMIUITests.framework in Frameworks */,
+				C00438BBAC1DECC1A8F7599A /* Pods_VBVMI_VBVMIUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +437,32 @@
 			files = (
 				98D45B941C86D22A004BBCBD /* LNPopupController.framework in Frameworks */,
 				43F3F530BCD03656741ABA01 /* Pods_VBVMI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		989AC50E1DB4C0B600A825EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				814A9FCBB15E0AC7E837826D /* Pods_VBVMI_tvOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		989AC5201DB4C0B600A825EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D636408853838400F6CBCCAE /* Pods_VBVMI_tvOSTests.framework in Frameworks */,
+				80B7B747E8D6DF19DEDD9414 /* Pods_VBVMI_tvOS_VBVMI_tvOSTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		989AC52B1DB4C0B600A825EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E5F965B9D9C9002F95231CD /* Pods_VBVMI_tvOSUITests.framework in Frameworks */,
+				B2D4A578069318E0055764A0 /* Pods_VBVMI_tvOS_VBVMI_tvOSUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +476,13 @@
 				36FCF4EEA67E046837FF107E /* Pods_VBVMI.framework */,
 				F238B6B4D78C033FA5021EE7 /* Pods_VBVMITests.framework */,
 				8891F3FC110090C58E0F6985 /* Pods_VBVMIUITests.framework */,
+				0DF77DD70A5B6A6263FAB994 /* Pods_VBVMI_tvOS.framework */,
+				098CFF3CEBF63040DBEB35A0 /* Pods_VBVMI_tvOSTests.framework */,
+				C55649F4689A242C5CC8EE06 /* Pods_VBVMI_tvOSUITests.framework */,
+				1DFF4AD666429F9BC484EDD1 /* Pods_VBVMI_VBVMITests.framework */,
+				9E1C1CEC0744718AE722AE1C /* Pods_VBVMI_VBVMIUITests.framework */,
+				EF9E32DE3976688EC378C18C /* Pods_VBVMI_tvOS_VBVMI_tvOSTests.framework */,
+				EE3195A03620C532D86693B7 /* Pods_VBVMI_tvOS_VBVMI_tvOSUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -371,6 +507,7 @@
 				988663ED1D55C19300010728 /* Audio */,
 				98D45B9E1C86D61D004BBCBD /* AudioPlayerViewController.xib */,
 				989294CB1C8BCE4500C19095 /* SoundManager.swift */,
+				988154C71DC5A4C400D0DD53 /* MediaCenterInfo.swift */,
 			);
 			name = Studies;
 			sourceTree = "<group>";
@@ -435,6 +572,9 @@
 				9828D4121C5D9F4A004FA954 /* VBVMI */,
 				9821380D1D3B8393006F2B79 /* VBVMITests */,
 				9821381B1D3B83D6006F2B79 /* VBVMIUITests */,
+				989AC5121DB4C0B600A825EB /* VBVMI-tvOS */,
+				989AC5261DB4C0B600A825EB /* VBVMI-tvOSTests */,
+				989AC5311DB4C0B600A825EB /* VBVMI-tvOSUITests */,
 				9828D4111C5D9F4A004FA954 /* Products */,
 				98D45B8E1C86D1EC004BBCBD /* LNPopupController.xcodeproj */,
 				56E691E2EDD19A5EF4B8ACDA /* Frameworks */,
@@ -448,6 +588,9 @@
 				9828D4101C5D9F4A004FA954 /* Verse By Verse.app */,
 				9821380C1D3B8393006F2B79 /* VBVMITests.xctest */,
 				9821381A1D3B83D6006F2B79 /* VBVMIUITests.xctest */,
+				989AC5111DB4C0B600A825EB /* VBVMI-tvOS.app */,
+				989AC5231DB4C0B600A825EB /* VBVMI-tvOSTests.xctest */,
+				989AC52E1DB4C0B600A825EB /* VBVMI-tvOSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -623,6 +766,41 @@
 			name = Audio;
 			sourceTree = "<group>";
 		};
+		989AC5121DB4C0B600A825EB /* VBVMI-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				989AC5131DB4C0B600A825EB /* AppDelegate.swift */,
+				989AC5151DB4C0B600A825EB /* StudiesViewController.swift */,
+				98380D0F1DE980830012AADE /* StudyViewController.swift */,
+				989AC5171DB4C0B600A825EB /* SecondViewController.swift */,
+				98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */,
+				98196FEA1DED7A5700654276 /* LessonCollectionViewCell.swift */,
+				98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */,
+				989AC5191DB4C0B600A825EB /* Main.storyboard */,
+				989AC51C1DB4C0B600A825EB /* Assets.xcassets */,
+				989AC51E1DB4C0B600A825EB /* Info.plist */,
+			);
+			path = "VBVMI-tvOS";
+			sourceTree = "<group>";
+		};
+		989AC5261DB4C0B600A825EB /* VBVMI-tvOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				989AC5271DB4C0B600A825EB /* VBVMI_tvOSTests.swift */,
+				989AC5291DB4C0B600A825EB /* Info.plist */,
+			);
+			path = "VBVMI-tvOSTests";
+			sourceTree = "<group>";
+		};
+		989AC5311DB4C0B600A825EB /* VBVMI-tvOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				989AC5321DB4C0B600A825EB /* VBVMI_tvOSUITests.swift */,
+				989AC5341DB4C0B600A825EB /* Info.plist */,
+			);
+			path = "VBVMI-tvOSUITests";
+			sourceTree = "<group>";
+		};
 		98D45B8F1C86D1EC004BBCBD /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -640,6 +818,20 @@
 				547D9554CD14FFA1B010272D /* Pods-VBVMITests.release.xcconfig */,
 				B360C71CB6EB0FE53044D090 /* Pods-VBVMIUITests.debug.xcconfig */,
 				3A3D6C01961C229B9D7FB01A /* Pods-VBVMIUITests.release.xcconfig */,
+				79F8F2249D44B0F089412C41 /* Pods-VBVMI-tvOS.debug.xcconfig */,
+				4546A07C83C4A3B948B01374 /* Pods-VBVMI-tvOS.release.xcconfig */,
+				5473D8884ADA8C018733E0B6 /* Pods-VBVMI-tvOSTests.debug.xcconfig */,
+				C2E9743B8D8DB2ED14AB07EA /* Pods-VBVMI-tvOSTests.release.xcconfig */,
+				7AEE53208FC83E8B69A4DE1B /* Pods-VBVMI-tvOSUITests.debug.xcconfig */,
+				4BF7EABAEA5118BD50F80D1D /* Pods-VBVMI-tvOSUITests.release.xcconfig */,
+				9305E3DBDCA3CD2E54AE107B /* Pods-VBVMI-VBVMITests.debug.xcconfig */,
+				4848EA53EB9CAEAA0700A2C3 /* Pods-VBVMI-VBVMITests.release.xcconfig */,
+				20D764D03668407E29FAD624 /* Pods-VBVMI-VBVMIUITests.debug.xcconfig */,
+				01174BA9313AE14C012B7B96 /* Pods-VBVMI-VBVMIUITests.release.xcconfig */,
+				E82B1C15936A394F74D559DA /* Pods-VBVMI-tvOS-VBVMI-tvOSTests.debug.xcconfig */,
+				F93DD85D67B37F721E47E3CA /* Pods-VBVMI-tvOS-VBVMI-tvOSTests.release.xcconfig */,
+				FDD57AD47B05593A4DEED09A /* Pods-VBVMI-tvOS-VBVMI-tvOSUITests.debug.xcconfig */,
+				1BE03F5775CF110A08692228 /* Pods-VBVMI-tvOS-VBVMI-tvOSUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -677,6 +869,7 @@
 				982138171D3B83D6006F2B79 /* Frameworks */,
 				982138181D3B83D6006F2B79 /* Resources */,
 				C91473EA02097E754AF4CC27 /* [CP] Copy Pods Resources */,
+				AAAF6220CA4E3178616F375D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -714,14 +907,76 @@
 			productReference = 9828D4101C5D9F4A004FA954 /* Verse By Verse.app */;
 			productType = "com.apple.product-type.application";
 		};
+		989AC5101DB4C0B600A825EB /* VBVMI-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 989AC53B1DB4C0B600A825EB /* Build configuration list for PBXNativeTarget "VBVMI-tvOS" */;
+			buildPhases = (
+				77E8525F568FBD0ED3225F02 /* [CP] Check Pods Manifest.lock */,
+				989AC50D1DB4C0B600A825EB /* Sources */,
+				989AC50E1DB4C0B600A825EB /* Frameworks */,
+				989AC50F1DB4C0B600A825EB /* Resources */,
+				8DE4EE4BA1BF87C5C4C352BA /* [CP] Embed Pods Frameworks */,
+				D2D98D6FD3B29A9220AB79E5 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VBVMI-tvOS";
+			productName = "VBVMI-tvOS";
+			productReference = 989AC5111DB4C0B600A825EB /* VBVMI-tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		989AC5221DB4C0B600A825EB /* VBVMI-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 989AC53C1DB4C0B600A825EB /* Build configuration list for PBXNativeTarget "VBVMI-tvOSTests" */;
+			buildPhases = (
+				99A24AF4C9432FF50CCD4C66 /* [CP] Check Pods Manifest.lock */,
+				989AC51F1DB4C0B600A825EB /* Sources */,
+				989AC5201DB4C0B600A825EB /* Frameworks */,
+				989AC5211DB4C0B600A825EB /* Resources */,
+				5EDF740CB084BF15F4A14DD8 /* [CP] Embed Pods Frameworks */,
+				572370A2DEFCE7C37393381C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				989AC5251DB4C0B600A825EB /* PBXTargetDependency */,
+			);
+			name = "VBVMI-tvOSTests";
+			productName = "VBVMI-tvOSTests";
+			productReference = 989AC5231DB4C0B600A825EB /* VBVMI-tvOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		989AC52D1DB4C0B600A825EB /* VBVMI-tvOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 989AC53D1DB4C0B600A825EB /* Build configuration list for PBXNativeTarget "VBVMI-tvOSUITests" */;
+			buildPhases = (
+				E7D4A27E7A7E7F7933B37242 /* [CP] Check Pods Manifest.lock */,
+				989AC52A1DB4C0B600A825EB /* Sources */,
+				989AC52B1DB4C0B600A825EB /* Frameworks */,
+				989AC52C1DB4C0B600A825EB /* Resources */,
+				98693AEE5388C54E05D02C03 /* [CP] Copy Pods Resources */,
+				01D78CE24D4FFD1773B75C98 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				989AC5301DB4C0B600A825EB /* PBXTargetDependency */,
+			);
+			name = "VBVMI-tvOSUITests";
+			productName = "VBVMI-tvOSUITests";
+			productReference = 989AC52E1DB4C0B600A825EB /* VBVMI-tvOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		9828D4081C5D9F4A004FA954 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Tom Carey";
 				TargetAttributes = {
 					9821380B1D3B8393006F2B79 = {
@@ -753,6 +1008,28 @@
 					9828D4441C5DA1D3004FA954 = {
 						CreatedOnToolsVersion = 7.2;
 					};
+					989AC5101DB4C0B600A825EB = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 4UDQLK73PW;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes.appletvos = {
+								enabled = 1;
+							};
+						};
+					};
+					989AC5221DB4C0B600A825EB = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 4UDQLK73PW;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 989AC5101DB4C0B600A825EB;
+					};
+					989AC52D1DB4C0B600A825EB = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 4UDQLK73PW;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 989AC5101DB4C0B600A825EB;
+					};
 				};
 			};
 			buildConfigurationList = 9828D40B1C5D9F4A004FA954 /* Build configuration list for PBXProject "VBVMI" */;
@@ -778,6 +1055,9 @@
 				9821380B1D3B8393006F2B79 /* VBVMITests */,
 				982138191D3B83D6006F2B79 /* VBVMIUITests */,
 				9828D4441C5DA1D3004FA954 /* Mogenerator */,
+				989AC5101DB4C0B600A825EB /* VBVMI-tvOS */,
+				989AC5221DB4C0B600A825EB /* VBVMI-tvOSTests */,
+				989AC52D1DB4C0B600A825EB /* VBVMI-tvOSUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -833,9 +1113,48 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		989AC50F1DB4C0B600A825EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				989AC51D1DB4C0B600A825EB /* Assets.xcassets in Resources */,
+				989AC51B1DB4C0B600A825EB /* Main.storyboard in Resources */,
+				98F389341DDC45D40037B97E /* StudyCollectionViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		989AC5211DB4C0B600A825EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		989AC52C1DB4C0B600A825EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		01D78CE24D4FFD1773B75C98 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSUITests/Pods-VBVMI-tvOS-VBVMI-tvOSUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4453D1D6FA95E6AB37D03DB3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -863,7 +1182,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		572370A2DEFCE7C37393381C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSTests/Pods-VBVMI-tvOS-VBVMI-tvOSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5EDF740CB084BF15F4A14DD8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSTests/Pods-VBVMI-tvOS-VBVMI-tvOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6AB11E49386DA8ACAA38C081 /* [CP] Copy Pods Resources */ = {
@@ -879,6 +1228,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI/Pods-VBVMI-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		77E8525F568FBD0ED3225F02 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8DE4EE4BA1BF87C5C4C352BA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS/Pods-VBVMI-tvOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		980579DE1D31EA17001C809C /* Git Bundle Version */ = {
@@ -937,6 +1316,51 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ -z ${FABRIC_API_KEY+x} ]; then\n    echo \"FABRIC_API_KEY is unset\"\nelse\n    if [ -z ${CRASHLYTICS_TOKEN+x} ]; then\n        echo \"CRASHLYTICS_TOKEN is unset\"\n    else\n        \"${PODS_ROOT}/Fabric/run\" \"${FABRIC_API_KEY}\" \"${CRASHLYTICS_TOKEN}\"\n    fi\nfi\n\n";
 		};
+		98693AEE5388C54E05D02C03 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSUITests/Pods-VBVMI-tvOS-VBVMI-tvOSUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99A24AF4C9432FF50CCD4C66 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AAAF6220CA4E3178616F375D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-VBVMIUITests/Pods-VBVMI-VBVMIUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B8C4E2990088CC0450535970 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -949,7 +1373,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C91473EA02097E754AF4CC27 /* [CP] Copy Pods Resources */ = {
@@ -964,7 +1388,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMIUITests/Pods-VBVMIUITests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-VBVMIUITests/Pods-VBVMI-VBVMIUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C91FD1116C33F98E43B5C4C4 /* [CP] Copy Pods Resources */ = {
@@ -979,7 +1403,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMITests/Pods-VBVMITests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-VBVMITests/Pods-VBVMI-VBVMITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2D98D6FD3B29A9220AB79E5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS/Pods-VBVMI-tvOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E419487C6C5A167BE41A25CE /* [CP] Embed Pods Frameworks */ = {
@@ -994,7 +1433,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMITests/Pods-VBVMITests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-VBVMITests/Pods-VBVMI-VBVMITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7D4A27E7A7E7F7933B37242 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F54FBB19CAF2868D789EE180 /* [CP] Check Pods Manifest.lock */ = {
@@ -1009,7 +1463,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1052,6 +1506,7 @@
 				986C2F1D1D33A43400F595FF /* TimeParser.swift in Sources */,
 				98611CB01C96A6610070FCCD /* Article.swift in Sources */,
 				985C53AE1D7AD28F001A907F /* StudiesOptionsTableViewController.swift in Sources */,
+				988154C81DC5A4C400D0DD53 /* MediaCenterInfo.swift in Sources */,
 				98611CBF1C9AA6D60070FCCD /* NSDateExtensions.swift in Sources */,
 				98B419B41C6420CA003A2872 /* HomeTabBarController.swift in Sources */,
 				986C37DA1C657C870096BB83 /* StyleKit.swift in Sources */,
@@ -1115,6 +1570,64 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		989AC50D1DB4C0B600A825EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				989AC5431DB4C22200A825EB /* Lesson.swift in Sources */,
+				989AC5461DB4C22200A825EB /* Video.swift in Sources */,
+				98C35DBC1DB4CEC30052398E /* TitleParser.swift in Sources */,
+				989AC5491DB4C22700A825EB /* _Answer.swift in Sources */,
+				989AC5421DB4C22200A825EB /* Event.swift in Sources */,
+				98C35DBD1DB4CF300052398E /* Constants.swift in Sources */,
+				98F389331DDC45D40037B97E /* StudyCollectionViewCell.swift in Sources */,
+				989AC5551DB4C26700A825EB /* NSManagedObject+Extensions.swift in Sources */,
+				989AC54B1DB4C22700A825EB /* _Article.swift in Sources */,
+				989AC5481DB4C22700A825EB /* _AudioPlayer.swift in Sources */,
+				989AC54D1DB4C22700A825EB /* _Event.swift in Sources */,
+				98C35DBB1DB4CDB70052398E /* NSDateExtensions.swift in Sources */,
+				98380D101DE980830012AADE /* StudyViewController.swift in Sources */,
+				989AC5451DB4C22200A825EB /* Topic.swift in Sources */,
+				989AC5411DB4C22200A825EB /* Channel.swift in Sources */,
+				98196FEB1DED7A5700654276 /* LessonCollectionViewCell.swift in Sources */,
+				989AC5181DB4C0B600A825EB /* SecondViewController.swift in Sources */,
+				989AC5141DB4C0B600A825EB /* AppDelegate.swift in Sources */,
+				989AC54E1DB4C22700A825EB /* _Lesson.swift in Sources */,
+				989AC5521DB4C26700A825EB /* JsonAPI.swift in Sources */,
+				98196FEC1DED825F00654276 /* StyleKit.swift in Sources */,
+				989AC5441DB4C22200A825EB /* Study.swift in Sources */,
+				989AC5161DB4C0B600A825EB /* StudiesViewController.swift in Sources */,
+				989AC53E1DB4C22200A825EB /* Answer.swift in Sources */,
+				9846C90C1E45B3C900BDB6C3 /* ResourceManager.swift in Sources */,
+				989AC5531DB4C26700A825EB /* APIDataManager.swift in Sources */,
+				989AC53F1DB4C22200A825EB /* Article.swift in Sources */,
+				989AC5501DB4C22C00A825EB /* VBVMI.xcdatamodeld in Sources */,
+				989AC5541DB4C26700A825EB /* StringExtensionHTML.swift in Sources */,
+				989AC5511DB4C23C00A825EB /* ContextCoordinator.swift in Sources */,
+				989AC54A1DB4C22700A825EB /* _Video.swift in Sources */,
+				989AC5401DB4C22200A825EB /* AudioPlayer.swift in Sources */,
+				989AC5471DB4C22700A825EB /* _Topic.swift in Sources */,
+				989AC54C1DB4C22700A825EB /* _Channel.swift in Sources */,
+				989AC54F1DB4C22700A825EB /* _Study.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		989AC51F1DB4C0B600A825EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				989AC5281DB4C0B600A825EB /* VBVMI_tvOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		989AC52A1DB4C0B600A825EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				989AC5331DB4C0B600A825EB /* VBVMI_tvOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1132,6 +1645,16 @@
 			isa = PBXTargetDependency;
 			target = 9828D4441C5DA1D3004FA954 /* Mogenerator */;
 			targetProxy = 9848516B1D9F4C1B00500A47 /* PBXContainerItemProxy */;
+		};
+		989AC5251DB4C0B600A825EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 989AC5101DB4C0B600A825EB /* VBVMI-tvOS */;
+			targetProxy = 989AC5241DB4C0B600A825EB /* PBXContainerItemProxy */;
+		};
+		989AC5301DB4C0B600A825EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 989AC5101DB4C0B600A825EB /* VBVMI-tvOS */;
+			targetProxy = 989AC52F1DB4C0B600A825EB /* PBXContainerItemProxy */;
 		};
 		98D45B971C86D22A004BBCBD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1157,12 +1680,20 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		989AC5191DB4C0B600A825EB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				989AC51A1DB4C0B600A825EB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		982138141D3B8393006F2B79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AEBD0C57F738073E79ED37ED /* Pods-VBVMITests.debug.xcconfig */;
+			baseConfigurationReference = 9305E3DBDCA3CD2E54AE107B /* Pods-VBVMI-VBVMITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1180,7 +1711,7 @@
 		};
 		982138151D3B8393006F2B79 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 547D9554CD14FFA1B010272D /* Pods-VBVMITests.release.xcconfig */;
+			baseConfigurationReference = 4848EA53EB9CAEAA0700A2C3 /* Pods-VBVMI-VBVMITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1197,7 +1728,7 @@
 		};
 		982138221D3B83D6006F2B79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B360C71CB6EB0FE53044D090 /* Pods-VBVMIUITests.debug.xcconfig */;
+			baseConfigurationReference = 20D764D03668407E29FAD624 /* Pods-VBVMI-VBVMIUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1214,7 +1745,7 @@
 		};
 		982138231D3B83D6006F2B79 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A3D6C01961C229B9D7FB01A /* Pods-VBVMIUITests.release.xcconfig */;
+			baseConfigurationReference = 01174BA9313AE14C012B7B96 /* Pods-VBVMI-VBVMIUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1372,6 +1903,138 @@
 			};
 			name = Release;
 		};
+		989AC5351DB4C0B600A825EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79F8F2249D44B0F089412C41 /* Pods-VBVMI-tvOS.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 4UDQLK73PW;
+				GCC_DYNAMIC_NO_PIC = NO;
+				INFOPLIST_FILE = "VBVMI-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = VBVM.VBVM;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		989AC5361DB4C0B600A825EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4546A07C83C4A3B948B01374 /* Pods-VBVMI-tvOS.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 4UDQLK73PW;
+				INFOPLIST_FILE = "VBVMI-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = VBVM.VBVM;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		989AC5371DB4C0B600A825EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E82B1C15936A394F74D559DA /* Pods-VBVMI-tvOS-VBVMI-tvOSTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 4UDQLK73PW;
+				GCC_DYNAMIC_NO_PIC = NO;
+				INFOPLIST_FILE = "VBVMI-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.versebyverseministry.VBVMI-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VBVMI-tvOS.app/VBVMI-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		989AC5381DB4C0B600A825EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F93DD85D67B37F721E47E3CA /* Pods-VBVMI-tvOS-VBVMI-tvOSTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 4UDQLK73PW;
+				INFOPLIST_FILE = "VBVMI-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.versebyverseministry.VBVMI-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VBVMI-tvOS.app/VBVMI-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		989AC5391DB4C0B600A825EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDD57AD47B05593A4DEED09A /* Pods-VBVMI-tvOS-VBVMI-tvOSUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 4UDQLK73PW;
+				GCC_DYNAMIC_NO_PIC = NO;
+				INFOPLIST_FILE = "VBVMI-tvOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.versebyverseministry.VBVMI-tvOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "VBVMI-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		989AC53A1DB4C0B600A825EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1BE03F5775CF110A08692228 /* Pods-VBVMI-tvOS-VBVMI-tvOSUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 4UDQLK73PW;
+				INFOPLIST_FILE = "VBVMI-tvOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.versebyverseministry.VBVMI-tvOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "VBVMI-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1416,6 +2079,33 @@
 			buildConfigurations = (
 				9828D4451C5DA1D3004FA954 /* Debug */,
 				9828D4461C5DA1D3004FA954 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		989AC53B1DB4C0B600A825EB /* Build configuration list for PBXNativeTarget "VBVMI-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				989AC5351DB4C0B600A825EB /* Debug */,
+				989AC5361DB4C0B600A825EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		989AC53C1DB4C0B600A825EB /* Build configuration list for PBXNativeTarget "VBVMI-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				989AC5371DB4C0B600A825EB /* Debug */,
+				989AC5381DB4C0B600A825EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		989AC53D1DB4C0B600A825EB /* Build configuration list for PBXNativeTarget "VBVMI-tvOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				989AC5391DB4C0B600A825EB /* Debug */,
+				989AC53A1DB4C0B600A825EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

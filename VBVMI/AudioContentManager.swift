@@ -43,7 +43,7 @@ class AudioContentManager: NSObject {
                 do {
                     try context.save()
                 } catch let error {
-                    log.error("Error saving: \(error)")
+                    logger.error("Error saving: \(error)")
                 }
             }
             completion(result: AudioResult.Error(error: AudioError.FailedToLoad))
@@ -52,7 +52,7 @@ class AudioContentManager: NSObject {
     
     func prepareAudioManager(completion: (AudioResult)->()) {
         guard let lesson = lesson, study = study, backgroundQueueContext = backgroundQueueContext else {
-            log.error("Lesson and Study are not ready to prepare audio manager")
+            logger.error("Lesson and Study are not ready to prepare audio manager")
             completion(AudioResult.Error(error: AudioError.UnknownException))
             return
         }
@@ -98,7 +98,7 @@ class AudioContentManager: NSObject {
         }
         
         guard let lesson = lesson, study = study else {
-            log.error("Lesson and Study are not ready to present controller")
+            logger.error("Lesson and Study are not ready to present controller")
             return
         }
         

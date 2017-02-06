@@ -31,7 +31,7 @@ extension NSManagedObject {
             do {
                 results = try context.fetch(fetchRequest)
             } catch let error {
-                log.error("Error executing fetch: \(error)")
+                logger.error("Error executing fetch: \(error)")
             }
         })
         

@@ -54,7 +54,7 @@ class StudiesViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         } catch let error {
-            log.error("Error fetching: \(error)")
+            logger.error("Error fetching: \(error)")
         }
     }
     
@@ -94,7 +94,7 @@ class StudiesViewController: UIViewController {
                         self.collectionView.reloadData()
                     }
                 } catch let error {
-                    log.error("Error fetching: \(error)")
+                    logger.error("Error fetching: \(error)")
                 }
             }
         }
@@ -251,22 +251,22 @@ extension StudiesViewController : UICollectionViewDataSource {
 
 extension StudiesViewController : NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        log.debug("Controller didChangeContent")
+        logger.debug("Controller didChangeContent")
         self.collectionView.reloadData()
     }
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        log.debug("Will change content")
+        logger.debug("Will change content")
     }
     
 //    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-//        log.debug("Controller didChangeSection")
+//        logger.debug("Controller didChangeSection")
 //    }
 //    
 //    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-//        log.debug("Controller didChangeObject")
+//        logger.debug("Controller didChangeObject")
 //    }
 //    
 //    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-//        log.debug("Controller will change content")
+//        logger.debug("Controller will change content")
 //    }
 }

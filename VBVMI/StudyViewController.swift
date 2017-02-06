@@ -230,7 +230,7 @@ class StudyViewController: UITableViewController {
                         switch result {
                         case .error(let error):
                             //Lame... we got an error..
-                            log.error("\(error)")
+                            logger.error("\(error)")
                         case .success(let lesson, let resource, let url):
                             //Epic, we have the URL so lets go do a thing
                             
@@ -451,13 +451,13 @@ class StudyViewController: UITableViewController {
         let downloadAll = UIAlertAction(title: "Download all", style: .default) { [weak self] (action) in
             if let study = self?.study {
                 ResourceManager.sharedInstance.downloadAllResources(study, completion: { 
-                    log.info("Downloaded all Resources!!!")
+                    logger.info("🍕Downloaded all Resources!!!")
                 })
             }
         }
         
         let deleteAll = UIAlertAction(title: "Delete all files", style: .destructive) { [weak self] (action) in
-            log.info("Trying to delete everything")
+            logger.info("🍕Trying to delete everything")
             guard let this = self else {
                 return
             }

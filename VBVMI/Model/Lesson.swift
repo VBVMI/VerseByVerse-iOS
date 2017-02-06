@@ -69,7 +69,7 @@ open class Lesson: _Lesson {
                         myTopics.insert(topic)
                     }
                 } catch let error {
-                    log.error("Error decoding Topic \(error)... Skippping...")
+                    logger.error("Error decoding Topic \(error)... Skippping...")
                 }
             })
             
@@ -90,7 +90,7 @@ extension Lesson : AssetsDownloadable {
                 do {
                     try fileManager.createDirectory(at: fileURL, withIntermediateDirectories: true, attributes: nil)
                 } catch let error {
-                    log.error("Error in lesson Directory: \(error)")
+                    logger.error("Error in lesson Directory: \(error)")
                     return nil
                 }
             }

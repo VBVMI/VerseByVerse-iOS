@@ -106,9 +106,25 @@
         <key>Type</key>
         <string>PSChildPaneSpecifier</string>
         <key>Title</key>
+        <string>SwiftIconFont</string>
+        <key>File</key>
+        <string>Acknowledgement-SwiftIconFont</string>
+      </dict>
+      <dict>
+        <key>Type</key>
+        <string>PSChildPaneSpecifier</string>
+        <key>Title</key>
         <string>UIImage-Color</string>
         <key>File</key>
         <string>Acknowledgement-UIImage-Color</string>
+      </dict>
+      <dict>
+        <key>Type</key>
+        <string>PSChildPaneSpecifier</string>
+        <key>Title</key>
+        <string>XCDYouTubeKit</string>
+        <key>File</key>
+        <string>Acknowledgement-XCDYouTubeKit</string>
       </dict>
       <dict>
         <key>Type</key>

@@ -14,11 +14,31 @@ import Crashlytics
 import XCGLogger
 import ReachabilitySwift
 
-let log: XCGLogger = {
-    let log = XCGLogger.default
-    log.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil, fileLevel: .debug)
+let logger: XCGLogger = {
+//    let logger = XCGLogger.default
+//    logger.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil, fileLevel: .debug)
     // NSLogger support
     // only log to the external window
+    
+    // Create a logger object with no destinations
+    let log = XCGLogger(identifier: "versebyverse", includeDefaultDestinations: false)
+    
+    // Create a destination for the system console log (via NSLog)
+    let systemDestination = AppleSystemLogDestination(identifier: "versebyverse.systemDestination")
+    
+    // Optionally set some configuration options
+    systemDestination.outputLevel = .debug
+    systemDestination.showLogIdentifier = false
+    systemDestination.showFunctionName = true
+    systemDestination.showThreadName = true
+    systemDestination.showLevel = true
+    systemDestination.showFileName = true
+    systemDestination.showLineNumber = true
+    systemDestination.showDate = true
+    
+    // Add the destination to the logger
+    log.add(destination: systemDestination)
+
     return log
 }()
 
@@ -30,7 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        setenv("XcodeColors", "YES", 0);
+        
+        logger.info("🍕Application will finish with options: \(launchOptions)")
         //Fabric.sharedSDK().debug = true
         
 //        DDTTYLogger.sharedInstance().colorsEnabled = true
@@ -63,13 +84,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let imageDownloader = ImageDownloader(configuration: ImageDownloader.defaultURLSessionConfiguration(), downloadPrioritization: .fifo, maximumActiveDownloads: 10, imageCache: VBVMIImageCache)
         UIImageView.af_sharedImageDownloader = imageDownloader
 
+        logger.info("🍕Creating Context Coordinator")
         let _ = ContextCoordinator.sharedInstance
         
-        DispatchQueue.main.async { () -> Void in
-            let _ = SoundManager.sharedInstance
-        }
-        
         DispatchQueue.global(qos: .background).async {
+            logger.info("🍕Dispatching the Downloads")
             APIDataManager.core()
             APIDataManager.allTheChannels()
             
@@ -89,38 +108,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         Fabric.with([Crashlytics.self])
-        
+        logger.info("🍕Application did finish Launching with options: \(launchOptions)")
         Theme.default.applyTheme()
+        
+        logger.info("🍕Creating Sound Manager")
+        let _ = SoundManager.sharedInstance
         return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        print("Resign Active")
+        logger.info("🍕Resign Active")
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        print("Background")
+        logger.info("🍕Background")
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-        print("Foreground")
+        logger.info("🍕Foreground")
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        print("Active")
+        logger.info("🍕Active")
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         ContextCoordinator.sharedInstance.saveContext()
-        print("Terminated")
+        logger.info("🍕Terminated")
     }
 
     
@@ -134,7 +156,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didUpdate userActivity: NSUserActivity) {
-        print("user activity: \(userActivity)")
+        logger.info("🍕user activity: \(userActivity)")
     }
     
     fileprivate static var _resourcesURL: URL? = nil
@@ -151,7 +173,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             success = true
         } catch let error as NSError {
             success = false
-            print("Error excluding \(myUrl.lastPathComponent) from backup \(error)");
+            logger.info("🍕Error excluding \(myUrl.lastPathComponent) from backup \(error)");
         }
         
         return success
@@ -164,7 +186,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let fileManager = FileManager.default
         
-        let urls = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+        #if os(tvOS)
+        let urls = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+        #else
+        let urls = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+        #endif
         
         if let documentDirectory: URL = urls.first {
             // This is where the database should be in the application support directory
@@ -174,7 +200,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 do {
                     try fileManager.createDirectory(at: rootURL, withIntermediateDirectories: true, attributes: nil)
                 } catch let error {
-                    log.error("Error creating resources directory: \(error)")
+                    logger.error("Error creating resources directory: \(error)")
                     return nil
                 }
                 
@@ -184,7 +210,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return rootURL
         
         } else {
-            print("Couldn't get documents directory!")
+            logger.info("🍕Couldn't get documents directory!")
         }
         
         return nil

@@ -136,7 +136,7 @@ class LessonTableViewCell: UITableViewCell {
         descriptionLabel.textColor = StyleKit.midGrey
         timeLabel.textColor = StyleKit.midGrey
         
-        progressIndicator.progressTintColor = StyleKit.lightGrey.colorWithAlpha(0.2)
+        progressIndicator.progressTintColor = StyleKit.lightGrey.withAlpha(0.2)
         progressIndicator.progress = 0
     }
 

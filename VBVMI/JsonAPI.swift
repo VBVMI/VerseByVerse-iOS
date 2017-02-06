@@ -131,7 +131,9 @@ public struct Provider {
     
     fileprivate static var ongoingRequestCount = 0 {
         didSet {
+            #if os(iOS)
             UIApplication.shared.isNetworkActivityIndicatorVisible = ongoingRequestCount > 0
+            #endif
         }
     }
     

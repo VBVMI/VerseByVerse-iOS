@@ -103,10 +103,10 @@ class AudioManager: NSObject {
     }
     
     private func start(registerObservers addObservers: Bool, progress: Double, completion: ((result: AudioResult)->())? = nil) -> Bool {
-        log.info("Starting AudioManager - addObservers:\(addObservers) - progress:\(progress)")
+        logger.info("🍕Starting AudioManager - addObservers:\(addObservers) - progress:\(progress)")
         
         if avPlayer.status != AVPlayerStatus.ReadyToPlay {
-            log.error("avPlayer status is not readyToPlay")
+            logger.error("avPlayer status is not readyToPlay")
             completion?(result: AudioResult.Error(error: AudioError.NotReady))
             return false
         }
@@ -120,7 +120,7 @@ class AudioManager: NSObject {
         do {
             try session.setActive(true)
         } catch let error {
-            log.error("Error activating audio session: \(error)")
+            logger.error("Error activating audio session: \(error)")
             completion?(result: AudioResult.Error(error: AudioError.AudioSessionNotActive))
             return false
         }
@@ -136,10 +136,10 @@ class AudioManager: NSObject {
             
         }
         
-        log.info("Starting audio player at rate \(playbackRate)")
+        logger.info("🍕Starting audio player at rate \(playbackRate)")
         if let duration = avPlayer.currentItem?.duration where time >= duration {
             time = kCMTimeZero
-            log.info("Resetting time to zero")
+            logger.info("🍕Resetting time to zero")
         }
         
         mode = .Playing
@@ -157,7 +157,7 @@ class AudioManager: NSObject {
         do {
             try AVAudioSession.sharedInstance().setActive(false)
         } catch let error {
-            log.error("Error deactivating audio session: \(error)")
+            logger.error("Error deactivating audio session: \(error)")
         }
         
         if removeObservers {
@@ -173,7 +173,7 @@ class AudioManager: NSObject {
         do {
             try session.setCategory(AVAudioSessionCategoryPlayback)
         } catch let error {
-            log.error("Error setting AVAudioSession category: \(error)")
+            logger.error("Error setting AVAudioSession category: \(error)")
             return false
         }
         return true
@@ -184,7 +184,7 @@ class AudioManager: NSObject {
         do {
             try session.setMode(AVAudioSessionModeSpokenAudio)
         } catch let error {
-            log.error("Error setting AVAudioSession category: \(error)")
+            logger.error("Error setting AVAudioSession category: \(error)")
             return false
         }
         return true
@@ -197,22 +197,22 @@ class AudioManager: NSObject {
         if let item = object as? AVPlayerItem where keyPath == "status" {
             switch item.status {
             case .Failed:
-                log.error("Failed to load audio: \(change)")
+                logger.error("Failed to load audio: \(change)")
                 mode = .Error
                 audioIsReadyBlock?(result: AudioResult.Error(error: AudioError.FailedToLoad))
             case .ReadyToPlay:
-                log.info("Ready to play")
+                logger.info("🍕Ready to play")
                 mode = .Ready
                 audioIsReadyBlock?(result: AudioResult.Success)
             case .Unknown:
-                log.info("Audio player state is unknown")
+                logger.info("🍕Audio player state is unknown")
                 audioIsReadyBlock?(result: AudioResult.Error(error: AudioError.ItemInUnknownState))
             }
         }
     }
     
     private func registerObservers() {
-        print("registering observers")
+        logger.info("🍕registering observers")
         let session = AVAudioSession.sharedInstance()
         audioInterruptionObserverToken = NSNotificationCenter.defaultCenter().addObserverForName(AVAudioSessionInterruptionNotification, object: session, queue: nil) { [weak self] (notification) in
             if let key = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? AVAudioSessionInterruptionType where key == .Began {
@@ -220,7 +220,7 @@ class AudioManager: NSObject {
             } else {
                 if let this = self {
                     if this.start(registerObservers: false, progress: CMTimeGetSeconds(this.time)) != true {
-                        log.error("Couldn't restart after interruption")
+                        logger.error("Couldn't restart after interruption")
                         this.mode = .Error
                     }
                 }
@@ -230,7 +230,7 @@ class AudioManager: NSObject {
     }
     
     private func unregisterObservers() {
-        print("unregisering observers")
+        logger.info("🍕unregisering observers")
         if let token = audioInterruptionObserverToken {
             NSNotificationCenter.defaultCenter().removeObserver(token)
             audioInterruptionObserverToken = nil
