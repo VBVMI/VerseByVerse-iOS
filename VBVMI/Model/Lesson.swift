@@ -54,10 +54,10 @@ open class Lesson: _Lesson {
         lesson.studyIdentifier = studyID
         let decodedTitle = lessonTitle.stringByDecodingHTMLEntities
         
-        let (lessonParsedTitle, lessonNumber) = TitleParser.components(decodedTitle)
+        let (lessonParsedTitle, _) = TitleParser.components(decodedTitle)
         
         lesson.lessonTitle = lessonParsedTitle
-        lesson.lessonNumber = lessonNumber
+        lesson.lessonNumber = nullOrString(try JSONDict => "lessonNumber")
 
         if let topicsArray: [NSDictionary] = try JSONDict => "topics" as? [NSDictionary] {
             //Then lets process the topics
