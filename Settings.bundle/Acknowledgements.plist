@@ -122,14 +122,6 @@
         <key>Type</key>
         <string>PSChildPaneSpecifier</string>
         <key>Title</key>
-        <string>XCDYouTubeKit</string>
-        <key>File</key>
-        <string>Acknowledgement-XCDYouTubeKit</string>
-      </dict>
-      <dict>
-        <key>Type</key>
-        <string>PSChildPaneSpecifier</string>
-        <key>Title</key>
         <string>XCGLogger</string>
         <key>File</key>
         <string>Acknowledgement-XCGLogger</string>
