@@ -57,10 +57,10 @@ class PDFViewController: UIViewController {
         self.navigationController?.hidesBarsOnSwipe = true
     }
     
-    override var prefersStatusBarHidden : Bool {
-        return self.navigationController?.isNavigationBarHidden ?? false
-    }
-    
+//    override var prefersStatusBarHidden : Bool {
+//        return self.navigationController?.isNavigationBarHidden ?? false
+//    }
+//    
     override func viewDidLayoutSubviews() {
         let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
         webView.scrollView.contentInset = insets
