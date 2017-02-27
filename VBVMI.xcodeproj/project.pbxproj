@@ -57,6 +57,8 @@
 		9846C90C1E45B3C900BDB6C3 /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FF47571D292786008E27F4 /* ResourceManager.swift */; };
 		984851701D9F713600500A47 /* DepletionProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848516F1D9F713600500A47 /* DepletionProgressView.swift */; };
 		9854F0921CAD09980025CAC0 /* TopicLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854F0911CAD09980025CAC0 /* TopicLayoutView.swift */; };
+		985A957A1E6416BF00758CC5 /* StudiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A95781E6416BF00758CC5 /* StudiesTableViewCell.swift */; };
+		985A957B1E6416BF00758CC5 /* StudiesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985A95791E6416BF00758CC5 /* StudiesTableViewCell.xib */; };
 		985C53A71D7ACFA5001A907F /* StudiesOptions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 985C53A61D7ACFA5001A907F /* StudiesOptions.storyboard */; };
 		985C53AE1D7AD28F001A907F /* StudiesOptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985C53AD1D7AD28F001A907F /* StudiesOptionsTableViewController.swift */; };
 		985C53B01D7AD2AE001A907F /* StaticSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985C53AF1D7AD2AE001A907F /* StaticSelectionTableViewController.swift */; };
@@ -303,6 +305,8 @@
 		9848516F1D9F713600500A47 /* DepletionProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepletionProgressView.swift; sourceTree = "<group>"; };
 		984F611B1D5572BD00FDCD69 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		9854F0911CAD09980025CAC0 /* TopicLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicLayoutView.swift; sourceTree = "<group>"; };
+		985A95781E6416BF00758CC5 /* StudiesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudiesTableViewCell.swift; sourceTree = "<group>"; };
+		985A95791E6416BF00758CC5 /* StudiesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudiesTableViewCell.xib; sourceTree = "<group>"; };
 		985C53A61D7ACFA5001A907F /* StudiesOptions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudiesOptions.storyboard; sourceTree = "<group>"; };
 		985C53AD1D7AD28F001A907F /* StudiesOptionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudiesOptionsTableViewController.swift; sourceTree = "<group>"; };
 		985C53AF1D7AD2AE001A907F /* StaticSelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticSelectionTableViewController.swift; sourceTree = "<group>"; };
@@ -775,6 +779,8 @@
 				989AC5171DB4C0B600A825EB /* SecondViewController.swift */,
 				98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */,
 				98196FEA1DED7A5700654276 /* LessonCollectionViewCell.swift */,
+				985A95781E6416BF00758CC5 /* StudiesTableViewCell.swift */,
+				985A95791E6416BF00758CC5 /* StudiesTableViewCell.xib */,
 				98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */,
 				989AC5191DB4C0B600A825EB /* Main.storyboard */,
 				989AC51C1DB4C0B600A825EB /* Assets.xcassets */,
@@ -1120,6 +1126,7 @@
 				989AC51D1DB4C0B600A825EB /* Assets.xcassets in Resources */,
 				989AC51B1DB4C0B600A825EB /* Main.storyboard in Resources */,
 				98F389341DDC45D40037B97E /* StudyCollectionViewCell.xib in Resources */,
+				985A957B1E6416BF00758CC5 /* StudiesTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1587,6 +1594,7 @@
 				989AC54D1DB4C22700A825EB /* _Event.swift in Sources */,
 				98C35DBB1DB4CDB70052398E /* NSDateExtensions.swift in Sources */,
 				98380D101DE980830012AADE /* StudyViewController.swift in Sources */,
+				985A957A1E6416BF00758CC5 /* StudiesTableViewCell.swift in Sources */,
 				989AC5451DB4C22200A825EB /* Topic.swift in Sources */,
 				989AC5411DB4C22200A825EB /* Channel.swift in Sources */,
 				98196FEB1DED7A5700654276 /* LessonCollectionViewCell.swift in Sources */,

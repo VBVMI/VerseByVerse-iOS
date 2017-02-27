@@ -21,10 +21,27 @@
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="n25-46-ZJx">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="9pv-A4-QxB" id="taZ-H1-adW"/>
+                                    <outlet property="delegate" destination="9pv-A4-QxB" id="cKL-TR-Hfp"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="n25-46-ZJx" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="K6Q-gK-f9L"/>
+                            <constraint firstItem="n25-46-ZJx" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="KqW-pR-4Ls"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="n25-46-ZJx" secondAttribute="bottom" id="Xtt-W2-4fH"/>
+                            <constraint firstAttribute="trailing" secondItem="n25-46-ZJx" secondAttribute="trailing" id="aLZ-tn-EMs"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Studies" id="acW-dT-cKf"/>
                     <connections>
+                        <outlet property="tableView" destination="n25-46-ZJx" id="aS0-Ib-kBq"/>
                         <segue destination="HcU-dA-6h6" kind="show" identifier="showStudy" id="cBh-ok-d3b"/>
                     </connections>
                 </viewController>

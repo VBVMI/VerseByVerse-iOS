@@ -11,38 +11,71 @@ import CoreData
 import SnapKit
 import AlamofireImage
 
-struct StudiesCollectionManager {
-    let newTestamentCollectionView : UICollectionView
-    let oldTestamentCollectionView : UICollectionView
-    let singleTeachingCollectionView : UICollectionView
-    let topicalSeriesCollectionView : UICollectionView
+class StudiesDataSource : NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    let allCollectionViews : [UICollectionView]
+    private let fetchedResultsController: NSFetchedResultsController<Study>
+    private let realSection : Int
+    private weak var viewController: UIViewController?
     
-    init() {
-        newTestamentCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
-        oldTestamentCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
-        singleTeachingCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
-        topicalSeriesCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+    init(fetchedResultsController: NSFetchedResultsController<Study>, section: Int, viewController: UIViewController) {
+        self.fetchedResultsController = fetchedResultsController
+        self.realSection = section
+        self.viewController = viewController
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let sectionInfo = fetchedResultsController.sections?[realSection] else { return 0 }
+        return sectionInfo.numberOfObjects
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let realIndexPath = IndexPath(item: indexPath.item, section: realSection)
+        let study = fetchedResultsController.object(at: realIndexPath)
         
-        allCollectionViews = [newTestamentCollectionView, oldTestamentCollectionView, singleTeachingCollectionView, topicalSeriesCollectionView]
-        allCollectionViews.forEach { (collectionView) in
-            collectionView.register(UINib(nibName: "StudyCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "StudyCell")
-            let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-            flowLayout.itemSize = CGSize(width: 300, height: 300)
-            flowLayout.minimumInteritemSpacing = 100
-            flowLayout.minimumLineSpacing = 60
-            flowLayout.scrollDirection = .horizontal
-            collectionView.contentInset = UIEdgeInsets(top: 60, left: 60, bottom: 160 + 20, right: 60)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StudyCell", for: indexPath) as! StudyCollectionViewCell
+        cell.mainImage.image = StyleKit.imageOfBlankBackgroundImage
+        
+        if let thumbnailSource = study.thumbnailSource {
+            if let url = URL(string: thumbnailSource) {
+                let width = 300
+                let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 10, divideRadiusByImageScale: false)
+                cell.mainImage.af_setImage(withURL: url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
+                //                cell.coverImageView.af_setImage(withURL: url)
+            }
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let realIndexPath = IndexPath(item: indexPath.item, section: realSection)
+        let study = fetchedResultsController.object(at: realIndexPath)
+        viewController?.performSegue(withIdentifier: "showStudy", sender: study)
+    }
+    
+    var title: String? {
+        get {
+            return fetchedResultsController.sections?[realSection].name
         }
     }
+    
+    var numberOfStudies: Int? {
+        get {
+            return fetchedResultsController.sections?[realSection].numberOfObjects
+        }
+    }
+    
 }
 
 class StudiesViewController: UIViewController {
 
     var fetchedResultsController: NSFetchedResultsController<Study>!
     
-    let collectionManager = StudiesCollectionManager()
+    @IBOutlet weak var tableView: UITableView!
     
     fileprivate func configureFetchRequest(_ fetchRequest: NSFetchRequest<Study>) {
         
@@ -89,30 +122,7 @@ class StudiesViewController: UIViewController {
             make.edges.equalTo(view)
         }
         
-        let contentView = UIView()
-        
-        let collectionHeight = 300 + 60 + 20
-        scrollView.addSubview(contentView)
-        contentView.snp.makeConstraints { (make) in
-            make.edges.equalTo(scrollView)
-            make.height.equalTo(collectionHeight * collectionManager.allCollectionViews.count + 60)
-            make.width.equalTo(view)
-        }
-        
-        
-        collectionManager.allCollectionViews.enumerated().forEach { (offset, collectionView) in
-            collectionView.delegate = self
-            collectionView.dataSource = self
-            
-            contentView.addSubview(collectionView)
-            
-            collectionView.snp.makeConstraints({ (make) in
-                make.top.equalTo(contentView).offset(collectionHeight * offset)
-                make.left.right.equalTo(contentView)
-                make.height.equalTo(collectionHeight + 160)
-            })
-        }
-        
+        tableView.register(UINib(nibName: "StudiesTableViewCell", bundle: nil), forCellReuseIdentifier: "StudiesCell")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -130,60 +140,44 @@ class StudiesViewController: UIViewController {
 
 
     func reloadData() {
-        collectionManager.allCollectionViews.forEach({ $0.reloadData() })
+        tableView.reloadData()
     }
 }
 
-extension StudiesViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let realSection = collectionManager.allCollectionViews.index(of: collectionView)!
-        let realIndexPath = IndexPath(item: indexPath.item, section: realSection)
-        let study = fetchedResultsController.object(at: realIndexPath)
-        self.performSegue(withIdentifier: "showStudy", sender: study)
+extension StudiesViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 430
     }
 }
 
-extension StudiesViewController: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+extension StudiesViewController : UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let realSection = collectionManager.allCollectionViews.index(of: collectionView) else {
-            return 0
-        }
-        guard let sections = fetchedResultsController.sections else {
-            return 0
-        }
-        if sections.count <= section {
-            return 0
-        }
-        let sectionInfo = sections[realSection]
-        return sectionInfo.numberOfObjects
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard section == 0 else { return 0 }
+        return fetchedResultsController.sections?.count ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StudyCell", for: indexPath) as! StudyCollectionViewCell
-        let realSection = collectionManager.allCollectionViews.index(of: collectionView)!
-        let realIndexPath = IndexPath(item: indexPath.item, section: realSection)
-        let study = fetchedResultsController.object(at: realIndexPath)
-
-        cell.mainImage.image = StyleKit.imageOfBlankBackgroundImage
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let dataSource = StudiesDataSource(fetchedResultsController: fetchedResultsController, section: indexPath.row, viewController: self)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StudiesCell", for: indexPath) as! StudiesTableViewCell
         
-        if let thumbnailSource = study.thumbnailSource {
-            if let url = URL(string: thumbnailSource) {
-                let width = 300
-                let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 10, divideRadiusByImageScale: false)
-                cell.mainImage.af_setImage(withURL: url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
-                //                cell.coverImageView.af_setImage(withURL: url)
-            }
+        cell.collectionViewDatasource = dataSource
+        cell.collectionViewDelegate = dataSource
+        
+        cell.header = dataSource.title
+        if let count = dataSource.numberOfStudies {
+            cell.studyCount = "\(count) Studies"
+        } else {
+            cell.studyCount = nil
         }
         
         return cell
     }
-    
 }
+
 
 extension StudiesViewController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
