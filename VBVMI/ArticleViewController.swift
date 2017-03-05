@@ -54,6 +54,16 @@ class ArticleViewController: UITableViewController {
         
         tableView.register(UINib(nibName: Cell.NibName.ArticleHeader, bundle: nil), forCellReuseIdentifier: Cell.Identifier.ArticleHeader)
         tableView.register(UINib(nibName: Cell.NibName.ArticleBody, bundle: nil), forCellReuseIdentifier: Cell.Identifier.ArticleBody)
+        
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
+        self.navigationItem.rightBarButtonItem = shareButton
+    }
+    
+    func shareAction(_ button: Any) {
+        guard let urlString = article?.url, let url = URL(string: urlString) else { return }
+        
+        let actionSheet = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        present(actionSheet, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

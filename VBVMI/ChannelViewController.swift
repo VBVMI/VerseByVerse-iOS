@@ -27,6 +27,16 @@ class ChannelViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         formatter.unitsStyle = .positional
         setupFetchedResultsController()
+        
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
+        self.navigationItem.rightBarButtonItem = shareButton
+    }
+    
+    func shareAction(_ button: Any) {
+        guard let urlString = channel?.url, let url = URL(string: urlString) else { return }
+        
+        let actionSheet = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        present(actionSheet, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

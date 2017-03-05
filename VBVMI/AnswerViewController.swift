@@ -54,6 +54,16 @@ class AnswerViewController: UITableViewController {
         
         tableView.register(UINib(nibName: Cell.NibName.AnswerHeader, bundle: nil), forCellReuseIdentifier: Cell.Identifier.AnswerHeader)
         tableView.register(UINib(nibName: Cell.NibName.AnswerBody, bundle: nil), forCellReuseIdentifier: Cell.Identifier.AnswerBody)
+        
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
+        self.navigationItem.rightBarButtonItem = shareButton
+    }
+    
+    func shareAction(_ button: Any) {
+        guard let urlString = answer?.url, let url = URL(string: urlString) else { return }
+        
+        let actionSheet = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        present(actionSheet, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

@@ -134,7 +134,19 @@ class StudyViewController: UITableViewController {
 
         barButtonItem.target = self
         barButtonItem.setTitleTextAttributes([NSFontAttributeName: UIFont.fontAwesomeOfSize(20)], for: .normal)
-        navigationItem.rightBarButtonItem = barButtonItem
+        
+        var buttons = [barButtonItem]
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
+        buttons.append(shareButton)
+        
+        navigationItem.rightBarButtonItems = buttons
+    }
+    
+    func shareAction(_ button: Any) {
+        guard let urlString = study?.url, let url = URL(string: urlString) else { return }
+        
+        let actionSheet = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        present(actionSheet, animated: true, completion: nil)
     }
     
     var resizeImageOnce = true
