@@ -15,6 +15,7 @@ public enum EventAttributes: String {
     case thumbnailSource = "thumbnailSource"
     case title = "title"
     case type = "type"
+    case url = "url"
 }
 
 open class _Event: NSManagedObject {
@@ -71,6 +72,9 @@ open class _Event: NSManagedObject {
 
     @NSManaged open
     var type: String?
+
+    @NSManaged open
+    var url: String?
 
     // MARK: - Relationships
 

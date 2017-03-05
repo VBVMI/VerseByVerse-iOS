@@ -18,6 +18,7 @@ public enum ArticleAttributes: String {
     case identifier = "identifier"
     case postedDate = "postedDate"
     case title = "title"
+    case url = "url"
 }
 
 public enum ArticleRelationships: String {
@@ -87,6 +88,9 @@ open class _Article: NSManagedObject {
 
     @NSManaged open
     var title: String?
+
+    @NSManaged open
+    var url: String?
 
     // MARK: - Relationships
 

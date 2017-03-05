@@ -14,6 +14,7 @@ public enum VideoAttributes: String {
     case thumbnailAltText = "thumbnailAltText"
     case thumbnailSource = "thumbnailSource"
     case title = "title"
+    case url = "url"
     case videoIndex = "videoIndex"
     case videoLength = "videoLength"
     case videoSource = "videoSource"
@@ -74,6 +75,9 @@ open class _Video: NSManagedObject {
 
     @NSManaged open
     var title: String?
+
+    @NSManaged open
+    var url: String?
 
     @NSManaged open
     var videoIndex: Int32

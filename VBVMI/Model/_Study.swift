@@ -19,6 +19,7 @@ public enum StudyAttributes: String {
     case thumbnailAltText = "thumbnailAltText"
     case thumbnailSource = "thumbnailSource"
     case title = "title"
+    case url = "url"
 }
 
 public enum StudyRelationships: String {
@@ -91,6 +92,9 @@ open class _Study: NSManagedObject {
 
     @NSManaged open
     var title: String
+
+    @NSManaged open
+    var url: String?
 
     // MARK: - Relationships
 

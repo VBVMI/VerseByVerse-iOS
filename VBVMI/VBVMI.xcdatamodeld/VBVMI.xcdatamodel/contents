@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16A323" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Answer" representedClassName="Answer" syncable="YES">
         <attribute name="authorName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="authorThumbnailAltText" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,6 +14,7 @@
         <attribute name="qaThumbnailAltText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="qaThumbnailSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="topics" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Topic" inverseName="answers" inverseEntity="Topic" syncable="YES"/>
     </entity>
     <entity name="Article" representedClassName="Article" syncable="YES">
@@ -30,6 +31,7 @@
         <attribute name="identifier" attributeType="String" syncable="YES"/>
         <attribute name="postedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="topics" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Topic" inverseName="articles" inverseEntity="Topic" syncable="YES"/>
     </entity>
     <entity name="AudioPlayer" representedClassName="AudioPlayer" syncable="YES">
@@ -52,6 +54,7 @@
         <attribute name="thumbnailAltText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="videos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Video" inverseName="channel" inverseEntity="Video" syncable="YES"/>
     </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
@@ -69,6 +72,7 @@
         <attribute name="thumbnailSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Lesson" representedClassName="Lesson" syncable="YES">
         <attribute name="audioLength" optional="YES" attributeType="String" syncable="YES"/>
@@ -109,6 +113,7 @@
         <attribute name="thumbnailAltText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="topics" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Topic" inverseName="studies" inverseEntity="Topic" syncable="YES"/>
     </entity>
     <entity name="Topic" representedClassName="Topic" syncable="YES">
@@ -129,20 +134,21 @@
         <attribute name="thumbnailAltText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoIndex" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="videoLength" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoSource" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="videos" inverseEntity="Channel" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Answer" positionX="-243" positionY="-1758" width="128" height="255"/>
-        <element name="Article" positionX="205" positionY="-1641" width="128" height="255"/>
+        <element name="Answer" positionX="-164" positionY="-1713" width="128" height="268"/>
+        <element name="Article" positionX="205" positionY="-1656" width="128" height="268"/>
         <element name="AudioPlayer" positionX="-209" positionY="-1062" width="128" height="131"/>
-        <element name="Channel" positionX="-9" positionY="-1053" width="128" height="178"/>
-        <element name="Event" positionX="-495" positionY="-1467" width="128" height="195"/>
-        <element name="Lesson" positionX="-324" positionY="-1467" width="128" height="375"/>
-        <element name="Study" positionX="205" positionY="-1323" width="128" height="270"/>
+        <element name="Channel" positionX="-9" positionY="-1053" width="128" height="193"/>
+        <element name="Event" positionX="-495" positionY="-1467" width="128" height="208"/>
+        <element name="Lesson" positionX="-324" positionY="-1467" width="128" height="373"/>
+        <element name="Study" positionX="205" positionY="-1323" width="128" height="283"/>
         <element name="Topic" positionX="-0" positionY="-1440" width="128" height="133"/>
-        <element name="Video" positionX="189" positionY="-1062" width="128" height="238"/>
+        <element name="Video" positionX="189" positionY="-1035" width="128" height="253"/>
     </elements>
 </model>

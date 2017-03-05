@@ -18,6 +18,7 @@ public enum AnswerAttributes: String {
     case qaThumbnailAltText = "qaThumbnailAltText"
     case qaThumbnailSource = "qaThumbnailSource"
     case title = "title"
+    case url = "url"
 }
 
 public enum AnswerRelationships: String {
@@ -87,6 +88,9 @@ open class _Answer: NSManagedObject {
 
     @NSManaged open
     var title: String?
+
+    @NSManaged open
+    var url: String?
 
     // MARK: - Relationships
 

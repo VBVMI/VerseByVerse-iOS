@@ -13,6 +13,7 @@ public enum ChannelAttributes: String {
     case thumbnailAltText = "thumbnailAltText"
     case thumbnailSource = "thumbnailSource"
     case title = "title"
+    case url = "url"
 }
 
 public enum ChannelRelationships: String {
@@ -67,6 +68,9 @@ open class _Channel: NSManagedObject {
 
     @NSManaged open
     var title: String?
+
+    @NSManaged open
+    var url: String?
 
     // MARK: - Relationships
 
