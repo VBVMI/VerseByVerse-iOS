@@ -11,6 +11,9 @@ import UIKit
 class PDFViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
+    private var attachedToNavController = false
+    private var showStatusBar = true
+    private var curFramePosition: Double = 0
     
     var urlToLoad: URL?
     
@@ -55,16 +58,45 @@ class PDFViewController: UIViewController {
         super.viewDidAppear(animated)
         self.navigationController?.hidesBarsOnTap = true
         self.navigationController?.hidesBarsOnSwipe = true
+        if !attachedToNavController {
+            self.navigationController?.barHideOnSwipeGestureRecognizer.addTarget(self, action: #selector(didSwipe(_:)))
+            attachedToNavController = true
+        }
+        
     }
     
-//    override var prefersStatusBarHidden : Bool {
-//        return self.navigationController?.isNavigationBarHidden ?? false
-//    }
-//    
+    func didSwipe(_ swipe: UIPanGestureRecognizer) {
+        
+        // Visible to hidden
+        if curFramePosition == 0 && self.navigationController?.navigationBar.frame.origin.y == -44 {
+            curFramePosition = -44
+            showStatusBar = false
+            setNeedsStatusBarAppearanceUpdate()
+        }
+            // Hidden to visible
+        else if curFramePosition == -44 && self.navigationController?.navigationBar.frame.origin.y == 0 {
+            curFramePosition = 0
+            showStatusBar = true
+            setNeedsStatusBarAppearanceUpdate()
+        }
+        
+    }
+    
+    
+    override var prefersStatusBarHidden : Bool {
+        return !showStatusBar
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
+//
     override func viewDidLayoutSubviews() {
         let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
         webView.scrollView.contentInset = insets
         webView.scrollView.scrollIndicatorInsets = insets
+        
+        
     }
 
     /*
