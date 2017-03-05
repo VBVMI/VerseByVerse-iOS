@@ -37,7 +37,8 @@ open class Study: _Study {
         study.averageRating = nullOrString(try JSONDict => "averageRating")
         
         study.lessonCount = try JSONDict => "lessonCount"
-
+        study.url = nullOrString(try JSONDict => "url")
+        
         if let topicsArray: [NSDictionary] = try JSONDict => "topics" as? [NSDictionary] {
             //Then lets process the topics
             var myTopics = Set<Topic>()

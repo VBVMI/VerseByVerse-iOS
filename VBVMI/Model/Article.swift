@@ -32,7 +32,7 @@ open class Article: _Article {
         
         article.articleThumbnailAltText = nullOrString(try JSONDict => "articleThumbnailAltText")
         article.articleThumbnailSource = nullOrString(try JSONDict => "articleThumbnailSource")
-        
+        article.url = nullOrString(try JSONDict => "url")
 //        if let thumbSource = article.articleThumbnailSource {
 //            article.articleThumbnailSource = thumbSource.stringByReplacingOccurrencesOfString("SMALL", withString: "")
 //        }

@@ -22,6 +22,7 @@ open class Event: _Event {
         let eventDescription: String = try JSONDict => "description"
         event.descriptionText = eventDescription.stringByDecodingHTMLEntities
         event.thumbnailAltText = nullOrString(try JSONDict => "thumbnailAltText")
+        event.url = nullOrString(try JSONDict => "url")
         
         if let dateString: String = try JSONDict => "eventDate" {
             if let date = DateFormatters.calendarDateFormatter.date(from: dateString) {

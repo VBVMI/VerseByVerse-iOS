@@ -29,6 +29,8 @@ open class Channel: _Channel {
         let studyTitle: String = try JSONDict => "title"
         channel.title = studyTitle.stringByDecodingHTMLEntities
         
+        channel.url = nullOrString(try JSONDict => "url")
+        
         channel.averageRating = nullOrString(try JSONDict => "averageRating")
         
         if let videosArray: [NSDictionary] = try JSONDict => "videos" as? [NSDictionary] {

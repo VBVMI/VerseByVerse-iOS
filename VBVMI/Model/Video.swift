@@ -35,6 +35,8 @@ open class Video: _Video {
         video.videoSource = try JSONDict => "videoSource"
         video.videoLength = try JSONDict => "videoLength"
         
+        video.url = nullOrString(try JSONDict => "url")
+        
         let studyTitle: String = try JSONDict => "title"
         video.title = studyTitle.stringByDecodingHTMLEntities
         
