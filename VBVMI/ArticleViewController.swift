@@ -12,6 +12,8 @@ import AlamofireImage
 
 class ArticleViewController: UITableViewController {
 
+    private let activity = NSUserActivity(activityType: "org.versebyverseministry.www")
+    
     var article: Article! {
         didSet {
             self.navigationItem.title = article.title
@@ -23,6 +25,12 @@ class ArticleViewController: UITableViewController {
                     bodyPieces.remove(at: 0)
                     bodyPieces.insert(str, at: 0)
                 }
+            }
+            
+            if let urlString = article.url, let url = URL(string: urlString) {
+                activity.title = article.title
+                activity.webpageURL = url
+                activity.becomeCurrent()
             }
         }
     }
@@ -45,6 +53,11 @@ class ArticleViewController: UITableViewController {
         }
         self.article = article
         super.decodeRestorableState(with: coder)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        activity.invalidate()
     }
     
     override func viewDidLoad() {

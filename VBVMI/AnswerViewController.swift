@@ -11,6 +11,8 @@ import UIKit
 
 class AnswerViewController: UITableViewController {
 
+    private let activity = NSUserActivity(activityType: "org.versebyverseministry.www")
+    
     var answer: Answer! {
         didSet {
             self.navigationItem.title = answer.title
@@ -23,6 +25,12 @@ class AnswerViewController: UITableViewController {
                     bodyPieces.remove(at: 0)
                     bodyPieces.insert(str, at: 0)
                 }
+            }
+            
+            if let urlString = answer.url, let url = URL(string: urlString) {
+                activity.title = answer.title
+                activity.webpageURL = url
+                activity.becomeCurrent()
             }
         }
     }
@@ -57,6 +65,11 @@ class AnswerViewController: UITableViewController {
         
         let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
         self.navigationItem.rightBarButtonItem = shareButton
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        activity.invalidate()
     }
     
     func shareAction(_ button: Any) {

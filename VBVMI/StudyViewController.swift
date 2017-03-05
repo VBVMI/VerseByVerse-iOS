@@ -22,6 +22,7 @@ class StudyViewController: UITableViewController {
     @IBOutlet var headerBackingView: UIView!
     @IBOutlet var blurredImageView: UIImageView!
     @IBOutlet var headerImageView: UIImageView!
+    private let activity = NSUserActivity(activityType: "org.versebyverseministry.www")
     
     fileprivate let barButtonItem: UIBarButtonItem = UIBarButtonItem(title: String.fontAwesomeIconWithName(.EllipsisH), style: .plain, target: nil, action: #selector(tappedMenu))
     
@@ -60,6 +61,13 @@ class StudyViewController: UITableViewController {
             if let identifier = study?.identifier {
                 APIDataManager.lessons(identifier)
             }
+            
+            if let urlString = study.url, let url = URL(string: urlString) {
+                activity.title = study?.title
+                activity.webpageURL = url
+                activity.becomeCurrent()
+            }
+            
         }
     }
     fileprivate let kTableHeaderHeight: CGFloat = 300.0
@@ -417,6 +425,7 @@ class StudyViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         ResourceManager.sharedInstance.removeDownloadObserver(self)
+        activity.invalidate()
     }
     
     var calculatedDescriptionHeight : CGFloat? = nil

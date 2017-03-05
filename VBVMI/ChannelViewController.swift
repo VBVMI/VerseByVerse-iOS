@@ -15,10 +15,21 @@ class ChannelViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     fileprivate var fetchedResultsController: NSFetchedResultsController<Video>!
-    
+    private let activity = NSUserActivity(activityType: "org.versebyverseministry.www")
     fileprivate let formatter = DateComponentsFormatter()
     fileprivate let videoCellIdentifier = "ChannelCell"
-    var channel: Channel!
+    var channel: Channel! {
+        didSet {
+            if let channel = channel {
+                navigationItem.title = channel.title
+                if let urlString = channel.url, let url = URL(string: urlString) {
+                    activity.title = channel.title
+                    activity.webpageURL = url
+                    activity.becomeCurrent()
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +41,11 @@ class ChannelViewController: UIViewController {
         
         let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
         self.navigationItem.rightBarButtonItem = shareButton
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        activity.invalidate()
     }
     
     func shareAction(_ button: Any) {
