@@ -3,7 +3,7 @@ PODS:
   - Alamofire (4.0.1)
   - AlamofireImage (3.1.0):
     - Alamofire (~> 4.0)
-  - Crashlytics (3.8.3):
+  - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - CSStickyHeaderFlowLayout (0.2.11)
   - Decodable (0.5)
@@ -54,7 +54,7 @@ SPEC CHECKSUMS:
   ACPDownload: 9c6349be96019b6c8c87ad46570af1cbc7106bf4
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
-  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   CSStickyHeaderFlowLayout: e9bcb1762413f49d7d09e5bd0ae5efd1100116b7
   Decodable: 7c90acc68d357b71d0d6efc120faf9c53c644b7e
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
@@ -70,4 +70,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ec660b8263994dc29c2c25bbad01ee20a66034a3
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0
