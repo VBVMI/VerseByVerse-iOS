@@ -108,7 +108,28 @@ extension StudyViewController : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let lesson = fetchedResultsController.object(at: indexPath)
-        if let urlString = ResourceManager.LessonType.audio.urlString(lesson) {
+        if let urlString = lesson.videoSourceURL, urlString.contains("vimeo.com"), let url = URL(string: urlString) {
+            let player = AVPlayer(url: url)
+            let controller = AVPlayerViewController()
+            controller.delegate = self
+            controller.player = player
+            
+            let titleItem = makeMetadataItem(AVMetadataCommonIdentifierTitle, value: lesson.title)
+            
+            var items = [titleItem]
+            if let text = lesson.descriptionText {
+                items.append(makeMetadataItem(AVMetadataCommonIdentifierDescription, value: text))
+            }
+            if let image = imageView.image {
+                items.append(makeMetadataItem(AVMetadataCommonIdentifierArtwork, value: image))
+            }
+            
+            player.currentItem?.externalMetadata = items
+            UIApplication.shared.isIdleTimerDisabled = true
+            present(controller, animated: true, completion: {
+                player.play()
+            })
+        } else if let urlString = ResourceManager.LessonType.audio.urlString(lesson) {
             if let url = URL(string: urlString) {
 
                 let audioPlayer = AVPlayer(url: url)
@@ -119,7 +140,13 @@ extension StudyViewController : UICollectionViewDelegate {
                 controller.player = audioPlayer
                 
                 let titleItem = makeMetadataItem(AVMetadataCommonIdentifierTitle, value: lesson.title)
-                let items = [titleItem]
+                var items = [titleItem]
+                if let text = lesson.descriptionText {
+                    items.append(makeMetadataItem(AVMetadataCommonIdentifierDescription, value: text))
+                }
+                if let image = imageView.image {
+                    items.append(makeMetadataItem(AVMetadataCommonIdentifierArtwork, value: image))
+                }
                 
                 audioPlayer.currentItem?.externalMetadata = items
                 

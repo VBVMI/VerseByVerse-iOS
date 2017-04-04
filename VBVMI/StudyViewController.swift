@@ -13,6 +13,8 @@ import AlamofireImage
 import CoreData
 import ACPDownload
 import LNPopupController
+import AVKit
+import AVFoundation
 
 class StudyViewController: UITableViewController {
 
@@ -276,7 +278,19 @@ class StudyViewController: UITableViewController {
                                     })
                                 }
                             case .video:
-                                UIApplication.shared.openURL(url)
+                                if url.absoluteString.contains("vimeo.com") {
+                                    let movieController = AVPlayerViewController()
+                                    let player = AVPlayer(url: url)
+                                    movieController.player = player
+                                    
+                                    this.present(movieController, animated: true, completion: {
+                                        player.play()
+                                    })
+                                } else {
+                                    UIApplication.shared.openURL(url)
+                                }
+                                
+                                
                             }
                             
                         }
