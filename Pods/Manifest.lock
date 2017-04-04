@@ -1,5 +1,20 @@
 PODS:
   - ACPDownload (1.1.0)
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
   - Alamofire (4.0.1)
   - AlamofireImage (3.1.0):
     - Alamofire (~> 4.0)
@@ -20,6 +35,8 @@ PODS:
   - SnapKit (3.0.2)
   - STRegex (0.4.2)
   - UIImage-Color (1.1.1)
+  - VimeoNetworking (0.0.1):
+    - AFNetworking (= 3.1.0)
   - XCGLogger (4.0.0):
     - XCGLogger/Core (= 4.0.0)
   - XCGLogger/Core (4.0.0)
@@ -39,19 +56,26 @@ DEPENDENCIES:
   - SnapKit
   - STRegex
   - UIImage-Color
+  - VimeoNetworking (from `https://github.com/TomCarey/VimeoNetworking.git`)
   - XCGLogger
 
 EXTERNAL SOURCES:
   FontAwesome.swift:
     :git: git@github.com:thii/FontAwesome.swift.git
+  VimeoNetworking:
+    :git: https://github.com/TomCarey/VimeoNetworking.git
 
 CHECKOUT OPTIONS:
   FontAwesome.swift:
     :commit: b03d71746f277690d1ff7df0c539641c4ba57d4d
     :git: git@github.com:thii/FontAwesome.swift.git
+  VimeoNetworking:
+    :commit: 2c7044b70f35c636b51c08785ef4a4ab4520977b
+    :git: https://github.com/TomCarey/VimeoNetworking.git
 
 SPEC CHECKSUMS:
   ACPDownload: 9c6349be96019b6c8c87ad46570af1cbc7106bf4
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
@@ -66,8 +90,9 @@ SPEC CHECKSUMS:
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   STRegex: 9b6e0a4300c8442d1aa93241c895eeec4cc56935
   UIImage-Color: 29d79c2acdd1836eae9815836a14fddfcd2db38f
+  VimeoNetworking: 17f8d451e4a168044f619315d0cd821669676e67
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: ec660b8263994dc29c2c25bbad01ee20a66034a3
+PODFILE CHECKSUM: fb49ffe29652e652febe3f82f5e76ab048f540fb
 
 COCOAPODS: 1.2.0
