@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        logger.info("🍕Application will finish with options: \(launchOptions)")
+        logger.info("🍕Application will finish with options: \(launchOptions ?? [:])")
         //Fabric.sharedSDK().debug = true
         
 //        DDTTYLogger.sharedInstance().colorsEnabled = true
@@ -108,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         Fabric.with([Crashlytics.self])
-        logger.info("🍕Application did finish Launching with options: \(launchOptions)")
+        logger.info("🍕Application did finish Launching with options: \(launchOptions ?? [:])")
         Theme.default.applyTheme()
         
         logger.info("🍕Creating Sound Manager")

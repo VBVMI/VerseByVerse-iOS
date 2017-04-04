@@ -212,7 +212,7 @@ class AudioPlayerViewController: UIViewController {
                     
                 }
                 self.lesson?.audioProgress = 0
-                logger.debug("Finish progress: \(self.lesson?.audioProgress)")
+                logger.debug("Finish progress: \(self.lesson?.audioProgress ?? -1)")
                 let _ = try? self.lesson?.managedObjectContext?.save()
             })
         }

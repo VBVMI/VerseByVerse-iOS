@@ -586,7 +586,7 @@ class SoundManager: NSObject {
                     self.lesson?.audioProgress = 0
                 } else {
                     self.lesson?.audioProgress = max(0, min(currentTimeSeconds / durationSeconds, 1))
-                    logger.debug("progress: \(self.lesson?.audioProgress)")
+                    logger.debug("progress: \(self.lesson?.audioProgress ?? -1)")
                 }
             }
             
@@ -603,7 +603,7 @@ class SoundManager: NSObject {
     fileprivate var wasPlaying = false
     
     func handleInterruption(_ notification: Notification) {
-        logger.info("🍕Handle interruption wasplaying: \(self.wasPlaying) notification: \(notification.userInfo)")
+        logger.info("🍕Handle interruption wasplaying: \(self.wasPlaying) notification: \(notification.userInfo ?? [:])")
         guard let userInfo = (notification as NSNotification).userInfo as? [String: AnyObject] else { return }
         guard let type = userInfo[AVAudioSessionInterruptionTypeKey] as? AVAudioSessionInterruptionType else { return }
         
@@ -625,7 +625,7 @@ class SoundManager: NSObject {
     fileprivate var audioSessionConfigured = false
     
     func handleNotification(_ notification: Notification) {
-        logger.info("🍕\(notification.name) - \(notification.userInfo)")
+        logger.info("🍕\(notification.name) - \(notification.userInfo ?? [:])")
     }
     
 //    private func setupAudioSession(completion: ((success: Bool)->())?) {
@@ -676,7 +676,7 @@ class SoundManager: NSObject {
         logger.info("🍕registering observers")
         let session = AVAudioSession.sharedInstance()
         audioInterruptionObserverToken = NotificationCenter.default.addObserver(forName: NSNotification.Name.AVAudioSessionInterruption, object: session, queue: nil) { [weak self] (notification) in
-            logger.info("🍕Interruption: \((notification as NSNotification).userInfo)")
+            logger.info("🍕Interruption: \((notification as NSNotification).userInfo ?? [:])")
             if let value = (notification as NSNotification).userInfo?[AVAudioSessionInterruptionTypeKey] as? NSNumber {
                 if let key = AVAudioSessionInterruptionType(rawValue: value.uintValue) , key == .began {
                     logger.info("🍕Began")
