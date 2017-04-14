@@ -126,7 +126,7 @@
 		989294D01C8BE07E00C19095 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989294CE1C8BE07E00C19095 /* AudioPlayer.swift */; };
 		989AC5141DB4C0B600A825EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AC5131DB4C0B600A825EB /* AppDelegate.swift */; };
 		989AC5161DB4C0B600A825EB /* StudiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AC5151DB4C0B600A825EB /* StudiesViewController.swift */; };
-		989AC5181DB4C0B600A825EB /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AC5171DB4C0B600A825EB /* SecondViewController.swift */; };
+		989AC5181DB4C0B600A825EB /* VideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AC5171DB4C0B600A825EB /* VideosViewController.swift */; };
 		989AC51B1DB4C0B600A825EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 989AC5191DB4C0B600A825EB /* Main.storyboard */; };
 		989AC51D1DB4C0B600A825EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 989AC51C1DB4C0B600A825EB /* Assets.xcassets */; };
 		989AC5281DB4C0B600A825EB /* VBVMI_tvOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AC5271DB4C0B600A825EB /* VBVMI_tvOSTests.swift */; };
@@ -373,7 +373,7 @@
 		989AC5111DB4C0B600A825EB /* VBVMI-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VBVMI-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		989AC5131DB4C0B600A825EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		989AC5151DB4C0B600A825EB /* StudiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudiesViewController.swift; sourceTree = "<group>"; };
-		989AC5171DB4C0B600A825EB /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		989AC5171DB4C0B600A825EB /* VideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosViewController.swift; sourceTree = "<group>"; };
 		989AC51A1DB4C0B600A825EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		989AC51C1DB4C0B600A825EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		989AC51E1DB4C0B600A825EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -788,7 +788,7 @@
 				989AC5131DB4C0B600A825EB /* AppDelegate.swift */,
 				989AC5151DB4C0B600A825EB /* StudiesViewController.swift */,
 				98380D0F1DE980830012AADE /* StudyViewController.swift */,
-				989AC5171DB4C0B600A825EB /* SecondViewController.swift */,
+				989AC5171DB4C0B600A825EB /* VideosViewController.swift */,
 				98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */,
 				98196FEA1DED7A5700654276 /* LessonCollectionViewCell.swift */,
 				985A95781E6416BF00758CC5 /* StudiesTableViewCell.swift */,
@@ -1620,7 +1620,7 @@
 				989AC5451DB4C22200A825EB /* Topic.swift in Sources */,
 				989AC5411DB4C22200A825EB /* Channel.swift in Sources */,
 				98196FEB1DED7A5700654276 /* LessonCollectionViewCell.swift in Sources */,
-				989AC5181DB4C0B600A825EB /* SecondViewController.swift in Sources */,
+				989AC5181DB4C0B600A825EB /* VideosViewController.swift in Sources */,
 				989AC5141DB4C0B600A825EB /* AppDelegate.swift in Sources */,
 				989AC54E1DB4C22700A825EB /* _Lesson.swift in Sources */,
 				989AC5521DB4C26700A825EB /* JsonAPI.swift in Sources */,
