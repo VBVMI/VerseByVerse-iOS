@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="appleTV" orientation="landscape">
         <adaptation id="light"/>
     </device>
     <dependencies>
         <deployment identifier="tvOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,6 +19,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="251" height="297"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MRL-DN-yPG">
+                        <rect key="frame" x="0.0" y="0.0" width="251" height="297"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMh-Wm-Fkl">
+                        <rect key="frame" x="8" y="8" width="235" height="281"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="26"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Pl-EU-t28">
                         <rect key="frame" x="0.0" y="0.0" width="251" height="297"/>
                     </imageView>
@@ -26,12 +36,22 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="3Pl-EU-t28" secondAttribute="trailing" id="FL4-vN-eRI"/>
                 <constraint firstItem="3Pl-EU-t28" firstAttribute="top" secondItem="Rz2-K0-ksD" secondAttribute="top" id="MdM-97-ekg"/>
+                <constraint firstItem="qMh-Wm-Fkl" firstAttribute="top" secondItem="Rz2-K0-ksD" secondAttribute="topMargin" id="SgC-OB-epM"/>
+                <constraint firstItem="MRL-DN-yPG" firstAttribute="top" secondItem="Rz2-K0-ksD" secondAttribute="top" id="TyX-8T-xkE"/>
+                <constraint firstAttribute="bottom" secondItem="MRL-DN-yPG" secondAttribute="bottom" id="YEP-Cg-B9h"/>
                 <constraint firstItem="3Pl-EU-t28" firstAttribute="leading" secondItem="Rz2-K0-ksD" secondAttribute="leading" id="YgI-yN-tX1"/>
+                <constraint firstAttribute="trailingMargin" secondItem="qMh-Wm-Fkl" secondAttribute="trailing" id="bQn-Sd-G24"/>
+                <constraint firstAttribute="trailing" secondItem="MRL-DN-yPG" secondAttribute="trailing" id="gO6-EF-NNL"/>
+                <constraint firstItem="qMh-Wm-Fkl" firstAttribute="leading" secondItem="Rz2-K0-ksD" secondAttribute="leadingMargin" id="gQo-8r-Us0"/>
+                <constraint firstItem="MRL-DN-yPG" firstAttribute="leading" secondItem="Rz2-K0-ksD" secondAttribute="leading" id="lES-es-iD2"/>
+                <constraint firstAttribute="bottomMargin" secondItem="qMh-Wm-Fkl" secondAttribute="bottom" id="ptN-2F-XeG"/>
                 <constraint firstAttribute="bottom" secondItem="3Pl-EU-t28" secondAttribute="bottom" id="yoy-eC-wOq"/>
             </constraints>
             <size key="customSize" width="251" height="297"/>
             <connections>
+                <outlet property="backgroundImage" destination="MRL-DN-yPG" id="IHW-y5-tkp"/>
                 <outlet property="mainImage" destination="3Pl-EU-t28" id="qVu-ur-Ouu"/>
+                <outlet property="mainTitle" destination="qMh-Wm-Fkl" id="jet-YY-43J"/>
             </connections>
             <point key="canvasLocation" x="169.5" y="230.5"/>
         </collectionViewCell>

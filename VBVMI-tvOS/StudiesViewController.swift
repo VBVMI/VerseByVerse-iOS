@@ -37,7 +37,8 @@ class StudiesDataSource : NSObject, UICollectionViewDataSource, UICollectionView
         let study = fetchedResultsController.object(at: realIndexPath)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StudyCell", for: indexPath) as! StudyCollectionViewCell
-        cell.mainImage.image = StyleKit.imageOfBlankBackgroundImage
+        
+        cell.mainTitle.text = study.title
         
         if let thumbnailSource = study.thumbnailSource {
             if let url = URL(string: thumbnailSource) {

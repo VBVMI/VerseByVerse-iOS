@@ -27,6 +27,22 @@
 		814A9FCBB15E0AC7E837826D /* Pods_VBVMI_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF77DD70A5B6A6263FAB994 /* Pods_VBVMI_tvOS.framework */; };
 		8E5F965B9D9C9002F95231CD /* Pods_VBVMI_tvOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C55649F4689A242C5CC8EE06 /* Pods_VBVMI_tvOSUITests.framework */; };
 		980579D71D31D9DE001C809C /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980579D61D31D9DE001C809C /* ChannelsViewController.swift */; };
+		980744B71EA0D06300043B1E /* articles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D4571C5DAD79004FA954 /* articles.json */; };
+		980744B81EA0D06300043B1E /* articlesP.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D4581C5DAD79004FA954 /* articlesP.json */; };
+		980744B91EA0D06300043B1E /* channels.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D4591C5DAD79004FA954 /* channels.json */; };
+		980744BA1EA0D06300043B1E /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D45A1C5DAD79004FA954 /* events.json */; };
+		980744BB1EA0D06300043B1E /* qa.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D45B1C5DAD79004FA954 /* qa.json */; };
+		980744BC1EA0D06300043B1E /* qaP.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D45C1C5DAD79004FA954 /* qaP.json */; };
+		980744BD1EA0D06300043B1E /* core.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D4531C5DAAC3004FA954 /* core.json */; };
+		980744BE1EA0D06300043B1E /* lesson.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D4551C5DAB37004FA954 /* lesson.json */; };
+		980744BF1EA0D06500043B1E /* articles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D4571C5DAD79004FA954 /* articles.json */; };
+		980744C01EA0D06500043B1E /* articlesP.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D4581C5DAD79004FA954 /* articlesP.json */; };
+		980744C11EA0D06500043B1E /* channels.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D4591C5DAD79004FA954 /* channels.json */; };
+		980744C21EA0D06500043B1E /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D45A1C5DAD79004FA954 /* events.json */; };
+		980744C31EA0D06500043B1E /* qa.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D45B1C5DAD79004FA954 /* qa.json */; };
+		980744C41EA0D06500043B1E /* qaP.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D45C1C5DAD79004FA954 /* qaP.json */; };
+		980744C51EA0D06500043B1E /* core.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D4531C5DAAC3004FA954 /* core.json */; };
+		980744C61EA0D06500043B1E /* lesson.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D4551C5DAB37004FA954 /* lesson.json */; };
 		980BE9681C9E9DEF003A5D84 /* _Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980BE9661C9E9DEF003A5D84 /* _Topic.swift */; };
 		980BE9691C9E9DEF003A5D84 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980BE9671C9E9DEF003A5D84 /* Topic.swift */; };
 		980BE96B1C9EACE4003A5D84 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980BE96A1C9EACE4003A5D84 /* StringExtensions.swift */; };
@@ -1085,16 +1101,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				980744C51EA0D06500043B1E /* core.json in Resources */,
 				98611CC31C9ABB4F0070FCCD /* ArticleTableViewCell.xib in Resources */,
+				980744C11EA0D06500043B1E /* channels.json in Resources */,
 				98F725C21D49E67600F73ED0 /* Settings.storyboard in Resources */,
 				986C2F1B1D339A1500F595FF /* VideoTableViewCell.xib in Resources */,
 				98644DA01C61F14C00EB27F1 /* StudyCellCollectionViewCell.xib in Resources */,
 				98D45BA01C86D61D004BBCBD /* AudioPlayerViewController.xib in Resources */,
+				980744C01EA0D06500043B1E /* articlesP.json in Resources */,
 				98CB0E3D1CA74E7F00C99D34 /* TopicViewController.xib in Resources */,
+				980744C21EA0D06500043B1E /* events.json in Resources */,
 				988D69891C9D51E6000ED16D /* AnswerBodyTableViewCell.xib in Resources */,
 				985C53A71D7ACFA5001A907F /* StudiesOptions.storyboard in Resources */,
 				9828D4211C5D9F4A004FA954 /* LaunchScreen.storyboard in Resources */,
 				982E37621D31ECF900FD9A93 /* Settings.bundle in Resources */,
+				980744C31EA0D06500043B1E /* qa.json in Resources */,
 				985C53B41D7AD939001A907F /* StaticCell.xib in Resources */,
 				9828D41E1C5D9F4A004FA954 /* Assets.xcassets in Resources */,
 				988D69851C9D51D2000ED16D /* AnswerHeaderTableViewCell.xib in Resources */,
@@ -1103,7 +1124,10 @@
 				980E6C0C1C7EE29B008F23D1 /* LessonTableViewCell.xib in Resources */,
 				988D69791C9C1034000ED16D /* ArticleBodyTableViewCell.xib in Resources */,
 				988D69751C9C0D87000ED16D /* ArticleHeaderTableViewCell.xib in Resources */,
+				980744C61EA0D06500043B1E /* lesson.json in Resources */,
 				986E00D71EA03EC400A8F1F6 /* curriculum.json in Resources */,
+				980744BF1EA0D06500043B1E /* articles.json in Resources */,
+				980744C41EA0D06500043B1E /* qaP.json in Resources */,
 				9828D4191C5D9F4A004FA954 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1113,9 +1137,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				989AC51D1DB4C0B600A825EB /* Assets.xcassets in Resources */,
+				980744B91EA0D06300043B1E /* channels.json in Resources */,
+				980744BC1EA0D06300043B1E /* qaP.json in Resources */,
+				980744BE1EA0D06300043B1E /* lesson.json in Resources */,
+				980744BA1EA0D06300043B1E /* events.json in Resources */,
+				980744BB1EA0D06300043B1E /* qa.json in Resources */,
+				980744B81EA0D06300043B1E /* articlesP.json in Resources */,
+				980744BD1EA0D06300043B1E /* core.json in Resources */,
 				989AC51B1DB4C0B600A825EB /* Main.storyboard in Resources */,
 				98F389341DDC45D40037B97E /* StudyCollectionViewCell.xib in Resources */,
 				986E00D81EA03EC400A8F1F6 /* curriculum.json in Resources */,
+				980744B71EA0D06300043B1E /* articles.json in Resources */,
 				985A957B1E6416BF00758CC5 /* StudiesTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
