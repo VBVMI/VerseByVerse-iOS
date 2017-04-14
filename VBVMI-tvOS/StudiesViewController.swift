@@ -117,12 +117,6 @@ class StudiesViewController: UIViewController {
         
         setupFetchedResultsController()
         
-        let scrollView = UIScrollView()
-        view.addSubview(scrollView)
-        scrollView.snp.makeConstraints { (make) in
-            make.edges.equalTo(view)
-        }
-        
         tableView.register(UINib(nibName: "StudiesTableViewCell", bundle: nil), forCellReuseIdentifier: "StudiesCell")
     }
     
@@ -138,7 +132,6 @@ class StudiesViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
     func reloadData() {
         tableView.reloadData()
