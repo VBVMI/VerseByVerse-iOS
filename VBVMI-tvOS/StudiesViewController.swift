@@ -118,6 +118,7 @@ class StudiesViewController: UIViewController {
         setupFetchedResultsController()
         
         tableView.register(UINib(nibName: "StudiesTableViewCell", bundle: nil), forCellReuseIdentifier: "StudiesCell")
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
