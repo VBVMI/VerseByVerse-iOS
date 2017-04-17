@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="appleTV" orientation="landscape">
+        <adaptation id="light"/>
+    </device>
+    <dependencies>
+        <deployment identifier="tvOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" rowHeight="431" id="fBs-An-CcD" customClass="VideosTableViewCell" customModule="VBVMI_tvOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="1920" height="431"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fBs-An-CcD" id="S0Q-fX-qc8">
+                <rect key="frame" x="0.0" y="0.0" width="1904" height="431"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="DBL-ZA-qoa">
+                        <rect key="frame" x="0.0" y="125" width="1920" height="306"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="306" id="MaR-d2-i3z"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="50G-VQ-ySn">
+                            <size key="itemSize" width="544" height="306"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="60" minY="0.0" maxX="60" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2013 Bible Conference" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAS-iI-8qb">
+                        <rect key="frame" x="68" y="38" width="401" height="48"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DrE-0b-pAK">
+                        <rect key="frame" x="1794" y="53" width="58" height="29"/>
+                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="DrE-0b-pAK" firstAttribute="trailing" secondItem="S0Q-fX-qc8" secondAttribute="trailingMargin" constant="-60" id="6kc-bJ-NpO"/>
+                    <constraint firstItem="dAS-iI-8qb" firstAttribute="leading" secondItem="S0Q-fX-qc8" secondAttribute="leadingMargin" constant="60" id="GTS-Z2-E3O"/>
+                    <constraint firstItem="DBL-ZA-qoa" firstAttribute="leading" secondItem="S0Q-fX-qc8" secondAttribute="leading" id="Omy-aJ-tjQ"/>
+                    <constraint firstAttribute="bottom" secondItem="DBL-ZA-qoa" secondAttribute="bottom" id="hMp-94-cCG"/>
+                    <constraint firstItem="DrE-0b-pAK" firstAttribute="baseline" secondItem="dAS-iI-8qb" secondAttribute="baseline" id="qrT-nf-dF8"/>
+                    <constraint firstItem="dAS-iI-8qb" firstAttribute="top" secondItem="S0Q-fX-qc8" secondAttribute="topMargin" constant="30" id="t4w-QI-PZu"/>
+                    <constraint firstAttribute="trailing" secondItem="DBL-ZA-qoa" secondAttribute="trailing" id="wzw-h2-YRa"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="channelTitleLabel" destination="dAS-iI-8qb" id="03l-wv-5Yj"/>
+                <outlet property="collectionView" destination="DBL-ZA-qoa" id="cCP-fP-hqC"/>
+                <outlet property="videosCountLabel" destination="DrE-0b-pAK" id="SaC-O7-kaI"/>
+            </connections>
+            <point key="canvasLocation" x="69" y="276.5"/>
+        </tableViewCell>
+    </objects>
+</document>

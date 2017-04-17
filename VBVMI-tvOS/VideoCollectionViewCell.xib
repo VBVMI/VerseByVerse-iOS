@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="appleTV" orientation="landscape">
+        <adaptation id="light"/>
+    </device>
+    <dependencies>
+        <deployment identifier="tvOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="Rz2-K0-ksD" customClass="VideoCollectionViewCell" customModule="VBVMI_tvOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="544" height="306"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="544" height="306"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="EndTimeCover" translatesAutoresizingMaskIntoConstraints="NO" id="jst-tp-UpO" userLabel="Video Thumbnail Image View">
+                        <rect key="frame" x="0.0" y="0.0" width="544" height="306"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bA9-2Y-ufX">
+                        <rect key="frame" x="0.0" y="0.0" width="544" height="80"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URw-tm-tKD">
+                                <rect key="frame" x="20" y="20" width="504" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.1018565188" alpha="0.5" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="URw-tm-tKD" secondAttribute="trailing" constant="20" id="8oZ-WK-rFT"/>
+                            <constraint firstItem="URw-tm-tKD" firstAttribute="centerY" secondItem="bA9-2Y-ufX" secondAttribute="centerY" id="TID-iE-04F"/>
+                            <constraint firstItem="URw-tm-tKD" firstAttribute="leading" secondItem="bA9-2Y-ufX" secondAttribute="leading" constant="20" id="osM-eA-sYq"/>
+                            <constraint firstAttribute="height" constant="80" id="xkG-hl-hj5"/>
+                        </constraints>
+                    </view>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFt-eU-3De">
+                        <rect key="frame" x="0.0" y="190" width="544" height="116"/>
+                        <color key="backgroundColor" white="0.1018565188172043" alpha="0.5" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="116" id="sf2-fE-D0i"/>
+                        </constraints>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="bA9-2Y-ufX" firstAttribute="top" secondItem="Rz2-K0-ksD" secondAttribute="top" id="0hO-Su-F36"/>
+                <constraint firstAttribute="trailing" secondItem="bA9-2Y-ufX" secondAttribute="trailing" id="HMa-Z1-d55"/>
+                <constraint firstItem="aFt-eU-3De" firstAttribute="leading" secondItem="Rz2-K0-ksD" secondAttribute="leading" id="Kgn-Ip-wIb"/>
+                <constraint firstAttribute="trailing" secondItem="aFt-eU-3De" secondAttribute="trailing" id="gDs-yA-VBk"/>
+                <constraint firstItem="bA9-2Y-ufX" firstAttribute="leading" secondItem="Rz2-K0-ksD" secondAttribute="leading" id="mqj-Pc-nIx"/>
+                <constraint firstAttribute="bottom" secondItem="aFt-eU-3De" secondAttribute="bottom" id="t86-lC-ce3"/>
+            </constraints>
+            <size key="customSize" width="544" height="307"/>
+            <connections>
+                <outlet property="descriptionTextView" destination="aFt-eU-3De" id="LkA-h0-dAD"/>
+                <outlet property="titleBackgroundView" destination="bA9-2Y-ufX" id="xlV-BO-SB6"/>
+                <outlet property="titleLabel" destination="URw-tm-tKD" id="a2b-rK-KgJ"/>
+                <outlet property="videoThumbnailImageView" destination="jst-tp-UpO" id="h1V-Q2-6wQ"/>
+            </connections>
+            <point key="canvasLocation" x="-178" y="235"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="EndTimeCover" width="640" height="360"/>
+    </resources>
+</document>

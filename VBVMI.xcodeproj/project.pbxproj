@@ -43,6 +43,10 @@
 		980744C41EA0D06500043B1E /* qaP.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D45C1C5DAD79004FA954 /* qaP.json */; };
 		980744C51EA0D06500043B1E /* core.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D4531C5DAAC3004FA954 /* core.json */; };
 		980744C61EA0D06500043B1E /* lesson.json in Resources */ = {isa = PBXBuildFile; fileRef = 9828D4551C5DAB37004FA954 /* lesson.json */; };
+		980744C91EA1B9E600043B1E /* VideosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980744C71EA1B9E600043B1E /* VideosTableViewCell.swift */; };
+		980744CA1EA1B9E600043B1E /* VideosTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 980744C81EA1B9E600043B1E /* VideosTableViewCell.xib */; };
+		980744CD1EA1BCD400043B1E /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980744CB1EA1BCD400043B1E /* VideoCollectionViewCell.swift */; };
+		980744CE1EA1BCD400043B1E /* VideoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 980744CC1EA1BCD400043B1E /* VideoCollectionViewCell.xib */; };
 		980BE9681C9E9DEF003A5D84 /* _Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980BE9661C9E9DEF003A5D84 /* _Topic.swift */; };
 		980BE9691C9E9DEF003A5D84 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980BE9671C9E9DEF003A5D84 /* Topic.swift */; };
 		980BE96B1C9EACE4003A5D84 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980BE96A1C9EACE4003A5D84 /* StringExtensions.swift */; };
@@ -276,6 +280,10 @@
 		9305E3DBDCA3CD2E54AE107B /* Pods-VBVMI-VBVMITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-VBVMITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-VBVMITests/Pods-VBVMI-VBVMITests.debug.xcconfig"; sourceTree = "<group>"; };
 		980579D61D31D9DE001C809C /* ChannelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
 		980579DC1D31DF79001C809C /* Keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Keys.xcconfig; sourceTree = SOURCE_ROOT; };
+		980744C71EA1B9E600043B1E /* VideosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideosTableViewCell.swift; sourceTree = "<group>"; };
+		980744C81EA1B9E600043B1E /* VideosTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideosTableViewCell.xib; sourceTree = "<group>"; };
+		980744CB1EA1BCD400043B1E /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		980744CC1EA1BCD400043B1E /* VideoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCollectionViewCell.xib; sourceTree = "<group>"; };
 		980BE9661C9E9DEF003A5D84 /* _Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Topic.swift; path = Model/_Topic.swift; sourceTree = "<group>"; };
 		980BE9671C9E9DEF003A5D84 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Topic.swift; path = Model/Topic.swift; sourceTree = "<group>"; };
 		980BE96A1C9EACE4003A5D84 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
@@ -540,6 +548,32 @@
 			name = "Answers and Articles";
 			sourceTree = "<group>";
 		};
+		980744CF1EA1BCE600043B1E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				989AC5151DB4C0B600A825EB /* StudiesViewController.swift */,
+				98380D0F1DE980830012AADE /* StudyViewController.swift */,
+				989AC5171DB4C0B600A825EB /* VideosViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		980744D01EA1BCF800043B1E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				98196FEA1DED7A5700654276 /* LessonCollectionViewCell.swift */,
+				98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */,
+				98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */,
+				985A95781E6416BF00758CC5 /* StudiesTableViewCell.swift */,
+				985A95791E6416BF00758CC5 /* StudiesTableViewCell.xib */,
+				980744C71EA1B9E600043B1E /* VideosTableViewCell.swift */,
+				980744C81EA1B9E600043B1E /* VideosTableViewCell.xib */,
+				980744CB1EA1BCD400043B1E /* VideoCollectionViewCell.swift */,
+				980744CC1EA1BCD400043B1E /* VideoCollectionViewCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		980E6C0F1C814E45008F23D1 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -786,14 +820,8 @@
 			isa = PBXGroup;
 			children = (
 				989AC5131DB4C0B600A825EB /* AppDelegate.swift */,
-				989AC5151DB4C0B600A825EB /* StudiesViewController.swift */,
-				98380D0F1DE980830012AADE /* StudyViewController.swift */,
-				989AC5171DB4C0B600A825EB /* VideosViewController.swift */,
-				98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */,
-				98196FEA1DED7A5700654276 /* LessonCollectionViewCell.swift */,
-				985A95781E6416BF00758CC5 /* StudiesTableViewCell.swift */,
-				985A95791E6416BF00758CC5 /* StudiesTableViewCell.xib */,
-				98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */,
+				980744CF1EA1BCE600043B1E /* Controllers */,
+				980744D01EA1BCF800043B1E /* Cells */,
 				989AC5191DB4C0B600A825EB /* Main.storyboard */,
 				989AC51C1DB4C0B600A825EB /* Assets.xcassets */,
 				989AC51E1DB4C0B600A825EB /* Info.plist */,
@@ -1141,12 +1169,14 @@
 				980744BC1EA0D06300043B1E /* qaP.json in Resources */,
 				980744BE1EA0D06300043B1E /* lesson.json in Resources */,
 				980744BA1EA0D06300043B1E /* events.json in Resources */,
+				980744CA1EA1B9E600043B1E /* VideosTableViewCell.xib in Resources */,
 				980744BB1EA0D06300043B1E /* qa.json in Resources */,
 				980744B81EA0D06300043B1E /* articlesP.json in Resources */,
 				980744BD1EA0D06300043B1E /* core.json in Resources */,
 				989AC51B1DB4C0B600A825EB /* Main.storyboard in Resources */,
 				98F389341DDC45D40037B97E /* StudyCollectionViewCell.xib in Resources */,
 				986E00D81EA03EC400A8F1F6 /* curriculum.json in Resources */,
+				980744CE1EA1BCD400043B1E /* VideoCollectionViewCell.xib in Resources */,
 				980744B71EA0D06300043B1E /* articles.json in Resources */,
 				985A957B1E6416BF00758CC5 /* StudiesTableViewCell.xib in Resources */,
 			);
@@ -1624,10 +1654,12 @@
 				989AC5141DB4C0B600A825EB /* AppDelegate.swift in Sources */,
 				989AC54E1DB4C22700A825EB /* _Lesson.swift in Sources */,
 				989AC5521DB4C26700A825EB /* JsonAPI.swift in Sources */,
+				980744C91EA1B9E600043B1E /* VideosTableViewCell.swift in Sources */,
 				98196FEC1DED825F00654276 /* StyleKit.swift in Sources */,
 				989AC5441DB4C22200A825EB /* Study.swift in Sources */,
 				989AC5161DB4C0B600A825EB /* StudiesViewController.swift in Sources */,
 				989AC53E1DB4C22200A825EB /* Answer.swift in Sources */,
+				980744CD1EA1BCD400043B1E /* VideoCollectionViewCell.swift in Sources */,
 				9846C90C1E45B3C900BDB6C3 /* ResourceManager.swift in Sources */,
 				989AC5531DB4C26700A825EB /* APIDataManager.swift in Sources */,
 				989AC53F1DB4C22200A825EB /* Article.swift in Sources */,
