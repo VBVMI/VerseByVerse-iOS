@@ -31,7 +31,7 @@ PODS:
     - Result
   - ReachabilitySwift (3)
   - Result (3.0.0)
-  - Reveal-SDK (6)
+  - Reveal-SDK (8)
   - SnapKit (3.0.2)
   - STRegex (0.4.2)
   - UIImage-Color (1.1.1)
@@ -87,7 +87,7 @@ SPEC CHECKSUMS:
   Moya: 920d40f738e6f4ece84010cec701bb9693be8251
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
-  Reveal-SDK: 67460e58f93711c7b18631d12c2b5de7740e48b5
+  Reveal-SDK: 43be4e662864e937960d0d04d005135e29c4e53b
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   STRegex: 9b6e0a4300c8442d1aa93241c895eeec4cc56935
   UIImage-Color: 29d79c2acdd1836eae9815836a14fddfcd2db38f

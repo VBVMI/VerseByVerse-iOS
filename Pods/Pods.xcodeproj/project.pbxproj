@@ -1649,6 +1649,7 @@
 		85A33BE04AE236D9CA0FC3BE352EB22A /* VIMPreference.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VIMPreference.h; path = VimeoNetworking/Sources/Models/VIMPreference.h; sourceTree = "<group>"; };
 		85B29D96B4F65D00AD28C6C47ED57499 /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = tvOS/Crashlytics.framework/Headers/CLSReport.h; sourceTree = "<group>"; };
 		866CB0ABA5A73986B2494E6F5EEAB7E5 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+AFNetworking.m"; path = "UIKit+AFNetworking/UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		868D18B50D2EAF03C105D81E4807081E /* RevealServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RevealServer.framework; path = "RevealServer-8/tvOS/RevealServer.framework"; sourceTree = "<group>"; };
 		86F2C8E098E4FD31614EADD41D5CA47E /* Pods-VBVMI-tvOS-VBVMI-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VBVMI-tvOS-VBVMI-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		87EB32F4836F338D6A8B0FDBDB7E7FE4 /* Request+Channel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Request+Channel.swift"; path = "VimeoNetworking/Sources/Request+Channel.swift"; sourceTree = "<group>"; };
 		888D8FA585847F6FB6BA957859BBE9EF /* ExceptionCatcher+Swift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ExceptionCatcher+Swift.swift"; path = "VimeoNetworking/Sources/ExceptionCatcher+Swift.swift"; sourceTree = "<group>"; };
@@ -1733,7 +1734,6 @@
 		A60AD17E8F6028DCD0A8140D9F204BA9 /* AFIError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFIError.swift; path = Source/AFIError.swift; sourceTree = "<group>"; };
 		A62586EBA1875C8C06FFB7408834618C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A63BD863BA033F0ECBB473B0BFE004BC /* Alamofire-tvOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Alamofire-tvOS-umbrella.h"; path = "../Alamofire-tvOS/Alamofire-tvOS-umbrella.h"; sourceTree = "<group>"; };
-		A66A5F43B3BC2530217D07E6D18C702A /* RevealServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RevealServer.framework; path = "RevealServer-6/tvOS/RevealServer.framework"; sourceTree = "<group>"; };
 		A6E8BED65B061A51021AF3A949E055D7 /* ConstraintLayoutGuide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuide.swift; path = Source/ConstraintLayoutGuide.swift; sourceTree = "<group>"; };
 		A77345ADDD9E9A11AEF86C73BDC4292C /* NSValueCastable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NSValueCastable.swift; path = Sources/NSValueCastable.swift; sourceTree = "<group>"; };
 		A790CCA294D9ECAAB11FEADE9ED4A2D1 /* Pods-VBVMI-VBVMIUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-VBVMI-VBVMIUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -1843,7 +1843,6 @@
 		D1C9BCA814AC50CD2D19A85E37A8CEBA /* Pods-VBVMI-VBVMIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VBVMI-VBVMIUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D2832171AB43001F13F454F61DCDFB92 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D38F02BBBA3BD07CE43F412E0F2D7266 /* VIMInteraction.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VIMInteraction.m; path = VimeoNetworking/Sources/Models/VIMInteraction.m; sourceTree = "<group>"; };
-		D3978E0F2C730FBADD6F28736F0444FA /* RevealServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RevealServer.framework; path = "RevealServer-6/iOS/RevealServer.framework"; sourceTree = "<group>"; };
 		D39D73A7BFEE0A66BFA73A4CE87DCD82 /* VIMVideoUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VIMVideoUtils.h; path = VimeoNetworking/Sources/Models/VIMVideoUtils.h; sourceTree = "<group>"; };
 		D3B7A130250C844C0B2E4A247509DDE7 /* VimeoSessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VimeoSessionManager.swift; path = VimeoNetworking/Sources/VimeoSessionManager.swift; sourceTree = "<group>"; };
 		D3C84CAE30DB18185E75FE0C7780E4C4 /* XCGLogger-tvOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "XCGLogger-tvOS-umbrella.h"; path = "../XCGLogger-tvOS/XCGLogger-tvOS-umbrella.h"; sourceTree = "<group>"; };
@@ -1873,6 +1872,7 @@
 		DD266AE4F60F3605317C2ECEC1EB0B04 /* Endpoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Endpoint.swift; path = Source/Endpoint.swift; sourceTree = "<group>"; };
 		DDF22FD5B869EA32554FC3F5B0CD439D /* VimeoNetworking-tvOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "VimeoNetworking-tvOS.xcconfig"; path = "../VimeoNetworking-tvOS/VimeoNetworking-tvOS.xcconfig"; sourceTree = "<group>"; };
 		DE6BBEDF7F747758F9D39696EFDFB7AF /* STRegex-tvOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; name = "STRegex-tvOS.modulemap"; path = "../STRegex-tvOS/STRegex-tvOS.modulemap"; sourceTree = "<group>"; };
+		DF0096B7B97B7C7DD48CA29C3E619173 /* RevealServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RevealServer.framework; path = "RevealServer-8/iOS/RevealServer.framework"; sourceTree = "<group>"; };
 		E04ED389007D597A9E039F5106A8DB2D /* AFNetworking-tvOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "AFNetworking-tvOS-dummy.m"; path = "../AFNetworking-tvOS/AFNetworking-tvOS-dummy.m"; sourceTree = "<group>"; };
 		E11BBC17711CF9A6F4E476E55206A504 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = iOS/Fabric.framework; sourceTree = "<group>"; };
 		E237E05C4B835FB83511FFDEB6CED6EB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -2429,15 +2429,6 @@
 			path = Crashlytics;
 			sourceTree = "<group>";
 		};
-		3AFDF7A36A96D27B89444EBDED6F4161 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D3978E0F2C730FBADD6F28736F0444FA /* RevealServer.framework */,
-				A66A5F43B3BC2530217D07E6D18C702A /* RevealServer.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		3D02FFC86DE85576344DFFBCF6FDA994 /* Pods-VBVMI-tvOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -2557,7 +2548,7 @@
 		5367A1105D08C08CDC9B63918C5C9672 /* Reveal-SDK */ = {
 			isa = PBXGroup;
 			children = (
-				3AFDF7A36A96D27B89444EBDED6F4161 /* Frameworks */,
+				D99A188523B663F9FCB007D3D7D49F83 /* Frameworks */,
 			);
 			name = "Reveal-SDK";
 			path = "Reveal-SDK";
@@ -3218,6 +3209,15 @@
 				DD2041FFA6CA5DE5CF1FFF014E5D201C /* digicert-sha2.cer */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		D99A188523B663F9FCB007D3D7D49F83 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF0096B7B97B7C7DD48CA29C3E619173 /* RevealServer.framework */,
+				868D18B50D2EAF03C105D81E4807081E /* RevealServer.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		DC0319E554A965E4E5D2814CAB8E25D1 /* Products */ = {
