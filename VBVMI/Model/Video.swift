@@ -17,6 +17,8 @@ open class Video: _Video {
         video.identifier = try JSONDict => "ID"
         video.thumbnailSource = try JSONDict => "thumbnailSource"
         video.videoIndex = Int32(index)
+        video.serviceVideoIdentifier = try? JSONDict => "serviceVideoID"
+        video.service = try? JSONDict => "service"
         
         let channelDescription: String = try JSONDict => "description"
         video.descriptionText = channelDescription.stringByDecodingHTMLEntities

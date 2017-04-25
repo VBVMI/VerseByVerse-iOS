@@ -32,7 +32,7 @@ open class Answer: _Answer {
         
         answer.qaThumbnailAltText = nullOrString(try JSONDict => "qAndAThumbnailAltText")
         answer.qaThumbnailSource = nullOrString(try JSONDict => "qAndAThumbnailSource")
-        answer.url = nullOrString(try JSONDict => "url")
+        answer.url = nullOrString(try? JSONDict => "url")
         
         //        if let thumbSource = article.articleThumbnailSource {
         //            article.articleThumbnailSource = thumbSource.stringByReplacingOccurrencesOfString("SMALL", withString: "")

@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import AVKit
 import AVFoundation
+import VimeoNetworking
 
 class ChannelViewController: UIViewController {
 
@@ -105,13 +106,36 @@ extension ChannelViewController: UITableViewDelegate {
         
         if let videoURLString = video.videoSource, let url = URL(string: videoURLString) {
             
-            if url.absoluteString.contains("vimeo.com") && false {
+            if let service = video.service, service == "vimeo", let serviceID = video.serviceVideoIdentifier {
                 let movieController = AVPlayerViewController()
-                let player = AVPlayer(url: url)
-                movieController.player = player
-                
+                let dispatchGroup = DispatchGroup()
+                dispatchGroup.enter()
                 self.present(movieController, animated: true, completion: {
-                    player.play()
+                    dispatchGroup.leave()
+                })
+                dispatchGroup.enter()
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                VimeoManager.shared.getVimeoURL(vimeoVideoID: serviceID, callback: { (result) in
+                    switch result {
+                    case .failure(let error):
+                        logger.error("Error loading video files: \(error)")
+                    case .success(let vimeoURL):
+                        let player = AVPlayer(url: vimeoURL)
+                        movieController.player = player
+                        
+                    }
+                    dispatchGroup.leave()
+                })
+                dispatchGroup.notify(queue: DispatchQueue.main, execute: { [weak movieController] in
+                    do {
+                        try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                    }
+                    catch {
+                        // report for an error
+                    }
+                    
+                    movieController?.player?.play()
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 })
             } else {
                 UIApplication.shared.openURL(url)

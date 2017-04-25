@@ -26,6 +26,14 @@
         <key>Type</key>
         <string>PSChildPaneSpecifier</string>
         <key>Title</key>
+        <string>AFNetworking</string>
+        <key>File</key>
+        <string>Acknowledgement-AFNetworking</string>
+      </dict>
+      <dict>
+        <key>Type</key>
+        <string>PSChildPaneSpecifier</string>
+        <key>Title</key>
         <string>Alamofire</string>
         <key>File</key>
         <string>Acknowledgement-Alamofire</string>
@@ -117,6 +125,14 @@
         <string>UIImage-Color</string>
         <key>File</key>
         <string>Acknowledgement-UIImage-Color</string>
+      </dict>
+      <dict>
+        <key>Type</key>
+        <string>PSChildPaneSpecifier</string>
+        <key>Title</key>
+        <string>VimeoNetworking</string>
+        <key>File</key>
+        <string>Acknowledgement-VimeoNetworking</string>
       </dict>
       <dict>
         <key>Type</key>

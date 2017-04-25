@@ -11,6 +11,8 @@ public enum VideoAttributes: String {
     case identifier = "identifier"
     case postedDate = "postedDate"
     case recordedDate = "recordedDate"
+    case service = "service"
+    case serviceVideoIdentifier = "serviceVideoIdentifier"
     case thumbnailAltText = "thumbnailAltText"
     case thumbnailSource = "thumbnailSource"
     case title = "title"
@@ -66,6 +68,12 @@ open class _Video: NSManagedObject {
 
     @NSManaged open
     var recordedDate: Date?
+
+    @NSManaged open
+    var service: String?
+
+    @NSManaged open
+    var serviceVideoIdentifier: String?
 
     @NSManaged open
     var thumbnailAltText: String?

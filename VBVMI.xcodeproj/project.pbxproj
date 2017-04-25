@@ -50,6 +50,10 @@
 		980BE9681C9E9DEF003A5D84 /* _Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980BE9661C9E9DEF003A5D84 /* _Topic.swift */; };
 		980BE9691C9E9DEF003A5D84 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980BE9671C9E9DEF003A5D84 /* Topic.swift */; };
 		980BE96B1C9EACE4003A5D84 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980BE96A1C9EACE4003A5D84 /* StringExtensions.swift */; };
+		980D95641EAED6DB000271FE /* Vimeo+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980D95631EAED6DB000271FE /* Vimeo+Extensions.swift */; };
+		980D95651EAED6DB000271FE /* Vimeo+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980D95631EAED6DB000271FE /* Vimeo+Extensions.swift */; };
+		980D95671EAF072D000271FE /* VimeoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980D95661EAF072D000271FE /* VimeoManager.swift */; };
+		980D95681EAF072D000271FE /* VimeoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980D95661EAF072D000271FE /* VimeoManager.swift */; };
 		980E6C0B1C7EE29B008F23D1 /* LessonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C091C7EE29B008F23D1 /* LessonTableViewCell.swift */; };
 		980E6C0C1C7EE29B008F23D1 /* LessonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 980E6C0A1C7EE29B008F23D1 /* LessonTableViewCell.xib */; };
 		980E6C0E1C814A3E008F23D1 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C0D1C814A3E008F23D1 /* Appearance.swift */; };
@@ -287,6 +291,8 @@
 		980BE9661C9E9DEF003A5D84 /* _Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Topic.swift; path = Model/_Topic.swift; sourceTree = "<group>"; };
 		980BE9671C9E9DEF003A5D84 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Topic.swift; path = Model/Topic.swift; sourceTree = "<group>"; };
 		980BE96A1C9EACE4003A5D84 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		980D95631EAED6DB000271FE /* Vimeo+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Vimeo+Extensions.swift"; sourceTree = "<group>"; };
+		980D95661EAF072D000271FE /* VimeoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VimeoManager.swift; sourceTree = "<group>"; };
 		980E6C091C7EE29B008F23D1 /* LessonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonTableViewCell.swift; sourceTree = "<group>"; };
 		980E6C0A1C7EE29B008F23D1 /* LessonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LessonTableViewCell.xib; sourceTree = "<group>"; };
 		980E6C0D1C814A3E008F23D1 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
@@ -662,6 +668,7 @@
 				98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */,
 				98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */,
 				98B3D29D1D49F501009AEF7D /* Settings.swift */,
+				980D95661EAF072D000271FE /* VimeoManager.swift */,
 				98F725C11D49E67600F73ED0 /* Settings.storyboard */,
 				980579DB1D31DA1C001C809C /* Answers and Articles */,
 				980579D91D31D9F3001C809C /* Studies */,
@@ -721,6 +728,7 @@
 				9828D4631C5F4D8D004FA954 /* APIDataManager.swift */,
 				986C37D71C652E8D0096BB83 /* StringExtensionHTML.swift */,
 				98644D941C61D7E400EB27F1 /* NSManagedObject+Extensions.swift */,
+				980D95631EAED6DB000271FE /* Vimeo+Extensions.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1586,6 +1594,7 @@
 				98FD5DDB1C92D4DF00B493E6 /* TabBarItem.swift in Sources */,
 				986C37E21C65D6300096BB83 /* _Lesson.swift in Sources */,
 				988D69781C9C1034000ED16D /* ArticleBodyTableViewCell.swift in Sources */,
+				980D95671EAF072D000271FE /* VimeoManager.swift in Sources */,
 				98CB0E3C1CA74E7F00C99D34 /* TopicViewController.swift in Sources */,
 				988D69841C9D51D2000ED16D /* AnswerHeaderTableViewCell.swift in Sources */,
 				986C37E31C65D6300096BB83 /* Lesson.swift in Sources */,
@@ -1621,6 +1630,7 @@
 				98FD5DD71C92873200B493E6 /* AnswersViewController.swift in Sources */,
 				98644D951C61D7E400EB27F1 /* NSManagedObject+Extensions.swift in Sources */,
 				988D69711C9BEADA000ED16D /* ArticleViewController.swift in Sources */,
+				980D95641EAED6DB000271FE /* Vimeo+Extensions.swift in Sources */,
 				986C37DD1C657CCE0096BB83 /* HideView.swift in Sources */,
 				9828D44D1C5DA2BC004FA954 /* _Study.swift in Sources */,
 				98611CA91C96A6550070FCCD /* _Channel.swift in Sources */,
@@ -1657,6 +1667,7 @@
 				980744C91EA1B9E600043B1E /* VideosTableViewCell.swift in Sources */,
 				98196FEC1DED825F00654276 /* StyleKit.swift in Sources */,
 				989AC5441DB4C22200A825EB /* Study.swift in Sources */,
+				980D95681EAF072D000271FE /* VimeoManager.swift in Sources */,
 				989AC5161DB4C0B600A825EB /* StudiesViewController.swift in Sources */,
 				989AC53E1DB4C22200A825EB /* Answer.swift in Sources */,
 				980744CD1EA1BCD400043B1E /* VideoCollectionViewCell.swift in Sources */,
@@ -1666,6 +1677,7 @@
 				989AC5501DB4C22C00A825EB /* VBVMI.xcdatamodeld in Sources */,
 				989AC5541DB4C26700A825EB /* StringExtensionHTML.swift in Sources */,
 				989AC5511DB4C23C00A825EB /* ContextCoordinator.swift in Sources */,
+				980D95651EAED6DB000271FE /* Vimeo+Extensions.swift in Sources */,
 				989AC54A1DB4C22700A825EB /* _Video.swift in Sources */,
 				989AC5401DB4C22200A825EB /* AudioPlayer.swift in Sources */,
 				989AC5471DB4C22700A825EB /* _Topic.swift in Sources */,

@@ -131,6 +131,8 @@
         <attribute name="identifier" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="postedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="recordedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="service" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="serviceVideoIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailAltText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -149,6 +151,6 @@
         <element name="Lesson" positionX="-324" positionY="-1467" width="128" height="373"/>
         <element name="Study" positionX="205" positionY="-1323" width="128" height="283"/>
         <element name="Topic" positionX="-0" positionY="-1440" width="128" height="133"/>
-        <element name="Video" positionX="189" positionY="-1035" width="128" height="255"/>
+        <element name="Video" positionX="189" positionY="-1035" width="128" height="285"/>
     </elements>
 </model>

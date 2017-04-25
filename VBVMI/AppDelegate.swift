@@ -13,6 +13,7 @@ import Fabric
 import Crashlytics
 import XCGLogger
 import ReachabilitySwift
+import VimeoNetworking
 
 let logger: XCGLogger = {
 //    let logger = XCGLogger.default
@@ -113,6 +114,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         logger.info("🍕Creating Sound Manager")
         let _ = SoundManager.sharedInstance
+        
+        
+        
         return true
     }
 
