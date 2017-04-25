@@ -90,6 +90,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ACPDownload/ACPDownload.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AFNetworking-iOS/AFNetworking.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire-iOS/Alamofire.framework"
   install_framework "$BUILT_PRODUCTS_DIR/AlamofireImage-iOS/AlamofireImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework"
@@ -102,10 +103,12 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/STRegex-iOS/Regex.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SnapKit-iOS/SnapKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIImage-Color/UIImage_Color.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/VimeoNetworking-iOS/VimeoNetworking.framework"
   install_framework "$BUILT_PRODUCTS_DIR/XCGLogger-iOS/XCGLogger.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ACPDownload/ACPDownload.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AFNetworking-iOS/AFNetworking.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire-iOS/Alamofire.framework"
   install_framework "$BUILT_PRODUCTS_DIR/AlamofireImage-iOS/AlamofireImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework"
@@ -117,6 +120,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/STRegex-iOS/Regex.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SnapKit-iOS/SnapKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIImage-Color/UIImage_Color.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/VimeoNetworking-iOS/VimeoNetworking.framework"
   install_framework "$BUILT_PRODUCTS_DIR/XCGLogger-iOS/XCGLogger.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
