@@ -293,6 +293,7 @@
 		980BE96A1C9EACE4003A5D84 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		980D95631EAED6DB000271FE /* Vimeo+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Vimeo+Extensions.swift"; sourceTree = "<group>"; };
 		980D95661EAF072D000271FE /* VimeoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VimeoManager.swift; sourceTree = "<group>"; };
+		980D95691EAF18BB000271FE /* VBVMIConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VBVMIConstants.h; sourceTree = "<group>"; };
 		980E6C091C7EE29B008F23D1 /* LessonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonTableViewCell.swift; sourceTree = "<group>"; };
 		980E6C0A1C7EE29B008F23D1 /* LessonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LessonTableViewCell.xib; sourceTree = "<group>"; };
 		980E6C0D1C814A3E008F23D1 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
@@ -682,6 +683,7 @@
 				980579DC1D31DF79001C809C /* Keys.xcconfig */,
 				9828D4221C5D9F4A004FA954 /* Info.plist */,
 				98D45BA11C86FAB4004BBCBD /* VBVMI-Bridging-Header.h */,
+				980D95691EAF18BB000271FE /* VBVMIConstants.h */,
 			);
 			path = VBVMI;
 			sourceTree = "<group>";

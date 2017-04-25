@@ -65,7 +65,7 @@ class VimeoManager {
             completion(Result.success(result: account))
         } else {
             let vimeoAuth = AuthenticationController(client: VimeoClient.defaultClient)
-            let token = VimeoAccessToken
+            let token = kVimeoAccessToken
             vimeoAuth.accessToken(token: token) { (result) in
                 logger.info("Vimeo Auth Result: \(result)")
                 completion(result)

@@ -14,7 +14,7 @@ private extension AppConfiguration
 {
     /// The default configuration to use for this application, populate your client key, secret, and scopes.
     /// Also, don't forget to set up your application to receive the code grant authentication redirect, see the README for details.
-    static let defaultConfiguration = AppConfiguration(clientIdentifier: VimeoClientIdentifier, clientSecret: VimeoClientSecret, scopes: [Scope.Public, Scope.Private], keychainService: "org.vbv")
+    static let defaultConfiguration = AppConfiguration(clientIdentifier: kVimeoClientIdentifier, clientSecret: kVimeoClientSecret, scopes: [Scope.Public, Scope.Private], keychainService: "org.versebyverseministry")
 }
 
 /// Extend vimeo client to provide a default client
