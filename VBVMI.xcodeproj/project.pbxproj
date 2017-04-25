@@ -54,6 +54,8 @@
 		980D95651EAED6DB000271FE /* Vimeo+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980D95631EAED6DB000271FE /* Vimeo+Extensions.swift */; };
 		980D95671EAF072D000271FE /* VimeoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980D95661EAF072D000271FE /* VimeoManager.swift */; };
 		980D95681EAF072D000271FE /* VimeoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980D95661EAF072D000271FE /* VimeoManager.swift */; };
+		980D956C1EAF1A5F000271FE /* VBVMIConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 980D956B1EAF1A5F000271FE /* VBVMIConstants.m */; };
+		980D956D1EAF1A5F000271FE /* VBVMIConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 980D956B1EAF1A5F000271FE /* VBVMIConstants.m */; };
 		980E6C0B1C7EE29B008F23D1 /* LessonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C091C7EE29B008F23D1 /* LessonTableViewCell.swift */; };
 		980E6C0C1C7EE29B008F23D1 /* LessonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 980E6C0A1C7EE29B008F23D1 /* LessonTableViewCell.xib */; };
 		980E6C0E1C814A3E008F23D1 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C0D1C814A3E008F23D1 /* Appearance.swift */; };
@@ -294,6 +296,8 @@
 		980D95631EAED6DB000271FE /* Vimeo+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Vimeo+Extensions.swift"; sourceTree = "<group>"; };
 		980D95661EAF072D000271FE /* VimeoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VimeoManager.swift; sourceTree = "<group>"; };
 		980D95691EAF18BB000271FE /* VBVMIConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VBVMIConstants.h; sourceTree = "<group>"; };
+		980D956A1EAF1A5E000271FE /* VBVMI-tvOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VBVMI-tvOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		980D956B1EAF1A5F000271FE /* VBVMIConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBVMIConstants.m; sourceTree = "<group>"; };
 		980E6C091C7EE29B008F23D1 /* LessonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonTableViewCell.swift; sourceTree = "<group>"; };
 		980E6C0A1C7EE29B008F23D1 /* LessonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LessonTableViewCell.xib; sourceTree = "<group>"; };
 		980E6C0D1C814A3E008F23D1 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
@@ -684,6 +688,8 @@
 				9828D4221C5D9F4A004FA954 /* Info.plist */,
 				98D45BA11C86FAB4004BBCBD /* VBVMI-Bridging-Header.h */,
 				980D95691EAF18BB000271FE /* VBVMIConstants.h */,
+				980D956B1EAF1A5F000271FE /* VBVMIConstants.m */,
+				980D956A1EAF1A5E000271FE /* VBVMI-tvOS-Bridging-Header.h */,
 			);
 			path = VBVMI;
 			sourceTree = "<group>";
@@ -1059,6 +1065,7 @@
 					989AC5101DB4C0B600A825EB = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 4UDQLK73PW;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes.appletvos = {
@@ -1587,6 +1594,7 @@
 				98D45B9F1C86D61D004BBCBD /* AudioPlayerViewController.swift in Sources */,
 				986C37D81C652E8D0096BB83 /* StringExtensionHTML.swift in Sources */,
 				98C80A061CD430BC000EAD3D /* VolumeView.swift in Sources */,
+				980D956C1EAF1A5F000271FE /* VBVMIConstants.m in Sources */,
 				984650F41CF0175E00F4A46F /* LessonsHeader.swift in Sources */,
 				987F02F91CF0625E00AB61FA /* DotView.swift in Sources */,
 				980E6C0B1C7EE29B008F23D1 /* LessonTableViewCell.swift in Sources */,
@@ -1654,6 +1662,7 @@
 				98F389331DDC45D40037B97E /* StudyCollectionViewCell.swift in Sources */,
 				989AC5551DB4C26700A825EB /* NSManagedObject+Extensions.swift in Sources */,
 				989AC54B1DB4C22700A825EB /* _Article.swift in Sources */,
+				980D956D1EAF1A5F000271FE /* VBVMIConstants.m in Sources */,
 				989AC5481DB4C22700A825EB /* _AudioPlayer.swift in Sources */,
 				989AC54D1DB4C22700A825EB /* _Event.swift in Sources */,
 				98C35DBB1DB4CDB70052398E /* NSDateExtensions.swift in Sources */,
@@ -1987,6 +1996,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				DEVELOPMENT_TEAM = 4UDQLK73PW;
@@ -1997,6 +2007,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "VBVMI/VBVMI-tvOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.0;
@@ -2011,6 +2023,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				DEVELOPMENT_TEAM = 4UDQLK73PW;
@@ -2019,6 +2032,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = VBVM.VBVM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "VBVMI/VBVMI-tvOS-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.0;

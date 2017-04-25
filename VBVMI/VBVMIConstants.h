@@ -9,8 +9,8 @@
 #ifndef VBVMIConstants_h
 #define VBVMIConstants_h
 
-const NSString* kVimeoClientSecret = VIMEO_CLIENT_SECRET;
-const NSString* kVimeoClientIdentifier = VIMEO_CLIENT_IDENTIFIER;
-const NSString* kVimeoAccessToken = VIMEO_ACCESS_TOKEN;
+extern const NSString* kVimeoClientSecret;
+extern const NSString* kVimeoClientIdentifier;
+extern const NSString* kVimeoAccessToken;
 
 #endif /* VBVMIConstants_h */

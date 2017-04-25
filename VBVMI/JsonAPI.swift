@@ -125,7 +125,11 @@ public struct Provider {
     public static func APIKeysBasedStubBehaviour(_ target: JsonAPI) -> Moya.StubBehavior {
         switch target {
         default:
-            return .delayed(seconds: 0.2)//.never
+            #if DEBUG
+            return .never// .delayed(seconds: 0.2)//
+            #else
+            return .never
+            #endif
         }
     }
     
