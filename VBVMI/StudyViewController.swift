@@ -284,6 +284,12 @@ class StudyViewController: UITableViewController {
                                     movieController.player = player
                                     
                                     this.present(movieController, animated: true, completion: {
+                                        do {
+                                            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                                        }
+                                        catch {
+                                            // report for an error
+                                        }
                                         player.play()
                                     })
                                 } else {
