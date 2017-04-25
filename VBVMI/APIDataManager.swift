@@ -181,11 +181,27 @@ class APIDataManager {
     
     static func allTheChannels() {
         downloadToJSONArray(JsonAPI.channels, arrayNode: "channels") { (context, JSONArray) in
-            
+            let existingChannels: [Channel] = Channel.findAll(context)
+            var existingChannelIds = Set<String>(existingChannels.map({ $0.identifier }))
+                        
             try JSONArray.enumerated().forEach({ (index, channelDict) in
-                let _ = try Channel.decodeJSON(channelDict, context: context, index: index)
+                let channel = try Channel.decodeJSON(channelDict, context: context, index: index)
+                existingChannelIds.remove(channel.identifier)
             })
             
+            if existingChannelIds.count > 0 {
+                let channelsToDelete: [Channel] = Channel.findAllWithPredicate(NSPredicate(format: "%K in %@", ChannelAttributes.identifier.rawValue, existingChannelIds), context: context)
+                
+                channelsToDelete.forEach({
+                    context.delete($0)
+                })
+            }
+            
+            let orphanedVideos = Video.findAllWithPredicate(NSPredicate(format: "%K == NULL", VideoRelationships.channel.rawValue), context: context)
+            
+            orphanedVideos.forEach({ (video) in
+                context.delete(video)
+            })
         }
     }
     

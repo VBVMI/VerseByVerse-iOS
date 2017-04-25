@@ -63,13 +63,11 @@ class ChannelsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+        
     override func viewDidLayoutSubviews() {
-        if self.parent == nil {
-            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
-            tableView.contentInset = insets
-            tableView.scrollIndicatorInsets = insets
-        }
+        let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+        tableView.contentInset = insets
+        tableView.scrollIndicatorInsets = insets
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

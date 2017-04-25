@@ -67,7 +67,7 @@ class ChannelViewController: UIViewController {
         let indexSort = NSSortDescriptor(key: VideoAttributes.videoIndex.rawValue, ascending: true)
         
         fetchRequest.sortDescriptors = [indexSort]
-        fetchRequest.predicate = NSPredicate(format: "channel.identifier == %@", channel.identifier!)
+        fetchRequest.predicate = NSPredicate(format: "channel.identifier == %@", channel.identifier)
         fetchRequest.shouldRefreshRefetchedObjects = true
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         
@@ -104,7 +104,18 @@ extension ChannelViewController: UITableViewDelegate {
         let video = fetchedResultsController.object(at: indexPath)
         
         if let videoURLString = video.videoSource, let url = URL(string: videoURLString) {
-            UIApplication.shared.openURL(url)
+            
+            if url.absoluteString.contains("vimeo.com") && false {
+                let movieController = AVPlayerViewController()
+                let player = AVPlayer(url: url)
+                movieController.player = player
+                
+                self.present(movieController, animated: true, completion: {
+                    player.play()
+                })
+            } else {
+                UIApplication.shared.openURL(url)
+            }
         }
     }
     

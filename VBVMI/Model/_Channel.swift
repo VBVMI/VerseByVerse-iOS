@@ -55,7 +55,7 @@ open class _Channel: NSManagedObject {
     var descriptionText: String?
 
     @NSManaged open
-    var identifier: String?
+    var identifier: String
 
     @NSManaged open
     var postedDate: Date?

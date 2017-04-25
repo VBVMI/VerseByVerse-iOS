@@ -59,7 +59,7 @@ open class _Video: NSManagedObject {
     var descriptionText: String?
 
     @NSManaged open
-    var identifier: String?
+    var identifier: String
 
     @NSManaged open
     var postedDate: Date?
