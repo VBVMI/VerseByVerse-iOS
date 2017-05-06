@@ -6,7 +6,7 @@
 //  Copyright © 2017 Tom Carey. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "VBVMIConstants.h"
 
 const NSString* kVimeoClientSecret = VIMEO_CLIENT_SECRET;
 const NSString* kVimeoClientIdentifier = VIMEO_CLIENT_IDENTIFIER;

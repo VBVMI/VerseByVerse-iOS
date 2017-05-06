@@ -9,6 +9,8 @@
 #ifndef VBVMIConstants_h
 #define VBVMIConstants_h
 
+#import <Foundation/Foundation.h>
+
 extern const NSString* kVimeoClientSecret;
 extern const NSString* kVimeoClientIdentifier;
 extern const NSString* kVimeoAccessToken;
