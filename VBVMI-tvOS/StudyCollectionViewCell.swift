@@ -22,6 +22,8 @@ class StudyCollectionViewCell: UICollectionViewCell {
         backgroundImage.adjustsImageWhenAncestorFocused = true
         
         backgroundImage.image = StyleKit.imageOfBlankBackgroundImage
+        backgroundImage.layer.cornerRadius = 10
+        backgroundImage.layer.masksToBounds = true
     }
     
     override var canBecomeFocused: Bool {
