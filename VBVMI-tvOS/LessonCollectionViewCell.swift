@@ -7,28 +7,37 @@
 //
 
 import UIKit
+import ParallaxView
 
-class LessonCollectionViewCell: UICollectionViewCell {
+class LessonCollectionViewCell: ParallaxCollectionViewCell {
     
     enum LessonState {
         case focused
         case normal
         
-        var backgroundColor: UIColor {
+        func backgroundColor(traitCollection: UITraitCollection) -> UIColor {
             switch self {
             case .focused:
-                return StyleKit.darkGrey.withAlpha(0.1)
+                switch traitCollection.userInterfaceStyle {
+                case .dark:
+                    return StyleKit.white.withAlpha(0.1)
+                default:
+                    return StyleKit.darkGrey.withAlpha(0.1)
+                }
             default:
                 return UIColor.clear
             }
         }
         
-        var textColor: UIColor {
+        func textColor(traitCollection: UITraitCollection) -> UIColor {
             switch self {
-            case .focused:
-                return StyleKit.darkGrey
             default:
-                return StyleKit.darkGrey
+                switch traitCollection.userInterfaceStyle {
+                case .dark:
+                    return StyleKit.white
+                default:
+                    return StyleKit.darkGrey
+                }
             }
         }
     }
@@ -40,7 +49,7 @@ class LessonCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentView.layer.cornerRadius = 10
-        self.contentView.backgroundColor = currentLessonState.backgroundColor
+        self.contentView.backgroundColor = currentLessonState.backgroundColor(traitCollection: self.traitCollection)
     }
     
     @IBOutlet weak var numberLabel: UILabel?
@@ -50,20 +59,22 @@ class LessonCollectionViewCell: UICollectionViewCell {
         return true
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        numberLabel?.text = nil
+        descriptionLabel?.text = nil
+        
+        numberLabel?.textColor = currentLessonState.textColor(traitCollection: traitCollection)
+        descriptionLabel?.textColor = currentLessonState.textColor(traitCollection: traitCollection)
+    }
+    
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         super.didUpdateFocus(in: context, with: coordinator)
         
         coordinator.addCoordinatedAnimations({
             let state: LessonState = self.isFocused ? LessonState.focused : LessonState.normal
-            self.contentView.backgroundColor = state.backgroundColor
-            self.numberLabel?.textColor = state.textColor
-            self.descriptionLabel?.textColor = state.textColor
-            if self.isFocused {
-                let scale: CGFloat = self.isHighlighted ? 1.17 : 1.17
-                self.contentView.transform = CGAffineTransform(scaleX: scale, y: scale)
-            } else {
-                self.contentView.transform = CGAffineTransform.identity
-            }
+            self.contentView.backgroundColor = state.backgroundColor(traitCollection: self.traitCollection)
         }, completion: {
         })
     }

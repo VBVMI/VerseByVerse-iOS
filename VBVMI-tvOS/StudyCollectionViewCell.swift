@@ -33,6 +33,7 @@ class StudyCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         mainTitle.text = nil
         mainImage.image = nil
+        backgroundImage.alpha = 1
     }
     
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {

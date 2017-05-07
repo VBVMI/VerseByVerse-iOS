@@ -17,16 +17,18 @@ import MediaPlayer
 
 private let regex = Regex("[0-9]+x[0-9]+")
 
-class VideosDataSource : NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+class VideosDataSource : NSObject, UICollectionViewDataSource, UICollectionViewDelegate, VideoCollectionViewCellDelegate {
     
     private let fetchedResultsController: NSFetchedResultsController<Video>
     private let realSection : Int
     private weak var viewController: UIViewController?
+    private weak var collectionView: UICollectionView?
     
-    init(fetchedResultsController: NSFetchedResultsController<Video>, section: Int, viewController: UIViewController) {
+    init(fetchedResultsController: NSFetchedResultsController<Video>, section: Int, viewController: UIViewController, collectionView: UICollectionView) {
         self.fetchedResultsController = fetchedResultsController
         self.realSection = section
         self.viewController = viewController
+        self.collectionView = collectionView
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -46,6 +48,7 @@ class VideosDataSource : NSObject, UICollectionViewDataSource, UICollectionViewD
         
         cell.titleLabel.text = video.title
         cell.descriptionTextView.text = video.descriptionText
+        cell.delegate = self
         
         if var thumbnailSource = video.thumbnailSource {
             
@@ -98,6 +101,21 @@ class VideosDataSource : NSObject, UICollectionViewDataSource, UICollectionViewD
                 //UIApplication.shared.isNetworkActivityIndicatorVisible = false
             })
         }
+    }
+    
+    func videoCollectionViewCellDidLongPress(cell: VideoCollectionViewCell) {
+        guard let collectionView = collectionView, let indexPath = collectionView.indexPath(for: cell) else {
+            return
+        }
+        
+        let realIndexPath = IndexPath(item: indexPath.item, section: realSection)
+        let video = fetchedResultsController.object(at: realIndexPath)
+        
+        
+        let videoDetailController = VideoDetailViewController(nibName: "VideoDetailViewController", bundle: nil)
+        videoDetailController.video = video
+        
+        viewController?.present(videoDetailController, animated: true, completion: nil)
     }
     
     var title: String? {
@@ -184,7 +202,7 @@ class VideosViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VideosCell", for: indexPath) as! VideosTableViewCell
         
-        let dataSource = VideosDataSource(fetchedResultsController: self.fetchedResultsController, section: indexPath.row, viewController: self)
+        let dataSource = VideosDataSource(fetchedResultsController: self.fetchedResultsController, section: indexPath.row, viewController: self, collectionView: cell.collectionView)
         cell.collectionViewDelegate = dataSource
         cell.collectionViewDatasource = dataSource
         

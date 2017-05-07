@@ -149,6 +149,8 @@ class StudyViewController: UITableViewController {
         let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
         buttons.append(shareButton)
         
+        
+        
         navigationItem.rightBarButtonItems = buttons
     }
     

@@ -44,7 +44,9 @@ class StudiesDataSource : NSObject, UICollectionViewDataSource, UICollectionView
             if let url = URL(string: thumbnailSource) {
                 let width = 300
                 let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 10, divideRadiusByImageScale: false)
-                cell.mainImage.af_setImage(withURL: url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
+                cell.mainImage.af_setImage(withURL: url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: false, completion: { _ in
+                    cell.backgroundImage.alpha = 0
+                })
                 //                cell.coverImageView.af_setImage(withURL: url)
             }
         }

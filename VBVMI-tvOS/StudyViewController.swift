@@ -23,9 +23,13 @@ class StudyViewController: UIViewController {
     fileprivate let lessonCellReuseIdentifier = "LessonCell"
     fileprivate let lessonDescriptionCellReuseIdentifier = "LessonDescriptionCell"
     fileprivate let filterHeaderReuseIdentifier = "FilterHeader"
+    
+    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var imageView: UIImageView!
+    
     var audioPlayer: AVPlayer?
+    
     fileprivate var fetchedResultsController: NSFetchedResultsController<Lesson>!
     
     var study: Study! {
@@ -79,6 +83,12 @@ class StudyViewController: UIViewController {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 90, bottom: 60, right: 0)
         reloadImageView()
         // Do any additional setup after loading the view.
+        
+        descriptionTextView.text = study.descriptionText
+        descriptionTextView.textContainerInset = UIEdgeInsets.zero
+        descriptionTextView.isSelectable = true;
+        descriptionTextView.isUserInteractionEnabled = true;
+        descriptionTextView.panGestureRecognizer.allowedTouchTypes = [NSNumber(value: UITouchType.indirect.rawValue)];//@[@(UITouchTypeIndirect)];
     }
 
     override func didReceiveMemoryWarning() {

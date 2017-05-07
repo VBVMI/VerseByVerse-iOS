@@ -172,6 +172,8 @@
 		98B3D29E1D49F501009AEF7D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B3D29D1D49F501009AEF7D /* Settings.swift */; };
 		98B419B41C6420CA003A2872 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B419B31C6420CA003A2872 /* HomeTabBarController.swift */; };
 		98B419BF1C64803D003A2872 /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B419BE1C64803D003A2872 /* StudyViewController.swift */; };
+		98B93C9A1EBF0AF0000637B4 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B93C981EBF0AF0000637B4 /* VideoDetailViewController.swift */; };
+		98B93C9B1EBF0AF0000637B4 /* VideoDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98B93C991EBF0AF0000637B4 /* VideoDetailViewController.xib */; };
 		98C35DBB1DB4CDB70052398E /* NSDateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98611CBE1C9AA6D60070FCCD /* NSDateExtensions.swift */; };
 		98C35DBC1DB4CEC30052398E /* TitleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C101C814E5F008F23D1 /* TitleParser.swift */; };
 		98C35DBD1DB4CF300052398E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9860BA561C61F3020054D496 /* Constants.swift */; };
@@ -410,6 +412,8 @@
 		98B3D29D1D49F501009AEF7D /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		98B419B31C6420CA003A2872 /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		98B419BE1C64803D003A2872 /* StudyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyViewController.swift; sourceTree = "<group>"; };
+		98B93C981EBF0AF0000637B4 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
+		98B93C991EBF0AF0000637B4 /* VideoDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoDetailViewController.xib; sourceTree = "<group>"; };
 		98C80A051CD430BC000EAD3D /* VolumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeView.swift; sourceTree = "<group>"; };
 		98CB0E351CA632B500C99D34 /* TopicLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicLabel.swift; sourceTree = "<group>"; };
 		98CB0E3A1CA74E7F00C99D34 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
@@ -565,6 +569,8 @@
 				989AC5151DB4C0B600A825EB /* StudiesViewController.swift */,
 				98380D0F1DE980830012AADE /* StudyViewController.swift */,
 				989AC5171DB4C0B600A825EB /* VideosViewController.swift */,
+				98B93C981EBF0AF0000637B4 /* VideoDetailViewController.swift */,
+				98B93C991EBF0AF0000637B4 /* VideoDetailViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1189,6 +1195,7 @@
 				980744BA1EA0D06300043B1E /* events.json in Resources */,
 				980744CA1EA1B9E600043B1E /* VideosTableViewCell.xib in Resources */,
 				980744BB1EA0D06300043B1E /* qa.json in Resources */,
+				98B93C9B1EBF0AF0000637B4 /* VideoDetailViewController.xib in Resources */,
 				980744B81EA0D06300043B1E /* articlesP.json in Resources */,
 				980744BD1EA0D06300043B1E /* core.json in Resources */,
 				989AC51B1DB4C0B600A825EB /* Main.storyboard in Resources */,
@@ -1669,6 +1676,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				989AC5431DB4C22200A825EB /* Lesson.swift in Sources */,
+				98B93C9A1EBF0AF0000637B4 /* VideoDetailViewController.swift in Sources */,
 				989AC5461DB4C22200A825EB /* Video.swift in Sources */,
 				98C35DBC1DB4CEC30052398E /* TitleParser.swift in Sources */,
 				989AC5491DB4C22700A825EB /* _Answer.swift in Sources */,
