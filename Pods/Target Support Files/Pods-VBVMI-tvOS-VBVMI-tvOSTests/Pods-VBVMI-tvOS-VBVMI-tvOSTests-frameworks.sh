@@ -101,6 +101,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SnapKit-tvOS/SnapKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/VimeoNetworking-tvOS/VimeoNetworking.framework"
   install_framework "$BUILT_PRODUCTS_DIR/XCGLogger-tvOS/XCGLogger.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ParallaxView/ParallaxView.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/AFNetworking-tvOS/AFNetworking.framework"
@@ -114,6 +115,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SnapKit-tvOS/SnapKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/VimeoNetworking-tvOS/VimeoNetworking.framework"
   install_framework "$BUILT_PRODUCTS_DIR/XCGLogger-tvOS/XCGLogger.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ParallaxView/ParallaxView.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

@@ -29,6 +29,7 @@ PODS:
   - Moya/Core (8.0.0-beta.2):
     - Alamofire (~> 4.0.0)
     - Result
+  - ParallaxView (2.0.7)
   - ReachabilitySwift (3)
   - Result (3.0.0)
   - Reveal-SDK (8)
@@ -51,6 +52,7 @@ DEPENDENCIES:
   - Fabric
   - FontAwesome.swift (from `git@github.com:thii/FontAwesome.swift.git`)
   - Moya (= 8.0.0-beta.2)
+  - ParallaxView
   - ReachabilitySwift
   - Reveal-SDK
   - SnapKit
@@ -85,6 +87,7 @@ SPEC CHECKSUMS:
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FontAwesome.swift: 9879cd6a1462bf160662d519f7b7474d73bdd1c3
   Moya: 920d40f738e6f4ece84010cec701bb9693be8251
+  ParallaxView: cea353d386075ba86fab9bfa570da221ca151b78
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
   Reveal-SDK: 43be4e662864e937960d0d04d005135e29c4e53b
@@ -94,6 +97,6 @@ SPEC CHECKSUMS:
   VimeoNetworking: 17f8d451e4a168044f619315d0cd821669676e67
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: 7462b47fd62caac8eec989a6d18cb6fc035030fb
+PODFILE CHECKSUM: eeb1ac20b76ae4b2471df05210f0696c46f4281a
 
 COCOAPODS: 1.2.1

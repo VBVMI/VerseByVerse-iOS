@@ -73,6 +73,8 @@ target 'VBVMI-tvOS' do
     inhibit_all_warnings!
     
     common_pods
+    
+    pod 'ParallaxView'
 #    pod 'FontAwesomeKit'
 #    pod 'XCDYouTubeKit'
     #pod 'FontAwesome.swift', git: 'git@github.com:thii/FontAwesome.swift.git'

@@ -188,7 +188,10 @@ class VideosViewController: UIViewController, UITableViewDataSource, UITableView
         cell.collectionViewDelegate = dataSource
         cell.collectionViewDatasource = dataSource
         
-        cell.channelTitleLabel.text = self.fetchedResultsController.sections?[indexPath.row].name
+        if let section = self.fetchedResultsController.sections?[indexPath.row] {
+            cell.channelTitleLabel.text = section.name
+            cell.videosCountLabel.text = "\(section.numberOfObjects) Video\(section.numberOfObjects > 1 ? "s" : "")"
+        }
         
         return cell
     }

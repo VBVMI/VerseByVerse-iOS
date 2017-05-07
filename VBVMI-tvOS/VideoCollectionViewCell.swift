@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ParallaxView
 
-class VideoCollectionViewCell: UICollectionViewCell {
+class VideoCollectionViewCell: ParallaxCollectionViewCell {
     
     @IBOutlet weak var videoThumbnailImageView: UIImageView!
     @IBOutlet weak var titleBackgroundView: UIView!
@@ -32,16 +33,10 @@ class VideoCollectionViewCell: UICollectionViewCell {
         super.didUpdateFocus(in: context, with: coordinator)
         
         coordinator.addCoordinatedAnimations({
-            
             if self.isFocused {
-                let scale: CGFloat = self.isHighlighted ? 1.17 : 1.17
-                self.contentView.transform = CGAffineTransform(scaleX: scale, y: scale)
                 self.descriptionTextView.alpha = 1
-                //self.descriptionTextView.transform = CGAffineTransform(scaleX: scale, y: scale)
             } else {
-                self.contentView.transform = CGAffineTransform.identity
                 self.descriptionTextView.alpha = 0
-                //self.descriptionTextView.transform = CGAffineTransform.identity
             }
         }, completion: {
         })
