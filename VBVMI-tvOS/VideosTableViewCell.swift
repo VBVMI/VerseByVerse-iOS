@@ -47,16 +47,16 @@ class VideosTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        collectionView.register(UINib(nibName: "StudyCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "StudyCell")
+        collectionView.register(UINib(nibName: "VideoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "VideoCell")
         let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        flowLayout.itemSize = CGSize(width: 300, height: 300)
+        flowLayout.itemSize = CGSize(width: 544, height: 306)
         flowLayout.minimumInteritemSpacing = 100
         flowLayout.minimumLineSpacing = 60
         flowLayout.scrollDirection = .horizontal
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 60)
         collectionView.backgroundColor = .clear
         collectionView.clipsToBounds = false
-        collectionView.contentOffset = CGPoint(x: -60, y: 0)
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -67,5 +67,11 @@ class VideosTableViewCell: UITableViewCell {
     
     override var canBecomeFocused: Bool {
         return false
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        collectionView.contentOffset = CGPoint(x: -60, y: 0)
     }
 }

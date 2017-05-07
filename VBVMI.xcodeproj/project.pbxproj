@@ -969,6 +969,7 @@
 				989AC50D1DB4C0B600A825EB /* Sources */,
 				989AC50E1DB4C0B600A825EB /* Frameworks */,
 				989AC50F1DB4C0B600A825EB /* Resources */,
+				98B93C921EBEC65C000637B4 /* Git Bundle Version */,
 				8DE4EE4BA1BF87C5C4C352BA /* [CP] Embed Pods Frameworks */,
 				D2D98D6FD3B29A9220AB79E5 /* [CP] Copy Pods Resources */,
 			);
@@ -1406,6 +1407,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSUITests/Pods-VBVMI-tvOS-VBVMI-tvOSUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		98B93C921EBEC65C000637B4 /* Git Bundle Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Git Bundle Version";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/bash ${PROJECT_DIR}/Scripts/GitBundleVersion.sh";
 		};
 		99A24AF4C9432FF50CCD4C66 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

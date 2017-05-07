@@ -10,6 +10,12 @@ import UIKit
 import CoreData
 import SnapKit
 import AlamofireImage
+import Regex
+import AVFoundation
+import AVKit
+import MediaPlayer
+
+private let regex = Regex("[0-9]+x[0-9]+")
 
 class VideosDataSource : NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -36,16 +42,19 @@ class VideosDataSource : NSObject, UICollectionViewDataSource, UICollectionViewD
         let realIndexPath = IndexPath(item: indexPath.item, section: realSection)
         let video = fetchedResultsController.object(at: realIndexPath)
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StudyCell", for: indexPath) as! StudyCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCell", for: indexPath) as! VideoCollectionViewCell
         
-        cell.mainTitle.text = video.title
+        cell.titleLabel.text = video.title
+        cell.descriptionTextView.text = video.descriptionText
         
-        if let thumbnailSource = video.thumbnailSource {
+        if var thumbnailSource = video.thumbnailSource {
+            
+            thumbnailSource.replaceAllMatching(regex, with: "544x306")
+            
             if let url = URL(string: thumbnailSource) {
-                let width = 300
-                let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 10, divideRadiusByImageScale: false)
-                cell.mainImage.af_setImage(withURL: url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
-                //                cell.coverImageView.af_setImage(withURL: url)
+                
+                let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: 544, height: 306), radius: 10, divideRadiusByImageScale: false)
+                cell.videoThumbnailImageView.af_setImage(withURL: url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
             }
         }
         
@@ -54,8 +63,41 @@ class VideosDataSource : NSObject, UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let realIndexPath = IndexPath(item: indexPath.item, section: realSection)
-        let study = fetchedResultsController.object(at: realIndexPath)
-        viewController?.performSegue(withIdentifier: "showStudy", sender: study)
+        let video = fetchedResultsController.object(at: realIndexPath)
+        //viewController?.performSegue(withIdentifier: "showStudy", sender: study)
+        
+        if let service = video.service, service == "vimeo", let serviceID = video.serviceVideoIdentifier {
+            let movieController = AVPlayerViewController()
+            let dispatchGroup = DispatchGroup()
+            dispatchGroup.enter()
+            viewController?.present(movieController, animated: true, completion: {
+                dispatchGroup.leave()
+            })
+            dispatchGroup.enter()
+            //UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            VimeoManager.shared.getVimeoURL(vimeoVideoID: serviceID, callback: { (result) in
+                switch result {
+                case .failure(let error):
+                    logger.error("Error loading video files: \(error)")
+                case .success(let vimeoURL):
+                    let player = AVPlayer(url: vimeoURL)
+                    movieController.player = player
+                    
+                }
+                dispatchGroup.leave()
+            })
+            dispatchGroup.notify(queue: DispatchQueue.main, execute: { [weak movieController] in
+                do {
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                }
+                catch {
+                    // report for an error
+                }
+                
+                movieController?.player?.play()
+                //UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            })
+        }
     }
     
     var title: String? {
@@ -69,10 +111,9 @@ class VideosDataSource : NSObject, UICollectionViewDataSource, UICollectionViewD
             return fetchedResultsController.sections?[realSection].numberOfObjects
         }
     }
-    
 }
 
-class VideosViewController: UIViewController {
+class VideosViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
     var fetchedResultsController: NSFetchedResultsController<Video>!
@@ -81,12 +122,12 @@ class VideosViewController: UIViewController {
     
     fileprivate func configureFetchRequest(_ fetchRequest: NSFetchRequest<Video>) {
         
+        let channelSort = NSSortDescriptor(key: "channel.title", ascending: true)
         let identifierSort = NSSortDescriptor(key: VideoAttributes.videoIndex.rawValue, ascending: true)
-//        let bibleStudySort = NSSortDescriptor(key: StudyAttributes.bibleIndex.rawValue, ascending: true)
         
         var sortDescriptors : [NSSortDescriptor] = []
         
-        sortDescriptors.append(contentsOf: [identifierSort])
+        sortDescriptors.append(contentsOf: [channelSort, identifierSort])
         
         fetchRequest.sortDescriptors = sortDescriptors
     }
@@ -97,7 +138,7 @@ class VideosViewController: UIViewController {
         fetchRequest.entity = Video.entity(managedObjectContext: context)
         
         configureFetchRequest(fetchRequest)
-        
+        fetchRequest.predicate = NSPredicate(format: "%K MATCHES %@", VideoAttributes.service.rawValue, "vimeo")
         fetchRequest.shouldRefreshRefetchedObjects = true
         fetchedResultsController = NSFetchedResultsController<Video>(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: "channel.title", cacheName: nil)
         
@@ -118,7 +159,7 @@ class VideosViewController: UIViewController {
         
         setupFetchedResultsController()
         
-        tableView.register(UINib(nibName: "StudiesTableViewCell", bundle: nil), forCellReuseIdentifier: "StudiesCell")
+        tableView.register(UINib(nibName: "VideosTableViewCell", bundle: nil), forCellReuseIdentifier: "VideosCell")
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
     }
 
@@ -132,7 +173,29 @@ class VideosViewController: UIViewController {
     }
     
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.fetchedResultsController.sections?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "VideosCell", for: indexPath) as! VideosTableViewCell
+        
+        let dataSource = VideosDataSource(fetchedResultsController: self.fetchedResultsController, section: indexPath.row, viewController: self)
+        cell.collectionViewDelegate = dataSource
+        cell.collectionViewDatasource = dataSource
+        
+        cell.channelTitleLabel.text = self.fetchedResultsController.sections?[indexPath.row].name
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 431
+    }
 }
 
 extension VideosViewController : NSFetchedResultsControllerDelegate {
