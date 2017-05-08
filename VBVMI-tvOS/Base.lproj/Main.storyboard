@@ -67,13 +67,13 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="30" minimumInteritemSpacing="10" id="uQp-A0-Ld1">
                                     <size key="itemSize" width="600" height="210"/>
-                                    <size key="headerReferenceSize" width="50" height="140"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="60" maxX="0.0" maxY="60"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LessonCell" id="be6-lA-MHw" customClass="LessonCollectionViewCell" customModule="VBVMI_tvOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="140" width="540" height="217"/>
+                                        <rect key="frame" x="0.0" y="60" width="540" height="217"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="217"/>
@@ -109,7 +109,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LessonDescriptionCell" id="4I5-Xf-5Fw" customClass="LessonCollectionViewCell" customModule="VBVMI_tvOS" customModuleProvider="target">
-                                        <rect key="frame" x="833" y="140" width="540" height="217"/>
+                                        <rect key="frame" x="833" y="60" width="540" height="217"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="217"/>
@@ -135,50 +135,24 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FilterHeader" id="NFs-0l-laH">
-                                    <rect key="frame" x="0.0" y="0.0" width="1373" height="140"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="XYU-ZJ-UYf">
-                                            <rect key="frame" x="466" y="8" width="441" height="124"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LP3-k7-EUP">
-                                                    <rect key="frame" x="0.0" y="19" width="166" height="86"/>
-                                                    <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                                    <state key="normal" title="Filter"/>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KcP-eF-qHY">
-                                                    <rect key="frame" x="226" y="19" width="215" height="86"/>
-                                                    <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                                    <state key="normal" title="Options"/>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="XYU-ZJ-UYf" firstAttribute="top" secondItem="NFs-0l-laH" secondAttribute="topMargin" id="C04-7F-ES9"/>
-                                        <constraint firstItem="XYU-ZJ-UYf" firstAttribute="bottom" secondItem="NFs-0l-laH" secondAttribute="bottomMargin" id="ZxD-05-y3y"/>
-                                        <constraint firstItem="XYU-ZJ-UYf" firstAttribute="centerX" secondItem="NFs-0l-laH" secondAttribute="centerX" id="gFR-I3-Mdh"/>
-                                    </constraints>
-                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="HcU-dA-6h6" id="HxG-dO-Yd0"/>
                                     <outlet property="delegate" destination="HcU-dA-6h6" id="V6h-ZK-IkK"/>
                                 </connections>
                             </collectionView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kay-ji-mUU">
-                                <rect key="frame" x="1430" y="140" width="440" height="440"/>
+                                <rect key="frame" x="1400" y="60" width="460" height="460"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="440" id="RMe-KI-Oil"/>
-                                    <constraint firstAttribute="width" constant="440" id="lbl-GX-OOB"/>
+                                    <constraint firstAttribute="height" constant="460" id="RMe-KI-Oil"/>
+                                    <constraint firstAttribute="width" constant="460" id="lbl-GX-OOB"/>
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kH-hK-cXu">
-                                <rect key="frame" x="1430" y="601" width="440" height="424"/>
+                                <rect key="frame" x="1380" y="530" width="500" height="530"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="424" id="S8i-i6-DMN"/>
-                                    <constraint firstAttribute="width" constant="440" id="TyA-fG-Qw9"/>
+                                    <constraint firstAttribute="height" constant="530" id="S8i-i6-DMN"/>
+                                    <constraint firstAttribute="width" constant="500" id="TyA-fG-Qw9"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
@@ -186,10 +160,10 @@
                             </textView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Kay-ji-mUU" secondAttribute="trailing" constant="30" id="4zK-iP-FLD"/>
-                            <constraint firstItem="Kay-ji-mUU" firstAttribute="top" secondItem="T0m-GZ-3wi" secondAttribute="bottom" constant="140" id="7Q6-oh-BvL"/>
-                            <constraint firstItem="6kH-hK-cXu" firstAttribute="top" secondItem="Kay-ji-mUU" secondAttribute="bottom" constant="21" id="fMV-3F-9me"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6kH-hK-cXu" secondAttribute="trailing" constant="30" id="jBS-ws-Xu8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Kay-ji-mUU" secondAttribute="trailing" constant="40" id="4zK-iP-FLD"/>
+                            <constraint firstItem="Kay-ji-mUU" firstAttribute="top" secondItem="T0m-GZ-3wi" secondAttribute="bottom" constant="60" id="7Q6-oh-BvL"/>
+                            <constraint firstItem="6kH-hK-cXu" firstAttribute="top" secondItem="Kay-ji-mUU" secondAttribute="bottom" constant="10" id="fMV-3F-9me"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6kH-hK-cXu" secondAttribute="trailing" constant="20" id="jBS-ws-Xu8"/>
                         </constraints>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>

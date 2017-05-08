@@ -28,6 +28,7 @@ class StudyViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var imageView: UIImageView!
     
+    private var focusGuide: UIFocusGuide!
     var audioPlayer: AVPlayer?
     
     fileprivate var fetchedResultsController: NSFetchedResultsController<Lesson>!
@@ -48,8 +49,8 @@ class StudyViewController: UIViewController {
     func reloadImageView() {
         if let thumbnailSource = study.thumbnailSource, let imageView = imageView {
             if let url = URL(string: thumbnailSource) {
-                let width = 440
-                let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 3, divideRadiusByImageScale: false)
+                let width = 460
+                let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 10, divideRadiusByImageScale: false)
                 imageView.af_setImage(withURL: url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
                 //                cell.coverImageView.af_setImage(withURL: url)
             }
@@ -80,15 +81,27 @@ class StudyViewController: UIViewController {
         
         configureFetchController()
         
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 90, bottom: 60, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 60, bottom: 60, right: 30)
         reloadImageView()
         // Do any additional setup after loading the view.
         
         descriptionTextView.text = study.descriptionText
-        descriptionTextView.textContainerInset = UIEdgeInsets.zero
+        descriptionTextView.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        descriptionTextView.layer.cornerRadius = 10
+        
         descriptionTextView.isSelectable = true;
         descriptionTextView.isUserInteractionEnabled = true;
-        descriptionTextView.panGestureRecognizer.allowedTouchTypes = [NSNumber(value: UITouchType.indirect.rawValue)];//@[@(UITouchTypeIndirect)];
+        descriptionTextView.panGestureRecognizer.allowedTouchTypes = [NSNumber(value: UITouchType.indirect.rawValue)];
+        
+        focusGuide = UIFocusGuide()
+        view.addLayoutGuide(focusGuide)
+        
+        focusGuide.rightAnchor.constraint(equalTo: imageView.leftAnchor).isActive = true
+        focusGuide.topAnchor.constraint(equalTo: imageView.topAnchor).isActive = true
+        focusGuide.bottomAnchor.constraint(equalTo: imageView.bottomAnchor).isActive = true
+        focusGuide.widthAnchor.constraint(equalToConstant: 1).isActive = true
+        
+        focusGuide.preferredFocusEnvironments = [descriptionTextView]
     }
 
     override func didReceiveMemoryWarning() {
@@ -110,6 +123,24 @@ class StudyViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIApplication.shared.isIdleTimerDisabled = false
+    }
+    
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocus(in: context, with: coordinator)
+        
+        guard let nextFocusedView = context.nextFocusedView else { return }
+        
+        switch nextFocusedView {
+        case descriptionTextView:
+            coordinator.addCoordinatedAnimations({
+                self.descriptionTextView.backgroundColor = self.traitCollection.userInterfaceStyle == .light ? StyleKit.darkGrey.withAlphaComponent(0.1) : StyleKit.white.withAlphaComponent(0.1)
+            }, completion: nil)
+        default:
+            coordinator.addCoordinatedAnimations({ 
+                self.descriptionTextView.backgroundColor = .clear
+            }, completion: nil)
+        }
+        
     }
 
 }
