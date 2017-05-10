@@ -178,7 +178,7 @@ class VideosViewController: UIViewController, UITableViewDataSource, UITableView
         setupFetchedResultsController()
         
         tableView.register(UINib(nibName: "VideosTableViewCell", bundle: nil), forCellReuseIdentifier: "VideosCell")
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 60, right: 0)
     }
 
     override func didReceiveMemoryWarning() {

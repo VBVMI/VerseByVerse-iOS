@@ -45,7 +45,7 @@ class StudiesDataSource : NSObject, UICollectionViewDataSource, UICollectionView
                 let width = 300
                 let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 10, divideRadiusByImageScale: false)
                 cell.mainImage.af_setImage(withURL: url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: false, completion: { _ in
-                    cell.backgroundImage.alpha = 0
+                    cell.backgroundImage.isHidden = true
                 })
                 //                cell.coverImageView.af_setImage(withURL: url)
             }
@@ -120,7 +120,7 @@ class StudiesViewController: UIViewController {
         setupFetchedResultsController()
         
         tableView.register(UINib(nibName: "StudiesTableViewCell", bundle: nil), forCellReuseIdentifier: "StudiesCell")
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 60, right: 0)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
