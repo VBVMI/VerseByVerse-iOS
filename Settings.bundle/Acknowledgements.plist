@@ -82,6 +82,14 @@
         <key>Type</key>
         <string>PSChildPaneSpecifier</string>
         <key>Title</key>
+        <string>ParallaxView</string>
+        <key>File</key>
+        <string>Acknowledgement-ParallaxView</string>
+      </dict>
+      <dict>
+        <key>Type</key>
+        <string>PSChildPaneSpecifier</string>
+        <key>Title</key>
         <string>ReachabilitySwift</string>
         <key>File</key>
         <string>Acknowledgement-ReachabilitySwift</string>
