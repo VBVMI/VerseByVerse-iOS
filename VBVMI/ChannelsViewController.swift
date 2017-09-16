@@ -65,9 +65,15 @@ class ChannelsViewController: UIViewController {
     }
         
     override func viewDidLayoutSubviews() {
-        let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
+        if #available(iOS 11.0, *) {
+            
+        } else {
+            // Fallback on earlier versions
+            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+            tableView.contentInset = insets
+            tableView.scrollIndicatorInsets = insets
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

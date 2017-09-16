@@ -108,6 +108,12 @@ class TopicViewController: UIViewController {
         restorationIdentifier = "TopicViewController"
         restorationClass = TopicViewController.self
         
+        if #available(iOS 11.0, *) {
+            navigationItem.largeTitleDisplayMode = .never
+        } else {
+            // Fallback on earlier versions
+        }
+        
         if let _ = topic {
             configureForTopic()
             configureSegmentedControl()

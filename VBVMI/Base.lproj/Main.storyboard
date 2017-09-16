@@ -41,8 +41,8 @@
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hfv-4i-ZXW">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="hfv-4i-ZXW">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -62,7 +62,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="Studies CollectionView" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Y9-wb-dIi">
-                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="589"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="Vgu-jE-iii">
                                     <size key="itemSize" width="90" height="130"/>
@@ -98,7 +98,7 @@
             </objects>
             <point key="canvasLocation" x="881" y="-630"/>
         </scene>
-        <!--Study View Controller-->
+        <!--Romans-->
         <scene sceneID="kss-pD-TLF">
             <objects>
                 <tableViewController storyboardIdentifier="Study Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yfM-zu-8Zd" customClass="StudyViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
@@ -192,6 +192,7 @@
                             <outlet property="delegate" destination="yfM-zu-8Zd" id="8hB-2P-lKt"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Romans" largeTitleDisplayMode="never" id="KPe-GS-urw"/>
                     <connections>
                         <outlet property="blurredImageView" destination="SX0-kA-eGe" id="lwj-5V-xaY"/>
                         <outlet property="headerBackingView" destination="rNN-sj-O2Y" id="Bz9-kN-Uzn"/>
@@ -255,7 +256,7 @@
             </objects>
             <point key="canvasLocation" x="1556" y="78"/>
         </scene>
-        <!--Article View Controller-->
+        <!--Title-->
         <scene sceneID="jaJ-hj-om7">
             <objects>
                 <tableViewController storyboardIdentifier="Article" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rXV-Ac-x65" customClass="ArticleViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
@@ -268,12 +269,13 @@
                             <outlet property="delegate" destination="rXV-Ac-x65" id="dE8-lH-Vhl"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="Yp9-tk-rze"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jrr-t2-XuT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2340" y="78"/>
         </scene>
-        <!--Answer View Controller-->
+        <!--Title-->
         <scene sceneID="qAV-Vf-cv2">
             <objects>
                 <tableViewController storyboardIdentifier="Answer" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BgG-Wm-fdE" customClass="AnswerViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
@@ -286,6 +288,7 @@
                             <outlet property="delegate" destination="BgG-Wm-fdE" id="UBc-y2-OMt"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="r5p-hb-D9o"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21E-CH-681" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -301,8 +304,8 @@
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HH9-zV-8Cw">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="HH9-zV-8Cw">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -344,8 +347,8 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="fontAwesomeKey" value="fa-tv"/>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lG9-Tf-jzy">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="lG9-Tf-jzy">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -364,8 +367,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Tc-aQ-lKj">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Tc-aQ-lKj">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="XZ7-fQ-tUf" id="toP-dL-td7"/>
@@ -392,7 +395,7 @@
             </objects>
             <point key="canvasLocation" x="1386" y="1615"/>
         </scene>
-        <!--Channel View Controller-->
+        <!--Title-->
         <scene sceneID="miE-di-1dA">
             <objects>
                 <viewController id="rQw-0t-S92" customClass="ChannelViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
@@ -400,8 +403,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Eea-8U-mSP">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Eea-8U-mSP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="rQw-0t-S92" id="cj8-pq-Oob"/>
@@ -418,6 +421,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VQz-vP-G0D"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="xIo-RL-ywL"/>
                     <connections>
                         <outlet property="tableView" destination="Eea-8U-mSP" id="Oih-pt-uns"/>
                     </connections>
@@ -436,8 +440,8 @@
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="K5C-Go-oOC">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="K5C-Go-oOC">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
