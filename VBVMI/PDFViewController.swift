@@ -56,10 +56,13 @@ class PDFViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        self.navigationController?.hidesBarsOnTap = true
+        
         if #available(iOS 11.0, *) {
             
         } else {
-            self.navigationController?.hidesBarsOnTap = true
+            
             self.navigationController?.hidesBarsOnSwipe = true
             if !attachedToNavController {
                 self.navigationController?.barHideOnSwipeGestureRecognizer.addTarget(self, action: #selector(didSwipe(_:)))
