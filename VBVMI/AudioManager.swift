@@ -52,7 +52,7 @@ class AudioManager: NSObject {
     
     private var mode = Mode.Finished
     
-    private var audioIsReadyBlock: ((result: AudioResult)->())?
+    private var audioIsReadyBlock: ((_ result: AudioResult)->())?
     
     private var currentMonitoredItem: AVPlayerItem? {
         didSet {
@@ -87,7 +87,7 @@ class AudioManager: NSObject {
         return avPlayer.currentItem?.status == AVPlayerItemStatus.ReadyToPlay && !isPlaying()
     }
     
-    func loadAudio(atURL URL:NSURL, completion: (result: AudioResult)->()) {
+    func loadAudio(atURL URL:NSURL, completion: (_ result: AudioResult)->()) {
         let asset = AVAsset(URL: URL)
         let item = AVPlayerItem(asset: asset)
         if mode == .Playing {
@@ -98,11 +98,11 @@ class AudioManager: NSObject {
         avPlayer.replaceCurrentItemWithPlayerItem(item)
     }
     
-    func start(atProgress progress: Double = 0, completion: (result: AudioResult)->()) {
+    func start(atProgress progress: Double = 0, completion: (_ result: AudioResult)->()) {
         start(registerObservers: true, progress: progress, completion: completion)
     }
     
-    private func start(registerObservers addObservers: Bool, progress: Double, completion: ((result: AudioResult)->())? = nil) -> Bool {
+    private func start(registerObservers addObservers: Bool, progress: Double, completion: ((_ result: AudioResult)->())? = nil) -> Bool {
         logger.info("🍕Starting AudioManager - addObservers:\(addObservers) - progress:\(progress)")
         
         if avPlayer.status != AVPlayerStatus.ReadyToPlay {
@@ -137,7 +137,7 @@ class AudioManager: NSObject {
         }
         
         logger.info("🍕Starting audio player at rate \(playbackRate)")
-        if let duration = avPlayer.currentItem?.duration where time >= duration {
+        if let duration = avPlayer.currentItem?.duration, time >= duration {
             time = kCMTimeZero
             logger.info("🍕Resetting time to zero")
         }
@@ -191,10 +191,10 @@ class AudioManager: NSObject {
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if let _ = object as? AVPlayer where keyPath == "rate" {
+        if let _ = object as? AVPlayer, keyPath == "rate" {
             
         }
-        if let item = object as? AVPlayerItem where keyPath == "status" {
+        if let item = object as? AVPlayerItem, keyPath == "status" {
             switch item.status {
             case .Failed:
                 logger.error("Failed to load audio: \(change)")
@@ -215,7 +215,7 @@ class AudioManager: NSObject {
         logger.info("🍕registering observers")
         let session = AVAudioSession.sharedInstance()
         audioInterruptionObserverToken = NSNotificationCenter.defaultCenter().addObserverForName(AVAudioSessionInterruptionNotification, object: session, queue: nil) { [weak self] (notification) in
-            if let key = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? AVAudioSessionInterruptionType where key == .Began {
+            if let key = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? AVAudioSessionInterruptionType, key == .Began {
                 self?.stop(unregisterObservers: false)
             } else {
                 if let this = self {

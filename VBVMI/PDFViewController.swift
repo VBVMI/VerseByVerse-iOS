@@ -56,17 +56,22 @@ class PDFViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.navigationController?.hidesBarsOnTap = true
-        self.navigationController?.hidesBarsOnSwipe = true
-        if !attachedToNavController {
-            self.navigationController?.barHideOnSwipeGestureRecognizer.addTarget(self, action: #selector(didSwipe(_:)))
-            attachedToNavController = true
+        if #available(iOS 11.0, *) {
+            
+        } else {
+            self.navigationController?.hidesBarsOnTap = true
+            self.navigationController?.hidesBarsOnSwipe = true
+            if !attachedToNavController {
+                self.navigationController?.barHideOnSwipeGestureRecognizer.addTarget(self, action: #selector(didSwipe(_:)))
+                attachedToNavController = true
+            }
         }
-        
     }
     
     func didSwipe(_ swipe: UIPanGestureRecognizer) {
-        
+        if #available(iOS 11.0, *) {
+            return
+        }
         // Visible to hidden
         if curFramePosition == 0 && self.navigationController?.navigationBar.frame.origin.y == -44 {
             curFramePosition = -44
@@ -84,6 +89,9 @@ class PDFViewController: UIViewController {
     
     
     override var prefersStatusBarHidden : Bool {
+        if #available(iOS 11.0, *) {
+            return false
+        }
         return !showStatusBar
     }
     
@@ -92,6 +100,11 @@ class PDFViewController: UIViewController {
     }
 //
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if #available(iOS 11.0, *) {
+            return
+        }
         let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
         webView.scrollView.contentInset = insets
         webView.scrollView.scrollIndicatorInsets = insets
@@ -112,6 +125,9 @@ class PDFViewController: UIViewController {
 
 extension PDFViewController : UIWebViewDelegate {
     func webViewDidFinishLoad(_ webView: UIWebView) {
+        if #available(iOS 11.0, *) {
+            return
+        }
         webView.scrollView.setContentOffset(CGPoint(x:0, y: -self.topLayoutGuide.length), animated: false)
     }
 }

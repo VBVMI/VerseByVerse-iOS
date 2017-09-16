@@ -125,11 +125,12 @@
                             <constraints>
                                 <constraint firstItem="SX0-kA-eGe" firstAttribute="top" secondItem="rNN-sj-O2Y" secondAttribute="top" id="4cK-yx-wtf"/>
                                 <constraint firstItem="SX0-kA-eGe" firstAttribute="leading" secondItem="rNN-sj-O2Y" secondAttribute="leading" id="6JR-lE-kTB"/>
+                                <constraint firstItem="7Ik-d1-Z0J" firstAttribute="leading" secondItem="UD1-iF-2FE" secondAttribute="leading" constant="-8" id="CCl-2H-jgx"/>
                                 <constraint firstAttribute="bottom" secondItem="SX0-kA-eGe" secondAttribute="bottom" id="eu6-8B-Nwx"/>
-                                <constraint firstItem="UD1-iF-2FE" firstAttribute="leading" secondItem="rNN-sj-O2Y" secondAttribute="leading" constant="8" id="hYx-7x-fjQ"/>
                                 <constraint firstAttribute="bottom" secondItem="UD1-iF-2FE" secondAttribute="bottom" constant="8" id="m4I-W2-Wh5"/>
                                 <constraint firstAttribute="trailing" secondItem="SX0-kA-eGe" secondAttribute="trailing" id="yQH-sf-Q5b"/>
                             </constraints>
+                            <viewLayoutGuide key="safeArea" id="7Ik-d1-Z0J"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DescriptionCell" rowHeight="87" id="vYv-Wy-i9r" customClass="StudyDescriptionCell" customModule="Verse_By_Verse" customModuleProvider="target">

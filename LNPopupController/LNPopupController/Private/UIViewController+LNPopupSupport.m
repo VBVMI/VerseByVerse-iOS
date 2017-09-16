@@ -14,7 +14,9 @@
 static const void* _LNPopupItemKey = &_LNPopupItemKey;
 static const void* _LNPopupControllerKey = &_LNPopupControllerKey;
 const void* _LNPopupPresentationContainerViewControllerKey = &_LNPopupPresentationContainerViewControllerKey;
+const void* _LNPopupBarPreviewingDelegateKey = &_LNPopupBarPreviewingDelegateKey;
 const void* _LNPopupContentViewControllerKey = &_LNPopupContentViewControllerKey;
+static const void* _LNPopupInteractionStyleKey = &_LNPopupInteractionStyleKey;
 static const void* _LNPopupBottomBarSupportKey = &_LNPopupBottomBarSupportKey;
 
 #pragma clang diagnostic push
@@ -28,7 +30,7 @@ static const void* _LNPopupBottomBarSupportKey = &_LNPopupBottomBarSupportKey;
 
 @implementation UIViewController (LNPopupSupport)
 
-- (void)presentPopupBarWithContentViewController:(UIViewController*)controller openPopup:(BOOL)openPopup animated:(BOOL)animated completion:(nullable void(^)())completionBlock;
+- (void)presentPopupBarWithContentViewController:(UIViewController*)controller openPopup:(BOOL)openPopup animated:(BOOL)animated completion:(nullable void(^)(void))completionBlock;
 {
 	if(controller == nil)
 	{
@@ -41,22 +43,22 @@ static const void* _LNPopupBottomBarSupportKey = &_LNPopupBottomBarSupportKey;
 	[self._ln_popupController presentPopupBarAnimated:animated openPopup:openPopup completion:completionBlock];
 }
 
-- (void)presentPopupBarWithContentViewController:(UIViewController*)controller animated:(BOOL)animated completion:(void(^)())completionBlock
+- (void)presentPopupBarWithContentViewController:(UIViewController*)controller animated:(BOOL)animated completion:(void(^)(void))completionBlock
 {
 	[self presentPopupBarWithContentViewController:controller openPopup:NO animated:animated completion:completionBlock];
 }
 
-- (void)openPopupAnimated:(BOOL)animated completion:(void(^)())completionBlock
+- (void)openPopupAnimated:(BOOL)animated completion:(void(^)(void))completionBlock
 {
 	[self._ln_popupController_nocreate openPopupAnimated:animated completion:completionBlock];
 }
 
-- (void)closePopupAnimated:(BOOL)animated completion:(void(^)())completionBlock
+- (void)closePopupAnimated:(BOOL)animated completion:(void(^)(void))completionBlock
 {
 	[self._ln_popupController_nocreate closePopupAnimated:animated completion:completionBlock];
 }
 
-- (void)dismissPopupBarAnimated:(BOOL)animated completion:(void(^)())completionBlock
+- (void)dismissPopupBarAnimated:(BOOL)animated completion:(void(^)(void))completionBlock
 {
 	[self._ln_popupController_nocreate dismissPopupBarAnimated:animated completion:^{
 		//Cleanup
@@ -81,6 +83,16 @@ static const void* _LNPopupBottomBarSupportKey = &_LNPopupBottomBarSupportKey;
 - (LNPopupPresentationState)popupPresentationState
 {
 	return self._ln_popupController_nocreate.popupControllerState;
+}
+
+- (BOOL)_isContainedInPopupController
+{
+	if(self.popupPresentationContainerViewController != nil)
+	{
+		return YES;
+	}
+	
+	return [self.parentViewController _isContainedInPopupController];
 }
 
 - (UIViewController *)popupPresentationContainerViewController
@@ -124,12 +136,22 @@ static const void* _LNPopupBottomBarSupportKey = &_LNPopupBottomBarSupportKey;
 
 - (LNPopupBar *)popupBar
 {
-	return self._ln_popupController.popupBar;
+	return self._ln_popupController.popupBarStorage;
 }
 
 - (LNPopupContentView *)popupContentView
 {
 	return self._ln_popupController.popupContentView;
+}
+
+- (LNPopupInteractionStyle)popupInteractionStyle
+{
+	return [objc_getAssociatedObject(self, _LNPopupInteractionStyleKey) unsignedIntegerValue];
+}
+
+- (void)setPopupInteractionStyle:(LNPopupInteractionStyle)popupInteractionStyle
+{
+	objc_setAssociatedObject(self, _LNPopupInteractionStyleKey, @(popupInteractionStyle), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (LNPopupController*)_ln_popupController_nocreate
@@ -140,6 +162,19 @@ static const void* _LNPopupBottomBarSupportKey = &_LNPopupBottomBarSupportKey;
 - (__kindof UIView *)viewForPopupInteractionGestureRecognizer
 {
 	return self.view;
+}
+
+- (id<LNPopupBarPreviewingDelegate>)popupBarPreviewingDelegate
+{
+	return [(_LNWeakRef*)objc_getAssociatedObject(self, _LNPopupBarPreviewingDelegateKey) object];
+}
+
+- (void)setPopupBarPreviewingDelegate:(id<LNPopupBarPreviewingDelegate>)popupBarPreviewingDelegate
+{
+	[self willChangeValueForKey:@"popupBarPreviewingDelegate"];
+	_LNWeakRef* weakRef = [_LNWeakRef refWithObject:popupBarPreviewingDelegate];
+	objc_setAssociatedObject(self, _LNPopupBarPreviewingDelegateKey, weakRef, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+	[self didChangeValueForKey:@"popupBarPreviewingDelegate"];
 }
 
 @end
@@ -183,15 +218,15 @@ static const void* _LNPopupBottomBarSupportKey = &_LNPopupBottomBarSupportKey;
 
 - (nullable UIView *)bottomDockingViewForPopup_nocreateOrDeveloper
 {
-	return self.bottomDockingViewForPopup ?: self._ln_bottomBarSupport_nocreate;
+	return self.bottomDockingViewForPopupBar ?: self._ln_bottomBarSupport_nocreate;
 }
 
 - (nonnull UIView *)bottomDockingViewForPopup_internalOrDeveloper
 {
-	return self.bottomDockingViewForPopup ?: self._ln_bottomBarSupport;
+	return self.bottomDockingViewForPopupBar ?: self._ln_bottomBarSupport;
 }
 
-- (nullable UIView *)bottomDockingViewForPopup
+- (nullable UIView *)bottomDockingViewForPopupBar
 {
 	return nil;
 }
@@ -208,7 +243,7 @@ static const void* _LNPopupBottomBarSupportKey = &_LNPopupBottomBarSupportKey;
 
 - (CGRect)defaultFrameForBottomDockingView_internalOrDeveloper
 {
-	return [self bottomDockingViewForPopup] != nil ? [self defaultFrameForBottomDockingView] : [self defaultFrameForBottomDockingView_internal];
+	return [self bottomDockingViewForPopupBar] != nil ? [self defaultFrameForBottomDockingView] : [self defaultFrameForBottomDockingView_internal];
 }
 
 @end
