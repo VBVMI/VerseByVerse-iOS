@@ -67,7 +67,8 @@ class ArticleViewController: UITableViewController {
         
         tableView.register(UINib(nibName: Cell.NibName.ArticleHeader, bundle: nil), forCellReuseIdentifier: Cell.Identifier.ArticleHeader)
         tableView.register(UINib(nibName: Cell.NibName.ArticleBody, bundle: nil), forCellReuseIdentifier: Cell.Identifier.ArticleBody)
-        
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableViewAutomaticDimension
         let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
         self.navigationItem.rightBarButtonItem = shareButton
     }
@@ -201,9 +202,14 @@ class ArticleViewController: UITableViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
+        if #available(iOS 11, *) {
+            
+        } else {
+            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+            tableView.contentInset = insets
+            tableView.scrollIndicatorInsets = insets
+        }
+       
     }
     
 }
