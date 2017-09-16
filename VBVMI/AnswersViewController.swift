@@ -83,12 +83,18 @@ class AnswersViewController: UITableViewController {
             logger.error("Error fetching: \(error)")
         }
         
-        self.tableView.tableHeaderView = searchController.searchBar
-
+        if #available(iOS 11.0, *) {
+            self.navigationItem.searchController = searchController
+        } else {
+            self.tableView.tableHeaderView = searchController.searchBar
+        }
         
         // Setup about Menu
         self.aboutActionsController = AboutActionsController(presentingController: self)
         self.navigationItem.leftBarButtonItem = self.aboutActionsController.barButtonItem
+        
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
@@ -113,10 +119,14 @@ class AnswersViewController: UITableViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        if self.parent == nil {
-            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
-            tableView.contentInset = insets
-            tableView.scrollIndicatorInsets = insets
+        if #available(iOS 11.0, *) {
+            
+        } else {
+            if self.parent == nil {
+                let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+                tableView.contentInset = insets
+                tableView.scrollIndicatorInsets = insets
+            }
         }
     }
 

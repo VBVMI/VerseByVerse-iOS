@@ -58,14 +58,14 @@ DEPENDENCIES:
   - SnapKit
   - STRegex
   - UIImage-Color
-  - VimeoNetworking (from `https://github.com/vimeo/VimeoNetworking.git`, branch `feature/swift-3-part-2`)
+  - VimeoNetworking (from `https://github.com/vimeo/VimeoNetworking.git`, branch `develop`)
   - XCGLogger
 
 EXTERNAL SOURCES:
   FontAwesome.swift:
     :git: git@github.com:thii/FontAwesome.swift.git
   VimeoNetworking:
-    :branch: feature/swift-3-part-2
+    :branch: develop
     :git: https://github.com/vimeo/VimeoNetworking.git
 
 CHECKOUT OPTIONS:
@@ -73,7 +73,7 @@ CHECKOUT OPTIONS:
     :commit: b03d71746f277690d1ff7df0c539641c4ba57d4d
     :git: git@github.com:thii/FontAwesome.swift.git
   VimeoNetworking:
-    :commit: 792590f6e654fb56a27b92776d3e9eeda088ddd2
+    :commit: 97e55c02b3ed18678b4eb00d25c85b229fa4f559
     :git: https://github.com/vimeo/VimeoNetworking.git
 
 SPEC CHECKSUMS:
@@ -97,6 +97,6 @@ SPEC CHECKSUMS:
   VimeoNetworking: 17f8d451e4a168044f619315d0cd821669676e67
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: eeb1ac20b76ae4b2471df05210f0696c46f4281a
+PODFILE CHECKSUM: 49ad85479e5e0b72dc50d1e031d86ce935158c90
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

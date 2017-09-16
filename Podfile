@@ -33,7 +33,7 @@ def common_pods
     pod 'ReachabilitySwift'
     
     pod 'Reveal-SDK', :configurations => ['Debug']
-    pod 'VimeoNetworking', git: 'https://github.com/vimeo/VimeoNetworking.git', branch: 'feature/swift-3-part-2'
+    pod 'VimeoNetworking', git: 'https://github.com/vimeo/VimeoNetworking.git', branch: 'develop'
     #pod 'VIMVideoPlayer'
 end
 

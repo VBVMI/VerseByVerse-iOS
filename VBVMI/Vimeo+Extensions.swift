@@ -10,7 +10,7 @@ import Foundation
 import VimeoNetworking
 
 /// Extend app configuration to provide a default configuration
-private extension AppConfiguration
+extension AppConfiguration
 {
     /// The default configuration to use for this application, populate your client key, secret, and scopes.
     /// Also, don't forget to set up your application to receive the code grant authentication redirect, see the README for details.

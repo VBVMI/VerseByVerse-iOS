@@ -82,13 +82,13 @@ final public class AuthenticationController
      
      - returns: a new `AuthenticationController`
      */
-    public init(client: VimeoClient)
+    public init(client: VimeoClient, appConfiguration: AppConfiguration)
     {
-        self.configuration = client.configuration
+        self.configuration = appConfiguration
         self.client = client
-        self.accountStore = AccountStore(configuration: client.configuration)
+        self.accountStore = AccountStore(configuration: configuration)
         
-        self.authenticatorClient = VimeoClient(appConfiguration: client.configuration)
+        self.authenticatorClient = VimeoClient(appConfiguration: configuration)
     }
     
     // MARK: - Public Saved Accounts
@@ -134,14 +134,14 @@ final public class AuthenticationController
     {
         let accountType: AccountStore.AccountType = (account.user != nil) ? .user : .clientCredentials
         
-        try self.accountStore.saveAccount(account: account, type: accountType)
+        try self.accountStore.save(account, ofType: accountType)
     }
     
     // MARK: - Private Saved Accounts
     
     private func loadAccount(accountType: AccountStore.AccountType) throws -> VIMAccount?
     {
-        let loadedAccount = try self.accountStore.loadAccount(type: accountType)
+        let loadedAccount = try self.accountStore.loadAccount(ofType: accountType)
         
         if let loadedAccount = loadedAccount
         {
@@ -194,11 +194,7 @@ final public class AuthenticationController
                           Constants.ScopeKey: Scope.combine(self.configuration.scopes),
                           Constants.StateKey: type(of: self).state]
         
-        guard let urlString = VimeoBaseURLString?.appendingPathComponent(Constants.CodeGrantAuthorizationPath).absoluteString
-        else
-        {
-            fatalError("Could not make code grant auth URL")
-        }
+        let urlString = self.configuration.baseUrl.appendingPathComponent(Constants.CodeGrantAuthorizationPath).absoluteString
         
         var error: NSError?
         let urlRequest = VimeoRequestSerializer(appConfiguration: self.configuration).request(withMethod: VimeoClient.Method.GET.rawValue, urlString: urlString, parameters: parameters, error: &error)
@@ -263,7 +259,7 @@ final public class AuthenticationController
      */
     public func accessToken(token: String, completion: @escaping AuthenticationCompletion)
     {
-        let customSessionManager =  VimeoSessionManager.defaultSessionManager(accessTokenProvider: {token})
+        let customSessionManager =  VimeoSessionManager.defaultSessionManager(baseUrl: self.configuration.baseUrl, accessTokenProvider: {token})
         let adhocClient = VimeoClient(appConfiguration: self.configuration, sessionManager: customSessionManager)
         let request = AuthenticationRequest.verifyAccessTokenRequest()
 
@@ -512,7 +508,7 @@ final public class AuthenticationController
         
         if loadClientCredentials
         {
-            let loadedClientCredentialsAccount = (try? self.accountStore.loadAccount(type: .clientCredentials)) ?? nil
+            let loadedClientCredentialsAccount = (try? self.accountStore.loadAccount(ofType: .clientCredentials)) ?? nil
             try self.setClientAccount(with: loadedClientCredentialsAccount, shouldClearCache: true)
         }
         else
@@ -520,15 +516,21 @@ final public class AuthenticationController
             try self.setClientAccount(with: nil, shouldClearCache: true)
         }
         
-        try self.accountStore.removeAccount(type: .user)
+        try self.accountStore.removeAccount(ofType: .user)
     }
     
-    // MARK: - Private
-    
-    private func authenticate(with request: AuthenticationRequest, completion: @escaping AuthenticationCompletion)
+    /**
+     Executes the specified authentication request, then the specified completion.
+     
+        - request: A request to fetch a VIMAccount.
+        - completion: A closure to handle the VIMAccount or error received.
+     */
+    public func authenticate(with request: AuthenticationRequest, completion: @escaping AuthenticationCompletion)
     {
         self.authenticate(with: self.authenticatorClient, request: request, completion: completion)
     }
+    
+    // MARK: - Private
     
     private func authenticate(with client: VimeoClient, request: AuthenticationRequest, completion: @escaping AuthenticationCompletion)
     {
@@ -575,7 +577,7 @@ final public class AuthenticationController
             
             let accountType: AccountStore.AccountType = (account.user != nil) ? .user : .clientCredentials
             
-            try self.accountStore.saveAccount(account: account, type: accountType)
+            try self.accountStore.save(account, ofType: accountType)
         }
         catch let error
         {

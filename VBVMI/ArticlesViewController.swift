@@ -91,7 +91,11 @@ class ArticlesViewController: UITableViewController {
             logger.error("Error fetching: \(error)")
         }
         
-        self.tableView.tableHeaderView = searchController.searchBar
+        if #available(iOS 11.0, *) {
+            self.navigationItem.searchController = searchController
+        } else {
+            self.tableView.tableHeaderView = searchController.searchBar
+        }
         // Do any additional setup after loading the view
         
         // Setup about Menu
@@ -99,7 +103,8 @@ class ArticlesViewController: UITableViewController {
         self.navigationItem.leftBarButtonItem = self.aboutActionsController.barButtonItem
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
-        
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableViewAutomaticDimension
         if topic == nil {
             let refreshControl = UIRefreshControl()
             refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
@@ -119,11 +124,17 @@ class ArticlesViewController: UITableViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        if self.parent == nil {
-            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
-            tableView.contentInset = insets
-            tableView.scrollIndicatorInsets = insets
+        
+        if #available(iOS 11.0, *) {
+            
+        } else {
+            if self.parent == nil {
+                let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+                tableView.contentInset = insets
+                tableView.scrollIndicatorInsets = insets
+            }
         }
+        
     }
 
     /*

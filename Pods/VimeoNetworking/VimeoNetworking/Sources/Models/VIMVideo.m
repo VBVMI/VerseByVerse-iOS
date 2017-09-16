@@ -126,16 +126,19 @@ NSString *VIMContentRating_Safe = @"safe";
         return [VIMVideoPlayRepresentation class];
     }
     
-    #if TARGET_OS_TV
     if ([key isEqualToString:@"badge"])
     {
         return [VIMBadge class];
     }
-    #endif
     
     if ([key isEqualToString:@"spatial"])
     {
-            return [Spatial class];
+        return [Spatial class];
+    }
+    
+    if ([key isEqualToString:@"live"])
+    {
+        return [VIMLive class];
     }
     
     return nil;
@@ -496,6 +499,11 @@ NSString *VIMContentRating_Safe = @"safe";
 - (BOOL)is360
 {
     return self.spatial != nil;
+}
+
+- (BOOL)isLive
+{
+    return self.live != nil;
 }
 
 @end

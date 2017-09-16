@@ -141,6 +141,9 @@ class StudyViewController: UITableViewController {
             configureViewsForSudy()
             configureFetchController()
         }
+        
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableViewAutomaticDimension
 
         barButtonItem.target = self
         barButtonItem.setTitleTextAttributes([NSFontAttributeName: UIFont.fontAwesomeOfSize(20)], for: .normal)
@@ -162,13 +165,19 @@ class StudyViewController: UITableViewController {
     }
     
     var resizeImageOnce = true
+    
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         let contentOffset = self.tableView.contentOffset
         let totalOffTop = self.tableView.contentInset.top + contentOffset.y
         
-        let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
+        if #available(iOS 11.0, *) {
+            
+        } else {
+            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+            tableView.contentInset = insets
+            tableView.scrollIndicatorInsets = insets
+        }
         
         if totalOffTop <= 0 {
             resizeBlurImage()
@@ -346,7 +355,7 @@ class StudyViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 1,2:
-            return 36.5
+            return 100//36.5
         default:
             return 0
         }

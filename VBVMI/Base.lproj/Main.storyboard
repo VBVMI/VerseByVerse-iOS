@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="h14-bl-qjG">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h14-bl-qjG">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -41,7 +42,7 @@
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hfv-4i-ZXW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -56,16 +57,12 @@
         <scene sceneID="rdJ-l8-2bt">
             <objects>
                 <viewController storyboardIdentifier="Studies Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="f4n-T1-mqz" customClass="StudiesViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Nsa-5v-nL7"/>
-                        <viewControllerLayoutGuide type="bottom" id="osI-F6-KFb"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="l8f-fB-8DF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="Studies CollectionView" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Y9-wb-dIi">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="Vgu-jE-iii">
                                     <size key="itemSize" width="90" height="130"/>
@@ -83,10 +80,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottomMargin" secondItem="3Y9-wb-dIi" secondAttribute="bottom" id="2oQ-9n-RuH"/>
-                            <constraint firstItem="3Y9-wb-dIi" firstAttribute="leading" secondItem="l8f-fB-8DF" secondAttribute="leading" id="Jyq-Mp-yEl"/>
+                            <constraint firstItem="3Y9-wb-dIi" firstAttribute="leading" secondItem="7Rw-bJ-ezQ" secondAttribute="leading" id="Jyq-Mp-yEl"/>
                             <constraint firstItem="3Y9-wb-dIi" firstAttribute="top" secondItem="l8f-fB-8DF" secondAttribute="topMargin" id="V9U-3A-gDk"/>
-                            <constraint firstAttribute="trailing" secondItem="3Y9-wb-dIi" secondAttribute="trailing" id="gia-ol-uCz"/>
+                            <constraint firstItem="7Rw-bJ-ezQ" firstAttribute="trailing" secondItem="3Y9-wb-dIi" secondAttribute="trailing" id="gia-ol-uCz"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="7Rw-bJ-ezQ"/>
                     </view>
                     <navigationItem key="navigationItem" title="Studies" id="Z3V-FX-Bd3"/>
                     <connections>
@@ -105,7 +103,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="Study Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yfM-zu-8Zd" customClass="StudyViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="peR-Ed-5AH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="rNN-sj-O2Y">
@@ -138,24 +136,24 @@
                                 <rect key="frame" x="0.0" y="196" width="375" height="87"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vYv-Wy-i9r" id="ede-53-JSy">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="86.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="86.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nT-kj-M8E">
-                                            <rect key="frame" x="16" y="8" width="343" height="20.5"/>
+                                            <rect key="frame" x="16" y="8.0000000000000018" width="343" height="20.666666666666671"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pf2-xQ-ePx" customClass="HideView" customModule="Verse_By_Verse" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="27.5" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="27.666666666666671" width="375" height="60"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="60" id="Cg6-NG-4Kj"/>
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1u-wE-HZE">
-                                            <rect key="frame" x="169.5" y="71" width="36.5" height="13.5"/>
+                                            <rect key="frame" x="169.66666666666663" y="71" width="36.333333333333343" height="13.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -208,26 +206,23 @@
         <scene sceneID="sFA-hP-Ay7">
             <objects>
                 <viewController storyboardIdentifier="LessonWebView" id="5ao-AQ-ZKT" customClass="PDFViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ANr-Xd-8Z2"/>
-                        <viewControllerLayoutGuide type="bottom" id="jlk-ts-3Rv"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yCE-PS-yjr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" paginationMode="topToBottom" paginationBreakingMode="column" translatesAutoresizingMaskIntoConstraints="NO" id="Vzw-fI-njH">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
                                 <color key="backgroundColor" red="0.28958413004875183" green="0.31462949514389038" blue="0.32950475811958313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Vzw-fI-njH" secondAttribute="trailing" id="Jvc-oF-iiW"/>
-                            <constraint firstItem="Vzw-fI-njH" firstAttribute="leading" secondItem="yCE-PS-yjr" secondAttribute="leading" id="r0s-0F-vgO"/>
+                            <constraint firstItem="njY-VG-RrJ" firstAttribute="trailing" secondItem="Vzw-fI-njH" secondAttribute="trailing" id="Jvc-oF-iiW"/>
+                            <constraint firstItem="Vzw-fI-njH" firstAttribute="leading" secondItem="njY-VG-RrJ" secondAttribute="leading" id="r0s-0F-vgO"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Vzw-fI-njH" secondAttribute="bottom" id="xYv-Q4-rKZ"/>
                             <constraint firstItem="Vzw-fI-njH" firstAttribute="top" secondItem="yCE-PS-yjr" secondAttribute="topMargin" id="xxl-Sg-ScF"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="njY-VG-RrJ"/>
                     </view>
                     <connections>
                         <outlet property="webView" destination="Vzw-fI-njH" id="fIm-tI-rnZ"/>
@@ -242,7 +237,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="Articles" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aQc-vM-nMb" customClass="ArticlesViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Articles Controller" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7Kg-56-QNs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
@@ -264,7 +259,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="Article" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rXV-Ac-x65" customClass="ArticleViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="OXw-EG-MO8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
@@ -282,7 +277,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="Answer" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BgG-Wm-fdE" customClass="AnswerViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZRq-5Y-4bO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
@@ -306,7 +301,7 @@
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HH9-zV-8Cw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -322,7 +317,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="Answers" useStoryboardIdentifierAsRestorationIdentifier="YES" id="McM-lu-wcI" customClass="AnswersViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zz5-81-JK1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
@@ -349,7 +344,7 @@
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lG9-Tf-jzy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -364,12 +359,8 @@
         <scene sceneID="48b-Nl-N2U">
             <objects>
                 <viewController storyboardIdentifier="Videos" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XZ7-fQ-tUf" customClass="ChannelsViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dfe-Df-3Uh"/>
-                        <viewControllerLayoutGuide type="bottom" id="PeS-Yb-Pp2"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cd9-WV-qKw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Tc-aQ-lKj">
@@ -384,10 +375,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="7Tc-aQ-lKj" firstAttribute="top" secondItem="cd9-WV-qKw" secondAttribute="top" id="6sg-8H-5Ot"/>
-                            <constraint firstAttribute="trailing" secondItem="7Tc-aQ-lKj" secondAttribute="trailing" id="L4e-ya-hWw"/>
-                            <constraint firstItem="7Tc-aQ-lKj" firstAttribute="leading" secondItem="cd9-WV-qKw" secondAttribute="leading" id="N2q-68-2dJ"/>
+                            <constraint firstItem="EHj-MY-Ctn" firstAttribute="trailing" secondItem="7Tc-aQ-lKj" secondAttribute="trailing" id="L4e-ya-hWw"/>
+                            <constraint firstItem="7Tc-aQ-lKj" firstAttribute="leading" secondItem="EHj-MY-Ctn" secondAttribute="leading" id="N2q-68-2dJ"/>
                             <constraint firstAttribute="bottom" secondItem="7Tc-aQ-lKj" secondAttribute="bottom" id="rqq-66-Z3B"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="EHj-MY-Ctn"/>
                     </view>
                     <navigationItem key="navigationItem" title="Videos" id="95M-U5-V06"/>
                     <connections>
@@ -403,12 +395,8 @@
         <scene sceneID="miE-di-1dA">
             <objects>
                 <viewController id="rQw-0t-S92" customClass="ChannelViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Slh-JF-7Ba"/>
-                        <viewControllerLayoutGuide type="bottom" id="hMf-8C-ra0"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nkl-Jv-DBP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Eea-8U-mSP">
@@ -424,9 +412,10 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Eea-8U-mSP" secondAttribute="bottom" id="1n2-1A-1hm"/>
                             <constraint firstItem="Eea-8U-mSP" firstAttribute="top" secondItem="nkl-Jv-DBP" secondAttribute="top" id="WFO-i9-ems"/>
-                            <constraint firstItem="Eea-8U-mSP" firstAttribute="leading" secondItem="nkl-Jv-DBP" secondAttribute="leading" id="Z1W-H0-JST"/>
-                            <constraint firstAttribute="trailing" secondItem="Eea-8U-mSP" secondAttribute="trailing" id="wRc-1z-Tar"/>
+                            <constraint firstItem="Eea-8U-mSP" firstAttribute="leading" secondItem="VQz-vP-G0D" secondAttribute="leading" id="Z1W-H0-JST"/>
+                            <constraint firstItem="VQz-vP-G0D" firstAttribute="trailing" secondItem="Eea-8U-mSP" secondAttribute="trailing" id="wRc-1z-Tar"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="VQz-vP-G0D"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="Eea-8U-mSP" id="Oih-pt-uns"/>
@@ -447,7 +436,7 @@
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="K5C-Go-oOC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

@@ -108,9 +108,18 @@ class StudiesViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
-        collectionView.contentInset = insets
-        collectionView.scrollIndicatorInsets = insets
+        super.viewDidLayoutSubviews()
+        
+        if #available(iOS 11.0, *) {
+            
+        } else {
+            // Fallback on earlier versions
+            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+            collectionView.contentInset = insets
+            collectionView.scrollIndicatorInsets = insets
+        }
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

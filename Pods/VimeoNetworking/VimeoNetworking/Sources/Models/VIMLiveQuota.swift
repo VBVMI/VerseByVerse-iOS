@@ -1,9 +1,9 @@
 //
-//  Request+Cache.swift
-//  VimeoNetworkingExample-iOS
+//  VIMLiveQuota.swift
+//  VimeoNetworking
 //
-//  Created by Huebner, Rob on 4/14/16.
-//  Copyright © 2016 Vimeo. All rights reserved.
+//  Created by Van Nguyen on 09/11/2017.
+//  Copyright (c) Vimeo (https://vimeo.com)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,18 +26,34 @@
 
 import Foundation
 
-
-public extension Request
+/// An object that represents the `live_quota`
+/// field in a `user` response.
+public class VIMLiveQuota: VIMModelObject
 {
-    /// Generates a unique cache key for a request, taking into account endpoint and parameters
-    var cacheKey: String
+    private struct Constants
     {
-        let url = NSURL(string: self.path)
-        let urlPath = url?.path ?? ""
+        static let StreamsKey = "streams"
+        static let TimeKey = "time"
+    }
+    
+    /// The `streams` field in a `live_quota` response.
+    public private(set) var streams: VIMLiveStreams?
+    
+    /// The `time` field in a `live_quota` response.
+    public private(set) var time: VIMLiveTime?
+    
+    override public func getClassForObjectKey(_ key: String!) -> AnyClass!
+    {
+        if key == Constants.StreamsKey
+        {
+            return VIMLiveStreams.self
+        }
         
-        var cacheKey = "cached" + urlPath + "." + String(self.path.hashValue)
-        cacheKey = cacheKey.replacingOccurrences(of: "/", with: ".")
+        if key == Constants.TimeKey
+        {
+            return VIMLiveTime.self
+        }
         
-        return cacheKey
+        return nil
     }
 }

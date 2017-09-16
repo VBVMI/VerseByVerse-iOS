@@ -33,6 +33,7 @@
 #import "VIMPreference.h"
 #import "VIMUploadQuota.h"
 #import "VIMUserBadge.h"
+#import <VimeoNetworking/VimeoNetworking-Swift.h>
 
 @interface VIMUser ()
 
@@ -91,6 +92,11 @@
     if ([key isEqualToString:@"upload_quota"])
     {
         return [VIMUploadQuota class];
+    }
+    
+    if ([key isEqualToString:@"live_quota"])
+    {
+        return [VIMLiveQuota class];
     }
 
     return nil;
@@ -252,16 +258,16 @@
 
 #pragma mark - Helpers
 
-- (BOOL)hasCopyrightMatch
-{
-    VIMConnection *connection = [self connectionWithName:VIMConnectionNameViolations];
-    return (connection && connection.total.intValue > 0);
-}
-
 - (BOOL)isFollowing
 {
     VIMInteraction *interaction = [self interactionWithName:VIMInteractionNameFollow];
     return (interaction && interaction.added.boolValue);
+}
+
+- (BOOL)hasModeratedChannels
+{
+    VIMConnection *connection = [self connectionWithName:VIMConnectionNameModeratedChannels];
+    return (connection && connection.total.intValue > 0);
 }
 
 - (NSString *)accountTypeAnalyticsIdentifier
@@ -318,6 +324,17 @@
             }
         }
     }
+}
+
+- (BOOL)hasSameBadgeCount:(VIMUser *)newUser
+{
+    VIMNotificationsConnection *currentAccountConnection = [self notificationsConnection];
+    NSInteger currentAccountTotal = [currentAccountConnection supportedNotificationNewTotal];
+    
+    VIMNotificationsConnection *responseConnection = [newUser notificationsConnection];
+    NSInteger responseTotal = [responseConnection supportedNotificationNewTotal];
+    
+    return currentAccountTotal == responseTotal;
 }
 
 @end

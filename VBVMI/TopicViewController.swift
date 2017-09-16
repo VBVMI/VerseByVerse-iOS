@@ -135,21 +135,29 @@ class TopicViewController: UIViewController {
         
         currentViewController = viewController
         
-        if let tableViewController = currentViewController as? UITableViewController {
-            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
-            tableViewController.tableView.contentInset = insets
-            tableViewController.tableView.scrollIndicatorInsets = insets
-            tableViewController.tableView.contentOffset = CGPoint(x: 0, y: -topLayoutGuide.length)
+        if #available(iOS 11.0, *) {
+            
+        } else {
+            if let tableViewController = currentViewController as? UITableViewController {
+                let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+                tableViewController.tableView.contentInset = insets
+                tableViewController.tableView.scrollIndicatorInsets = insets
+                tableViewController.tableView.contentOffset = CGPoint(x: 0, y: -topLayoutGuide.length)
+            }
         }
 //        viewController.view.layoutIfNeeded()
     }
     
     override func viewDidLayoutSubviews() {
-        if let tableViewController = currentViewController as? UITableViewController {
-            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
-            tableViewController.tableView.contentInset = insets
-            tableViewController.tableView.scrollIndicatorInsets = insets
-            tableViewController.tableView.contentOffset = CGPoint(x: 0, y: -topLayoutGuide.length)
+        if #available(iOS 11.0, *) {
+            
+        } else {
+            if let tableViewController = currentViewController as? UITableViewController {
+                let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+                tableViewController.tableView.contentInset = insets
+                tableViewController.tableView.scrollIndicatorInsets = insets
+                tableViewController.tableView.contentOffset = CGPoint(x: 0, y: -topLayoutGuide.length)
+            }
         }
     }
     

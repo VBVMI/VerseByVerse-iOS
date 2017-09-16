@@ -1,9 +1,9 @@
 //
-//  Request+Cache.swift
-//  VimeoNetworkingExample-iOS
+//  VIMLiveTime.swift
+//  VimeoNetworking
 //
-//  Created by Huebner, Rob on 4/14/16.
-//  Copyright © 2016 Vimeo. All rights reserved.
+//  Created by Van Nguyen on 09/11/2017.
+//  Copyright (c) Vimeo (https://vimeo.com)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,18 +26,21 @@
 
 import Foundation
 
-
-public extension Request
+/// An object that represents the `time` field in
+/// a `live_quota` response.
+public class VIMLiveTime: VIMModelObject
 {
-    /// Generates a unique cache key for a request, taking into account endpoint and parameters
-    var cacheKey: String
+    /// The maximum time (in seconds) per event a user can stream.
+    public private(set) var maxTimePerEvent: NSNumber?
+    
+    /// The maximum time (in seconds) per month a user can stream.
+    public private(set) var maxTimePerMonth: NSNumber?
+    
+    /// The remaining time (in seconds) this month a user can stream.
+    public private(set) var remainingTimeThisMonth: NSNumber?
+    
+    override public func getObjectMapping() -> Any!
     {
-        let url = NSURL(string: self.path)
-        let urlPath = url?.path ?? ""
-        
-        var cacheKey = "cached" + urlPath + "." + String(self.path.hashValue)
-        cacheKey = cacheKey.replacingOccurrences(of: "/", with: ".")
-        
-        return cacheKey
+        return ["monthly_remaining": "remainingTimeThisMonth", "monthly_maximum": "maxTimePerMonth", "event_maximum": "maxTimePerEvent"]
     }
 }
