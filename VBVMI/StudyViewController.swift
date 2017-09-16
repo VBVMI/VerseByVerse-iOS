@@ -26,7 +26,7 @@ class StudyViewController: UITableViewController {
     @IBOutlet var headerImageView: UIImageView!
     private let activity = NSUserActivity(activityType: "org.versebyverseministry.www")
     
-    fileprivate let barButtonItem: UIBarButtonItem = UIBarButtonItem(title: String.fontAwesomeIconWithName(.EllipsisH), style: .plain, target: nil, action: #selector(tappedMenu))
+    fileprivate let barButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage.fontAwesomeIconWithName(.EllipsisH, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30)), style: UIBarButtonItemStyle.plain, target: nil, action: #selector(tappedMenu))
     
     fileprivate class ButtonSender {
         let url: URL
@@ -146,7 +146,6 @@ class StudyViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
 
         barButtonItem.target = self
-        barButtonItem.setTitleTextAttributes([NSFontAttributeName: UIFont.fontAwesomeOfSize(20)], for: .normal)
         
         var buttons = [barButtonItem]
         let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))

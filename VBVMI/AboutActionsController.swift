@@ -18,8 +18,7 @@ class AboutActionsController: NSObject {
     
     init(presentingController controller: UIViewController) {
         self.controller = controller
-        barButtonItem = UIBarButtonItem(title: String.fontAwesomeIconWithName(.EllipsisH), style: .plain, target: nil, action: #selector(AboutActionsController.tappedMenu))
-        barButtonItem.setTitleTextAttributes([NSFontAttributeName: AboutActionsController.buttonFont], for: .normal)
+        barButtonItem = UIBarButtonItem(image: UIImage.fontAwesomeIconWithName(.EllipsisH, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30)), style: UIBarButtonItemStyle.plain, target: nil, action: #selector(AboutActionsController.tappedMenu))
         super.init()
         barButtonItem.target = self
     }
