@@ -15,32 +15,36 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - Alamofire (4.0.1)
-  - AlamofireImage (3.1.0):
-    - Alamofire (~> 4.0)
-  - Crashlytics (3.8.6):
-    - Fabric (~> 1.6.3)
+  - Alamofire (4.5.1)
+  - AlamofireImage (3.3.0):
+    - Alamofire (~> 4.5)
+  - Crashlytics (3.9.3):
+    - Fabric (~> 1.7.2)
   - CSStickyHeaderFlowLayout (0.2.11)
-  - Decodable (0.5)
-  - Fabric (1.6.13)
-  - FontAwesome.swift (0.11.1)
-  - Moya (8.0.0-beta.2):
-    - Moya/Core (= 8.0.0-beta.2)
-  - Moya/Core (8.0.0-beta.2):
-    - Alamofire (~> 4.0.0)
-    - Result
-  - ParallaxView (2.0.7)
-  - ReachabilitySwift (3)
-  - Result (3.0.0)
-  - Reveal-SDK (11)
-  - SnapKit (3.0.2)
-  - STRegex (0.4.2)
+  - Decodable (0.6.0)
+  - Fabric (1.7.2)
+  - FontAwesome.swift (1.3.2)
+  - Moya (10.0.1):
+    - Moya/Core (= 10.0.1)
+  - Moya/Core (10.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - ObjcExceptionBridging (1.0.1):
+    - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
+  - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
+  - ParallaxView (2.0.8)
+  - ReachabilitySwift (4.1.0)
+  - Result (3.2.4)
+  - Reveal-SDK (12)
+  - SnapKit (4.0.0)
+  - STRegex (1.1.0)
   - UIImage-Color (1.1.1)
-  - VimeoNetworking (0.0.1):
+  - VimeoNetworking (3.0.1):
     - AFNetworking (= 3.1.0)
-  - XCGLogger (4.0.0):
-    - XCGLogger/Core (= 4.0.0)
-  - XCGLogger/Core (4.0.0)
+  - XCGLogger (6.0.1):
+    - XCGLogger/Core (= 6.0.1)
+  - XCGLogger/Core (6.0.1):
+    - ObjcExceptionBridging
 
 DEPENDENCIES:
   - ACPDownload
@@ -51,52 +55,53 @@ DEPENDENCIES:
   - Decodable
   - Fabric
   - FontAwesome.swift (from `git@github.com:thii/FontAwesome.swift.git`)
-  - Moya (= 8.0.0-beta.2)
+  - Moya
   - ParallaxView
   - ReachabilitySwift
   - Reveal-SDK
   - SnapKit
   - STRegex
   - UIImage-Color
-  - VimeoNetworking (from `https://github.com/vimeo/VimeoNetworking.git`, branch `develop`)
+  - VimeoNetworking (from `https://github.com/vimeo/VimeoNetworking.git`, branch `tech/swift-4-support`)
   - XCGLogger
 
 EXTERNAL SOURCES:
   FontAwesome.swift:
     :git: git@github.com:thii/FontAwesome.swift.git
   VimeoNetworking:
-    :branch: develop
+    :branch: tech/swift-4-support
     :git: https://github.com/vimeo/VimeoNetworking.git
 
 CHECKOUT OPTIONS:
   FontAwesome.swift:
-    :commit: b03d71746f277690d1ff7df0c539641c4ba57d4d
+    :commit: 7ccc66c2bba23c2495cff361c7c271bdf89695e9
     :git: git@github.com:thii/FontAwesome.swift.git
   VimeoNetworking:
-    :commit: 97e55c02b3ed18678b4eb00d25c85b229fa4f559
+    :commit: a99f50de1995a942473c538606652d8b639d0dae
     :git: https://github.com/vimeo/VimeoNetworking.git
 
 SPEC CHECKSUMS:
   ACPDownload: 9c6349be96019b6c8c87ad46570af1cbc7106bf4
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
-  Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
+  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   CSStickyHeaderFlowLayout: e9bcb1762413f49d7d09e5bd0ae5efd1100116b7
-  Decodable: 7c90acc68d357b71d0d6efc120faf9c53c644b7e
-  Fabric: 2fb5676bc811af011a04513451f463dac6803206
-  FontAwesome.swift: 9879cd6a1462bf160662d519f7b7474d73bdd1c3
-  Moya: 920d40f738e6f4ece84010cec701bb9693be8251
-  ParallaxView: cea353d386075ba86fab9bfa570da221ca151b78
-  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
-  Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
-  Reveal-SDK: 7fa13d04bb55db61ff2342a990cf731d5159361d
-  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
-  STRegex: 9b6e0a4300c8442d1aa93241c895eeec4cc56935
+  Decodable: f0b95fa2fcf8633dd097aa8f7f09838ab3524f5d
+  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
+  FontAwesome.swift: 8555e3e689df989f879644966b1bd1172f82abec
+  Moya: 9e621707ff754eeb51ff3ec51a3d54e517c0733a
+  ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
+  ParallaxView: c2df9e49ab58cd8e0cd0b9d449a211d6f76fd53f
+  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  Reveal-SDK: 58517b2a4d5d69dcb98e62aa4a5e62c84b5e0061
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  STRegex: eb1f4c2fe9e2f0265b8df8634774cd8cd8914018
   UIImage-Color: 29d79c2acdd1836eae9815836a14fddfcd2db38f
-  VimeoNetworking: 17f8d451e4a168044f619315d0cd821669676e67
-  XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
+  VimeoNetworking: 5d30e46c8561e2e0a7472e93b915ec1a26a6acfd
+  XCGLogger: b4ca980580108cfeaf221afe158f5d89c1be22e0
 
-PODFILE CHECKSUM: 49ad85479e5e0b72dc50d1e031d86ce935158c90
+PODFILE CHECKSUM: cbebe5d7507ba56b80075e29cb4b24aa90327c12
 
 COCOAPODS: 1.3.1

@@ -12,7 +12,7 @@ import AlamofireImage
 import Fabric
 import Crashlytics
 import XCGLogger
-import ReachabilitySwift
+import Reachability
 import VimeoNetworking
 
 let logger: XCGLogger = {
@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             APIDataManager.allTheChannels()
             
             let reachability = Reachability()
-            if reachability?.isReachableViaWiFi == true {
+            if reachability?.connection == .wifi {
                 APIDataManager.allTheArticles()
                 APIDataManager.allTheAnswers()
             } else {

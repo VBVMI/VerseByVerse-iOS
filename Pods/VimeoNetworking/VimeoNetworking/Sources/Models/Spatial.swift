@@ -15,10 +15,10 @@ public class Spatial: VIMModelObject
     public static let StereoFormatTopBottom = "top-bottom"
     
     /// Represents the projection. Value returned by the server can be: "equirectangular", "cylindrical", "cubical", "pyramid", "dome".
-    public var projection: String?
+    @objc public var projection: String?
     
     /// Represents the format. Value returned by the server can be: "mono", "left-right", "top-bottom"
-    public var stereoFormat: String?
+    @objc public var stereoFormat: String?
     
     // MARK: - VIMMappable
     

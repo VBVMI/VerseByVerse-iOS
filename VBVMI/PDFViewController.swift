@@ -25,7 +25,7 @@ class PDFViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = shareButton
     }
     
-    func share() {
+    @objc func share() {
         guard let urlToLoad = urlToLoad else {
             return
         }
@@ -71,7 +71,7 @@ class PDFViewController: UIViewController {
         }
     }
     
-    func didSwipe(_ swipe: UIPanGestureRecognizer) {
+    @objc func didSwipe(_ swipe: UIPanGestureRecognizer) {
         if #available(iOS 11.0, *) {
             return
         }

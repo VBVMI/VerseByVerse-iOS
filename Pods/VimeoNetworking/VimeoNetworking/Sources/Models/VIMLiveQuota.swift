@@ -37,10 +37,10 @@ public class VIMLiveQuota: VIMModelObject
     }
     
     /// The `streams` field in a `live_quota` response.
-    public private(set) var streams: VIMLiveStreams?
+    @objc public private(set) var streams: VIMLiveStreams?
     
     /// The `time` field in a `live_quota` response.
-    public private(set) var time: VIMLiveTime?
+    @objc public private(set) var time: VIMLiveTime?
     
     override public func getClassForObjectKey(_ key: String!) -> AnyClass!
     {

@@ -13,14 +13,14 @@ struct LessonCellViewModel {
     
     static func configure(_ cell: LessonTableViewCell, lesson: Lesson) {
         
-        if let lessonNumber = lesson.lessonNumber , lessonNumber.characters.count > 0 {
+        if let lessonNumber = lesson.lessonNumber , lessonNumber.count > 0 {
             cell.numberLabel.text = lessonNumber
             cell.numberLabel.isHidden = false
             cell.titleLabel.isHidden = true
         } else {
             cell.numberLabel.isHidden = true
             
-            if lesson.title.characters.count > 0 {
+            if lesson.title.count > 0 {
                 cell.titleLabel.text = lesson.title
                 cell.titleLabel.isHidden = false
             } else {
@@ -28,7 +28,7 @@ struct LessonCellViewModel {
             }
         }
         
-        if let descriptionText = lesson.descriptionText , descriptionText.characters.count > 0 {
+        if let descriptionText = lesson.descriptionText , descriptionText.count > 0 {
             cell.descriptionLabel.text = descriptionText
             cell.descriptionLabel.isHidden = false
         } else {
@@ -36,14 +36,14 @@ struct LessonCellViewModel {
         }
         
         
-        if let timeCode = lesson.audioLength , timeCode.characters.count > 0 {
+        if let timeCode = lesson.audioLength , timeCode.count > 0 {
             cell.timeLabel.text = timeCode
             cell.timeLabel.isHidden = false
         } else {
             cell.timeLabel.isHidden = true
         }
         
-        if let audioSource = lesson.audioSourceURL , audioSource.characters.count > 10 {
+        if let audioSource = lesson.audioSourceURL , audioSource.count > 10 {
             //might want to check that this makes a valid URL?
             cell.audioView.isHidden = false
             
@@ -56,7 +56,7 @@ struct LessonCellViewModel {
             cell.audioView.isHidden = true
         }
         
-        if let transcript = lesson.transcriptURL , transcript.characters.count > 10 {
+        if let transcript = lesson.transcriptURL , transcript.count > 10 {
             cell.transcriptView.isHidden = false
             
             if let _ = APIDataManager.fileExists(lesson, urlString: transcript) {
@@ -69,7 +69,7 @@ struct LessonCellViewModel {
             cell.transcriptView.isHidden = true
         }
         
-        if let studentSourceURL = lesson.studentAidURL , studentSourceURL.characters.count > 10 {
+        if let studentSourceURL = lesson.studentAidURL , studentSourceURL.count > 10 {
             //might want to check that this makes a valid URL?
             cell.studentAidView.isHidden = false
             
@@ -82,7 +82,7 @@ struct LessonCellViewModel {
             cell.studentAidView.isHidden = true
         }
         
-        if let slidesURL = lesson.teacherAid , slidesURL.characters.count > 10 {
+        if let slidesURL = lesson.teacherAid , slidesURL.count > 10 {
             //might want to check that this makes a valid URL?
             cell.teacherAidView.isHidden = false
             
@@ -96,7 +96,7 @@ struct LessonCellViewModel {
         }
         
         
-        if let videoURL = lesson.videoSourceURL , videoURL.characters.count > 10 {
+        if let videoURL = lesson.videoSourceURL , videoURL.count > 10 {
             //might want to check that this makes a valid URL?
             cell.videoView.isHidden = false
             

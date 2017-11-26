@@ -49,7 +49,7 @@ class ChannelViewController: UIViewController {
         activity.invalidate()
     }
     
-    func shareAction(_ button: Any) {
+    @objc func shareAction(_ button: Any) {
         guard let urlString = channel?.url, let url = URL(string: urlString) else { return }
         
         let actionSheet = UIActivityViewController(activityItems: [url], applicationActivities: nil)

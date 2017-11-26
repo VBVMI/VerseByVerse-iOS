@@ -78,7 +78,7 @@ class StudiesViewController: UIViewController {
         self.aboutActionsController = AboutActionsController(presentingController: self)
         self.navigationItem.leftBarButtonItem = self.aboutActionsController.barButtonItem
         
-        let optionsButton = UIBarButtonItem(image: UIImage.fontAwesomeIconWithName(.Sliders, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30)), style: UIBarButtonItemStyle.plain, target: self, action: #selector(openOptions))
+        let optionsButton = UIBarButtonItem(image: UIImage.fontAwesomeIcon(name: .sliders, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30)), style: UIBarButtonItemStyle.plain, target: self, action: #selector(openOptions))
         self.navigationItem.rightBarButtonItem = optionsButton
         
         UserDefaults.standard.addObserver(self, forKeyPath: "StudySortOption", options: [.new], context: nil)
@@ -100,7 +100,7 @@ class StudiesViewController: UIViewController {
         }
     }
     
-    func openOptions() {
+    @objc func openOptions() {
         
         let optionsController = UIStoryboard(name: "StudiesOptions", bundle: nil).instantiateInitialViewController()!
         

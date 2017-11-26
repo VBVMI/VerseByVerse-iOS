@@ -140,7 +140,7 @@ class AudioPlayerViewController: UIViewController {
         
         configureViews()
         let progress = lesson.audioProgress == 1 ? 0 : lesson.audioProgress
-        SoundManager.sharedInstance.configure(study, lesson: lesson, audioURL: urlString, progress: progress, readyBlock: { _ in
+        SoundManager.sharedInstance.configure(study, lesson: lesson, audioURL: urlString, progress: progress, readyBlock: {
             if startPlaying {
                 SoundManager.sharedInstance.startPlaying()
             }
@@ -188,11 +188,11 @@ class AudioPlayerViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(audioDidFinish(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
-    func openPlayer(_ sender: AnyObject) {
+    @objc func openPlayer(_ sender: AnyObject) {
         popupPresentationContainer?.openPopup(animated: true, completion: nil)
     }
     
-    func audioDidFinish(_ notification: Notification) {
+    @objc func audioDidFinish(_ notification: Notification) {
         //Mark the lesson as complete
         if let context = self.lesson?.managedObjectContext {
             context.perform({
@@ -301,14 +301,14 @@ class AudioPlayerViewController: UIViewController {
             }
         }
         
-        if let titleText = self.lesson?.title , titleText.characters.count > 0 {
+        if let titleText = self.lesson?.title , titleText.count > 0 {
             self.titleLabel.text = titleText
             self.titleLabel.isHidden = false
         } else {
             self.titleLabel.isHidden = true
         }
         
-        if let descriptionText = self.lesson?.descriptionText , descriptionText.characters.count > 0 {
+        if let descriptionText = self.lesson?.descriptionText , descriptionText.count > 0 {
             self.descriptionLabel.text = descriptionText
             self.descriptionLabel.isHidden = false
         } else {
@@ -325,7 +325,7 @@ class AudioPlayerViewController: UIViewController {
         configureViews()
         //Configure the views
         
-        let buttonFont = UIFont.fontAwesomeOfSize(20)
+        let buttonFont = UIFont.fontAwesome(ofSize: 20)
         self.playPauseButton.titleLabel?.font = buttonFont
         configurePlayPauseState()
         
@@ -341,7 +341,7 @@ class AudioPlayerViewController: UIViewController {
         self.rateButton.tintColor = StyleKit.darkGrey
         
         let otherFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle.footnote)
-        let font = UIFont.monospacedDigitSystemFont(ofSize: otherFont.pointSize, weight: UIFontWeightRegular)
+        let font = UIFont.monospacedDigitSystemFont(ofSize: otherFont.pointSize, weight: UIFont.Weight.regular)
         
         
         self.endTimeLabel.font = font
@@ -376,9 +376,9 @@ class AudioPlayerViewController: UIViewController {
         let isPlaying = SoundManager.sharedInstance.avPlayer.rate != 0
         if let button = self.playPauseButton {
             if isPlaying {
-                button.setTitle(String.fontAwesomeIconWithName(.Pause), for: .normal)
+                button.setTitle(String.fontAwesomeIcon(name: .pause), for: .normal)
             } else {
-                button.setTitle(String.fontAwesomeIconWithName(.Play), for: .normal)
+                button.setTitle(String.fontAwesomeIcon(name: .play), for: .normal)
             }
         }
         

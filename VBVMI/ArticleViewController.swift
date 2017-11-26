@@ -73,7 +73,7 @@ class ArticleViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = shareButton
     }
     
-    func shareAction(_ button: Any) {
+    @objc func shareAction(_ button: Any) {
         guard let urlString = article?.url, let url = URL(string: urlString) else { return }
         
         let actionSheet = UIActivityViewController(activityItems: [url], applicationActivities: nil)

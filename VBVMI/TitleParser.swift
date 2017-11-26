@@ -21,7 +21,7 @@ struct TitleParser {
     fileprivate static let title = Regex("^([^-]+)(\\s*-\\s*(\\w*)\\s*(\\w*[-\\/\\s]*\\w*))?$")
     
     static func match(_ string: String) -> [String?]? {
-        return title.match(string)?.captures
+        return title.firstMatch(in: string)?.captures
     }
     
     static func components(_ string: String) -> (String?, String?) {

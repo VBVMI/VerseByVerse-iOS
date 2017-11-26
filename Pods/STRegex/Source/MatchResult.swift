@@ -13,11 +13,11 @@ public struct MatchResult {
   ///
   ///     let pattern = Regex("a*")
   ///
-  ///     if let match = pattern.match("aaa") {
+  ///     if let match = pattern.firstMatch(in: "aaa") {
   ///       match.matchedString // "aaa"
   ///     }
   ///
-  ///     if let match = pattern.match("bbb") {
+  ///     if let match = pattern.firstMatch(in: "bbb") {
   ///       match.matchedString // ""
   ///     }
   public var matchedString: String {
@@ -25,17 +25,8 @@ public struct MatchResult {
   }
 
   /// The range of the matched string.
-  ///
-  /// - note: This property currently assumes that it is always possible to
-  ///   create a valid character range based on the underlying UTF-16 range.
-  ///   If for some reason this turns out not to be true, it will trap.
-  ///
-  /// - returns: The character range of the matched string.
-  internal var range: Range<String.Index> {
-    let utf16range = _result.range
-    let start = String.Index(utf16range.lowerBound, within: _string)!
-    let end = String.Index(utf16range.upperBound, within: _string)!
-    return start..<end
+  public var range: Range<String.Index> {
+    return _string.range(from: _result.range)
   }
 
   /// The matching string for each capture group in the regular expression
@@ -50,10 +41,17 @@ public struct MatchResult {
   ///
   ///     let regex = Regex("(a)?(b)")
   ///
-  ///     regex.match("ab")?.captures // [Optional("a"), Optional("b")]
-  ///     regex.match("b")?.captures // [nil, Optional("b")]
+  ///     regex.firstMatch(in: "ab")?.captures // [Optional("a"), Optional("b")]
+  ///     regex.firstMatch(in: "b")?.captures // [nil, Optional("b")]
   public var captures: [String?] {
     return _result.captures
+  }
+
+  /// The ranges of each capture (if any).
+  ///
+  /// - seealso: The discussion and example for `MatchResult.captures`.
+  public var captureRanges: [Range<String.Index>?] {
+    return _captureRanges.value
   }
 
   // MARK: Internal initialisers
@@ -62,68 +60,83 @@ public struct MatchResult {
     return _result.result
   }
 
+  private let _captureRanges: Memo<[Range<String.Index>?]>
   private let _result: _MatchResult
   private let _string: String
 
   internal init(_ string: String, _ result: NSTextCheckingResult) {
-    self._result = _MatchResult(string.utf16, result)
+    self._result = _MatchResult(string, result)
     self._string = string
+    self._captureRanges = Memo { [_result] in
+      _result.captureRanges.map { utf16range in
+        utf16range.map { string.range(from: $0) }
+      }
+    }
   }
 
+}
+
+private extension String {
+  func range(from utf16Range: Range<UTF16Index>) -> Range<Index> {
+#if swift(>=4.0)
+    return utf16Range
+#else
+    let start = Index(utf16Range.lowerBound, within: self)!
+    let end = Index(utf16Range.upperBound, within: self)!
+    return start..<end
+#endif
+  }
 }
 
 // Use of a private class allows for lazy vars without the need for `mutating`.
 private final class _MatchResult {
 
+#if swift(>=4.0)
+  private let string: String
+#else
   private let string: String.UTF16View
-#if swift(>=3.0)
+#endif
   fileprivate let result: NSTextCheckingResult
-#else
-  private let result: NSTextCheckingResult
-#endif
 
-#if swift(>=3.0)
-  fileprivate init(_ string: String.UTF16View, _ result: NSTextCheckingResult) {
+  fileprivate init(_ string: String, _ result: NSTextCheckingResult) {
+#if swift(>=4.0)
     self.string = string
-    self.result = result
-  }
 #else
-  private init(_ string: String.UTF16View, _ result: NSTextCheckingResult) {
-    self.string = string
+    self.string = string.utf16
+#endif
     self.result = result
   }
-#endif
 
   lazy var range: Range<String.UTF16Index> = {
-    return self.rangeFromNSRange(self.string, self.result.range)!
+    return self.utf16Range(from: self.result.range)!
   }()
 
   lazy var captures: [String?] = {
-    return self.captureRanges.map { $0.map { self.substringFromRange(self.string, $0) } }
+    return self.captureRanges.map { $0.map(self.substring(from:)) }
   }()
 
   lazy var captureRanges: [Range<String.UTF16Index>?] = {
-    return self.result.ranges.dropFirst().map { self.rangeFromNSRange(self.string, $0) }
+    return self.result.ranges.dropFirst().map(self.utf16Range(from:))
   }()
 
   lazy var matchedString: String = {
-    return self.substringFromRange(self.string, self.rangeFromNSRange(self.string, self.result.range)!)
+    let range = self.utf16Range(from: self.result.range)!
+    return self.substring(from: range)
   }()
 
-  private let rangeFromNSRange: (String.UTF16View, NSRange) -> Range<String.UTF16Index>? = { string, range in
-    guard range.location != NSNotFound else { return nil }
-#if swift(>=3.0)
-    let start = string.startIndex.advanced(by: range.location)
-    let end = start.advanced(by: range.length)
+  private func utf16Range(from range: NSRange) -> Range<String.UTF16Index>? {
+#if swift(>=4.0)
+    return Range(range, in: string)
 #else
-    let start = string.startIndex.advancedBy(range.location)
-    let end = start.advancedBy(range.length)
-#endif
+    guard range.location != NSNotFound else { return nil }
+    let start = string.index(string.startIndex, offsetBy: range.location)
+    let end = string.index(start, offsetBy: range.length)
     return start..<end
+#endif
   }
 
-  private let substringFromRange: (String.UTF16View, Range<String.UTF16Index>) -> String = { string, range in
-    return string[range].description
+  private func substring(from range: Range<String.UTF16Index>) -> String {
+    return String(describing: string[range])
   }
 
 }

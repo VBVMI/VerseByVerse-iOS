@@ -26,7 +26,7 @@ class StudyViewController: UITableViewController {
     @IBOutlet var headerImageView: UIImageView!
     private let activity = NSUserActivity(activityType: "org.versebyverseministry.www")
     
-    fileprivate let barButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage.fontAwesomeIconWithName(.EllipsisH, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30)), style: UIBarButtonItemStyle.plain, target: nil, action: #selector(tappedMenu))
+    fileprivate let barButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage.fontAwesomeIcon(name: .ellipsisH, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30)), style: UIBarButtonItemStyle.plain, target: nil, action: #selector(tappedMenu))
     
     fileprivate class ButtonSender {
         let url: URL
@@ -156,7 +156,7 @@ class StudyViewController: UITableViewController {
         navigationItem.rightBarButtonItems = buttons
     }
     
-    func shareAction(_ button: Any) {
+    @objc func shareAction(_ button: Any) {
         guard let urlString = study?.url, let url = URL(string: urlString) else { return }
         
         let actionSheet = UIActivityViewController(activityItems: [url], applicationActivities: nil)
@@ -496,7 +496,7 @@ class StudyViewController: UITableViewController {
         }
     }
     
-    func tappedMenu() {
+    @objc func tappedMenu() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let downloadAll = UIAlertAction(title: "Download all", style: .default) { [weak self] (action) in

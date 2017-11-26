@@ -51,7 +51,7 @@ Capture:
 ```swift
 let greeting = Regex("hello (world|universe|swift)")
 
-if let subject = greeting.match("hello swift")?.captures[0] {
+if let subject = greeting.firstMatch(in: "hello swift")?.captures[0] {
   print("ohai \(subject)")
 }
 ```
@@ -59,7 +59,7 @@ if let subject = greeting.match("hello swift")?.captures[0] {
 Find and replace:
 
 ```swift
-"hello world".replacingFirstMatching("h(ello) (\\w+)", with: "H$1, $2!")
+"hello world".replacingFirst(matching: "h(ello) (\\w+)", with: "H$1, $2!")
 // "Hello, world!"
 ```
 
@@ -85,7 +85,7 @@ Options:
 ```swift
 let totallyUniqueExamples = Regex("^(hello|foo).*$", options: [.IgnoreCase, .AnchorsMatchLines])
 let multilineText = "hello world\ngoodbye world\nFOOBAR\n"
-let matchingLines = totallyUniqueExamples.allMatches(multilineText).map { $0.matchedString }
+let matchingLines = totallyUniqueExamples.allMatches(in: multilineText).map { $0.matchedString }
 // ["hello world", "FOOBAR"]
 ```
 
@@ -98,11 +98,25 @@ let matchingLines = totallyUniqueExamples.allMatches(multilineText).map { $0.mat
 Add a dependency to your `Package.swift`:
 
 ```swift
+// Swift 4
+
 let package = Package(
   name: "MyPackage",
   dependencies: [
     // other dependencies...
-    .Package(url: "https://github.com/sharplet/Regex.git", majorVersion: 0, minor: 3),
+    .package(url: "https://github.com/sharplet/Regex.git", from: "1.0.0"),
+  ]
+)
+```
+
+```swift
+// Swift 3
+
+let package = Package(
+  name: "MyPackage",
+  dependencies: [
+    // other dependencies...
+    .Package(url: "https://github.com/sharplet/Regex.git", majorVersion: 1),
   ]
 )
 ```
@@ -112,7 +126,7 @@ let package = Package(
 Put this in your Cartfile:
 
 ```
-github "sharplet/Regex" ~> 0.3
+github "sharplet/Regex" ~> 1.0
 ```
 
 #### CocoaPods
@@ -120,7 +134,7 @@ github "sharplet/Regex" ~> 0.3
 Put this in your Podfile:
 
 ```ruby
-pod "STRegex", "~> 0.3.0"
+pod "STRegex", "~> 1.0"
 ```
 
 
@@ -133,40 +147,62 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Development Setup
 
-Development is currently only supported on Mac OS X. An Xcode project is
-provided for your convenience.
+### Swift Package Manager
 
-Regex depends on Carthage for development:
+Build and run the tests:
 
 ```
-$ brew update && brew install carthage
+export SWIFT_PACKAGE_TEST_REGEX=true
+swift test
+
+# or just
+
+rake test:package
 ```
+
+If you're on a Mac, testing on Linux is supported via [Docker for Mac](https://www.docker.com/docker-mac).
+Once Docker is set up, start a Linux shell:
+
+```
+rake docker
+```
+
+And run the tests via Swift Package Manager.
+
+### Carthage & Xcode
+
+Install Carthage via Homebrew and build the dependencies:
+
+```
+brew install carthage
+rake setup
+```
+
+`xcpretty` is recommended, for prettifying test output:
+
+```
+gem install xcpretty
+```
+
+Then run the tests:
+
+```
+# one of
+rake test:osx
+rake test:ios
+rake test:tvos
+```
+
+### Linting
 
 Regex uses [SwiftLint](https://github.com/realm/SwiftLint) to validate code style.
 SwiftLint is automatically run against pull requests using [Hound CI](https://houndci.com/).
 
-To enable SwiftLint warnings in Xcode, just make sure it's installed and available on Xcode's PATH:
+You can also run it locally:
 
 ```
 $ brew install swiftlint
-```
-
-`xcpretty` is also recommended, for prettifying test output:
-
-```
-$ gem install xcpretty
-```
-
-After cloning the project, first set up your environment:
-
-```
-$ rake setup
-```
-
-Build and run the tests to ensure everything works:
-
-```
-$ rake
+$ rake swiftlint
 ```
 
 

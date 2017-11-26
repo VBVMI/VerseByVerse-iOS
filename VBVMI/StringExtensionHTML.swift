@@ -295,9 +295,11 @@ extension String {
         func decode(_ entity : String) -> Character? {
             
             if entity.hasPrefix("&#x") || entity.hasPrefix("&#X"){
-                return decodeNumeric(entity.substring(with: entity.index(entity.startIndex, offsetBy: 3) ..< entity.index(entity.endIndex, offsetBy: -1)), base: 16)
+                let range = entity.index(entity.startIndex, offsetBy: 3) ..< entity.index(entity.endIndex, offsetBy: -1)
+                return decodeNumeric(String(entity[range]), base: 16)
             } else if entity.hasPrefix("&#") {
-                return decodeNumeric(entity.substring(with: entity.index(entity.startIndex, offsetBy: 2) ..< entity.index(entity.endIndex, offsetBy: -1)), base: 10)
+                let range = entity.index(entity.startIndex, offsetBy: 2) ..< entity.index(entity.endIndex, offsetBy: -1)
+                return decodeNumeric(String(entity[range]), base: 10)
             } else {
                 return characterEntities[entity]
             }
@@ -310,7 +312,7 @@ extension String {
         
         // Find the next '&' and copy the characters preceding it to `result`:
         while let ampRange = self.range(of: "&", range: position ..< endIndex) {
-            result.append(self[position ..< ampRange.lowerBound])
+            result.append(String(self[position ..< ampRange.lowerBound]))
             position = ampRange.lowerBound
             
             // Find the next ';' and copy everything from '&' to ';' into `entity`
@@ -318,12 +320,12 @@ extension String {
                 let entity = self[position ..< semiRange.upperBound]
                 position = semiRange.upperBound
                 
-                if let decoded = decode(entity) {
+                if let decoded = decode(String(entity)) {
                     // Replace by decoded character:
                     result.append(decoded)
                 } else {
                     // Invalid entity, copy verbatim:
-                    result.append(entity)
+                    result.append(String(entity))
                 }
             } else {
                 // No matching ';'.
@@ -331,7 +333,7 @@ extension String {
             }
         }
         // Copy remaining characters to `result`:
-        result.append(self[position ..< endIndex])
+        result.append(String(self[position ..< endIndex]))
         return result
     }
 }

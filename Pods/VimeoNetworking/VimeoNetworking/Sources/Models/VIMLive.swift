@@ -28,12 +28,13 @@ import Foundation
 
 /// The streaming status of a live video.
 ///
-/// - unavailable: the RTMP link is visible but not yet able to receive the stream.
+/// - unavailable: The RTMP link is visible but not yet able to receive the stream.
 /// - pending: Vimeo is working on setting up the connection.
-/// - ready: the RTMP's URL is ready to receive video content.
-/// - streamingPreview: the stream is in a "preview" state. It will be accessible to the public when you transition to "streaming".
+/// - ready: The RTMP's URL is ready to receive video content.
+/// - streamingPreview: The stream is in a "preview" state. It will be accessible to the public when you transition to "streaming".
 /// - streaming: The stream is open and receiving content.
-/// - streamingError: The stream has been terminated by Vimeo.
+/// - streamingError: The stream has failed due to an error relating to the broadcaster; They may have reached their monthly broadcast limit, for example.
+/// - archiving: The stream has finished, and the video is in the process of being archived, but is not ready to play yet.
 /// - done: The stream has been ended intentionally by the end-user.
 public enum LiveStreamingStatus: String
 {
@@ -43,6 +44,7 @@ public enum LiveStreamingStatus: String
     case streamingPreview = "streaming_preview"
     case streaming = "streaming"
     case streamingError = "streaming_error"
+    case archiving = "archiving"
     case done = "done"
 }
 
@@ -50,25 +52,49 @@ public enum LiveStreamingStatus: String
 /// a `clip` response.
 public class VIMLive: VIMModelObject
 {
+    /// The RTMP link is visible but not yet able to receive the stream.
+    @objc public static let LiveStreamStatusUnavailable = "unavailable"
+    
+    /// Vimeo is working on setting up the connection.
+    @objc public static let LiveStreamStatusPending = "pending"
+    
+    /// The RTMP's URL is ready to receive video content.
+    @objc public static let LiveStreamStatusReady = "ready"
+    
+    /// The stream is in a "preview" state. It will be accessible to the public when you transition to "streaming".
+    @objc public static let LiveStreamStatusStreamingPreview = "streaming_preview"
+    
+    /// The stream is open and receiving content.
+    @objc public static let LiveStreamStatusStreaming = "streaming"
+    
+    /// The stream has failed due to an error relating to the broadcaster; They may have reached their monthly broadcast limit, for example.
+    @objc public static let LiveStreamStatusStreamingError = "streaming_error"
+    
+    /// The stream has finished, and the video is in the process of being archived, but is not ready to play yet.
+    @objc public static let LiveStreamStatusArchiving = "archiving"
+    
+    /// The stream has been ended intentionally by the end-user.
+    @objc public static let LiveStreamStatusDone = "done"
+    
     /// An RTMP link used to host a live stream.
-    public private(set) var link: String?
+    @objc public private(set) var link: String?
     
     /// A token for streaming.
-    public private(set) var key: String?
+    @objc public private(set) var key: String?
     
     /// The timestamp that the stream is active.
-    public private(set) var activeTime: NSDate?
+    @objc public private(set) var activeTime: NSDate?
     
     /// The timestamp that the stream is over.
-    public private(set) var endedTime: NSDate?
+    @objc public private(set) var endedTime: NSDate?
     
     /// The timestamp that the live video is
     /// archived.
-    public private(set) var archivedTime: NSDate?
+    @objc public private(set) var archivedTime: NSDate?
     
     /// The timestamp that the live video is
     /// scheduled to be online.
-    public private(set) var scheduledStartTime: NSDate?
+    @objc public private(set) var scheduledStartTime: NSDate?
     
     /**
         The status of the live video in string.
@@ -78,7 +104,7 @@ public class VIMLive: VIMModelObject
         check the status of a live video. Use
         `liveStreamingStatus` instead for easy checking.
      */
-    public private(set) var status: String?
+    @objc public private(set) var status: String?
     
     /// The status of the live video in `LiveStreamingStatus` enum.
     public var liveStreamingStatus: LiveStreamingStatus?
