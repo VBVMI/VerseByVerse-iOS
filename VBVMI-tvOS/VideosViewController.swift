@@ -52,7 +52,7 @@ class VideosDataSource : NSObject, UICollectionViewDataSource, UICollectionViewD
         
         if var thumbnailSource = video.thumbnailSource {
             
-            thumbnailSource.replaceAllMatching(regex, with: "544x306")
+            thumbnailSource.replaceAll(matching: regex, with: "544x306")
             
             if let url = URL(string: thumbnailSource) {
                 

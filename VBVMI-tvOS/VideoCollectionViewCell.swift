@@ -30,7 +30,7 @@ class VideoCollectionViewCell: ParallaxCollectionViewCell {
     
     }
     
-    func longPress(_ sender: UILongPressGestureRecognizer) {
+    @objc func longPress(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
             delegate?.videoCollectionViewCellDidLongPress(cell: self)
         }

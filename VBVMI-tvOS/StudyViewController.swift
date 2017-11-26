@@ -114,7 +114,7 @@ class StudyViewController: UIViewController {
     fileprivate func makeMetadataItem(_ identifier: String,
                                   value: Any) -> AVMetadataItem {
         let item = AVMutableMetadataItem()
-        item.identifier = identifier
+        item.identifier = AVMetadataIdentifier(rawValue: identifier)
         item.value = value as? NSCopying & NSObjectProtocol
         item.extendedLanguageTag = "und"
         return item.copy() as! AVMetadataItem
@@ -155,14 +155,14 @@ extension StudyViewController : UICollectionViewDelegate {
             controller.delegate = self
             controller.player = player
             
-            let titleItem = makeMetadataItem(AVMetadataCommonIdentifierTitle, value: lesson.title)
+            let titleItem = makeMetadataItem(AVMetadataIdentifier.commonIdentifierTitle.rawValue, value: lesson.title)
             
             var items = [titleItem]
             if let text = lesson.descriptionText {
-                items.append(makeMetadataItem(AVMetadataCommonIdentifierDescription, value: text))
+                items.append(makeMetadataItem(AVMetadataIdentifier.commonIdentifierDescription.rawValue, value: text))
             }
             if let image = imageView.image {
-                items.append(makeMetadataItem(AVMetadataCommonIdentifierArtwork, value: image))
+                items.append(makeMetadataItem(AVMetadataIdentifier.commonIdentifierArtwork.rawValue, value: image))
             }
             
             player.currentItem?.externalMetadata = items
@@ -180,13 +180,13 @@ extension StudyViewController : UICollectionViewDelegate {
                 controller.delegate = self
                 controller.player = audioPlayer
                 
-                let titleItem = makeMetadataItem(AVMetadataCommonIdentifierTitle, value: lesson.title)
+                let titleItem = makeMetadataItem(AVMetadataIdentifier.commonIdentifierTitle.rawValue, value: lesson.title)
                 var items = [titleItem]
                 if let text = lesson.descriptionText {
-                    items.append(makeMetadataItem(AVMetadataCommonIdentifierDescription, value: text))
+                    items.append(makeMetadataItem(AVMetadataIdentifier.commonIdentifierDescription.rawValue, value: text))
                 }
                 if let image = imageView.image {
-                    items.append(makeMetadataItem(AVMetadataCommonIdentifierArtwork, value: image))
+                    items.append(makeMetadataItem(AVMetadataIdentifier.commonIdentifierArtwork.rawValue, value: image))
                 }
                 
                 audioPlayer.currentItem?.externalMetadata = items
