@@ -5,7 +5,8 @@ def common_pods
     # API
     pod 'Moya'
     pod 'Alamofire'
-
+    pod 'Decodable'
+    
     # Data
     #pod 'SuperRecord'
     pod 'STRegex'
@@ -32,7 +33,7 @@ def common_pods
     pod 'ReachabilitySwift'
 
     pod 'Reveal-SDK', :configurations => ['Debug']
-    pod 'VimeoNetworking', git: 'https://github.com/vimeo/VimeoNetworking.git', branch: 'develop'
+    pod 'VimeoNetworking', git: 'https://github.com/vimeo/VimeoNetworking.git', branch: 'tech/swift-4-support'
     #pod 'VIMVideoPlayer'
 end
 
@@ -88,11 +89,16 @@ target 'VBVMI-tvOS' do
 end
 
 
-post_install do | installer |
+post_install do |installer|
     installer.pods_project.targets.each do |target|
-
         target.build_configurations.each do |config|
-            config.build_settings['SWIFT_VERSION'] = '3.0'
+            if ['Nothing'].include? target.name
+                config.build_settings['SWIFT_VERSION'] = '3.2'
+                else
+                config.build_settings['SWIFT_VERSION'] = '4.0'
+            end
+            
+            
         end
     end
 end

@@ -28,10 +28,10 @@ import Foundation
 
 public class VIMProgrammedContent: VIMModelObject
 {
-    @objc dynamic public private(set) var uri: String?
-    @objc dynamic public private(set) var name: String?
-    @objc dynamic public private(set) var type: String?
-    @objc dynamic public private(set) var content: NSArray?
+    @objc dynamic public var uri: String?
+    @objc dynamic public var name: String?
+    @objc dynamic public var type: String?
+    @objc dynamic public var content: NSArray?
  
     @objc dynamic private var metadata: [AnyHashable: Any]?
     @objc dynamic private var connections: [AnyHashable: Any]?

@@ -11,7 +11,7 @@ import ACPDownload
 
 class IconImages : ACPStaticImages {
     
-    fileprivate static let buttonFont = UIFont.fontAwesomeOfSize(20)
+    fileprivate static let buttonFont = UIFont.fontAwesome(ofSize: 20)
     
     let string: String
     let paragraphStyle = NSMutableParagraphStyle()

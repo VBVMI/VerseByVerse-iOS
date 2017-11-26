@@ -12,40 +12,40 @@ public class Subscription: VIMModelObject
     // MARK: - Properties
     
     /// Represents wether the user is subscribed to the `comment` notification.
-    @objc dynamic public private(set) var comment: NSNumber?
+    var comment: NSNumber?
     
     /// Represents wether the user is subscribed to the `credit` notification.
-    @objc dynamic public private(set) var credit: NSNumber?
+    var credit: NSNumber?
     
     /// Represents wether the user is subscribed to the `like` notification.
-    @objc dynamic public private(set) var like: NSNumber?
+    var like: NSNumber?
     
     /// Represents wether the user is subscribed to the `mention` notification.
-    @objc dynamic public private(set) var mention: NSNumber?
+    var mention: NSNumber?
     
     /// Represents wether the user is subscribed to the `reply` notification.
-    @objc dynamic public private(set) var reply: NSNumber?
+    var reply: NSNumber?
     
     /// Represents wether the user is subscribed to the `follow` notification.
-    @objc dynamic public private(set) var follow: NSNumber?
+    var follow: NSNumber?
     
     /// Represents wether the user is subscribed to the `video available` notification.
-    @objc dynamic public private(set) var videoAvailable: NSNumber?
+    var videoAvailable: NSNumber?
     
     /// Represents wether the user is subscribed to the `vod pre order available` notification.
-    @objc dynamic public private(set) var vodPreorderAvailable: NSNumber?
+    var vodPreorderAvailable: NSNumber?
     
     /// Represents wether the user is subscribed to the `vod rental expiration warning` notification.
-    @objc dynamic public private(set) var vodRentalExpirationWarning: NSNumber?
+    var vodRentalExpirationWarning: NSNumber?
     
     /// Represents wether the user is subscribed to the `account expiration warning` notification.
-    @objc dynamic public private(set) var accountExpirationWarning: NSNumber?
+    var accountExpirationWarning: NSNumber?
     
     /// Represents wether the user is subscribed to the `share` notification.
-    @objc dynamic public private(set) var share: NSNumber?
+    var share: NSNumber?
     
     /// Represents wether the is subscribed to the `New video available from followed user` notification.
-    @objc dynamic public private(set) var followedUserVideoAvailable: NSNumber?
+    var followedUserVideoAvailable: NSNumber?
     
     /// Represents the Subscription object as a Dictionary
     public var toDictionary: [AnyHashable: Any]

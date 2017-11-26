@@ -22,7 +22,7 @@ func nullOrString(_ str: String?) -> String? {
     guard let string = str else {
         return nil
     }
-    if string.characters.count > 0 {
+    if string.count > 0 {
         return string
     }
     return nil

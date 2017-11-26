@@ -21,6 +21,9 @@ public enum JsonAPI {
 }
 
 extension JsonAPI : TargetType {
+    public var headers: [String : String]? {
+        return nil
+    }
 
     public var base: String {
         return "https://www.versebyverseministry.org/core/"
@@ -61,7 +64,7 @@ extension JsonAPI : TargetType {
     public var method: Moya.Method {
         switch self {
         default:
-            return .GET
+            return .get
         }
     }
     
@@ -87,11 +90,11 @@ extension JsonAPI : TargetType {
     }
     
     public var task: Task {
-        return .request
+        return .requestPlain
     }
     
     public var parameterEncoding: Moya.ParameterEncoding {
-        if method == .GET {
+        if method == .get {
             return URLEncoding.default
         }
         switch self {
@@ -103,8 +106,7 @@ extension JsonAPI : TargetType {
 
 public func endpointResolver() -> ((_ endpoint: Endpoint<JsonAPI>) -> (URLRequest)) {
     return { (endpoint: Endpoint<JsonAPI>) -> (URLRequest) in
-        let request: URLRequest = endpoint.urlRequest
-        //        request.HTTPShouldHandleCookies = false
+        let request: URLRequest = try! endpoint.urlRequest()
         return request
     }
 }
@@ -113,7 +115,7 @@ public struct Provider {
     fileprivate static var endpointsClosure = { (target: JsonAPI) -> Endpoint<JsonAPI> in
         let sampleResponse : Endpoint.SampleResponseClosure  = { return EndpointSampleResponse.networkResponse(200, target.sampleData) }
         
-        var endpoint : Endpoint<JsonAPI> = Endpoint(URL: url(target), sampleResponseClosure: sampleResponse, method: target.method, parameters:  target.parameters, parameterEncoding: target.parameterEncoding, httpHeaderFields: nil)
+        var endpoint : Endpoint<JsonAPI> = Endpoint(url: url(target), sampleResponseClosure: sampleResponse, method: target.method, task:  target.task, httpHeaderFields: nil)
         
         switch target {
         default:
@@ -142,7 +144,7 @@ public struct Provider {
     }
     
     public static func DefaultProvider() -> MoyaProvider<JsonAPI> {
-        let networkActivityPlugin = NetworkActivityPlugin { (change) -> () in
+        let networkActivityPlugin = NetworkActivityPlugin { (change, target) -> () in
             DispatchQueue.main.async {
                 switch change {
                 case .began:

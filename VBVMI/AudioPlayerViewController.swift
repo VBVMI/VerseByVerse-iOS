@@ -301,14 +301,14 @@ class AudioPlayerViewController: UIViewController {
             }
         }
         
-        if let titleText = self.lesson?.title , titleText.characters.count > 0 {
+        if let titleText = self.lesson?.title , titleText.count > 0 {
             self.titleLabel.text = titleText
             self.titleLabel.isHidden = false
         } else {
             self.titleLabel.isHidden = true
         }
         
-        if let descriptionText = self.lesson?.descriptionText , descriptionText.characters.count > 0 {
+        if let descriptionText = self.lesson?.descriptionText , descriptionText.count > 0 {
             self.descriptionLabel.text = descriptionText
             self.descriptionLabel.isHidden = false
         } else {
@@ -325,7 +325,7 @@ class AudioPlayerViewController: UIViewController {
         configureViews()
         //Configure the views
         
-        let buttonFont = UIFont.fontAwesomeOfSize(20)
+        let buttonFont = UIFont.fontAwesome(ofSize: 20)
         self.playPauseButton.titleLabel?.font = buttonFont
         configurePlayPauseState()
         
@@ -376,9 +376,9 @@ class AudioPlayerViewController: UIViewController {
         let isPlaying = SoundManager.sharedInstance.avPlayer.rate != 0
         if let button = self.playPauseButton {
             if isPlaying {
-                button.setTitle(String.fontAwesomeIconWithName(.Pause), for: .normal)
+                button.setTitle(String.fontAwesomeIcon(name: .pause), for: .normal)
             } else {
-                button.setTitle(String.fontAwesomeIconWithName(.Play), for: .normal)
+                button.setTitle(String.fontAwesomeIcon(name: .play), for: .normal)
             }
         }
         

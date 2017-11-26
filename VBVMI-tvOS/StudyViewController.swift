@@ -279,7 +279,7 @@ extension StudyViewController : UICollectionViewDataSource {
         let lesson = fetchedResultsController.object(at: indexPath)
         
         let cell : LessonCollectionViewCell
-        if let lessonNumber = lesson.lessonNumber, lessonNumber.characters.count > 0 {
+        if let lessonNumber = lesson.lessonNumber, lessonNumber.count > 0 {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: lessonCellReuseIdentifier, for: indexPath) as! LessonCollectionViewCell
         } else {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: lessonDescriptionCellReuseIdentifier, for: indexPath) as! LessonCollectionViewCell

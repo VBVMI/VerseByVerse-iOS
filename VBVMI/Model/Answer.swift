@@ -2,7 +2,6 @@ import Foundation
 import CoreData
 import Decodable
 
-
 @objc(Answer)
 open class Answer: _Answer {
 

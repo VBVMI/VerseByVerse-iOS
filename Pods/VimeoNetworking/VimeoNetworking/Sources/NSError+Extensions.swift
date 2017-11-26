@@ -161,7 +161,7 @@ public extension NSError
         
         if let userInfo = userInfo
         {
-            augmentedInfo.append(userInfo)
+            augmentedInfo.append(userInfo as! Dictionary<String, Any>)
         }
         
         return NSError(domain: self.domain, code: self.code, userInfo: augmentedInfo)

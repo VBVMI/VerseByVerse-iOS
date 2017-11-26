@@ -15,7 +15,7 @@ enum TimeParser {
     fileprivate static let title = Regex("^(\\d*\\.?\\d*)")
     
     static func match(_ string: String) -> [String?]? {
-        return title.match(string)?.captures
+        return title.firstMatch(in: string)?.captures
     }
     
     static func getTime(_ string: String) -> (DateComponents?) {

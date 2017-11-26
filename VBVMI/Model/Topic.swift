@@ -25,11 +25,11 @@ open class Topic: _Topic {
         
         var convertedIdentifier = identifier.replacingOccurrences(of: "+", with: " ")
         convertedIdentifier = convertedIdentifier.slugify()
-        if convertedIdentifier.characters.count == 0 {
+        if convertedIdentifier.count == 0 {
             return nil
         }
         
-        if let name = try JSONDict => "topic" as? String , name.characters.count > 0 {
+        if let name = try JSONDict => "topic" as? String , name.count > 0 {
             let convertedName = name.capitalized
             guard let topic = Topic.findFirstOrCreateWithDictionary(["identifier": convertedIdentifier], context: context) as? Topic else {
                 throw APIDataManagerError.modelCreationFailed

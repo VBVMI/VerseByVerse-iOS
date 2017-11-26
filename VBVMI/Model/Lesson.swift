@@ -18,7 +18,7 @@ open class Lesson: _Lesson {
         
         lesson.identifier = try JSONDict => "ID"
         let postedDateString: String = try JSONDict => "postedDate"
-        if let number = Double(postedDateString) , postedDateString.characters.count > 0 {
+        if let number = Double(postedDateString) , postedDateString.count > 0 {
             let date = Date(timeIntervalSince1970: number)
             lesson.postedDate = date
         }
@@ -26,7 +26,7 @@ open class Lesson: _Lesson {
         lesson.lessonIndex = Int32(index)
         
         let dateStudyGiven: String = try JSONDict => "dateStudyGiven"
-        if let number = Double(dateStudyGiven) , dateStudyGiven.characters.count > 0 {
+        if let number = Double(dateStudyGiven) , dateStudyGiven.count > 0 {
             let date = Date(timeIntervalSince1970: number)
             lesson.dateStudyGiven = date
         }

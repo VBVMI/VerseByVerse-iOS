@@ -26,7 +26,7 @@ class StudyViewController: UITableViewController {
     @IBOutlet var headerImageView: UIImageView!
     private let activity = NSUserActivity(activityType: "org.versebyverseministry.www")
     
-    fileprivate let barButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage.fontAwesomeIconWithName(.EllipsisH, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30)), style: UIBarButtonItemStyle.plain, target: nil, action: #selector(tappedMenu))
+    fileprivate let barButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage.fontAwesomeIcon(name: .ellipsisH, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30)), style: UIBarButtonItemStyle.plain, target: nil, action: #selector(tappedMenu))
     
     fileprivate class ButtonSender {
         let url: URL
