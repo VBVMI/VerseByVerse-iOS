@@ -1,0 +1,6 @@
+framework module ObjcExceptionBridging {
+  umbrella header "ObjcExceptionBridging-tvOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
