@@ -100,7 +100,7 @@ class StudiesViewController: UIViewController {
         }
     }
     
-    func openOptions() {
+    @objc func openOptions() {
         
         let optionsController = UIStoryboard(name: "StudiesOptions", bundle: nil).instantiateInitialViewController()!
         

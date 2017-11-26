@@ -140,7 +140,7 @@ class AudioPlayerViewController: UIViewController {
         
         configureViews()
         let progress = lesson.audioProgress == 1 ? 0 : lesson.audioProgress
-        SoundManager.sharedInstance.configure(study, lesson: lesson, audioURL: urlString, progress: progress, readyBlock: { _ in
+        SoundManager.sharedInstance.configure(study, lesson: lesson, audioURL: urlString, progress: progress, readyBlock: {
             if startPlaying {
                 SoundManager.sharedInstance.startPlaying()
             }
@@ -188,11 +188,11 @@ class AudioPlayerViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(audioDidFinish(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
-    func openPlayer(_ sender: AnyObject) {
+    @objc func openPlayer(_ sender: AnyObject) {
         popupPresentationContainer?.openPopup(animated: true, completion: nil)
     }
     
-    func audioDidFinish(_ notification: Notification) {
+    @objc func audioDidFinish(_ notification: Notification) {
         //Mark the lesson as complete
         if let context = self.lesson?.managedObjectContext {
             context.perform({
@@ -341,7 +341,7 @@ class AudioPlayerViewController: UIViewController {
         self.rateButton.tintColor = StyleKit.darkGrey
         
         let otherFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle.footnote)
-        let font = UIFont.monospacedDigitSystemFont(ofSize: otherFont.pointSize, weight: UIFontWeightRegular)
+        let font = UIFont.monospacedDigitSystemFont(ofSize: otherFont.pointSize, weight: UIFont.Weight.regular)
         
         
         self.endTimeLabel.font = font

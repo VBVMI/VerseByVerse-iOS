@@ -42,23 +42,23 @@ public class StyleKit : NSObject {
 
     //// Colors
 
-    public dynamic class var hideGradientColor: UIColor { return Cache.hideGradientColor }
-    public dynamic class var lightGrey: UIColor { return Cache.lightGrey }
-    public dynamic class var darkGrey: UIColor { return Cache.darkGrey }
-    public dynamic class var black: UIColor { return Cache.black }
-    public dynamic class var white: UIColor { return Cache.white }
-    public dynamic class var midGrey: UIColor { return Cache.midGrey }
-    public dynamic class var orange: UIColor { return Cache.orange }
-    public dynamic class var darkOrange: UIColor { return Cache.darkOrange }
-    public dynamic class var orangeFaint: UIColor { return Cache.orangeFaint }
+    @objc public dynamic class var hideGradientColor: UIColor { return Cache.hideGradientColor }
+    @objc public dynamic class var lightGrey: UIColor { return Cache.lightGrey }
+    @objc public dynamic class var darkGrey: UIColor { return Cache.darkGrey }
+    @objc public dynamic class var black: UIColor { return Cache.black }
+    @objc public dynamic class var white: UIColor { return Cache.white }
+    @objc public dynamic class var midGrey: UIColor { return Cache.midGrey }
+    @objc public dynamic class var orange: UIColor { return Cache.orange }
+    @objc public dynamic class var darkOrange: UIColor { return Cache.darkOrange }
+    @objc public dynamic class var orangeFaint: UIColor { return Cache.orangeFaint }
 
     //// Gradients
 
-    public dynamic class var hideGradient: CGGradient { return Cache.hideGradient }
+    @objc public dynamic class var hideGradient: CGGradient { return Cache.hideGradient }
 
     //// Drawing Methods
 
-    public dynamic class func drawHideBackground(frame: CGRect = CGRect(x: 0, y: 0, width: 196, height: 58)) {
+    @objc public dynamic class func drawHideBackground(frame: CGRect = CGRect(x: 0, y: 0, width: 196, height: 58)) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
 
@@ -74,7 +74,7 @@ public class StyleKit : NSObject {
         context.restoreGState()
     }
 
-    public dynamic class func drawTopicLabelBackground() {
+    @objc public dynamic class func drawTopicLabelBackground() {
 
         //// Variable Declarations
         let color = StyleKit.white
@@ -85,10 +85,10 @@ public class StyleKit : NSObject {
         rectanglePath.fill()
     }
 
-    public dynamic class func drawCanvas1() {
+    @objc public dynamic class func drawCanvas1() {
     }
 
-    public dynamic class func drawAirPlayCanvas() {
+    @objc public dynamic class func drawAirPlayCanvas() {
         //// Color Declarations
         let fillColor = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1.000)
 
@@ -123,7 +123,7 @@ public class StyleKit : NSObject {
         bezier3Path.fill()
     }
 
-    public dynamic class func drawPieProgress(frame: CGRect = CGRect(x: 0, y: 0, width: 10, height: 10), progressColor: UIColor = UIColor(red: 1.000, green: 0.615, blue: 0.000, alpha: 1.000), progress: CGFloat = 0) {
+    @objc public dynamic class func drawPieProgress(frame: CGRect = CGRect(x: 0, y: 0, width: 10, height: 10), progressColor: UIColor = UIColor(red: 1.000, green: 0.615, blue: 0.000, alpha: 1.000), progress: CGFloat = 0) {
 
         //// Variable Declarations
         let angle: CGFloat = -(progress * 360) + 90
@@ -139,7 +139,7 @@ public class StyleKit : NSObject {
         ovalPath.fill()
     }
 
-    public dynamic class func drawForward() {
+    @objc public dynamic class func drawForward() {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
 
@@ -203,7 +203,7 @@ public class StyleKit : NSObject {
         let textTextContent = "30"
         let textStyle = NSMutableParagraphStyle()
         textStyle.alignment = .center
-        let textFontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 10), NSForegroundColorAttributeName: UIColor.white, NSParagraphStyleAttributeName: textStyle]
+        let textFontAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 10), NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.paragraphStyle: textStyle]
 
         let textTextHeight: CGFloat = textTextContent.boundingRect(with: CGSize(width: textRect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: textFontAttributes, context: nil).height
         context.saveGState()
@@ -212,7 +212,7 @@ public class StyleKit : NSObject {
         context.restoreGState()
     }
 
-    public dynamic class func drawRollback() {
+    @objc public dynamic class func drawRollback() {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
 
@@ -279,7 +279,7 @@ public class StyleKit : NSObject {
         let textTextContent = "30"
         let textStyle = NSMutableParagraphStyle()
         textStyle.alignment = .center
-        let textFontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 10), NSForegroundColorAttributeName: UIColor.white, NSParagraphStyleAttributeName: textStyle]
+        let textFontAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 10), NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.paragraphStyle: textStyle]
 
         let textTextHeight: CGFloat = textTextContent.boundingRect(with: CGSize(width: textRect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: textFontAttributes, context: nil).height
         context.saveGState()
@@ -288,7 +288,7 @@ public class StyleKit : NSObject {
         context.restoreGState()
     }
 
-    public dynamic class func drawPieProgressDeplete(frame: CGRect = CGRect(x: 0, y: 0, width: 24, height: 24), progress: CGFloat = 0) {
+    @objc public dynamic class func drawPieProgressDeplete(frame: CGRect = CGRect(x: 0, y: 0, width: 24, height: 24), progress: CGFloat = 0) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
 
@@ -322,7 +322,7 @@ public class StyleKit : NSObject {
         context.restoreGState()
     }
 
-    public dynamic class func drawDotView(frame: CGRect = CGRect(x: 0, y: 0, width: 3, height: 3)) {
+    @objc public dynamic class func drawDotView(frame: CGRect = CGRect(x: 0, y: 0, width: 3, height: 3)) {
 
         //// Variable Declarations
         let dotColor = StyleKit.darkGrey
@@ -333,7 +333,7 @@ public class StyleKit : NSObject {
         ovalPath.fill()
     }
 
-    public dynamic class func drawCenteredProgress(progress: CGFloat = 0, progressFrame: CGRect = CGRect(x: 0, y: 0, width: 80, height: 4)) {
+    @objc public dynamic class func drawCenteredProgress(progress: CGFloat = 0, progressFrame: CGRect = CGRect(x: 0, y: 0, width: 80, height: 4)) {
 
         //// Variable Declarations
         let progressWidth: CGFloat = (1 - progress) * (progressFrame.width - progressFrame.height) + progressFrame.height
@@ -345,7 +345,7 @@ public class StyleKit : NSObject {
         rectanglePath.fill()
     }
 
-    public dynamic class func drawBlankBackgroundImage(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 3, height: 3), resizing: ResizingBehavior = .aspectFit) {
+    @objc public dynamic class func drawBlankBackgroundImage(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 3, height: 3), resizing: ResizingBehavior = .aspectFit) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
         
@@ -367,7 +367,7 @@ public class StyleKit : NSObject {
 
     //// Generated Images
 
-    public dynamic class var imageOfTopicLabelBackground: UIImage {
+    @objc public dynamic class var imageOfTopicLabelBackground: UIImage {
         if Cache.imageOfTopicLabelBackground != nil {
             return Cache.imageOfTopicLabelBackground!
         }
@@ -381,7 +381,7 @@ public class StyleKit : NSObject {
         return Cache.imageOfTopicLabelBackground!
     }
 
-    public dynamic class var imageOfAirPlayCanvas: UIImage {
+    @objc public dynamic class var imageOfAirPlayCanvas: UIImage {
         if Cache.imageOfAirPlayCanvas != nil {
             return Cache.imageOfAirPlayCanvas!
         }
@@ -395,7 +395,7 @@ public class StyleKit : NSObject {
         return Cache.imageOfAirPlayCanvas!
     }
 
-    public dynamic class var imageOfForward: UIImage {
+    @objc public dynamic class var imageOfForward: UIImage {
         if Cache.imageOfForward != nil {
             return Cache.imageOfForward!
         }
@@ -409,7 +409,7 @@ public class StyleKit : NSObject {
         return Cache.imageOfForward!
     }
 
-    public dynamic class var imageOfRollback: UIImage {
+    @objc public dynamic class var imageOfRollback: UIImage {
         if Cache.imageOfRollback != nil {
             return Cache.imageOfRollback!
         }
@@ -423,7 +423,7 @@ public class StyleKit : NSObject {
         return Cache.imageOfRollback!
     }
 
-    public dynamic class var imageOfBlankBackgroundImage: UIImage {
+    @objc public dynamic class var imageOfBlankBackgroundImage: UIImage {
         if Cache.imageOfBlankBackgroundImage != nil {
             return Cache.imageOfBlankBackgroundImage!
         }

@@ -45,7 +45,7 @@ open class Snapshot: NSObject {
             deviceLanguage = try NSString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue).trimmingCharacters(in: trimCharacterSet) as String
             app.launchArguments += ["-AppleLanguages", "(\(deviceLanguage))"]
         } catch {
-            logger.info("🍕Couldn't detect/set language...")
+            //logger.info("🍕Couldn't detect/set language...")
         }
     }
 
@@ -60,7 +60,7 @@ open class Snapshot: NSObject {
             let trimCharacterSet = CharacterSet.whitespacesAndNewlines
             locale = try NSString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue).trimmingCharacters(in: trimCharacterSet) as String
         } catch {
-            logger.info("🍕Couldn't detect/set locale...")
+            //logger.info("🍕Couldn't detect/set locale...")
         }
         if locale.isEmpty {
             locale = Locale(identifier: deviceLanguage).identifier
@@ -85,7 +85,7 @@ open class Snapshot: NSObject {
             }
             app.launchArguments += results
         } catch {
-            logger.info("🍕Couldn't detect/set launch_arguments...")
+            //logger.info("🍕Couldn't detect/set launch_arguments...")
         }
     }
 
@@ -94,10 +94,10 @@ open class Snapshot: NSObject {
             waitForLoadingIndicatorToDisappear()
         }
 
-        logger.info("🍕snapshot: \(name)") // more information about this, check out https://github.com/fastlane/snapshot
+        //logger.info("🍕snapshot: \(name)") // more information about this, check out https://github.com/fastlane/snapshot
 
         sleep(1) // Waiting for the animation to be finished (kind of)
-        XCUIDevice.shared().orientation = .unknown
+        XCUIDevice.shared.orientation = .unknown
     }
 
     class func waitForLoadingIndicatorToDisappear() {
@@ -105,7 +105,7 @@ open class Snapshot: NSObject {
 
         while (0..<query.count).map({ query.element(boundBy: $0) }).contains(where: { $0.isLoadingIndicator }) {
             sleep(1)
-            logger.info("🍕Waiting for loading indicator to disappear...")
+            //logger.info("🍕Waiting for loading indicator to disappear...")
         }
     }
 
@@ -113,7 +113,7 @@ open class Snapshot: NSObject {
         if let path = ProcessInfo().environment["SIMULATOR_HOST_HOME"] as NSString? {
             return path.appendingPathComponent("Library/Caches/tools.fastlane") as NSString?
         }
-        logger.info("🍕Couldn't find Snapshot configuration files at ~/Library/Caches/tools.fastlane")
+        //logger.info("🍕Couldn't find Snapshot configuration files at ~/Library/Caches/tools.fastlane")
         return nil
     }
 }

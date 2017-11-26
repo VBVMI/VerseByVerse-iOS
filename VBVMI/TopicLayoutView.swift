@@ -41,7 +41,7 @@ class TopicLayoutView: UIView {
 //        self.setContentHuggingPriority(400, forAxis: UILayoutConstraintAxis.Vertical)
     }
     
-    func tappedTopicButton(_ sender: TopicButton) {
+    @objc func tappedTopicButton(_ sender: TopicButton) {
         if let topic = sender.topic {
             topicSelectedBlock?(topic)
         }

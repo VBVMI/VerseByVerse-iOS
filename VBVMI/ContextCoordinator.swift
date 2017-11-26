@@ -144,7 +144,7 @@ class ContextCoordinator: NSObject {
     
 
     
-    func mergeMain(_ notification: Notification) {
+    @objc func mergeMain(_ notification: Notification) {
         //        logger.info("🍕Merging Main context")
         managedObjectContext.perform { () -> Void in
             self.managedObjectContext.mergeChanges(fromContextDidSave: notification)
@@ -152,7 +152,7 @@ class ContextCoordinator: NSObject {
         
     }
     
-    func mergeBackground(_ notification: Notification) {
+    @objc func mergeBackground(_ notification: Notification) {
         backgroundManagedObjectContext.perform { () -> Void in
             //            logger.info("🍕Merging Background context")
             self.backgroundManagedObjectContext.mergeChanges(fromContextDidSave: notification)

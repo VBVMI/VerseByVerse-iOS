@@ -117,7 +117,7 @@ class SoundManager: NSObject {
         }
     }
     
-    func audioDidFinish(_ notification: Notification) {
+    @objc func audioDidFinish(_ notification: Notification) {
         //Mark the lesson as complete
         backgroundQueueContext?.perform({ () -> Void in
             self.lesson?.audioProgress = 0

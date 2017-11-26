@@ -15,15 +15,15 @@ class IconImages : ACPStaticImages {
     
     let string: String
     let paragraphStyle = NSMutableParagraphStyle()
-    let attrs : [String: AnyObject]
+    let attrs : [NSAttributedStringKey: Any]
     let size : CGSize
     
     init(string: String) {
         self.string = string
         paragraphStyle.alignment = .center
-        attrs = [NSFontAttributeName: IconImages.buttonFont, NSParagraphStyleAttributeName: paragraphStyle]
+        attrs = [NSAttributedStringKey.font: IconImages.buttonFont, NSAttributedStringKey.paragraphStyle: paragraphStyle]
         
-        size = string.size(attributes: attrs)
+        size = string.size(withAttributes: attrs)
     }
     
     override func drawStatusNone() {
@@ -41,7 +41,7 @@ class IconImages : ACPStaticImages {
         context.setShouldAntialias(true);
         context.setShouldSmoothFonts(true);
         
-        myAttrs[NSForegroundColorAttributeName] = strokeColor
+        myAttrs[NSAttributedStringKey.foregroundColor] = strokeColor
         string.draw(with: textRect, options: .usesLineFragmentOrigin, attributes: myAttrs, context: nil)
         context.restoreGState()
 //        label.textColor = strokeColor

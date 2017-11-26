@@ -16,7 +16,7 @@ enum Theme : Int
         //UIButton.appearanceWhenContainedInInstancesOfClasses([UITableViewCell.self]).setTitleColor(StyleKit.darkGrey, forState: .Normal)
         //UILabel.appearanceWhenContainedInInstancesOfClasses([LessonTableViewCell.self]).textColor = StyleKit.darkGrey
         
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: StyleKit.darkGrey], for: UIControlState())
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: StyleKit.darkGrey], for: UIControlState())
         UIBarButtonItem.appearance().tintColor = StyleKit.darkGrey
         
         

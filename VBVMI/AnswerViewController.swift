@@ -73,7 +73,7 @@ class AnswerViewController: UITableViewController {
         activity.invalidate()
     }
     
-    func shareAction(_ button: Any) {
+    @objc func shareAction(_ button: Any) {
         guard let urlString = answer?.url, let url = URL(string: urlString) else { return }
         
         let actionSheet = UIActivityViewController(activityItems: [url], applicationActivities: nil)

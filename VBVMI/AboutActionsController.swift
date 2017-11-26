@@ -23,7 +23,7 @@ class AboutActionsController: NSObject {
         barButtonItem.target = self
     }
     
-    func tappedMenu() {
+    @objc func tappedMenu() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let donateAction = UIAlertAction(title: "Donate", style: .default) { [weak self] (action) in

@@ -112,7 +112,7 @@ class ArticlesViewController: UITableViewController {
         }
     }
     
-    func refresh(_ sender: UIRefreshControl) {
+    @objc func refresh(_ sender: UIRefreshControl) {
         APIDataManager.allTheArticles {
             sender.endRefreshing()
         }
@@ -158,8 +158,8 @@ class ArticlesViewController: UITableViewController {
         if topics.count > 0 {
             
             cell.topicLayoutView.isHidden = false
-            
-            let sortedTopics = topics.filter( {$0.name?.count > 0 }).sorted(by: { (left, right) -> Bool in
+            let filteredTopics: Set<Topic> = topics.filter({$0.name?.count > 0 })
+            let sortedTopics = filteredTopics.sorted(by: { (left, right) -> Bool in
                 return left.name!.localizedCompare(right.name!) == ComparisonResult.orderedAscending
             })
             cell.topicLayoutView.topics = sortedTopics

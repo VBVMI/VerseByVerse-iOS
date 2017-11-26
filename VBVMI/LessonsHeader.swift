@@ -33,10 +33,10 @@ class LessonsHeader: UITableViewHeaderFooterView {
             make.left.equalTo(self.contentView.snp.leftMargin)
             make.top.equalTo(self.contentView.snp.topMargin)
             //
-            make.bottom.equalTo(self.contentView.snp.bottomMargin).priority(UILayoutPriorityRequired - 10)
+            make.bottom.equalTo(self.contentView.snp.bottomMargin).priority(Int(UILayoutPriority.required.rawValue) - 10)
         }
         
-        titleLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .vertical)
+        titleLabel.setContentCompressionResistancePriority(UILayoutPriority.required, for: .vertical)
         
         titleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
         titleLabel.textColor = StyleKit.darkGrey
@@ -45,7 +45,7 @@ class LessonsHeader: UITableViewHeaderFooterView {
         countLabel.snp.makeConstraints { (make) in
             make.firstBaseline.equalTo(titleLabel.snp.firstBaseline)
             make.right.equalTo(self.contentView.snp.rightMargin)
-            make.left.equalTo(titleLabel.snp.right).priority(UILayoutPriorityRequired - 10)
+            make.left.equalTo(titleLabel.snp.right).priority(Int(UILayoutPriority.required.rawValue) - 10)
         }
         countLabel.textAlignment = .right
         

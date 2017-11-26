@@ -172,7 +172,7 @@ class TopicViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func segmentedControlChanged(_ sender: UISegmentedControl) {
+    @objc func segmentedControlChanged(_ sender: UISegmentedControl) {
 //        logger.info("🍕value: \(sender.selectedSegmentIndex)")
         self.selectedSegment = indexToSegmentMap[sender.selectedSegmentIndex]!
         let viewController = self.selectedSegment.viewController(topic)
