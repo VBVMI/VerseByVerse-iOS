@@ -112,7 +112,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-iOS/Moya.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReachabilitySwift-iOS/ReachabilitySwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework"
-  install_framework "${PODS_ROOT}/Reveal-SDK/RevealServer-10/iOS/RevealServer.framework"
+  install_framework "${PODS_ROOT}/Reveal-SDK/RevealServer-11/iOS/RevealServer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/STRegex-iOS/Regex.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UIImage-Color/UIImage_Color.framework"
