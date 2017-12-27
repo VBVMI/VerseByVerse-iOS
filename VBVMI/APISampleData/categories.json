@@ -1,0 +1,22 @@
+[
+ {
+ "name": "New Testament Books",
+ "id": 2,
+ "order": 1
+ },
+ {
+ "name": "Old Testament Books",
+ "id": 1,
+ "order": 2
+ },
+ {
+ "name": "Single Teachings",
+ "id": 3,
+ "order": 3
+ },
+ {
+ "name": "Topical Series",
+ "id": 4,
+ "order": 4
+ }
+ ]

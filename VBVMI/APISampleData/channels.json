@@ -1,2093 +1,1156 @@
 {
-    "VerseByVerse": {
-        "channels": [{
-                "description": "",
-                "postedDate": "1388764320",
-                "ID": "2035",
-                "averageRating": "",
-                "title": "End Times Group Study",
-                "thumbnailSource": "",
-                "thumbnailAltText": "",
-                "url": "https://www.versebyverseministry.org/videos/end-times-small-group-study",
-                "topics": [{
-                    "ID": "",
-                    "topic": ""
-                }],
-                "videos": [{
-                    "description": "Lesson 1 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "1488972316",
-                    "ID": "192",
-                    "serviceVideoID": "207481985",
-                    "service": "vimeo",
-                    "url": "https://www.versebyverseministry.org/videos/play/192",
-                    "averageRating": "",
-                    "videoSource": "https://vimeo.com/207481985",
-                    "videoLength": "16.57 min",
-                    "title": "Lesson 1 \u2013 \"The Structure of Revelation\"",
-                    "thumbnailSource": "http://i.vimeocdn.com/video/622575703_100x75.jpg?r=pad",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "Lesson 2 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "1488973585",
-                    "ID": "193",
-                    "serviceVideoID": "207485440",
-                    "service": "vimeo",
-                    "url": "https://www.versebyverseministry.org/videos/play/193",
-                    "averageRating": "",
-                    "videoSource": "https://vimeo.com/207485440",
-                    "videoLength": "19.13 min",
-                    "title": "Lesson 2 \u2013 \"The Church Age and the Seven Letters\"",
-                    "thumbnailSource": "http://i.vimeocdn.com/video/622583720_100x75.jpg?r=pad",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "Lesson 3 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "1488975772",
-                    "ID": "194",
-                    "serviceVideoID": "207491349",
-                    "service": "vimeo",
-                    "url": "https://www.versebyverseministry.org/videos/play/194",
-                    "averageRating": "",
-                    "videoSource": "https://vimeo.com/207491349",
-                    "videoLength": "23.25 min",
-                    "title": "Lesson 3 \u2013 \"The Great Apostasy\"",
-                    "thumbnailSource": "http://i.vimeocdn.com/video/622589712_100x75.jpg?r=pad",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "Lesson 4 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "1488799127",
-                    "ID": "195",
-                    "serviceVideoID": "207136036",
-                    "service": "vimeo",
-                    "url": "https://www.versebyverseministry.org/videos/play/195",
-                    "averageRating": "",
-                    "videoSource": "https://vimeo.com/207136036",
-                    "videoLength": "13.88 min",
-                    "title": "Lesson 4 - \"Understanding God's Timeline\"",
-                    "thumbnailSource": "http://i.vimeocdn.com/video/622185406_100x75.jpg?r=pad",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "Lesson 5 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "1488815922",
-                    "ID": "196",
-                    "serviceVideoID": "207182558",
-                    "service": "vimeo",
-                    "url": "https://www.versebyverseministry.org/videos/play/196",
-                    "averageRating": "",
-                    "videoSource": "https://vimeo.com/207182558",
-                    "videoLength": "25.93 min",
-                    "title": "Lesson 5 \u2013 \"The Age of the Gentiles\"",
-                    "thumbnailSource": "http://i.vimeocdn.com/video/622192293_100x75.jpg?r=pad",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "Lesson 6 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "1488816614",
-                    "ID": "197",
-                    "serviceVideoID": "207184295",
-                    "service": "vimeo",
-                    "url": "https://www.versebyverseministry.org/videos/play/197",
-                    "averageRating": "",
-                    "videoSource": "https://vimeo.com/207184295",
-                    "videoLength": "18.27 min",
-                    "title": "Lesson 6 \u2013 \"The Seventy Sevens\"",
-                    "thumbnailSource": "http://i.vimeocdn.com/video/622192913_100x75.jpg?r=pad",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "Lesson 7 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "1488817103",
-                    "ID": "198",
-                    "serviceVideoID": "207185497",
-                    "service": "vimeo",
-                    "url": "https://www.versebyverseministry.org/videos/play/198",
-                    "averageRating": "",
-                    "videoSource": "https://vimeo.com/207185497",
-                    "videoLength": "11.72 min",
-                    "title": "Lesson 7 \u2013 \"The Signs of the Times\"",
-                    "thumbnailSource": "http://i.vimeocdn.com/video/622200965_100x75.jpg?r=pad",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "Lesson 8 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "1488800727",
-                    "ID": "199",
-                    "serviceVideoID": "207140726",
-                    "service": "vimeo",
-                    "url": "https://www.versebyverseministry.org/videos/play/199",
-                    "averageRating": "",
-                    "videoSource": "https://vimeo.com/207140726",
-                    "videoLength": "35.88 min",
-                    "title": "Lesson 8 - \"The End of the Age\"",
-                    "thumbnailSource": "http://i.vimeocdn.com/video/622186023_100x75.jpg?r=pad",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "Lesson 9 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "1488799498",
-                    "ID": "200",
-                    "serviceVideoID": "207137062",
-                    "service": "vimeo",
-                    "url": "https://www.versebyverseministry.org/videos/play/200",
-                    "averageRating": "",
-                    "videoSource": "https://vimeo.com/207137062",
-                    "videoLength": "22.33 min",
-                    "title": "Lesson 9 - \"The Resurrection of the Bride\"",
-                    "thumbnailSource": "http://i.vimeocdn.com/video/622185721_100x75.jpg?r=pad",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "Lesson 10 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "1488800099",
-                    "ID": "202",
-                    "serviceVideoID": "207138782",
-                    "service": "vimeo",
-                    "url": "https://www.versebyverseministry.org/videos/play/202",
-                    "averageRating": "",
-                    "videoSource": "https://vimeo.com/207138782",
-                    "videoLength": "23.40 min",
-                    "title": "Lesson 10 - \"The Departure of Christ\"",
-                    "thumbnailSource": "http://i.vimeocdn.com/video/622185491_100x75.jpg?r=pad",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "Lesson 11 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "1488801749",
-                    "ID": "203",
-                    "serviceVideoID": "207143665",
-                    "service": "vimeo",
-                    "url": "https://www.versebyverseministry.org/videos/play/203",
-                    "averageRating": "",
-                    "videoSource": "https://vimeo.com/207143665",
-                    "videoLength": "13.53 min",
-                    "title": "Lesson 11 - \"The Return of Christ\"",
-                    "thumbnailSource": "http://i.vimeocdn.com/video/622185853_100x75.jpg?r=pad",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "Lesson 12 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "1488797402",
-                    "ID": "204",
-                    "serviceVideoID": "207131185",
-                    "service": "vimeo",
-                    "url": "https://www.versebyverseministry.org/videos/play/204",
-                    "averageRating": "",
-                    "videoSource": "https://vimeo.com/207131185",
-                    "videoLength": "25.93 min",
-                    "title": "Lesson 12 - \"The Saving of Israel\"",
-                    "thumbnailSource": "http://i.vimeocdn.com/video/622185230_100x75.jpg?r=pad",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }]
-            },
-            {
-                "description": "",
-                "postedDate": "1388687940",
-                "ID": "1884",
-                "averageRating": "",
-                "title": "End Times Seminar",
-                "thumbnailSource": "",
-                "thumbnailAltText": "",
-                "url": "https://www.versebyverseministry.org/videos/end-times-seminar-at-oak-hills-church",
-                "topics": [{
-                    "ID": "",
-                    "topic": ""
-                }],
-                "videos": [{
-                    "description": "Pastor Stephen Armstrong teaches fundamental principles of the End Times from scripture to help prepare students for a full study of the book of Revelation. \n\nPresented at Oak Hills Church in San Antonio, Texas, on May 11, 2016. \n\nIntroduction by Pas",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "149",
-                    "serviceVideoID": "VJy6wPgu2ZQ",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/149",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=VJy6wPgu2ZQ",
-                    "videoLength": "86.30 min",
-                    "title": "End Times Seminar at Oak Hills Church - Part 1",
-                    "thumbnailSource": "https://i.ytimg.com/vi/VJy6wPgu2ZQ/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "Pastor Stephen Armstrong teaches fundamental principles of the End Times from scripture to help prepare students for a full study of the book of Revelation. \n\nIntroduction by Max Lucado",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "150",
-                    "serviceVideoID": "6TG9tD1dT_M",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/150",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=6TG9tD1dT_M",
-                    "videoLength": "81.75 min",
-                    "title": "End Times Seminar at Oak Hills Church - Part 2",
-                    "thumbnailSource": "https://i.ytimg.com/vi/6TG9tD1dT_M/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "Pastor Stephen Armstrong teaches fundamental principles of the End Times from scripture to help prepare students for a full study of the book of Revelation. \n\nIntroduction by Max Lucado",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "151",
-                    "serviceVideoID": "w7KFdg1kK8Y",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/151",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=w7KFdg1kK8Y",
-                    "videoLength": "89.63 min",
-                    "title": "End Times Seminar at Oak Hills Church - Part 3",
-                    "thumbnailSource": "https://i.ytimg.com/vi/w7KFdg1kK8Y/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "Pastor Stephen Armstrong teaches fundamental principles of the End Times from scripture to help prepare students for a full study of the book of Revelation. \n\nIntroduction by Max Lucado",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "153",
-                    "serviceVideoID": "7kfEClroHoA",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/153",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=7kfEClroHoA",
-                    "videoLength": "97.17 min",
-                    "title": "End Times Seminar at Oak Hills Church - Part 4",
-                    "thumbnailSource": "https://i.ytimg.com/vi/7kfEClroHoA/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }]
-            },
-            {
-                "description": "",
-                "postedDate": "1388601600",
-                "ID": "1695",
-                "averageRating": "",
-                "title": "Revelation Study",
-                "thumbnailSource": "",
-                "thumbnailAltText": "",
-                "url": "https://www.versebyverseministry.org/videos/revelation-study",
-                "topics": [{
-                    "ID": "",
-                    "topic": ""
-                }],
-                "videos": [{
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "92",
-                    "serviceVideoID": "mokreYix8ls",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/92",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=mokreYix8ls",
-                    "videoLength": "49.20 min",
-                    "title": "Chapter 1 & Introduction - Revelation: A Study of the End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/mokreYix8ls/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "93",
-                    "serviceVideoID": "6VgYmOm8mOA",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/93",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=6VgYmOm8mOA",
-                    "videoLength": "56.83 min",
-                    "title": "Lesson 2A - Revelation: A Study of the End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/6VgYmOm8mOA/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "94",
-                    "serviceVideoID": "MEXabRMhWnA",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/94",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=MEXabRMhWnA",
-                    "videoLength": "55.93 min",
-                    "title": "Lesson 2B - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/MEXabRMhWnA/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "95",
-                    "serviceVideoID": "_Jz2GY60cJA",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/95",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=_Jz2GY60cJA",
-                    "videoLength": "57.08 min",
-                    "title": "Lesson 3A - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/_Jz2GY60cJA/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "96",
-                    "serviceVideoID": "4XqLI0Bmb7g",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/96",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=4XqLI0Bmb7g",
-                    "videoLength": "60.55 min",
-                    "title": "Lesson 3B - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/4XqLI0Bmb7g/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "97",
-                    "serviceVideoID": "gsJvmy_9plg",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/97",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=gsJvmy_9plg",
-                    "videoLength": "49.18 min",
-                    "title": "Lesson 4A - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/gsJvmy_9plg/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "98",
-                    "serviceVideoID": "ukbb4ZQTEj8",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/98",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=ukbb4ZQTEj8",
-                    "videoLength": "50.62 min",
-                    "title": "Lesson 4B - Revelation - A Study of the End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/ukbb4ZQTEj8/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "99",
-                    "serviceVideoID": "lZEs0UJ2q8A",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/99",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=lZEs0UJ2q8A",
-                    "videoLength": "61.88 min",
-                    "title": "Lesson 4C - Revelation: A Study of the End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/lZEs0UJ2q8A/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "100",
-                    "serviceVideoID": "jluzQtAqWYw",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/100",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=jluzQtAqWYw",
-                    "videoLength": "56.85 min",
-                    "title": "Lesson 5A - Revelation: A Study of the End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/jluzQtAqWYw/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "101",
-                    "serviceVideoID": "juCy9GuRSMg",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/101",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=juCy9GuRSMg",
-                    "videoLength": "66.67 min",
-                    "title": "Lesson 5B - Revelation: A Study of the End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/juCy9GuRSMg/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "120",
-                    "serviceVideoID": "xBebxm0SRhc",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/120",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=xBebxm0SRhc",
-                    "videoLength": "59.35 min",
-                    "title": "Lesson 5C \u2013 Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/xBebxm0SRhc/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "122",
-                    "serviceVideoID": "q5d4Bmn6VRQ",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/122",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=q5d4Bmn6VRQ",
-                    "videoLength": "49.93 min",
-                    "title": "Lesson 5D \u2013 Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/q5d4Bmn6VRQ/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "123",
-                    "serviceVideoID": "NBJUVw7FaPY",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/123",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=NBJUVw7FaPY",
-                    "videoLength": "60.58 min",
-                    "title": "Lesson 5E \u2013 Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/NBJUVw7FaPY/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "125",
-                    "serviceVideoID": "p3GzmGQztdk",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/125",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=p3GzmGQztdk",
-                    "videoLength": "48.97 min",
-                    "title": "Lesson 6A - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/p3GzmGQztdk/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "126",
-                    "serviceVideoID": "_j471YrB-Tk",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/126",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=_j471YrB-Tk",
-                    "videoLength": "50.75 min",
-                    "title": "Lesson 6B - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/_j471YrB-Tk/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "Revelatio",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "127",
-                    "serviceVideoID": "z_J9n6bkwWU",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/127",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=z_J9n6bkwWU",
-                    "videoLength": "52.68 min",
-                    "title": "Lessons 7\/8 - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/z_J9n6bkwWU/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "128",
-                    "serviceVideoID": "UPAO0Nw9XD4",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/128",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=UPAO0Nw9XD4",
-                    "videoLength": "51.13 min",
-                    "title": "Lessons 9 - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/UPAO0Nw9XD4/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "129",
-                    "serviceVideoID": "-8O-avfTbVU",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/129",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=-8O-avfTbVU",
-                    "videoLength": "48.03 min",
-                    "title": "Lessons 10 - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/-8O-avfTbVU/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "130",
-                    "serviceVideoID": "Qa6comqsOTw",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/130",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=Qa6comqsOTw",
-                    "videoLength": "58.70 min",
-                    "title": "Lessons 11 - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/Qa6comqsOTw/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "131",
-                    "serviceVideoID": "FbA4EDOwGYw",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/131",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=FbA4EDOwGYw",
-                    "videoLength": "61.30 min",
-                    "title": "Lessons 12 - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/FbA4EDOwGYw/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "132",
-                    "serviceVideoID": "FVOdG8gk2Jc",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/132",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=FVOdG8gk2Jc",
-                    "videoLength": "63.60 min",
-                    "title": "Lesson 13 - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/FVOdG8gk2Jc/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "133",
-                    "serviceVideoID": "_Jhi0lVcT2A",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/133",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=_Jhi0lVcT2A",
-                    "videoLength": "57.98 min",
-                    "title": "Lesson 14 - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/_Jhi0lVcT2A/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "142",
-                    "serviceVideoID": "4p0fSaHhuDM",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/142",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=4p0fSaHhuDM",
-                    "videoLength": "54.13 min",
-                    "title": "Lesson 15 - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/4p0fSaHhuDM/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "143",
-                    "serviceVideoID": "B5tw6Q0NzdU",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/143",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=B5tw6Q0NzdU",
-                    "videoLength": "55.12 min",
-                    "title": "Lesson 16 - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/B5tw6Q0NzdU/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "144",
-                    "serviceVideoID": "snAarrB59Io",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/144",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=snAarrB59Io",
-                    "videoLength": "66.22 min",
-                    "title": "Lesson 17 - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/snAarrB59Io/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "146",
-                    "serviceVideoID": "Ivh3Tri1Rso",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/146",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=Ivh3Tri1Rso",
-                    "videoLength": "62.17 min",
-                    "title": "Lesson 18 - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/Ivh3Tri1Rso/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "145",
-                    "serviceVideoID": "K21fnaSEsqA",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/145",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=K21fnaSEsqA",
-                    "videoLength": "57.85 min",
-                    "title": "Lesson 19A - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/K21fnaSEsqA/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "147",
-                    "serviceVideoID": "4M4HQuQwsXc",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/147",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=4M4HQuQwsXc",
-                    "videoLength": "55.12 min",
-                    "title": "Lesson 19B - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/4M4HQuQwsXc/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "148",
-                    "serviceVideoID": "G3HeKVo2TyE",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/148",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=G3HeKVo2TyE",
-                    "videoLength": "53.40 min",
-                    "title": "Lesson 19C - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/G3HeKVo2TyE/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "152",
-                    "serviceVideoID": "TiAx4AdHzO8",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/152",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=TiAx4AdHzO8",
-                    "videoLength": "60.67 min",
-                    "title": "Lesson 20A - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/TiAx4AdHzO8/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "154",
-                    "serviceVideoID": "exlUHs1cMAk",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/154",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=exlUHs1cMAk",
-                    "videoLength": "61.25 min",
-                    "title": "Lesson 20B - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/exlUHs1cMAk/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "155",
-                    "serviceVideoID": "fWR_vmUzo9Y",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/155",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=fWR_vmUzo9Y",
-                    "videoLength": "60.00 min",
-                    "title": "Lesson 20C - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/fWR_vmUzo9Y/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "156",
-                    "serviceVideoID": "VSibR9x1roE",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/156",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=VSibR9x1roE",
-                    "videoLength": "49.80 min",
-                    "title": "Lesson 20D - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/VSibR9x1roE/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "",
-                    "ID": "157",
-                    "serviceVideoID": "uVIAMnd6GxE",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/157",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=uVIAMnd6GxE",
-                    "videoLength": "41.35 min",
-                    "title": "Lesson 21\/22 - Revelation: A Study of End Times",
-                    "thumbnailSource": "https://i.ytimg.com/vi/uVIAMnd6GxE/sddefault.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }]
-            },
-            {
-                "description": "",
-                "postedDate": "1386195660",
-                "ID": "1294",
-                "averageRating": "",
-                "title": "Creation Teaching",
-                "thumbnailSource": "",
-                "thumbnailAltText": "",
-                "url": "https://www.versebyverseministry.org/videos/creation-teaching",
-                "topics": [{
-                    "ID": "",
-                    "topic": ""
-                }],
-                "videos": [{
-                    "description": "A verse-by-verse teaching through the Genesis account of Creation by Pastor Stephen Armstrong, of Verse By Verse Ministry International",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "1376018729",
-                    "ID": "38",
-                    "serviceVideoID": "5RM-aNiRtg4",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/38",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=5RM-aNiRtg4",
-                    "videoLength": "46.82 min",
-                    "title": "The Creation Account Part 1",
-                    "thumbnailSource": "https://i.ytimg.com/vi/5RM-aNiRtg4/default.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "A verse-by-verse teaching through the Genesis account of Creation by Pastor Stephen Armstrong, of Verse By Verse Ministry International",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "1376018480",
-                    "ID": "39",
-                    "serviceVideoID": "Y_Py362iqC4",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/39",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=Y_Py362iqC4",
-                    "videoLength": "32.15 min",
-                    "title": "The Creation Account Part 2",
-                    "thumbnailSource": "https://i.ytimg.com/vi/Y_Py362iqC4/default.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "A verse-by-verse teaching through the Genesis account of Creation by Pastor Stephen Armstrong, of Verse By Verse Ministry International",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "1376020326",
-                    "ID": "40",
-                    "serviceVideoID": "Dy81Oak6dE0",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/40",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=Dy81Oak6dE0",
-                    "videoLength": "45.62 min",
-                    "title": "The Creation Account Part 3",
-                    "thumbnailSource": "https://i.ytimg.com/vi/Dy81Oak6dE0/default.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }, {
-                    "description": "Taught by Stephen Armstrong of Verse By Verse Ministry International. A verse-by-verse teaching through the Genesis account of Creation by Pastor Stephen Armstrong, of Verse By Verse Ministry International",
-                    "category": "",
-                    "postedDate": "",
-                    "recordedDate": "1376020743",
-                    "ID": "41",
-                    "serviceVideoID": "Kg1BJYD31L8",
-                    "service": "youtube",
-                    "url": "https://www.versebyverseministry.org/videos/play/41",
-                    "averageRating": "",
-                    "videoSource": "https://www.youtube.com/watch?v=Kg1BJYD31L8",
-                    "videoLength": "56.07 min",
-                    "title": "The Creation Account Part 4",
-                    "thumbnailSource": "https://i.ytimg.com/vi/Kg1BJYD31L8/default.jpg",
-                    "thumbnailAltText": "",
-                    "topics": [{
-                        "ID": "",
-                        "topic": ""
-                    }]
-                }]
-            },
-            {
-                "description": "",
-                "postedDate": "1386109140",
-                "ID": "1295",
-                "averageRating": "",
-                "title": "Evolution Exposed",
-                "thumbnailSource": "",
-                "thumbnailAltText": "",
-                "url": "https://www.versebyverseministry.org/videos/evolution-exposed",
-                "topics": [{
-                    "ID": "",
-                    "topic": ""
-                }],
-                "videos": [
-
-                    {
-                        "description": "A seminar by Pastor Stephen Armstrong of Verse By Verse Ministry International, taught in conjunction with his Genesis Bible study.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "1376021264",
-                        "ID": "27",
-                        "serviceVideoID": "Zgo84L1TAfE",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/27",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=Zgo84L1TAfE",
-                        "videoLength": "56.55 min",
-                        "title": "Creation vs. Evolution - Part 1",
-                        "thumbnailSource": "https://i.ytimg.com/vi/Zgo84L1TAfE/default.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "A seminar by Pastor Stephen Armstrong of Verse By Verse Ministry International, taught in conjunction with his Genesis Bible study.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "1376021969",
-                        "ID": "28",
-                        "serviceVideoID": "Z1Zbpq8YBI4",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/28",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=Z1Zbpq8YBI4",
-                        "videoLength": "59.38 min",
-                        "title": "Creation vs. Evolution - Part 2",
-                        "thumbnailSource": "https://i.ytimg.com/vi/Z1Zbpq8YBI4/default.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "A seminar by Pastor Stephen Armstrong of Verse By Verse Ministry International, taught in conjunction with his Genesis Bible study.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "1376021996",
-                        "ID": "29",
-                        "serviceVideoID": "20gjk__E_CU",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/29",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=20gjk__E_CU",
-                        "videoLength": "60.52 min",
-                        "title": "Creation vs. Evolution - Part 3",
-                        "thumbnailSource": "https://i.ytimg.com/vi/20gjk__E_CU/default.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }
-                ]
-            },
-            {
-                "description": "",
-                "postedDate": "1381897200",
-                "ID": "1460",
-                "averageRating": "",
-                "title": "2014 Bible Conference",
-                "thumbnailSource": "",
-                "thumbnailAltText": "",
-                "url": "https://www.versebyverseministry.org/videos/2014-conference-videos",
-                "topics": [{
-                    "ID": "",
-                    "topic": ""
-                }],
-                "videos": [
-
-                    {
-                        "description": "A short look back at the main takeaway of our 2014 VBVMI Bible conference on the Last Days: studying the end times is a source of comfort for the Christian.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "1418654633",
-                        "ID": "70",
-                        "serviceVideoID": "yPdNbyL9Ad8",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/70",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=yPdNbyL9Ad8",
-                        "videoLength": "1.83 min",
-                        "title": "2014 VBVMI Bible Conference Recap",
-                        "thumbnailSource": "https://i.ytimg.com/vi/yPdNbyL9Ad8/default.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The 2014 VBVMI Bible Conference Main Session for Pastor Stephen Armstrong, who explains the Biblical imperative to study the end times.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "1414209644",
-                        "ID": "59",
-                        "serviceVideoID": "3LauIme-hp0",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/59",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=3LauIme-hp0",
-                        "videoLength": "51.18 min",
-                        "title": "Why We Study the End Time - Stephen Armstrong",
-                        "thumbnailSource": "https://i.ytimg.com/vi/3LauIme-hp0/default.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The first breakout session of Stephen Armstrong from the 2014 VBVMI Bible Conference. Pastor Armstrong discusses all that the Bible can tell us on the coming world leader called the Antichrist.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "1414683203",
-                        "ID": "62",
-                        "serviceVideoID": "ns20_xl9fPQ",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/62",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=ns20_xl9fPQ",
-                        "videoLength": "80.40 min",
-                        "title": "Who is the Antichrist? \u2013 Stephen Armstrong",
-                        "thumbnailSource": "https://i.ytimg.com/vi/ns20_xl9fPQ/default.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The second breakout session of Stephen Armstrong from the 2014 VBVMI Bible Conference. Pastor Armstrong teaches on the coming apostasy of the church described in the New Testament letters and in the book of Revelation.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "1414687627",
-                        "ID": "63",
-                        "serviceVideoID": "nx3XDrV6vgA",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/63",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=nx3XDrV6vgA",
-                        "videoLength": "79.07 min",
-                        "title": "The Great Apostasy \u2013 Stephen Armstrong",
-                        "thumbnailSource": "https://i.ytimg.com/vi/nx3XDrV6vgA/default.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The 2014 VBVMI Bible Conference Main Session for Pastor Jim Bryant, explaining the meaning of Paul's statement in Romans 11 that the Church awaits the fullness of the Gentiles.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "1414248060",
-                        "ID": "60",
-                        "serviceVideoID": "T-yC0eKJyhY",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/60",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=T-yC0eKJyhY",
-                        "videoLength": "57.23 min",
-                        "title": "Understanding the Fullness of the Gentiles - Jim Bryant",
-                        "thumbnailSource": "https://i.ytimg.com/vi/T-yC0eKJyhY/default.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The first breakout session of Jim Bryant from the 2014 VBVMI Bible Conference. Pastor Bryant explain the differences between Covenant and Dispensational Theology and shows from scripture the correct framework for understanding end times teaching.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "1414785556",
-                        "ID": "64",
-                        "serviceVideoID": "E2G1S_iZwRM",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/64",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=E2G1S_iZwRM",
-                        "videoLength": "79.62 min",
-                        "title": "Knowing the Correct End Times Interpretation \u2013\u00a0Jim Bryant",
-                        "thumbnailSource": "https://i.ytimg.com/vi/E2G1S_iZwRM/default.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The second breakout session presentation by Pastor Jim Bryant at the 2014 VBVMI Bible Conference in San Antonio, Texas. Pastor Bryant explains the importance of a Christian living with an appreciation for the coming Rapture.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "1415293182",
-                        "ID": "67",
-                        "serviceVideoID": "8HTsfPLl5ps",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/67",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=8HTsfPLl5ps",
-                        "videoLength": "67.47 min",
-                        "title": "Living in Anticipation of the Rapture - Jim Bryant",
-                        "thumbnailSource": "https://i.ytimg.com/vi/8HTsfPLl5ps/default.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The 2014 VBVMI Bible Conference Main Session for Dr. Thomas Ice, who explains the ongoing and increasing persecution of Israel from Revelation 13.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "1414512095",
-                        "ID": "61",
-                        "serviceVideoID": "5t0OUmIj51A",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/61",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=5t0OUmIj51A",
-                        "videoLength": "80.23 min",
-                        "title": "The New Antisemitism \u2013 Thomas Ice",
-                        "thumbnailSource": "https://i.ytimg.com/vi/5t0OUmIj51A/default.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The first breakout session of Dr. Thomas Ice from the 2014 VBVMI Bible Conference. Dr. Ice explains Daniel's 70th Week from Daniel 9.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "1415206732",
-                        "ID": "65",
-                        "serviceVideoID": "Iy8yf3AUHpk",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/65",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=Iy8yf3AUHpk",
-                        "videoLength": "75.28 min",
-                        "title": "Daniel's 70th Week - Dr. Thomas Ice",
-                        "thumbnailSource": "https://i.ytimg.com/vi/Iy8yf3AUHpk/default.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The second breakout session of Dr. Thomas Ice from the 2014 VBVMI Bible Conference. Dr. Ice explains from scripture how the Rapture and the Second Coming of Christ differ.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "1416420624",
-                        "ID": "68",
-                        "serviceVideoID": "4NTWbk5yv9E",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/68",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=4NTWbk5yv9E",
-                        "videoLength": "74.57 min",
-                        "title": "Differences Between the Rapture and Second Coming - Dr. Thomas Ice",
-                        "thumbnailSource": "https://i.ytimg.com/vi/4NTWbk5yv9E/default.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "Watch Dr. Thomas Ice, Pastor Jim Bryant, and Stephen Armstrong answer questions from conference participants. The Q&A session is moderated by Jerry Dyke of VBVMI.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "1415214489",
-                        "ID": "66",
-                        "serviceVideoID": "7LxfM7qZ5T0",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/66",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=7LxfM7qZ5T0",
-                        "videoLength": "87.40 min",
-                        "title": "Speakers Q&A Session - 2014 VBVMI Bible Conference",
-                        "thumbnailSource": "https://i.ytimg.com/vi/7LxfM7qZ5T0/default.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }
-                ]
-            },
-            {
-                "description": "",
-                "postedDate": "1381757820",
-                "ID": "1663",
-                "averageRating": "",
-                "title": "2015 Bible Conference",
-                "thumbnailSource": "",
-                "thumbnailAltText": "",
-                "url": "https://www.versebyverseministry.org/videos/2015-bible-conference",
-                "topics": [{
-                    "ID": "",
-                    "topic": ""
-                }],
-                "videos": [
-
-                    {
-                        "description": "The 2015 VBVMI Bible Conference has come and gone. Now hear what some of those who attended thought of the event. Thanks to everyone who made this event a success.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "121",
-                        "serviceVideoID": "gI6hocSxHWk",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/121",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=gI6hocSxHWk",
-                        "videoLength": "2.02 min",
-                        "title": "2015 VBVMI Bible Conference Recap",
-                        "thumbnailSource": "https://i.ytimg.com/vi/gI6hocSxHWk/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "Pastor Stephen Armstrong teaches from 2Timothy 2 on what motivates Paul and all disciples to serve Christ faithfully. This is the first of four main sessions from the 2015 VBVMI Bible Conference held in San Antonio, Texas on October 8-10.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "102",
-                        "serviceVideoID": "CoQuQ1A27nU",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/102",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=CoQuQ1A27nU",
-                        "videoLength": "46.67 min",
-                        "title": "Soldier, Athlete, Farmer: The Rewards of Discipleship - Stephen Armstrong",
-                        "thumbnailSource": "https://i.ytimg.com/vi/CoQuQ1A27nU/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "Pastor Stephen Armstrong teaches his first breakout session at the 2015 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "106",
-                        "serviceVideoID": "DTjBINNlq64",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/106",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=DTjBINNlq64",
-                        "videoLength": "55.27 min",
-                        "title": "Future Trends in Discipleship \u2013 Stephen Armstrong",
-                        "thumbnailSource": "https://i.ytimg.com/vi/DTjBINNlq64/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The second breakout session from Pastor Stephen Armstrong at the 2105 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "107",
-                        "serviceVideoID": "PCGcnb3V5EQ",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/107",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=PCGcnb3V5EQ",
-                        "videoLength": "65.30 min",
-                        "title": "Small Group Discipleship \u2013 Stephen Armstrong",
-                        "thumbnailSource": "https://i.ytimg.com/vi/PCGcnb3V5EQ/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "Phil Johnson, Director of Grace To You, teaches a main session on \"Answering the Call of Discipleship\" at the 2015 VBVMI Bible Conference in San Antonio, Texas, October 8-10.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "103",
-                        "serviceVideoID": "_isf2jmMt84",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/103",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=_isf2jmMt84",
-                        "videoLength": "60.10 min",
-                        "title": "Answering the Call to Discipleship - Phil Johnson",
-                        "thumbnailSource": "https://i.ytimg.com/vi/_isf2jmMt84/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The first breakout session conducted by Phil Johnson at the 2015 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "108",
-                        "serviceVideoID": "3gLzNtdtIx4",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/108",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=3gLzNtdtIx4",
-                        "videoLength": "52.90 min",
-                        "title": "Breakout Session 1 \u2013 Phil Johnson",
-                        "thumbnailSource": "https://i.ytimg.com/vi/3gLzNtdtIx4/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The second breakout session conducted by Phil Johnson at the 2015 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "109",
-                        "serviceVideoID": "UOhHKhIdfj8",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/109",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=UOhHKhIdfj8",
-                        "videoLength": "43.15 min",
-                        "title": "Breakout Session 2 \u2013 Phill Johnson",
-                        "thumbnailSource": "https://i.ytimg.com/vi/UOhHKhIdfj8/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The third breakout session conducted by Phil Johnson of Grace To You Ministry at the 2015 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "113",
-                        "serviceVideoID": "gUAjW2dM-Hk",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/113",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=gUAjW2dM-Hk",
-                        "videoLength": "52.95 min",
-                        "title": "Breakout Session 3 \u2013\u00a0Phil Johnson",
-                        "thumbnailSource": "https://i.ytimg.com/vi/gUAjW2dM-Hk/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "Pastor Brian Michaels of Lighthouse Christian Fellowship teaches a main session on the disciples of Jesus at the 2015 VBVMI Bible Conference held in San Antonio, Texas on October 8-10.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "104",
-                        "serviceVideoID": "aWnENipXDRs",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/104",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=aWnENipXDRs",
-                        "videoLength": "46.23 min",
-                        "title": "Discipling the Disciples - Pastor Brian Michaels",
-                        "thumbnailSource": "https://i.ytimg.com/vi/aWnENipXDRs/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The first breakout session conducted by Brian Michaels at the 2015 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "110",
-                        "serviceVideoID": "ErCGXyEJmuI",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/110",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=ErCGXyEJmuI",
-                        "videoLength": "54.67 min",
-                        "title": "Breakout Session 1 \u2013 Brian Michaels",
-                        "thumbnailSource": "https://i.ytimg.com/vi/ErCGXyEJmuI/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The second breakout session conducted by Brian Michaels from the 2015 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "111",
-                        "serviceVideoID": "2xRormQ-VZM",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/111",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=2xRormQ-VZM",
-                        "videoLength": "37.10 min",
-                        "title": "Breakout Session 2 \u2013 Brian Michaels",
-                        "thumbnailSource": "https://i.ytimg.com/vi/2xRormQ-VZM/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The third breakout session conducted by Brian Michaels at the 2015 VBVMI Bible Conference in San Antonio, Texas on October 8-10",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "112",
-                        "serviceVideoID": "MVObRG-yIis",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/112",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=MVObRG-yIis",
-                        "videoLength": "52.50 min",
-                        "title": "Breakout Session 3 \u2013 Brian Michaels",
-                        "thumbnailSource": "https://i.ytimg.com/vi/MVObRG-yIis/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "Pastor Bruce Proctor teaches a main sessions from the 2015 VBVMI Bible Conference held in San Antonio, Texas on October 8-10.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "105",
-                        "serviceVideoID": "BLVHO1fdDyc",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/105",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=BLVHO1fdDyc",
-                        "videoLength": "50.50 min",
-                        "title": "Relying on God's Word in Difficult Times - Bruce Proctor",
-                        "thumbnailSource": "https://i.ytimg.com/vi/BLVHO1fdDyc/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The first breakout session of Pastor Bruce Proctor at the 2015 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "114",
-                        "serviceVideoID": "nxnZwDMschA",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/114",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=nxnZwDMschA",
-                        "videoLength": "50.75 min",
-                        "title": "Breakout Session 1 \u2013 Bruce Proctor",
-                        "thumbnailSource": "https://i.ytimg.com/vi/nxnZwDMschA/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "Pastor Bruce Proctor teaches his second breakout session at the 2015 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "115",
-                        "serviceVideoID": "UTnkJFGmqbE",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/115",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=UTnkJFGmqbE",
-                        "videoLength": "51.13 min",
-                        "title": "Breakout Session 2 \u2013 Bruce Proctor",
-                        "thumbnailSource": "https://i.ytimg.com/vi/UTnkJFGmqbE/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The third breakout session conducted by Pastor Bruce Proctor at the 2015 VBVMI Bible Conference in San Antonio, Texas on October 8-10",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "116",
-                        "serviceVideoID": "k8vlVSvT7Lg",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/116",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=k8vlVSvT7Lg",
-                        "videoLength": "63.32 min",
-                        "title": "Breakout Session 3 \u2013\u00a0Bruce Proctor",
-                        "thumbnailSource": "https://i.ytimg.com/vi/k8vlVSvT7Lg/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "A special breakout session by the 2015 VBVMI Bible Conference  Worship Leader, Jeff Dyke, on discipleship in public worship, held in San Antonio, Texas on October 8-10.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "117",
-                        "serviceVideoID": "xbLp6OM4BD4",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/117",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=xbLp6OM4BD4",
-                        "videoLength": "56.73 min",
-                        "title": "Breakout Session 1 - Jeffery Dyke",
-                        "thumbnailSource": "https://i.ytimg.com/vi/xbLp6OM4BD4/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "A special breakout session by the 2015 VBVMI Bible Conference  Worship Leader, Jeff Dyke, on discipleship in private worship, held in San Antonio, Texas on October 8-10.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "118",
-                        "serviceVideoID": "aUjJhy0DwiM",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/118",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=aUjJhy0DwiM",
-                        "videoLength": "54.20 min",
-                        "title": "Breakout Session 2 \u2013 Jeffery Dyke",
-                        "thumbnailSource": "https://i.ytimg.com/vi/aUjJhy0DwiM/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "A panel discussion with our conference speakers Stephen Armstrong, Phil Johnson, Brian Michaels, and Bruce Proctor on questions of discipleship.  Moderated by Jerry Dyke.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "119",
-                        "serviceVideoID": "NJwzwgzYWfU",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/119",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=NJwzwgzYWfU",
-                        "videoLength": "54.95 min",
-                        "title": "2015 VBVMI Bible Conference Panel Discussion",
-                        "thumbnailSource": "https://i.ytimg.com/vi/NJwzwgzYWfU/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }
-                ]
-            },
-            {
-                "description": "",
-                "postedDate": "1379697300",
-                "ID": "1962",
-                "averageRating": "",
-                "title": "2016 Bible Conference",
-                "thumbnailSource": "",
-                "thumbnailAltText": "",
-                "url": "https://www.versebyverseministry.org/videos/2016-bible-conference",
-                "topics": [{
-                    "ID": "",
-                    "topic": ""
-                }],
-                "videos": [
-
-                    {
-                        "description": "Answering the Bible's call for all believer's to live as ambassadors for Christ in our temporary dwelling. A teaching from 2Corinthians 5 presented at the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "169",
-                        "serviceVideoID": "VT9T1_vt63I",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/169",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=VT9T1_vt63I",
-                        "videoLength": "37.28 min",
-                        "title": "Stephen Armstrong's Main Session: Ambassadors for Christ",
-                        "thumbnailSource": "https://i.ytimg.com/vi/VT9T1_vt63I/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "Learn how to make your personal testimony an effective tool for evangelism. Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "161",
-                        "serviceVideoID": "U8q6V2DIrAo",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/161",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=U8q6V2DIrAo",
-                        "videoLength": "62.78 min",
-                        "title": "Stephen Armstrong's Breakout Session 'A' - An Effective Testimony",
-                        "thumbnailSource": "https://i.ytimg.com/vi/U8q6V2DIrAo/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "Reaching the world for Christ requires the right tool for the right situation. Learn 4 common ways to present the Gospel. Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "165",
-                        "serviceVideoID": "fvavPWbfH8Q",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/165",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=fvavPWbfH8Q",
-                        "videoLength": "61.68 min",
-                        "title": "Stephen Armstrong's Breakout Session 'B' - Evangelist's Toolbox",
-                        "thumbnailSource": "https://i.ytimg.com/vi/fvavPWbfH8Q/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "A teaching from John 5 on how the Lord enables the believer to succeed in presenting the Gospel even in the face of opposition. A teaching presented at the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "170",
-                        "serviceVideoID": "szh1FpTyxiM",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/170",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=szh1FpTyxiM",
-                        "videoLength": "43.18 min",
-                        "title": "Joshua de Koning's Main Session: I Am With You: Christ Protects and Empowers Evangelism",
-                        "thumbnailSource": "https://i.ytimg.com/vi/szh1FpTyxiM/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The proper perspective when persecution comes to the church. Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "163",
-                        "serviceVideoID": "PXbyQOyz7dE",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/163",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=PXbyQOyz7dE",
-                        "videoLength": "51.23 min",
-                        "title": "Joshua de Koning's Breakout Session 'A' - Attitude Check",
-                        "thumbnailSource": "https://i.ytimg.com/vi/PXbyQOyz7dE/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The best way to reach someone with the Gospel takes an investment of time. Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "164",
-                        "serviceVideoID": "hDElHO-zoFE",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/164",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=hDElHO-zoFE",
-                        "videoLength": "46.50 min",
-                        "title": "Joshua de Koning's Breakout Session 'B' - The Slow Way is the Fast Way",
-                        "thumbnailSource": "https://i.ytimg.com/vi/hDElHO-zoFE/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "A teaching from Luke 16 on how becoming like the \"father\" souts the purpose of bringing the world to know the Gospel. A teaching presented at the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "171",
-                        "serviceVideoID": "mLxDtLZ3owY",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/171",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=mLxDtLZ3owY",
-                        "videoLength": "41.82 min",
-                        "title": "Royce Smith's Main Session: The Prodigal Son: Becoming an Ambassador Through Christ-likeness",
-                        "thumbnailSource": "https://i.ytimg.com/vi/mLxDtLZ3owY/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "Royce Smith explains how to approach everyday moments with a mission-mindedness. Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "166",
-                        "serviceVideoID": "h6DkgShdauo",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/166",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=h6DkgShdauo",
-                        "videoLength": "56.48 min",
-                        "title": "Royce Smith's Breakout Session 'A' - Turning Everyday Conversations Into Gospel Presentations",
-                        "thumbnailSource": "https://i.ytimg.com/vi/h6DkgShdauo/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "Royce Smith explains how to live in a cross cultural way to draw people into a conversation about Jesus. Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "167",
-                        "serviceVideoID": "VM9xs82Drt4",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/167",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=VM9xs82Drt4",
-                        "videoLength": "62.95 min",
-                        "title": "Royce Smith's Breakout Session 'B' - Six Ways to Attract the Lost",
-                        "thumbnailSource": "https://i.ytimg.com/vi/VM9xs82Drt4/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The Biblical method of evangelism that Jesus taught from Luke 10. A teaching presented at the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "174",
-                        "serviceVideoID": "dJzK_BKlGZc",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/174",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=dJzK_BKlGZc",
-                        "videoLength": "34.85 min",
-                        "title": "Main Session: Finding a Person of Peace",
-                        "thumbnailSource": "https://i.ytimg.com/vi/dJzK_BKlGZc/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "173",
-                        "serviceVideoID": "n_eohS4E3Ck",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/173",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=n_eohS4E3Ck",
-                        "videoLength": "49.28 min",
-                        "title": "Persecution: When It Starts and When It Stops",
-                        "thumbnailSource": "https://i.ytimg.com/vi/n_eohS4E3Ck/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "The five speakers from the 2016 conference join together to discuss the conference topic and other matters. A presentation of the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "172",
-                        "serviceVideoID": "nJu8E4FQCBs",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/172",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=nJu8E4FQCBs",
-                        "videoLength": "74.37 min",
-                        "title": "Panel Discussion with 2016 VBVMI Bible Conference Speakers",
-                        "thumbnailSource": "https://i.ytimg.com/vi/nJu8E4FQCBs/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "162",
-                        "serviceVideoID": "hWIxJC_Wtks",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/162",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=hWIxJC_Wtks",
-                        "videoLength": "63.23 min",
-                        "title": "Keith Walker's Breakout Session 'A' - What Do I Do With Jehovah's Witnesses at My Door?",
-                        "thumbnailSource": "https://i.ytimg.com/vi/hWIxJC_Wtks/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }, {
-                        "description": "Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "",
-                        "ID": "168",
-                        "serviceVideoID": "xSUhFEmMxdI",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/168",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=xSUhFEmMxdI",
-                        "videoLength": "52.40 min",
-                        "title": "Keith Walker's Breakout Session 'B' - What Do I Do With Mormon's at My Door?",
-                        "thumbnailSource": "https://i.ytimg.com/vi/xSUhFEmMxdI/sddefault.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }
-                ]
-            },
-            {
-                "description": "",
-                "postedDate": "1364857920",
-                "ID": "1433",
-                "averageRating": "",
-                "title": "Guest Appearances",
-                "thumbnailSource": "",
-                "thumbnailAltText": "",
-                "url": "https://www.versebyverseministry.org/videos/guest-preaching",
-                "topics": [{
-                    "ID": "",
-                    "topic": ""
-                }],
-                "videos": [
-
-                    {
-                        "description": "Pastor Steve preaches from Matthew 13 at Village Parkway Baptist Church, San Antonio, Texas, on August 10, 2014.",
-                        "category": "",
-                        "postedDate": "",
-                        "recordedDate": "1408661641",
-                        "ID": "58",
-                        "serviceVideoID": "24kf7oPswyI",
-                        "service": "youtube",
-                        "url": "https://www.versebyverseministry.org/videos/play/58",
-                        "averageRating": "",
-                        "videoSource": "https://www.youtube.com/watch?v=24kf7oPswyI",
-                        "videoLength": "46.77 min",
-                        "title": "Kingdom Parables - Preaching at VPBC",
-                        "thumbnailSource": "https://i.ytimg.com/vi/24kf7oPswyI/default.jpg",
-                        "thumbnailAltText": "",
-                        "topics": [{
-                            "ID": "",
-                            "topic": ""
-                        }]
-                    }
-                ]
-            }
-        ]
-    }
+    "channels": [
+                 {
+                 "postedDate": 1388687940,
+                 "ID": "1884",
+                 "title": "End Times Seminar",
+                 "thumbnailSource": "",
+                 "url": "https://www.versebyverseministry.org/videos/end-times-seminar-at-oak-hills-church",
+                 "videos": [
+                            {
+                            "description": "Part 1 - Pastor Stephen Armstrong teaches fundamental principles of the End Times from scripture to help prepare students for a full study of the book of Revelation. \n\nPresented at Oak Hills Church in San Antonio, Texas, on May 11, 2016. \n\nIntroducti",
+                            "recordedDate": "1489571325",
+                            "ID": "209",
+                            "serviceVideoID": "208486849",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/209",
+                            "videoSource": "https://vimeo.com/208486849",
+                            "videoLength": "86.30 min",
+                            "title": "End Times Seminar at Oak Hills Church - Part 1",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/633436501_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Part 2 - Pastor Stephen Armstrong teaches fundamental principles of the End Times from scripture to help prepare students for a full study of the book of Revelation.",
+                            "recordedDate": "1489556053",
+                            "ID": "210",
+                            "serviceVideoID": "208456180",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/210",
+                            "videoSource": "https://vimeo.com/208456180",
+                            "videoLength": "81.73 min",
+                            "title": "End Times Seminar at Oak Hills Church - Part 2",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/633436642_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Part 3 - Pastor Stephen Armstrong teaches fundamental principles of the End Times from scripture to help prepare students for a full study of the book of Revelation.",
+                            "recordedDate": "1489561854",
+                            "ID": "211",
+                            "serviceVideoID": "208467191",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/211",
+                            "videoSource": "https://vimeo.com/208467191",
+                            "videoLength": "89.62 min",
+                            "title": "End Times Seminar at Oak Hills Church - Part 3",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/633436696_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Part 4 - Pastor Stephen Armstrong teaches fundamental principles of the End Times from scripture to help prepare students for a full study of the book of Revelation.",
+                            "recordedDate": "1489567556",
+                            "ID": "212",
+                            "serviceVideoID": "208478536",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/212",
+                            "videoSource": "https://vimeo.com/208478536",
+                            "videoLength": "97.15 min",
+                            "title": "End Times Seminar at Oak Hills Church - Part 4",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/633436764_100x75.jpg?r=pad"
+                            }
+                            ]
+                 },
+                 {
+                 "postedDate": 1388601600,
+                 "ID": "1695",
+                 "title": "Revelation Study",
+                 "thumbnailSource": "",
+                 "url": "https://www.versebyverseministry.org/videos/revelation-study",
+                 "videos": [
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "92",
+                            "serviceVideoID": "mokreYix8ls",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/92",
+                            "videoSource": "https://www.youtube.com/watch?v=mokreYix8ls",
+                            "videoLength": "49.20 min",
+                            "title": "Chapter 1 & Introduction - Revelation: A Study of the End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/mokreYix8ls/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "93",
+                            "serviceVideoID": "6VgYmOm8mOA",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/93",
+                            "videoSource": "https://www.youtube.com/watch?v=6VgYmOm8mOA",
+                            "videoLength": "56.83 min",
+                            "title": "Lesson 2A - Revelation: A Study of the End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/6VgYmOm8mOA/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "94",
+                            "serviceVideoID": "MEXabRMhWnA",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/94",
+                            "videoSource": "https://www.youtube.com/watch?v=MEXabRMhWnA",
+                            "videoLength": "55.93 min",
+                            "title": "Lesson 2B - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/MEXabRMhWnA/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "95",
+                            "serviceVideoID": "_Jz2GY60cJA",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/95",
+                            "videoSource": "https://www.youtube.com/watch?v=_Jz2GY60cJA",
+                            "videoLength": "57.08 min",
+                            "title": "Lesson 3A - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/_Jz2GY60cJA/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "96",
+                            "serviceVideoID": "4XqLI0Bmb7g",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/96",
+                            "videoSource": "https://www.youtube.com/watch?v=4XqLI0Bmb7g",
+                            "videoLength": "60.55 min",
+                            "title": "Lesson 3B - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/4XqLI0Bmb7g/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "97",
+                            "serviceVideoID": "gsJvmy_9plg",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/97",
+                            "videoSource": "https://www.youtube.com/watch?v=gsJvmy_9plg",
+                            "videoLength": "49.18 min",
+                            "title": "Lesson 4A - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/gsJvmy_9plg/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "98",
+                            "serviceVideoID": "ukbb4ZQTEj8",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/98",
+                            "videoSource": "https://www.youtube.com/watch?v=ukbb4ZQTEj8",
+                            "videoLength": "50.62 min",
+                            "title": "Lesson 4B - Revelation - A Study of the End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/ukbb4ZQTEj8/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "99",
+                            "serviceVideoID": "lZEs0UJ2q8A",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/99",
+                            "videoSource": "https://www.youtube.com/watch?v=lZEs0UJ2q8A",
+                            "videoLength": "61.88 min",
+                            "title": "Lesson 4C - Revelation: A Study of the End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/lZEs0UJ2q8A/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "100",
+                            "serviceVideoID": "jluzQtAqWYw",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/100",
+                            "videoSource": "https://www.youtube.com/watch?v=jluzQtAqWYw",
+                            "videoLength": "56.85 min",
+                            "title": "Lesson 5A - Revelation: A Study of the End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/jluzQtAqWYw/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "101",
+                            "serviceVideoID": "juCy9GuRSMg",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/101",
+                            "videoSource": "https://www.youtube.com/watch?v=juCy9GuRSMg",
+                            "videoLength": "66.67 min",
+                            "title": "Lesson 5B - Revelation: A Study of the End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/juCy9GuRSMg/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "120",
+                            "serviceVideoID": "xBebxm0SRhc",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/120",
+                            "videoSource": "https://www.youtube.com/watch?v=xBebxm0SRhc",
+                            "videoLength": "59.35 min",
+                            "title": "Lesson 5C – Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/xBebxm0SRhc/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "122",
+                            "serviceVideoID": "q5d4Bmn6VRQ",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/122",
+                            "videoSource": "https://www.youtube.com/watch?v=q5d4Bmn6VRQ",
+                            "videoLength": "49.93 min",
+                            "title": "Lesson 5D – Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/q5d4Bmn6VRQ/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "123",
+                            "serviceVideoID": "NBJUVw7FaPY",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/123",
+                            "videoSource": "https://www.youtube.com/watch?v=NBJUVw7FaPY",
+                            "videoLength": "60.58 min",
+                            "title": "Lesson 5E – Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/NBJUVw7FaPY/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "125",
+                            "serviceVideoID": "p3GzmGQztdk",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/125",
+                            "videoSource": "https://www.youtube.com/watch?v=p3GzmGQztdk",
+                            "videoLength": "48.97 min",
+                            "title": "Lesson 6A - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/p3GzmGQztdk/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "126",
+                            "serviceVideoID": "_j471YrB-Tk",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/126",
+                            "videoSource": "https://www.youtube.com/watch?v=_j471YrB-Tk",
+                            "videoLength": "50.75 min",
+                            "title": "Lesson 6B - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/_j471YrB-Tk/sddefault.jpg"
+                            },
+                            {
+                            "description": "Revelatio",
+                            "recordedDate": "",
+                            "ID": "127",
+                            "serviceVideoID": "z_J9n6bkwWU",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/127",
+                            "videoSource": "https://www.youtube.com/watch?v=z_J9n6bkwWU",
+                            "videoLength": "52.68 min",
+                            "title": "Lessons 7/8 - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/z_J9n6bkwWU/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "128",
+                            "serviceVideoID": "UPAO0Nw9XD4",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/128",
+                            "videoSource": "https://www.youtube.com/watch?v=UPAO0Nw9XD4",
+                            "videoLength": "51.13 min",
+                            "title": "Lessons 9 - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/UPAO0Nw9XD4/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "129",
+                            "serviceVideoID": "-8O-avfTbVU",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/129",
+                            "videoSource": "https://www.youtube.com/watch?v=-8O-avfTbVU",
+                            "videoLength": "48.03 min",
+                            "title": "Lessons 10 - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/-8O-avfTbVU/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "130",
+                            "serviceVideoID": "Qa6comqsOTw",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/130",
+                            "videoSource": "https://www.youtube.com/watch?v=Qa6comqsOTw",
+                            "videoLength": "58.70 min",
+                            "title": "Lessons 11 - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/Qa6comqsOTw/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "131",
+                            "serviceVideoID": "FbA4EDOwGYw",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/131",
+                            "videoSource": "https://www.youtube.com/watch?v=FbA4EDOwGYw",
+                            "videoLength": "61.30 min",
+                            "title": "Lessons 12 - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/FbA4EDOwGYw/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "132",
+                            "serviceVideoID": "FVOdG8gk2Jc",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/132",
+                            "videoSource": "https://www.youtube.com/watch?v=FVOdG8gk2Jc",
+                            "videoLength": "63.60 min",
+                            "title": "Lesson 13 - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/FVOdG8gk2Jc/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "133",
+                            "serviceVideoID": "_Jhi0lVcT2A",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/133",
+                            "videoSource": "https://www.youtube.com/watch?v=_Jhi0lVcT2A",
+                            "videoLength": "57.98 min",
+                            "title": "Lesson 14 - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/_Jhi0lVcT2A/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "142",
+                            "serviceVideoID": "4p0fSaHhuDM",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/142",
+                            "videoSource": "https://www.youtube.com/watch?v=4p0fSaHhuDM",
+                            "videoLength": "54.13 min",
+                            "title": "Lesson 15 - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/4p0fSaHhuDM/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "143",
+                            "serviceVideoID": "B5tw6Q0NzdU",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/143",
+                            "videoSource": "https://www.youtube.com/watch?v=B5tw6Q0NzdU",
+                            "videoLength": "55.12 min",
+                            "title": "Lesson 16 - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/B5tw6Q0NzdU/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "144",
+                            "serviceVideoID": "snAarrB59Io",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/144",
+                            "videoSource": "https://www.youtube.com/watch?v=snAarrB59Io",
+                            "videoLength": "66.22 min",
+                            "title": "Lesson 17 - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/snAarrB59Io/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "146",
+                            "serviceVideoID": "Ivh3Tri1Rso",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/146",
+                            "videoSource": "https://www.youtube.com/watch?v=Ivh3Tri1Rso",
+                            "videoLength": "62.17 min",
+                            "title": "Lesson 18 - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/Ivh3Tri1Rso/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "145",
+                            "serviceVideoID": "K21fnaSEsqA",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/145",
+                            "videoSource": "https://www.youtube.com/watch?v=K21fnaSEsqA",
+                            "videoLength": "57.85 min",
+                            "title": "Lesson 19A - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/K21fnaSEsqA/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "147",
+                            "serviceVideoID": "4M4HQuQwsXc",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/147",
+                            "videoSource": "https://www.youtube.com/watch?v=4M4HQuQwsXc",
+                            "videoLength": "55.12 min",
+                            "title": "Lesson 19B - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/4M4HQuQwsXc/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "148",
+                            "serviceVideoID": "G3HeKVo2TyE",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/148",
+                            "videoSource": "https://www.youtube.com/watch?v=G3HeKVo2TyE",
+                            "videoLength": "53.40 min",
+                            "title": "Lesson 19C - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/G3HeKVo2TyE/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "152",
+                            "serviceVideoID": "TiAx4AdHzO8",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/152",
+                            "videoSource": "https://www.youtube.com/watch?v=TiAx4AdHzO8",
+                            "videoLength": "60.67 min",
+                            "title": "Lesson 20A - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/TiAx4AdHzO8/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "154",
+                            "serviceVideoID": "exlUHs1cMAk",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/154",
+                            "videoSource": "https://www.youtube.com/watch?v=exlUHs1cMAk",
+                            "videoLength": "61.25 min",
+                            "title": "Lesson 20B - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/exlUHs1cMAk/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "155",
+                            "serviceVideoID": "fWR_vmUzo9Y",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/155",
+                            "videoSource": "https://www.youtube.com/watch?v=fWR_vmUzo9Y",
+                            "videoLength": "60.00 min",
+                            "title": "Lesson 20C - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/fWR_vmUzo9Y/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "156",
+                            "serviceVideoID": "VSibR9x1roE",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/156",
+                            "videoSource": "https://www.youtube.com/watch?v=VSibR9x1roE",
+                            "videoLength": "49.80 min",
+                            "title": "Lesson 20D - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/VSibR9x1roE/sddefault.jpg"
+                            },
+                            {
+                            "description": "",
+                            "recordedDate": "",
+                            "ID": "157",
+                            "serviceVideoID": "uVIAMnd6GxE",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/157",
+                            "videoSource": "https://www.youtube.com/watch?v=uVIAMnd6GxE",
+                            "videoLength": "41.35 min",
+                            "title": "Lesson 21/22 - Revelation: A Study of End Times",
+                            "thumbnailSource": "https://i.ytimg.com/vi/uVIAMnd6GxE/sddefault.jpg"
+                            }
+                            ]
+                 },
+                 {
+                 "postedDate": 1386195660,
+                 "ID": "1294",
+                 "title": "Creation Teaching",
+                 "thumbnailSource": "",
+                 "url": "https://www.versebyverseministry.org/videos/creation-teaching",
+                 "videos": [
+                            {
+                            "description": "A verse-by-verse teaching through the Genesis account of Creation by Pastor Stephen Armstrong, of Verse By Verse Ministry International",
+                            "recordedDate": "1376018729",
+                            "ID": "38",
+                            "serviceVideoID": "5RM-aNiRtg4",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/38",
+                            "videoSource": "https://www.youtube.com/watch?v=5RM-aNiRtg4",
+                            "videoLength": "46.82 min",
+                            "title": "The Creation Account Part 1",
+                            "thumbnailSource": "https://i.ytimg.com/vi/5RM-aNiRtg4/default.jpg"
+                            },
+                            {
+                            "description": "A verse-by-verse teaching through the Genesis account of Creation by Pastor Stephen Armstrong, of Verse By Verse Ministry International",
+                            "recordedDate": "1376018480",
+                            "ID": "39",
+                            "serviceVideoID": "Y_Py362iqC4",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/39",
+                            "videoSource": "https://www.youtube.com/watch?v=Y_Py362iqC4",
+                            "videoLength": "32.15 min",
+                            "title": "The Creation Account Part 2",
+                            "thumbnailSource": "https://i.ytimg.com/vi/Y_Py362iqC4/default.jpg"
+                            },
+                            {
+                            "description": "A verse-by-verse teaching through the Genesis account of Creation by Pastor Stephen Armstrong, of Verse By Verse Ministry International",
+                            "recordedDate": "1376020326",
+                            "ID": "40",
+                            "serviceVideoID": "Dy81Oak6dE0",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/40",
+                            "videoSource": "https://www.youtube.com/watch?v=Dy81Oak6dE0",
+                            "videoLength": "45.62 min",
+                            "title": "The Creation Account Part 3",
+                            "thumbnailSource": "https://i.ytimg.com/vi/Dy81Oak6dE0/default.jpg"
+                            },
+                            {
+                            "description": "Taught by Stephen Armstrong of Verse By Verse Ministry International. A verse-by-verse teaching through the Genesis account of Creation by Pastor Stephen Armstrong, of Verse By Verse Ministry International",
+                            "recordedDate": "1376020743",
+                            "ID": "41",
+                            "serviceVideoID": "Kg1BJYD31L8",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/41",
+                            "videoSource": "https://www.youtube.com/watch?v=Kg1BJYD31L8",
+                            "videoLength": "56.07 min",
+                            "title": "The Creation Account Part 4",
+                            "thumbnailSource": "https://i.ytimg.com/vi/Kg1BJYD31L8/default.jpg"
+                            }
+                            ]
+                 },
+                 {
+                 "postedDate": 1386109140,
+                 "ID": "1295",
+                 "title": "Evolution Exposed",
+                 "thumbnailSource": "",
+                 "url": "https://www.versebyverseministry.org/videos/evolution-exposed",
+                 "videos": [
+                            {
+                            "description": "A seminar by Pastor Stephen Armstrong of Verse By Verse Ministry International, taught in conjunction with his Genesis Bible study.",
+                            "recordedDate": "1376021264",
+                            "ID": "27",
+                            "serviceVideoID": "Zgo84L1TAfE",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/27",
+                            "videoSource": "https://www.youtube.com/watch?v=Zgo84L1TAfE",
+                            "videoLength": "56.55 min",
+                            "title": "Creation vs. Evolution - Part 1",
+                            "thumbnailSource": "https://i.ytimg.com/vi/Zgo84L1TAfE/default.jpg"
+                            },
+                            {
+                            "description": "A seminar by Pastor Stephen Armstrong of Verse By Verse Ministry International, taught in conjunction with his Genesis Bible study.",
+                            "recordedDate": "1376021969",
+                            "ID": "28",
+                            "serviceVideoID": "Z1Zbpq8YBI4",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/28",
+                            "videoSource": "https://www.youtube.com/watch?v=Z1Zbpq8YBI4",
+                            "videoLength": "59.38 min",
+                            "title": "Creation vs. Evolution - Part 2",
+                            "thumbnailSource": "https://i.ytimg.com/vi/Z1Zbpq8YBI4/default.jpg"
+                            },
+                            {
+                            "description": "A seminar by Pastor Stephen Armstrong of Verse By Verse Ministry International, taught in conjunction with his Genesis Bible study.",
+                            "recordedDate": "1376021996",
+                            "ID": "29",
+                            "serviceVideoID": "20gjk__E_CU",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/29",
+                            "videoSource": "https://www.youtube.com/watch?v=20gjk__E_CU",
+                            "videoLength": "60.52 min",
+                            "title": "Creation vs. Evolution - Part 3",
+                            "thumbnailSource": "https://i.ytimg.com/vi/20gjk__E_CU/default.jpg"
+                            }
+                            ]
+                 },
+                 {
+                 "postedDate": 1381897200,
+                 "ID": "1460",
+                 "title": "2014 Bible Conference",
+                 "thumbnailSource": "",
+                 "url": "https://www.versebyverseministry.org/videos/2014-conference-videos",
+                 "videos": [
+                            {
+                            "description": "A short look back at the main takeaway of our 2014 VBVMI Bible conference on the Last Days: studying the end times is a source of comfort for the Christian.",
+                            "recordedDate": "1418654633",
+                            "ID": "70",
+                            "serviceVideoID": "yPdNbyL9Ad8",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/70",
+                            "videoSource": "https://www.youtube.com/watch?v=yPdNbyL9Ad8",
+                            "videoLength": "1.83 min",
+                            "title": "2014 VBVMI Bible Conference Recap",
+                            "thumbnailSource": "https://i.ytimg.com/vi/yPdNbyL9Ad8/default.jpg"
+                            },
+                            {
+                            "description": "The 2014 VBVMI Bible Conference Main Session for Pastor Stephen Armstrong, who explains the Biblical imperative to study the end times.",
+                            "recordedDate": "1414209644",
+                            "ID": "59",
+                            "serviceVideoID": "3LauIme-hp0",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/59",
+                            "videoSource": "https://www.youtube.com/watch?v=3LauIme-hp0",
+                            "videoLength": "51.18 min",
+                            "title": "Why We Study the End Time - Stephen Armstrong",
+                            "thumbnailSource": "https://i.ytimg.com/vi/3LauIme-hp0/default.jpg"
+                            },
+                            {
+                            "description": "The first breakout session of Stephen Armstrong from the 2014 VBVMI Bible Conference. Pastor Armstrong discusses all that the Bible can tell us on the coming world leader called the Antichrist.",
+                            "recordedDate": "1414683203",
+                            "ID": "62",
+                            "serviceVideoID": "ns20_xl9fPQ",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/62",
+                            "videoSource": "https://www.youtube.com/watch?v=ns20_xl9fPQ",
+                            "videoLength": "80.40 min",
+                            "title": "Who is the Antichrist? – Stephen Armstrong",
+                            "thumbnailSource": "https://i.ytimg.com/vi/ns20_xl9fPQ/default.jpg"
+                            },
+                            {
+                            "description": "The second breakout session of Stephen Armstrong from the 2014 VBVMI Bible Conference. Pastor Armstrong teaches on the coming apostasy of the church described in the New Testament letters and in the book of Revelation.",
+                            "recordedDate": "1414687627",
+                            "ID": "63",
+                            "serviceVideoID": "nx3XDrV6vgA",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/63",
+                            "videoSource": "https://www.youtube.com/watch?v=nx3XDrV6vgA",
+                            "videoLength": "79.07 min",
+                            "title": "The Great Apostasy – Stephen Armstrong",
+                            "thumbnailSource": "https://i.ytimg.com/vi/nx3XDrV6vgA/default.jpg"
+                            },
+                            {
+                            "description": "The 2014 VBVMI Bible Conference Main Session for Pastor Jim Bryant, explaining the meaning of Paul's statement in Romans 11 that the Church awaits the fullness of the Gentiles.",
+                            "recordedDate": "1414248060",
+                            "ID": "60",
+                            "serviceVideoID": "T-yC0eKJyhY",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/60",
+                            "videoSource": "https://www.youtube.com/watch?v=T-yC0eKJyhY",
+                            "videoLength": "57.23 min",
+                            "title": "Understanding the Fullness of the Gentiles - Jim Bryant",
+                            "thumbnailSource": "https://i.ytimg.com/vi/T-yC0eKJyhY/default.jpg"
+                            },
+                            {
+                            "description": "The first breakout session of Jim Bryant from the 2014 VBVMI Bible Conference. Pastor Bryant explain the differences between Covenant and Dispensational Theology and shows from scripture the correct framework for understanding end times teaching.",
+                            "recordedDate": "1414785556",
+                            "ID": "64",
+                            "serviceVideoID": "E2G1S_iZwRM",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/64",
+                            "videoSource": "https://www.youtube.com/watch?v=E2G1S_iZwRM",
+                            "videoLength": "79.62 min",
+                            "title": "Knowing the Correct End Times Interpretation – Jim Bryant",
+                            "thumbnailSource": "https://i.ytimg.com/vi/E2G1S_iZwRM/default.jpg"
+                            },
+                            {
+                            "description": "The second breakout session presentation by Pastor Jim Bryant at the 2014 VBVMI Bible Conference in San Antonio, Texas. Pastor Bryant explains the importance of a Christian living with an appreciation for the coming Rapture.",
+                            "recordedDate": "1415293182",
+                            "ID": "67",
+                            "serviceVideoID": "8HTsfPLl5ps",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/67",
+                            "videoSource": "https://www.youtube.com/watch?v=8HTsfPLl5ps",
+                            "videoLength": "67.47 min",
+                            "title": "Living in Anticipation of the Rapture - Jim Bryant",
+                            "thumbnailSource": "https://i.ytimg.com/vi/8HTsfPLl5ps/default.jpg"
+                            },
+                            {
+                            "description": "The 2014 VBVMI Bible Conference Main Session for Dr. Thomas Ice, who explains the ongoing and increasing persecution of Israel from Revelation 13.",
+                            "recordedDate": "1414512095",
+                            "ID": "61",
+                            "serviceVideoID": "5t0OUmIj51A",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/61",
+                            "videoSource": "https://www.youtube.com/watch?v=5t0OUmIj51A",
+                            "videoLength": "80.23 min",
+                            "title": "The New Antisemitism – Thomas Ice",
+                            "thumbnailSource": "https://i.ytimg.com/vi/5t0OUmIj51A/default.jpg"
+                            },
+                            {
+                            "description": "The first breakout session of Dr. Thomas Ice from the 2014 VBVMI Bible Conference. Dr. Ice explains Daniel's 70th Week from Daniel 9.",
+                            "recordedDate": "1415206732",
+                            "ID": "65",
+                            "serviceVideoID": "Iy8yf3AUHpk",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/65",
+                            "videoSource": "https://www.youtube.com/watch?v=Iy8yf3AUHpk",
+                            "videoLength": "75.28 min",
+                            "title": "Daniel's 70th Week - Dr. Thomas Ice",
+                            "thumbnailSource": "https://i.ytimg.com/vi/Iy8yf3AUHpk/default.jpg"
+                            },
+                            {
+                            "description": "The second breakout session of Dr. Thomas Ice from the 2014 VBVMI Bible Conference. Dr. Ice explains from scripture how the Rapture and the Second Coming of Christ differ.",
+                            "recordedDate": "1416420624",
+                            "ID": "68",
+                            "serviceVideoID": "4NTWbk5yv9E",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/68",
+                            "videoSource": "https://www.youtube.com/watch?v=4NTWbk5yv9E",
+                            "videoLength": "74.57 min",
+                            "title": "Differences Between the Rapture and Second Coming - Dr. Thomas Ice",
+                            "thumbnailSource": "https://i.ytimg.com/vi/4NTWbk5yv9E/default.jpg"
+                            },
+                            {
+                            "description": "Watch Dr. Thomas Ice, Pastor Jim Bryant, and Stephen Armstrong answer questions from conference participants. The Q&A session is moderated by Jerry Dyke of VBVMI.",
+                            "recordedDate": "1415214489",
+                            "ID": "66",
+                            "serviceVideoID": "7LxfM7qZ5T0",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/66",
+                            "videoSource": "https://www.youtube.com/watch?v=7LxfM7qZ5T0",
+                            "videoLength": "87.40 min",
+                            "title": "Speakers Q&A Session - 2014 VBVMI Bible Conference",
+                            "thumbnailSource": "https://i.ytimg.com/vi/7LxfM7qZ5T0/default.jpg"
+                            }
+                            ]
+                 },
+                 {
+                 "postedDate": 1381757820,
+                 "ID": "1663",
+                 "title": "2015 Bible Conference",
+                 "thumbnailSource": "",
+                 "url": "https://www.versebyverseministry.org/videos/2015-bible-conference",
+                 "videos": [
+                            {
+                            "description": "The 2015 VBVMI Bible Conference has come and gone. Now hear what some of those who attended thought of the event. Thanks to everyone who made this event a success.",
+                            "recordedDate": "",
+                            "ID": "121",
+                            "serviceVideoID": "gI6hocSxHWk",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/121",
+                            "videoSource": "https://www.youtube.com/watch?v=gI6hocSxHWk",
+                            "videoLength": "2.02 min",
+                            "title": "2015 VBVMI Bible Conference Recap",
+                            "thumbnailSource": "https://i.ytimg.com/vi/gI6hocSxHWk/sddefault.jpg"
+                            },
+                            {
+                            "description": "Pastor Stephen Armstrong teaches from 2Timothy 2 on what motivates Paul and all disciples to serve Christ faithfully. This is the first of four main sessions from the 2015 VBVMI Bible Conference held in San Antonio, Texas on October 8-10.",
+                            "recordedDate": "",
+                            "ID": "102",
+                            "serviceVideoID": "CoQuQ1A27nU",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/102",
+                            "videoSource": "https://www.youtube.com/watch?v=CoQuQ1A27nU",
+                            "videoLength": "46.67 min",
+                            "title": "Soldier, Athlete, Farmer: The Rewards of Discipleship - Stephen Armstrong",
+                            "thumbnailSource": "https://i.ytimg.com/vi/CoQuQ1A27nU/sddefault.jpg"
+                            },
+                            {
+                            "description": "Pastor Stephen Armstrong teaches his first breakout session at the 2015 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
+                            "recordedDate": "",
+                            "ID": "106",
+                            "serviceVideoID": "DTjBINNlq64",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/106",
+                            "videoSource": "https://www.youtube.com/watch?v=DTjBINNlq64",
+                            "videoLength": "55.27 min",
+                            "title": "Future Trends in Discipleship – Stephen Armstrong",
+                            "thumbnailSource": "https://i.ytimg.com/vi/DTjBINNlq64/sddefault.jpg"
+                            },
+                            {
+                            "description": "The second breakout session from Pastor Stephen Armstrong at the 2105 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
+                            "recordedDate": "",
+                            "ID": "107",
+                            "serviceVideoID": "PCGcnb3V5EQ",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/107",
+                            "videoSource": "https://www.youtube.com/watch?v=PCGcnb3V5EQ",
+                            "videoLength": "65.30 min",
+                            "title": "Small Group Discipleship – Stephen Armstrong",
+                            "thumbnailSource": "https://i.ytimg.com/vi/PCGcnb3V5EQ/sddefault.jpg"
+                            },
+                            {
+                            "description": "Phil Johnson, Director of Grace To You, teaches a main session on \"Answering the Call of Discipleship\" at the 2015 VBVMI Bible Conference in San Antonio, Texas, October 8-10.",
+                            "recordedDate": "",
+                            "ID": "103",
+                            "serviceVideoID": "_isf2jmMt84",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/103",
+                            "videoSource": "https://www.youtube.com/watch?v=_isf2jmMt84",
+                            "videoLength": "60.10 min",
+                            "title": "Answering the Call to Discipleship - Phil Johnson",
+                            "thumbnailSource": "https://i.ytimg.com/vi/_isf2jmMt84/sddefault.jpg"
+                            },
+                            {
+                            "description": "The first breakout session conducted by Phil Johnson at the 2015 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
+                            "recordedDate": "",
+                            "ID": "108",
+                            "serviceVideoID": "3gLzNtdtIx4",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/108",
+                            "videoSource": "https://www.youtube.com/watch?v=3gLzNtdtIx4",
+                            "videoLength": "52.90 min",
+                            "title": "Breakout Session 1 – Phil Johnson",
+                            "thumbnailSource": "https://i.ytimg.com/vi/3gLzNtdtIx4/sddefault.jpg"
+                            },
+                            {
+                            "description": "The second breakout session conducted by Phil Johnson at the 2015 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
+                            "recordedDate": "",
+                            "ID": "109",
+                            "serviceVideoID": "UOhHKhIdfj8",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/109",
+                            "videoSource": "https://www.youtube.com/watch?v=UOhHKhIdfj8",
+                            "videoLength": "43.15 min",
+                            "title": "Breakout Session 2 – Phill Johnson",
+                            "thumbnailSource": "https://i.ytimg.com/vi/UOhHKhIdfj8/sddefault.jpg"
+                            },
+                            {
+                            "description": "The third breakout session conducted by Phil Johnson of Grace To You Ministry at the 2015 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
+                            "recordedDate": "",
+                            "ID": "113",
+                            "serviceVideoID": "gUAjW2dM-Hk",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/113",
+                            "videoSource": "https://www.youtube.com/watch?v=gUAjW2dM-Hk",
+                            "videoLength": "52.95 min",
+                            "title": "Breakout Session 3 – Phil Johnson",
+                            "thumbnailSource": "https://i.ytimg.com/vi/gUAjW2dM-Hk/sddefault.jpg"
+                            },
+                            {
+                            "description": "Pastor Brian Michaels of Lighthouse Christian Fellowship teaches a main session on the disciples of Jesus at the 2015 VBVMI Bible Conference held in San Antonio, Texas on October 8-10.",
+                            "recordedDate": "",
+                            "ID": "104",
+                            "serviceVideoID": "aWnENipXDRs",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/104",
+                            "videoSource": "https://www.youtube.com/watch?v=aWnENipXDRs",
+                            "videoLength": "46.23 min",
+                            "title": "Discipling the Disciples - Pastor Brian Michaels",
+                            "thumbnailSource": "https://i.ytimg.com/vi/aWnENipXDRs/sddefault.jpg"
+                            },
+                            {
+                            "description": "The first breakout session conducted by Brian Michaels at the 2015 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
+                            "recordedDate": "",
+                            "ID": "110",
+                            "serviceVideoID": "ErCGXyEJmuI",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/110",
+                            "videoSource": "https://www.youtube.com/watch?v=ErCGXyEJmuI",
+                            "videoLength": "54.67 min",
+                            "title": "Breakout Session 1 – Brian Michaels",
+                            "thumbnailSource": "https://i.ytimg.com/vi/ErCGXyEJmuI/sddefault.jpg"
+                            },
+                            {
+                            "description": "The second breakout session conducted by Brian Michaels from the 2015 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
+                            "recordedDate": "",
+                            "ID": "111",
+                            "serviceVideoID": "2xRormQ-VZM",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/111",
+                            "videoSource": "https://www.youtube.com/watch?v=2xRormQ-VZM",
+                            "videoLength": "37.10 min",
+                            "title": "Breakout Session 2 – Brian Michaels",
+                            "thumbnailSource": "https://i.ytimg.com/vi/2xRormQ-VZM/sddefault.jpg"
+                            },
+                            {
+                            "description": "The third breakout session conducted by Brian Michaels at the 2015 VBVMI Bible Conference in San Antonio, Texas on October 8-10",
+                            "recordedDate": "",
+                            "ID": "112",
+                            "serviceVideoID": "MVObRG-yIis",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/112",
+                            "videoSource": "https://www.youtube.com/watch?v=MVObRG-yIis",
+                            "videoLength": "52.50 min",
+                            "title": "Breakout Session 3 – Brian Michaels",
+                            "thumbnailSource": "https://i.ytimg.com/vi/MVObRG-yIis/sddefault.jpg"
+                            },
+                            {
+                            "description": "Pastor Bruce Proctor teaches a main sessions from the 2015 VBVMI Bible Conference held in San Antonio, Texas on October 8-10.",
+                            "recordedDate": "",
+                            "ID": "105",
+                            "serviceVideoID": "BLVHO1fdDyc",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/105",
+                            "videoSource": "https://www.youtube.com/watch?v=BLVHO1fdDyc",
+                            "videoLength": "50.50 min",
+                            "title": "Relying on God's Word in Difficult Times - Bruce Proctor",
+                            "thumbnailSource": "https://i.ytimg.com/vi/BLVHO1fdDyc/sddefault.jpg"
+                            },
+                            {
+                            "description": "The first breakout session of Pastor Bruce Proctor at the 2015 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
+                            "recordedDate": "",
+                            "ID": "114",
+                            "serviceVideoID": "nxnZwDMschA",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/114",
+                            "videoSource": "https://www.youtube.com/watch?v=nxnZwDMschA",
+                            "videoLength": "50.75 min",
+                            "title": "Breakout Session 1 – Bruce Proctor",
+                            "thumbnailSource": "https://i.ytimg.com/vi/nxnZwDMschA/sddefault.jpg"
+                            },
+                            {
+                            "description": "Pastor Bruce Proctor teaches his second breakout session at the 2015 VBVMI Bible Conference in San Antonio, Texas, on October 8-10.",
+                            "recordedDate": "",
+                            "ID": "115",
+                            "serviceVideoID": "UTnkJFGmqbE",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/115",
+                            "videoSource": "https://www.youtube.com/watch?v=UTnkJFGmqbE",
+                            "videoLength": "51.13 min",
+                            "title": "Breakout Session 2 – Bruce Proctor",
+                            "thumbnailSource": "https://i.ytimg.com/vi/UTnkJFGmqbE/sddefault.jpg"
+                            },
+                            {
+                            "description": "The third breakout session conducted by Pastor Bruce Proctor at the 2015 VBVMI Bible Conference in San Antonio, Texas on October 8-10",
+                            "recordedDate": "",
+                            "ID": "116",
+                            "serviceVideoID": "k8vlVSvT7Lg",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/116",
+                            "videoSource": "https://www.youtube.com/watch?v=k8vlVSvT7Lg",
+                            "videoLength": "63.32 min",
+                            "title": "Breakout Session 3 – Bruce Proctor",
+                            "thumbnailSource": "https://i.ytimg.com/vi/k8vlVSvT7Lg/sddefault.jpg"
+                            },
+                            {
+                            "description": "A special breakout session by the 2015 VBVMI Bible Conference  Worship Leader, Jeff Dyke, on discipleship in public worship, held in San Antonio, Texas on October 8-10.",
+                            "recordedDate": "",
+                            "ID": "117",
+                            "serviceVideoID": "xbLp6OM4BD4",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/117",
+                            "videoSource": "https://www.youtube.com/watch?v=xbLp6OM4BD4",
+                            "videoLength": "56.73 min",
+                            "title": "Breakout Session 1 - Jeffery Dyke",
+                            "thumbnailSource": "https://i.ytimg.com/vi/xbLp6OM4BD4/sddefault.jpg"
+                            },
+                            {
+                            "description": "A special breakout session by the 2015 VBVMI Bible Conference  Worship Leader, Jeff Dyke, on discipleship in private worship, held in San Antonio, Texas on October 8-10.",
+                            "recordedDate": "",
+                            "ID": "118",
+                            "serviceVideoID": "aUjJhy0DwiM",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/118",
+                            "videoSource": "https://www.youtube.com/watch?v=aUjJhy0DwiM",
+                            "videoLength": "54.20 min",
+                            "title": "Breakout Session 2 – Jeffery Dyke",
+                            "thumbnailSource": "https://i.ytimg.com/vi/aUjJhy0DwiM/sddefault.jpg"
+                            },
+                            {
+                            "description": "A panel discussion with our conference speakers Stephen Armstrong, Phil Johnson, Brian Michaels, and Bruce Proctor on questions of discipleship.  Moderated by Jerry Dyke.",
+                            "recordedDate": "",
+                            "ID": "119",
+                            "serviceVideoID": "NJwzwgzYWfU",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/119",
+                            "videoSource": "https://www.youtube.com/watch?v=NJwzwgzYWfU",
+                            "videoLength": "54.95 min",
+                            "title": "2015 VBVMI Bible Conference Panel Discussion",
+                            "thumbnailSource": "https://i.ytimg.com/vi/NJwzwgzYWfU/sddefault.jpg"
+                            }
+                            ]
+                 },
+                 {
+                 "postedDate": 1379697300,
+                 "ID": "1962",
+                 "title": "2016 Bible Conference",
+                 "thumbnailSource": "",
+                 "url": "https://www.versebyverseministry.org/videos/2016-bible-conference",
+                 "videos": [
+                            {
+                            "description": "Answering the Bible's call for all believer's to live as ambassadors for Christ in our temporary dwelling. A teaching from 2Corinthians 5 presented at the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
+                            "recordedDate": "",
+                            "ID": "169",
+                            "serviceVideoID": "VT9T1_vt63I",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/169",
+                            "videoSource": "https://www.youtube.com/watch?v=VT9T1_vt63I",
+                            "videoLength": "37.28 min",
+                            "title": "Stephen Armstrong's Main Session: Ambassadors for Christ",
+                            "thumbnailSource": "https://i.ytimg.com/vi/VT9T1_vt63I/sddefault.jpg"
+                            },
+                            {
+                            "description": "Learn how to make your personal testimony an effective tool for evangelism. Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
+                            "recordedDate": "",
+                            "ID": "161",
+                            "serviceVideoID": "U8q6V2DIrAo",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/161",
+                            "videoSource": "https://www.youtube.com/watch?v=U8q6V2DIrAo",
+                            "videoLength": "62.78 min",
+                            "title": "Stephen Armstrong's Breakout Session 'A' - An Effective Testimony",
+                            "thumbnailSource": "https://i.ytimg.com/vi/U8q6V2DIrAo/sddefault.jpg"
+                            },
+                            {
+                            "description": "Reaching the world for Christ requires the right tool for the right situation. Learn 4 common ways to present the Gospel. Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
+                            "recordedDate": "",
+                            "ID": "165",
+                            "serviceVideoID": "fvavPWbfH8Q",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/165",
+                            "videoSource": "https://www.youtube.com/watch?v=fvavPWbfH8Q",
+                            "videoLength": "61.68 min",
+                            "title": "Stephen Armstrong's Breakout Session 'B' - Evangelist's Toolbox",
+                            "thumbnailSource": "https://i.ytimg.com/vi/fvavPWbfH8Q/sddefault.jpg"
+                            },
+                            {
+                            "description": "A teaching from John 5 on how the Lord enables the believer to succeed in presenting the Gospel even in the face of opposition. A teaching presented at the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
+                            "recordedDate": "",
+                            "ID": "170",
+                            "serviceVideoID": "szh1FpTyxiM",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/170",
+                            "videoSource": "https://www.youtube.com/watch?v=szh1FpTyxiM",
+                            "videoLength": "43.18 min",
+                            "title": "Joshua de Koning's Main Session: I Am With You: Christ Protects and Empowers Evangelism",
+                            "thumbnailSource": "https://i.ytimg.com/vi/szh1FpTyxiM/sddefault.jpg"
+                            },
+                            {
+                            "description": "The proper perspective when persecution comes to the church. Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
+                            "recordedDate": "",
+                            "ID": "163",
+                            "serviceVideoID": "PXbyQOyz7dE",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/163",
+                            "videoSource": "https://www.youtube.com/watch?v=PXbyQOyz7dE",
+                            "videoLength": "51.23 min",
+                            "title": "Joshua de Koning's Breakout Session 'A' - Attitude Check",
+                            "thumbnailSource": "https://i.ytimg.com/vi/PXbyQOyz7dE/sddefault.jpg"
+                            },
+                            {
+                            "description": "The best way to reach someone with the Gospel takes an investment of time. Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
+                            "recordedDate": "",
+                            "ID": "164",
+                            "serviceVideoID": "hDElHO-zoFE",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/164",
+                            "videoSource": "https://www.youtube.com/watch?v=hDElHO-zoFE",
+                            "videoLength": "46.50 min",
+                            "title": "Joshua de Koning's Breakout Session 'B' - The Slow Way is the Fast Way",
+                            "thumbnailSource": "https://i.ytimg.com/vi/hDElHO-zoFE/sddefault.jpg"
+                            },
+                            {
+                            "description": "A teaching from Luke 16 on how becoming like the \"father\" souts the purpose of bringing the world to know the Gospel. A teaching presented at the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
+                            "recordedDate": "",
+                            "ID": "171",
+                            "serviceVideoID": "mLxDtLZ3owY",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/171",
+                            "videoSource": "https://www.youtube.com/watch?v=mLxDtLZ3owY",
+                            "videoLength": "41.82 min",
+                            "title": "Royce Smith's Main Session: The Prodigal Son: Becoming an Ambassador Through Christ-likeness",
+                            "thumbnailSource": "https://i.ytimg.com/vi/mLxDtLZ3owY/sddefault.jpg"
+                            },
+                            {
+                            "description": "Royce Smith explains how to approach everyday moments with a mission-mindedness. Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
+                            "recordedDate": "",
+                            "ID": "166",
+                            "serviceVideoID": "h6DkgShdauo",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/166",
+                            "videoSource": "https://www.youtube.com/watch?v=h6DkgShdauo",
+                            "videoLength": "56.48 min",
+                            "title": "Royce Smith's Breakout Session 'A' - Turning Everyday Conversations Into Gospel Presentations",
+                            "thumbnailSource": "https://i.ytimg.com/vi/h6DkgShdauo/sddefault.jpg"
+                            },
+                            {
+                            "description": "Royce Smith explains how to live in a cross cultural way to draw people into a conversation about Jesus. Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
+                            "recordedDate": "",
+                            "ID": "167",
+                            "serviceVideoID": "VM9xs82Drt4",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/167",
+                            "videoSource": "https://www.youtube.com/watch?v=VM9xs82Drt4",
+                            "videoLength": "62.95 min",
+                            "title": "Royce Smith's Breakout Session 'B' - Six Ways to Attract the Lost",
+                            "thumbnailSource": "https://i.ytimg.com/vi/VM9xs82Drt4/sddefault.jpg"
+                            },
+                            {
+                            "description": "The Biblical method of evangelism that Jesus taught from Luke 10. A teaching presented at the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
+                            "recordedDate": "",
+                            "ID": "174",
+                            "serviceVideoID": "dJzK_BKlGZc",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/174",
+                            "videoSource": "https://www.youtube.com/watch?v=dJzK_BKlGZc",
+                            "videoLength": "34.85 min",
+                            "title": "Main Session: Finding a Person of Peace",
+                            "thumbnailSource": "https://i.ytimg.com/vi/dJzK_BKlGZc/sddefault.jpg"
+                            },
+                            {
+                            "description": "Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
+                            "recordedDate": "",
+                            "ID": "173",
+                            "serviceVideoID": "n_eohS4E3Ck",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/173",
+                            "videoSource": "https://www.youtube.com/watch?v=n_eohS4E3Ck",
+                            "videoLength": "49.28 min",
+                            "title": "Persecution: When It Starts and When It Stops",
+                            "thumbnailSource": "https://i.ytimg.com/vi/n_eohS4E3Ck/sddefault.jpg"
+                            },
+                            {
+                            "description": "The five speakers from the 2016 conference join together to discuss the conference topic and other matters. A presentation of the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
+                            "recordedDate": "",
+                            "ID": "172",
+                            "serviceVideoID": "nJu8E4FQCBs",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/172",
+                            "videoSource": "https://www.youtube.com/watch?v=nJu8E4FQCBs",
+                            "videoLength": "74.37 min",
+                            "title": "Panel Discussion with 2016 VBVMI Bible Conference Speakers",
+                            "thumbnailSource": "https://i.ytimg.com/vi/nJu8E4FQCBs/sddefault.jpg"
+                            },
+                            {
+                            "description": "Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
+                            "recordedDate": "",
+                            "ID": "162",
+                            "serviceVideoID": "hWIxJC_Wtks",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/162",
+                            "videoSource": "https://www.youtube.com/watch?v=hWIxJC_Wtks",
+                            "videoLength": "63.23 min",
+                            "title": "Keith Walker's Breakout Session 'A' - What Do I Do With Jehovah's Witnesses at My Door?",
+                            "thumbnailSource": "https://i.ytimg.com/vi/hWIxJC_Wtks/sddefault.jpg"
+                            },
+                            {
+                            "description": "Teaching from the 2016 VBVMI Bible Conference held in San Antonio, Texas, on October 14-15, 2016.",
+                            "recordedDate": "",
+                            "ID": "168",
+                            "serviceVideoID": "xSUhFEmMxdI",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/168",
+                            "videoSource": "https://www.youtube.com/watch?v=xSUhFEmMxdI",
+                            "videoLength": "52.40 min",
+                            "title": "Keith Walker's Breakout Session 'B' - What Do I Do With Mormon's at My Door?",
+                            "thumbnailSource": "https://i.ytimg.com/vi/xSUhFEmMxdI/sddefault.jpg"
+                            }
+                            ]
+                 },
+                 {
+                 "postedDate": 1364857920,
+                 "ID": "1433",
+                 "title": "Guest Appearances",
+                 "thumbnailSource": "",
+                 "url": "https://www.versebyverseministry.org/videos/guest-preaching",
+                 "videos": [
+                            {
+                            "description": "Pastor Steve preaches from Matthew 13 at Village Parkway Baptist Church, San Antonio, Texas, on August 10, 2014.",
+                            "recordedDate": "1408661641",
+                            "ID": "58",
+                            "serviceVideoID": "24kf7oPswyI",
+                            "service": "youtube",
+                            "url": "https://www.versebyverseministry.org/videos/play/58",
+                            "videoSource": "https://www.youtube.com/watch?v=24kf7oPswyI",
+                            "videoLength": "46.77 min",
+                            "title": "Kingdom Parables - Preaching at VPBC",
+                            "thumbnailSource": "https://i.ytimg.com/vi/24kf7oPswyI/default.jpg"
+                            }
+                            ]
+                 }
+                 ]
 }

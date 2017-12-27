@@ -187,6 +187,7 @@
 		98D45B951C86D22A004BBCBD /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98D45B931C86D1EC004BBCBD /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		98D45B9F1C86D61D004BBCBD /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D45B9D1C86D61D004BBCBD /* AudioPlayerViewController.swift */; };
 		98D45BA01C86D61D004BBCBD /* AudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D45B9E1C86D61D004BBCBD /* AudioPlayerViewController.xib */; };
+		98D759F81FF31DC200E4B192 /* categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D759F71FF31DC200E4B192 /* categories.json */; };
 		98DE6E851CA2A83500C039C0 /* AboutActionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */; };
 		98E672A91D9FC6E1001E7F77 /* CenteredProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E672A81D9FC6E1001E7F77 /* CenteredProgressView.swift */; };
 		98F389331DDC45D40037B97E /* StudyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */; };
@@ -426,6 +427,7 @@
 		98D45B9D1C86D61D004BBCBD /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
 		98D45B9E1C86D61D004BBCBD /* AudioPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioPlayerViewController.xib; sourceTree = "<group>"; };
 		98D45BA11C86FAB4004BBCBD /* VBVMI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VBVMI-Bridging-Header.h"; sourceTree = "<group>"; };
+		98D759F71FF31DC200E4B192 /* categories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = categories.json; path = APISampleData/categories.json; sourceTree = "<group>"; };
 		98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutActionsController.swift; sourceTree = "<group>"; };
 		98E672A81D9FC6E1001E7F77 /* CenteredProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteredProgressView.swift; sourceTree = "<group>"; };
 		98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -753,6 +755,7 @@
 				9828D4571C5DAD79004FA954 /* articles.json */,
 				9828D4581C5DAD79004FA954 /* articlesP.json */,
 				9828D4591C5DAD79004FA954 /* channels.json */,
+				98D759F71FF31DC200E4B192 /* categories.json */,
 				9828D45A1C5DAD79004FA954 /* events.json */,
 				9828D45B1C5DAD79004FA954 /* qa.json */,
 				9828D45C1C5DAD79004FA954 /* qaP.json */,
@@ -1177,6 +1180,7 @@
 				988D69791C9C1034000ED16D /* ArticleBodyTableViewCell.xib in Resources */,
 				988D69751C9C0D87000ED16D /* ArticleHeaderTableViewCell.xib in Resources */,
 				980744C61EA0D06500043B1E /* lesson.json in Resources */,
+				98D759F81FF31DC200E4B192 /* categories.json in Resources */,
 				986E00D71EA03EC400A8F1F6 /* curriculum.json in Resources */,
 				980744BF1EA0D06500043B1E /* articles.json in Resources */,
 				980744C41EA0D06500043B1E /* qaP.json in Resources */,

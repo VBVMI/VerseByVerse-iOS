@@ -1,129 +1,311 @@
 {
-    "VerseByVerse": {
-        "curriculum": [{
-            "ID": "2049",
-            "title": "End Times Group Study",
-            "videos": [{
-                    "description": "Lesson 1 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "recordedDate": "1488972316",
-                    "ID": "180",
-                    "videoID": "207481985",
-                    "videoSource": "https://vimeo.com/207481985",
-                    "videoLength": "16.57 min",
-                    "title": "Lesson 1 – \"The Structure of Revelation\"",
-                    "thumbnailSource": "https://i.vimeocdn.com/video/622575703_100x75.jpg?r=pad"
-                },
-                {
-                    "description": "Lesson 2 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "recordedDate": "1488973585",
-                    "ID": "181",
-                    "videoID": "207485440",
-                    "videoSource": "https://vimeo.com/207485440",
-                    "videoLength": "19.13 min",
-                    "title": "Lesson 2 – \"The Church Age and the Seven Letters\"",
-                    "thumbnailSource": "https://i.vimeocdn.com/video/622583720_100x75.jpg?r=pad"
-                },
-                {
-                    "description": "Lesson 3 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "recordedDate": "1488975772",
-                    "ID": "182",
-                    "videoID": "207491349",
-                    "videoSource": "https://vimeo.com/207491349",
-                    "videoLength": "23.25 min",
-                    "title": "Lesson 3 – \"The Great Apostasy\"",
-                    "thumbnailSource": "https://i.vimeocdn.com/video/622589712_100x75.jpg?r=pad"
-                },
-                {
-                    "description": "Lesson 4 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "recordedDate": "1488799127",
-                    "ID": "183",
-                    "videoID": "207136036",
-                    "videoSource": "https://vimeo.com/207136036",
-                    "videoLength": "13.88 min",
-                    "title": "Lesson 4 - \"Understanding God's Timeline\"",
-                    "thumbnailSource": "https://i.vimeocdn.com/video/622185406_100x75.jpg?r=pad"
-                },
-                {
-                    "description": "Lesson 5 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "recordedDate": "1488815922",
-                    "ID": "184",
-                    "videoID": "207182558",
-                    "videoSource": "https://vimeo.com/207182558",
-                    "videoLength": "25.93 min",
-                    "title": "Lesson 5 – \"The Age of the Gentiles\"",
-                    "thumbnailSource": "https://i.vimeocdn.com/video/622192293_100x75.jpg?r=pad"
-                },
-                {
-                    "description": "Lesson 6 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "recordedDate": "1488816614",
-                    "ID": "185",
-                    "videoID": "207184295",
-                    "videoSource": "https://vimeo.com/207184295",
-                    "videoLength": "18.27 min",
-                    "title": "Lesson 6 – \"The Seventy Sevens\"",
-                    "thumbnailSource": "https://i.vimeocdn.com/video/622192913_100x75.jpg?r=pad"
-                },
-                {
-                    "description": "Lesson 7 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "recordedDate": "1488817103",
-                    "ID": "186",
-                    "videoID": "207185497",
-                    "videoSource": "https://vimeo.com/207185497",
-                    "videoLength": "11.72 min",
-                    "title": "Lesson 7 – \"The Signs of the Times\"",
-                    "thumbnailSource": "https://i.vimeocdn.com/video/622200965_100x75.jpg?r=pad"
-                },
-                {
-                    "description": "Lesson 8 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "recordedDate": "1488800727",
-                    "ID": "187",
-                    "videoID": "207140726",
-                    "videoSource": "https://vimeo.com/207140726",
-                    "videoLength": "35.88 min",
-                    "title": "Lesson 8 - \"The End of the Age\"",
-                    "thumbnailSource": "https://i.vimeocdn.com/video/622186023_100x75.jpg?r=pad"
-                },
-                {
-                    "description": "Lesson 9 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "recordedDate": "1488799498",
-                    "ID": "188",
-                    "videoID": "207137062",
-                    "videoSource": "https://vimeo.com/207137062",
-                    "videoLength": "22.33 min",
-                    "title": "Lesson 9 - \"The Resurrection of the Bride\"",
-                    "thumbnailSource": "https://i.vimeocdn.com/video/622185721_100x75.jpg?r=pad"
-                },
-                {
-                    "description": "Lesson 10 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "recordedDate": "1488800099",
-                    "ID": "189",
-                    "videoID": "207138782",
-                    "videoSource": "https://vimeo.com/207138782",
-                    "videoLength": "23.40 min",
-                    "title": "Lesson 10 - \"The Departure of Christ\"",
-                    "thumbnailSource": "https://i.vimeocdn.com/video/622185491_100x75.jpg?r=pad"
-                },
-                {
-                    "description": "Lesson 11 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "recordedDate": "1488801749",
-                    "ID": "190",
-                    "videoID": "207143665",
-                    "videoSource": "https://vimeo.com/207143665",
-                    "videoLength": "13.53 min",
-                    "title": "Lesson 11 - \"The Return of Christ\"",
-                    "thumbnailSource": "https://i.vimeocdn.com/video/622185853_100x75.jpg?r=pad"
-                },
-                {
-                    "description": "Lesson 12 from VBVMI's \"End Times\" Small Group Curriculum",
-                    "recordedDate": "1488797402",
-                    "ID": "191",
-                    "videoID": "207131185",
-                    "videoSource": "https://vimeo.com/207131185",
-                    "videoLength": "25.93 min",
-                    "title": "Lesson 12 - \"The Saving of Israel\"",
-                    "thumbnailSource": "https://i.vimeocdn.com/video/622185230_100x75.jpg?r=pad"
-                }
-            ]
-        }]
-    }
+    "channels": [
+                 {
+                 "postedDate": 1513351200,
+                 "ID": "2159",
+                 "title": "Creation Group Study",
+                 "cover_image": "https://www.versebyverseministry.org/images/uploads/image002.png",
+                 "url": "https://www.versebyverseministry.org/channels/creation-small-group-curriculum",
+                 "videos": [
+                            {
+                            "description": "Lesson 1 from VBVMI's \"Creation\" Small Group Curriculum",
+                            "recordedDate": "",
+                            "ID": "213",
+                            "serviceVideoID": "247011826",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/213",
+                            "videoSource": "https://vimeo.com/247011826",
+                            "videoLength": "20.03 min",
+                            "title": "Lesson 1 - \"In The Beginning...\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/672393185_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 2 from VBVMI's \"Creation\" Small Group Curriculum",
+                            "recordedDate": "",
+                            "ID": "214",
+                            "serviceVideoID": "247014824",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/214",
+                            "videoSource": "https://vimeo.com/247014824",
+                            "videoLength": "23.82 min",
+                            "title": "Lesson 2 - \"Day 1\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/672393029_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 3 from VBVMI's \"Creation\" Small Group Curriculum",
+                            "recordedDate": "",
+                            "ID": "215",
+                            "serviceVideoID": "247058973",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/215",
+                            "videoSource": "https://vimeo.com/247058973",
+                            "videoLength": "8.32 min",
+                            "title": "Lesson 3 - \"Day 2\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/672390604_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 4 from VBVMI's \"Creation\" Small Group Curriculum",
+                            "recordedDate": "",
+                            "ID": "216",
+                            "serviceVideoID": "247018278",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/216",
+                            "videoSource": "https://vimeo.com/247018278",
+                            "videoLength": "16.02 min",
+                            "title": "Lesson 4 - \"Day 3\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/672392887_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 5 from VBVMI's \"Creation\" Small Group Curriculum",
+                            "recordedDate": "",
+                            "ID": "217",
+                            "serviceVideoID": "247020686",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/217",
+                            "videoSource": "https://vimeo.com/247020686",
+                            "videoLength": "20.15 min",
+                            "title": "Lesson 5 - \"Day 4\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/672392700_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 6 from VBVMI's \"Creation\" Small Group Curriculum",
+                            "recordedDate": "",
+                            "ID": "218",
+                            "serviceVideoID": "247023593",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/218",
+                            "videoSource": "https://vimeo.com/247023593",
+                            "videoLength": "12.02 min",
+                            "title": "Lesson 6 - \"Day 5\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/672392383_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 7 from VBVMI's \"Creation\" Small Group Curriculum",
+                            "recordedDate": "",
+                            "ID": "219",
+                            "serviceVideoID": "247025190",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/219",
+                            "videoSource": "https://vimeo.com/247025190",
+                            "videoLength": "17.50 min",
+                            "title": "Lesson 7 - \"Day 6, Part I - Animals & Man\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/672391741_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 8 from VBVMI's \"Creation\" Small Group Curriculum",
+                            "recordedDate": "",
+                            "ID": "220",
+                            "serviceVideoID": "247027813",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/220",
+                            "videoSource": "https://vimeo.com/247027813",
+                            "videoLength": "15.77 min",
+                            "title": "Lesson 8 - \"Day 6, Part II – Blessings & Commission\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/672391581_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 9 from VBVMI's \"Creation\" Small Group Curriculum",
+                            "recordedDate": "",
+                            "ID": "221",
+                            "serviceVideoID": "247030150",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/221",
+                            "videoSource": "https://vimeo.com/247030150",
+                            "videoLength": "12.87 min",
+                            "title": "Lesson 9 -  \"Day 7, The Sabbath Day\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/672391435_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 10 from VBVMI's \"Creation\" Small Group Curriculum",
+                            "recordedDate": "",
+                            "ID": "222",
+                            "serviceVideoID": "247032245",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/222",
+                            "videoSource": "https://vimeo.com/247032245",
+                            "videoLength": "16.42 min",
+                            "title": "Lesson 10 - \"Day 6 Detail, Human Life\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/672391290_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 11 from VBVMI's \"Creation\" Small Group Curriculum",
+                            "recordedDate": "",
+                            "ID": "223",
+                            "serviceVideoID": "247034734",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/223",
+                            "videoSource": "https://vimeo.com/247034734",
+                            "videoLength": "18.70 min",
+                            "title": "Lesson 11 - \"Day 6, The Trees\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/672391127_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 12 from VBVMI's \"Creation\" Small Group Curriculum",
+                            "recordedDate": "",
+                            "ID": "224",
+                            "serviceVideoID": "247037371",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/224",
+                            "videoSource": "https://vimeo.com/247037371",
+                            "videoLength": "26.80 min",
+                            "title": "Lesson 12 - \"Adam & Woman\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/672390836_100x75.jpg?r=pad"
+                            }
+                            ]
+                 },
+                 {
+                 "postedDate": 1492080540,
+                 "ID": "2049",
+                 "title": "End Times Group Study",
+                 "pdf": "https://www.versebyverseministry.org/images/uploads/End_Times_Group_Study.pdf",
+                 "cover_image": "https://www.versebyverseministry.org/images/uploads/EndTimes-Study_Cover.jpg",
+                 "url": "https://www.versebyverseministry.org/channels/end-times-group-study",
+                 "videos": [
+                            {
+                            "description": "Lesson 1 from VBVMI's \"End Times\" Small Group Curriculum",
+                            "recordedDate": "1488972316",
+                            "ID": "180",
+                            "serviceVideoID": "207481985",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/180",
+                            "videoSource": "https://vimeo.com/207481985",
+                            "videoLength": "16.57 min",
+                            "title": "Lesson 1 – \"The Structure of Revelation\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/622575703_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 2  from VBVMI's \"End Times\" Small Group Curriculum",
+                            "recordedDate": "1488973585",
+                            "ID": "181",
+                            "serviceVideoID": "207485440",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/181",
+                            "videoSource": "https://vimeo.com/207485440",
+                            "videoLength": "19.13 min",
+                            "title": "Lesson 2 – \"The Church Age and the Seven Letters\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/622583720_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 3 from VBVMI's \"End Times\" Small Group Curriculum",
+                            "recordedDate": "1488975772",
+                            "ID": "182",
+                            "serviceVideoID": "207491349",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/182",
+                            "videoSource": "https://vimeo.com/207491349",
+                            "videoLength": "23.25 min",
+                            "title": "Lesson 3 – \"The Great Apostasy\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/622589712_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 4 from VBVMI's \"End Times\" Small Group Curriculum",
+                            "recordedDate": "1488799127",
+                            "ID": "183",
+                            "serviceVideoID": "207136036",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/183",
+                            "videoSource": "https://vimeo.com/207136036",
+                            "videoLength": "13.88 min",
+                            "title": "Lesson 4 - \"Understanding God's Timeline\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/622185406_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 5 from VBVMI's \"End Times\" Small Group Curriculum",
+                            "recordedDate": "1488815922",
+                            "ID": "184",
+                            "serviceVideoID": "207182558",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/184",
+                            "videoSource": "https://vimeo.com/207182558",
+                            "videoLength": "25.93 min",
+                            "title": "Lesson 5 – \"The Age of the Gentiles\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/622192293_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 6 from VBVMI's \"End Times\" Small Group Curriculum",
+                            "recordedDate": "1488816614",
+                            "ID": "185",
+                            "serviceVideoID": "207184295",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/185",
+                            "videoSource": "https://vimeo.com/207184295",
+                            "videoLength": "18.27 min",
+                            "title": "Lesson 6 – \"The Seventy Sevens\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/622192913_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 7 from VBVMI's \"End Times\" Small Group Curriculum",
+                            "recordedDate": "1488817103",
+                            "ID": "186",
+                            "serviceVideoID": "207185497",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/186",
+                            "videoSource": "https://vimeo.com/207185497",
+                            "videoLength": "11.72 min",
+                            "title": "Lesson 7 – \"The Signs of the Times\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/622200965_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 8 from VBVMI's \"End Times\" Small Group Curriculum",
+                            "recordedDate": "1488800727",
+                            "ID": "187",
+                            "serviceVideoID": "207140726",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/187",
+                            "videoSource": "https://vimeo.com/207140726",
+                            "videoLength": "35.88 min",
+                            "title": "Lesson 8 - \"The End of the Age\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/622186023_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 9 from VBVMI's \"End Times\" Small Group Curriculum",
+                            "recordedDate": "1488799498",
+                            "ID": "188",
+                            "serviceVideoID": "207137062",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/188",
+                            "videoSource": "https://vimeo.com/207137062",
+                            "videoLength": "22.33 min",
+                            "title": "Lesson 9 - \"The Resurrection of the Bride\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/622185721_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 10 from VBVMI's \"End Times\" Small Group Curriculum",
+                            "recordedDate": "1488800099",
+                            "ID": "189",
+                            "serviceVideoID": "207138782",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/189",
+                            "videoSource": "https://vimeo.com/207138782",
+                            "videoLength": "23.40 min",
+                            "title": "Lesson 10 - \"The Departure of Christ\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/622185491_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 11 from VBVMI's \"End Times\" Small Group Curriculum",
+                            "recordedDate": "1488801749",
+                            "ID": "190",
+                            "serviceVideoID": "207143665",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/190",
+                            "videoSource": "https://vimeo.com/207143665",
+                            "videoLength": "13.53 min",
+                            "title": "Lesson 11 - \"The Return of Christ\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/622185853_100x75.jpg?r=pad"
+                            },
+                            {
+                            "description": "Lesson 12 from VBVMI's \"End Times\" Small Group Curriculum",
+                            "recordedDate": "1488797402",
+                            "ID": "191",
+                            "serviceVideoID": "207131185",
+                            "service": "vimeo",
+                            "url": "https://www.versebyverseministry.org/videos/play/191",
+                            "videoSource": "https://vimeo.com/207131185",
+                            "videoLength": "25.93 min",
+                            "title": "Lesson 12 - \"The Saving of Israel\"",
+                            "thumbnailSource": "http://i.vimeocdn.com/video/622185230_100x75.jpg?r=pad"
+                            }
+                            ]
+                 }
+                 ]
 }
