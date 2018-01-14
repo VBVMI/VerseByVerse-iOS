@@ -7,15 +7,20 @@ import CoreData
 public enum StudyAttributes: String {
     case averageRating = "averageRating"
     case bibleIndex = "bibleIndex"
+    case category = "category"
     case completed = "completed"
     case descriptionText = "descriptionText"
     case identifier = "identifier"
-    case imageSource = "imageSource"
+    case image1100 = "image1100"
+    case image1400 = "image1400"
+    case image160 = "image160"
+    case image300 = "image300"
+    case image600 = "image600"
+    case image900 = "image900"
     case lessonCount = "lessonCount"
     case lessonsCompleted = "lessonsCompleted"
     case podcastLink = "podcastLink"
     case studyIndex = "studyIndex"
-    case studyType = "studyType"
     case thumbnailAltText = "thumbnailAltText"
     case thumbnailSource = "thumbnailSource"
     case title = "title"
@@ -58,6 +63,9 @@ open class _Study: NSManagedObject {
     var bibleIndex: Int32
 
     @NSManaged open
+    var category: Int32
+
+    @NSManaged open
     var completed: Bool
 
     @NSManaged open
@@ -67,7 +75,22 @@ open class _Study: NSManagedObject {
     var identifier: String
 
     @NSManaged open
-    var imageSource: String?
+    var image1100: String?
+
+    @NSManaged open
+    var image1400: String?
+
+    @NSManaged open
+    var image160: String?
+
+    @NSManaged open
+    var image300: String?
+
+    @NSManaged open
+    var image600: String?
+
+    @NSManaged open
+    var image900: String?
 
     @NSManaged open
     var lessonCount: Int32
@@ -80,9 +103,6 @@ open class _Study: NSManagedObject {
 
     @NSManaged open
     var studyIndex: Int32
-
-    @NSManaged open
-    var studyType: String
 
     @NSManaged open
     var thumbnailAltText: String?

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="2">
     <entity name="Answer" representedClassName="Answer" syncable="YES">
         <attribute name="authorName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="authorThumbnailAltText" optional="YES" attributeType="String" syncable="YES"/>
@@ -49,13 +49,16 @@
         <attribute name="averageRating" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="channelIndex" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="identifier" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="identifier" attributeType="String" syncable="YES"/>
         <attribute name="postedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="thumbnailAltText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="videos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Video" inverseName="channel" inverseEntity="Video" syncable="YES"/>
+        <fetchIndex name="byIdentifierIndex">
+            <fetchIndexElement property="identifier" type="Binary" order="ascending"/>
+        </fetchIndex>
     </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
@@ -82,7 +85,7 @@
         <attribute name="completed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="dateStudyGiven" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="identifier" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="identifier" attributeType="String" syncable="YES"/>
         <attribute name="isPlaceholder" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lessonIndex" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lessonNumber" optional="YES" attributeType="String" syncable="YES"/>
@@ -90,31 +93,45 @@
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="studentAidURL" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="studyIdentifier" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="studyIdentifier" attributeType="String" syncable="YES"/>
         <attribute name="teacherAid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="transcriptURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoLength" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoSourceURL" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="topics" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Topic" inverseName="lessons" inverseEntity="Topic" syncable="YES"/>
+        <fetchIndex name="byIdentifierIndex">
+            <fetchIndexElement property="identifier" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="byStudyIdentifierIndex">
+            <fetchIndexElement property="studyIdentifier" type="Binary" order="ascending"/>
+        </fetchIndex>
     </entity>
-    <entity name="Study" representedClassName="Study" syncable="YES">
+    <entity name="Study" representedClassName="Study" versionHashModifier="2" syncable="YES">
         <attribute name="averageRating" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bibleIndex" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="category" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="completed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="descriptionText" attributeType="String" syncable="YES"/>
-        <attribute name="identifier" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="imageSource" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" attributeType="String" syncable="YES"/>
+        <attribute name="image160" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image300" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image600" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image900" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image1100" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image1400" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lessonCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lessonsCompleted" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="podcastLink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="studyIndex" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="studyType" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailAltText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="topics" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Topic" inverseName="studies" inverseEntity="Topic" syncable="YES"/>
+        <fetchIndex name="byIdentifierIndex">
+            <fetchIndexElement property="identifier" type="Binary" order="ascending"/>
+        </fetchIndex>
     </entity>
     <entity name="Topic" representedClassName="Topic" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
@@ -128,7 +145,7 @@
         <attribute name="averageRating" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="identifier" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="identifier" attributeType="String" syncable="YES"/>
         <attribute name="postedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="recordedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="service" optional="YES" attributeType="String" syncable="YES"/>
@@ -141,6 +158,9 @@
         <attribute name="videoLength" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoSource" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="videos" inverseEntity="Channel" syncable="YES"/>
+        <fetchIndex name="byIdentifierIndex">
+            <fetchIndexElement property="identifier" type="Binary" order="ascending"/>
+        </fetchIndex>
     </entity>
     <elements>
         <element name="Answer" positionX="-164" positionY="-1713" width="128" height="268"/>
@@ -149,7 +169,7 @@
         <element name="Channel" positionX="-9" positionY="-1053" width="128" height="195"/>
         <element name="Event" positionX="-495" positionY="-1467" width="128" height="208"/>
         <element name="Lesson" positionX="-324" positionY="-1467" width="128" height="373"/>
-        <element name="Study" positionX="205" positionY="-1323" width="128" height="283"/>
+        <element name="Study" positionX="205" positionY="-1323" width="128" height="360"/>
         <element name="Topic" positionX="-0" positionY="-1440" width="128" height="133"/>
         <element name="Video" positionX="189" positionY="-1035" width="128" height="285"/>
     </elements>

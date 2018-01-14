@@ -244,7 +244,7 @@ class APIDataManager {
                     if let json = json {
                         do {
                             let result = try NSDictionary.decode(json)
-                            if let vbvmi = result["VerseByVerse"] as? NSDictionary, let modelNodes = vbvmi[arrayNode] as? Array<NSDictionary> {
+                            if let modelNodes = result[arrayNode] as? Array<NSDictionary> {
                                 
                                 let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
                                 context.parent = ContextCoordinator.sharedInstance.backgroundManagedObjectContext!

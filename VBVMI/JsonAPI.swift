@@ -15,6 +15,8 @@ public enum JsonAPI {
     case articlesP
     case articles
     case channels
+    case categories
+    case curriculum
     case events
     case qa
     case qAp
@@ -51,6 +53,10 @@ extension JsonAPI : TargetType {
             return "json-qa"
         case .qAp:
             return "json-qap"
+        case .categories:
+            return "categories"
+        case .curriculum:
+            return "json-curriculum"
         }
     }
     
@@ -86,6 +92,10 @@ extension JsonAPI : TargetType {
             return stubbedResponse("qa")
         case .qAp:
             return stubbedResponse("qap")
+        case .curriculum:
+            return stubbedResponse("curriculum")
+        case .categories:
+            return stubbedResponse("categories")
         }
     }
     
@@ -128,7 +138,7 @@ public struct Provider {
         switch target {
         default:
             #if DEBUG
-            return .never// .delayed(seconds: 0.2)//
+            return .delayed(seconds: 0.2) //.never //
             #else
             return .never
             #endif
