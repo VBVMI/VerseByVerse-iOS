@@ -60,6 +60,13 @@
             <fetchIndexElement property="identifier" type="Binary" order="ascending"/>
         </fetchIndex>
     </entity>
+    <entity name="Curriculum" representedClassName="Curriculum" syncable="YES" codeGenerationType="class">
+        <attribute name="coverImage" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" attributeType="String" syncable="YES"/>
+        <attribute name="postedDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="url" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventDateComponents" optional="YES" attributeType="Transformable" syncable="YES">
@@ -133,6 +140,10 @@
             <fetchIndexElement property="identifier" type="Binary" order="ascending"/>
         </fetchIndex>
     </entity>
+    <entity name="StudyCategory" representedClassName="StudyCategory" syncable="YES" codeGenerationType="class">
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Topic" representedClassName="Topic" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -172,5 +183,7 @@
         <element name="Study" positionX="205" positionY="-1323" width="128" height="360"/>
         <element name="Topic" positionX="-0" positionY="-1440" width="128" height="133"/>
         <element name="Video" positionX="189" positionY="-1035" width="128" height="285"/>
+        <element name="StudyCategory" positionX="-288" positionY="-1557" width="128" height="75"/>
+        <element name="Curriculum" positionX="-279" positionY="-1548" width="128" height="120"/>
     </elements>
 </model>

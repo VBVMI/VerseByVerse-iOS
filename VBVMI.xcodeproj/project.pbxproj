@@ -190,6 +190,12 @@
 		98D759F81FF31DC200E4B192 /* categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D759F71FF31DC200E4B192 /* categories.json */; };
 		98DE6E851CA2A83500C039C0 /* AboutActionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */; };
 		98E672A91D9FC6E1001E7F77 /* CenteredProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E672A81D9FC6E1001E7F77 /* CenteredProgressView.swift */; };
+		98E8AFC2200DEB0A00C672F6 /* Curriculum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E8AFBE200DEB0900C672F6 /* Curriculum.swift */; };
+		98E8AFC3200DEB0A00C672F6 /* _Curriculum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E8AFBF200DEB0900C672F6 /* _Curriculum.swift */; };
+		98E8AFC7200DEB0F00C672F6 /* Curriculum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E8AFBE200DEB0900C672F6 /* Curriculum.swift */; };
+		98E8AFCA200DEBAD00C672F6 /* StudyCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E8AFC8200DEBAD00C672F6 /* StudyCategory.swift */; };
+		98E8AFCB200DEBAD00C672F6 /* _StudyCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E8AFC9200DEBAD00C672F6 /* _StudyCategory.swift */; };
+		98E8AFCC200DEBB000C672F6 /* StudyCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E8AFC8200DEBAD00C672F6 /* StudyCategory.swift */; };
 		98F389331DDC45D40037B97E /* StudyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */; };
 		98F389341DDC45D40037B97E /* StudyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */; };
 		98F725BF1D49E5C600F73ED0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */; };
@@ -430,6 +436,10 @@
 		98D759F71FF31DC200E4B192 /* categories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = categories.json; path = APISampleData/categories.json; sourceTree = "<group>"; };
 		98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutActionsController.swift; sourceTree = "<group>"; };
 		98E672A81D9FC6E1001E7F77 /* CenteredProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteredProgressView.swift; sourceTree = "<group>"; };
+		98E8AFBE200DEB0900C672F6 /* Curriculum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Curriculum.swift; path = Model/Curriculum.swift; sourceTree = "<group>"; };
+		98E8AFBF200DEB0900C672F6 /* _Curriculum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Curriculum.swift; path = Model/_Curriculum.swift; sourceTree = "<group>"; };
+		98E8AFC8200DEBAD00C672F6 /* StudyCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudyCategory.swift; path = Model/StudyCategory.swift; sourceTree = "<group>"; };
+		98E8AFC9200DEBAD00C672F6 /* _StudyCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _StudyCategory.swift; path = Model/_StudyCategory.swift; sourceTree = "<group>"; };
 		98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyCollectionViewCell.swift; sourceTree = "<group>"; };
 		98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyCollectionViewCell.xib; sourceTree = "<group>"; };
 		98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -712,9 +722,11 @@
 				98611CAC1C96A6610070FCCD /* Article.swift */,
 				989294CE1C8BE07E00C19095 /* AudioPlayer.swift */,
 				98611CAD1C96A6610070FCCD /* Channel.swift */,
+				98E8AFBE200DEB0900C672F6 /* Curriculum.swift */,
 				98611CAE1C96A6610070FCCD /* Event.swift */,
 				986C37E11C65D6300096BB83 /* Lesson.swift */,
 				9828D44C1C5DA2BC004FA954 /* Study.swift */,
+				98E8AFC8200DEBAD00C672F6 /* StudyCategory.swift */,
 				980BE9671C9E9DEF003A5D84 /* Topic.swift */,
 				98FF47541D292640008E27F4 /* Video.swift */,
 			);
@@ -730,9 +742,11 @@
 				98FF47531D292640008E27F4 /* _Video.swift */,
 				98611CA41C96A6550070FCCD /* _Article.swift */,
 				98611CA51C96A6550070FCCD /* _Channel.swift */,
+				98E8AFBF200DEB0900C672F6 /* _Curriculum.swift */,
 				98611CA61C96A6550070FCCD /* _Event.swift */,
 				986C37E01C65D6300096BB83 /* _Lesson.swift */,
 				9828D44B1C5DA2BC004FA954 /* _Study.swift */,
+				98E8AFC9200DEBAD00C672F6 /* _StudyCategory.swift */,
 			);
 			name = Generated;
 			sourceTree = "<group>";
@@ -1822,6 +1836,7 @@
 				9828D4501C5DA8D1004FA954 /* JsonAPI.swift in Sources */,
 				986C2F1A1D339A1500F595FF /* VideoTableViewCell.swift in Sources */,
 				980E6C111C814E5F008F23D1 /* TitleParser.swift in Sources */,
+				98E8AFC3200DEB0A00C672F6 /* _Curriculum.swift in Sources */,
 				987F02FB1CF0658800AB61FA /* ResourceIconView.swift in Sources */,
 				986C2F1D1D33A43400F595FF /* TimeParser.swift in Sources */,
 				98611CB01C96A6610070FCCD /* Article.swift in Sources */,
@@ -1851,6 +1866,7 @@
 				980D95671EAF072D000271FE /* VimeoManager.swift in Sources */,
 				98CB0E3C1CA74E7F00C99D34 /* TopicViewController.swift in Sources */,
 				988D69841C9D51D2000ED16D /* AnswerHeaderTableViewCell.swift in Sources */,
+				98E8AFCB200DEBAD00C672F6 /* _StudyCategory.swift in Sources */,
 				986C37E31C65D6300096BB83 /* Lesson.swift in Sources */,
 				98DE6E851CA2A83500C039C0 /* AboutActionsController.swift in Sources */,
 				980579D71D31D9DE001C809C /* ChannelsViewController.swift in Sources */,
@@ -1866,6 +1882,7 @@
 				980BE9691C9E9DEF003A5D84 /* Topic.swift in Sources */,
 				98CBFE901C900E5F005F6414 /* StudiesHeaderReusableView.swift in Sources */,
 				980BE96B1C9EACE4003A5D84 /* StringExtensions.swift in Sources */,
+				98E8AFCA200DEBAD00C672F6 /* StudyCategory.swift in Sources */,
 				98611CA81C96A6550070FCCD /* _Article.swift in Sources */,
 				98611CB21C96A6610070FCCD /* Event.swift in Sources */,
 				9828D44E1C5DA2BC004FA954 /* Study.swift in Sources */,
@@ -1885,6 +1902,7 @@
 				98644D951C61D7E400EB27F1 /* NSManagedObject+Extensions.swift in Sources */,
 				988D69711C9BEADA000ED16D /* ArticleViewController.swift in Sources */,
 				980D95641EAED6DB000271FE /* Vimeo+Extensions.swift in Sources */,
+				98E8AFC2200DEB0A00C672F6 /* Curriculum.swift in Sources */,
 				986C37DD1C657CCE0096BB83 /* HideView.swift in Sources */,
 				9828D44D1C5DA2BC004FA954 /* _Study.swift in Sources */,
 				98611CA91C96A6550070FCCD /* _Channel.swift in Sources */,
@@ -1900,6 +1918,7 @@
 				989AC5431DB4C22200A825EB /* Lesson.swift in Sources */,
 				98B93C9A1EBF0AF0000637B4 /* VideoDetailViewController.swift in Sources */,
 				989AC5461DB4C22200A825EB /* Video.swift in Sources */,
+				98E8AFCC200DEBB000C672F6 /* StudyCategory.swift in Sources */,
 				98C35DBC1DB4CEC30052398E /* TitleParser.swift in Sources */,
 				989AC5491DB4C22700A825EB /* _Answer.swift in Sources */,
 				989AC5421DB4C22200A825EB /* Event.swift in Sources */,
@@ -1927,6 +1946,7 @@
 				989AC5161DB4C0B600A825EB /* StudiesViewController.swift in Sources */,
 				989AC53E1DB4C22200A825EB /* Answer.swift in Sources */,
 				980744CD1EA1BCD400043B1E /* VideoCollectionViewCell.swift in Sources */,
+				98E8AFC7200DEB0F00C672F6 /* Curriculum.swift in Sources */,
 				9846C90C1E45B3C900BDB6C3 /* ResourceManager.swift in Sources */,
 				989AC5531DB4C26700A825EB /* APIDataManager.swift in Sources */,
 				989AC53F1DB4C22200A825EB /* Article.swift in Sources */,
