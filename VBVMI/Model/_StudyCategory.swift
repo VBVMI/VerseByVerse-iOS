@@ -7,6 +7,7 @@ import CoreData
 public enum StudyCategoryAttributes: String {
     case identifier = "identifier"
     case name = "name"
+    case order = "order"
 }
 
 open class _StudyCategory: NSManagedObject {
@@ -39,6 +40,9 @@ open class _StudyCategory: NSManagedObject {
 
     @NSManaged open
     var name: String?
+
+    @NSManaged open
+    var order: Int32?
 
     // MARK: - Relationships
 

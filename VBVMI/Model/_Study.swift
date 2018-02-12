@@ -63,7 +63,7 @@ open class _Study: NSManagedObject {
     var bibleIndex: Int32
 
     @NSManaged open
-    var category: Int32
+    var category: String
 
     @NSManaged open
     var completed: Bool

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="2">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="2">
     <entity name="Answer" representedClassName="Answer" syncable="YES">
         <attribute name="authorName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="authorThumbnailAltText" optional="YES" attributeType="String" syncable="YES"/>
@@ -117,7 +117,7 @@
     <entity name="Study" representedClassName="Study" versionHashModifier="2" syncable="YES">
         <attribute name="averageRating" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bibleIndex" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="category" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="category" attributeType="String" syncable="YES"/>
         <attribute name="completed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="descriptionText" attributeType="String" syncable="YES"/>
         <attribute name="identifier" attributeType="String" syncable="YES"/>
@@ -143,6 +143,7 @@
     <entity name="StudyCategory" representedClassName="StudyCategory" syncable="YES" codeGenerationType="class">
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Topic" representedClassName="Topic" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
@@ -178,12 +179,12 @@
         <element name="Article" positionX="205" positionY="-1656" width="128" height="268"/>
         <element name="AudioPlayer" positionX="-209" positionY="-1062" width="128" height="131"/>
         <element name="Channel" positionX="-9" positionY="-1053" width="128" height="195"/>
+        <element name="Curriculum" positionX="-279" positionY="-1548" width="128" height="120"/>
         <element name="Event" positionX="-495" positionY="-1467" width="128" height="208"/>
         <element name="Lesson" positionX="-324" positionY="-1467" width="128" height="373"/>
         <element name="Study" positionX="205" positionY="-1323" width="128" height="360"/>
+        <element name="StudyCategory" positionX="-288" positionY="-1557" width="128" height="90"/>
         <element name="Topic" positionX="-0" positionY="-1440" width="128" height="133"/>
         <element name="Video" positionX="189" positionY="-1035" width="128" height="285"/>
-        <element name="StudyCategory" positionX="-288" positionY="-1557" width="128" height="75"/>
-        <element name="Curriculum" positionX="-279" positionY="-1548" width="128" height="120"/>
     </elements>
 </model>
