@@ -28,6 +28,7 @@ public enum StudyAttributes: String {
 }
 
 public enum StudyRelationships: String {
+    case studyCategory = "studyCategory"
     case topics = "topics"
 }
 
@@ -117,6 +118,9 @@ open class _Study: NSManagedObject {
     var url: String?
 
     // MARK: - Relationships
+
+    @NSManaged open
+    var studyCategory: StudyCategory?
 
     @NSManaged open
     var topics: Set<Topic>

@@ -730,29 +730,13 @@ class SoundManager: NSObject {
     }
     
     fileprivate func getImage() {
-        guard let thumbnailSource = study?.thumbnailSource, let url = URL(string: thumbnailSource) else {
+        guard let thumbnailSource = study?.image1400, let url = URL(string: thumbnailSource) else {
             return
         }
         
         imageView.af_setImage(withURL: url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false) { (response) -> Void in
             DispatchQueue.main.async {
                 self.updateImage()
-            }
-            
-            if let imageSource = self.study?.imageSource, let imageURL = URL(string: imageSource) {
-                let image = self.imageView.image
-                
-                self.imageView.af_setImage(withURL: imageURL, placeholderImage: image, filter: nil, imageTransition: .noTransition, runImageTransitionIfCached: false) { (response) in
-                    switch response.result {
-                    case .failure(let error):
-                        logger.error("Error download large image: \(error)")
-                    case .success(let value):
-                        self.imageView.image = value
-                        DispatchQueue.main.async {
-                            self.updateImage()
-                        }
-                    }
-                }
             }
         }
     }

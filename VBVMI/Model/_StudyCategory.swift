@@ -10,6 +10,10 @@ public enum StudyCategoryAttributes: String {
     case order = "order"
 }
 
+public enum StudyCategoryRelationships: String {
+    case studies = "studies"
+}
+
 open class _StudyCategory: NSManagedObject {
 
     // MARK: - Class methods
@@ -42,11 +46,34 @@ open class _StudyCategory: NSManagedObject {
     var name: String?
 
     @NSManaged open
-    var order: Int32?
+    var order: Int32
 
     // MARK: - Relationships
 
+    @NSManaged open
+    var studies: Set<Study>
+
     // MARK: - Fetched Properties
+
+}
+
+extension _StudyCategory {
+
+    func add(studies objects: Set<Study>) {
+        self.studies = self.studies.union(objects)
+    }
+
+    func remove(studies objects: Set<Study>) {
+        self.studies = self.studies.subtracting(objects)
+    }
+
+    func add(studiesObject value: Study) {
+        self.studies = self.studies.union([value])
+    }
+
+    func remove(studiesObject value: Study) {
+        self.studies = self.studies.subtracting([value])
+    }
 
 }
 

@@ -272,7 +272,7 @@ class AudioPlayerViewController: UIViewController {
         guard imageView != nil else {
             return
         }
-        if let thumbnailSource = study?.thumbnailSource {
+        if let thumbnailSource = study?.image1400 {
             if let url = URL(string: thumbnailSource) {
                 self.imageView.af_setImage(withURL: url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3)) { [weak self] (response) in
                     guard let this = self else { return }
@@ -281,21 +281,6 @@ class AudioPlayerViewController: UIViewController {
                         logger.error("Error downloading thumbnail image: \(error)")
                     case .success(let value):
                         this.imageView.image = value
-                    }
-                    
-                    if let imageSource = this.study?.imageSource, let imageURL = URL(string: imageSource) {
-                        let image = this.imageView.image
-                        
-                        this.imageView.af_setImage(withURL: imageURL, placeholderImage: this.imageView.image, filter: nil, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3)) { [weak this] (response) in
-                            guard let this = this else { return }
-                            switch response.result {
-                            case .failure(let error):
-                                logger.error("Error download large image: \(error)")
-                                this.imageView.image = image
-                            case .success(let value):
-                                this.imageView.image = value
-                            }
-                        }
                     }
                 }
             }

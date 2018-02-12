@@ -24,7 +24,7 @@ class StudiesViewController: UIViewController {
         let identifierSort = NSSortDescriptor(key: StudyAttributes.studyIndex.rawValue, ascending: true)
         let bibleStudySort = NSSortDescriptor(key: StudyAttributes.bibleIndex.rawValue, ascending: true)
         
-        var sortDescriptors : [NSSortDescriptor] = [NSSortDescriptor(key: StudyAttributes.studyType.rawValue, ascending: true)]
+        var sortDescriptors : [NSSortDescriptor] = [NSSortDescriptor(key: "studyCategory.order", ascending: true)]
         
         switch StudySortOption.currentSortOption {
         case .bibleBookIndex:
@@ -44,7 +44,7 @@ class StudiesViewController: UIViewController {
         configureFetchRequest(fetchRequest)
         
         fetchRequest.shouldRefreshRefetchedObjects = true
-        fetchedResultsController = NSFetchedResultsController<Study>(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: StudyAttributes.studyType.rawValue, cacheName: nil)
+        fetchedResultsController = NSFetchedResultsController<Study>(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: "studyCategory.order", cacheName: nil)
         
         fetchedResultsController.delegate = self
 
@@ -153,7 +153,7 @@ class StudiesViewController: UIViewController {
             
             let indexPath = IndexPath(row: 0, section: section)
             let item = fetchedResultsController.object(at: indexPath)
-            header.mainTitleLabel.text = item.studyType
+            header.mainTitleLabel.text = item.studyCategory?.name
             header.mainTitleLabel.isHidden = false
         } else {
             header.subtitleLabel.isHidden = true
