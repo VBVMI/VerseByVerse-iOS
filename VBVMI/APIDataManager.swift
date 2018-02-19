@@ -35,7 +35,7 @@ protocol AssetsDownloadable {
 class APIDataManager {
 
     static func categories(completion: @escaping (Error?)->()) {
-        downloadToJSONArray(.categories) { (context, JSONArray) in
+        downloadToJSONArray(.categories, conversionBlock: { (context, JSONArray) in
             let existingCategories: [StudyCategory] = StudyCategory.findAll(context)
             var existingCategoryIds = Set<String>(existingCategories.map({ $0.identifier }))
             
@@ -44,11 +44,15 @@ class APIDataManager {
                 existingCategoryIds.remove(category.identifier)
             })
             
-        }
+            if existingCategoryIds.count > 0 {
+                let categoriesToDelete: [StudyCategory] = StudyCategory.findAllWithPredicate(NSPredicate(format: "%K in %@", StudyCategoryAttributes.identifier.rawValue, existingCategoryIds), context: context)
+                categoriesToDelete.forEach({ context.delete($0)})
+            }
+        }, completion: completion)
     }
     
     static func core() {
-        downloadToJSONArray(.core, arrayNode: "studies") { (context, JSONArray) -> () in
+        downloadToJSONArray(.core, arrayNode: "studies", conversionBlock: { (context, JSONArray) -> () in
             
             let existingStudies: [Study] = Study.findAll(context)
             
@@ -69,12 +73,12 @@ class APIDataManager {
                     context.delete(lesson)
                 })
             }
-        }
+        })
     }
     
     static func lessons(_ studyID: String) {
         
-        downloadToJSONArray(JsonAPI.lesson(identifier: studyID), arrayNode: "lessons") { (context, JSONModels) -> () in
+        downloadToJSONArray(JsonAPI.lesson(identifier: studyID), arrayNode: "lessons", conversionBlock: { (context, JSONModels) -> () in
             //We should fetch old lessons for merging and possible deletion
             let existingLessons = Lesson.findAllWithDictionary([LessonAttributes.studyIdentifier.rawValue: studyID], context: context) as? [Lesson] ?? []
             var existingLessonIds = existingLessons.map({ (lesson) -> String in
@@ -96,12 +100,12 @@ class APIDataManager {
                     }
                 }
             }
-        }
+        })
     }
     
     static func latestArticles() {
         // download the articles P
-        downloadToJSONArray(JsonAPI.articlesP, arrayNode: "articles") { (context, JSONModels) -> () in
+        downloadToJSONArray(JsonAPI.articlesP, arrayNode: "articles", conversionBlock: { (context, JSONModels) -> () in
             var count = 0
             for JSONModel in JSONModels {
                 let article = try Article.decodeJSON(JSONModel, context: context)
@@ -116,11 +120,11 @@ class APIDataManager {
                     allTheArticles()
                 }
             }
-        }
+        })
     }
     
     static func allTheArticles(_ completion:(()->())? = nil) {
-        downloadToJSONArray(JsonAPI.articles, arrayNode: "articles") { (context, JSONArray) -> () in
+        downloadToJSONArray(JsonAPI.articles, arrayNode: "articles", conversionBlock: { (context, JSONArray) -> () in
             let existingArticles: [Article] = Article.findAll(context)
             
             var existingArticleIds = Set<String>(existingArticles.map( { $0.identifier } ))
@@ -137,17 +141,17 @@ class APIDataManager {
                     context.delete(article)
                 })
             }
+        }, completion: { _ in
             if let completion = completion {
                 DispatchQueue.main.async { () -> Void in
                     completion()
                 }
             }
-            
-        }
+        })
     }
     
     static func latestAnswers() {
-        downloadToJSONArray(JsonAPI.qAp, arrayNode: "QandAPosts") { (context, JSONArray) -> () in
+        downloadToJSONArray(JsonAPI.qAp, arrayNode: "QandAPosts", conversionBlock: { (context, JSONArray) -> () in
             var count = 0
             for JSONModel in JSONArray {
                 let article = try Answer.decodeJSON(JSONModel, context: context)
@@ -162,11 +166,11 @@ class APIDataManager {
                     allTheAnswers()
                 }
             }
-        }
+        })
     }
     
     static func allTheAnswers(_ completion:(()->())? = nil) {
-        downloadToJSONArray(JsonAPI.qa, arrayNode: "QandAPosts") { (context, JSONArray) -> () in
+        downloadToJSONArray(JsonAPI.qa, arrayNode: "QandAPosts", conversionBlock: { (context, JSONArray) -> () in
             let existingAnswers: [Answer] = Answer.findAll(context)
             
             var existingAnswerIds = Set<String>(existingAnswers.map( { $0.identifier } ))
@@ -189,11 +193,11 @@ class APIDataManager {
                     completion()
                 }
             }
-        }
+        })
     }
     
     static func allTheChannels() {
-        downloadToJSONArray(JsonAPI.channels, arrayNode: "channels") { (context, JSONArray) in
+        downloadToJSONArray(JsonAPI.channels, arrayNode: "channels", conversionBlock: { (context, JSONArray) in
             let existingChannels: [Channel] = Channel.findAll(context)
             var existingChannelIds = Set<String>(existingChannels.map({ $0.identifier }))
                         
@@ -215,11 +219,11 @@ class APIDataManager {
             orphanedVideos.forEach({ (video) in
                 context.delete(video)
             })
-        }
+        })
     }
     
     static func allTheEvents() {
-        downloadToJSONArray(JsonAPI.events, arrayNode: "events") { (context, JSONArray) in
+        downloadToJSONArray(JsonAPI.events, arrayNode: "events", conversionBlock: { (context, JSONArray) in
             
             let existingEvents: [Event] = Event.findAll(context)
             var existingEventIds = existingEvents.map({ (event) -> String in
@@ -241,11 +245,11 @@ class APIDataManager {
                     }
                 }
             }
-        }
+        })
     }
     
     
-    fileprivate static func downloadToJSONArray(_ request: JsonAPI, arrayNode: String? = nil, conversionBlock: @escaping (_ context: NSManagedObjectContext, _ JSONArray: [[AnyHashable: Any]]) throws ->()) {
+    fileprivate static func downloadToJSONArray(_ request: JsonAPI, arrayNode: String? = nil, conversionBlock: @escaping (_ context: NSManagedObjectContext, _ JSONArray: [[AnyHashable: Any]]) throws ->(), completion: ((Error?)->())? = nil) {
         Provider.sharedProvider.request(request) { (result) -> () in
             switch result {
             case .success(let response):
@@ -268,6 +272,8 @@ class APIDataManager {
                                 try conversionBlock(context, modelNodes)
                             } catch let error {
                                 logger.error("Error decoding modelJSON \(error)")
+                                completion?(error)
+                                return
                             }
                             
                             do {
@@ -277,19 +283,23 @@ class APIDataManager {
                                 ContextCoordinator.sharedInstance.backgroundManagedObjectContext!.perform({ () -> Void in
                                     do {
                                         try ContextCoordinator.sharedInstance.backgroundManagedObjectContext!.save()
+                                        completion?(nil)
                                     } catch (let error) {
                                         logger.error("Error saving background context:\(error)")
+                                        completion?(error)
                                     }
                                     
                                 })
                             } catch (let error) {
                                 logger.error("Error Saving: \(error)")
+                                completion?(error)
                             }
                         })
                     }
                 }
             case .failure(let error):
                 logger.error("Error downloading articles P: \(error)")
+                completion?(error)
             }
         }
     }

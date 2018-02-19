@@ -90,8 +90,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         DispatchQueue.global(qos: .background).async {
             logger.info("🍕Dispatching the Downloads")
-            
-            APIDataManager.core()
+            APIDataManager.categories(completion: { (error) in
+                if let error = error {
+                    logger.error("🍕 Error downloading categories: \(error)")
+                } else {
+                    // download the studies
+                    APIDataManager.core()
+                }
+            })
             APIDataManager.allTheChannels()
             
             let reachability = Reachability()

@@ -13,7 +13,7 @@ open class StudyCategory: _StudyCategory {
         
         let identifierString = "\(identifier)"
         
-        guard let studyCategory = StudyCategory.findFirstWithDictionary(["identifier": identifierString], context: context) as? StudyCategory else {
+        guard let studyCategory = StudyCategory.findFirstOrCreateWithDictionary(["identifier": identifierString], context: context) as? StudyCategory else {
             throw APIDataManagerError.modelCreationFailed
         }
         
