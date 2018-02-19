@@ -5,7 +5,7 @@ import Decodable
 @objc(StudyCategory)
 open class StudyCategory: _StudyCategory {
     
-    class func decodeJSON(_ JSONDict: NSDictionary, context: NSManagedObjectContext) throws -> (StudyCategory) {
+    class func decodeJSON(_ JSONDict: [AnyHashable : Any], context: NSManagedObjectContext) throws -> (StudyCategory) {
         
         guard let identifier : Any = JSONDict["id"] else {
             throw APIDataManagerError.missingID

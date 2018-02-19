@@ -8,7 +8,7 @@ open class Lesson: _Lesson {
 
 	// Custom logic goes here.
 
-    class func decodeJSON(_ JSONDict: NSDictionary, studyID: String, context: NSManagedObjectContext, index: Int) throws -> Lesson {
+    class func decodeJSON(_ JSONDict: [AnyHashable : Any], studyID: String, context: NSManagedObjectContext, index: Int) throws -> Lesson {
         guard let identifier = JSONDict["ID"] as? String else {
             throw APIDataManagerError.missingID
         }
@@ -59,7 +59,7 @@ open class Lesson: _Lesson {
         lesson.lessonTitle = lessonParsedTitle
         lesson.lessonNumber = nullOrString(try JSONDict => "lessonNumber")
 
-        if let topicsArray: [NSDictionary] = try JSONDict => "topics" as? [NSDictionary] {
+        if let topicsArray: [[AnyHashable: Any]] = try JSONDict => "topics" as? [[AnyHashable: Any]] {
             //Then lets process the topics
             var myTopics = Set<Topic>()
             

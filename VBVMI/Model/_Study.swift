@@ -5,7 +5,6 @@ import Foundation
 import CoreData
 
 public enum StudyAttributes: String {
-    case averageRating = "averageRating"
     case bibleIndex = "bibleIndex"
     case category = "category"
     case completed = "completed"
@@ -56,9 +55,6 @@ open class _Study: NSManagedObject {
     }
 
     // MARK: - Properties
-
-    @NSManaged open
-    var averageRating: String?
 
     @NSManaged open
     var bibleIndex: Int32

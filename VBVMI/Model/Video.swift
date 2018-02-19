@@ -5,7 +5,7 @@ import Decodable
 @objc(Video)
 open class Video: _Video {
     
-    class func decodeJSON(_ JSONDict: NSDictionary, context: NSManagedObjectContext, index: Int) throws -> (Video) {
+    class func decodeJSON(_ JSONDict: [AnyHashable : Any], context: NSManagedObjectContext, index: Int) throws -> (Video) {
         guard let identifier = JSONDict["ID"] as? String else {
             throw APIDataManagerError.missingID
         }

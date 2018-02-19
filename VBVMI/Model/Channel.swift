@@ -5,7 +5,7 @@ import Decodable
 @objc(Channel)
 open class Channel: _Channel {
 
-    class func decodeJSON(_ JSONDict: NSDictionary, context: NSManagedObjectContext, index: Int) throws -> (Channel) {
+    class func decodeJSON(_ JSONDict: [AnyHashable : Any], context: NSManagedObjectContext, index: Int) throws -> (Channel) {
         guard let identifier = JSONDict["ID"] as? String else {
             throw APIDataManagerError.missingID
         }
@@ -33,7 +33,7 @@ open class Channel: _Channel {
         
         channel.averageRating = nullOrString(try JSONDict => "averageRating")
         
-        if let videosArray: [NSDictionary] = try JSONDict => "videos" as? [NSDictionary] {
+        if let videosArray: [[AnyHashable: Any]] = try JSONDict => "videos" as? [[AnyHashable: Any]] {
             //Then lets process the videos
             var myVideos = Set<Video>()
             

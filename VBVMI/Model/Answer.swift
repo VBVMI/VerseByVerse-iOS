@@ -7,7 +7,7 @@ open class Answer: _Answer {
 
 	// Custom logic goes here.
 
-    class func decodeJSON(_ JSONDict: NSDictionary, context: NSManagedObjectContext) throws -> (Answer) {
+    class func decodeJSON(_ JSONDict: [AnyHashable : Any], context: NSManagedObjectContext) throws -> (Answer) {
         guard let identifier = JSONDict["ID"] as? String else {
             throw APIDataManagerError.missingID
         }
@@ -46,7 +46,7 @@ open class Answer: _Answer {
         answer.title = nullOrString(articleTitle.stringByDecodingHTMLEntities)
         
         
-        if let topicsArray: [NSDictionary] = try JSONDict => "topics" as? [NSDictionary] {
+        if let topicsArray: [[AnyHashable: Any]] = try JSONDict => "topics" as? [[AnyHashable: Any]] {
             //Then lets process the topics
             var myTopics = Set<Topic>()
             

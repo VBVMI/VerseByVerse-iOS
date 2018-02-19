@@ -34,6 +34,19 @@ protocol AssetsDownloadable {
 
 class APIDataManager {
 
+    static func categories(completion: @escaping (Error?)->()) {
+        downloadToJSONArray(.categories) { (context, JSONArray) in
+            let existingCategories: [StudyCategory] = StudyCategory.findAll(context)
+            var existingCategoryIds = Set<String>(existingCategories.map({ $0.identifier }))
+            
+            try JSONArray.enumerated().forEach({ (index, dict) in
+                let category = try StudyCategory.decodeJSON(dict, context: context)
+                existingCategoryIds.remove(category.identifier)
+            })
+            
+        }
+    }
+    
     static func core() {
         downloadToJSONArray(.core, arrayNode: "studies") { (context, JSONArray) -> () in
             
@@ -232,49 +245,47 @@ class APIDataManager {
     }
     
     
-    fileprivate static func downloadToJSONArray(_ request: JsonAPI, arrayNode: String, conversionBlock: @escaping (_ context: NSManagedObjectContext, _ JSONArray: [NSDictionary]) throws ->()) {
+    fileprivate static func downloadToJSONArray(_ request: JsonAPI, arrayNode: String? = nil, conversionBlock: @escaping (_ context: NSManagedObjectContext, _ JSONArray: [[AnyHashable: Any]]) throws ->()) {
         Provider.sharedProvider.request(request) { (result) -> () in
             switch result {
             case .success(let response):
                 DispatchQueue.global(qos: .background).async {
                     //logger.info("🍕resonse: \(response)")
                     let data = response.data
-                    let json = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
                     
-                    if let json = json {
-                        do {
-                            let result = try NSDictionary.decode(json)
-                            if let modelNodes = result[arrayNode] as? Array<NSDictionary> {
-                                
-                                let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-                                context.parent = ContextCoordinator.sharedInstance.backgroundManagedObjectContext!
-                                context.perform({ () -> Void in
+                    if let json = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) {
+                        let modelNodes: [[AnyHashable: Any]]
+                        if let arrayNode = arrayNode, let result = json as? [AnyHashable : Any] {
+                            modelNodes = result[arrayNode] as? [[AnyHashable: Any]] ?? []
+                        } else {
+                            modelNodes = json as? [[AnyHashable: Any]] ?? []
+                        }
+                        
+                        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+                        context.parent = ContextCoordinator.sharedInstance.backgroundManagedObjectContext!
+                        context.perform({ () -> Void in
+                            do {
+                                try conversionBlock(context, modelNodes)
+                            } catch let error {
+                                logger.error("Error decoding modelJSON \(error)")
+                            }
+                            
+                            do {
+                                if context.hasChanges {
+                                    try context.save()
+                                }
+                                ContextCoordinator.sharedInstance.backgroundManagedObjectContext!.perform({ () -> Void in
                                     do {
-                                        try conversionBlock(context, modelNodes)
-                                    } catch let error {
-                                        logger.error("Error decoding modelJSON \(error)")
+                                        try ContextCoordinator.sharedInstance.backgroundManagedObjectContext!.save()
+                                    } catch (let error) {
+                                        logger.error("Error saving background context:\(error)")
                                     }
                                     
-                                    do {
-                                        if context.hasChanges {
-                                            try context.save()
-                                        }
-                                        ContextCoordinator.sharedInstance.backgroundManagedObjectContext!.perform({ () -> Void in
-                                            do {
-                                                try ContextCoordinator.sharedInstance.backgroundManagedObjectContext!.save()
-                                            } catch (let error) {
-                                                logger.error("Error saving background context:\(error)")
-                                            }
-                                            
-                                        })
-                                    } catch (let error) {
-                                        logger.error("Error Saving: \(error)")
-                                    }
                                 })
+                            } catch (let error) {
+                                logger.error("Error Saving: \(error)")
                             }
-                        } catch let error {
-                            logger.error("Error decoding article: \(error)")
-                        }
+                        })
                     }
                 }
             case .failure(let error):

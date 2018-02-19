@@ -6,7 +6,7 @@ import Decodable
 open class Study: _Study {
 
 	// Custom logic goes here.
-    class func decodeJSON(_ JSONDict: NSDictionary, context: NSManagedObjectContext, index: Int) throws -> (Study) {
+    class func decodeJSON(_ JSONDict: [AnyHashable : Any], context: NSManagedObjectContext, index: Int) throws -> (Study) {
         guard let identifier = JSONDict["ID"] as? String else {
             throw APIDataManagerError.missingID
         }
@@ -31,7 +31,6 @@ open class Study: _Study {
         study.title = studyTitle.stringByDecodingHTMLEntities
         
         study.podcastLink = nullOrString(try JSONDict => "podcastLink")
-        study.averageRating = nullOrString(try JSONDict => "averageRating")
         
         study.lessonCount = try JSONDict => "lessonCount"
         study.url = nullOrString(try JSONDict => "url")
@@ -43,7 +42,7 @@ open class Study: _Study {
         study.image1100 = nullOrString(try JSONDict => "image1100")
         study.image1400 = nullOrString(try JSONDict => "image1400")
         
-        if let topicsArray: [NSDictionary] = try JSONDict => "topics" as? [NSDictionary] {
+        if let topicsArray: [[AnyHashable: Any]] = try JSONDict => "topics" as? [[AnyHashable: Any]] {
             //Then lets process the topics
             var myTopics = Set<Topic>()
             

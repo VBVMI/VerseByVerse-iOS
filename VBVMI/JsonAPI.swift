@@ -28,7 +28,7 @@ extension JsonAPI : TargetType {
     }
 
     public var base: String {
-        return "https://www.versebyverseministry.org/core/"
+        return "https://www.versebyverseministry.org/corev2/"
     }
     
     public var baseURL: URL {

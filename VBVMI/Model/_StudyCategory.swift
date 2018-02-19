@@ -40,7 +40,7 @@ open class _StudyCategory: NSManagedObject {
     // MARK: - Properties
 
     @NSManaged open
-    var identifier: String?
+    var identifier: String
 
     @NSManaged open
     var name: String?

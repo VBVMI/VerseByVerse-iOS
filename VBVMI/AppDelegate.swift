@@ -90,6 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         DispatchQueue.global(qos: .background).async {
             logger.info("🍕Dispatching the Downloads")
+            
             APIDataManager.core()
             APIDataManager.allTheChannels()
             

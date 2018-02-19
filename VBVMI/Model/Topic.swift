@@ -18,7 +18,7 @@ extension String {
 open class Topic: _Topic {
 
     // Custom logic goes here.
-    class func decodeJSON(_ JSONDict: NSDictionary, context: NSManagedObjectContext) throws -> (Topic?) {
+    class func decodeJSON(_ JSONDict: [AnyHashable : Any], context: NSManagedObjectContext) throws -> (Topic?) {
         guard let identifier = JSONDict["ID"] as? String else {
             throw APIDataManagerError.missingID
         }
