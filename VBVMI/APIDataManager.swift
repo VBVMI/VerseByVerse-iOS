@@ -85,8 +85,8 @@ class APIDataManager {
                 return lesson.identifier
             })
             
-            try JSONModels.enumerated().forEach({ (index, lessonDict) in
-                let lesson = try Lesson.decodeJSON(lessonDict, studyID: studyID, context: context, index: index)
+            try JSONModels.forEach({ (lessonDict) in
+                let lesson = try Lesson.decodeJSON(lessonDict, studyID: studyID, context: context)
                 if let index = existingLessonIds.index(of: lesson.identifier) {
                     existingLessonIds.remove(at: index)
                 }

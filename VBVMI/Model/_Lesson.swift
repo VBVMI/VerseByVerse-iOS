@@ -8,23 +8,19 @@ public enum LessonAttributes: String {
     case audioLength = "audioLength"
     case audioProgress = "audioProgress"
     case audioSourceURL = "audioSourceURL"
-    case averageRating = "averageRating"
     case completed = "completed"
-    case dateStudyGiven = "dateStudyGiven"
     case descriptionText = "descriptionText"
     case identifier = "identifier"
     case isPlaceholder = "isPlaceholder"
     case lessonIndex = "lessonIndex"
     case lessonNumber = "lessonNumber"
     case lessonTitle = "lessonTitle"
-    case location = "location"
     case postedDate = "postedDate"
     case studentAidURL = "studentAidURL"
     case studyIdentifier = "studyIdentifier"
     case teacherAid = "teacherAid"
     case title = "title"
     case transcriptURL = "transcriptURL"
-    case videoLength = "videoLength"
     case videoSourceURL = "videoSourceURL"
 }
 
@@ -67,13 +63,7 @@ open class _Lesson: NSManagedObject {
     var audioSourceURL: String?
 
     @NSManaged open
-    var averageRating: String?
-
-    @NSManaged open
     var completed: Bool
-
-    @NSManaged open
-    var dateStudyGiven: Date?
 
     @NSManaged open
     var descriptionText: String?
@@ -94,9 +84,6 @@ open class _Lesson: NSManagedObject {
     var lessonTitle: String?
 
     @NSManaged open
-    var location: String?
-
-    @NSManaged open
     var postedDate: Date?
 
     @NSManaged open
@@ -113,9 +100,6 @@ open class _Lesson: NSManagedObject {
 
     @NSManaged open
     var transcriptURL: String?
-
-    @NSManaged open
-    var videoLength: String?
 
     @NSManaged open
     var videoSourceURL: String?

@@ -8,7 +8,7 @@ open class Lesson: _Lesson {
 
 	// Custom logic goes here.
 
-    class func decodeJSON(_ JSONDict: [AnyHashable : Any], studyID: String, context: NSManagedObjectContext, index: Int) throws -> Lesson {
+    class func decodeJSON(_ JSONDict: [AnyHashable : Any], studyID: String, context: NSManagedObjectContext) throws -> Lesson {
         guard let identifier = JSONDict["ID"] as? String else {
             throw APIDataManagerError.missingID
         }
@@ -23,28 +23,19 @@ open class Lesson: _Lesson {
             lesson.postedDate = date
         }
         
-        lesson.lessonIndex = Int32(index)
+        lesson.lessonIndex = try JSONDict => "index"
         
-        let dateStudyGiven: String = try JSONDict => "dateStudyGiven"
-        if let number = Double(dateStudyGiven) , dateStudyGiven.count > 0 {
-            let date = Date(timeIntervalSince1970: number)
-            lesson.dateStudyGiven = date
-        }
         let studyDescription: String = try JSONDict => "description"
         lesson.descriptionText = nullOrString(studyDescription.stringByDecodingHTMLEntities)
         
         lesson.transcriptURL = nullOrString(try JSONDict => "transcript")
         lesson.teacherAid = nullOrString(try JSONDict => "teacherAid")
         
-        lesson.averageRating = nullOrString(try JSONDict => "averageRating")
-        
         let lessonTitle: String = try JSONDict => "title"
         lesson.title = lessonTitle.stringByDecodingHTMLEntities
         
         lesson.videoSourceURL = nullOrString(try JSONDict => "videoSource")
-        lesson.videoLength = nullOrString(try JSONDict => "videoLength")
         
-        lesson.location = nullOrString(try JSONDict => "location")
         lesson.audioSourceURL = nullOrString(try JSONDict => "audioSource")
         
         lesson.isPlaceholder = lesson.audioSourceURL == nil

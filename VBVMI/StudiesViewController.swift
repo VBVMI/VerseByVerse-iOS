@@ -221,12 +221,11 @@ extension StudiesViewController : UICollectionViewDataSource {
         
         cell.titleLabel.text = study.title
         cell.coverImageView.image = nil
-        if let thumbnailSource = study.thumbnailSource {
+        if let thumbnailSource = study.image300 {
             if let url = URL(string: thumbnailSource) {
                 let width = Cell.CellSize.Study.width - Cell.CellSize.StudyImageInset.left - Cell.CellSize.StudyImageInset.right
                 let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 3, divideRadiusByImageScale: false)
                 cell.coverImageView.af_setImage(withURL: url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
-//                cell.coverImageView.af_setImage(withURL: url)
             }
         }
         return cell
