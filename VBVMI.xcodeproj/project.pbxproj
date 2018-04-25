@@ -908,7 +908,6 @@
 				982138091D3B8393006F2B79 /* Frameworks */,
 				9821380A1D3B8393006F2B79 /* Resources */,
 				E419487C6C5A167BE41A25CE /* [CP] Embed Pods Frameworks */,
-				C91FD1116C33F98E43B5C4C4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -928,7 +927,6 @@
 				982138161D3B83D6006F2B79 /* Sources */,
 				982138171D3B83D6006F2B79 /* Frameworks */,
 				982138181D3B83D6006F2B79 /* Resources */,
-				C91473EA02097E754AF4CC27 /* [CP] Copy Pods Resources */,
 				AAAF6220CA4E3178616F375D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -954,7 +952,6 @@
 				980579DF1D31EA48001C809C /* Acknowledgements */,
 				9854F0951CAF571A0025CAC0 /* Fabric */,
 				4453D1D6FA95E6AB37D03DB3 /* [CP] Embed Pods Frameworks */,
-				6AB11E49386DA8ACAA38C081 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -977,7 +974,6 @@
 				989AC50F1DB4C0B600A825EB /* Resources */,
 				98B93C921EBEC65C000637B4 /* Git Bundle Version */,
 				8DE4EE4BA1BF87C5C4C352BA /* [CP] Embed Pods Frameworks */,
-				D2D98D6FD3B29A9220AB79E5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -997,7 +993,6 @@
 				989AC5201DB4C0B600A825EB /* Frameworks */,
 				989AC5211DB4C0B600A825EB /* Resources */,
 				5EDF740CB084BF15F4A14DD8 /* [CP] Embed Pods Frameworks */,
-				572370A2DEFCE7C37393381C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1017,7 +1012,6 @@
 				989AC52A1DB4C0B600A825EB /* Sources */,
 				989AC52B1DB4C0B600A825EB /* Frameworks */,
 				989AC52C1DB4C0B600A825EB /* Resources */,
-				98693AEE5388C54E05D02C03 /* [CP] Copy Pods Resources */,
 				01D78CE24D4FFD1773B75C98 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -1336,21 +1330,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		572370A2DEFCE7C37393381C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSTests/Pods-VBVMI-tvOS-VBVMI-tvOSTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5EDF740CB084BF15F4A14DD8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1393,21 +1372,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSTests/Pods-VBVMI-tvOS-VBVMI-tvOSTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6AB11E49386DA8ACAA38C081 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI/Pods-VBVMI-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		77E8525F568FBD0ED3225F02 /* [CP] Check Pods Manifest.lock */ = {
@@ -1528,21 +1492,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ -z ${FABRIC_API_KEY+x} ]; then\n    echo \"FABRIC_API_KEY is unset\"\nelse\n    if [ -z ${CRASHLYTICS_TOKEN+x} ]; then\n        echo \"CRASHLYTICS_TOKEN is unset\"\n    else\n        \"${PODS_ROOT}/Fabric/run\" \"${FABRIC_API_KEY}\" \"${CRASHLYTICS_TOKEN}\"\n    fi\nfi\n\n";
 		};
-		98693AEE5388C54E05D02C03 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSUITests/Pods-VBVMI-tvOS-VBVMI-tvOSUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		98B93C921EBEC65C000637B4 /* Git Bundle Version */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1641,51 +1590,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C91473EA02097E754AF4CC27 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-VBVMIUITests/Pods-VBVMI-VBVMIUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C91FD1116C33F98E43B5C4C4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-VBVMITests/Pods-VBVMI-VBVMITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D2D98D6FD3B29A9220AB79E5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS/Pods-VBVMI-tvOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E419487C6C5A167BE41A25CE /* [CP] Embed Pods Frameworks */ = {
@@ -2013,7 +1917,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9305E3DBDCA3CD2E54AE107B /* Pods-VBVMI-VBVMITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2031,7 +1935,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4848EA53EB9CAEAA0700A2C3 /* Pods-VBVMI-VBVMITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				INFOPLIST_FILE = VBVMITests/Info.plist;
@@ -2048,7 +1952,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 20D764D03668407E29FAD624 /* Pods-VBVMI-VBVMIUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				INFOPLIST_FILE = VBVMIUITests/Info.plist;
@@ -2065,7 +1969,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01174BA9313AE14C012B7B96 /* Pods-VBVMI-VBVMIUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
 				INFOPLIST_FILE = VBVMIUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -2184,7 +2088,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B7DA5B5AD736614D294A36EA /* Pods-VBVMI.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2206,7 +2110,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B60029E318F3CF227E6B8178 /* Pods-VBVMI.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2239,7 +2143,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79F8F2249D44B0F089412C41 /* Pods-VBVMI-tvOS.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2266,7 +2170,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4546A07C83C4A3B948B01374 /* Pods-VBVMI-tvOS.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2290,7 +2194,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E82B1C15936A394F74D559DA /* Pods-VBVMI-tvOS-VBVMI-tvOSTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -2313,7 +2217,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F93DD85D67B37F721E47E3CA /* Pods-VBVMI-tvOS-VBVMI-tvOSTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -2334,7 +2238,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FDD57AD47B05593A4DEED09A /* Pods-VBVMI-tvOS-VBVMI-tvOSUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -2356,7 +2260,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1BE03F5775CF110A08692228 /* Pods-VBVMI-tvOS-VBVMI-tvOSUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
