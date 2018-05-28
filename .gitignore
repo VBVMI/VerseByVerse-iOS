@@ -183,3 +183,4 @@ Keys.xcconfig
 /fastlane/Deliverfile
 /screenshots
 Verse By Verse.app.dSYM.zip
+*.xcappdata

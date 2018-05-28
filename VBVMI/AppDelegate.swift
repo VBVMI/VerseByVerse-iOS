@@ -66,6 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        DDLog.addLogger(fileLogger)
 //        DDTTYLogger.sharedInstance().setForegroundColor(UIColor(red:0.066667, green:0.662745, blue:0.054902, alpha:1.0), backgroundColor: nil, forFlag: DDLogFlag.Info)
         
+        URLCache.shared.removeAllCachedResponses()
         
         //Move all of the old resources to the Application support directory
         let fileManager = FileManager.default
@@ -141,6 +142,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        URLCache.shared.removeAllCachedResponses()
+        
         logger.info("🍕Foreground")
     }
 

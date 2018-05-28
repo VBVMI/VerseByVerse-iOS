@@ -18,11 +18,11 @@ PODS:
   - Alamofire (4.5.1)
   - AlamofireImage (3.3.0):
     - Alamofire (~> 4.5)
-  - Crashlytics (3.9.3):
-    - Fabric (~> 1.7.2)
+  - Crashlytics (3.10.1):
+    - Fabric (~> 1.7.5)
   - CSStickyHeaderFlowLayout (0.2.11)
   - Decodable (0.6.0)
-  - Fabric (1.7.2)
+  - Fabric (1.7.6)
   - FontAwesome.swift (1.3.2)
   - Moya (10.0.1):
     - Moya/Core (= 10.0.1)
@@ -54,7 +54,7 @@ DEPENDENCIES:
   - CSStickyHeaderFlowLayout
   - Decodable
   - Fabric
-  - FontAwesome.swift (from `git@github.com:thii/FontAwesome.swift.git`)
+  - "FontAwesome.swift (from `git@github.com:thii/FontAwesome.swift.git`)"
   - Moya
   - ParallaxView
   - ReachabilitySwift
@@ -65,9 +65,30 @@ DEPENDENCIES:
   - VimeoNetworking (from `https://github.com/vimeo/VimeoNetworking.git`, branch `tech/swift-4-support`)
   - XCGLogger
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - ACPDownload
+    - AFNetworking
+    - Alamofire
+    - AlamofireImage
+    - Crashlytics
+    - CSStickyHeaderFlowLayout
+    - Decodable
+    - Fabric
+    - Moya
+    - ObjcExceptionBridging
+    - ParallaxView
+    - ReachabilitySwift
+    - Result
+    - Reveal-SDK
+    - SnapKit
+    - STRegex
+    - UIImage-Color
+    - XCGLogger
+
 EXTERNAL SOURCES:
   FontAwesome.swift:
-    :git: git@github.com:thii/FontAwesome.swift.git
+    :git: "git@github.com:thii/FontAwesome.swift.git"
   VimeoNetworking:
     :branch: tech/swift-4-support
     :git: https://github.com/vimeo/VimeoNetworking.git
@@ -75,7 +96,7 @@ EXTERNAL SOURCES:
 CHECKOUT OPTIONS:
   FontAwesome.swift:
     :commit: 7ccc66c2bba23c2495cff361c7c271bdf89695e9
-    :git: git@github.com:thii/FontAwesome.swift.git
+    :git: "git@github.com:thii/FontAwesome.swift.git"
   VimeoNetworking:
     :commit: a99f50de1995a942473c538606652d8b639d0dae
     :git: https://github.com/vimeo/VimeoNetworking.git
@@ -85,10 +106,10 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
-  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
+  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
   CSStickyHeaderFlowLayout: e9bcb1762413f49d7d09e5bd0ae5efd1100116b7
   Decodable: f0b95fa2fcf8633dd097aa8f7f09838ab3524f5d
-  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
+  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
   FontAwesome.swift: 8555e3e689df989f879644966b1bd1172f82abec
   Moya: 9e621707ff754eeb51ff3ec51a3d54e517c0733a
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
@@ -104,4 +125,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: cbebe5d7507ba56b80075e29cb4b24aa90327c12
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.0
