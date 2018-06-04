@@ -8,6 +8,7 @@ public enum StudyAttributes: String {
     case bibleIndex = "bibleIndex"
     case category = "category"
     case completed = "completed"
+    case dateLastPlayed = "dateLastPlayed"
     case descriptionText = "descriptionText"
     case identifier = "identifier"
     case image1100 = "image1100"
@@ -64,6 +65,9 @@ open class _Study: NSManagedObject {
 
     @NSManaged open
     var completed: Bool
+
+    @NSManaged open
+    var dateLastPlayed: Date?
 
     @NSManaged open
     var descriptionText: String

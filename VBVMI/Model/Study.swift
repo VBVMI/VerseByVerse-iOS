@@ -32,7 +32,8 @@ open class Study: _Study {
         
         study.podcastLink = nullOrString(try JSONDict => "podcastLink")
         
-        study.lessonCount = try JSONDict => "lessonCount"
+        let lessonCount: String = try JSONDict => "lessonCount"
+        study.lessonCount = Int32(lessonCount) ?? study.lessonCount
         study.url = nullOrString(try JSONDict => "url")
         
         study.image160 = nullOrString(try JSONDict => "image160")

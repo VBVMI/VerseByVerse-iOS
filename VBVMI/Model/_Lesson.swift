@@ -9,6 +9,7 @@ public enum LessonAttributes: String {
     case audioProgress = "audioProgress"
     case audioSourceURL = "audioSourceURL"
     case completed = "completed"
+    case dateLastPlayed = "dateLastPlayed"
     case descriptionText = "descriptionText"
     case identifier = "identifier"
     case isPlaceholder = "isPlaceholder"
@@ -64,6 +65,9 @@ open class _Lesson: NSManagedObject {
 
     @NSManaged open
     var completed: Bool
+
+    @NSManaged open
+    var dateLastPlayed: Date?
 
     @NSManaged open
     var descriptionText: String?
