@@ -63,6 +63,8 @@
 		980E6C141C81AF4C008F23D1 /* LessonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C131C81AF4C008F23D1 /* LessonCellViewModel.swift */; };
 		98196FEB1DED7A5700654276 /* LessonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98196FEA1DED7A5700654276 /* LessonCollectionViewCell.swift */; };
 		98196FEC1DED825F00654276 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37D91C657C870096BB83 /* StyleKit.swift */; };
+		981DC9CF20C7D09600B120BB /* RecentHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981DC9CD20C7D09600B120BB /* RecentHistoryCollectionViewCell.swift */; };
+		981DC9D020C7D09600B120BB /* RecentHistoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 981DC9CE20C7D09600B120BB /* RecentHistoryCollectionViewCell.xib */; };
 		9821380F1D3B8393006F2B79 /* VBVMITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9821380E1D3B8393006F2B79 /* VBVMITests.swift */; };
 		9821381D1D3B83D6006F2B79 /* VBVMIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9821381C1D3B83D6006F2B79 /* VBVMIUITests.swift */; };
 		982138241D3B83EC006F2B79 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D16ABF1D3B7512004BF06E /* SnapshotHelper.swift */; };
@@ -313,6 +315,8 @@
 		980E6C101C814E5F008F23D1 /* TitleParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleParser.swift; sourceTree = "<group>"; };
 		980E6C131C81AF4C008F23D1 /* LessonCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonCellViewModel.swift; sourceTree = "<group>"; };
 		98196FEA1DED7A5700654276 /* LessonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonCollectionViewCell.swift; sourceTree = "<group>"; };
+		981DC9CD20C7D09600B120BB /* RecentHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		981DC9CE20C7D09600B120BB /* RecentHistoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentHistoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		9821380C1D3B8393006F2B79 /* VBVMITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VBVMITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9821380E1D3B8393006F2B79 /* VBVMITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VBVMITests.swift; sourceTree = "<group>"; };
 		982138101D3B8393006F2B79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -821,6 +825,8 @@
 				989C40F61D32557C00849FB2 /* ChannelTableViewCell.xib */,
 				986C2F181D339A1500F595FF /* VideoTableViewCell.swift */,
 				986C2F191D339A1500F595FF /* VideoTableViewCell.xib */,
+				981DC9CD20C7D09600B120BB /* RecentHistoryCollectionViewCell.swift */,
+				981DC9CE20C7D09600B120BB /* RecentHistoryCollectionViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1198,6 +1204,7 @@
 				980744C61EA0D06500043B1E /* lesson.json in Resources */,
 				98D759F81FF31DC200E4B192 /* categories.json in Resources */,
 				986E00D71EA03EC400A8F1F6 /* curriculum.json in Resources */,
+				981DC9D020C7D09600B120BB /* RecentHistoryCollectionViewCell.xib in Resources */,
 				980744BF1EA0D06500043B1E /* articles.json in Resources */,
 				980744C41EA0D06500043B1E /* qaP.json in Resources */,
 				9828D4191C5D9F4A004FA954 /* Main.storyboard in Resources */,
@@ -1810,6 +1817,7 @@
 				986C37DD1C657CCE0096BB83 /* HideView.swift in Sources */,
 				9828D44D1C5DA2BC004FA954 /* _Study.swift in Sources */,
 				98611CA91C96A6550070FCCD /* _Channel.swift in Sources */,
+				981DC9CF20C7D09600B120BB /* RecentHistoryCollectionViewCell.swift in Sources */,
 				985C53B01D7AD2AE001A907F /* StaticSelectionTableViewController.swift in Sources */,
 				98611CAA1C96A6550070FCCD /* _Event.swift in Sources */,
 			);

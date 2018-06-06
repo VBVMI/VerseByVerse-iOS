@@ -14,12 +14,35 @@ import AlamofireImage
 class StudiesViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    fileprivate var fetchedResultsController: NSFetchedResultsController<Study>!
-    fileprivate var aboutActionsController: AboutActionsController!
+    private var fetchedResultsController: NSFetchedResultsController<Study>!
+    private var aboutActionsController: AboutActionsController!
     
-    fileprivate var header : StudiesHeaderReusableView!
+    private var header : StudiesHeaderReusableView!
     
-    fileprivate func configureFetchRequest(_ fetchRequest: NSFetchRequest<Study>) {
+    private enum Section {
+        case recentHistory
+        case latestLessons
+        case study(sectionIndex: Int)
+    }
+    
+    private var currentSections : [Section] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
+    private func reloadSections() {
+        var sections = [Section]()
+        if (recentHistoryFetchedResultsController.fetchedObjects?.count ?? 0) > 0 {
+            sections.append(.recentHistory)
+        }
+        fetchedResultsController?.sections?.enumerated().forEach({ (index, section) in
+            sections.append(.study(sectionIndex: index))
+        })
+        currentSections = sections
+    }
+    
+    private func configureFetchRequest(_ fetchRequest: NSFetchRequest<Study>) {
         
         let identifierSort = NSSortDescriptor(key: StudyAttributes.studyIndex.rawValue, ascending: true)
         let bibleStudySort = NSSortDescriptor(key: StudyAttributes.bibleIndex.rawValue, ascending: true)
@@ -36,7 +59,7 @@ class StudiesViewController: UIViewController {
         fetchRequest.sortDescriptors = sortDescriptors
     }
     
-    fileprivate func setupFetchedResultsController() {
+    private func setupFetchedResultsController() {
         let fetchRequest = NSFetchRequest<Study>(entityName: Study.entityName())
         let context: NSManagedObjectContext = ContextCoordinator.sharedInstance.managedObjectContext!
         fetchRequest.entity = Study.entity(managedObjectContext: context)
@@ -51,12 +74,33 @@ class StudiesViewController: UIViewController {
         do {
             try fetchedResultsController.performFetch()
             DispatchQueue.main.async { () -> Void in
-                self.collectionView.reloadData()
+                self.reloadSections()
             }
         } catch let error {
             logger.error("Error fetching: \(error)")
         }
     }
+    
+    private lazy var recentHistoryFetchedResultsController: NSFetchedResultsController<Study> = {
+        let fetchRequest = NSFetchRequest<Study>(entityName: Study.entityName())
+        let context = ContextCoordinator.sharedInstance.managedObjectContext!
+        fetchRequest.entity = Study.entity(managedObjectContext: context)
+        
+        let dateSort = NSSortDescriptor(key: StudyAttributes.dateLastPlayed.rawValue, ascending: false)
+        fetchRequest.sortDescriptors = [dateSort]
+        
+        fetchRequest.predicate = NSPredicate(format: "%K != nil", StudyAttributes.dateLastPlayed.rawValue)
+        
+        let fetchedResultsController = NSFetchedResultsController<Study>(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            logger.error("Error fetching recent: \(error)")
+        }
+        return fetchedResultsController
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +112,8 @@ class StudiesViewController: UIViewController {
         collectionView.register(UINib(nibName: Cell.NibName.Study, bundle: nil), forCellWithReuseIdentifier: Cell.Identifier.Study)
 
         collectionView.register(UINib(nibName: Cell.NibName.StudiesHeader, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: Cell.Identifier.StudiesHeader)
+        
+        collectionView.register(UINib(nibName: Cell.NibName.RecentStudies, bundle: nil), forCellWithReuseIdentifier: Cell.Identifier.RecentStudies)
         
         let flowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
@@ -165,23 +211,37 @@ class StudiesViewController: UIViewController {
 
 extension StudiesViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return Cell.CellSize.Study
+        switch currentSections[indexPath.section] {
+        case .study(_):
+            return Cell.CellSize.Study
+        default:
+            return CGSize(width: collectionView.frame.size.width, height: 100)
+        }
     }
 }
 
 extension StudiesViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
+        switch currentSections[indexPath.section] {
+        case .study(_):
+            return true
+        default:
+            return false
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        if let _ = collectionView.cellForItem(at: indexPath) as? StudyCellCollectionViewCell {
-            let study = fetchedResultsController.object(at: indexPath)
-            collectionView.deselectItem(at: indexPath, animated: true)
-            self.performSegue(withIdentifier: "showLessons", sender: study)
+        switch currentSections[indexPath.section] {
+        case .study(let sectionIndex):
+            let studyIndexPath = IndexPath(item: indexPath.item, section: sectionIndex)
+            if let _ = collectionView.cellForItem(at: indexPath) as? StudyCellCollectionViewCell {
+                let study = fetchedResultsController.object(at: studyIndexPath)
+                collectionView.deselectItem(at: indexPath, animated: true)
+                self.performSegue(withIdentifier: "showLessons", sender: study)
+            }
+        default:
+            break
         }
-        
     }
     
     
@@ -189,54 +249,79 @@ extension StudiesViewController : UICollectionViewDelegate {
 
 extension StudiesViewController : UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return fetchedResultsController.sections?.count ?? 0
+        return currentSections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let sections = fetchedResultsController.sections else {
+        
+        switch currentSections[section] {
+        case .study(let index):
+            guard let sections = fetchedResultsController.sections else {
+                return 0
+            }
+            if sections.count <= index {
+                return 0
+            }
+            let sectionInfo = sections[index]
+            return sectionInfo.numberOfObjects
+        case .latestLessons:
             return 0
+        case .recentHistory:
+            return 1
         }
-        if sections.count <= section {
-            return 0
-        }
-        let sectionInfo = sections[section]
-        return sectionInfo.numberOfObjects
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let study = fetchedResultsController.object(at: indexPath)
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.Identifier.Study, for: indexPath) as! StudyCellCollectionViewCell
-        
-        cell.isAccessibilityElement = true
-        
-        cell.accessibilityHint = "\(study.title)"
-        
-        let totalLessons = CGFloat(max(study.lessonsCompleted, study.lessonCount))
-        if totalLessons > 0 {
-            let progress = CGFloat(study.lessonsCompleted) / totalLessons
-            cell.progressView.progress = progress
-        } else {
-            cell.progressView.progress = 1
-        }
-        
-        cell.titleLabel.text = study.title
-        cell.coverImageView.image = nil
-        if let thumbnailSource = study.image300 {
-            if let url = URL(string: thumbnailSource) {
-                let width = Cell.CellSize.Study.width - Cell.CellSize.StudyImageInset.left - Cell.CellSize.StudyImageInset.right
-                let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 3, divideRadiusByImageScale: false)
-                cell.coverImageView.af_setImage(withURL: url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
+        switch currentSections[indexPath.section] {
+        case .study(let sectionIndex):
+            let studyIndexPath = IndexPath(item: indexPath.item, section: sectionIndex)
+            let study = fetchedResultsController.object(at: studyIndexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.Identifier.Study, for: indexPath) as! StudyCellCollectionViewCell
+            
+            cell.isAccessibilityElement = true
+            
+            cell.accessibilityHint = "\(study.title)"
+            
+            let totalLessons = CGFloat(max(study.lessonsCompleted, study.lessonCount))
+            if totalLessons > 0 {
+                let progress = CGFloat(study.lessonsCompleted) / totalLessons
+                cell.progressView.progress = progress
+            } else {
+                cell.progressView.progress = 1
             }
+            
+            cell.titleLabel.text = study.title
+            cell.coverImageView.image = nil
+            if let thumbnailSource = study.image300 {
+                if let url = URL(string: thumbnailSource) {
+                    let width = Cell.CellSize.Study.width - Cell.CellSize.StudyImageInset.left - Cell.CellSize.StudyImageInset.right
+                    let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 3, divideRadiusByImageScale: false)
+                    cell.coverImageView.af_setImage(withURL: url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
+                }
+            }
+            return cell
+        case .recentHistory:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.Identifier.RecentStudies, for: indexPath)
+            
+            return cell
+        case .latestLessons:
+            fatalError()
         }
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionElementKindSectionHeader:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Cell.Identifier.StudiesHeader, for: indexPath) as! StudiesHeaderReusableView
-            configureHeader((indexPath as NSIndexPath).section, header: header)
-            return header
+            switch currentSections[indexPath.section] {
+            case .study(let sectionIndex):
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Cell.Identifier.StudiesHeader, for: indexPath) as! StudiesHeaderReusableView
+                configureHeader(sectionIndex, header: header)
+                return header
+            default:
+                return UICollectionReusableView()
+            }
         default:
             return UICollectionReusableView()
         }
@@ -245,22 +330,27 @@ extension StudiesViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        configureHeader(section, header: header)
-        header.snp.updateConstraints { (make) -> Void in
-            make.width.equalTo(collectionView.bounds.size.width)
+        switch currentSections[section] {
+        case .study(let sectionIndex):
+            configureHeader(sectionIndex, header: header)
+            header.snp.updateConstraints { (make) -> Void in
+                make.width.equalTo(collectionView.bounds.size.width)
+            }
+            
+            header.layoutIfNeeded()
+            
+            return header.bounds.size
+        default:
+            return .zero
         }
         
-        header.layoutIfNeeded()
-        
-        
-        return header.bounds.size
     }
 }
 
 extension StudiesViewController : NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         logger.debug("Controller didChangeContent")
-        self.collectionView.reloadData()
+        self.reloadSections()
     }
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         logger.debug("Will change content")

@@ -269,7 +269,7 @@ class StudyViewController: UITableViewController {
                             guard lesson == this.lastTappedLesson && resource == this.lastTappedResource else {
                                 return
                             }
-                            
+                            this.study.dateLastPlayed = Date()
                             switch lessonType.fileType() {
                             case .pdf:
                                 this.performSegue(withIdentifier: "showPDF", sender: ButtonSender(url: url, lessonType: resource))
@@ -282,7 +282,6 @@ class StudyViewController: UITableViewController {
                                 } else {
                                     let demoVC = AudioPlayerViewController()
                                     demoVC.configure(url, name: lesson.title, subTitle: lesson.descriptionText ?? "", lesson: lesson, study: this.study)
-                                    
                                     this.tabBarController?.presentPopupBar(withContentViewController: demoVC, openPopup: true, animated: true, completion: { () -> Void in
                                         
                                     })
@@ -292,7 +291,6 @@ class StudyViewController: UITableViewController {
                                     let movieController = AVPlayerViewController()
                                     let player = AVPlayer(url: url)
                                     movieController.player = player
-                                    
                                     this.present(movieController, animated: true, completion: {
                                         do {
                                             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)

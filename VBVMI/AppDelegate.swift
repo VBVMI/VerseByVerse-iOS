@@ -99,16 +99,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     APIDataManager.core()
                 }
             })
-            APIDataManager.allTheChannels()
-            
-            let reachability = Reachability()
-            if reachability?.connection == .wifi {
-                APIDataManager.allTheArticles()
-                APIDataManager.allTheAnswers()
-            } else {
-                APIDataManager.latestArticles()
-                APIDataManager.latestAnswers()
-            }
+//            APIDataManager.allTheChannels()
+//
+//            let reachability = Reachability()
+//            if reachability?.connection == .wifi {
+//                APIDataManager.allTheArticles()
+//                APIDataManager.allTheAnswers()
+//            } else {
+//                APIDataManager.latestArticles()
+//                APIDataManager.latestAnswers()
+//            }
         }
         
         return true

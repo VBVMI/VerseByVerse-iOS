@@ -18,6 +18,7 @@ enum Cell {
         static let ArticleBody = "ArticleBodyTableViewCell"
         static let AnswerBody = "AnswerBodyTableViewCell"
         static let AnswerHeader = "AnswerHeaderTableViewCell"
+        static let RecentStudies = "RecentHistoryCollectionViewCell"
     }
     enum Identifier {
         static let Study = "StudyCell"
@@ -27,6 +28,7 @@ enum Cell {
         static let ArticleBody = "ArticleBodyCell"
         static let AnswerBody = "AnswerBodyCell"
         static let AnswerHeader = "AnswerHeaderCell"
+        static let RecentStudies = "RecentStudies"
     }
     enum CellSize {
         static let Study = CGSize(width: 90, height: 144)
