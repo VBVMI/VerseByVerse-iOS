@@ -48,3 +48,7 @@ enum DateFormatters {
     }()
 
 }
+
+extension UIColor {
+    static let darkBackground = UIColor(hue: 1, saturation: 0, brightness: 0.2, alpha: 1)
+}

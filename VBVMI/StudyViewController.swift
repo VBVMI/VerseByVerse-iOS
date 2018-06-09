@@ -270,6 +270,9 @@ class StudyViewController: UITableViewController {
                                 return
                             }
                             this.study.dateLastPlayed = Date()
+                            lesson.dateLastPlayed = Date()
+                            try? lesson.managedObjectContext?.save()
+                            
                             switch lessonType.fileType() {
                             case .pdf:
                                 this.performSegue(withIdentifier: "showPDF", sender: ButtonSender(url: url, lessonType: resource))

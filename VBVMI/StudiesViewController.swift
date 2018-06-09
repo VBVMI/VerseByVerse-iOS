@@ -189,6 +189,8 @@ class StudiesViewController: UIViewController {
     }
 
     func configureHeader(_ section: Int, header: StudiesHeaderReusableView) {
+        header.mainTitleLabel.textColor = .black
+        header.backgroundColor = .white
         if let numberOfItems = self.fetchedResultsController.sections?[section].numberOfObjects , numberOfItems > 0 {
             if numberOfItems == 1 {
                 header.subtitleLabel.text = "\(numberOfItems) Study"
@@ -215,7 +217,7 @@ extension StudiesViewController : UICollectionViewDelegateFlowLayout {
         case .study(_):
             return Cell.CellSize.Study
         default:
-            return CGSize(width: collectionView.frame.size.width, height: 100)
+            return CGSize(width: collectionView.frame.size.width, height: 116)
         }
     }
 }
@@ -243,8 +245,6 @@ extension StudiesViewController : UICollectionViewDelegate {
             break
         }
     }
-    
-    
 }
 
 extension StudiesViewController : UICollectionViewDataSource {
@@ -303,8 +303,8 @@ extension StudiesViewController : UICollectionViewDataSource {
             }
             return cell
         case .recentHistory:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.Identifier.RecentStudies, for: indexPath)
-            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.Identifier.RecentStudies, for: indexPath) as! RecentHistoryCollectionViewCell
+            cell.recentHistory = recentHistoryFetchedResultsController.fetchedObjects ?? []
             return cell
         case .latestLessons:
             fatalError()
@@ -318,6 +318,13 @@ extension StudiesViewController : UICollectionViewDataSource {
             case .study(let sectionIndex):
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Cell.Identifier.StudiesHeader, for: indexPath) as! StudiesHeaderReusableView
                 configureHeader(sectionIndex, header: header)
+                return header
+            case .recentHistory:
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Cell.Identifier.StudiesHeader, for: indexPath) as! StudiesHeaderReusableView
+                header.mainTitleLabel.text = "Recent History"
+                header.subtitleLabel.text = nil
+                header.backgroundColor = .darkBackground
+                header.mainTitleLabel.textColor = .white
                 return header
             default:
                 return UICollectionReusableView()
@@ -339,6 +346,15 @@ extension StudiesViewController : UICollectionViewDataSource {
             
             header.layoutIfNeeded()
             
+            return header.bounds.size
+        case .recentHistory:
+            header.mainTitleLabel.text = "Recent History"
+            header.subtitleLabel.text = nil
+            header.snp.updateConstraints { (make) -> Void in
+                make.width.equalTo(collectionView.bounds.size.width)
+            }
+            
+            header.layoutIfNeeded()
             return header.bounds.size
         default:
             return .zero

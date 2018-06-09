@@ -13,36 +13,36 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="RecentHistoryCollectionViewCell" customModule="Verse_By_Verse" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="323" height="92"/>
+            <rect key="frame" x="0.0" y="0.0" width="323" height="116"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="323" height="92"/>
+                <rect key="frame" x="0.0" y="0.0" width="323" height="116"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="2gW-UL-6Ri">
-                        <rect key="frame" x="0.0" y="0.0" width="323" height="92"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gW-UL-6Ri">
+                        <rect key="frame" x="0.0" y="0.0" width="323" height="100"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sDj-Cb-F1i">
-                            <size key="itemSize" width="50" height="50"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="16" id="sDj-Cb-F1i">
+                            <size key="itemSize" width="180" height="100"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="2gW-UL-6Ri" secondAttribute="bottom" id="G5e-0o-Qo4"/>
+                <constraint firstAttribute="bottom" secondItem="2gW-UL-6Ri" secondAttribute="bottom" constant="16" id="G5e-0o-Qo4"/>
                 <constraint firstItem="2gW-UL-6Ri" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Gkk-zs-tsE"/>
                 <constraint firstAttribute="trailing" secondItem="2gW-UL-6Ri" secondAttribute="trailing" id="VSC-8r-bYj"/>
                 <constraint firstItem="2gW-UL-6Ri" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="oz8-il-eHf"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="323" height="92"/>
+            <size key="customSize" width="323" height="114"/>
             <connections>
                 <outlet property="collectionView" destination="2gW-UL-6Ri" id="EY1-ZV-qRT"/>
             </connections>
-            <point key="canvasLocation" x="13.5" y="37"/>
+            <point key="canvasLocation" x="13.5" y="48"/>
         </collectionViewCell>
     </objects>
 </document>

@@ -180,6 +180,8 @@
 		98C35DBC1DB4CEC30052398E /* TitleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C101C814E5F008F23D1 /* TitleParser.swift */; };
 		98C35DBD1DB4CF300052398E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9860BA561C61F3020054D496 /* Constants.swift */; };
 		98C80A061CD430BC000EAD3D /* VolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C80A051CD430BC000EAD3D /* VolumeView.swift */; };
+		98C9E7E320CB67ED006BE3AE /* RecentStudyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9E7E120CB67ED006BE3AE /* RecentStudyCollectionViewCell.swift */; };
+		98C9E7E420CB67ED006BE3AE /* RecentStudyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98C9E7E220CB67ED006BE3AE /* RecentStudyCollectionViewCell.xib */; };
 		98CB0E361CA632B500C99D34 /* TopicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CB0E351CA632B500C99D34 /* TopicLabel.swift */; };
 		98CB0E3C1CA74E7F00C99D34 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CB0E3A1CA74E7F00C99D34 /* TopicViewController.swift */; };
 		98CB0E3D1CA74E7F00C99D34 /* TopicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98CB0E3B1CA74E7F00C99D34 /* TopicViewController.xib */; };
@@ -426,6 +428,8 @@
 		98B93C981EBF0AF0000637B4 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		98B93C991EBF0AF0000637B4 /* VideoDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoDetailViewController.xib; sourceTree = "<group>"; };
 		98C80A051CD430BC000EAD3D /* VolumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeView.swift; sourceTree = "<group>"; };
+		98C9E7E120CB67ED006BE3AE /* RecentStudyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentStudyCollectionViewCell.swift; sourceTree = "<group>"; };
+		98C9E7E220CB67ED006BE3AE /* RecentStudyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentStudyCollectionViewCell.xib; sourceTree = "<group>"; };
 		98CB0E351CA632B500C99D34 /* TopicLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicLabel.swift; sourceTree = "<group>"; };
 		98CB0E3A1CA74E7F00C99D34 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		98CB0E3B1CA74E7F00C99D34 /* TopicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicViewController.xib; sourceTree = "<group>"; };
@@ -827,6 +831,8 @@
 				986C2F191D339A1500F595FF /* VideoTableViewCell.xib */,
 				981DC9CD20C7D09600B120BB /* RecentHistoryCollectionViewCell.swift */,
 				981DC9CE20C7D09600B120BB /* RecentHistoryCollectionViewCell.xib */,
+				98C9E7E120CB67ED006BE3AE /* RecentStudyCollectionViewCell.swift */,
+				98C9E7E220CB67ED006BE3AE /* RecentStudyCollectionViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1182,6 +1188,7 @@
 				98611CC31C9ABB4F0070FCCD /* ArticleTableViewCell.xib in Resources */,
 				980744C11EA0D06500043B1E /* channels.json in Resources */,
 				98F725C21D49E67600F73ED0 /* Settings.storyboard in Resources */,
+				98C9E7E420CB67ED006BE3AE /* RecentStudyCollectionViewCell.xib in Resources */,
 				986C2F1B1D339A1500F595FF /* VideoTableViewCell.xib in Resources */,
 				98644DA01C61F14C00EB27F1 /* StudyCellCollectionViewCell.xib in Resources */,
 				98D45BA01C86D61D004BBCBD /* AudioPlayerViewController.xib in Resources */,
@@ -1790,6 +1797,7 @@
 				986C2F171D3395F700F595FF /* ChannelViewController.swift in Sources */,
 				98FF47551D292640008E27F4 /* _Video.swift in Sources */,
 				98E672A91D9FC6E1001E7F77 /* CenteredProgressView.swift in Sources */,
+				98C9E7E320CB67ED006BE3AE /* RecentStudyCollectionViewCell.swift in Sources */,
 				980BE9691C9E9DEF003A5D84 /* Topic.swift in Sources */,
 				98CBFE901C900E5F005F6414 /* StudiesHeaderReusableView.swift in Sources */,
 				980BE96B1C9EACE4003A5D84 /* StringExtensions.swift in Sources */,
