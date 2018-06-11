@@ -10,8 +10,14 @@ import UIKit
 import AlamofireImage
 import CoreData
 
+protocol RecentHistoryCollectionViewCellDelegate : class {
+    func recentHistoryDidSelect(study: Study, lesson: Lesson)
+}
+
 class RecentHistoryCollectionViewCell: UICollectionViewCell {
 
+    weak var delegate: RecentHistoryCollectionViewCellDelegate?
+    
     var recentHistory: [Study] = [] {
         didSet {
             collectionView.reloadData()
@@ -35,7 +41,20 @@ class RecentHistoryCollectionViewCell: UICollectionViewCell {
 }
 
 extension RecentHistoryCollectionViewCell: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let study = recentHistory[indexPath.item]
+        
+        let fetchRequest = NSFetchRequest<Lesson>(entityName: Lesson.entityName())
+        fetchRequest.predicate = NSPredicate(format: "%K MATCHES %@ && %K != nil", LessonAttributes.studyIdentifier.rawValue, study.identifier, LessonAttributes.dateLastPlayed.rawValue)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: LessonAttributes.dateLastPlayed.rawValue, ascending: false)];
+        fetchRequest.fetchLimit = 1
+        
+        if let lessons = try? study.managedObjectContext?.fetch(fetchRequest), let lesson = lessons?.first {
+            delegate?.recentHistoryDidSelect(study: study, lesson: lesson)
+        }
+    }
 }
 
 extension RecentHistoryCollectionViewCell: UICollectionViewDataSource {
@@ -52,6 +71,7 @@ extension RecentHistoryCollectionViewCell: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StudyCell", for: indexPath) as! RecentStudyCollectionViewCell
         let study = recentHistory[indexPath.item]
         
+        cell.delegate = self
         // We need to fetch the lesson that was most recent
         let fetchRequest = NSFetchRequest<Lesson>(entityName: Lesson.entityName())
         fetchRequest.predicate = NSPredicate(format: "%K MATCHES %@ && %K != nil", LessonAttributes.studyIdentifier.rawValue, study.identifier, LessonAttributes.dateLastPlayed.rawValue)
@@ -73,6 +93,35 @@ extension RecentHistoryCollectionViewCell: UICollectionViewDataSource {
         return cell
     }
     
+    
+    
+}
+
+extension RecentHistoryCollectionViewCell: RecentStudyCollectionViewCellDelegate {
+    
+    func didSelectNext(cell: RecentStudyCollectionViewCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            return
+        }
+        
+        let study = recentHistory[indexPath.item]
+        
+        let fetchRequest = NSFetchRequest<Lesson>(entityName: Lesson.entityName())
+        fetchRequest.predicate = NSPredicate(format: "%K MATCHES %@ && %K != nil", LessonAttributes.studyIdentifier.rawValue, study.identifier, LessonAttributes.dateLastPlayed.rawValue)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: LessonAttributes.dateLastPlayed.rawValue, ascending: false)];
+        fetchRequest.fetchLimit = 1
+        
+        if let lessons = try? study.managedObjectContext?.fetch(fetchRequest), let lesson = lessons?.first {
+            let lessonIndex = lesson.lessonIndex + 1
+            let nextFetchRequest = NSFetchRequest<Lesson>(entityName: Lesson.entityName())
+            nextFetchRequest.predicate = NSPredicate(format: "%K MATCHES %@ && %K == %d", LessonAttributes.studyIdentifier.rawValue, study.identifier, LessonAttributes.lessonIndex.rawValue, lessonIndex)
+            nextFetchRequest.sortDescriptors = [NSSortDescriptor(key: LessonAttributes.dateLastPlayed.rawValue, ascending: false)];
+            nextFetchRequest.fetchLimit = 1
+            if let nextLessons = try? study.managedObjectContext?.fetch(nextFetchRequest), let nextLesson = nextLessons?.first {
+                delegate?.recentHistoryDidSelect(study: study, lesson: nextLesson)
+            }
+        }
+    }
     
     
 }

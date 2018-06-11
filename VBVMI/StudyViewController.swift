@@ -72,6 +72,12 @@ class StudyViewController: UITableViewController {
             
         }
     }
+    
+    /// Set this if you want the tableView to scroll to the indexPath of this lesson when content appears.
+    var focusLesson: Lesson?
+    
+    private var hasJumpedToFocus = false
+    
     fileprivate let kTableHeaderHeight: CGFloat = 300.0
     
     override func encodeRestorableState(with coder: NSCoder) {
@@ -216,6 +222,19 @@ class StudyViewController: UITableViewController {
         default:
             return 0
         }
+    }
+    
+    private func jumpToFocus() {
+        DispatchQueue.main.async {
+            guard self.hasJumpedToFocus == false, let lesson = self.focusLesson else { return }
+            
+            if let indexPath = self.fetchedResultsController.indexPath(forObject: lesson) {
+                let jumpPath = IndexPath(row: indexPath.row, section: indexPath.section + 1)
+                self.tableView.scrollToRow(at: jumpPath, at: .middle, animated: true)
+                self.hasJumpedToFocus = true
+            }
+        }
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -444,9 +463,14 @@ class StudyViewController: UITableViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        jumpToFocus()
         ResourceManager.sharedInstance.addDownloadObserver(self)
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.hidesBarsOnTap = false
@@ -601,6 +625,8 @@ extension StudyViewController : NSFetchedResultsControllerDelegate {
                 configureHeader(header, section: $0)
             }
         })
+        
+        jumpToFocus()
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {

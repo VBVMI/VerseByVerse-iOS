@@ -185,6 +185,11 @@ class StudiesViewController: UIViewController {
             if let studyViewController = segue.destination as? StudyViewController {
                 studyViewController.study = study
             }
+        } else if let (study, lesson) = sender as? (Study, Lesson), segue.identifier == "showLessons" {
+            if let studyViewController = segue.destination as? StudyViewController {
+                studyViewController.study = study
+                studyViewController.focusLesson = lesson
+            }
         }
     }
 
@@ -305,6 +310,7 @@ extension StudiesViewController : UICollectionViewDataSource {
         case .recentHistory:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.Identifier.RecentStudies, for: indexPath) as! RecentHistoryCollectionViewCell
             cell.recentHistory = recentHistoryFetchedResultsController.fetchedObjects ?? []
+            cell.delegate = self
             return cell
         case .latestLessons:
             fatalError()
@@ -383,4 +389,12 @@ extension StudiesViewController : NSFetchedResultsControllerDelegate {
 //    func controllerWillChangeContent(controller: NSFetchedResultsController) {
 //        logger.debug("Controller will change content")
 //    }
+}
+
+extension StudiesViewController : RecentHistoryCollectionViewCellDelegate {
+    
+    func recentHistoryDidSelect(study: Study, lesson: Lesson) {
+        self.performSegue(withIdentifier: "showLessons", sender: (study, lesson))
+    }
+    
 }
