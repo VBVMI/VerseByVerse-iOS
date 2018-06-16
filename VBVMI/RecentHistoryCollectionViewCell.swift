@@ -80,7 +80,22 @@ extension RecentHistoryCollectionViewCell: UICollectionViewDataSource {
         
         if let lessons = try? study.managedObjectContext?.fetch(fetchRequest), let lesson = lessons?.first {
             cell.titleLabel.text = lesson.lessonNumber
+            
+            // We need to fetch the next one :sigh:
+            let nextFetchRequest = NSFetchRequest<Lesson>(entityName: Lesson.entityName())
+            nextFetchRequest.predicate = NSPredicate(format: "%K MATCHES %@ && %K == %d", LessonAttributes.studyIdentifier.rawValue, study.identifier, LessonAttributes.lessonIndex.rawValue, lesson.lessonIndex + 1)
+            nextFetchRequest.fetchLimit = 1
+            
+            if let lessons = try? study.managedObjectContext?.fetch(nextFetchRequest), let _ = lessons?.first {
+                cell.nextButton.isHidden = false
+            } else {
+                cell.nextButton.isHidden = true
+            }
         }
+        
+        
+        
+        
         
         if let thumbnailSource = study.image300 {
             if let url = URL(string: thumbnailSource) {

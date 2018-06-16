@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,19 +16,22 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="106"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="105"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="105.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xdc-dt-Utc">
-                        <frame key="frameInset" width="320" height="105"/>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xdc-dt-Utc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="105.5"/>
                         <color key="progressTintColor" red="0.23702242970466614" green="0.23501524329185486" blue="0.23506297171115875" alpha="0.35999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="trackTintColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </progressView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oL8-DU-4fM">
+                        <rect key="frame" x="16" y="11" width="288" height="84"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MJD-hA-zjR">
+                                <rect key="frame" x="0.0" y="0.0" width="288" height="40"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="1A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaJ-Ck-tVL">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="1A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaJ-Ck-tVL">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="31.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="999" constant="50" id="CGP-fJ-Ek8"/>
                                         </constraints>
@@ -34,29 +40,39 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="j9P-G0-FSY">
+                                        <rect key="frame" x="58" y="6" width="118.5" height="34"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="This is totally a title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjy-8O-zCu">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="This is totally a title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjy-8O-zCu">
+                                                <rect key="frame" x="0.0" y="0.0" width="118.5" height="0.0"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="751" text="This is totally a description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cb-FB-6JI">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="751" text="This is totally a description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cb-FB-6JI">
+                                                <rect key="frame" x="0.0" y="0.0" width="118.5" height="34"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <view contentMode="scaleToFill" horizontalHuggingPriority="260" horizontalCompressionResistancePriority="754" translatesAutoresizingMaskIntoConstraints="NO" id="rqb-Is-c1e" customClass="FlagView" customModule="Verse_By_Verse" customModuleProvider="target">
+                                        <rect key="frame" x="184.5" y="25" width="103.5" height="15"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Pbd-WI-y3L">
+                                <rect key="frame" x="0.0" y="40" width="288" height="44"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="38:56" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yG-U6-MW1">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="38:56" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yG-U6-MW1">
+                                        <rect key="frame" x="0.0" y="0.0" width="36.5" height="44"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="255" horizontalCompressionResistancePriority="745" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pLo-VC-bDv">
+                                        <rect key="frame" x="44.5" y="0.0" width="243.5" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="y3u-9v-4dW"/>
                                         </constraints>
@@ -80,11 +96,13 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="descriptionLabel" destination="5cb-FB-6JI" id="Bl6-YI-0dT"/>
+                <outlet property="flag" destination="rqb-Is-c1e" id="2bD-cm-8Zw"/>
                 <outlet property="numberLabel" destination="iaJ-Ck-tVL" id="0jQ-SB-Lxx"/>
                 <outlet property="progressIndicator" destination="xdc-dt-Utc" id="uDp-Jm-5Yd"/>
                 <outlet property="resourcesStackView" destination="pLo-VC-bDv" id="dO8-cf-6W0"/>
                 <outlet property="timeLabel" destination="1yG-U6-MW1" id="sL1-EU-HDj"/>
                 <outlet property="titleLabel" destination="vjy-8O-zCu" id="HbB-Id-Ois"/>
+                <outlet property="topStackView" destination="MJD-hA-zjR" id="mHz-YK-oFZ"/>
             </connections>
             <point key="canvasLocation" x="108" y="261"/>
         </tableViewCell>

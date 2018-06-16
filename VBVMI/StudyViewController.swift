@@ -73,6 +73,27 @@ class StudyViewController: UITableViewController {
         }
     }
     
+    private lazy var recentHistoryFetchedResultsController: NSFetchedResultsController<Lesson> = {
+        let fetchRequest = NSFetchRequest<Lesson>(entityName: Lesson.entityName())
+        let context = ContextCoordinator.sharedInstance.managedObjectContext!
+        fetchRequest.entity = Lesson.entity(managedObjectContext: context)
+        
+        let dateSort = NSSortDescriptor(key: LessonAttributes.dateLastPlayed.rawValue, ascending: false)
+        fetchRequest.sortDescriptors = [dateSort]
+        fetchRequest.fetchLimit = 1
+        fetchRequest.predicate = NSPredicate(format: "%K != nil && %K == %@", StudyAttributes.dateLastPlayed.rawValue, LessonAttributes.studyIdentifier.rawValue, study.identifier)
+        
+        let fetchedResultsController = NSFetchedResultsController<Lesson>(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            logger.error("Error fetching recent: \(error)")
+        }
+        return fetchedResultsController
+    }()
+    
     /// Set this if you want the tableView to scroll to the indexPath of this lesson when content appears.
     var focusLesson: Lesson?
     
@@ -145,6 +166,7 @@ class StudyViewController: UITableViewController {
         tableView.sectionHeaderHeight = UITableViewAutomaticDimension
         if let _ = study {
             configureViewsForSudy()
+            let _ = recentHistoryFetchedResultsController
             configureFetchController()
         }
         
@@ -256,7 +278,16 @@ class StudyViewController: UITableViewController {
             let lesson = fetchedResultsController.object(at: IndexPath(row: indexPath.row, section: indexPath.section - 1))
             
             LessonCellViewModel.configure(cell, lesson: lesson)
-                
+            
+            if let recent = recentHistoryFetchedResultsController.fetchedObjects?.first {
+                if  lesson == recent {
+                    cell.currentState = .current
+                } else if lesson.lessonIndex == (recent.lessonIndex + 1) {
+                    cell.currentState = .next
+                }
+            }
+            
+            
             cell.urlButtonCallback = { [weak self, weak cell] (button, status, lessonType) in
                 //It is important to ask the table view for the indexPath otherwise we run the risk of using an out of date index path in this block
                 guard let this = self,
@@ -475,6 +506,8 @@ class StudyViewController: UITableViewController {
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.hidesBarsOnTap = false
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        tableView.reloadData()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -619,58 +652,81 @@ class StudyViewController: UITableViewController {
 // MARK: - NSFetchedResultsControllerDelegate
 extension StudyViewController : NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
-        (0..<tableView.numberOfSections).forEach({
-            if let header = tableView.headerView(forSection: $0) as? LessonsHeader {
-                configureHeader(header, section: $0)
-            }
-        })
-        
-        jumpToFocus()
+        switch controller {
+        case fetchedResultsController:
+            tableView.endUpdates()
+            (0..<tableView.numberOfSections).forEach({
+                if let header = tableView.headerView(forSection: $0) as? LessonsHeader {
+                    configureHeader(header, section: $0)
+                }
+            })
+            
+            jumpToFocus()
+        default:
+            break
+        }
     }
     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        switch type {
-        case .insert:
-            tableView.insertSections(IndexSet(integer: sectionIndex + 1), with: .fade)
-        case .delete:
-            tableView.deleteSections(IndexSet(integer: sectionIndex + 1), with: .fade)
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo:NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        switch controller {
+        case fetchedResultsController:
+            switch type {
+            case .insert:
+                tableView.insertSections(IndexSet(integer: sectionIndex + 1), with: .fade)
+            case .delete:
+                tableView.deleteSections(IndexSet(integer: sectionIndex + 1), with: .fade)
+            default:
+                return
+            }
         default:
-            return
+            break
         }
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
-        switch type {
-        case .insert:
-            guard let newIndexPath = newIndexPath else { return }
-            let myNewIndexPath = IndexPath(row: (newIndexPath as NSIndexPath).row, section: (newIndexPath as NSIndexPath).section + 1)
-            tableView.insertRows(at: [myNewIndexPath], with: .fade)
-        case .delete:
-            guard let indexPath = indexPath else { return }
-            let myIndexPath = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section + 1)
-            tableView.deleteRows(at: [myIndexPath], with: .fade)
-        case .move, .update:
-            guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
-            let myNewIndexPath = IndexPath(row: (newIndexPath as NSIndexPath).row, section: (newIndexPath as NSIndexPath).section + 1)
-            let myIndexPath = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section + 1)
-            
-            if myIndexPath == myNewIndexPath {
-                if let cell = tableView.cellForRow(at: myIndexPath) , cell.isEditing == false {
-                    tableView.deleteRows(at: [myIndexPath], with: .none)
-                    tableView.insertRows(at: [myNewIndexPath], with: .none)
+        switch controller {
+        case fetchedResultsController:
+            switch type {
+            case .insert:
+                guard let newIndexPath = newIndexPath else { return }
+                let myNewIndexPath = IndexPath(row: (newIndexPath as NSIndexPath).row, section: (newIndexPath as NSIndexPath).section + 1)
+                tableView.insertRows(at: [myNewIndexPath], with: .fade)
+            case .delete:
+                guard let indexPath = indexPath else { return }
+                let myIndexPath = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section + 1)
+                tableView.deleteRows(at: [myIndexPath], with: .fade)
+            case .move, .update:
+                guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
+                let myNewIndexPath = IndexPath(row: (newIndexPath as NSIndexPath).row, section: (newIndexPath as NSIndexPath).section + 1)
+                let myIndexPath = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section + 1)
+                
+                if myIndexPath == myNewIndexPath {
+                    if let cell = tableView.cellForRow(at: myIndexPath) , cell.isEditing == false {
+                        tableView.deleteRows(at: [myIndexPath], with: .none)
+                        tableView.insertRows(at: [myNewIndexPath], with: .none)
+                    }
+                } else {
+                    //Don't perform a move here because for some reason it doesn't work
+                    tableView.deleteRows(at: [myIndexPath], with: .automatic)
+                    tableView.insertRows(at: [myNewIndexPath], with: .automatic)
                 }
-            } else {
-                //Don't perform a move here because for some reason it doesn't work
-                tableView.deleteRows(at: [myIndexPath], with: .automatic)
-                tableView.insertRows(at: [myNewIndexPath], with: .automatic)
             }
+        case recentHistoryFetchedResultsController:
+            fallthrough
+        default:
+            break
         }
+        
     }
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
+        switch controller {
+        case fetchedResultsController:
+            tableView.beginUpdates()
+        default:
+            break
+        }
+        
     }
 }
 

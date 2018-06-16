@@ -36,6 +36,7 @@ class RecentStudyCollectionViewCell: UICollectionViewCell {
         self.selectedBackgroundView?.backgroundColor = UIColor(hue: 1, saturation: 0, brightness: 1, alpha: 0.12)
         self.selectedBackgroundView?.layer.cornerRadius = 6
         
+        
         nextButton.addTarget(self, action: #selector(didSelectNext), for: .touchUpInside)
     }
 

@@ -46,12 +46,42 @@ extension ResourceManager.LessonType {
 
 class LessonTableViewCell: UITableViewCell {
 
+    enum CurrentState {
+        case current
+        case next
+        case none
+        
+        var title: String? {
+            switch self {
+            case .current: return "PREVIOUS"
+            case .next: return "NEXT"
+            case .none: return nil
+            }
+        }
+        
+        var isHidden: Bool {
+            switch self {
+            case .current, .next: return false
+            case .none: return true
+            }
+        }
+    }
+    
+    @IBOutlet private weak var flag: FlagView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
+    @IBOutlet private weak var topStackView: UIStackView!
     
     @IBOutlet weak var progressIndicator: UIProgressView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    
+    var currentState: CurrentState = .none {
+        didSet {
+            flag.isHidden = currentState.isHidden
+            flag.title = currentState.title
+        }
+    }
     
     let videoView = ResourceIconView(frame: CGRect.zero)
     let teacherAidView = ResourceIconView(frame: CGRect.zero)
@@ -80,6 +110,11 @@ class LessonTableViewCell: UITableViewCell {
         studentAidView.isHidden = true
         transcriptView.isHidden = true
         audioView.isHidden = true
+        
+        flag.isHidden = true
+        
+        topStackView.isLayoutMarginsRelativeArrangement = true
+        topStackView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
         
         let buttonTintColor = StyleKit.darkGrey
         
@@ -174,5 +209,6 @@ class LessonTableViewCell: UITableViewCell {
         studentAidView.isHidden = true
         transcriptView.isHidden = true
         audioView.isHidden = true
+        currentState = .none
     }
 }
