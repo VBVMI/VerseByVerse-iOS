@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h14-bl-qjG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h14-bl-qjG">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -89,9 +89,7 @@
                     <navigationItem key="navigationItem" title="Studies" id="Z3V-FX-Bd3"/>
                     <connections>
                         <outlet property="collectionView" destination="3Y9-wb-dIi" id="AtP-J1-L4j"/>
-                        <segue destination="yfM-zu-8Zd" kind="show" identifier="showLessons" id="yEg-L9-e1G">
-                            <nil key="action"/>
-                        </segue>
+                        <segue destination="yfM-zu-8Zd" kind="show" identifier="showLessons" id="yEg-L9-e1G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uF2-Yz-bJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -140,48 +138,30 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="86.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nT-kj-M8E">
-                                            <rect key="frame" x="16" y="8.0000000000000018" width="343" height="20.666666666666671"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pf2-xQ-ePx" customClass="HideView" customModule="Verse_By_Verse" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="27.666666666666671" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="26.666666666666671" width="375" height="60"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="60" id="Cg6-NG-4Kj"/>
+                                                <constraint firstAttribute="height" constant="60" id="C9t-A3-FFa"/>
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1u-wE-HZE">
-                                            <rect key="frame" x="169.66666666666663" y="71" width="36.333333333333343" height="13.666666666666671"/>
+                                            <rect key="frame" x="169.66666666666666" y="71" width="36.333333333333343" height="13.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="5nT-kj-M8E" firstAttribute="top" secondItem="ede-53-JSy" secondAttribute="topMargin" id="BFe-jr-n0b"/>
-                                        <constraint firstItem="5nT-kj-M8E" firstAttribute="leading" secondItem="ede-53-JSy" secondAttribute="leadingMargin" id="E9C-RF-aq3"/>
-                                        <constraint firstItem="pf2-xQ-ePx" firstAttribute="leading" secondItem="ede-53-JSy" secondAttribute="leading" id="Kvb-5P-Ogz"/>
-                                        <constraint firstItem="5nT-kj-M8E" firstAttribute="trailing" secondItem="ede-53-JSy" secondAttribute="trailingMargin" id="PF3-Nm-uD7"/>
-                                        <constraint firstAttribute="bottom" secondItem="pf2-xQ-ePx" secondAttribute="bottom" constant="-1" id="Quv-wa-NTK"/>
-                                        <constraint firstAttribute="trailing" secondItem="pf2-xQ-ePx" secondAttribute="trailing" id="UjL-br-Hcg"/>
-                                        <constraint firstAttribute="bottom" secondItem="e1u-wE-HZE" secondAttribute="bottom" constant="2" id="ci1-rl-fMX"/>
-                                        <constraint firstItem="e1u-wE-HZE" firstAttribute="top" secondItem="5nT-kj-M8E" secondAttribute="bottom" constant="8" id="jf2-g2-tkt"/>
-                                        <constraint firstItem="e1u-wE-HZE" firstAttribute="centerX" secondItem="ede-53-JSy" secondAttribute="centerX" id="mav-28-R5g"/>
-                                        <constraint firstItem="pf2-xQ-ePx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ede-53-JSy" secondAttribute="topMargin" constant="19.5" id="vLR-HN-Qaa"/>
+                                        <constraint firstAttribute="trailing" secondItem="pf2-xQ-ePx" secondAttribute="trailing" id="80v-6h-zP6"/>
+                                        <constraint firstAttribute="bottom" secondItem="pf2-xQ-ePx" secondAttribute="bottom" id="HJR-P0-mh5"/>
+                                        <constraint firstItem="pf2-xQ-ePx" firstAttribute="leading" secondItem="ede-53-JSy" secondAttribute="leading" id="cGO-8D-QaI"/>
+                                        <constraint firstAttribute="bottom" secondItem="e1u-wE-HZE" secondAttribute="bottom" constant="2" id="m6n-v6-vHD"/>
+                                        <constraint firstItem="e1u-wE-HZE" firstAttribute="centerX" secondItem="ede-53-JSy" secondAttribute="centerX" id="v5H-Es-jzx"/>
                                     </constraints>
                                     <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="jf2-g2-tkt"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="bottomConstraint" destination="jf2-g2-tkt" id="XFt-PR-qFC"/>
-                                    <outlet property="descriptionLabel" destination="5nT-kj-M8E" id="hpc-uH-Ex2"/>
                                     <outlet property="hideView" destination="pf2-xQ-ePx" id="JXN-OK-SNr"/>
                                     <outlet property="moreLabel" destination="e1u-wE-HZE" id="fSg-gr-xzD"/>
                                 </connections>

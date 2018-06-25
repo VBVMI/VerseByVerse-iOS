@@ -46,11 +46,13 @@ class StudyViewController: UITableViewController {
             if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? StudyDescriptionCell {
                 cell.hideView.alpha = isDescriptionOpen ? 0 : 1
                 cell.moreLabel.text = isDescriptionOpen ? "Less..." : "More..."
-                if isDescriptionOpen {
-                    NSLayoutConstraint.activate([cell.bottomConstraint])
-                } else {
-                    NSLayoutConstraint.deactivate([cell.bottomConstraint])
-                }
+                self.tableView.beginUpdates()
+                self.tableView.endUpdates()
+//                if isDescriptionOpen {
+//                    NSLayoutConstraint.activate([cell.bottomConstraint])
+//                } else {
+//                    NSLayoutConstraint.deactivate([cell.bottomConstraint])
+//                }
             }
         }
     }
@@ -170,7 +172,7 @@ class StudyViewController: UITableViewController {
             configureFetchController()
         }
         
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 60
         tableView.rowHeight = UITableViewAutomaticDimension
 
         barButtonItem.target = self
@@ -271,7 +273,9 @@ class StudyViewController: UITableViewController {
         switch (indexPath as NSIndexPath).section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionCell", for: indexPath) as! StudyDescriptionCell
-            cell.descriptionLabel.text = study.descriptionText
+            
+            cell.descriptionView.loadHTMLString(study.descriptionText, baseURL: URL(string: "http://versebyverseministry.org"))
+            //cell.descriptionLabel.text = study.descriptionText
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: lessonCellReuseIdentifier, for: indexPath) as! LessonTableViewCell

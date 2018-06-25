@@ -97,6 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 } else {
                     // download the studies
                     APIDataManager.core()
+                    APIDataManager.latestLessons()
                 }
             })
 //            APIDataManager.allTheChannels()

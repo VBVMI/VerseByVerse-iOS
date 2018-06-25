@@ -20,6 +20,7 @@ public enum JsonAPI {
     case events
     case qa
     case qAp
+    case latestLessons
 }
 
 extension JsonAPI : TargetType {
@@ -57,6 +58,8 @@ extension JsonAPI : TargetType {
             return "categories"
         case .curriculum:
             return "json-curriculum"
+        case .latestLessons:
+            return "latest-lessons"
         }
     }
     
@@ -96,6 +99,8 @@ extension JsonAPI : TargetType {
             return stubbedResponse("curriculum")
         case .categories:
             return stubbedResponse("categories")
+        case .latestLessons:
+            return stubbedResponse("latest-lessons")
         }
     }
     

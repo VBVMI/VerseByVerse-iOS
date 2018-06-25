@@ -19,6 +19,7 @@ enum Cell {
         static let AnswerBody = "AnswerBodyTableViewCell"
         static let AnswerHeader = "AnswerHeaderTableViewCell"
         static let RecentStudies = "RecentHistoryCollectionViewCell"
+        static let LatestLessons = "LatestLessonsCollectionViewCell"
     }
     enum Identifier {
         static let Study = "StudyCell"
@@ -29,6 +30,7 @@ enum Cell {
         static let AnswerBody = "AnswerBodyCell"
         static let AnswerHeader = "AnswerHeaderCell"
         static let RecentStudies = "RecentStudies"
+        static let LatestLessons = "LatestLessons"
     }
     enum CellSize {
         static let Study = CGSize(width: 90, height: 144)
@@ -46,7 +48,13 @@ enum DateFormatters {
         dateFormatter.dateFormat = "dd/MM/yyyy"
         return dateFormatter
     }()
-
+    
+    static let dayMonthDateFormatter : DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        return dateFormatter
+    }()
 }
 
 extension UIColor {

@@ -103,6 +103,18 @@ class APIDataManager {
         })
     }
     
+    static func latestLessons() {
+        
+        downloadToJSONArray(JsonAPI.latestLessons, arrayNode: "lessons", conversionBlock: { (context, JSONModels) in
+            try JSONModels.forEach({ (lessonDict) in
+                if let studyIdentifier = lessonDict["studyIdentifier"] as? String {
+                    try Lesson.decodeJSON(lessonDict, studyID: studyIdentifier, context: context)
+                }
+            })
+        })
+        
+    }
+    
     static func latestArticles() {
         // download the articles P
         downloadToJSONArray(JsonAPI.articlesP, arrayNode: "articles", conversionBlock: { (context, JSONModels) -> () in

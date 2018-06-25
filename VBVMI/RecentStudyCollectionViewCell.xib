@@ -26,34 +26,45 @@
                             <constraint firstAttribute="width" secondItem="GqU-NB-NYv" secondAttribute="height" multiplier="1:1" id="zTu-me-pN8"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22-25" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="NBc-WU-eLJ">
-                        <rect key="frame" x="100" y="9" width="98" height="25.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                        <color key="textColor" white="1" alpha="0.9121717087765957" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="55d-r6-eDW">
-                        <rect key="frame" x="100" y="61" width="98" height="30"/>
-                        <state key="normal" title="Next">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Xbm-gC-TBT">
+                        <rect key="frame" x="100" y="9" width="98" height="83"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22-25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="NBc-WU-eLJ">
+                                <rect key="frame" x="0.0" y="0.0" width="98" height="25.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="0.9121717087765957" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzp-El-Ejj">
+                                <rect key="frame" x="0.0" y="31.5" width="98" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="55d-r6-eDW">
+                                <rect key="frame" x="0.0" y="53" width="98" height="30"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                    </stackView>
                 </subviews>
             </view>
+            <color key="backgroundColor" white="0.21450772849462366" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="NBc-WU-eLJ" secondAttribute="trailing" constant="8" id="Eou-by-eXF"/>
-                <constraint firstItem="NBc-WU-eLJ" firstAttribute="leading" secondItem="GqU-NB-NYv" secondAttribute="trailing" constant="8" id="FMh-G1-LeL"/>
+                <constraint firstAttribute="trailing" secondItem="Xbm-gC-TBT" secondAttribute="trailing" constant="8" id="0T3-XP-kAa"/>
                 <constraint firstAttribute="bottom" secondItem="GqU-NB-NYv" secondAttribute="bottom" constant="8" id="JPY-XJ-U4i"/>
                 <constraint firstItem="GqU-NB-NYv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="Ldn-Gz-Apc"/>
-                <constraint firstItem="NBc-WU-eLJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="9" id="Wgw-mI-nNp"/>
-                <constraint firstAttribute="bottom" secondItem="55d-r6-eDW" secondAttribute="bottom" constant="9" id="hrQ-kL-9it"/>
+                <constraint firstItem="Xbm-gC-TBT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="9" id="i5C-VK-5QG"/>
+                <constraint firstAttribute="bottom" secondItem="Xbm-gC-TBT" secondAttribute="bottom" constant="8" id="j8p-UA-EJE"/>
                 <constraint firstItem="GqU-NB-NYv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="nyR-Hv-uFQ"/>
-                <constraint firstAttribute="trailing" secondItem="55d-r6-eDW" secondAttribute="trailing" constant="8" id="pP2-OQ-ePg"/>
-                <constraint firstItem="55d-r6-eDW" firstAttribute="leading" secondItem="GqU-NB-NYv" secondAttribute="trailing" constant="8" id="pc9-X5-L5l"/>
+                <constraint firstItem="Xbm-gC-TBT" firstAttribute="leading" secondItem="GqU-NB-NYv" secondAttribute="trailing" constant="8" id="uj1-f3-agc"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="206" height="100"/>
             <connections>
+                <outlet property="dateLabel" destination="hzp-El-Ejj" id="6eW-QK-lKR"/>
                 <outlet property="imageView" destination="GqU-NB-NYv" id="MNS-38-eKz"/>
                 <outlet property="nextButton" destination="55d-r6-eDW" id="IvR-EU-P6a"/>
                 <outlet property="titleLabel" destination="NBc-WU-eLJ" id="MSL-JS-aAR"/>

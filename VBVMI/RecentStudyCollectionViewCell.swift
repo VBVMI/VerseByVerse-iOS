@@ -17,9 +17,20 @@ class RecentStudyCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet private weak var dateLabel: UILabel!
     
     weak var delegate : RecentStudyCollectionViewCellDelegate?
     
+    
+    var dateLabelText: String? {
+        set {
+            dateLabel.text = newValue
+            dateLabel.isHidden = newValue?.count ?? 0 == 0
+        }
+        get {
+            return dateLabel.text
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,6 +47,7 @@ class RecentStudyCollectionViewCell: UICollectionViewCell {
         self.selectedBackgroundView?.backgroundColor = UIColor(hue: 1, saturation: 0, brightness: 1, alpha: 0.12)
         self.selectedBackgroundView?.layer.cornerRadius = 6
         
+        dateLabelText = nil
         
         nextButton.addTarget(self, action: #selector(didSelectNext), for: .touchUpInside)
     }
@@ -48,5 +60,6 @@ class RecentStudyCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         imageView.image = nil
         titleLabel.text = nil
+        dateLabelText = nil
     }
 }

@@ -18,6 +18,7 @@ class StudiesViewController: UIViewController {
     private var aboutActionsController: AboutActionsController!
     
     private var header : StudiesHeaderReusableView!
+    private var lastTappedLesson: Lesson?
     
     private enum Section {
         case recentHistory
@@ -35,6 +36,9 @@ class StudiesViewController: UIViewController {
         var sections = [Section]()
         if (recentHistoryFetchedResultsController.fetchedObjects?.count ?? 0) > 0 {
             sections.append(.recentHistory)
+        }
+        if (latestLessonsFetchedResultsController.fetchedObjects?.count ?? 0) > 0 {
+            sections.append(.latestLessons)
         }
         fetchedResultsController?.sections?.enumerated().forEach({ (index, section) in
             sections.append(.study(sectionIndex: index))
@@ -102,6 +106,27 @@ class StudiesViewController: UIViewController {
         return fetchedResultsController
     }()
     
+    private lazy var latestLessonsFetchedResultsController: NSFetchedResultsController<Lesson> = {
+        let fetchRequest = NSFetchRequest<Lesson>(entityName: Lesson.entityName())
+        let context = ContextCoordinator.sharedInstance.managedObjectContext!
+        fetchRequest.entity = Lesson.entity(managedObjectContext: context)
+        
+        let dateSort = NSSortDescriptor(key: LessonAttributes.postedDate.rawValue, ascending: false)
+        fetchRequest.sortDescriptors = [dateSort]
+        
+        fetchRequest.fetchLimit = 10
+        
+        let fetchedResultsController = NSFetchedResultsController<Lesson>(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            logger.error("Error fetching recent: \(error)")
+        }
+        return fetchedResultsController
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -114,6 +139,8 @@ class StudiesViewController: UIViewController {
         collectionView.register(UINib(nibName: Cell.NibName.StudiesHeader, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: Cell.Identifier.StudiesHeader)
         
         collectionView.register(UINib(nibName: Cell.NibName.RecentStudies, bundle: nil), forCellWithReuseIdentifier: Cell.Identifier.RecentStudies)
+        
+        collectionView.register(UINib(nibName: Cell.NibName.LatestLessons, bundle: nil), forCellWithReuseIdentifier: Cell.Identifier.LatestLessons)
         
         let flowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
@@ -180,15 +207,22 @@ class StudiesViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    enum TransitionData {
+        case gotoLesson(study: Study, lesson: Lesson)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let study = sender as? Study , segue.identifier == "showLessons" {
             if let studyViewController = segue.destination as? StudyViewController {
                 studyViewController.study = study
             }
-        } else if let (study, lesson) = sender as? (Study, Lesson), segue.identifier == "showLessons" {
+        } else if let transitionData = sender as? TransitionData, segue.identifier == "showLessons" {
             if let studyViewController = segue.destination as? StudyViewController {
-                studyViewController.study = study
-                studyViewController.focusLesson = lesson
+                switch transitionData {
+                case .gotoLesson(let study, let lesson):
+                    studyViewController.study = study
+                    studyViewController.focusLesson = lesson
+                }
             }
         }
     }
@@ -221,7 +255,7 @@ extension StudiesViewController : UICollectionViewDelegateFlowLayout {
         switch currentSections[indexPath.section] {
         case .study(_):
             return Cell.CellSize.Study
-        default:
+        case .latestLessons, .recentHistory:
             return CGSize(width: collectionView.frame.size.width, height: 116)
         }
     }
@@ -270,7 +304,7 @@ extension StudiesViewController : UICollectionViewDataSource {
             let sectionInfo = sections[index]
             return sectionInfo.numberOfObjects
         case .latestLessons:
-            return 0
+            return 1
         case .recentHistory:
             return 1
         }
@@ -313,7 +347,10 @@ extension StudiesViewController : UICollectionViewDataSource {
             cell.delegate = self
             return cell
         case .latestLessons:
-            fatalError()
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.Identifier.LatestLessons, for: indexPath) as! LatestLessonsCollectionViewCell
+            cell.latestLessons = latestLessonsFetchedResultsController.fetchedObjects ?? []
+            cell.delegate = self
+            return cell
         }
     }
     
@@ -332,8 +369,13 @@ extension StudiesViewController : UICollectionViewDataSource {
                 header.backgroundColor = .darkBackground
                 header.mainTitleLabel.textColor = .white
                 return header
-            default:
-                return UICollectionReusableView()
+            case .latestLessons:
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Cell.Identifier.StudiesHeader, for: indexPath) as! StudiesHeaderReusableView
+                header.mainTitleLabel.text = "Latest Lessons"
+                header.subtitleLabel.text = nil
+                header.backgroundColor = .darkBackground
+                header.mainTitleLabel.textColor = .white
+                return header
             }
         default:
             return UICollectionReusableView()
@@ -362,8 +404,15 @@ extension StudiesViewController : UICollectionViewDataSource {
             
             header.layoutIfNeeded()
             return header.bounds.size
-        default:
-            return .zero
+        case .latestLessons:
+            header.mainTitleLabel.text = "Latest Lessons"
+            header.subtitleLabel.text = nil
+            header.snp.updateConstraints { (make) -> Void in
+                make.width.equalTo(collectionView.bounds.size.width)
+            }
+            
+            header.layoutIfNeeded()
+            return header.bounds.size
         }
         
     }
@@ -394,7 +443,53 @@ extension StudiesViewController : NSFetchedResultsControllerDelegate {
 extension StudiesViewController : RecentHistoryCollectionViewCellDelegate {
     
     func recentHistoryDidSelect(study: Study, lesson: Lesson) {
-        self.performSegue(withIdentifier: "showLessons", sender: (study, lesson))
+        self.performSegue(withIdentifier: "showLessons", sender: TransitionData.gotoLesson(study: study, lesson: lesson))
     }
     
 }
+
+extension StudiesViewController : LatestLessonCollectionViewCellDelegate {
+    
+    func latestLessonsDidSelect(study: Study, lesson: Lesson) {
+        self.performSegue(withIdentifier: "showLessons", sender: TransitionData.gotoLesson(study: study, lesson: lesson))
+    }
+    
+    func latestLessonsDidPlay(study: Study, lesson: Lesson) {
+        lastTappedLesson = lesson
+        ResourceManager.sharedInstance.startDownloading(lesson, resource: ResourceManager.LessonType.audio, completion: { [weak self] (result) in
+            guard let this = self else {
+                return
+            }
+            
+            switch result {
+            case .error(let error):
+                //Lame... we got an error..
+                logger.error("\(error)")
+            case .success(let lesson, _, let url):
+                //Epic, we have the URL so lets go do a thing
+                
+                guard lesson == this.lastTappedLesson else {
+                    return
+                }
+                study.dateLastPlayed = Date()
+                lesson.dateLastPlayed = Date()
+                try? lesson.managedObjectContext?.save()
+                
+                if let audioPlayerController = this.tabBarController?.popupContent as? AudioPlayerViewController {
+                    audioPlayerController.configure(url, name: lesson.title , subTitle: lesson.descriptionText ?? "", lesson: lesson, study: study)
+                    if this.tabBarController?.popupPresentationState == .closed {
+                        this.tabBarController?.openPopup(animated: true, completion: nil)
+                    }
+                } else {
+                    let demoVC = AudioPlayerViewController()
+                    demoVC.configure(url, name: lesson.title, subTitle: lesson.descriptionText ?? "", lesson: lesson, study: study)
+                    this.tabBarController?.presentPopupBar(withContentViewController: demoVC, openPopup: true, animated: true, completion: { () -> Void in
+                        
+                    })
+                }
+            }
+        })
+    }
+    
+}
+

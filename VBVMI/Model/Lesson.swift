@@ -8,6 +8,7 @@ open class Lesson: _Lesson {
 
 	// Custom logic goes here.
 
+    @discardableResult
     class func decodeJSON(_ JSONDict: [AnyHashable : Any], studyID: String, context: NSManagedObjectContext) throws -> Lesson {
         guard let identifier = JSONDict["ID"] as? String else {
             throw APIDataManagerError.missingID
