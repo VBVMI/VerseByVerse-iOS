@@ -46,8 +46,18 @@ class StudyViewController: UITableViewController {
             if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? StudyDescriptionCell {
                 cell.hideView.alpha = isDescriptionOpen ? 0 : 1
                 cell.moreLabel.text = isDescriptionOpen ? "Less..." : "More..."
-                self.tableView.beginUpdates()
-                self.tableView.endUpdates()
+//                cell.bottomConstraint.isActive = isDescriptionOpen
+                
+                if isDescriptionOpen {
+                    cell.mode = .content
+                } else {
+                    cell.mode = .short
+                }
+//                if isDescriptionOpen {
+//                    cell.bottomConstraint.isActive = true
+//                }
+//                self.tableView.beginUpdates()
+//                self.tableView.endUpdates()
 //                if isDescriptionOpen {
 //                    NSLayoutConstraint.activate([cell.bottomConstraint])
 //                } else {
@@ -274,7 +284,23 @@ class StudyViewController: UITableViewController {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionCell", for: indexPath) as! StudyDescriptionCell
             
-            cell.descriptionView.loadHTMLString(study.descriptionText, baseURL: URL(string: "http://versebyverseministry.org"))
+            
+            let html = try! NSString(contentsOf: Bundle.main.url(forResource: "StudyDescription", withExtension: "html")!, encoding: String.Encoding.utf8.rawValue)
+            let descriptionHTML = html.replacingOccurrences(of: "BODY_CONTENT", with: study.descriptionText)
+            
+            let data = Data(descriptionHTML.utf8)
+            cell.descriptionLabel.delegate = self
+            do {
+                let options : [NSAttributedString.DocumentReadingOptionKey: Any] = [
+                    .documentType: NSAttributedString.DocumentType.html,
+                ]
+                let attributedString = try NSAttributedString(data: data, options: options, documentAttributes: nil)
+                cell.descriptionLabel.attributedText = attributedString
+            } catch {
+                cell.descriptionLabel.attributedText = nil
+                print("error: \(error)")
+            }
+            
             //cell.descriptionLabel.text = study.descriptionText
             return cell
         default:
@@ -527,12 +553,13 @@ class StudyViewController: UITableViewController {
             if isDescriptionOpen {
                 return 85
             } else {
-                if let calculatedDescriptionHeight = calculatedDescriptionHeight {
-                    return calculatedDescriptionHeight
-                }
-                let size = testDescriptionLabel.sizeThatFits(CGSize(width: self.view.frame.size.width - 16, height: CGFloat.greatestFiniteMagnitude))
-                calculatedDescriptionHeight = size.height + 32
-                return size.height + 32
+                return 85
+//                if let calculatedDescriptionHeight = calculatedDescriptionHeight {
+//                    return calculatedDescriptionHeight
+//                }
+//                let size = testDescriptionLabel.sizeThatFits(CGSize(width: self.view.frame.size.width - 16, height: CGFloat.greatestFiniteMagnitude))
+//                calculatedDescriptionHeight = size.height + 32
+//                return size.height + 32
             }
         case 1, 2:
             return 91
@@ -732,6 +759,32 @@ extension StudyViewController : NSFetchedResultsControllerDelegate {
         }
         
     }
+}
+
+extension StudyViewController : UITextViewDelegate {
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        return false
+    }
+    
+    func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange) -> Bool {
+        print("url: \(url)")
+        if url.scheme == "applewebdata" {
+            let urlString = "https://versebyverseministry.org\(url.path)"
+            if let url = URL(string: urlString) {
+                UIApplication.shared.openURL(url)
+            }
+            
+            return false
+        }
+        
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        return false
+    }
+    
 }
 
 //MARK: - ResourceManagerObserver

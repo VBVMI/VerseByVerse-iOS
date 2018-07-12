@@ -11,35 +11,47 @@ import WebKit
 
 class StudyDescriptionCell: UITableViewCell {
 
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    //var bottomConstraint: NSLayoutConstraint!
     
-    var descriptionView: WKWebView!
+    private var heightConstraint: NSLayoutConstraint!
+    
+    var descriptionLabel = UITextView(frame: .zero)
     @IBOutlet var hideView: HideView!
     @IBOutlet var moreLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        descriptionView = AutoSizingWebView(frame: .zero)
-        contentView.insertSubview(descriptionView, at: 0)
-        descriptionView.snp.makeConstraints { (make) in
-            make.edges.equalTo(0)
-        }
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.insertSubview(descriptionLabel, at: 0)
+//        descriptionLabel.numberOfLines = 0
+        descriptionLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
+
+        descriptionLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        descriptionLabel.isScrollEnabled = false
+        descriptionLabel.isEditable = false
         
-        descriptionView.navigationDelegate = self
-        
-        descriptionView.scrollView.isScrollEnabled = false
+        heightConstraint = contentView.heightAnchor.constraint(equalToConstant: 100)
+        heightConstraint.priority = UILayoutPriority(1000)
+        heightConstraint.isActive = true
     }
     
-}
-
-extension StudyDescriptionCell : WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        webView.evaluateJavaScript("document.readyState") { (_,_) in
-            webView.invalidateIntrinsicContentSize()
+    enum Mode {
+        case content
+        case short
+    }
+    
+    var mode: Mode = .short {
+        didSet {
+            switch mode {
+            case .short:
+                heightConstraint.constant = 100
+//                heightConstraint.isActive = true
+            case .content:
+                heightConstraint.constant = descriptionLabel.bounds.size.height + 5
+//                heightConstraint.isActive = false
+            }
         }
-        webView.invalidateIntrinsicContentSize()
-//        (superview as? UITableView)?.beginUpdates()
-//        (superview as? UITableView)?.endUpdates()
     }
 }

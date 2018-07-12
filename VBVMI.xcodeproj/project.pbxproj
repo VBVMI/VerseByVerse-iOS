@@ -105,7 +105,6 @@
 		987F02FB1CF0658800AB61FA /* ResourceIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987F02FA1CF0658800AB61FA /* ResourceIconView.swift */; };
 		9881317320D7A44A00987DB7 /* LatestLessonsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881317120D7A44A00987DB7 /* LatestLessonsCollectionViewCell.swift */; };
 		9881317420D7A44A00987DB7 /* LatestLessonsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9881317220D7A44A00987DB7 /* LatestLessonsCollectionViewCell.xib */; };
-		9881317D20DBA31300987DB7 /* AutoSizingWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881317C20DBA31300987DB7 /* AutoSizingWebView.swift */; };
 		988154C81DC5A4C400D0DD53 /* MediaCenterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988154C71DC5A4C400D0DD53 /* MediaCenterInfo.swift */; };
 		988663F11D55D87E00010728 /* ContextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988663F01D55D87E00010728 /* ContextCoordinator.swift */; };
 		988D69711C9BEADA000ED16D /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988D69701C9BEADA000ED16D /* ArticleViewController.swift */; };
@@ -189,6 +188,7 @@
 		98F389341DDC45D40037B97E /* StudyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */; };
 		98F725BF1D49E5C600F73ED0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */; };
 		98F725C21D49E67600F73ED0 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98F725C11D49E67600F73ED0 /* Settings.storyboard */; };
+		98FABAC320EA1B2800EAB75A /* StudyDescription.html in Resources */ = {isa = PBXBuildFile; fileRef = 98FABAC220EA1B2800EAB75A /* StudyDescription.html */; };
 		98FD5DD51C9286CB00B493E6 /* ArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD5DD41C9286CB00B493E6 /* ArticlesViewController.swift */; };
 		98FD5DD71C92873200B493E6 /* AnswersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD5DD61C92873200B493E6 /* AnswersViewController.swift */; };
 		98FD5DDB1C92D4DF00B493E6 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD5DDA1C92D4DF00B493E6 /* TabBarItem.swift */; };
@@ -374,7 +374,6 @@
 		987F02FA1CF0658800AB61FA /* ResourceIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceIconView.swift; sourceTree = "<group>"; };
 		9881317120D7A44A00987DB7 /* LatestLessonsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestLessonsCollectionViewCell.swift; sourceTree = "<group>"; };
 		9881317220D7A44A00987DB7 /* LatestLessonsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LatestLessonsCollectionViewCell.xib; sourceTree = "<group>"; };
-		9881317C20DBA31300987DB7 /* AutoSizingWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSizingWebView.swift; sourceTree = "<group>"; };
 		988154C71DC5A4C400D0DD53 /* MediaCenterInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCenterInfo.swift; sourceTree = "<group>"; };
 		988663EB1D55C13200010728 /* CommandCenterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandCenterController.swift; sourceTree = "<group>"; };
 		988663EE1D55C27C00010728 /* AudioContentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContentManager.swift; sourceTree = "<group>"; };
@@ -441,6 +440,7 @@
 		98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyCollectionViewCell.xib; sourceTree = "<group>"; };
 		98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		98F725C11D49E67600F73ED0 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		98FABAC220EA1B2800EAB75A /* StudyDescription.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = StudyDescription.html; sourceTree = "<group>"; };
 		98FD5DD41C9286CB00B493E6 /* ArticlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesViewController.swift; sourceTree = "<group>"; };
 		98FD5DD61C92873200B493E6 /* AnswersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswersViewController.swift; sourceTree = "<group>"; };
 		98FD5DDA1C92D4DF00B493E6 /* TabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
@@ -702,6 +702,7 @@
 				980579DC1D31DF79001C809C /* Keys.xcconfig */,
 				9828D4221C5D9F4A004FA954 /* Info.plist */,
 				98D45BA11C86FAB4004BBCBD /* VBVMI-Bridging-Header.h */,
+				98FABAC220EA1B2800EAB75A /* StudyDescription.html */,
 				980D95691EAF18BB000271FE /* VBVMIConstants.h */,
 				980D956B1EAF1A5F000271FE /* VBVMIConstants.m */,
 				980D956A1EAF1A5E000271FE /* VBVMI-tvOS-Bridging-Header.h */,
@@ -841,7 +842,6 @@
 				9848516F1D9F713600500A47 /* DepletionProgressView.swift */,
 				98E672A81D9FC6E1001E7F77 /* CenteredProgressView.swift */,
 				986C37DC1C657CCE0096BB83 /* HideView.swift */,
-				9881317C20DBA31300987DB7 /* AutoSizingWebView.swift */,
 				98213A981DA4F43300E81CBB /* BlurImageView.swift */,
 				98AC05D61C8438670037D54A /* IconImages.swift */,
 				98CBFE8E1C900E5F005F6414 /* StudiesHeaderReusableView.swift */,
@@ -1198,6 +1198,7 @@
 				988D69791C9C1034000ED16D /* ArticleBodyTableViewCell.xib in Resources */,
 				988D69751C9C0D87000ED16D /* ArticleHeaderTableViewCell.xib in Resources */,
 				981DC9D020C7D09600B120BB /* RecentHistoryCollectionViewCell.xib in Resources */,
+				98FABAC320EA1B2800EAB75A /* StudyDescription.html in Resources */,
 				9828D4191C5D9F4A004FA954 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1751,7 +1752,6 @@
 				984650F41CF0175E00F4A46F /* LessonsHeader.swift in Sources */,
 				987F02F91CF0625E00AB61FA /* DotView.swift in Sources */,
 				980E6C0B1C7EE29B008F23D1 /* LessonTableViewCell.swift in Sources */,
-				9881317D20DBA31300987DB7 /* AutoSizingWebView.swift in Sources */,
 				989294CF1C8BE07E00C19095 /* _AudioPlayer.swift in Sources */,
 				98B419BF1C64803D003A2872 /* StudyViewController.swift in Sources */,
 				98611CC21C9ABB4F0070FCCD /* ArticleTableViewCell.swift in Sources */,
