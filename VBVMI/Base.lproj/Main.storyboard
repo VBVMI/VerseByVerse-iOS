@@ -80,9 +80,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottomMargin" secondItem="3Y9-wb-dIi" secondAttribute="bottom" id="2oQ-9n-RuH"/>
-                            <constraint firstItem="3Y9-wb-dIi" firstAttribute="leading" secondItem="7Rw-bJ-ezQ" secondAttribute="leading" id="Jyq-Mp-yEl"/>
+                            <constraint firstItem="3Y9-wb-dIi" firstAttribute="leading" secondItem="l8f-fB-8DF" secondAttribute="leading" id="Jyq-Mp-yEl"/>
                             <constraint firstItem="3Y9-wb-dIi" firstAttribute="top" secondItem="l8f-fB-8DF" secondAttribute="topMargin" id="V9U-3A-gDk"/>
-                            <constraint firstItem="7Rw-bJ-ezQ" firstAttribute="trailing" secondItem="3Y9-wb-dIi" secondAttribute="trailing" id="gia-ol-uCz"/>
+                            <constraint firstAttribute="trailing" secondItem="3Y9-wb-dIi" secondAttribute="trailing" id="gia-ol-uCz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7Rw-bJ-ezQ"/>
                     </view>

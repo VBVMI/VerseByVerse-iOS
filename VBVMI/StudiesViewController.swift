@@ -259,6 +259,19 @@ extension StudiesViewController : UICollectionViewDelegateFlowLayout {
             return CGSize(width: collectionView.frame.size.width, height: 116)
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        switch currentSections[section] {
+        case .study(_):
+            if #available(iOS 11.0, *) {
+                return UIEdgeInsets(top: 0, left: self.view.safeAreaInsets.left, bottom: 0, right: self.view.safeAreaInsets.right)
+            } else {
+                return UIEdgeInsets.zero
+            }
+        default:
+            return UIEdgeInsets.zero
+        }
+    }
 }
 
 extension StudiesViewController : UICollectionViewDelegate {
