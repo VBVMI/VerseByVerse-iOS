@@ -280,7 +280,7 @@ extension StudiesViewController : UICollectionViewDelegateFlowLayout {
         switch currentSections[indexPath.section] {
         case .study(_):
             let finalWidth = cellWidth(for: collectionViewLayout as! UICollectionViewFlowLayout)
-            return CGSize(width: finalWidth, height: finalWidth + 1)
+            return CGSize(width: finalWidth, height: finalWidth)
         case .latestLessons, .recentHistory:
             return CGSize(width: collectionView.frame.size.width, height: 116)
         }

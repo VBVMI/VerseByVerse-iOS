@@ -20,13 +20,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="108" height="157"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="663-9i-nNI" customClass="CenteredProgressView" customModule="Verse_By_Verse" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="108" width="108" height="1"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="KfA-N9-CTk"/>
-                        </constraints>
-                    </view>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="47R-xX-ahF">
                         <rect key="frame" x="0.0" y="0.0" width="108" height="108"/>
                         <subviews>
@@ -45,15 +38,22 @@
                             <constraint firstItem="AK7-Gt-XDD" firstAttribute="centerX" secondItem="47R-xX-ahF" secondAttribute="centerX" id="yf9-FH-4zW"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="663-9i-nNI" customClass="CenteredProgressView" customModule="Verse_By_Verse" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="106" width="108" height="2"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="2" id="KfA-N9-CTk"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="47R-xX-ahF" secondAttribute="trailing" id="GaI-Q5-MCV"/>
                 <constraint firstItem="47R-xX-ahF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="HNC-qT-Lb2"/>
+                <constraint firstItem="663-9i-nNI" firstAttribute="bottom" secondItem="47R-xX-ahF" secondAttribute="bottom" id="IQr-rN-b4h"/>
                 <constraint firstItem="47R-xX-ahF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Mkj-GX-PLC"/>
                 <constraint firstItem="663-9i-nNI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="aC4-Uh-zkh"/>
                 <constraint firstAttribute="trailing" secondItem="663-9i-nNI" secondAttribute="trailing" id="aVL-au-bMp"/>
-                <constraint firstItem="663-9i-nNI" firstAttribute="top" secondItem="47R-xX-ahF" secondAttribute="bottom" id="rHU-i5-fCE"/>
             </constraints>
             <size key="customSize" width="108" height="157"/>
             <connections>
