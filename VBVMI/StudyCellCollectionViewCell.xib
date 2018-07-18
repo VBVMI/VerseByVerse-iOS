@@ -1,61 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="StudyCellCollectionViewCell" customModule="Verse_By_Verse" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="92" height="136"/>
+            <rect key="frame" x="0.0" y="0.0" width="108" height="157"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="92" height="136"/>
+                <rect key="frame" x="0.0" y="0.0" width="108" height="157"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Uq-ro-RmR">
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="8Uq-ro-RmR" secondAttribute="height" multiplier="1:1" id="vdx-DR-J3M"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8n-CP-2rR">
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="663-9i-nNI" customClass="CenteredProgressView" customModule="Verse_By_Verse" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="108" width="108" height="1"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="3" id="KfA-N9-CTk"/>
+                            <constraint firstAttribute="height" constant="1" id="KfA-N9-CTk"/>
+                        </constraints>
+                    </view>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="47R-xX-ahF">
+                        <rect key="frame" x="0.0" y="0.0" width="108" height="108"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AK7-Gt-XDD">
+                                <rect key="frame" x="-16" y="-16" width="140" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="AK7-Gt-XDD" secondAttribute="height" multiplier="1:1" id="kA5-Rq-6lx"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="AK7-Gt-XDD" firstAttribute="width" secondItem="47R-xX-ahF" secondAttribute="width" multiplier="1.3" id="2ur-E8-rjE"/>
+                            <constraint firstItem="AK7-Gt-XDD" firstAttribute="centerY" secondItem="47R-xX-ahF" secondAttribute="centerY" id="7so-jc-jyc"/>
+                            <constraint firstAttribute="width" secondItem="47R-xX-ahF" secondAttribute="height" multiplier="1:1" id="Zkq-WZ-9hh"/>
+                            <constraint firstItem="AK7-Gt-XDD" firstAttribute="centerX" secondItem="47R-xX-ahF" secondAttribute="centerX" id="yf9-FH-4zW"/>
                         </constraints>
                     </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="o8n-CP-2rR" secondAttribute="bottom" id="49B-80-PEY"/>
-                <constraint firstItem="663-9i-nNI" firstAttribute="top" secondItem="8Uq-ro-RmR" secondAttribute="bottom" constant="2" id="5ko-yr-uRd"/>
-                <constraint firstAttribute="trailing" secondItem="8Uq-ro-RmR" secondAttribute="trailing" constant="4" id="KSB-BS-boy"/>
-                <constraint firstAttribute="trailing" secondItem="o8n-CP-2rR" secondAttribute="trailing" id="MYi-u5-LKp"/>
-                <constraint firstItem="8Uq-ro-RmR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="PN0-wx-e5Q"/>
-                <constraint firstItem="663-9i-nNI" firstAttribute="leading" secondItem="8Uq-ro-RmR" secondAttribute="leading" id="Uxz-yf-cH3"/>
-                <constraint firstItem="663-9i-nNI" firstAttribute="trailing" secondItem="8Uq-ro-RmR" secondAttribute="trailing" id="crb-Aj-J9C"/>
-                <constraint firstItem="o8n-CP-2rR" firstAttribute="top" secondItem="8Uq-ro-RmR" secondAttribute="bottom" constant="4" id="fF7-Yy-cbx"/>
-                <constraint firstItem="o8n-CP-2rR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hpp-3h-UGN"/>
-                <constraint firstItem="8Uq-ro-RmR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="zuq-l9-lag"/>
+                <constraint firstAttribute="trailing" secondItem="47R-xX-ahF" secondAttribute="trailing" id="GaI-Q5-MCV"/>
+                <constraint firstItem="47R-xX-ahF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="HNC-qT-Lb2"/>
+                <constraint firstItem="47R-xX-ahF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Mkj-GX-PLC"/>
+                <constraint firstItem="663-9i-nNI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="aC4-Uh-zkh"/>
+                <constraint firstAttribute="trailing" secondItem="663-9i-nNI" secondAttribute="trailing" id="aVL-au-bMp"/>
+                <constraint firstItem="663-9i-nNI" firstAttribute="top" secondItem="47R-xX-ahF" secondAttribute="bottom" id="rHU-i5-fCE"/>
             </constraints>
-            <size key="customSize" width="92" height="136"/>
+            <size key="customSize" width="108" height="157"/>
             <connections>
-                <outlet property="coverImageView" destination="8Uq-ro-RmR" id="mg2-Zy-Mgz"/>
-                <outlet property="imageLeftInsetConstraint" destination="PN0-wx-e5Q" id="Ucv-6X-1m0"/>
-                <outlet property="imageRightInsetContraint" destination="KSB-BS-boy" id="FNf-a2-fu7"/>
-                <outlet property="imageTopInsetContraint" destination="zuq-l9-lag" id="JEm-SU-jsL"/>
+                <outlet property="coverImageView" destination="AK7-Gt-XDD" id="y1p-7v-1AJ"/>
+                <outlet property="imageClippingView" destination="47R-xX-ahF" id="TJD-At-hxP"/>
+                <outlet property="imageLeftInsetConstraint" destination="Mkj-GX-PLC" id="abU-Qu-Deq"/>
+                <outlet property="imageRightInsetContraint" destination="GaI-Q5-MCV" id="iI1-e9-Nyc"/>
+                <outlet property="imageTopInsetContraint" destination="HNC-qT-Lb2" id="6iq-hQ-2T7"/>
                 <outlet property="progressView" destination="663-9i-nNI" id="WuI-oX-dUb"/>
-                <outlet property="titleLabel" destination="o8n-CP-2rR" id="fH6-NX-Yhk"/>
             </connections>
-            <point key="canvasLocation" x="231" y="249"/>
+            <point key="canvasLocation" x="239" y="259.5"/>
         </collectionViewCell>
     </objects>
 </document>

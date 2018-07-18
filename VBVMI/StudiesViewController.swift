@@ -142,9 +142,6 @@ class StudiesViewController: UIViewController {
         
         collectionView.register(UINib(nibName: Cell.NibName.LatestLessons, bundle: nil), forCellWithReuseIdentifier: Cell.Identifier.LatestLessons)
         
-        let flowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        
         setupFetchedResultsController()
         
         // Setup about Menu
@@ -250,11 +247,40 @@ class StudiesViewController: UIViewController {
 
 }
 
+
+
 extension StudiesViewController : UICollectionViewDelegateFlowLayout {
+    
+    func cellWidth(for layout: UICollectionViewFlowLayout) -> CGFloat {
+        var width = self.view.bounds.size.width
+        let sectionInset = layout.sectionInset
+        if #available(iOS 11.0, *) {
+            width -= max(self.view.safeAreaInsets.left, sectionInset.left) + max(self.view.safeAreaInsets.right, sectionInset.right)
+        } else {
+            width -= sectionInset.left + sectionInset.right
+        }
+        let spacing = layout.minimumInteritemSpacing
+        width += spacing
+        
+        let minimumAcross: CGFloat = 3
+        let maxWidth: CGFloat = 150
+        let maxItems = floor(width / (maxWidth + spacing))
+        let maxItemWidth = (width / maxItems) - spacing
+        
+        if maxItems > minimumAcross {
+            return maxItemWidth
+        }
+        
+        let minimumCellWidth = (width / minimumAcross) - spacing
+        
+        return minimumCellWidth
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch currentSections[indexPath.section] {
         case .study(_):
-            return Cell.CellSize.Study
+            let finalWidth = cellWidth(for: collectionViewLayout as! UICollectionViewFlowLayout)
+            return CGSize(width: finalWidth, height: finalWidth + 1)
         case .latestLessons, .recentHistory:
             return CGSize(width: collectionView.frame.size.width, height: 116)
         }
@@ -263,10 +289,12 @@ extension StudiesViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch currentSections[section] {
         case .study(_):
+            let sectionInset = (collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
+            
             if #available(iOS 11.0, *) {
-                return UIEdgeInsets(top: 0, left: self.view.safeAreaInsets.left, bottom: 0, right: self.view.safeAreaInsets.right)
+                return UIEdgeInsets(top: 0, left: max(self.view.safeAreaInsets.left, sectionInset.left), bottom: 0, right: max(self.view.safeAreaInsets.right, sectionInset.right))
             } else {
-                return UIEdgeInsets.zero
+                return sectionInset
             }
         default:
             return UIEdgeInsets.zero
@@ -344,12 +372,16 @@ extension StudiesViewController : UICollectionViewDataSource {
                 cell.progressView.progress = 1
             }
             
-            cell.titleLabel.text = study.title
+            let calculatedCellWidth = cellWidth(for: collectionView.collectionViewLayout as! UICollectionViewFlowLayout)
+            
             cell.coverImageView.image = nil
-            if let thumbnailSource = study.image300 {
+            if let thumbnailSource = study.image600 {
                 if let url = URL(string: thumbnailSource) {
-                    let width = Cell.CellSize.Study.width - Cell.CellSize.StudyImageInset.left - Cell.CellSize.StudyImageInset.right
-                    let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 3, divideRadiusByImageScale: false)
+                    
+                    let width = calculatedCellWidth - Cell.CellSize.StudyImageInset.left - Cell.CellSize.StudyImageInset.right
+                    let scale: CGFloat = 1.3
+
+                    let imageFilter = ScaledToSizeFilter(size: CGSize(width: width * scale, height: width * scale)) //ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width * scale, height: width * scale), radius: 3, divideRadiusByImageScale: false)
                     cell.coverImageView.af_setImage(withURL: url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
                 }
             }

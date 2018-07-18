@@ -33,8 +33,8 @@ enum Cell {
         static let LatestLessons = "LatestLessons"
     }
     enum CellSize {
-        static let Study = CGSize(width: 90, height: 144)
-        static let StudyImageInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4) //Bottom doesn't matter yo
+        static let Study = CGSize(width: 150, height: 155)
+        static let StudyImageInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) //Bottom doesn't matter yo
     }
 }
 
