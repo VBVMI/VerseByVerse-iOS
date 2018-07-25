@@ -181,7 +181,7 @@ class StudiesViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         if #available(iOS 11.0, *) {
-            
+            collectionView.contentInset = UIEdgeInsetsMake(0, 0, 8, 0)
         } else {
             // Fallback on earlier versions
             let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
@@ -433,31 +433,16 @@ extension StudiesViewController : UICollectionViewDataSource {
         switch currentSections[section] {
         case .study(let sectionIndex):
             configureHeader(sectionIndex, header: header)
-            header.snp.updateConstraints { (make) -> Void in
-                make.width.equalTo(collectionView.bounds.size.width)
-            }
-            
-            header.layoutIfNeeded()
-            
-            return header.bounds.size
+            return header.systemLayoutSizeFitting(CGSize(width: self.view.bounds.width, height: 400), withHorizontalFittingPriority: UILayoutPriority.required, verticalFittingPriority: UILayoutPriority(10))
         case .recentHistory:
             header.mainTitleLabel.text = "Recent History"
             header.subtitleLabel.text = nil
-            header.snp.updateConstraints { (make) -> Void in
-                make.width.equalTo(collectionView.bounds.size.width)
-            }
-            
-            header.layoutIfNeeded()
-            return header.bounds.size
+            return header.systemLayoutSizeFitting(CGSize(width: self.view.bounds.width, height: 400), withHorizontalFittingPriority: UILayoutPriority.required, verticalFittingPriority: UILayoutPriority(10))
+
         case .latestLessons:
             header.mainTitleLabel.text = "Latest Lessons"
             header.subtitleLabel.text = nil
-            header.snp.updateConstraints { (make) -> Void in
-                make.width.equalTo(collectionView.bounds.size.width)
-            }
-            
-            header.layoutIfNeeded()
-            return header.bounds.size
+            return header.systemLayoutSizeFitting(CGSize(width: self.view.bounds.width, height: 400), withHorizontalFittingPriority: UILayoutPriority.required, verticalFittingPriority: UILayoutPriority(10))
         }
         
     }
