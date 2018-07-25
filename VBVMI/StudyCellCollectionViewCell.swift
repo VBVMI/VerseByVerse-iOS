@@ -16,12 +16,24 @@ class StudyCellCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var progressView: CenteredProgressView!
     @IBOutlet weak var imageClippingView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    var title: String? {
+        get {
+            return titleLabel.text
+        }
+        set {
+            titleLabel.text = newValue
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
 //        imageClippingView.layer.cornerRadius = 5
         imageClippingView.layer.masksToBounds = true
+        
+        imageClippingView.backgroundColor = StyleKit.midGrey
         
         imageRightInsetContraint.constant = Cell.CellSize.StudyImageInset.right
         imageLeftInsetConstraint.constant = Cell.CellSize.StudyImageInset.left
@@ -33,4 +45,10 @@ class StudyCellCollectionViewCell: UICollectionViewCell {
         self.selectedBackgroundView = highlightView
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        title = nil
+        coverImageView.image = nil
+    }
 }

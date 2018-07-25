@@ -373,8 +373,8 @@ extension StudiesViewController : UICollectionViewDataSource {
             }
             
             let calculatedCellWidth = cellWidth(for: collectionView.collectionViewLayout as! UICollectionViewFlowLayout)
+            cell.title = study.title
             
-            cell.coverImageView.image = nil
             if let thumbnailSource = study.image600 {
                 if let url = URL(string: thumbnailSource) {
                     
