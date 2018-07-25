@@ -332,6 +332,11 @@ class StudyViewController: UITableViewController {
                 this.lastTappedLesson = lesson
                 this.lastTappedResource = lessonType
                 
+                if lessonType == .transcript && lesson.transcript?.length > 0 {
+                    
+                    return
+                }
+                
                 switch status {
                 case .none, .completed:
                     ResourceManager.sharedInstance.startDownloading(lesson, resource: lessonType, completion: { (result) in

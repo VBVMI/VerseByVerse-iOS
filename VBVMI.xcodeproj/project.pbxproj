@@ -164,6 +164,7 @@
 		98C35DBB1DB4CDB70052398E /* NSDateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98611CBE1C9AA6D60070FCCD /* NSDateExtensions.swift */; };
 		98C35DBC1DB4CEC30052398E /* TitleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C101C814E5F008F23D1 /* TitleParser.swift */; };
 		98C35DBD1DB4CF300052398E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9860BA561C61F3020054D496 /* Constants.swift */; };
+		98C4DBFF210872CC00DF3E25 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C4DBFE210872CC00DF3E25 /* WebViewController.swift */; };
 		98C80A061CD430BC000EAD3D /* VolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C80A051CD430BC000EAD3D /* VolumeView.swift */; };
 		98C9E7E320CB67ED006BE3AE /* RecentStudyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9E7E120CB67ED006BE3AE /* RecentStudyCollectionViewCell.swift */; };
 		98C9E7E420CB67ED006BE3AE /* RecentStudyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98C9E7E220CB67ED006BE3AE /* RecentStudyCollectionViewCell.xib */; };
@@ -415,6 +416,7 @@
 		98B419BE1C64803D003A2872 /* StudyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyViewController.swift; sourceTree = "<group>"; };
 		98B93C981EBF0AF0000637B4 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		98B93C991EBF0AF0000637B4 /* VideoDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoDetailViewController.xib; sourceTree = "<group>"; };
+		98C4DBFE210872CC00DF3E25 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		98C80A051CD430BC000EAD3D /* VolumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeView.swift; sourceTree = "<group>"; };
 		98C9E7E120CB67ED006BE3AE /* RecentStudyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentStudyCollectionViewCell.swift; sourceTree = "<group>"; };
 		98C9E7E220CB67ED006BE3AE /* RecentStudyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentStudyCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -550,6 +552,7 @@
 				985C53A81D7AD1FF001A907F /* Options */,
 				98B419BE1C64803D003A2872 /* StudyViewController.swift */,
 				988D698A1C9E62AA000ED16D /* PDFViewController.swift */,
+				98C4DBFE210872CC00DF3E25 /* WebViewController.swift */,
 				98D45B9D1C86D61D004BBCBD /* AudioPlayerViewController.swift */,
 				988663ED1D55C19300010728 /* Audio */,
 				98D45B9E1C86D61D004BBCBD /* AudioPlayerViewController.xib */,
@@ -1751,6 +1754,7 @@
 				980D956C1EAF1A5F000271FE /* VBVMIConstants.m in Sources */,
 				984650F41CF0175E00F4A46F /* LessonsHeader.swift in Sources */,
 				987F02F91CF0625E00AB61FA /* DotView.swift in Sources */,
+				98C4DBFF210872CC00DF3E25 /* WebViewController.swift in Sources */,
 				980E6C0B1C7EE29B008F23D1 /* LessonTableViewCell.swift in Sources */,
 				989294CF1C8BE07E00C19095 /* _AudioPlayer.swift in Sources */,
 				98B419BF1C64803D003A2872 /* StudyViewController.swift in Sources */,
