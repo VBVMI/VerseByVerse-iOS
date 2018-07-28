@@ -21,7 +21,6 @@ public enum LessonAttributes: String {
     case studyIdentifier = "studyIdentifier"
     case teacherAid = "teacherAid"
     case title = "title"
-    case transcriptHtml = "transcriptHtml"
     case transcriptHtmlURL = "transcriptHtmlURL"
     case transcriptURL = "transcriptURL"
     case url = "url"
@@ -104,9 +103,6 @@ open class _Lesson: NSManagedObject {
 
     @NSManaged open
     var title: String
-
-    @NSManaged open
-    var transcriptHtml: String?
 
     @NSManaged open
     var transcriptHtmlURL: String?
