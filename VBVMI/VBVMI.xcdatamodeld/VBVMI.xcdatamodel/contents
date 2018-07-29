@@ -115,7 +115,7 @@
     </entity>
     <entity name="Study" representedClassName="Study" versionHashModifier="2" syncable="YES">
         <attribute name="bibleIndex" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="category" attributeType="String" syncable="YES"/>
+        <attribute name="category" attributeType="String" defaultValueString="no_category" syncable="YES"/>
         <attribute name="completed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="dateLastPlayed" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="descriptionText" attributeType="String" syncable="YES"/>
