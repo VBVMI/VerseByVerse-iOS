@@ -384,7 +384,7 @@ class StudyViewController: UITableViewController {
                     this.openVideo(url: url)
                 case .html:
                     print("opening html: \(url)")
-                    let controller = TranscriptViewController(study: this.study, lesson: lesson, transcriptURL: url)
+                    let controller = TranscriptViewController(study: this.study, lesson: lesson)
                     let nav = NavViewController(rootViewController: controller)
 //                    nav.modalTransitionStyle = .partialCurl
 //                    nav.modalPresentationStyle = .fullScreen
