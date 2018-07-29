@@ -66,7 +66,7 @@ extension LatestLessonsCollectionViewCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return latestLessons.count
+        return min(latestLessons.count, 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

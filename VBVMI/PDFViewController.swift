@@ -58,7 +58,6 @@ class PDFViewController: UIViewController {
         super.viewDidAppear(animated)
         
         self.navigationController?.hidesBarsOnTap = true
-        
         if #available(iOS 11.0, *) {
             
         } else {

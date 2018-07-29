@@ -30,6 +30,9 @@ open class Lesson: _Lesson {
         lesson.descriptionText = nullOrString(studyDescription.stringByDecodingHTMLEntities)
         
         lesson.transcriptURL = nullOrString(try JSONDict => "transcript")
+        lesson.transcriptHtmlURL = nullOrString(try JSONDict =>? "transcript_html_url")
+        lesson.url = nullOrString(try JSONDict => "url")
+        
         lesson.teacherAid = nullOrString(try JSONDict => "teacherAid")
         
         let lessonTitle: String = try JSONDict => "title"

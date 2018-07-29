@@ -101,7 +101,6 @@
         <attribute name="studyIdentifier" attributeType="String" syncable="YES"/>
         <attribute name="teacherAid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
-        <attribute name="transcriptHtml" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="transcriptHtmlURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="transcriptURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
@@ -183,7 +182,7 @@
         <element name="Channel" positionX="-9" positionY="-1053" width="128" height="195"/>
         <element name="Curriculum" positionX="-279" positionY="-1548" width="128" height="120"/>
         <element name="Event" positionX="-495" positionY="-1467" width="128" height="208"/>
-        <element name="Lesson" positionX="-324" positionY="-1467" width="128" height="375"/>
+        <element name="Lesson" positionX="-324" positionY="-1467" width="128" height="360"/>
         <element name="Study" positionX="205" positionY="-1323" width="128" height="375"/>
         <element name="StudyCategory" positionX="-288" positionY="-1557" width="128" height="105"/>
         <element name="Topic" positionX="-0" positionY="-1440" width="128" height="133"/>

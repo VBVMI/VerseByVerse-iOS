@@ -42,7 +42,6 @@ class WebViewController: UIViewController {
         self.viewable = viewable
         super.init(nibName: nil, bundle: nil)
         restorationIdentifier = "org.versebyverseministry.WebViewController"
-        configureViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,7 +53,6 @@ class WebViewController: UIViewController {
             self.viewable = viewable
             super.init(coder: aDecoder)
             restorationIdentifier = "org.versebyverseministry.WebViewController"
-            configureViews()
         } else {
             return nil
         }
@@ -62,6 +60,7 @@ class WebViewController: UIViewController {
     
     override func encode(with aCoder: NSCoder) {
         aCoder.encode(viewable.objectURIRepresentation, forKey: "viewableURL")
+        super.encode(with: aCoder)
     }
     
     override func encodeRestorableState(with coder: NSCoder) {
@@ -71,8 +70,9 @@ class WebViewController: UIViewController {
     override func decodeRestorableState(with coder: NSCoder) {
         super.decodeRestorableState(with: coder)
     }
-    
-    func configureViews() {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         view.addSubview(webView)
         

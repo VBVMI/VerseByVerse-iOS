@@ -20,10 +20,12 @@ extension ResourceManager.LessonType {
             return cell.studentAidView.button
         case .teacherAid:
             return cell.teacherAidView.button
-        case .transcript:
-            return cell.transcriptView.button
+        case .transcriptPDF:
+            return cell.transcriptPDFView.button
         case .video:
             return cell.videoView.button
+        case .transcriptHTML:
+            return cell.transcriptHTMLView.button
         }
     }
     
@@ -35,10 +37,12 @@ extension ResourceManager.LessonType {
             return cell.studentAidView
         case .teacherAid:
             return cell.teacherAidView
-        case .transcript:
-            return cell.transcriptView
+        case .transcriptPDF:
+            return cell.transcriptPDFView
         case .video:
             return cell.videoView
+        case .transcriptHTML:
+            return cell.transcriptHTMLView
         }
     }
     
@@ -85,9 +89,11 @@ class LessonTableViewCell: UITableViewCell {
     
     let videoView = ResourceIconView(frame: CGRect.zero)
     let teacherAidView = ResourceIconView(frame: CGRect.zero)
-    let transcriptView = ResourceIconView(frame: CGRect.zero)
+    let transcriptPDFView = ResourceIconView(frame: CGRect.zero)
     let audioView = ResourceIconView(frame: CGRect.zero)
     let studentAidView = ResourceIconView(frame: CGRect.zero)
+    let transcriptHTMLView = ResourceIconView(frame: .zero)
+    
     @IBOutlet weak var resourcesStackView: UIStackView!
     
     fileprivate static let buttonFont = UIFont.fontAwesome(ofSize: 20)
@@ -102,13 +108,15 @@ class LessonTableViewCell: UITableViewCell {
         resourcesStackView.addArrangedSubview(videoView)
         resourcesStackView.addArrangedSubview(teacherAidView)
         resourcesStackView.addArrangedSubview(studentAidView)
-        resourcesStackView.addArrangedSubview(transcriptView)
+        resourcesStackView.addArrangedSubview(transcriptPDFView)
+        resourcesStackView.addArrangedSubview(transcriptHTMLView)
         resourcesStackView.addArrangedSubview(audioView)
         
         videoView.isHidden = true
         teacherAidView.isHidden = true
         studentAidView.isHidden = true
-        transcriptView.isHidden = true
+        transcriptPDFView.isHidden = true
+        transcriptHTMLView.isHidden = true
         audioView.isHidden = true
         
         flag.isHidden = true
@@ -148,15 +156,25 @@ class LessonTableViewCell: UITableViewCell {
         let studentAidGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.studentAidTap(_:)))
         studentAidView.addGestureRecognizer(studentAidGesture)
         
-        let transcriptImage = IconImages(string: String.fontAwesomeIcon(name: .fileTextO))
-        transcriptImage.strokeColor = buttonTintColor
-        transcriptView.button.setImages(transcriptImage)
-        transcriptView.button.tintColor = buttonTintColor
-        transcriptView.button.setActionForTap { [weak self] (view, status) -> Void in
-            self?.urlButtonCallback?(view!, status, .transcript)
+        let transcriptPDFImage = IconImages(string: String.fontAwesomeIcon(name: .filePdfO))
+        transcriptPDFImage.strokeColor = buttonTintColor
+        transcriptPDFView.button.setImages(transcriptPDFImage)
+        transcriptPDFView.button.tintColor = buttonTintColor
+        transcriptPDFView.button.setActionForTap { [weak self] (view, status) -> Void in
+            self?.urlButtonCallback?(view!, status, .transcriptPDF)
         }
-        let transcriptGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.transcriptTap(_:)))
-        transcriptView.addGestureRecognizer(transcriptGesture)
+        let transcriptPDFGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.transcriptPDFTap(_:)))
+        transcriptPDFView.addGestureRecognizer(transcriptPDFGesture)
+        
+        let transcriptHTMLImage = IconImages(string: String.fontAwesomeIcon(name: .fileTextO))
+        transcriptHTMLImage.strokeColor = buttonTintColor
+        transcriptHTMLView.button.setImages(transcriptHTMLImage)
+        transcriptHTMLView.button.tintColor = buttonTintColor
+        transcriptHTMLView.button.setActionForTap { [weak self] (view, status) -> Void in
+            self?.urlButtonCallback?(view!, status, .transcriptHTML)
+        }
+        let transcriptHTMLGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.transcriptHTMLTap(_:)))
+        transcriptHTMLView.addGestureRecognizer(transcriptHTMLGesture)
         
         let audioImage = IconImages(string: String.fontAwesomeIcon(name: .play))
         audioImage.strokeColor = buttonTintColor
@@ -186,8 +204,12 @@ class LessonTableViewCell: UITableViewCell {
         urlButtonCallback?(audioView.button, audioView.button.currentStatus, .audio)
     }
     
-    @IBAction func transcriptTap(_ sender: AnyObject) {
-         urlButtonCallback?(transcriptView.button, transcriptView.button.currentStatus, .transcript)
+    @IBAction func transcriptHTMLTap(_ sender: AnyObject) {
+         urlButtonCallback?(transcriptPDFView.button, transcriptHTMLView.button.currentStatus, .transcriptHTML)
+    }
+    
+    @IBAction func transcriptPDFTap(_ sender: AnyObject) {
+        urlButtonCallback?(transcriptPDFView.button, transcriptPDFView.button.currentStatus, .transcriptPDF)
     }
     
     @IBAction func studentAidTap(_ sender: AnyObject) {
@@ -207,8 +229,9 @@ class LessonTableViewCell: UITableViewCell {
         videoView.isHidden = true
         teacherAidView.isHidden = true
         studentAidView.isHidden = true
-        transcriptView.isHidden = true
+        transcriptPDFView.isHidden = true
         audioView.isHidden = true
+        transcriptHTMLView.isHidden = true
         currentState = .none
     }
 }

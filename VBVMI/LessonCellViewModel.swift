@@ -56,17 +56,30 @@ struct LessonCellViewModel {
             cell.audioView.isHidden = true
         }
         
+        if let htmlTranscriptURL = lesson.transcriptHtmlURL, htmlTranscriptURL.count > 0 {
+            cell.transcriptHTMLView.isHidden = false
+            
+            if let _ = APIDataManager.fileExists(lesson, urlString: htmlTranscriptURL) {
+                cell.transcriptHTMLView.dotView.isHidden = false
+            } else {
+                cell.transcriptHTMLView.dotView.isHidden = true
+            }
+        } else {
+            cell.transcriptHTMLView.isHidden = true
+        }
+        
+        // Legacy fallback to PDF for lessons that aren't yet updated to have full size transcript
         if let transcript = lesson.transcriptURL , transcript.count > 10 {
-            cell.transcriptView.isHidden = false
+            cell.transcriptPDFView.isHidden = false
             
             if let _ = APIDataManager.fileExists(lesson, urlString: transcript) {
-                cell.transcriptView.dotView.isHidden = false
+                cell.transcriptPDFView.dotView.isHidden = false
             } else {
-                cell.transcriptView.dotView.isHidden = true
+                cell.transcriptPDFView.dotView.isHidden = true
             }
             
         } else {
-            cell.transcriptView.isHidden = true
+            cell.transcriptPDFView.isHidden = true
         }
         
         if let studentSourceURL = lesson.studentAidURL , studentSourceURL.count > 10 {
@@ -113,7 +126,8 @@ struct LessonCellViewModel {
         
         cell.audioView.button.setIndicatorStatus(.none)
         cell.teacherAidView.button.setIndicatorStatus(.none)
-        cell.transcriptView.button.setIndicatorStatus(.none)
+        cell.transcriptPDFView.button.setIndicatorStatus(.none)
+        cell.transcriptHTMLView.button.setIndicatorStatus(.none)
         cell.videoView.button.setIndicatorStatus(.none)
         cell.studentAidView.button.setIndicatorStatus(.none)
     }

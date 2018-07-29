@@ -36,17 +36,19 @@ class ResourceManager {
         case pdf
         case audio
         case video
+        case html
     }
     
     enum LessonType : Int {
         case video
         case teacherAid
         case studentAid
-        case transcript
+        case transcriptPDF
         case audio
+        case transcriptHTML
         
-        static var all: [LessonType] = [.video, .teacherAid, .studentAid, .transcript, .audio]
-        fileprivate static var downloadable: [LessonType] = [.teacherAid, .studentAid, .transcript, .audio]
+        static var all: [LessonType] = [.video, .teacherAid, .studentAid, .transcriptPDF, .audio, .transcriptHTML]
+        fileprivate static var downloadable: [LessonType] = [.teacherAid, .studentAid, .transcriptPDF, .audio, .transcriptHTML]
         
         func urlString(_ lesson: Lesson) -> String? {
             switch self {
@@ -56,10 +58,12 @@ class ResourceManager {
                 return lesson.studentAidURL
             case .teacherAid:
                 return lesson.teacherAid
-            case .transcript:
+            case .transcriptPDF:
                 return lesson.transcriptURL
             case .video:
                 return lesson.videoSourceURL
+            case .transcriptHTML:
+                return lesson.transcriptHtmlURL
             }
         }
         
@@ -69,6 +73,8 @@ class ResourceManager {
                 return .audio
             case .video:
                 return .video
+            case .transcriptHTML:
+                return .html
             default:
                 return .pdf
             }
@@ -82,10 +88,12 @@ class ResourceManager {
                 return "Slides"
             case .teacherAid:
                 return "Handout"
-            case .transcript:
+            case .transcriptPDF:
                 return "Transcript"
             case .video:
                 return "Video"
+            case .transcriptHTML:
+                return "Transcript"
             }
         }
     }
@@ -129,7 +137,7 @@ class ResourceManager {
      - parameter lesson: A lesson object
      */
     func downloadedFileUrls(_ lesson: Lesson) -> [URL] {
-        let urls = ResourceManager.LessonType.all.flatMap({ $0.urlString(lesson) }).flatMap({ APIDataManager.fileExists(lesson, urlString: $0) })
+        let urls = ResourceManager.LessonType.all.compactMap({ $0.urlString(lesson) }).compactMap({ APIDataManager.fileExists(lesson, urlString: $0) })
         return urls
     }
     

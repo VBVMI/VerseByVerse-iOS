@@ -329,85 +329,108 @@ class StudyViewController: UITableViewController {
                 let lessonIndexPath = IndexPath(row: (tableIndexPath as NSIndexPath).row, section: (tableIndexPath as NSIndexPath).section - 1)
                 let lesson = this.fetchedResultsController.object(at: lessonIndexPath)
                 
-                this.lastTappedLesson = lesson
-                this.lastTappedResource = lessonType
-                
-                if lessonType == .transcript && lesson.transcript?.length > 0 {
-                    
-                    return
-                }
-                
-                switch status {
-                case .none, .completed:
-                    ResourceManager.sharedInstance.startDownloading(lesson, resource: lessonType, completion: { (result) in
-                        guard let this = self else {
-                            return
-                        }
-                        
-                        switch result {
-                        case .error(let error):
-                            //Lame... we got an error..
-                            logger.error("\(error)")
-                        case .success(let lesson, let resource, let url):
-                            //Epic, we have the URL so lets go do a thing
-                            
-                            guard lesson == this.lastTappedLesson && resource == this.lastTappedResource else {
-                                return
-                            }
-                            this.study.dateLastPlayed = Date()
-                            lesson.dateLastPlayed = Date()
-                            try? lesson.managedObjectContext?.save()
-                            
-                            switch lessonType.fileType() {
-                            case .pdf:
-                                this.performSegue(withIdentifier: "showPDF", sender: ButtonSender(url: url, lessonType: resource))
-                            case .audio:
-                                if let audioPlayerController = this.tabBarController?.popupContent as? AudioPlayerViewController {
-                                    audioPlayerController.configure(url, name: lesson.title , subTitle: lesson.descriptionText ?? "", lesson: lesson, study: this.study)
-                                    if this.tabBarController?.popupPresentationState == .closed {
-                                        this.tabBarController?.openPopup(animated: true, completion: nil)
-                                    }
-                                } else {
-                                    let demoVC = AudioPlayerViewController()
-                                    demoVC.configure(url, name: lesson.title, subTitle: lesson.descriptionText ?? "", lesson: lesson, study: this.study)
-                                    this.tabBarController?.presentPopupBar(withContentViewController: demoVC, openPopup: true, animated: true, completion: { () -> Void in
-                                        
-                                    })
-                                }
-                            case .video:
-                                if url.absoluteString.contains("vimeo.com") {
-                                    let movieController = AVPlayerViewController()
-                                    let player = AVPlayer(url: url)
-                                    movieController.player = player
-                                    this.present(movieController, animated: true, completion: {
-                                        do {
-                                            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-                                        }
-                                        catch {
-                                            // report for an error
-                                        }
-                                        player.play()
-                                    })
-                                } else {
-                                    UIApplication.shared.openURL(url)
-                                }
-                                
-                                
-                            }
-                            
-                        }
-                    })
-                case .running, .indeterminate:
-                    ResourceManager.sharedInstance.cancelDownload(lesson, resource: lessonType)
-                }
+                this.tapped(lessonType: lessonType, for: lesson, status: status)
+                // TODO: Remove this conversion when all lessons are guaranteed to have the transcript html
+//                if lessonType == .transcriptPDF && lesson.transcriptHtmlURL?.count ?? 0 > 0 {
+//                    this.tapped(lessonType: .transcriptHTML, for: lesson, status: status)
+//                } else {
+//                    
+//                }
+//                
             }
             
             return cell
         }
     }
     
+    private func tapped(lessonType: ResourceManager.LessonType, for lesson: Lesson, status: ACPDownloadStatus) {
+        lastTappedLesson = lesson
+        lastTappedResource = lessonType
+        
+        switch status {
+        case .none, .completed:
+            downloadResource(lesson: lesson, lessonType: lessonType)
+        case .running, .indeterminate:
+            ResourceManager.sharedInstance.cancelDownload(lesson, resource: lessonType)
+        }
+    }
+    
+    private func downloadResource(lesson: Lesson, lessonType: ResourceManager.LessonType) {
+        ResourceManager.sharedInstance.startDownloading(lesson, resource: lessonType, completion: { [weak self] (result) in
+            guard let this = self else {
+                return
+            }
+            
+            switch result {
+            case .error(let error):
+                //Lame... we got an error..
+                logger.error("\(error)")
+            case .success(let lesson, let resource, let url):
+                //Epic, we have the URL so lets go do a thing
+                
+                guard lesson == this.lastTappedLesson && resource == this.lastTappedResource else {
+                    return
+                }
+                this.study.dateLastPlayed = Date()
+                lesson.dateLastPlayed = Date()
+                try? lesson.managedObjectContext?.save()
+                
+                switch lessonType.fileType() {
+                case .pdf:
+                    this.performSegue(withIdentifier: "showPDF", sender: ButtonSender(url: url, lessonType: resource))
+                case .audio:
+                    this.openAudio(lesson: lesson, url: url)
+                case .video:
+                    this.openVideo(url: url)
+                case .html:
+                    print("opening html: \(url)")
+                    let controller = TranscriptViewController(study: this.study, lesson: lesson, transcriptURL: url)
+                    let nav = NavViewController(rootViewController: controller)
+//                    nav.modalTransitionStyle = .partialCurl
+//                    nav.modalPresentationStyle = .fullScreen
+                    this.present(nav, animated: true, completion: nil)
+                }
+                
+            }
+        })
+    }
+    
+    private func openAudio(lesson: Lesson, url: URL) {
+        if let audioPlayerController = tabBarController?.popupContent as? AudioPlayerViewController {
+            audioPlayerController.configure(url, name: lesson.title , subTitle: lesson.descriptionText ?? "", lesson: lesson, study: study)
+            if tabBarController?.popupPresentationState == .closed {
+                tabBarController?.openPopup(animated: true, completion: nil)
+            }
+        } else {
+            let demoVC = AudioPlayerViewController()
+            demoVC.configure(url, name: lesson.title, subTitle: lesson.descriptionText ?? "", lesson: lesson, study: study)
+            tabBarController?.presentPopupBar(withContentViewController: demoVC, openPopup: true, animated: true, completion: { () -> Void in
+                
+            })
+        }
+    }
+    
+    private func openVideo(url: URL) {
+        if url.absoluteString.contains("vimeo.com") {
+            let movieController = AVPlayerViewController()
+            let player = AVPlayer(url: url)
+            movieController.player = player
+            self.present(movieController, animated: true, completion: {
+                do {
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                }
+                catch {
+                    // report for an error
+                }
+                player.play()
+            })
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
     fileprivate func downloadedFileUrls(_ lesson: Lesson) -> [URL] {
-        let urls = ResourceManager.LessonType.all.flatMap({ $0.urlString(lesson) }).flatMap({ APIDataManager.fileExists(lesson, urlString: $0) })
+        let urls = ResourceManager.LessonType.all.compactMap({ $0.urlString(lesson) }).compactMap({ APIDataManager.fileExists(lesson, urlString: $0) })
         return urls
     }
     
@@ -796,8 +819,11 @@ extension StudyViewController : UITextViewDelegate {
 extension StudyViewController : ResourceManagerObserver {
     
     func downloadStateChanged(_ lesson: Lesson, lessonType: ResourceManager.LessonType, downloadState: ResourceManager.DownloadState) {
+        // we need to exclude lessons that have html transcripts from doing anything if the pdf transcript is downloaded
+        
         if let indexPath = fetchedResultsController?.indexPath(forObject: lesson) {
             //Then we have a lesson in our table that needs an update.. lets see first if the cell is available
+            
             let tableIndexPath = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section + 1)
             if let cell = tableView?.cellForRow(at: tableIndexPath) as? LessonTableViewCell {
                 //Nice one, now we have a cell that we can update.. All other download notifications we can ignore because they are for someone else
