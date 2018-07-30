@@ -5,18 +5,15 @@ import Foundation
 import CoreData
 
 public enum ArticleAttributes: String {
-    case articleThumbnailAltText = "articleThumbnailAltText"
-    case articleThumbnailSource = "articleThumbnailSource"
     case authorName = "authorName"
     case authorThumbnailAltText = "authorThumbnailAltText"
     case authorThumbnailSource = "authorThumbnailSource"
-    case averageRating = "averageRating"
     case body = "body"
     case category = "category"
     case completed = "completed"
-    case descriptionText = "descriptionText"
     case identifier = "identifier"
     case postedDate = "postedDate"
+    case summary = "summary"
     case title = "title"
     case url = "url"
 }
@@ -51,12 +48,6 @@ open class _Article: NSManagedObject {
     // MARK: - Properties
 
     @NSManaged open
-    var articleThumbnailAltText: String?
-
-    @NSManaged open
-    var articleThumbnailSource: String?
-
-    @NSManaged open
     var authorName: String?
 
     @NSManaged open
@@ -64,9 +55,6 @@ open class _Article: NSManagedObject {
 
     @NSManaged open
     var authorThumbnailSource: String?
-
-    @NSManaged open
-    var averageRating: String?
 
     @NSManaged open
     var body: String?
@@ -78,13 +66,13 @@ open class _Article: NSManagedObject {
     var completed: Bool
 
     @NSManaged open
-    var descriptionText: String?
-
-    @NSManaged open
     var identifier: String
 
     @NSManaged open
     var postedDate: Date?
+
+    @NSManaged open
+    var summary: String?
 
     @NSManaged open
     var title: String?

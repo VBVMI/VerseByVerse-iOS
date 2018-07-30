@@ -181,6 +181,8 @@
 		98D45B9F1C86D61D004BBCBD /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D45B9D1C86D61D004BBCBD /* AudioPlayerViewController.swift */; };
 		98D45BA01C86D61D004BBCBD /* AudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D45B9E1C86D61D004BBCBD /* AudioPlayerViewController.xib */; };
 		98DE6E851CA2A83500C039C0 /* AboutActionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */; };
+		98DF450A210EFECC007BB13D /* HTMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DF4509210EFECC007BB13D /* HTMLBuilder.swift */; };
+		98DF450C210F059B007BB13D /* Header.html in Resources */ = {isa = PBXBuildFile; fileRef = 98DF450B210F059B007BB13D /* Header.html */; };
 		98E672A91D9FC6E1001E7F77 /* CenteredProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E672A81D9FC6E1001E7F77 /* CenteredProgressView.swift */; };
 		98E8AFC2200DEB0A00C672F6 /* Curriculum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E8AFBE200DEB0900C672F6 /* Curriculum.swift */; };
 		98E8AFC3200DEB0A00C672F6 /* _Curriculum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E8AFBF200DEB0900C672F6 /* _Curriculum.swift */; };
@@ -439,6 +441,8 @@
 		98D45BA11C86FAB4004BBCBD /* VBVMI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VBVMI-Bridging-Header.h"; sourceTree = "<group>"; };
 		98D759F71FF31DC200E4B192 /* categories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = categories.json; path = APISampleData/categories.json; sourceTree = "<group>"; };
 		98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutActionsController.swift; sourceTree = "<group>"; };
+		98DF4509210EFECC007BB13D /* HTMLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLBuilder.swift; sourceTree = "<group>"; };
+		98DF450B210F059B007BB13D /* Header.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Header.html; sourceTree = "<group>"; };
 		98E672A81D9FC6E1001E7F77 /* CenteredProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteredProgressView.swift; sourceTree = "<group>"; };
 		98E8AFBE200DEB0900C672F6 /* Curriculum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Curriculum.swift; path = Model/Curriculum.swift; sourceTree = "<group>"; };
 		98E8AFBF200DEB0900C672F6 /* _Curriculum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Curriculum.swift; path = Model/_Curriculum.swift; sourceTree = "<group>"; };
@@ -621,6 +625,7 @@
 				98CB0E351CA632B500C99D34 /* TopicLabel.swift */,
 				98AB57721CB3CEE600B10591 /* UIAlertController+Show.h */,
 				98AB57731CB3CEE600B10591 /* UIAlertController+Show.m */,
+				98DF4509210EFECC007BB13D /* HTMLBuilder.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -715,6 +720,7 @@
 				98D45BA11C86FAB4004BBCBD /* VBVMI-Bridging-Header.h */,
 				98FABAC220EA1B2800EAB75A /* StudyDescription.html */,
 				984C1EB9210C1BD100CE4C57 /* StudyTranscript.html */,
+				98DF450B210F059B007BB13D /* Header.html */,
 				980D95691EAF18BB000271FE /* VBVMIConstants.h */,
 				980D956B1EAF1A5F000271FE /* VBVMIConstants.m */,
 				980D956A1EAF1A5E000271FE /* VBVMI-tvOS-Bridging-Header.h */,
@@ -1196,6 +1202,7 @@
 				986C2F1B1D339A1500F595FF /* VideoTableViewCell.xib in Resources */,
 				98644DA01C61F14C00EB27F1 /* StudyCellCollectionViewCell.xib in Resources */,
 				98D45BA01C86D61D004BBCBD /* AudioPlayerViewController.xib in Resources */,
+				98DF450C210F059B007BB13D /* Header.html in Resources */,
 				98CB0E3D1CA74E7F00C99D34 /* TopicViewController.xib in Resources */,
 				988D69891C9D51E6000ED16D /* AnswerBodyTableViewCell.xib in Resources */,
 				985C53A71D7ACFA5001A907F /* StudiesOptions.storyboard in Resources */,
@@ -1787,6 +1794,7 @@
 				988D698B1C9E62AA000ED16D /* PDFViewController.swift in Sources */,
 				98611CB11C96A6610070FCCD /* Channel.swift in Sources */,
 				98AC05D71C8438670037D54A /* IconImages.swift in Sources */,
+				98DF450A210EFECC007BB13D /* HTMLBuilder.swift in Sources */,
 				986C2F171D3395F700F595FF /* ChannelViewController.swift in Sources */,
 				98FF47551D292640008E27F4 /* _Video.swift in Sources */,
 				98E672A91D9FC6E1001E7F77 /* CenteredProgressView.swift in Sources */,

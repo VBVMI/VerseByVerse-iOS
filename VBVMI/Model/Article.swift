@@ -20,27 +20,20 @@ open class Article: _Article {
         article.identifier = try JSONDict => "ID"
         article.category = nullOrString(try JSONDict => "category")
         
-        if let dateString: String = try JSONDict => "postedDate" {
-            article.postedDate = Date.dateFromTimeString(dateString)
+        if let dateString: TimeInterval = try JSONDict => "postedDate" {
+            article.postedDate = Date(timeIntervalSince1970: dateString)
         }
         
         article.authorThumbnailSource = nullOrString(try JSONDict => "authorThumbnailSource")
         article.authorThumbnailAltText = nullOrString(try JSONDict => "authorThumbnailAltText")
         
-        article.averageRating = nullOrString(try JSONDict => "averageRating")
+        article.summary = nullOrString(try JSONDict =>? "summary")
         article.authorName = nullOrString(try JSONDict => "authorName")
         
-        article.articleThumbnailAltText = nullOrString(try JSONDict => "articleThumbnailAltText")
-        article.articleThumbnailSource = nullOrString(try JSONDict => "articleThumbnailSource")
         article.url = nullOrString(try? JSONDict => "url")
-//        if let thumbSource = article.articleThumbnailSource {
-//            article.articleThumbnailSource = thumbSource.stringByReplacingOccurrencesOfString("SMALL", withString: "")
-//        }
-        
-        let articleDescription: String = try JSONDict => "description"
-        article.descriptionText = nullOrString(articleDescription.stringByDecodingHTMLEntities)
+
         let articleBody: String = try JSONDict => "body"
-        article.body = articleBody.stringByDecodingHTMLEntities
+        article.body = articleBody
         
         let articleTitle: String = try JSONDict => "title"
         article.title = nullOrString(articleTitle.stringByDecodingHTMLEntities)
