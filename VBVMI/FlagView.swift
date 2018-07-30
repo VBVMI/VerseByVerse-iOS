@@ -45,9 +45,7 @@ class FlagView: UIView {
             make.width.equalTo(80).priority(500)
         }
         label.textAlignment = .right
-//        self.layer.cornerRadius = 2
-//        self.layer.borderWidth = 1
-//        self.layer.borderColor = StyleKit.orange.cgColor
+        self.backgroundColor = .clear
         
         label.textColor = StyleKit.orange
         label.font = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)
