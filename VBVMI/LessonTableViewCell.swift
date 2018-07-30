@@ -57,7 +57,7 @@ class LessonTableViewCell: UITableViewCell {
         
         var title: String? {
             switch self {
-            case .current: return "PREVIOUS"
+            case .current: return nil
             case .next: return "NEXT"
             case .none: return nil
             }
@@ -65,8 +65,8 @@ class LessonTableViewCell: UITableViewCell {
         
         var isHidden: Bool {
             switch self {
-            case .current, .next: return false
-            case .none: return true
+            case .next: return false
+            case .current, .none: return true
             }
         }
     }
