@@ -154,6 +154,9 @@ class ArticlesViewController: UITableViewController {
         cell.titleLabel.text = article.title
         cell.titleLabel.textColor = article.completed ? StyleKit.darkGrey : StyleKit.orange
         cell.authorLabel.text = article.authorName
+        
+        cell.summaryText = article.summary?.stringByDecodingHTMLEntities.byConvertingHTMLToPlainText()
+        
         let topics = article.topics
         if topics.count > 0 {
             

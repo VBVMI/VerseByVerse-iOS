@@ -14,6 +14,22 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var topicLayoutView: TopicLayoutView!
+    @IBOutlet weak var summaryLabel: UILabel!
+    
+    
+    var summaryText: String? {
+        get {
+            return summaryLabel.text
+        }
+        set {
+            summaryLabel.text = newValue
+            if let newValue = newValue, newValue.count > 0 {
+                summaryLabel.isHidden = false
+            } else {
+                summaryLabel.isHidden = true
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,6 +44,15 @@ class ArticleTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        authorLabel.text = nil
+        dateLabel.text = nil
+        topicLayoutView.topics = []
+        summaryText = nil
     }
     
 }
