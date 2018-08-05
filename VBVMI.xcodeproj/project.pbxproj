@@ -124,6 +124,7 @@
 		989294CC1C8BCE4500C19095 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989294CB1C8BCE4500C19095 /* SoundManager.swift */; };
 		989294CF1C8BE07E00C19095 /* _AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989294CD1C8BE07E00C19095 /* _AudioPlayer.swift */; };
 		989294D01C8BE07E00C19095 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989294CE1C8BE07E00C19095 /* AudioPlayer.swift */; };
+		989601B22116E45800A2B0CB /* ArticleBody.html in Resources */ = {isa = PBXBuildFile; fileRef = 989601B12116E45800A2B0CB /* ArticleBody.html */; };
 		989AC5141DB4C0B600A825EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AC5131DB4C0B600A825EB /* AppDelegate.swift */; };
 		989AC5161DB4C0B600A825EB /* StudiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AC5151DB4C0B600A825EB /* StudiesViewController.swift */; };
 		989AC5181DB4C0B600A825EB /* VideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AC5171DB4C0B600A825EB /* VideosViewController.swift */; };
@@ -401,6 +402,7 @@
 		989294CB1C8BCE4500C19095 /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		989294CD1C8BE07E00C19095 /* _AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _AudioPlayer.swift; path = Model/_AudioPlayer.swift; sourceTree = "<group>"; };
 		989294CE1C8BE07E00C19095 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayer.swift; path = Model/AudioPlayer.swift; sourceTree = "<group>"; };
+		989601B12116E45800A2B0CB /* ArticleBody.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = ArticleBody.html; sourceTree = "<group>"; };
 		989AC5111DB4C0B600A825EB /* VBVMI-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VBVMI-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		989AC5131DB4C0B600A825EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		989AC5151DB4C0B600A825EB /* StudiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudiesViewController.swift; sourceTree = "<group>"; };
@@ -719,6 +721,7 @@
 				9828D4221C5D9F4A004FA954 /* Info.plist */,
 				98D45BA11C86FAB4004BBCBD /* VBVMI-Bridging-Header.h */,
 				98FABAC220EA1B2800EAB75A /* StudyDescription.html */,
+				989601B12116E45800A2B0CB /* ArticleBody.html */,
 				984C1EB9210C1BD100CE4C57 /* StudyTranscript.html */,
 				98DF450B210F059B007BB13D /* Header.html */,
 				980D95691EAF18BB000271FE /* VBVMIConstants.h */,
@@ -1208,6 +1211,7 @@
 				985C53A71D7ACFA5001A907F /* StudiesOptions.storyboard in Resources */,
 				9828D4211C5D9F4A004FA954 /* LaunchScreen.storyboard in Resources */,
 				982E37621D31ECF900FD9A93 /* Settings.bundle in Resources */,
+				989601B22116E45800A2B0CB /* ArticleBody.html in Resources */,
 				985C53B41D7AD939001A907F /* StaticCell.xib in Resources */,
 				9828D41E1C5D9F4A004FA954 /* Assets.xcassets in Resources */,
 				988D69851C9D51D2000ED16D /* AnswerHeaderTableViewCell.xib in Resources */,

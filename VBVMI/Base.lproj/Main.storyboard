@@ -229,31 +229,27 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Articles" id="PuY-MH-pb2"/>
                     <connections>
-                        <segue destination="rXV-Ac-x65" kind="show" identifier="showArticle" id="Rae-2B-pTm"/>
+                        <segue destination="x2k-WN-EcB" kind="show" identifier="showArticle" id="hyQ-FA-2W9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="76g-mi-0jR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1737" y="97"/>
         </scene>
-        <!--Title-->
-        <scene sceneID="jaJ-hj-om7">
+        <!--Article View Controller-->
+        <scene sceneID="Ygd-gq-wJq">
             <objects>
-                <tableViewController storyboardIdentifier="Article" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rXV-Ac-x65" customClass="ArticleViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="OXw-EG-MO8">
+                <viewController id="x2k-WN-EcB" customClass="ArticleViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fp5-F9-Wcf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <connections>
-                            <outlet property="dataSource" destination="rXV-Ac-x65" id="THD-ku-mNJ"/>
-                            <outlet property="delegate" destination="rXV-Ac-x65" id="dE8-lH-Vhl"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="Yp9-tk-rze"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jrr-t2-XuT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="QgJ-nv-BUM"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8gr-0d-Eu4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2606" y="97"/>
+            <point key="canvasLocation" x="2710" y="97"/>
         </scene>
         <!--Title-->
         <scene sceneID="qAV-Vf-cv2">

@@ -8,24 +8,25 @@
 
 import UIKit
 import AlamofireImage
+import WebKit
 
 
-class ArticleViewController: UITableViewController {
+class ArticleViewController: UIViewController {
 
+    private let htmlBody = try! String(contentsOf: Bundle.main.url(forResource: "ArticleBody", withExtension: "html")!, encoding: .utf8)
+    
     private let activity = NSUserActivity(activityType: "org.versebyverseministry.www")
+    
+    private let webView: WKWebView = {
+        let configuration = WKWebViewConfiguration()
+        let webView = WKWebView(frame: .zero, configuration: configuration)
+        return webView
+    }()
     
     var article: Article! {
         didSet {
             self.navigationItem.title = article.title
-            if let body = article.body {
-                bodyPieces = body.components(separatedBy: "\r\n\r\n")
-                if bodyPieces.count > 1 {
-                    let str = "\(bodyPieces[0])\r\n\r\n\(bodyPieces[1])"
-                    bodyPieces.remove(at: 0)
-                    bodyPieces.remove(at: 0)
-                    bodyPieces.insert(str, at: 0)
-                }
-            }
+            loadArticle(article)
             
             if let urlString = article.url, let url = URL(string: urlString) {
                 activity.title = article.title
@@ -35,8 +36,6 @@ class ArticleViewController: UITableViewController {
         }
     }
     var dateFormatter = DateFormatter()
-    
-    var bodyPieces = [String]()
     
     override func encodeRestorableState(with coder: NSCoder) {
         coder.encode(article.identifier, forKey: "articleIdentifier")
@@ -63,12 +62,13 @@ class ArticleViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.addSubview(webView)
+        webView.snp.makeConstraints { (make) in
+            make.edges.equalTo(0)
+        }
+        
         dateFormatter.dateStyle = .medium
         
-        tableView.register(UINib(nibName: Cell.NibName.ArticleHeader, bundle: nil), forCellReuseIdentifier: Cell.Identifier.ArticleHeader)
-        tableView.register(UINib(nibName: Cell.NibName.ArticleBody, bundle: nil), forCellReuseIdentifier: Cell.Identifier.ArticleBody)
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        tableView.rowHeight = UITableViewAutomaticDimension
         let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
         self.navigationItem.rightBarButtonItem = shareButton
     }
@@ -97,117 +97,38 @@ class ArticleViewController: UITableViewController {
             }
         }
     }
-    /*
-    // MARK: - Navigation
+    
+    private func loadArticle(_ article: Article) {
+        let body = article.body ?? ""
+        var htmlContent = htmlBody.replacingAll(matching: "ARTICLE_CONTENT", with: body)
+        
+        let date = article.postedDate
+        let dateString: String
+        if let date = date {
+            dateString = dateFormatter.string(from: date)
+        } else {
+            dateString = ""
+        }
+        htmlContent.replaceAll(matching: "ARTICLE_DATE", with: dateString)
+        htmlContent.replaceAll(matching: "AUTHOR_NAME", with: article.authorName ?? "")
+        htmlContent.replaceAll(matching: "ARTICLE_TITLE", with: article.title ?? "")
+        
+        let imageTag : String
+        if let imageURL = article.authorThumbnailSource {
+            imageTag = "<img class=\"author_image\" src=\"\(imageURL)\" align=\"left\" alt=\"\(article.authorName ?? "")\" />"
+        } else {
+            imageTag = ""
+        }
+        
+        htmlContent.replaceAll(matching: "AUTHOR_IMAGE", with: imageTag)
+        webView.loadHTMLString(htmlContent, baseURL: URL(string: "https://versebyverseministry.org/")!)
+    }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return bodyPieces.count
-        default:
-            return 0
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch (indexPath as NSIndexPath).section {
-        case 0:
-            return 100
-        case 1:
-            return 150
-        default:
-            return 0
-        }
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch (indexPath as NSIndexPath).section {
-        case 0:
-            switch (indexPath as NSIndexPath).row {
-            case 0:
-                let cell = tableView.dequeueReusableCell(withIdentifier: Cell.Identifier.ArticleHeader, for: indexPath) as! ArticleHeaderTableViewCell
-                
-                if let title = article.title {
-                    cell.titleLabel.text = title
-                    cell.titleLabel.isHidden = false
-                } else {
-                    cell.titleLabel.isHidden = true
-                }
-                
-                if let author = article.authorName {
-                    cell.authorLabel.text = author
-                    cell.authorLabel.isHidden = false
-                } else {
-                    cell.authorLabel.isHidden = true
-                }
-                
-                if let date = article.postedDate {
-                    cell.postedDateLabel.text = dateFormatter.string(from: date as Date)
-                    cell.postedDateLabel.isHidden = false
-                } else {
-                    cell.postedDateLabel.isHidden = true
-                }
-                
-                return cell
-            default:
-                fatalError()
-            }
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: Cell.Identifier.ArticleBody, for: indexPath) as! ArticleBodyTableViewCell
-            
-            cell.bodyTextView.text = bodyPieces[(indexPath as NSIndexPath).row]
-            
-            if (indexPath as NSIndexPath).row == 0 {
-                cell.hasImage = true
-                if let urlString = article.authorThumbnailSource, let url = URL(string: urlString) {
-                    cell.authorImageView?.af_setImage(withURL: url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.crossDissolve(0.25), runImageTransitionIfCached: false)
-                }
-            } else {
-                cell.hasImage = false
-                cell.authorImageView.image = nil
-            }
-            return cell
-        default:
-            fatalError()
-        }
-        if (indexPath as NSIndexPath).section == 0 {
-            if (indexPath as NSIndexPath).row == 0 {
-
-            } else if (indexPath as NSIndexPath).row == 1 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: Cell.Identifier.ArticleBody, for: indexPath) as! ArticleBodyTableViewCell
-                
-                cell.bodyTextView.text = article.body
-                
-                if let urlString = article.authorThumbnailSource, let url = URL(string: urlString) {
-                    cell.authorImageView?.af_setImage(withURL: url, placeholderImage: nil, filter: nil, imageTransition: UIImageView.ImageTransition.crossDissolve(0.25), runImageTransitionIfCached: false)
-                }
-                
-                return cell
-            }
-        }
-        fatalError()
-    }
-    
     override func viewDidLayoutSubviews() {
         if #available(iOS 11, *) {
             
         } else {
-            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
-            tableView.contentInset = insets
-            tableView.scrollIndicatorInsets = insets
+            //let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
         }
        
     }
