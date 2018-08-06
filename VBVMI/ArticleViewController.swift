@@ -115,7 +115,7 @@ class ArticleViewController: UIViewController {
         
         let imageTag : String
         if let imageURL = article.authorThumbnailSource {
-            imageTag = "<img class=\"author_image\" src=\"\(imageURL)\" align=\"left\" alt=\"\(article.authorName ?? "")\" />"
+            imageTag = "<img id=\"author_image\" src=\"\(imageURL)\" align=\"left\" alt=\"\(article.authorName ?? "")\" />"
         } else {
             imageTag = ""
         }
