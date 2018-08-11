@@ -24,7 +24,7 @@ open class Lesson: _Lesson {
             lesson.postedDate = date
         }
         
-        lesson.lessonIndex = try JSONDict => "index"
+        lesson.lessonIndex = (try JSONDict =>? "index") ?? lesson.lessonIndex
         
         let studyDescription: String = try JSONDict => "description"
         lesson.descriptionText = nullOrString(studyDescription.stringByDecodingHTMLEntities)

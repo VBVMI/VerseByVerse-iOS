@@ -139,9 +139,10 @@ class StudyViewController: UITableViewController {
         fetchRequest.entity = Lesson.entity(managedObjectContext: context)
         
         let sectionSort = NSSortDescriptor(key: LessonAttributes.completed.rawValue, ascending: true, selector: #selector(NSNumber.compare(_:)))
-        let indexSort = NSSortDescriptor(key: LessonAttributes.lessonIndex.rawValue, ascending: true, selector: #selector(NSNumber.compare(_:)))
+        let placeholderSort = NSSortDescriptor(key: LessonAttributes.isPlaceholder.rawValue, ascending: true, selector: #selector(NSNumber.compare(_:)))
+        let indexSort = NSSortDescriptor(key: LessonAttributes.postedDate.rawValue, ascending: true, selector: #selector(NSNumber.compare(_:)))
         
-        fetchRequest.sortDescriptors = [sectionSort, indexSort]
+        fetchRequest.sortDescriptors = [sectionSort,placeholderSort, indexSort]
         fetchRequest.predicate = NSPredicate(format: "%K == %@", LessonAttributes.studyIdentifier.rawValue, study.identifier)
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: "completed", cacheName: nil)
         
