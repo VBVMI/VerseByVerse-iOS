@@ -2,17 +2,11 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="2">
     <entity name="Answer" representedClassName="Answer" syncable="YES">
         <attribute name="authorName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="authorThumbnailAltText" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="authorThumbnailSource" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="averageRating" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="completed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifier" attributeType="String" syncable="YES"/>
         <attribute name="postedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="qaThumbnailAltText" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="qaThumbnailSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="topics" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Topic" inverseName="answers" inverseEntity="Topic" syncable="YES"/>
@@ -173,7 +167,7 @@
         </fetchIndex>
     </entity>
     <elements>
-        <element name="Answer" positionX="-164" positionY="-1713" width="128" height="268"/>
+        <element name="Answer" positionX="-164" positionY="-1713" width="128" height="180"/>
         <element name="Article" positionX="205" positionY="-1656" width="128" height="225"/>
         <element name="AudioPlayer" positionX="-209" positionY="-1062" width="128" height="131"/>
         <element name="Channel" positionX="-9" positionY="-1053" width="128" height="195"/>

@@ -23,22 +23,14 @@ open class Answer: _Answer {
             answer.postedDate = Date.dateFromTimeString(dateString)
         }
         
-        answer.authorThumbnailSource = nullOrString(try JSONDict => "authorThumbnailSource")
-        answer.authorThumbnailAltText = nullOrString(try JSONDict => "authorThumbnailAltText")
-        
-        answer.averageRating = nullOrString(try JSONDict => "averageRating")
         answer.authorName = nullOrString(try JSONDict => "authorName")
         
-        answer.qaThumbnailAltText = nullOrString(try JSONDict => "qAndAThumbnailAltText")
-        answer.qaThumbnailSource = nullOrString(try JSONDict => "qAndAThumbnailSource")
         answer.url = nullOrString(try? JSONDict => "url")
         
         //        if let thumbSource = article.articleThumbnailSource {
         //            article.articleThumbnailSource = thumbSource.stringByReplacingOccurrencesOfString("SMALL", withString: "")
         //        }
         
-        let articleDescription: String = try JSONDict => "description"
-        answer.descriptionText = nullOrString(articleDescription.stringByDecodingHTMLEntities)
         let articleBody: String = try JSONDict => "body"
         answer.body = articleBody.stringByDecodingHTMLEntities
         

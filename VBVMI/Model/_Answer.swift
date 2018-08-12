@@ -6,17 +6,11 @@ import CoreData
 
 public enum AnswerAttributes: String {
     case authorName = "authorName"
-    case authorThumbnailAltText = "authorThumbnailAltText"
-    case authorThumbnailSource = "authorThumbnailSource"
-    case averageRating = "averageRating"
     case body = "body"
     case category = "category"
     case completed = "completed"
-    case descriptionText = "descriptionText"
     case identifier = "identifier"
     case postedDate = "postedDate"
-    case qaThumbnailAltText = "qaThumbnailAltText"
-    case qaThumbnailSource = "qaThumbnailSource"
     case title = "title"
     case url = "url"
 }
@@ -54,15 +48,6 @@ open class _Answer: NSManagedObject {
     var authorName: String?
 
     @NSManaged open
-    var authorThumbnailAltText: String?
-
-    @NSManaged open
-    var authorThumbnailSource: String?
-
-    @NSManaged open
-    var averageRating: String?
-
-    @NSManaged open
     var body: String?
 
     @NSManaged open
@@ -72,19 +57,10 @@ open class _Answer: NSManagedObject {
     var completed: Bool
 
     @NSManaged open
-    var descriptionText: String?
-
-    @NSManaged open
     var identifier: String
 
     @NSManaged open
     var postedDate: Date?
-
-    @NSManaged open
-    var qaThumbnailAltText: String?
-
-    @NSManaged open
-    var qaThumbnailSource: String?
 
     @NSManaged open
     var title: String?
