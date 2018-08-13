@@ -9,7 +9,115 @@
 import UIKit
 import AlamofireImage
 import WebKit
+import CoreData
 
+protocol HtmlArticle : class, ObjectURIRepresentable {
+    var articleTitle: String { get }
+    var articleURL: String { get }
+    var articleBody: String { get }
+    var articleAuthor: String? { get }
+    var articleDate: Date? { get }
+    var articleAuthorImage: String? { get }
+    var articleCompleted: Bool { get set }
+    var managedObjectContext: NSManagedObjectContext? { get }
+    var showAuthor: Bool { get }
+    var showTitle: Bool { get }
+}
+
+extension Article: HtmlArticle {
+    var articleTitle: String {
+        return self.title ?? ""
+    }
+    
+    var articleURL: String {
+        return self.url ?? ""
+    }
+    
+    var articleBody: String {
+        return self.body ?? ""
+    }
+    
+    var articleAuthor: String? {
+        if let name = self.authorName, name.count > 0 {
+            return name
+        }
+        return nil
+    }
+    
+    var articleDate: Date? {
+        return self.postedDate
+    }
+    
+    var articleAuthorImage: String? {
+        if let name = self.authorThumbnailSource, name.count > 0 {
+            return name
+        }
+        return nil
+    }
+    
+    var articleCompleted: Bool {
+        get {
+            return completed
+        }
+        set {
+            completed = newValue
+        }
+    }
+    
+    var showTitle: Bool {
+        return true
+    }
+    
+    var showAuthor: Bool {
+        return true
+    }
+}
+
+extension Answer: HtmlArticle {
+    var articleTitle: String {
+        return self.title ?? ""
+    }
+    
+    var articleURL: String {
+        return self.url ?? ""
+    }
+    
+    var articleBody: String {
+        return self.body ?? ""
+    }
+    
+    var articleAuthor: String? {
+        if let name = self.authorName, name.count > 0 {
+            return name
+        }
+        return nil
+    }
+    
+    var articleDate: Date? {
+        return self.postedDate
+    }
+    
+    var articleAuthorImage: String? {
+        return nil
+    }
+    
+    var articleCompleted: Bool {
+        get {
+            return completed
+        }
+        set {
+            completed = newValue
+        }
+    }
+    
+    var showTitle: Bool {
+        return false
+    }
+    
+    var showAuthor: Bool {
+        return false
+    }
+}
 
 class ArticleViewController: UIViewController {
 
@@ -23,13 +131,13 @@ class ArticleViewController: UIViewController {
         return webView
     }()
     
-    var article: Article! {
+    var article: HtmlArticle! {
         didSet {
-            self.navigationItem.title = article.title
+            self.navigationItem.title = article.articleTitle
             loadArticle(article)
             
-            if let urlString = article.url, let url = URL(string: urlString) {
-                activity.title = article.title
+            if let url = URL(string: article.articleURL) {
+                activity.title = article.articleTitle
                 activity.webpageURL = url
                 activity.becomeCurrent()
             }
@@ -38,19 +146,17 @@ class ArticleViewController: UIViewController {
     var dateFormatter = DateFormatter()
     
     override func encodeRestorableState(with coder: NSCoder) {
-        coder.encode(article.identifier, forKey: "articleIdentifier")
+        coder.encode(article.objectURIRepresentation, forKey: "articleIdentifier")
         super.encodeRestorableState(with: coder)
     }
     
     override func decodeRestorableState(with coder: NSCoder) {
-        guard let identifier = coder.decodeObject(forKey: "articleIdentifier") as? String else {
+        guard let identifier = coder.decodeObject(forKey: "articleIdentifier") as? URL else {
             fatalError()
         }
-        let context = ContextCoordinator.sharedInstance.managedObjectContext!
-        guard let article: Article = Article.findFirstWithPredicate(NSPredicate(format: "%K == %@", ArticleAttributes.identifier.rawValue, identifier), context: context) else {
-            fatalError()
-        }
-        self.article = article
+        let context = ContextCoordinator.sharedInstance.managedObjectContext
+        let object = context?.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: identifier)
+        self.article = object as! HtmlArticle
         super.decodeRestorableState(with: coder)
     }
     
@@ -74,7 +180,7 @@ class ArticleViewController: UIViewController {
     }
     
     @objc func shareAction(_ button: Any) {
-        guard let urlString = article?.url, let url = URL(string: urlString) else { return }
+        guard let url = URL(string: article.articleURL) else { return }
         
         let actionSheet = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         present(actionSheet, animated: true, completion: nil)
@@ -88,8 +194,8 @@ class ArticleViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if article.completed == false {
-            article.completed = true
+        if article.articleCompleted == false {
+            article.articleCompleted = true
             do {
                 try article.managedObjectContext?.save()
             } catch {
@@ -98,11 +204,11 @@ class ArticleViewController: UIViewController {
         }
     }
     
-    private func loadArticle(_ article: Article) {
-        let body = article.body ?? ""
+    private func loadArticle(_ article: HtmlArticle) {
+        let body = article.articleBody
         var htmlContent = htmlBody.replacingAll(matching: "ARTICLE_CONTENT", with: body)
         
-        let date = article.postedDate
+        let date = article.articleDate
         let dateString: String
         if let date = date {
             dateString = dateFormatter.string(from: date)
@@ -110,12 +216,12 @@ class ArticleViewController: UIViewController {
             dateString = ""
         }
         htmlContent.replaceAll(matching: "ARTICLE_DATE", with: dateString)
-        htmlContent.replaceAll(matching: "AUTHOR_NAME", with: article.authorName ?? "")
-        htmlContent.replaceAll(matching: "ARTICLE_TITLE", with: article.title ?? "")
+        htmlContent.replaceAll(matching: "AUTHOR_NAME", with: article.showAuthor ? article.articleAuthor ?? "" : "")
+        htmlContent.replaceAll(matching: "ARTICLE_TITLE", with: article.showTitle ? article.articleTitle : "")
         
         let imageTag : String
-        if let imageURL = article.authorThumbnailSource {
-            imageTag = "<img id=\"author_image\" src=\"\(imageURL)\" align=\"left\" alt=\"\(article.authorName ?? "")\" />"
+        if article.showAuthor, let imageURL = article.articleAuthorImage {
+            imageTag = "<img id=\"author_image\" src=\"\(imageURL)\" align=\"left\" alt=\"\(article.articleAuthor ?? "")\" />"
         } else {
             imageTag = ""
         }

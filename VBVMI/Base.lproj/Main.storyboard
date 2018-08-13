@@ -251,25 +251,6 @@
             </objects>
             <point key="canvasLocation" x="2710" y="97"/>
         </scene>
-        <!--Title-->
-        <scene sceneID="qAV-Vf-cv2">
-            <objects>
-                <tableViewController storyboardIdentifier="Answer" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BgG-Wm-fdE" customClass="AnswerViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZRq-5Y-4bO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <connections>
-                            <outlet property="dataSource" destination="BgG-Wm-fdE" id="237-pH-Jcj"/>
-                            <outlet property="delegate" destination="BgG-Wm-fdE" id="UBc-y2-OMt"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="r5p-hb-D9o"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="21E-CH-681" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2364" y="823"/>
-        </scene>
         <!--Articles-->
         <scene sceneID="BRF-QX-awg">
             <objects>
@@ -307,7 +288,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Answers" id="94w-k8-CGj"/>
                     <connections>
-                        <segue destination="BgG-Wm-fdE" kind="show" identifier="showAnswer" id="qbQ-To-7CH"/>
+                        <segue destination="x2k-WN-EcB" kind="show" identifier="showAnswer" id="3XH-Fb-sE3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U5W-wX-9qg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -429,4 +410,7 @@
             <point key="canvasLocation" x="497" y="863"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="3XH-Fb-sE3"/>
+    </inferredMetricsTieBreakers>
 </document>

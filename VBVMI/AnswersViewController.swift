@@ -195,8 +195,8 @@ class AnswersViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let answer = sender as? Answer {
-            if let destinationViewController = segue.destination as? AnswerViewController {
-                destinationViewController.answer = answer
+            if let destinationViewController = segue.destination as? ArticleViewController {
+                destinationViewController.article = answer
             }
         }
     }

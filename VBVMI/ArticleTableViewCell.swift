@@ -37,6 +37,7 @@ class ArticleTableViewCell: UITableViewCell {
 //        topicTextView.textContainerInset = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
         authorLabel.textColor = StyleKit.darkGrey
         dateLabel.textColor = StyleKit.midGrey
+        summaryText = nil
         
     }
 
