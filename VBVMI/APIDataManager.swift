@@ -163,7 +163,7 @@ class APIDataManager {
     }
     
     static func latestAnswers() {
-        downloadToJSONArray(JsonAPI.qAp, arrayNode: "QandAPosts", conversionBlock: { (context, JSONArray) -> () in
+        downloadToJSONArray(JsonAPI.qAp, arrayNode: "answers", conversionBlock: { (context, JSONArray) -> () in
             var count = 0
             for JSONModel in JSONArray {
                 let article = try Answer.decodeJSON(JSONModel, context: context)
@@ -182,7 +182,7 @@ class APIDataManager {
     }
     
     static func allTheAnswers(_ completion:(()->())? = nil) {
-        downloadToJSONArray(JsonAPI.qa, arrayNode: "QandAPosts", conversionBlock: { (context, JSONArray) -> () in
+        downloadToJSONArray(JsonAPI.qa, arrayNode: "answers", conversionBlock: { (context, JSONArray) -> () in
             let existingAnswers: [Answer] = Answer.findAll(context)
             
             var existingAnswerIds = Set<String>(existingAnswers.map( { $0.identifier } ))

@@ -19,20 +19,16 @@ open class Answer: _Answer {
         answer.identifier = try JSONDict => "ID"
         answer.category = nullOrString(try JSONDict => "category")
         
-        if let dateString: String = try JSONDict => "postedDate" {
-            answer.postedDate = Date.dateFromTimeString(dateString)
+        if let dateString: TimeInterval = try JSONDict => "postedDate" {
+            answer.postedDate = Date(timeIntervalSince1970: dateString)
         }
         
         answer.authorName = nullOrString(try JSONDict => "authorName")
         
         answer.url = nullOrString(try? JSONDict => "url")
-        
-        //        if let thumbSource = article.articleThumbnailSource {
-        //            article.articleThumbnailSource = thumbSource.stringByReplacingOccurrencesOfString("SMALL", withString: "")
-        //        }
-        
+
         let articleBody: String = try JSONDict => "body"
-        answer.body = articleBody.stringByDecodingHTMLEntities
+        answer.body = articleBody
         
         let articleTitle: String = try JSONDict => "title"
         answer.title = nullOrString(articleTitle.stringByDecodingHTMLEntities)

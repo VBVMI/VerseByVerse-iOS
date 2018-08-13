@@ -102,14 +102,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
 //            APIDataManager.allTheChannels()
 //
-//            let reachability = Reachability()
-//            if reachability?.connection == .wifi {
-//                APIDataManager.allTheArticles()
-//                APIDataManager.allTheAnswers()
-//            } else {
-//                APIDataManager.latestArticles()
-//                APIDataManager.latestAnswers()
-//            }
+            let reachability = Reachability()
+            if reachability?.connection == .wifi {
+                APIDataManager.allTheArticles()
+                APIDataManager.allTheAnswers()
+            } else {
+                APIDataManager.latestArticles()
+                APIDataManager.latestAnswers()
+            }
         }
         
         return true

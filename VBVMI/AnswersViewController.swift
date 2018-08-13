@@ -65,9 +65,7 @@ class AnswersViewController: UITableViewController {
         let fetchRequest = NSFetchRequest<Answer>(entityName: Answer.entityName())
         let context = ContextCoordinator.sharedInstance.managedObjectContext!
         fetchRequest.entity = Answer.entity(managedObjectContext: context)
-        let identifierSort = NSSortDescriptor(key: AnswerAttributes.identifier.rawValue, ascending: false, selector: #selector(NSString.localizedStandardCompare(_:)))
-        
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: AnswerAttributes.postedDate.rawValue, ascending: false), identifierSort]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: AnswerAttributes.postedDate.rawValue, ascending: false)]
         fetchRequest.shouldRefreshRefetchedObjects = true
         fetchRequest.predicate = defaultPredicate
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
