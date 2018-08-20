@@ -72,7 +72,10 @@ class SoundManager: NSObject {
         }
     }
     
-    fileprivate var timerObserver : AnyObject?
+    private var didPlayToEndTimeObserver: NSObjectProtocol?
+    private var rateObservation: NSKeyValueObservation?
+    private var timerObserver : Any?
+    
     fileprivate override init() {
         super.init()
         startTimerObserver()
@@ -81,8 +84,14 @@ class SoundManager: NSObject {
         self.restoreState()
         self.configureContentManager()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(audioDidFinish(_:)), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
-        self.avPlayer.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.new, context: nil)
+        didPlayToEndTimeObserver = NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.avPlayer, queue: OperationQueue.main) { [weak self] (notification) in
+            self?.audioDidFinish(notification)
+        }
+        
+        rateObservation = self.avPlayer.observe(\AVQueuePlayer.rate, options: [.new]) { [weak self] (player, change) in
+            self?.configureInfo()
+        }
+        
         if #available(iOS 10.0, *) {
             self.avPlayer.automaticallyWaitsToMinimizeStalling = false
         } else {
@@ -91,7 +100,11 @@ class SoundManager: NSObject {
     }
     
     deinit {
-        self.avPlayer.removeObserver(self, forKeyPath: "rate")
+        rateObservation?.invalidate()
+        rateObservation = nil
+        if let observer = didPlayToEndTimeObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
         self.currentMonitoredItem = nil
         stopTimerObserver()
         NotificationCenter.default.removeObserver(self)
@@ -140,9 +153,6 @@ class SoundManager: NSObject {
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if let _ = object as? AVPlayer , keyPath == "rate" {
-            self.configureInfo()
-        }
         if let item = object as? AVPlayerItem , keyPath == "status" {
             if item.status == AVPlayerItemStatus.readyToPlay {
                 logger.info("🍕Player became ready to play")
@@ -177,11 +187,11 @@ class SoundManager: NSObject {
     
     fileprivate func startTimerObserver() {
         logger.info("🍕Sound Manager Starting timer observer")
-        self.timerObserver = self.avPlayer.addPeriodicTimeObserver(forInterval: CMTime(seconds: 5, preferredTimescale: 600), queue: nil, using: { (currentTime) -> Void in
-            self.saveState()
+        self.timerObserver = self.avPlayer.addPeriodicTimeObserver(forInterval: CMTime(seconds: 5, preferredTimescale: 600), queue: nil, using: { [weak self] (currentTime) -> Void in
+            self?.saveState()
 //            self.configureInfo()
 //            logger.debug("Observing time: \(CMTimeGetSeconds(currentTime))")
-        }) as AnyObject?
+        })
     }
     
     func restoreState(_ completion:(()->())? = nil) {
