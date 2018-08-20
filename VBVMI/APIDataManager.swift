@@ -234,6 +234,12 @@ class APIDataManager {
         })
     }
     
+    static func allTheCurriculums() {
+        downloadToJSONArray(JsonAPI.curriculum, arrayNode: "curriculum", conversionBlock:  { (context, JSONArray) in
+            
+        })
+    }
+    
     static func allTheEvents() {
         downloadToJSONArray(JsonAPI.events, arrayNode: "events", conversionBlock: { (context, JSONArray) in
             

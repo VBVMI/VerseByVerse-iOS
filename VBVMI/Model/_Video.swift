@@ -20,6 +20,7 @@ public enum VideoAttributes: String {
 
 public enum VideoRelationships: String {
     case channel = "channel"
+    case curriculum = "curriculum"
 }
 
 open class _Video: NSManagedObject {
@@ -84,6 +85,9 @@ open class _Video: NSManagedObject {
 
     @NSManaged open
     var channel: Channel?
+
+    @NSManaged open
+    var curriculum: Curriculum?
 
     // MARK: - Fetched Properties
 

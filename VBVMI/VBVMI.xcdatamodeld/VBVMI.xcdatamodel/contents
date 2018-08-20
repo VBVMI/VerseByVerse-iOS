@@ -51,9 +51,11 @@
     <entity name="Curriculum" representedClassName="Curriculum" syncable="YES">
         <attribute name="coverImage" attributeType="String" syncable="YES"/>
         <attribute name="identifier" attributeType="String" syncable="YES"/>
+        <attribute name="pdfURL" optional="YES" syncable="YES"/>
         <attribute name="postedDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="url" attributeType="String" syncable="YES"/>
+        <relationship name="videos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Video" inverseName="curriculum" inverseEntity="Video" syncable="YES"/>
     </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
@@ -155,6 +157,7 @@
         <attribute name="videoLength" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoSource" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="videos" inverseEntity="Channel" syncable="YES"/>
+        <relationship name="curriculum" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Curriculum" inverseName="videos" inverseEntity="Curriculum" syncable="YES"/>
         <fetchIndex name="byIdentifierIndex">
             <fetchIndexElement property="identifier" type="Binary" order="ascending"/>
         </fetchIndex>
@@ -163,13 +166,13 @@
         <element name="Answer" positionX="-164" positionY="-1713" width="128" height="180"/>
         <element name="Article" positionX="205" positionY="-1656" width="128" height="225"/>
         <element name="AudioPlayer" positionX="-209" positionY="-1062" width="128" height="131"/>
-        <element name="Channel" positionX="-9" positionY="-1053" width="128" height="150"/>
-        <element name="Curriculum" positionX="-279" positionY="-1548" width="128" height="120"/>
+        <element name="Channel" positionX="-2" positionY="-960" width="128" height="150"/>
+        <element name="Curriculum" positionX="-45" positionY="-781" width="128" height="148"/>
         <element name="Event" positionX="-495" positionY="-1467" width="128" height="208"/>
         <element name="Lesson" positionX="-324" positionY="-1467" width="128" height="360"/>
         <element name="Study" positionX="205" positionY="-1323" width="128" height="375"/>
-        <element name="StudyCategory" positionX="-288" positionY="-1557" width="128" height="105"/>
+        <element name="StudyCategory" positionX="432" positionY="-1098" width="128" height="105"/>
         <element name="Topic" positionX="-0" positionY="-1440" width="128" height="133"/>
-        <element name="Video" positionX="189" positionY="-1035" width="128" height="225"/>
+        <element name="Video" positionX="178" positionY="-909" width="128" height="238"/>
     </elements>
 </model>

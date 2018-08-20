@@ -74,7 +74,7 @@ class ArticlesViewController: UITableViewController {
         let context = ContextCoordinator.sharedInstance.managedObjectContext!
         fetchRequest.entity = Article.entity(managedObjectContext: context)
         let identifierSort = NSSortDescriptor(key: ArticleAttributes.identifier.rawValue, ascending: false, selector: #selector(NSString.localizedStandardCompare(_:)))
-        
+//        let categorySort = NSSortDescriptor(keyPath: \Article.category, ascending: true)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: ArticleAttributes.postedDate.rawValue, ascending: false), identifierSort]
         fetchRequest.shouldRefreshRefetchedObjects = true
         fetchRequest.predicate = defaultPredicate

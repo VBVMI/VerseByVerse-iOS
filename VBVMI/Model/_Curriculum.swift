@@ -7,9 +7,14 @@ import CoreData
 public enum CurriculumAttributes: String {
     case coverImage = "coverImage"
     case identifier = "identifier"
+    case pdfURL = "pdfURL"
     case postedDate = "postedDate"
     case title = "title"
     case url = "url"
+}
+
+public enum CurriculumRelationships: String {
+    case videos = "videos"
 }
 
 open class _Curriculum: NSManagedObject {
@@ -54,7 +59,30 @@ open class _Curriculum: NSManagedObject {
 
     // MARK: - Relationships
 
+    @NSManaged open
+    var videos: Set<Video>
+
     // MARK: - Fetched Properties
+
+}
+
+extension _Curriculum {
+
+    func add(videos objects: Set<Video>) {
+        self.videos = self.videos.union(objects)
+    }
+
+    func remove(videos objects: Set<Video>) {
+        self.videos = self.videos.subtracting(objects)
+    }
+
+    func add(videosObject value: Video) {
+        self.videos = self.videos.union([value])
+    }
+
+    func remove(videosObject value: Video) {
+        self.videos = self.videos.subtracting([value])
+    }
 
 }
 
