@@ -5,12 +5,9 @@ import Foundation
 import CoreData
 
 public enum ChannelAttributes: String {
-    case averageRating = "averageRating"
     case channelIndex = "channelIndex"
-    case descriptionText = "descriptionText"
     case identifier = "identifier"
     case postedDate = "postedDate"
-    case thumbnailAltText = "thumbnailAltText"
     case thumbnailSource = "thumbnailSource"
     case title = "title"
     case url = "url"
@@ -46,22 +43,13 @@ open class _Channel: NSManagedObject {
     // MARK: - Properties
 
     @NSManaged open
-    var averageRating: String?
-
-    @NSManaged open
     var channelIndex: Int32
-
-    @NSManaged open
-    var descriptionText: String?
 
     @NSManaged open
     var identifier: String
 
     @NSManaged open
     var postedDate: Date?
-
-    @NSManaged open
-    var thumbnailAltText: String?
 
     @NSManaged open
     var thumbnailSource: String?

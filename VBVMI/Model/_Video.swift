@@ -5,15 +5,11 @@ import Foundation
 import CoreData
 
 public enum VideoAttributes: String {
-    case averageRating = "averageRating"
-    case category = "category"
     case descriptionText = "descriptionText"
     case identifier = "identifier"
-    case postedDate = "postedDate"
     case recordedDate = "recordedDate"
     case service = "service"
     case serviceVideoIdentifier = "serviceVideoIdentifier"
-    case thumbnailAltText = "thumbnailAltText"
     case thumbnailSource = "thumbnailSource"
     case title = "title"
     case url = "url"
@@ -52,19 +48,10 @@ open class _Video: NSManagedObject {
     // MARK: - Properties
 
     @NSManaged open
-    var averageRating: String?
-
-    @NSManaged open
-    var category: String?
-
-    @NSManaged open
     var descriptionText: String?
 
     @NSManaged open
     var identifier: String
-
-    @NSManaged open
-    var postedDate: Date?
 
     @NSManaged open
     var recordedDate: Date?
@@ -74,9 +61,6 @@ open class _Video: NSManagedObject {
 
     @NSManaged open
     var serviceVideoIdentifier: String?
-
-    @NSManaged open
-    var thumbnailAltText: String?
 
     @NSManaged open
     var thumbnailSource: String?

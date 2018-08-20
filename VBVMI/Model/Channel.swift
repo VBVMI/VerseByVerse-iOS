@@ -18,20 +18,14 @@ open class Channel: _Channel {
         channel.thumbnailSource = try JSONDict => "thumbnailSource"
         channel.channelIndex = Int32(index)
         
-        let channelDescription: String = try JSONDict => "description"
-        channel.descriptionText = channelDescription.stringByDecodingHTMLEntities
-        channel.thumbnailAltText = nullOrString(try JSONDict => "thumbnailAltText")
-        
-        if let dateString: String = try JSONDict => "postedDate" {
-            channel.postedDate = Date.dateFromTimeString(dateString)
+        if let dateString: TimeInterval = try JSONDict => "postedDate" {
+            channel.postedDate = Date(timeIntervalSince1970: dateString)
         }
         
         let studyTitle: String = try JSONDict => "title"
         channel.title = studyTitle.stringByDecodingHTMLEntities
         
         channel.url = nullOrString(try JSONDict => "url")
-        
-        channel.averageRating = nullOrString(try JSONDict => "averageRating")
         
         if let videosArray: [[AnyHashable: Any]] = try JSONDict => "videos" as? [[AnyHashable: Any]] {
             //Then lets process the videos

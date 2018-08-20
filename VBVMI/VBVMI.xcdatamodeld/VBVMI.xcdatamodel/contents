@@ -37,12 +37,9 @@
         </fetchedProperty>
     </entity>
     <entity name="Channel" representedClassName="Channel" syncable="YES">
-        <attribute name="averageRating" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="channelIndex" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifier" attributeType="String" syncable="YES"/>
         <attribute name="postedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="thumbnailAltText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
@@ -146,15 +143,11 @@
         <relationship name="studies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Study" inverseName="topics" inverseEntity="Study" syncable="YES"/>
     </entity>
     <entity name="Video" representedClassName="Video" syncable="YES">
-        <attribute name="averageRating" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifier" attributeType="String" syncable="YES"/>
-        <attribute name="postedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="recordedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="service" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="serviceVideoIdentifier" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="thumbnailAltText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
@@ -170,13 +163,13 @@
         <element name="Answer" positionX="-164" positionY="-1713" width="128" height="180"/>
         <element name="Article" positionX="205" positionY="-1656" width="128" height="225"/>
         <element name="AudioPlayer" positionX="-209" positionY="-1062" width="128" height="131"/>
-        <element name="Channel" positionX="-9" positionY="-1053" width="128" height="195"/>
+        <element name="Channel" positionX="-9" positionY="-1053" width="128" height="150"/>
         <element name="Curriculum" positionX="-279" positionY="-1548" width="128" height="120"/>
         <element name="Event" positionX="-495" positionY="-1467" width="128" height="208"/>
         <element name="Lesson" positionX="-324" positionY="-1467" width="128" height="360"/>
         <element name="Study" positionX="205" positionY="-1323" width="128" height="375"/>
         <element name="StudyCategory" positionX="-288" positionY="-1557" width="128" height="105"/>
         <element name="Topic" positionX="-0" positionY="-1440" width="128" height="133"/>
-        <element name="Video" positionX="189" positionY="-1035" width="128" height="285"/>
+        <element name="Video" positionX="189" positionY="-1035" width="128" height="225"/>
     </elements>
 </model>

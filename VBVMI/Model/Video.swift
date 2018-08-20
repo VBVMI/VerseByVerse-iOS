@@ -22,17 +22,10 @@ open class Video: _Video {
         
         let channelDescription: String = try JSONDict => "description"
         video.descriptionText = channelDescription.stringByDecodingHTMLEntities
-        video.thumbnailAltText = nullOrString(try JSONDict => "thumbnailAltText")
-        
-        if let dateString: String = try JSONDict => "postedDate" {
-            video.postedDate = Date.dateFromTimeString(dateString)
-        }
         
         if let dateString: String = try JSONDict => "recordedDate" {
             video.recordedDate = Date.dateFromTimeString(dateString)
         }
-        
-        video.averageRating = try JSONDict => "averageRating"
         
         video.videoSource = try JSONDict => "videoSource"
         video.videoLength = try JSONDict => "videoLength"
@@ -41,25 +34,6 @@ open class Video: _Video {
         
         let studyTitle: String = try JSONDict => "title"
         video.title = studyTitle.stringByDecodingHTMLEntities
-        
-        video.averageRating = nullOrString(try JSONDict => "averageRating")
-        
-//        if let topicsArray: [NSDictionary] = try JSONDict => "topics" as? [NSDictionary] {
-//            //Then lets process the topics
-//            var myTopics = Set<Topic>()
-//            
-//            topicsArray.forEach({ (topicJSONDict) -> () in
-//                do {
-//                    if let topic = try Topic.decodeJSON(topicJSONDict, context: context) {
-//                        myTopics.insert(topic)
-//                    }
-//                } catch let error {
-//                    logger.error("Error decoding Topic \(error)... Skippping...")
-//                }
-//            })
-//            
-//            video.topics = myTopics
-//        }
         
         return video
     }
