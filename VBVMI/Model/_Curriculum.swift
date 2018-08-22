@@ -43,10 +43,13 @@ open class _Curriculum: NSManagedObject {
     // MARK: - Properties
 
     @NSManaged open
-    var coverImage: String
+    var coverImage: String?
 
     @NSManaged open
     var identifier: String
+
+    @NSManaged open
+    var pdfURL: String?
 
     @NSManaged open
     var postedDate: Date
@@ -55,7 +58,7 @@ open class _Curriculum: NSManagedObject {
     var title: String
 
     @NSManaged open
-    var url: String
+    var url: String?
 
     // MARK: - Relationships
 

@@ -84,6 +84,8 @@ class ChannelViewController: UIViewController {
         }
     }
     
+    
+    
     override func viewDidLayoutSubviews() {
         if #available(iOS 11.0, *) {
             

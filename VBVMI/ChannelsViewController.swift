@@ -8,20 +8,30 @@
 
 import UIKit
 import CoreData
+import AlamofireImage
 
 class ChannelsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    fileprivate var fetchedResultsController: NSFetchedResultsController<Channel>!
+    fileprivate var channelFetchedResultsController: NSFetchedResultsController<Channel>!
     fileprivate var aboutActionsController: AboutActionsController!
     
     fileprivate let dateFormatter = DateFormatter()
-    fileprivate let channelCellIdentifier = "ChannelCell"
+    private let channelCellIdentifier = "ChannelCell"
+    private let curriculumCellIdentifier = "CurriculumCell"
+    
+    enum Section {
+        case channel
+        case curriculum
+    }
+    
+    let sections: [Section] = [.curriculum, .channel]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.register(UINib(nibName: "ChannelTableViewCell", bundle: nil), forCellReuseIdentifier: channelCellIdentifier)
+        tableView.register(UINib(nibName: "CurriculumTableViewCell", bundle: nil), forCellReuseIdentifier: curriculumCellIdentifier)
         
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -30,10 +40,9 @@ class ChannelsViewController: UIViewController {
         // Setup about Menu
         self.aboutActionsController = AboutActionsController(presentingController: self)
         self.navigationItem.leftBarButtonItem = self.aboutActionsController.barButtonItem
-        
-        
-        
+
         setupFetchedResultsController()
+        let _ = curriculumFetchedResultsController
     }
 
     fileprivate func setupFetchedResultsController() {
@@ -45,8 +54,29 @@ class ChannelsViewController: UIViewController {
         fetchRequest.sortDescriptors = [indexSort]
         
         fetchRequest.shouldRefreshRefetchedObjects = true
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        channelFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         
+        channelFetchedResultsController.delegate = self
+        
+        do {
+            try channelFetchedResultsController.performFetch()
+            DispatchQueue.main.async { () -> Void in
+                self.tableView.reloadData()
+            }
+        } catch let error {
+            logger.error("Error fetching: \(error)")
+        }
+    }
+    
+    private lazy var curriculumFetchedResultsController: NSFetchedResultsController<Curriculum> = {
+        let fetchRequest = NSFetchRequest<Curriculum>(entityName: Curriculum.entityName())
+        let context = ContextCoordinator.sharedInstance.managedObjectContext!
+        fetchRequest.entity = Curriculum.entity(managedObjectContext: context)
+        let postedDateSort = NSSortDescriptor(keyPath: \Curriculum.postedDate, ascending: true)
+        fetchRequest.sortDescriptors = [postedDateSort]
+        fetchRequest.shouldRefreshRefetchedObjects = true
+        
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
         
         do {
@@ -57,7 +87,9 @@ class ChannelsViewController: UIViewController {
         } catch let error {
             logger.error("Error fetching: \(error)")
         }
-    }
+        
+        return fetchedResultsController
+    }()
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -87,27 +119,53 @@ class ChannelsViewController: UIViewController {
 extension ChannelsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController.sections?.count ?? 0
+        return sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedResultsController.sections?[section].numberOfObjects ?? 0
+        switch sections[section] {
+        case .channel:
+            return channelFetchedResultsController.fetchedObjects?.count ?? 0
+        case .curriculum:
+            return curriculumFetchedResultsController.fetchedObjects?.count ?? 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: channelCellIdentifier, for: indexPath) as! ChannelTableViewCell
-        let channel = fetchedResultsController.object(at: indexPath)
-        
-        cell.titleLabel.text = channel.title
-        let plural = channel.videos.count == 1 ? "" : "s"
-        cell.countLabel.text = "\(channel.videos.count) video\(plural)"
-        if let date = channel.postedDate {
-            cell.dateLabel.text = dateFormatter.string(from: date)
-        } else {
-            cell.dateLabel.text = nil
+        switch sections[indexPath.section] {
+        case .channel:
+            let cell = tableView.dequeueReusableCell(withIdentifier: channelCellIdentifier, for: indexPath) as! ChannelTableViewCell
+            let channel = channelFetchedResultsController.object(at: IndexPath(row: indexPath.row, section: 0))
+            
+            cell.titleLabel.text = channel.title
+            let plural = channel.videos.count == 1 ? "" : "s"
+            cell.countLabel.text = "\(channel.videos.count) video\(plural)"
+            if let date = channel.postedDate {
+                cell.dateLabel.text = dateFormatter.string(from: date)
+            } else {
+                cell.dateLabel.text = nil
+            }
+            
+            return cell
+        case .curriculum:
+            let cell = tableView.dequeueReusableCell(withIdentifier: curriculumCellIdentifier, for: indexPath) as! CurriculumTableViewCell
+            let curriculum = curriculumFetchedResultsController.object(at: IndexPath(row: indexPath.row, section: 0))
+            
+            cell.titleLabel.text = curriculum.title
+            let plural = curriculum.videos.count == 1 ? "" : "s"
+            cell.countLabel.text = "\(curriculum.videos.count) video\(plural)"
+            cell.dateLabel.text = dateFormatter.string(from: curriculum.postedDate)
+            
+            if let imageString = curriculum.coverImage, let url = URL(string: imageString) {
+                
+                let scaleFilter = AspectScaledToFillSizeCircleFilter(size: CGSize(width: 40, height: 40))
+                
+                cell.thumbnailImageView?.af_setImage(withURL: url, placeholderImage: nil, filter: scaleFilter, progress: nil, progressQueue: .main, imageTransition: UIImageView.ImageTransition.crossDissolve(0.25), runImageTransitionIfCached: false, completion: { (dataResponse) in
+                })
+            }
+            return cell
         }
         
-        return cell
     }
 }
 
@@ -119,10 +177,22 @@ extension ChannelsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let channel = fetchedResultsController.object(at: indexPath)
-        self.performSegue(withIdentifier: "showChannel", sender: channel)
-        
+        switch sections[indexPath.section] {
+        case .channel:
+            let channel = channelFetchedResultsController.object(at: IndexPath(row: indexPath.row, section: 0))
+            self.performSegue(withIdentifier: "showChannel", sender: channel)
+        case .curriculum:
+            break
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch sections[section] {
+        case .channel:
+            return "Video Series"
+        case .curriculum:
+            return "Small Group Curriculum"
+        }
     }
 }
 
@@ -130,52 +200,6 @@ extension ChannelsViewController: UITableViewDelegate {
 // MARK: - NSFetchedResultsControllerDelegate
 extension ChannelsViewController : NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        switch type {
-        case .insert:
-            tableView.insertSections(IndexSet(integer: sectionIndex), with: .automatic)
-        case .delete:
-            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .automatic)
-        default:
-            return
-        }
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-        case .insert:
-            guard let newIndexPath = newIndexPath else { return }
-            let myNewIndexPath = IndexPath(row: newIndexPath.row, section: newIndexPath.section)
-            tableView.insertRows(at: [myNewIndexPath], with: .automatic)
-        case .delete:
-            guard let indexPath = indexPath else { return }
-            let myIndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
-            tableView.deleteRows(at: [myIndexPath], with: .automatic)
-        case .move:
-            guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
-            let myNewIndexPath = IndexPath(row: newIndexPath.row, section: newIndexPath.section)
-            let myIndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
-            if myIndexPath == myNewIndexPath {
-                if let cell = tableView.cellForRow(at: myIndexPath) , cell.isEditing == false {
-                    tableView.deleteRows(at: [myIndexPath], with: .none)
-                    tableView.insertRows(at: [myNewIndexPath], with: .none)
-                }
-            } else {
-                //Don't perform a move here because for some reason it doesn't work
-                tableView.deleteRows(at: [myIndexPath], with: .automatic)
-                tableView.insertRows(at: [myNewIndexPath], with: .automatic)
-            }
-        case .update:
-            guard let indexPath = indexPath else { return }
-            let myIndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
-            tableView.reloadRows(at: [myIndexPath], with: .none)
-        }
-    }
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
+        tableView.reloadData()
     }
 }

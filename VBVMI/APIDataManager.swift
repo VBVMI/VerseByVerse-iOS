@@ -226,7 +226,7 @@ class APIDataManager {
                 })
             }
             
-            let orphanedVideos = Video.findAllWithPredicate(NSPredicate(format: "%K == NULL", VideoRelationships.channel.rawValue), context: context)
+            let orphanedVideos = Video.findAllWithPredicate(NSPredicate(format: "%K == NULL && %K == NULL", VideoRelationships.channel.rawValue, VideoRelationships.curriculum.rawValue), context: context)
             
             orphanedVideos.forEach({ (video) in
                 context.delete(video)
@@ -235,8 +235,28 @@ class APIDataManager {
     }
     
     static func allTheCurriculums() {
-        downloadToJSONArray(JsonAPI.curriculum, arrayNode: "curriculum", conversionBlock:  { (context, JSONArray) in
+        downloadToJSONArray(JsonAPI.curriculum, arrayNode: "channels", conversionBlock:  { (context, JSONArray) in
+            let existingChannels: [Curriculum] = Curriculum.findAll(context)
+            var existingChannelIds = Set<String>(existingChannels.map({ $0.identifier }))
             
+            try JSONArray.enumerated().forEach({ (index, channelDict) in
+                let channel = try Curriculum.decodeJSON(channelDict, context: context, index: index)
+                existingChannelIds.remove(channel.identifier)
+            })
+            
+            if existingChannelIds.count > 0 {
+                let channelsToDelete: [Curriculum] = Curriculum.findAllWithPredicate(NSPredicate(format: "%K in %@", CurriculumAttributes.identifier.rawValue, existingChannelIds), context: context)
+                
+                channelsToDelete.forEach({
+                    context.delete($0)
+                })
+            }
+            
+            let orphanedVideos = Video.findAllWithPredicate(NSPredicate(format: "%K == NULL && %K == NULL", VideoRelationships.channel.rawValue, VideoRelationships.curriculum.rawValue), context: context)
+            
+            orphanedVideos.forEach({ (video) in
+                context.delete(video)
+            })
         })
     }
     

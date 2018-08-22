@@ -104,6 +104,8 @@
 		986C37DD1C657CCE0096BB83 /* HideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37DC1C657CCE0096BB83 /* HideView.swift */; };
 		986C37E21C65D6300096BB83 /* _Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37E01C65D6300096BB83 /* _Lesson.swift */; };
 		986C37E31C65D6300096BB83 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37E11C65D6300096BB83 /* Lesson.swift */; };
+		987E9B99212D5A32002E8242 /* CurriculumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987E9B97212D5A32002E8242 /* CurriculumTableViewCell.swift */; };
+		987E9B9A212D5A32002E8242 /* CurriculumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 987E9B98212D5A32002E8242 /* CurriculumTableViewCell.xib */; };
 		987F02F91CF0625E00AB61FA /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987F02F81CF0625E00AB61FA /* DotView.swift */; };
 		987F02FB1CF0658800AB61FA /* ResourceIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987F02FA1CF0658800AB61FA /* ResourceIconView.swift */; };
 		9881317320D7A44A00987DB7 /* LatestLessonsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881317120D7A44A00987DB7 /* LatestLessonsCollectionViewCell.swift */; };
@@ -379,6 +381,8 @@
 		986C37E01C65D6300096BB83 /* _Lesson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Lesson.swift; path = Model/_Lesson.swift; sourceTree = "<group>"; };
 		986C37E11C65D6300096BB83 /* Lesson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lesson.swift; path = Model/Lesson.swift; sourceTree = "<group>"; };
 		986E00D61EA03EC400A8F1F6 /* curriculum.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = curriculum.json; path = APISampleData/curriculum.json; sourceTree = "<group>"; };
+		987E9B97212D5A32002E8242 /* CurriculumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurriculumTableViewCell.swift; sourceTree = "<group>"; };
+		987E9B98212D5A32002E8242 /* CurriculumTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurriculumTableViewCell.xib; sourceTree = "<group>"; };
 		987F02F81CF0625E00AB61FA /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		987F02FA1CF0658800AB61FA /* ResourceIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceIconView.swift; sourceTree = "<group>"; };
 		9881317120D7A44A00987DB7 /* LatestLessonsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestLessonsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -835,6 +839,8 @@
 				988D69871C9D51E6000ED16D /* AnswerBodyTableViewCell.xib */,
 				989C40F51D32557C00849FB2 /* ChannelTableViewCell.swift */,
 				989C40F61D32557C00849FB2 /* ChannelTableViewCell.xib */,
+				987E9B97212D5A32002E8242 /* CurriculumTableViewCell.swift */,
+				987E9B98212D5A32002E8242 /* CurriculumTableViewCell.xib */,
 				986C2F181D339A1500F595FF /* VideoTableViewCell.swift */,
 				986C2F191D339A1500F595FF /* VideoTableViewCell.xib */,
 				9881317120D7A44A00987DB7 /* LatestLessonsCollectionViewCell.swift */,
@@ -1206,6 +1212,7 @@
 				98CB0E3D1CA74E7F00C99D34 /* TopicViewController.xib in Resources */,
 				988D69891C9D51E6000ED16D /* AnswerBodyTableViewCell.xib in Resources */,
 				985C53A71D7ACFA5001A907F /* StudiesOptions.storyboard in Resources */,
+				987E9B9A212D5A32002E8242 /* CurriculumTableViewCell.xib in Resources */,
 				9828D4211C5D9F4A004FA954 /* LaunchScreen.storyboard in Resources */,
 				982E37621D31ECF900FD9A93 /* Settings.bundle in Resources */,
 				989601B22116E45800A2B0CB /* ArticleBody.html in Resources */,
@@ -1789,6 +1796,7 @@
 				98DE6E851CA2A83500C039C0 /* AboutActionsController.swift in Sources */,
 				980579D71D31D9DE001C809C /* ChannelsViewController.swift in Sources */,
 				98213A991DA4F43300E81CBB /* BlurImageView.swift in Sources */,
+				987E9B99212D5A32002E8242 /* CurriculumTableViewCell.swift in Sources */,
 				98F725BF1D49E5C600F73ED0 /* SettingsViewController.swift in Sources */,
 				989294CC1C8BCE4500C19095 /* SoundManager.swift in Sources */,
 				988D698B1C9E62AA000ED16D /* PDFViewController.swift in Sources */,

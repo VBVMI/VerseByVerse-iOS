@@ -101,6 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             })
             APIDataManager.allTheChannels()
+            APIDataManager.allTheCurriculums()
 //
             let reachability = Reachability()
             if reachability?.connection == .wifi {
