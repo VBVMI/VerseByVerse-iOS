@@ -110,6 +110,12 @@ class SoundManager: NSObject {
         NotificationCenter.default.removeObserver(self)
     }
     
+    /// To be called to set any audio settings that may have since been changed by other apps since we last presented on screen
+    func prepareToPlayAudio() {
+        configureCommandCenter()
+        configureContentManager()
+    }
+    
     private var backgroundTask: UIBackgroundTaskIdentifier?
     private func startBackgroundTask() {
         backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "SoundManagerLoading", expirationHandler: {
