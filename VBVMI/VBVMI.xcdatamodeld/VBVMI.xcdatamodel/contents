@@ -53,6 +53,7 @@
         <attribute name="identifier" attributeType="String" syncable="YES"/>
         <attribute name="pdfURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postedDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="purchaseLink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="videos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Video" inverseName="curriculum" inverseEntity="Video" syncable="YES"/>
@@ -167,7 +168,7 @@
         <element name="Article" positionX="205" positionY="-1656" width="128" height="225"/>
         <element name="AudioPlayer" positionX="-209" positionY="-1062" width="128" height="131"/>
         <element name="Channel" positionX="-2" positionY="-960" width="128" height="150"/>
-        <element name="Curriculum" positionX="-45" positionY="-781" width="128" height="148"/>
+        <element name="Curriculum" positionX="-45" positionY="-781" width="128" height="163"/>
         <element name="Event" positionX="-495" positionY="-1467" width="128" height="208"/>
         <element name="Lesson" positionX="-324" positionY="-1467" width="128" height="360"/>
         <element name="Study" positionX="205" positionY="-1323" width="128" height="375"/>

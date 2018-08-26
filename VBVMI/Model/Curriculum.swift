@@ -28,6 +28,8 @@ open class Curriculum: _Curriculum {
         channel.url = nullOrString(try JSONDict =>? "url")
         channel.coverImage = nullOrString(try JSONDict =>? "cover_image")
         
+        channel.purchaseLink = nullOrString(try JSONDict =>? "purchaseLink")
+        
         if let videosArray: [[AnyHashable: Any]] = try JSONDict => "videos" as? [[AnyHashable: Any]] {
             //Then lets process the videos
             var myVideos = Set<Video>()

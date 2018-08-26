@@ -111,6 +111,8 @@ class ChannelsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ChannelViewController, let channel = sender as? Channel {
             destination.channel = channel
+        } else if let destination = segue.destination as? CurriculumViewController, let curriculum = sender as? Curriculum{
+            destination.curriculum = curriculum
         }
     }
 }
@@ -182,6 +184,8 @@ extension ChannelsViewController: UITableViewDelegate {
             let channel = channelFetchedResultsController.object(at: IndexPath(row: indexPath.row, section: 0))
             self.performSegue(withIdentifier: "showChannel", sender: channel)
         case .curriculum:
+            let curriculum = curriculumFetchedResultsController.object(at: IndexPath(row: indexPath.row, section: 0))
+            self.performSegue(withIdentifier: "showCurriculum", sender: curriculum)
             break
         }
     }

@@ -192,6 +192,9 @@
 		98E8AFCA200DEBAD00C672F6 /* StudyCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E8AFC8200DEBAD00C672F6 /* StudyCategory.swift */; };
 		98E8AFCB200DEBAD00C672F6 /* _StudyCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E8AFC9200DEBAD00C672F6 /* _StudyCategory.swift */; };
 		98E8AFCC200DEBB000C672F6 /* StudyCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E8AFC8200DEBAD00C672F6 /* StudyCategory.swift */; };
+		98ED7ACF21324C4A00366E39 /* CurriculumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ED7ACE21324C4A00366E39 /* CurriculumViewController.swift */; };
+		98ED7AD22132927100366E39 /* CurriculumPDFTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ED7AD02132927100366E39 /* CurriculumPDFTableViewCell.swift */; };
+		98ED7AD32132927100366E39 /* CurriculumPDFTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98ED7AD12132927100366E39 /* CurriculumPDFTableViewCell.xib */; };
 		98F389331DDC45D40037B97E /* StudyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */; };
 		98F389341DDC45D40037B97E /* StudyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */; };
 		98F725BF1D49E5C600F73ED0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */; };
@@ -452,6 +455,9 @@
 		98E8AFBF200DEB0900C672F6 /* _Curriculum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Curriculum.swift; path = Model/_Curriculum.swift; sourceTree = "<group>"; };
 		98E8AFC8200DEBAD00C672F6 /* StudyCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudyCategory.swift; path = Model/StudyCategory.swift; sourceTree = "<group>"; };
 		98E8AFC9200DEBAD00C672F6 /* _StudyCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _StudyCategory.swift; path = Model/_StudyCategory.swift; sourceTree = "<group>"; };
+		98ED7ACE21324C4A00366E39 /* CurriculumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurriculumViewController.swift; sourceTree = "<group>"; };
+		98ED7AD02132927100366E39 /* CurriculumPDFTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurriculumPDFTableViewCell.swift; sourceTree = "<group>"; };
+		98ED7AD12132927100366E39 /* CurriculumPDFTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurriculumPDFTableViewCell.xib; sourceTree = "<group>"; };
 		98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyCollectionViewCell.swift; sourceTree = "<group>"; };
 		98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyCollectionViewCell.xib; sourceTree = "<group>"; };
 		98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -555,6 +561,7 @@
 			children = (
 				980579D61D31D9DE001C809C /* ChannelsViewController.swift */,
 				986C2F161D3395F700F595FF /* ChannelViewController.swift */,
+				98ED7ACE21324C4A00366E39 /* CurriculumViewController.swift */,
 			);
 			name = Channels;
 			sourceTree = "<group>";
@@ -849,6 +856,8 @@
 				981DC9CE20C7D09600B120BB /* RecentHistoryCollectionViewCell.xib */,
 				98C9E7E120CB67ED006BE3AE /* RecentStudyCollectionViewCell.swift */,
 				98C9E7E220CB67ED006BE3AE /* RecentStudyCollectionViewCell.xib */,
+				98ED7AD02132927100366E39 /* CurriculumPDFTableViewCell.swift */,
+				98ED7AD12132927100366E39 /* CurriculumPDFTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1204,6 +1213,7 @@
 				98611CC31C9ABB4F0070FCCD /* ArticleTableViewCell.xib in Resources */,
 				9881317420D7A44A00987DB7 /* LatestLessonsCollectionViewCell.xib in Resources */,
 				98F725C21D49E67600F73ED0 /* Settings.storyboard in Resources */,
+				98ED7AD32132927100366E39 /* CurriculumPDFTableViewCell.xib in Resources */,
 				98C9E7E420CB67ED006BE3AE /* RecentStudyCollectionViewCell.xib in Resources */,
 				986C2F1B1D339A1500F595FF /* VideoTableViewCell.xib in Resources */,
 				98644DA01C61F14C00EB27F1 /* StudyCellCollectionViewCell.xib in Resources */,
@@ -1770,6 +1780,7 @@
 				986C37DA1C657C870096BB83 /* StyleKit.swift in Sources */,
 				989C40F71D32557C00849FB2 /* ChannelTableViewCell.swift in Sources */,
 				980BE9681C9E9DEF003A5D84 /* _Topic.swift in Sources */,
+				98ED7AD22132927100366E39 /* CurriculumPDFTableViewCell.swift in Sources */,
 				986C37D61C6523120096BB83 /* StudyDescriptionCell.swift in Sources */,
 				9828D4641C5F4D8D004FA954 /* APIDataManager.swift in Sources */,
 				98D45B9F1C86D61D004BBCBD /* AudioPlayerViewController.swift in Sources */,
@@ -1785,6 +1796,7 @@
 				98B419BF1C64803D003A2872 /* StudyViewController.swift in Sources */,
 				98611CC21C9ABB4F0070FCCD /* ArticleTableViewCell.swift in Sources */,
 				98FD5DDB1C92D4DF00B493E6 /* TabBarItem.swift in Sources */,
+				98ED7ACF21324C4A00366E39 /* CurriculumViewController.swift in Sources */,
 				986C37E21C65D6300096BB83 /* _Lesson.swift in Sources */,
 				988D69781C9C1034000ED16D /* ArticleBodyTableViewCell.swift in Sources */,
 				980D95671EAF072D000271FE /* VimeoManager.swift in Sources */,

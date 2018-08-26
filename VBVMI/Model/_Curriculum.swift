@@ -9,6 +9,7 @@ public enum CurriculumAttributes: String {
     case identifier = "identifier"
     case pdfURL = "pdfURL"
     case postedDate = "postedDate"
+    case purchaseLink = "purchaseLink"
     case title = "title"
     case url = "url"
 }
@@ -53,6 +54,9 @@ open class _Curriculum: NSManagedObject {
 
     @NSManaged open
     var postedDate: Date
+
+    @NSManaged open
+    var purchaseLink: String?
 
     @NSManaged open
     var title: String
