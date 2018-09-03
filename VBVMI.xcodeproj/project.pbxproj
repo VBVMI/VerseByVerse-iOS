@@ -460,6 +460,7 @@
 		98ED7AD12132927100366E39 /* CurriculumPDFTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurriculumPDFTableViewCell.xib; sourceTree = "<group>"; };
 		98F389311DDC45D40037B97E /* StudyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyCollectionViewCell.swift; sourceTree = "<group>"; };
 		98F389321DDC45D40037B97E /* StudyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyCollectionViewCell.xib; sourceTree = "<group>"; };
+		98F69287213D258700A31924 /* Build_138.xcappdata */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Build_138.xcappdata; sourceTree = SOURCE_ROOT; };
 		98F725BD1D49E5C600F73ED0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		98F725C11D49E67600F73ED0 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		98FABAC220EA1B2800EAB75A /* StudyDescription.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = StudyDescription.html; sourceTree = "<group>"; };
@@ -699,6 +700,7 @@
 		9828D4121C5D9F4A004FA954 /* VBVMI */ = {
 			isa = PBXGroup;
 			children = (
+				98F69287213D258700A31924 /* Build_138.xcappdata */,
 				98D45B8B1C86C7BE004BBCBD /* VBVMI.entitlements */,
 				982E37611D31ECF900FD9A93 /* Settings.bundle */,
 				9828D4511C5DA8D7004FA954 /* API */,
