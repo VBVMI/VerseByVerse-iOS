@@ -67,7 +67,7 @@ class StudiesViewController: UIViewController {
         let fetchRequest = NSFetchRequest<Study>(entityName: Study.entityName())
         let context: NSManagedObjectContext = ContextCoordinator.sharedInstance.managedObjectContext!
         fetchRequest.entity = Study.entity(managedObjectContext: context)
-        
+        fetchRequest.predicate = NSPredicate(format: "%K != NULL", StudyRelationships.studyCategory.rawValue)
         configureFetchRequest(fetchRequest)
         
         fetchRequest.shouldRefreshRefetchedObjects = true
