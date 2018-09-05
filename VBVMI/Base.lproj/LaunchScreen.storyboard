@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="ipad12_9" orientation="portrait">
+        <adaptation id="splitview1_3"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Title-->
@@ -16,22 +20,34 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vbvmiLogo" translatesAutoresizingMaskIntoConstraints="NO" id="RdM-pF-wx3">
-                                <rect key="frame" x="90" y="163" width="420" height="274"/>
+                                <rect key="frame" x="56.5" y="603.5" width="262.5" height="159"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="RdM-pF-wx3" secondAttribute="height" multiplier="1235:804" id="wB9-fq-ppI"/>
+                                    <constraint firstAttribute="width" secondItem="RdM-pF-wx3" secondAttribute="height" multiplier="276:167" id="83a-Dl-L2b"/>
+                                    <constraint firstAttribute="width" secondItem="RdM-pF-wx3" secondAttribute="height" multiplier="617:370" id="wB9-fq-ppI"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="wB9-fq-ppI"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <exclude reference="83a-Dl-L2b"/>
+                                        <include reference="wB9-fq-ppI"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fw6-Je-gkr">
-                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="1317" width="375" height="49"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items/>
                             </tabBar>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVV-Nc-siX">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="cgI-34-afY"/>
                                 </constraints>
@@ -40,17 +56,19 @@
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="RdM-pF-wx3" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.7" priority="900" id="70U-PJ-jJ9"/>
                             <constraint firstItem="cVV-Nc-siX" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="BkR-nD-aI7"/>
                             <constraint firstItem="RdM-pF-wx3" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Kva-HP-84v"/>
-                            <constraint firstItem="RdM-pF-wx3" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.7" id="PlP-KC-gfs"/>
+                            <constraint firstItem="RdM-pF-wx3" firstAttribute="width" relation="lessThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.7" id="PlP-KC-gfs"/>
                             <constraint firstItem="cVV-Nc-siX" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="QU6-Gb-XK8"/>
                             <constraint firstAttribute="trailing" secondItem="cVV-Nc-siX" secondAttribute="trailing" id="Sqr-01-5Fi"/>
                             <constraint firstItem="Fw6-Je-gkr" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="URe-ZQ-lDY"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Fw6-Je-gkr" secondAttribute="bottom" id="c9f-Vp-2Zo"/>
                             <constraint firstItem="RdM-pF-wx3" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gfn-vW-21w"/>
                             <constraint firstAttribute="trailing" secondItem="Fw6-Je-gkr" secondAttribute="trailing" id="hOd-Qx-WsB"/>
+                            <constraint firstItem="RdM-pF-wx3" firstAttribute="height" relation="lessThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.5" id="pdc-rX-cu8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="0tL-a7-Ijg"/>
@@ -61,6 +79,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="vbvmiLogo" width="1235" height="804"/>
+        <image name="vbvmiLogo" width="617" height="370"/>
     </resources>
 </document>

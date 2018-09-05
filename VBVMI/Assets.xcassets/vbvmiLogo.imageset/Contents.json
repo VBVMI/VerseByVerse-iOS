@@ -1,17 +1,29 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "vbvmiLogo.jpg",
+      "idiom" : "iphone",
+      "filename" : "vbvmiLogoPhone.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "vbvmiLogoPhone@2x.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "vbvmiLogoPhone@3x.png",
       "scale" : "3x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "vbvmiLogo.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "vbvmiLogo@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {
