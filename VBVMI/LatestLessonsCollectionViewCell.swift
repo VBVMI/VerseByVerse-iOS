@@ -120,6 +120,7 @@ extension LatestLessonsCollectionViewCell: RecentStudyCollectionViewCellDelegate
         fetchRequest.fetchLimit = 1
         
         if let studies = try? lesson.managedObjectContext?.fetch(fetchRequest), let study = studies?.first {
+            cell.isLoading = true
             delegate?.latestLessonsDidPlay(study: study, lesson: lesson)
         }
     }

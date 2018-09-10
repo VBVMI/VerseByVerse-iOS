@@ -21,6 +21,8 @@ class RecentStudyCollectionViewCell: UICollectionViewCell {
     
     weak var delegate : RecentStudyCollectionViewCellDelegate?
     
+    private let overlayView = UIView(frame: .zero)
+    private let activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
     
     var dateLabelText: String? {
         set {
@@ -50,6 +52,38 @@ class RecentStudyCollectionViewCell: UICollectionViewCell {
         dateLabelText = nil
         
         nextButton.addTarget(self, action: #selector(didSelectNext), for: .touchUpInside)
+        
+        contentView.addSubview(overlayView)
+        overlayView.snp.makeConstraints { (make) in
+            make.edges.equalTo(0)
+        }
+        
+        overlayView.layer.cornerRadius = 4
+        overlayView.backgroundColor = UIColor(hue: 1, saturation: 0, brightness: 0, alpha: 0.4)
+        overlayView.addSubview(activityView)
+        activityView.color = StyleKit.orange
+        
+        activityView.snp.makeConstraints { (make) in
+            make.center.equalTo(imageView)
+        }
+        
+        applyLoading()
+    }
+    
+    var isLoading: Bool = false {
+        didSet {
+            applyLoading()
+        }
+    }
+    
+    private func applyLoading() {
+        if isLoading {
+            activityView.startAnimating()
+            overlayView.isHidden = false
+        } else {
+            activityView.stopAnimating()
+            overlayView.isHidden = true
+        }
     }
 
     @objc private func didSelectNext() {
@@ -61,5 +95,6 @@ class RecentStudyCollectionViewCell: UICollectionViewCell {
         imageView.image = nil
         titleLabel.text = nil
         dateLabelText = nil
+        isLoading = false
     }
 }
