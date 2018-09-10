@@ -11,6 +11,12 @@ import UIKit
 class HomeTabBarController: UITabBarController {
 
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        popupInteractionStyle = .drag
+    }
+    
     override func encodeRestorableState(with coder: NSCoder) {
         super.encodeRestorableState(with: coder)
     }
