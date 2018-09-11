@@ -166,7 +166,7 @@ class ArticlesViewController: UITableViewController {
                 return left.name!.localizedCompare(right.name!) == ComparisonResult.orderedAscending
             })
             cell.topicLayoutView.topics = sortedTopics
-            
+            cell.topicLayoutView.highlightedTopic = topic
             cell.topicLayoutView.topicSelectedBlock = { [weak self] (topic) in
                 guard let this = self else { return }
                 let topicVC = TopicViewController(nibName: "TopicViewController", bundle: nil)

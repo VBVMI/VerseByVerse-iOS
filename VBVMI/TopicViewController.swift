@@ -75,16 +75,16 @@ class TopicViewController: UIViewController {
         //            indexToSegmentMap[currentIndex] = .Studies
         //            currentIndex += 1
         //        }
-        if topic.articles.count > 0 {
-            segmentedControl.insertSegment(withTitle: TypeSelection.articles.title, at: currentIndex, animated: false)
-            segmentToIndexMap[.articles] = currentIndex
-            indexToSegmentMap[currentIndex] = .articles
-            currentIndex += 1
-        }
         if topic.answers.count > 0 {
             segmentedControl.insertSegment(withTitle: TypeSelection.answers.title, at: currentIndex, animated: false)
             segmentToIndexMap[.answers] = currentIndex
             indexToSegmentMap[currentIndex] = .answers
+            currentIndex += 1
+        }
+        if topic.articles.count > 0 {
+            segmentedControl.insertSegment(withTitle: TypeSelection.articles.title, at: currentIndex, animated: false)
+            segmentToIndexMap[.articles] = currentIndex
+            indexToSegmentMap[currentIndex] = .articles
             currentIndex += 1
         }
         

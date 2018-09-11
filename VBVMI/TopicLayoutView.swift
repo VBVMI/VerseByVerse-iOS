@@ -22,6 +22,7 @@ class TopicLayoutView: UIView {
     }
     
     var topicSelectedBlock : ((_ topic: Topic) -> ())?
+    var highlightedTopic: Topic?
     
     fileprivate var topicViews = [TopicButton]()
     
@@ -35,6 +36,9 @@ class TopicLayoutView: UIView {
             view.topic = topic
             addSubview(view)
             topicViews.append(view)
+            if topic == highlightedTopic {
+                view.isSelected = true
+            }
             view.addTarget(self, action: #selector(TopicLayoutView.tappedTopicButton(_:)), for: .touchUpInside)
         }
         self.invalidateIntrinsicContentSize()
