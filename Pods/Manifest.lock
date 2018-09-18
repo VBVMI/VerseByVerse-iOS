@@ -18,11 +18,11 @@ PODS:
   - Alamofire (4.5.1)
   - AlamofireImage (3.3.0):
     - Alamofire (~> 4.5)
-  - Crashlytics (3.10.1):
-    - Fabric (~> 1.7.5)
+  - Crashlytics (3.10.7):
+    - Fabric (~> 1.7.11)
   - CSStickyHeaderFlowLayout (0.2.11)
   - Decodable (0.6.0)
-  - Fabric (1.7.6)
+  - Fabric (1.7.11)
   - Firebase/Core (5.8.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.1.2)
@@ -160,10 +160,10 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
-  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
+  Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
   CSStickyHeaderFlowLayout: e9bcb1762413f49d7d09e5bd0ae5efd1100116b7
   Decodable: f0b95fa2fcf8633dd097aa8f7f09838ab3524f5d
-  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
+  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
   Firebase: 25812f43e7a53b11ae2f0a5f4c6d12faeb1f7cd7
   FirebaseAnalytics: df15839e9c6ca6bd14d2e8ab6b0c672e6c49097e
   FirebaseCore: 27bd80e5bfaaf9552a1f5cacb4c7e8bb925bab22
@@ -184,6 +184,6 @@ SPEC CHECKSUMS:
   VimeoNetworking: 5d30e46c8561e2e0a7472e93b915ec1a26a6acfd
   XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
 
-PODFILE CHECKSUM: 3e4b4fc03292c5f3562e09390ce75488b18ebb57
+PODFILE CHECKSUM: 9988e10df86da430797c7bd0d3284b05e40fa9d9
 
 COCOAPODS: 1.5.3

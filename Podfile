@@ -25,7 +25,6 @@ def common_pods
     pod 'Fabric'
     pod 'Crashlytics'
     
-    
     #
     # pod 'NSLogger', :configurations => ['Debug']
 
