@@ -53,6 +53,7 @@
 		9821381D1D3B83D6006F2B79 /* VBVMIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9821381C1D3B83D6006F2B79 /* VBVMIUITests.swift */; };
 		982138241D3B83EC006F2B79 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D16ABF1D3B7512004BF06E /* SnapshotHelper.swift */; };
 		98213A991DA4F43300E81CBB /* BlurImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98213A981DA4F43300E81CBB /* BlurImageView.swift */; };
+		98256B772150FCE900AAEC5B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98256B762150FCE900AAEC5B /* GoogleService-Info.plist */; };
 		9828D4141C5D9F4A004FA954 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D4131C5D9F4A004FA954 /* AppDelegate.swift */; };
 		9828D4161C5D9F4A004FA954 /* StudiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828D4151C5D9F4A004FA954 /* StudiesViewController.swift */; };
 		9828D4191C5D9F4A004FA954 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9828D4171C5D9F4A004FA954 /* Main.storyboard */; };
@@ -322,6 +323,7 @@
 		9821381C1D3B83D6006F2B79 /* VBVMIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VBVMIUITests.swift; sourceTree = "<group>"; };
 		9821381E1D3B83D6006F2B79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98213A981DA4F43300E81CBB /* BlurImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurImageView.swift; sourceTree = "<group>"; };
+		98256B762150FCE900AAEC5B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9828D4101C5D9F4A004FA954 /* Verse By Verse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Verse By Verse.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9828D4131C5D9F4A004FA954 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9828D4151C5D9F4A004FA954 /* StudiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudiesViewController.swift; sourceTree = "<group>"; };
@@ -737,6 +739,7 @@
 				980D95691EAF18BB000271FE /* VBVMIConstants.h */,
 				980D956B1EAF1A5F000271FE /* VBVMIConstants.m */,
 				980D956A1EAF1A5E000271FE /* VBVMI-tvOS-Bridging-Header.h */,
+				98256B762150FCE900AAEC5B /* GoogleService-Info.plist */,
 			);
 			path = VBVMI;
 			sourceTree = "<group>";
@@ -1216,6 +1219,7 @@
 				9881317420D7A44A00987DB7 /* LatestLessonsCollectionViewCell.xib in Resources */,
 				98F725C21D49E67600F73ED0 /* Settings.storyboard in Resources */,
 				98ED7AD32132927100366E39 /* CurriculumPDFTableViewCell.xib in Resources */,
+				98256B772150FCE900AAEC5B /* GoogleService-Info.plist in Resources */,
 				98C9E7E420CB67ED006BE3AE /* RecentStudyCollectionViewCell.xib in Resources */,
 				986C2F1B1D339A1500F595FF /* VideoTableViewCell.xib in Resources */,
 				98644DA01C61F14C00EB27F1 /* StudyCellCollectionViewCell.xib in Resources */,
@@ -1332,6 +1336,7 @@
 				"${BUILT_PRODUCTS_DIR}/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/Decodable-iOS/Decodable.framework",
 				"${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-iOS/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging-iOS/ObjcExceptionBridging.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift-iOS/Reachability.framework",
@@ -1342,6 +1347,7 @@
 				"${BUILT_PRODUCTS_DIR}/UIImage-Color/UIImage_Color.framework",
 				"${BUILT_PRODUCTS_DIR}/VimeoNetworking-iOS/VimeoNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/XCGLogger-iOS/XCGLogger.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1352,6 +1358,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CSStickyHeaderFlowLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Decodable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesome_swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -1362,6 +1369,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImage_Color.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VimeoNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCGLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1594,6 +1602,7 @@
 				"${BUILT_PRODUCTS_DIR}/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/Decodable-iOS/Decodable.framework",
 				"${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-iOS/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging-iOS/ObjcExceptionBridging.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift-iOS/Reachability.framework",
@@ -1604,6 +1613,7 @@
 				"${BUILT_PRODUCTS_DIR}/UIImage-Color/UIImage_Color.framework",
 				"${BUILT_PRODUCTS_DIR}/VimeoNetworking-iOS/VimeoNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/XCGLogger-iOS/XCGLogger.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1614,6 +1624,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CSStickyHeaderFlowLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Decodable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesome_swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -1624,6 +1635,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImage_Color.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VimeoNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCGLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1662,6 +1674,7 @@
 				"${BUILT_PRODUCTS_DIR}/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/Decodable-iOS/Decodable.framework",
 				"${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-iOS/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging-iOS/ObjcExceptionBridging.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift-iOS/Reachability.framework",
@@ -1672,6 +1685,7 @@
 				"${BUILT_PRODUCTS_DIR}/UIImage-Color/UIImage_Color.framework",
 				"${BUILT_PRODUCTS_DIR}/VimeoNetworking-iOS/VimeoNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/XCGLogger-iOS/XCGLogger.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1682,6 +1696,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CSStickyHeaderFlowLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Decodable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesome_swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -1692,6 +1707,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImage_Color.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VimeoNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCGLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

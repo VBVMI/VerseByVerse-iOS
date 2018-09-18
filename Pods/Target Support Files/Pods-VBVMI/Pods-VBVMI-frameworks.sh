@@ -150,6 +150,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Decodable-iOS/Decodable.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-iOS/Moya.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging-iOS/ObjcExceptionBridging.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReachabilitySwift-iOS/Reachability.framework"
@@ -160,6 +161,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/UIImage-Color/UIImage_Color.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/VimeoNetworking-iOS/VimeoNetworking.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XCGLogger-iOS/XCGLogger.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/ACPDownload/ACPDownload.framework"
@@ -169,6 +171,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Decodable-iOS/Decodable.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-iOS/Moya.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging-iOS/ObjcExceptionBridging.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReachabilitySwift-iOS/Reachability.framework"
@@ -178,6 +181,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/UIImage-Color/UIImage_Color.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/VimeoNetworking-iOS/VimeoNetworking.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XCGLogger-iOS/XCGLogger.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

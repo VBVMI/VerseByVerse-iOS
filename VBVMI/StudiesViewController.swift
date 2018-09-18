@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import AlamofireImage
-
+import FirebaseAnalytics
 
 class StudiesViewController: UIViewController {
 
@@ -197,6 +197,11 @@ class StudiesViewController: UIViewController {
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.hidesBarsOnTap = false
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Analytics.setScreenName("All Studies", screenClass: "StudiesViewController")
     }
 
     override func didReceiveMemoryWarning() {

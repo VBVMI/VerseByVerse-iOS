@@ -11,6 +11,7 @@ import CoreData
 import AlamofireImage
 import Fabric
 import Crashlytics
+import Firebase
 import XCGLogger
 import Reachability
 import VimeoNetworking
@@ -51,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
         
         logger.info("🍕Application will finish with options: \(launchOptions ?? [:])")
         //Fabric.sharedSDK().debug = true

@@ -22,11 +22,10 @@ def common_pods
 
     # pod 'FontAwesome.swift', git: 'git@github.com:thii/FontAwesome.swift.git'
     # pod 'SwiftIconFont', git: 'git@github.com:0x73/SwiftIconFont.git'
-
-
     pod 'Fabric'
     pod 'Crashlytics'
-
+    
+    
     #
     # pod 'NSLogger', :configurations => ['Debug']
 
@@ -42,6 +41,7 @@ def ios_pods
     pod 'CSStickyHeaderFlowLayout'
     pod 'ACPDownload'
 
+    pod 'Firebase/Core'
     pod 'UIImage-Color'
     pod 'FontAwesome.swift', git: 'git@github.com:thii/FontAwesome.swift.git'
 
@@ -73,6 +73,7 @@ target 'VBVMI-tvOS' do
     inhibit_all_warnings!
 
     common_pods
+
 
     pod 'ParallaxView'
 #    pod 'FontAwesomeKit'

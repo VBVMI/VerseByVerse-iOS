@@ -15,6 +15,7 @@ import ACPDownload
 import LNPopupController
 import AVKit
 import AVFoundation
+import FirebaseAnalytics
 
 class StudyViewController: UITableViewController {
 
@@ -555,7 +556,7 @@ class StudyViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        Analytics.setScreenName("\(study.title)", screenClass: "StudyViewController")
     }
     
     override func viewWillAppear(_ animated: Bool) {

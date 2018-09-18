@@ -66,6 +66,14 @@
         <key>Type</key>
         <string>PSChildPaneSpecifier</string>
         <key>Title</key>
+        <string>FirebaseCore</string>
+        <key>File</key>
+        <string>Acknowledgement-FirebaseCore</string>
+      </dict>
+      <dict>
+        <key>Type</key>
+        <string>PSChildPaneSpecifier</string>
+        <key>Title</key>
         <string>FontAwesome</string>
         <key>File</key>
         <string>Acknowledgement-FontAwesome</string>
@@ -74,9 +82,25 @@
         <key>Type</key>
         <string>PSChildPaneSpecifier</string>
         <key>Title</key>
+        <string>GoogleUtilities</string>
+        <key>File</key>
+        <string>Acknowledgement-GoogleUtilities</string>
+      </dict>
+      <dict>
+        <key>Type</key>
+        <string>PSChildPaneSpecifier</string>
+        <key>Title</key>
         <string>Moya</string>
         <key>File</key>
         <string>Acknowledgement-Moya</string>
+      </dict>
+      <dict>
+        <key>Type</key>
+        <string>PSChildPaneSpecifier</string>
+        <key>Title</key>
+        <string>nanopb</string>
+        <key>File</key>
+        <string>Acknowledgement-nanopb</string>
       </dict>
       <dict>
         <key>Type</key>
