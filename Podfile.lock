@@ -41,9 +41,9 @@ PODS:
   - UIImage-Color (1.1.1)
   - VimeoNetworking (3.0.1):
     - AFNetworking (= 3.1.0)
-  - XCGLogger (6.0.1):
-    - XCGLogger/Core (= 6.0.1)
-  - XCGLogger/Core (6.0.1):
+  - XCGLogger (6.1.0):
+    - XCGLogger/Core (= 6.1.0)
+  - XCGLogger/Core (6.1.0):
     - ObjcExceptionBridging
 
 DEPENDENCIES:
@@ -121,7 +121,7 @@ SPEC CHECKSUMS:
   STRegex: eb1f4c2fe9e2f0265b8df8634774cd8cd8914018
   UIImage-Color: 29d79c2acdd1836eae9815836a14fddfcd2db38f
   VimeoNetworking: 5d30e46c8561e2e0a7472e93b915ec1a26a6acfd
-  XCGLogger: b4ca980580108cfeaf221afe158f5d89c1be22e0
+  XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
 
 PODFILE CHECKSUM: cbebe5d7507ba56b80075e29cb4b24aa90327c12
 
