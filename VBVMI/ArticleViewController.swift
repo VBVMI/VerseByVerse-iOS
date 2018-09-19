@@ -10,6 +10,7 @@ import UIKit
 import AlamofireImage
 import WebKit
 import CoreData
+import SafariServices
 
 protocol HtmlArticle : class, ObjectURIRepresentable {
     var articleTitle: String { get }
@@ -119,7 +120,7 @@ extension Answer: HtmlArticle {
     }
 }
 
-class ArticleViewController: UIViewController {
+class ArticleViewController: UIViewController, WKNavigationDelegate {
 
     private let htmlBody = try! String(contentsOf: Bundle.main.url(forResource: "ArticleBody", withExtension: "html")!, encoding: .utf8)
     
@@ -156,7 +157,7 @@ class ArticleViewController: UIViewController {
         }
         let context = ContextCoordinator.sharedInstance.managedObjectContext
         let object = context?.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: identifier)
-        self.article = object as! HtmlArticle
+        self.article = (object as! HtmlArticle)
         super.decodeRestorableState(with: coder)
     }
     
@@ -177,6 +178,8 @@ class ArticleViewController: UIViewController {
         
         let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
         self.navigationItem.rightBarButtonItem = shareButton
+        
+        
     }
     
     @objc func shareAction(_ button: Any) {
@@ -228,6 +231,8 @@ class ArticleViewController: UIViewController {
         
         htmlContent.replaceAll(matching: "AUTHOR_IMAGE", with: imageTag)
         webView.loadHTMLString(htmlContent, baseURL: URL(string: "https://versebyverseministry.org/")!)
+        
+        webView.navigationDelegate = self
     }
 
     override func viewDidLayoutSubviews() {
@@ -237,6 +242,20 @@ class ArticleViewController: UIViewController {
             //let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
         }
        
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.request.url?.absoluteString == "https://versebyverseministry.org/" {
+            decisionHandler(WKNavigationActionPolicy.allow)
+            return
+        }
+        
+        if let url = navigationAction.request.url {
+            let controller = SFSafariViewController(url: url)
+            present(controller, animated: true, completion: nil)
+        }
+        
+        decisionHandler(WKNavigationActionPolicy.cancel)
     }
     
 }

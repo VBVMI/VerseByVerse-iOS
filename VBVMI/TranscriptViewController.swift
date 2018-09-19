@@ -8,8 +8,9 @@
 
 import UIKit
 import WebKit
+import SafariServices
 
-class TranscriptViewController: UIViewController, HidableStatusbarController {
+class TranscriptViewController: UIViewController, HidableStatusbarController, WKNavigationDelegate {
 
     var shouldHideStatusBar: Bool = false
     
@@ -112,6 +113,7 @@ class TranscriptViewController: UIViewController, HidableStatusbarController {
             make.edges.equalTo(view)
         }
         
+        
     }
     
     private func loadHTML() {
@@ -122,6 +124,7 @@ class TranscriptViewController: UIViewController, HidableStatusbarController {
             
             DispatchQueue.main.async {
                 self.webView.loadHTMLString(transcriptHTML, baseURL: URL(string: "https://versebyverseministry.org")!)
+                self.webView.navigationDelegate = self
             }
         }
     }
@@ -163,6 +166,20 @@ class TranscriptViewController: UIViewController, HidableStatusbarController {
         activityController.popoverPresentationController?.barButtonItem = shareButton
         
         present(activityController, animated: true, completion: nil)
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.request.url?.absoluteString == "https://versebyverseministry.org/" {
+            decisionHandler(WKNavigationActionPolicy.allow)
+            return
+        }
+        
+        if let url = navigationAction.request.url {
+            let controller = SFSafariViewController(url: url)
+            present(controller, animated: true, completion: nil)
+        }
+        
+        decisionHandler(WKNavigationActionPolicy.cancel)
     }
 }
 

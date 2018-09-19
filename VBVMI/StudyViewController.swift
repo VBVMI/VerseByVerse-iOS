@@ -16,6 +16,7 @@ import LNPopupController
 import AVKit
 import AVFoundation
 import FirebaseAnalytics
+import SafariServices
 
 class StudyViewController: UITableViewController {
 
@@ -427,7 +428,8 @@ class StudyViewController: UITableViewController {
                 player.play()
             })
         } else {
-            UIApplication.shared.openURL(url)
+            let controller = SFSafariViewController(url: url)
+            present(controller, animated: true, completion: nil)
         }
     }
     
@@ -802,13 +804,17 @@ extension StudyViewController : UITextViewDelegate {
         if url.scheme == "applewebdata" {
             let urlString = "https://versebyverseministry.org\(url.path)"
             if let url = URL(string: urlString) {
-                UIApplication.shared.openURL(url)
+                let controller = SFSafariViewController(url: url)
+                present(controller, animated: true, completion: nil)
             }
             
             return false
         }
         
-        return true
+        let controller = SFSafariViewController(url: url)
+        present(controller, animated: true, completion: nil)
+        
+        return false
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
