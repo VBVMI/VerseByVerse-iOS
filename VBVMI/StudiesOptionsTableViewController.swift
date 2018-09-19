@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAnalytics
 
 enum StudySortOption: Int, StaticSelectable {
     
@@ -51,6 +51,8 @@ class StudiesOptionsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         sortCell?.detailTextLabel?.text = StudySortOption.currentSortOption.cellTitle
+        
+        Analytics.setScreenName("StudiesOptions", screenClass: "StudiesOptionsTableViewController")
     }
 
     override func didReceiveMemoryWarning() {

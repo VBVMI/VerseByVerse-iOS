@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import AlamofireImage
+import FirebaseAnalytics
 
 class ChannelsViewController: UIViewController {
 
@@ -114,6 +115,12 @@ class ChannelsViewController: UIViewController {
         } else if let destination = segue.destination as? CurriculumViewController, let curriculum = sender as? Curriculum{
             destination.curriculum = curriculum
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Analytics.setScreenName("AllVideos", screenClass: "VideosView")
     }
 }
 

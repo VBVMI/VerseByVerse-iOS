@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import FirebaseAnalytics
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -47,7 +49,12 @@ class AnswersViewController: UITableViewController {
         }
     }
     fileprivate var defaultPredicate: NSPredicate?
-        
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Analytics.setScreenName("Answers", screenClass: "AnswersView")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

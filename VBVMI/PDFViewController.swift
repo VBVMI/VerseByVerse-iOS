@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class PDFViewController: UIViewController {
 
@@ -68,6 +69,8 @@ class PDFViewController: UIViewController {
                 attachedToNavController = true
             }
         }
+        
+        Analytics.setScreenName("LessonPDF-\(urlToLoad?.lastPathComponent ?? "")", screenClass: "PDFView")
     }
     
     @objc func didSwipe(_ swipe: UIPanGestureRecognizer) {

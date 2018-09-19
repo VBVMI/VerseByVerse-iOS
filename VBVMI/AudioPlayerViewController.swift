@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 import CoreData
+import FirebaseAnalytics
 
 extension TimeInterval {
     
@@ -145,6 +146,8 @@ class AudioPlayerViewController: UIViewController {
                 SoundManager.sharedInstance.startPlaying()
             }
         })
+        
+        Analytics.setScreenName("\(study.title)-\(lesson.lessonNumber ?? "")", screenClass: "AudioPlayer")
     }
     
     init() {

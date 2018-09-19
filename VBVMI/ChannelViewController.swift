@@ -11,6 +11,7 @@ import CoreData
 import AVKit
 import AVFoundation
 import VimeoNetworking
+import FirebaseAnalytics
 
 class ChannelViewController: UIViewController {
 
@@ -96,6 +97,13 @@ class ChannelViewController: UIViewController {
             tableView.scrollIndicatorInsets = insets
         }
         
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Analytics.setScreenName("Channel-\(channel?.title ?? "")", screenClass: "ChannelView")
     }
 
 }

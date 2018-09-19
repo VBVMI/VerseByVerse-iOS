@@ -11,6 +11,7 @@ import AlamofireImage
 import WebKit
 import CoreData
 import SafariServices
+import FirebaseAnalytics
 
 protocol HtmlArticle : class, ObjectURIRepresentable {
     var articleTitle: String { get }
@@ -205,6 +206,8 @@ class ArticleViewController: UIViewController, WKNavigationDelegate {
                 
             }
         }
+        
+        Analytics.setScreenName("\(article.articleTitle)", screenClass: "HTMLArticle")
     }
     
     private func loadArticle(_ article: HtmlArticle) {

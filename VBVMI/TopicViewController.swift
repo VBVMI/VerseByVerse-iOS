@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class TopicViewController: UIViewController {
 
@@ -118,6 +119,8 @@ class TopicViewController: UIViewController {
             configureForTopic()
             configureSegmentedControl()
         }
+        
+        Analytics.setScreenName("\(topic.name ?? "")", screenClass: "TopicViewController")
     }
 
     fileprivate var currentViewController : UIViewController?

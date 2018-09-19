@@ -11,6 +11,7 @@ import CoreData
 import AVKit
 import AVFoundation
 import VimeoNetworking
+import FirebaseAnalytics
 
 class CurriculumViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, CurriculumPDFTableViewCellDelegate {
     
@@ -78,6 +79,12 @@ class CurriculumViewController : UIViewController, UITableViewDelegate, UITableV
             let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
             self.navigationItem.rightBarButtonItem = shareButton
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Analytics.setScreenName("\(curriculum?.title ?? "Curriculum")", screenClass: "CurriculumView")
     }
     
     @objc func shareAction(_ button: Any) {

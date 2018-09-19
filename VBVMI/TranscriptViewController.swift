@@ -9,6 +9,7 @@
 import UIKit
 import WebKit
 import SafariServices
+import FirebaseAnalytics
 
 class TranscriptViewController: UIViewController, HidableStatusbarController, WKNavigationDelegate {
 
@@ -113,7 +114,7 @@ class TranscriptViewController: UIViewController, HidableStatusbarController, WK
             make.edges.equalTo(view)
         }
         
-        
+        Analytics.setScreenName("\(study.title)-\(lesson.lessonNumber ?? "")", screenClass: "TranscriptViewController")
     }
     
     private func loadHTML() {
