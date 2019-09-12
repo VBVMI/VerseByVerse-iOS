@@ -74,9 +74,49 @@
         <key>Type</key>
         <string>PSChildPaneSpecifier</string>
         <key>Title</key>
+        <string>FirebaseCoreDiagnostics</string>
+        <key>File</key>
+        <string>Acknowledgement-FirebaseCoreDiagnostics</string>
+      </dict>
+      <dict>
+        <key>Type</key>
+        <string>PSChildPaneSpecifier</string>
+        <key>Title</key>
+        <string>FirebaseCoreDiagnosticsInterop</string>
+        <key>File</key>
+        <string>Acknowledgement-FirebaseCoreDiagnosticsInterop</string>
+      </dict>
+      <dict>
+        <key>Type</key>
+        <string>PSChildPaneSpecifier</string>
+        <key>Title</key>
+        <string>FirebaseInstanceID</string>
+        <key>File</key>
+        <string>Acknowledgement-FirebaseInstanceID</string>
+      </dict>
+      <dict>
+        <key>Type</key>
+        <string>PSChildPaneSpecifier</string>
+        <key>Title</key>
         <string>FontAwesome</string>
         <key>File</key>
         <string>Acknowledgement-FontAwesome</string>
+      </dict>
+      <dict>
+        <key>Type</key>
+        <string>PSChildPaneSpecifier</string>
+        <key>Title</key>
+        <string>GoogleDataTransport</string>
+        <key>File</key>
+        <string>Acknowledgement-GoogleDataTransport</string>
+      </dict>
+      <dict>
+        <key>Type</key>
+        <string>PSChildPaneSpecifier</string>
+        <key>Title</key>
+        <string>GoogleDataTransportCCTSupport</string>
+        <key>File</key>
+        <string>Acknowledgement-GoogleDataTransportCCTSupport</string>
       </dict>
       <dict>
         <key>Type</key>

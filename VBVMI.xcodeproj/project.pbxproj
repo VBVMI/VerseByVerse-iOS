@@ -21,11 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		2A72218740AAD71B852DD432 /* Pods_VBVMIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8891F3FC110090C58E0F6985 /* Pods_VBVMIUITests.framework */; };
 		43F3F530BCD03656741ABA01 /* Pods_VBVMI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FCF4EEA67E046837FF107E /* Pods_VBVMI.framework */; };
 		80B7B747E8D6DF19DEDD9414 /* Pods_VBVMI_tvOS_VBVMI_tvOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9E32DE3976688EC378C18C /* Pods_VBVMI_tvOS_VBVMI_tvOSTests.framework */; };
 		814A9FCBB15E0AC7E837826D /* Pods_VBVMI_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF77DD70A5B6A6263FAB994 /* Pods_VBVMI_tvOS.framework */; };
-		8E5F965B9D9C9002F95231CD /* Pods_VBVMI_tvOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C55649F4689A242C5CC8EE06 /* Pods_VBVMI_tvOSUITests.framework */; };
 		980579D71D31D9DE001C809C /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980579D61D31D9DE001C809C /* ChannelsViewController.swift */; };
 		980744C91EA1B9E600043B1E /* VideosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980744C71EA1B9E600043B1E /* VideosTableViewCell.swift */; };
 		980744CA1EA1B9E600043B1E /* VideosTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 980744C81EA1B9E600043B1E /* VideosTableViewCell.xib */; };
@@ -209,9 +207,7 @@
 		98FF47581D292786008E27F4 /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FF47571D292786008E27F4 /* ResourceManager.swift */; };
 		B2D4A578069318E0055764A0 /* Pods_VBVMI_tvOS_VBVMI_tvOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE3195A03620C532D86693B7 /* Pods_VBVMI_tvOS_VBVMI_tvOSUITests.framework */; };
 		B56DF1506F0A3AB144D1F995 /* Pods_VBVMI_VBVMITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFF4AD666429F9BC484EDD1 /* Pods_VBVMI_VBVMITests.framework */; };
-		BBA00188891329647EC86646 /* Pods_VBVMITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F238B6B4D78C033FA5021EE7 /* Pods_VBVMITests.framework */; };
 		C00438BBAC1DECC1A8F7599A /* Pods_VBVMI_VBVMIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1C1CEC0744718AE722AE1C /* Pods_VBVMI_VBVMIUITests.framework */; };
-		D636408853838400F6CBCCAE /* Pods_VBVMI_tvOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 098CFF3CEBF63040DBEB35A0 /* Pods_VBVMI_tvOSTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -282,7 +278,6 @@
 
 /* Begin PBXFileReference section */
 		01174BA9313AE14C012B7B96 /* Pods-VBVMI-VBVMIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-VBVMIUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-VBVMIUITests/Pods-VBVMI-VBVMIUITests.release.xcconfig"; sourceTree = "<group>"; };
-		098CFF3CEBF63040DBEB35A0 /* Pods_VBVMI_tvOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMI_tvOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DF77DD70A5B6A6263FAB994 /* Pods_VBVMI_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMI_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE03F5775CF110A08692228 /* Pods-VBVMI-tvOS-VBVMI-tvOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-tvOS-VBVMI-tvOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSUITests/Pods-VBVMI-tvOS-VBVMI-tvOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1C14C6E5D82647DDC6EF7954 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -292,7 +287,6 @@
 		4546A07C83C4A3B948B01374 /* Pods-VBVMI-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-tvOS/Pods-VBVMI-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		4848EA53EB9CAEAA0700A2C3 /* Pods-VBVMI-VBVMITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-VBVMITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-VBVMITests/Pods-VBVMI-VBVMITests.release.xcconfig"; sourceTree = "<group>"; };
 		79F8F2249D44B0F089412C41 /* Pods-VBVMI-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-tvOS/Pods-VBVMI-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		8891F3FC110090C58E0F6985 /* Pods_VBVMIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9305E3DBDCA3CD2E54AE107B /* Pods-VBVMI-VBVMITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-VBVMITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-VBVMITests/Pods-VBVMI-VBVMITests.debug.xcconfig"; sourceTree = "<group>"; };
 		980579D61D31D9DE001C809C /* ChannelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
 		980579DC1D31DF79001C809C /* Keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Keys.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -475,11 +469,9 @@
 		9E1C1CEC0744718AE722AE1C /* Pods_VBVMI_VBVMIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMI_VBVMIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B60029E318F3CF227E6B8178 /* Pods-VBVMI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI/Pods-VBVMI.release.xcconfig"; sourceTree = "<group>"; };
 		B7DA5B5AD736614D294A36EA /* Pods-VBVMI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI/Pods-VBVMI.debug.xcconfig"; sourceTree = "<group>"; };
-		C55649F4689A242C5CC8EE06 /* Pods_VBVMI_tvOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMI_tvOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E82B1C15936A394F74D559DA /* Pods-VBVMI-tvOS-VBVMI-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-tvOS-VBVMI-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSTests/Pods-VBVMI-tvOS-VBVMI-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE3195A03620C532D86693B7 /* Pods_VBVMI_tvOS_VBVMI_tvOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMI_tvOS_VBVMI_tvOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF9E32DE3976688EC378C18C /* Pods_VBVMI_tvOS_VBVMI_tvOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMI_tvOS_VBVMI_tvOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F238B6B4D78C033FA5021EE7 /* Pods_VBVMITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBVMITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93DD85D67B37F721E47E3CA /* Pods-VBVMI-tvOS-VBVMI-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-tvOS-VBVMI-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSTests/Pods-VBVMI-tvOS-VBVMI-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		FDD57AD47B05593A4DEED09A /* Pods-VBVMI-tvOS-VBVMI-tvOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBVMI-tvOS-VBVMI-tvOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSUITests/Pods-VBVMI-tvOS-VBVMI-tvOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -489,7 +481,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBA00188891329647EC86646 /* Pods_VBVMITests.framework in Frameworks */,
 				B56DF1506F0A3AB144D1F995 /* Pods_VBVMI_VBVMITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,7 +489,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A72218740AAD71B852DD432 /* Pods_VBVMIUITests.framework in Frameworks */,
 				C00438BBAC1DECC1A8F7599A /* Pods_VBVMI_VBVMIUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,7 +514,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D636408853838400F6CBCCAE /* Pods_VBVMI_tvOSTests.framework in Frameworks */,
 				80B7B747E8D6DF19DEDD9414 /* Pods_VBVMI_tvOS_VBVMI_tvOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,7 +522,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E5F965B9D9C9002F95231CD /* Pods_VBVMI_tvOSUITests.framework in Frameworks */,
 				B2D4A578069318E0055764A0 /* Pods_VBVMI_tvOS_VBVMI_tvOSUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -546,11 +534,7 @@
 			children = (
 				1C14C6E5D82647DDC6EF7954 /* Pods.framework */,
 				36FCF4EEA67E046837FF107E /* Pods_VBVMI.framework */,
-				F238B6B4D78C033FA5021EE7 /* Pods_VBVMITests.framework */,
-				8891F3FC110090C58E0F6985 /* Pods_VBVMIUITests.framework */,
 				0DF77DD70A5B6A6263FAB994 /* Pods_VBVMI_tvOS.framework */,
-				098CFF3CEBF63040DBEB35A0 /* Pods_VBVMI_tvOSTests.framework */,
-				C55649F4689A242C5CC8EE06 /* Pods_VBVMI_tvOSUITests.framework */,
 				1DFF4AD666429F9BC484EDD1 /* Pods_VBVMI_VBVMITests.framework */,
 				9E1C1CEC0744718AE722AE1C /* Pods_VBVMI_VBVMIUITests.framework */,
 				EF9E32DE3976688EC378C18C /* Pods_VBVMI_tvOS_VBVMI_tvOSTests.framework */,
@@ -1284,7 +1268,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSUITests/Pods-VBVMI-tvOS-VBVMI-tvOSUITests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSUITests/Pods-VBVMI-tvOS-VBVMI-tvOSUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking-tvOS/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-tvOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage-tvOS/AlamofireImage.framework",
@@ -1293,7 +1277,6 @@
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging-tvOS/ObjcExceptionBridging.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift-tvOS/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-tvOS/Result.framework",
-				"${PODS_ROOT}/Reveal-SDK/RevealServer-12/tvOS/RevealServer.framework",
 				"${BUILT_PRODUCTS_DIR}/STRegex-tvOS/Regex.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-tvOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/VimeoNetworking-tvOS/VimeoNetworking.framework",
@@ -1310,7 +1293,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VimeoNetworking.framework",
@@ -1319,7 +1301,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSUITests/Pods-VBVMI-tvOS-VBVMI-tvOSUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSUITests/Pods-VBVMI-tvOS-VBVMI-tvOSUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4453D1D6FA95E6AB37D03DB3 /* [CP] Embed Pods Frameworks */ = {
@@ -1328,7 +1310,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI/Pods-VBVMI-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-VBVMI/Pods-VBVMI-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ACPDownload/ACPDownload.framework",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking-iOS/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
@@ -1341,7 +1323,6 @@
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging-iOS/ObjcExceptionBridging.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift-iOS/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
-				"${PODS_ROOT}/Reveal-SDK/RevealServer-12/iOS/RevealServer.framework",
 				"${BUILT_PRODUCTS_DIR}/STRegex-iOS/Regex.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/UIImage-Color/UIImage_Color.framework",
@@ -1363,7 +1344,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImage_Color.framework",
@@ -1373,7 +1353,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI/Pods-VBVMI-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VBVMI/Pods-VBVMI-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		472E8C18EF01AA866B278DE7 /* [CP] Check Pods Manifest.lock */ = {
@@ -1400,7 +1380,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSTests/Pods-VBVMI-tvOS-VBVMI-tvOSTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSTests/Pods-VBVMI-tvOS-VBVMI-tvOSTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking-tvOS/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-tvOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage-tvOS/AlamofireImage.framework",
@@ -1409,7 +1389,6 @@
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging-tvOS/ObjcExceptionBridging.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift-tvOS/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-tvOS/Result.framework",
-				"${PODS_ROOT}/Reveal-SDK/RevealServer-12/tvOS/RevealServer.framework",
 				"${BUILT_PRODUCTS_DIR}/STRegex-tvOS/Regex.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-tvOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/VimeoNetworking-tvOS/VimeoNetworking.framework",
@@ -1426,7 +1405,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VimeoNetworking.framework",
@@ -1435,7 +1413,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSTests/Pods-VBVMI-tvOS-VBVMI-tvOSTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSTests/Pods-VBVMI-tvOS-VBVMI-tvOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		77E8525F568FBD0ED3225F02 /* [CP] Check Pods Manifest.lock */ = {
@@ -1462,7 +1440,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS/Pods-VBVMI-tvOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-VBVMI-tvOS/Pods-VBVMI-tvOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking-tvOS/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-tvOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage-tvOS/AlamofireImage.framework",
@@ -1471,7 +1449,6 @@
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging-tvOS/ObjcExceptionBridging.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift-tvOS/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-tvOS/Result.framework",
-				"${PODS_ROOT}/Reveal-SDK/RevealServer-12/tvOS/RevealServer.framework",
 				"${BUILT_PRODUCTS_DIR}/STRegex-tvOS/Regex.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-tvOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/VimeoNetworking-tvOS/VimeoNetworking.framework",
@@ -1488,7 +1465,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VimeoNetworking.framework",
@@ -1497,7 +1473,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-tvOS/Pods-VBVMI-tvOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VBVMI-tvOS/Pods-VBVMI-tvOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		980579DE1D31EA17001C809C /* Git Bundle Version */ = {
@@ -1594,7 +1570,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-VBVMIUITests/Pods-VBVMI-VBVMIUITests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-VBVMI-VBVMIUITests/Pods-VBVMI-VBVMIUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ACPDownload/ACPDownload.framework",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking-iOS/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
@@ -1607,7 +1583,6 @@
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging-iOS/ObjcExceptionBridging.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift-iOS/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
-				"${PODS_ROOT}/Reveal-SDK/RevealServer-12/iOS/RevealServer.framework",
 				"${BUILT_PRODUCTS_DIR}/STRegex-iOS/Regex.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/UIImage-Color/UIImage_Color.framework",
@@ -1629,7 +1604,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImage_Color.framework",
@@ -1639,7 +1613,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-VBVMIUITests/Pods-VBVMI-VBVMIUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VBVMI-VBVMIUITests/Pods-VBVMI-VBVMIUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B8C4E2990088CC0450535970 /* [CP] Check Pods Manifest.lock */ = {
@@ -1666,7 +1640,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-VBVMITests/Pods-VBVMI-VBVMITests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-VBVMI-VBVMITests/Pods-VBVMI-VBVMITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ACPDownload/ACPDownload.framework",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking-iOS/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
@@ -1679,7 +1653,6 @@
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging-iOS/ObjcExceptionBridging.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift-iOS/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
-				"${PODS_ROOT}/Reveal-SDK/RevealServer-12/iOS/RevealServer.framework",
 				"${BUILT_PRODUCTS_DIR}/STRegex-iOS/Regex.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/UIImage-Color/UIImage_Color.framework",
@@ -1701,7 +1674,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImage_Color.framework",
@@ -1711,7 +1683,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBVMI-VBVMITests/Pods-VBVMI-VBVMITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VBVMI-VBVMITests/Pods-VBVMI-VBVMITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E7D4A27E7A7E7F7933B37242 /* [CP] Check Pods Manifest.lock */ = {

@@ -9,12 +9,16 @@
 #ifndef LNPopupController_pch
 #define LNPopupController_pch
 
+//#define LNPopupControllerEnforceStrictClean
+
 #define MarqueeLabel __MarqueeLabel
 #define MarqueeType __MarqueeType
 #define MLLeftRight __MLLeftRight
 #define MLRightLeft __MLRightLeft
 #define MLContinuous __MLContinuous
 #define MLContinuousReverse __MLContinuousReverse
+#define MLLeft __MLLeft
+#define MLRight __MLRight
 #define GradientSetupAnimation __GradientSetupAnimation
 
 #define LNChevronView __LNChevronView
@@ -23,6 +27,6 @@
 #define LNChevronViewStateFlat __LNChevronViewStateFlat
 #define LNChevronViewStateDown __LNChevronViewStateDown
 
+#define notavailable(...) @available(__VA_ARGS__)) { } else if(YES
 
 #endif /* LNPopupController_pch */
-
