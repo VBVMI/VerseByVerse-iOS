@@ -22,7 +22,11 @@ class TopicViewController: UIViewController {
         case answers = 2
         
         var title: String {
-            return "\(self)"
+            switch self {
+            case .answers: return "Answers"
+            case .articles: return "Articles"
+            case .studies: return "Studies"
+            }
         }
         
         func viewController(_ topic: Topic) -> UIViewController {
@@ -115,12 +119,13 @@ class TopicViewController: UIViewController {
             // Fallback on earlier versions
         }
         
-        if let _ = topic {
+        if let topic = topic {
             configureForTopic()
             configureSegmentedControl()
+            Analytics.setScreenName("\(topic.name ?? "")", screenClass: "TopicViewController")
         }
         
-        Analytics.setScreenName("\(topic.name ?? "")", screenClass: "TopicViewController")
+        
     }
 
     fileprivate var currentViewController : UIViewController?
