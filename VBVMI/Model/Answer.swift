@@ -1,46 +1,65 @@
 import Foundation
 import CoreData
-import Decodable
+
+struct APIAnswer : Decodable {
+    
+    var identifier: String
+    var postedDate: Double?
+    var title: String
+    var authorName: String?
+    var url: String?
+    var body: String
+    var category: String?
+    var topics: [APITopic]?
+    
+    enum CodingKeys : CodingKey, String {
+        case identifier = "ID"
+        case postedDate
+        case title
+        case authorName
+        case url
+        case body
+        case category
+        case topics
+    }
+}
 
 @objc(Answer)
 open class Answer: _Answer {
 
 	// Custom logic goes here.
 
-    class func decodeJSON(_ JSONDict: [AnyHashable : Any], context: NSManagedObjectContext) throws -> (Answer) {
-        guard let identifier = JSONDict["ID"] as? String else {
-            throw APIDataManagerError.missingID
-        }
+    class func importAnswer(_ object: APIAnswer , context: NSManagedObjectContext) throws -> (Answer) {
         
-        guard let answer = Answer.findFirstOrCreateWithDictionary(["identifier": identifier], context: context) as? Answer else {
+        guard let answer = Answer.findFirstOrCreateWithDictionary(["identifier": object.identifier], context: context) as? Answer else {
             throw APIDataManagerError.modelCreationFailed
         }
         
-        answer.identifier = try JSONDict => "ID"
-        answer.category = nullOrString(try JSONDict => "category")
+        answer.identifier = object.identifier
+        answer.category = nullOrString(object.category)
         
-        if let dateString: TimeInterval = try JSONDict => "postedDate" {
+        if let dateString: TimeInterval = object.postedDate {
             answer.postedDate = Date(timeIntervalSince1970: dateString)
         }
         
-        answer.authorName = nullOrString(try JSONDict => "authorName")
+        answer.authorName = nullOrString(object.authorName)
         
-        answer.url = nullOrString(try? JSONDict => "url")
+        answer.url = nullOrString(object.url)
 
-        let articleBody: String = try JSONDict => "body"
+        let articleBody: String = object.body
         answer.body = articleBody
         
-        let articleTitle: String = try JSONDict => "title"
+        let articleTitle: String = object.title
         answer.title = nullOrString(articleTitle.stringByDecodingHTMLEntities)
         
         
-        if let topicsArray: [[AnyHashable: Any]] = try JSONDict => "topics" as? [[AnyHashable: Any]] {
+        if let topicsArray = object.topics {
             //Then lets process the topics
             var myTopics = Set<Topic>()
             
-            topicsArray.forEach({ (topicJSONDict) -> () in
+            topicsArray.forEach({ (topicAPI) -> () in
                 do {
-                    if let topic = try Topic.decodeJSON(topicJSONDict, context: context) {
+                    if let topic = try Topic.importTopic(topicAPI, context: context) {
                         myTopics.insert(topic)
                     }
                 } catch let error {

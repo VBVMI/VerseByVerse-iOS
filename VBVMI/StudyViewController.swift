@@ -355,6 +355,8 @@ class StudyViewController: UITableViewController {
             downloadResource(lesson: lesson, lessonType: lessonType)
         case .running, .indeterminate:
             ResourceManager.sharedInstance.cancelDownload(lesson, resource: lessonType)
+        @unknown default:
+            break
         }
     }
     
@@ -773,6 +775,8 @@ extension StudyViewController : NSFetchedResultsControllerDelegate {
                     tableView.deleteRows(at: [myIndexPath], with: .automatic)
                     tableView.insertRows(at: [myNewIndexPath], with: .automatic)
                 }
+            @unknown default:
+                break
             }
         case recentHistoryFetchedResultsController:
             fallthrough

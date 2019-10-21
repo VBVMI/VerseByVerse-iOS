@@ -120,10 +120,6 @@ class ResourceManager {
         var lessonIdentifier: String
         var lessonType: LessonType
         
-        fileprivate var hashValue: Int {
-            return "\(lessonIdentifier) - \(lessonType)".hashValue
-        }
-        
         var description: String {
             get {
                 return "\(lessonIdentifier)-\(lessonType.title)"

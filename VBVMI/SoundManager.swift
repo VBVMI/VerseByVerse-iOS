@@ -633,6 +633,8 @@ class SoundManager: NSObject {
                     self.startPlaying()
                 }
             }
+        @unknown default:
+            break
         }
         
     }

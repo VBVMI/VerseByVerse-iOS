@@ -5,7 +5,6 @@ def common_pods
     # API
     pod 'Moya'
     pod 'Alamofire'
-    pod 'Decodable'
     
     # Data
     #pod 'SuperRecord'
@@ -46,7 +45,7 @@ def ios_pods
 end
 
 target 'VBVMI' do
-    platform :ios, '9.0'
+    platform :ios, '11.0'
     use_frameworks!
     inhibit_all_warnings!
 
@@ -66,7 +65,7 @@ target 'VBVMI' do
 end
 
 target 'VBVMI-tvOS' do
-    platform :tvos, '9.0'
+    platform :tvos, '11.0'
     use_frameworks!
     inhibit_all_warnings!
 

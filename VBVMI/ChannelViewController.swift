@@ -242,6 +242,8 @@ extension ChannelViewController: NSFetchedResultsControllerDelegate {
             guard let indexPath = indexPath else { return }
             let myIndexPath = IndexPath(row: (indexPath as NSIndexPath).row, section: (indexPath as NSIndexPath).section)
             tableView.reloadRows(at: [myIndexPath], with: .none)
+        @unknown default:
+            break
         }
     }
     

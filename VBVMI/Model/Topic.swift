@@ -14,22 +14,28 @@ extension String {
     }
 }
 
+struct APITopic : Decodable {
+    var identifier: String
+    var name: String
+    
+    enum CodingKeys: CodingKey, String {
+        case identifier = "ID"
+        case name = "topic"
+    }
+}
+
 @objc(Topic)
 open class Topic: _Topic {
 
     // Custom logic goes here.
-    class func decodeJSON(_ JSONDict: [AnyHashable : Any], context: NSManagedObjectContext) throws -> (Topic?) {
-        guard let identifier = JSONDict["ID"] as? String else {
-            throw APIDataManagerError.missingID
-        }
-        
-        var convertedIdentifier = identifier.replacingOccurrences(of: "+", with: " ")
+    class func importTopic(_ object: APITopic, context: NSManagedObjectContext) throws -> (Topic?) {
+        var convertedIdentifier = object.identifier.replacingOccurrences(of: "+", with: " ")
         convertedIdentifier = convertedIdentifier.slugify()
         if convertedIdentifier.count == 0 {
             return nil
         }
         
-        if let name = try JSONDict => "topic" as? String , name.count > 0 {
+        if let name = object.name , name.count > 0 {
             let convertedName = name.capitalized
             guard let topic = Topic.findFirstOrCreateWithDictionary(["identifier": convertedIdentifier], context: context) as? Topic else {
                 throw APIDataManagerError.modelCreationFailed
