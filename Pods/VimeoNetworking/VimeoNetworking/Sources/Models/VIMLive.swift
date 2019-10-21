@@ -35,9 +35,9 @@ import Foundation
 /// - streaming: The stream is open and receiving content.
 /// - streamingError: The stream has failed due to an error relating to the broadcaster; They may have reached their monthly broadcast limit, for example.
 /// - archiving: The stream has finished, and the video is in the process of being archived, but is not ready to play yet.
+/// - archiveError: There was a problem archiving the stream.
 /// - done: The stream has been ended intentionally by the end-user.
-public enum LiveStreamingStatus: String
-{
+public enum LiveStreamingStatus: String {
     case unavailable = "unavailable"
     case pending = "pending"
     case ready = "ready"
@@ -45,13 +45,17 @@ public enum LiveStreamingStatus: String
     case streaming = "streaming"
     case streamingError = "streaming_error"
     case archiving = "archiving"
+    case archiveError = "archive_error"
     case done = "done"
 }
 
 /// An object that represents the `live` field in
 /// a `clip` response.
-public class VIMLive: VIMModelObject
-{
+public class VIMLive: VIMModelObject {
+    private struct Constants {
+        static let ChatKey = "chat"
+    }
+    
     /// The RTMP link is visible but not yet able to receive the stream.
     @objc public static let LiveStreamStatusUnavailable = "unavailable"
     
@@ -73,28 +77,31 @@ public class VIMLive: VIMModelObject
     /// The stream has finished, and the video is in the process of being archived, but is not ready to play yet.
     @objc public static let LiveStreamStatusArchiving = "archiving"
     
+    /// There was a problem archiving the stream.
+    @objc public static let LiveStreamStatusArchiveError = "archive_error"
+    
     /// The stream has been ended intentionally by the end-user.
     @objc public static let LiveStreamStatusDone = "done"
     
     /// An RTMP link used to host a live stream.
-    @objc public private(set) var link: String?
+    @objc dynamic public private(set) var link: String?
     
     /// A token for streaming.
-    @objc public private(set) var key: String?
+    @objc dynamic public private(set) var key: String?
     
     /// The timestamp that the stream is active.
-    @objc public private(set) var activeTime: NSDate?
+    @objc dynamic public private(set) var activeTime: NSDate?
     
     /// The timestamp that the stream is over.
-    @objc public private(set) var endedTime: NSDate?
+    @objc dynamic public private(set) var endedTime: NSDate?
     
     /// The timestamp that the live video is
     /// archived.
-    @objc public private(set) var archivedTime: NSDate?
+    @objc dynamic public private(set) var archivedTime: NSDate?
     
     /// The timestamp that the live video is
     /// scheduled to be online.
-    @objc public private(set) var scheduledStartTime: NSDate?
+    @objc dynamic public private(set) var scheduledStartTime: NSDate?
     
     /**
         The status of the live video in string.
@@ -104,16 +111,25 @@ public class VIMLive: VIMModelObject
         check the status of a live video. Use
         `liveStreamingStatus` instead for easy checking.
      */
-    @objc public private(set) var status: String?
+    @objc dynamic public private(set) var status: String?
     
     /// The status of the live video in `LiveStreamingStatus` enum.
-    public var liveStreamingStatus: LiveStreamingStatus?
-    {
-        guard let status = self.status else
-        {
+    public var liveStreamingStatus: LiveStreamingStatus? {
+        guard let status = self.status else {
             return nil
         }
         
         return LiveStreamingStatus(rawValue: status)
+    }
+    
+    /// The live event's chat.
+    @objc public private(set) var chat: VIMLiveChat?
+    
+    public override func getClassForObjectKey(_ key: String!) -> AnyClass? {
+        if key == Constants.ChatKey {
+            return VIMLiveChat.self
+        }
+        
+        return nil
     }
 }

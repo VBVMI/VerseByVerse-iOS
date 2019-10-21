@@ -136,7 +136,7 @@ class StudiesViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         collectionView.register(UINib(nibName: Cell.NibName.Study, bundle: nil), forCellWithReuseIdentifier: Cell.Identifier.Study)
 
-        collectionView.register(UINib(nibName: Cell.NibName.StudiesHeader, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: Cell.Identifier.StudiesHeader)
+        collectionView.register(UINib(nibName: Cell.NibName.StudiesHeader, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Cell.Identifier.StudiesHeader)
         
         collectionView.register(UINib(nibName: Cell.NibName.RecentStudies, bundle: nil), forCellWithReuseIdentifier: Cell.Identifier.RecentStudies)
         
@@ -148,7 +148,7 @@ class StudiesViewController: UIViewController {
         self.aboutActionsController = AboutActionsController(presentingController: self)
         self.navigationItem.leftBarButtonItem = self.aboutActionsController.barButtonItem
         
-        let optionsButton = UIBarButtonItem(image: UIImage.fontAwesomeIcon(name: .sliders, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30)), style: UIBarButtonItemStyle.plain, target: self, action: #selector(openOptions))
+        let optionsButton = UIBarButtonItem(image: UIImage.fontAwesomeIcon(name: .slidersH, style: .regular, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30)), style: UIBarButtonItem.Style.plain, target: self, action: #selector(openOptions))
         self.navigationItem.rightBarButtonItem = optionsButton
         
         UserDefaults.standard.addObserver(self, forKeyPath: "StudySortOption", options: [.new], context: nil)
@@ -181,10 +181,10 @@ class StudiesViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         if #available(iOS 11.0, *) {
-            collectionView.contentInset = UIEdgeInsetsMake(0, 0, 8, 0)
+            collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
         } else {
             // Fallback on earlier versions
-            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+            let insets = UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: bottomLayoutGuide.length, right: 0)
             collectionView.contentInset = insets
             collectionView.scrollIndicatorInsets = insets
         }
@@ -406,7 +406,7 @@ extension StudiesViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
-        case UICollectionElementKindSectionHeader:
+        case UICollectionView.elementKindSectionHeader:
             switch currentSections[indexPath.section] {
             case .study(let sectionIndex):
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Cell.Identifier.StudiesHeader, for: indexPath) as! StudiesHeaderReusableView

@@ -37,7 +37,7 @@ class ChannelViewController: UIViewController {
         super.viewDidLoad()
 
         tableView.register(UINib(nibName: "VideoTableViewCell", bundle: nil), forCellReuseIdentifier: videoCellIdentifier)
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         formatter.unitsStyle = .positional
         setupFetchedResultsController()
         
@@ -92,7 +92,7 @@ class ChannelViewController: UIViewController {
             
         } else {
             // Fallback on earlier versions
-            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+            let insets = UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: bottomLayoutGuide.length, right: 0)
             tableView.contentInset = insets
             tableView.scrollIndicatorInsets = insets
         }
@@ -144,7 +144,7 @@ extension ChannelViewController: UITableViewDelegate {
                 })
                 dispatchGroup.notify(queue: DispatchQueue.main, execute: { [weak movieController] in
                     do {
-                        try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                        try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
                     }
                     catch {
                         // report for an error

@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         
         logger.info("🍕Application will finish with options: \(launchOptions ?? [:])")
@@ -105,7 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             APIDataManager.allTheChannels()
             APIDataManager.allTheCurriculums()
 //
-            let reachability = Reachability()
+            let reachability = try? Reachability()
             if reachability?.connection == .wifi {
                 APIDataManager.allTheArticles()
                 APIDataManager.allTheAnswers()
@@ -118,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         Fabric.with([Crashlytics.self])
         logger.info("🍕Application did finish Launching with options: \(launchOptions ?? [:])")

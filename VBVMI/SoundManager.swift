@@ -121,7 +121,7 @@ class SoundManager: NSObject {
         backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "SoundManagerLoading", expirationHandler: {
             logger.info("🍕Sound loading background task expired")
         })
-        if backgroundTask == UIBackgroundTaskInvalid {
+        if backgroundTask == UIBackgroundTaskIdentifier.invalid {
             backgroundTask = nil
         } else {
              logger.info("🍕Background task started")
@@ -140,7 +140,7 @@ class SoundManager: NSObject {
         //Mark the lesson as complete
         backgroundQueueContext?.perform({ () -> Void in
             self.lesson?.audioProgress = 0
-            let _ = try? self.backgroundQueueContext?.save()
+            let _ = ((try? self.backgroundQueueContext?.save()) as ()??)
         })
         
     }
@@ -160,7 +160,7 @@ class SoundManager: NSObject {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if let item = object as? AVPlayerItem , keyPath == "status" {
-            if item.status == AVPlayerItemStatus.readyToPlay {
+            if item.status == AVPlayerItem.Status.readyToPlay {
                 logger.info("🍕Player became ready to play")
                 let currentProgress = self.loadProgress
                 
@@ -168,9 +168,9 @@ class SoundManager: NSObject {
                 let progress = currentProgress * durationSeconds
                 var time = CMTime(seconds: progress, preferredTimescale: item.duration.timescale)
                 
-                if time == kCMTimeInvalid {
+                if time == CMTime.invalid {
                     logger.error("🍕Time is invalid: progess: \(progress), timeScale: \(item.duration.timescale)")
-                    time = kCMTimeZero
+                    time = CMTime.zero
                 }
                 self.currentMonitoredItem = nil
                 item.seek(to: time, completionHandler: { (sucess) in
@@ -337,7 +337,7 @@ class SoundManager: NSObject {
     fileprivate func start(registerObservers addObservers: Bool) -> Bool {
         logger.info("🍕Starting AudioManager - addObservers:\(addObservers)")
         
-        if avPlayer.status != AVPlayerStatus.readyToPlay {
+        if avPlayer.status != AVPlayer.Status.readyToPlay {
             logger.error("avPlayer status is not readyToPlay")
             Crashlytics.sharedInstance().recordError(SoundError.debug(message: "avPlayer status is not readyToPlay"))
             return false
@@ -375,7 +375,7 @@ class SoundManager: NSObject {
         //        }
         //
         //        avPlayer.setRate(playbackRate, time: time, atHostTime: kCMTimeInvalid)
-        avPlayer.setRate(playbackRate, time: kCMTimeInvalid, atHostTime: kCMTimeInvalid)
+        avPlayer.setRate(playbackRate, time: CMTime.invalid, atHostTime: CMTime.invalid)
         return true
     }
     
@@ -540,7 +540,7 @@ class SoundManager: NSObject {
         let totalTime = CMTimeGetSeconds(currentItem.duration)
         let skipToTime = max(0, min(totalTime, time))
         
-        self.avPlayer.seek(to: CMTimeMakeWithSeconds(skipToTime, cmTime.timescale), completionHandler: { (success) -> Void in
+        self.avPlayer.seek(to: CMTimeMakeWithSeconds(skipToTime, preferredTimescale: cmTime.timescale), completionHandler: { (success) -> Void in
             self.configureInfo()
             self.saveState()
             completion?(success)
@@ -558,7 +558,7 @@ class SoundManager: NSObject {
         let currentTime = CMTimeGetSeconds(cmTime)
         let totalTime = CMTimeGetSeconds(currentItem.duration)
         let skipToTime = min(totalTime, currentTime + interval)
-        self.avPlayer.seek(to: CMTimeMakeWithSeconds(skipToTime, cmTime.timescale), completionHandler: { (success) -> Void in
+        self.avPlayer.seek(to: CMTimeMakeWithSeconds(skipToTime, preferredTimescale: cmTime.timescale), completionHandler: { (success) -> Void in
             self.configureInfo()
             self.saveState()
         })
@@ -571,7 +571,7 @@ class SoundManager: NSObject {
         let cmTime = self.avPlayer.currentTime()
         let currentTime = CMTimeGetSeconds(cmTime)
         let skipToTime = max(0, currentTime - interval)
-        self.avPlayer.seek(to: CMTimeMakeWithSeconds(skipToTime, cmTime.timescale), completionHandler: { (success) -> Void in
+        self.avPlayer.seek(to: CMTimeMakeWithSeconds(skipToTime, preferredTimescale: cmTime.timescale), completionHandler: { (success) -> Void in
             self.configureInfo()
             self.saveState()
         })
@@ -621,14 +621,14 @@ class SoundManager: NSObject {
     func handleInterruption(_ notification: Notification) {
         logger.info("🍕Handle interruption wasplaying: \(self.wasPlaying) notification: \(notification.userInfo ?? [:])")
         guard let userInfo = (notification as NSNotification).userInfo as? [String: AnyObject] else { return }
-        guard let type = userInfo[AVAudioSessionInterruptionTypeKey] as? AVAudioSessionInterruptionType else { return }
+        guard let type = userInfo[AVAudioSessionInterruptionTypeKey] as? AVAudioSession.InterruptionType else { return }
         
         switch type {
         case .began:
             logger.info("🍕Got interrupted")
             wasPlaying = true
         case .ended:
-            if let flag = userInfo[AVAudioSessionInterruptionOptionKey] as? AVAudioSessionInterruptionOptions {
+            if let flag = userInfo[AVAudioSessionInterruptionOptionKey] as? AVAudioSession.InterruptionOptions {
                 if flag == .shouldResume && wasPlaying {
                     self.startPlaying()
                 }
@@ -691,15 +691,15 @@ class SoundManager: NSObject {
     fileprivate func registerObservers() {
         logger.info("🍕registering observers")
         let session = AVAudioSession.sharedInstance()
-        audioInterruptionObserverToken = NotificationCenter.default.addObserver(forName: NSNotification.Name.AVAudioSessionInterruption, object: session, queue: nil) { [weak self] (notification) in
+        audioInterruptionObserverToken = NotificationCenter.default.addObserver(forName: AVAudioSession.interruptionNotification, object: session, queue: nil) { [weak self] (notification) in
             logger.info("🍕Interruption: \((notification as NSNotification).userInfo ?? [:])")
             if let value = (notification as NSNotification).userInfo?[AVAudioSessionInterruptionTypeKey] as? NSNumber {
-                if let key = AVAudioSessionInterruptionType(rawValue: value.uintValue) , key == .began {
+                if let key = AVAudioSession.InterruptionType(rawValue: value.uintValue) , key == .began {
                     logger.info("🍕Began")
                     self?.stop(unregisterObservers: false)
                 } else {
                     logger.info("🍕Ended")
-                    if let option = (notification as NSNotification).userInfo?[AVAudioSessionInterruptionOptionKey] as? NSNumber , option == NSNumber(value:AVAudioSessionInterruptionOptions.shouldResume.rawValue) {
+                    if let option = (notification as NSNotification).userInfo?[AVAudioSessionInterruptionOptionKey] as? NSNumber , option == NSNumber(value:AVAudioSession.InterruptionOptions.shouldResume.rawValue) {
                         if let this = self {
                             if this.start(registerObservers: false) != true {
                                 logger.error("Couldn't restart after interruption")
@@ -716,7 +716,7 @@ class SoundManager: NSObject {
     fileprivate func setAudioSessionCategory() -> Bool {
         let session = AVAudioSession.sharedInstance()
         do {
-            try session.setCategory(AVAudioSessionCategoryPlayback)
+            try session.setCategory(AVAudioSession.Category.playback)
         } catch let error {
             logger.error("Error setting AVAudioSession category: \(error)")
             Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error setting AVAudioSession category: \(error)"))
@@ -728,7 +728,7 @@ class SoundManager: NSObject {
     fileprivate func setAudioSessionMode() -> Bool {
         let session = AVAudioSession.sharedInstance()
         do {
-            try session.setMode(AVAudioSessionModeSpokenAudio)
+            try session.setMode(AVAudioSession.Mode.spokenAudio)
         } catch let error {
             logger.error("Error setting AVAudioSession mode: \(error)")
             Crashlytics.sharedInstance().recordError(SoundError.debug(message: "Error setting AVAudioSession mode: \(error)"))

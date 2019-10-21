@@ -216,7 +216,7 @@ class AudioPlayerViewController: UIViewController {
                 }
                 self.lesson?.audioProgress = 0
                 logger.debug("Finish progress: \(self.lesson?.audioProgress ?? -1)")
-                let _ = try? self.lesson?.managedObjectContext?.save()
+                let _ = ((try? self.lesson?.managedObjectContext?.save()) as ()??)
             })
         }
         
@@ -313,22 +313,22 @@ class AudioPlayerViewController: UIViewController {
         configureViews()
         //Configure the views
         
-        let buttonFont = UIFont.fontAwesome(ofSize: 20)
+        let buttonFont = UIFont.fontAwesome(ofSize: 20, style: .regular)
         self.playPauseButton.titleLabel?.font = buttonFont
         configurePlayPauseState()
         
-        self.jumpForwardButton.setImage(StyleKit.imageOfForward, for: UIControlState())
-        self.jumpBackButton.setImage(StyleKit.imageOfRollback, for: UIControlState())
+        self.jumpForwardButton.setImage(StyleKit.imageOfForward, for: UIControl.State())
+        self.jumpBackButton.setImage(StyleKit.imageOfRollback, for: UIControl.State())
         
         self.jumpBackButton.tintColor = StyleKit.darkGrey
         self.jumpForwardButton.tintColor = StyleKit.darkGrey
         
         self.jumpBackButton.contentMode = .center
 
-        self.rateButton.setTitle(audioRate.title, for: UIControlState())
+        self.rateButton.setTitle(audioRate.title, for: UIControl.State())
         self.rateButton.tintColor = StyleKit.darkGrey
         
-        let otherFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle.footnote)
+        let otherFont = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.footnote)
         let font = UIFont.monospacedDigitSystemFont(ofSize: otherFont.pointSize, weight: UIFont.Weight.regular)
         
         
@@ -339,7 +339,7 @@ class AudioPlayerViewController: UIViewController {
 //        self.highVolumeImageView.image = UIImage(named: "volUp")
         self.volumeView.tintColor = StyleKit.darkGrey
         
-        self.volumeView.setRouteButtonImage(StyleKit.imageOfAirPlayCanvas, for: UIControlState())
+        self.volumeView.setRouteButtonImage(StyleKit.imageOfAirPlayCanvas, for: .normal)
         self.volumeView.showsRouteButton = true
         
         self.playPauseButton.tintColor = StyleKit.darkGrey
@@ -421,7 +421,7 @@ class AudioPlayerViewController: UIViewController {
 }
 
 extension AudioPlayerViewController: UIViewControllerRestoration {
-    static func viewController(withRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {
+    static func viewController(withRestorationIdentifierPath identifierComponents: [String], coder: NSCoder) -> UIViewController? {
         return AudioPlayerViewController(coder: coder)
     }
 }

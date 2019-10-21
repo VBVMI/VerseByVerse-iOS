@@ -11,17 +11,17 @@ import ACPDownload
 
 class IconImages : ACPStaticImages {
     
-    fileprivate static let buttonFont = UIFont.fontAwesome(ofSize: 20)
+    fileprivate static let buttonFont = UIFont.fontAwesome(ofSize: 20, style: .regular)
     
     let string: String
     let paragraphStyle = NSMutableParagraphStyle()
-    let attrs : [NSAttributedStringKey: Any]
+    let attrs : [NSAttributedString.Key: Any]
     let size : CGSize
     
     init(string: String) {
         self.string = string
         paragraphStyle.alignment = .center
-        attrs = [NSAttributedStringKey.font: IconImages.buttonFont, NSAttributedStringKey.paragraphStyle: paragraphStyle]
+        attrs = [NSAttributedString.Key.font: IconImages.buttonFont, NSAttributedString.Key.paragraphStyle: paragraphStyle]
         
         size = string.size(withAttributes: attrs)
     }
@@ -41,7 +41,7 @@ class IconImages : ACPStaticImages {
         context.setShouldAntialias(true);
         context.setShouldSmoothFonts(true);
         
-        myAttrs[NSAttributedStringKey.foregroundColor] = strokeColor
+        myAttrs[NSAttributedString.Key.foregroundColor] = strokeColor
         string.draw(with: textRect, options: .usesLineFragmentOrigin, attributes: myAttrs, context: nil)
         context.restoreGState()
 //        label.textColor = strokeColor

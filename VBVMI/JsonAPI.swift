@@ -119,18 +119,18 @@ extension JsonAPI : TargetType {
     }
 }
 
-public func endpointResolver() -> ((_ endpoint: Endpoint<JsonAPI>) -> (URLRequest)) {
-    return { (endpoint: Endpoint<JsonAPI>) -> (URLRequest) in
+public func endpointResolver() -> ((_ endpoint: Endpoint) -> (URLRequest)) {
+    return { (endpoint: Endpoint) -> (URLRequest) in
         let request: URLRequest = try! endpoint.urlRequest()
         return request
     }
 }
 
 public struct Provider {
-    fileprivate static var endpointsClosure = { (target: JsonAPI) -> Endpoint<JsonAPI> in
+    fileprivate static var endpointsClosure = { (target: JsonAPI) -> Endpoint in
         let sampleResponse : Endpoint.SampleResponseClosure  = { return EndpointSampleResponse.networkResponse(200, target.sampleData) }
         
-        var endpoint : Endpoint<JsonAPI> = Endpoint(url: url(target), sampleResponseClosure: sampleResponse, method: target.method, task:  target.task, httpHeaderFields: nil)
+        var endpoint : Endpoint = Endpoint(url: url(target), sampleResponseClosure: sampleResponse, method: target.method, task:  target.task, httpHeaderFields: nil)
         
         switch target {
         default:

@@ -87,7 +87,7 @@ class APIDataManager {
             
             try JSONModels.forEach({ (lessonDict) in
                 let lesson = try Lesson.decodeJSON(lessonDict, studyID: studyID, context: context)
-                if let index = existingLessonIds.index(of: lesson.identifier) {
+                if let index = existingLessonIds.firstIndex(of: lesson.identifier) {
                     existingLessonIds.remove(at: index)
                 }
             })
@@ -270,7 +270,7 @@ class APIDataManager {
             
             try JSONArray.enumerated().forEach({ (index, eventDict) in
                 let event = try Event.decodeJSON(eventDict, context: context, index: index)
-                if let index = existingEventIds.index(of: event.identifier) {
+                if let index = existingEventIds.firstIndex(of: event.identifier) {
                     existingEventIds.remove(at: index)
                 }
             })

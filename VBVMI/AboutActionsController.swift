@@ -11,14 +11,15 @@ import SafariServices
 
 class AboutActionsController: NSObject {
 
-    fileprivate static let buttonFont = UIFont.fontAwesome(ofSize: 20)
+    fileprivate static let buttonFont = UIFont.fontAwesome(ofSize: 20, style: .regular)
     
     let barButtonItem: UIBarButtonItem
     weak var controller : UIViewController?
     
     init(presentingController controller: UIViewController) {
         self.controller = controller
-        barButtonItem = UIBarButtonItem(image: UIImage.fontAwesomeIcon(name: .ellipsisH, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30)), style: UIBarButtonItemStyle.plain, target: nil, action: #selector(AboutActionsController.tappedMenu))
+        let icon = UIImage.fontAwesomeIcon(name: .ellipsisH, style: .regular, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30))
+        barButtonItem = UIBarButtonItem(image: icon, style: UIBarButtonItem.Style.plain, target: nil, action: #selector(AboutActionsController.tappedMenu))
         super.init()
         barButtonItem.target = self
     }

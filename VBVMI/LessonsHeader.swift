@@ -38,7 +38,7 @@ class LessonsHeader: UITableViewHeaderFooterView {
         
         titleLabel.setContentCompressionResistancePriority(UILayoutPriority.required, for: .vertical)
         
-        titleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
         titleLabel.textColor = StyleKit.darkGrey
         
         self.contentView.addSubview(countLabel)
@@ -49,7 +49,7 @@ class LessonsHeader: UITableViewHeaderFooterView {
         }
         countLabel.textAlignment = .right
         
-        countLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
+        countLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.caption1)
         countLabel.textColor = StyleKit.darkGrey
         
         self.contentView.backgroundColor = StyleKit.white

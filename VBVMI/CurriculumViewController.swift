@@ -71,7 +71,7 @@ class CurriculumViewController : UIViewController, UITableViewDelegate, UITableV
         
         tableView.register(UINib(nibName: "VideoTableViewCell", bundle: nil), forCellReuseIdentifier: videoCellIdentifier)
         tableView.register(UINib(nibName: "CurriculumPDFTableViewCell", bundle: nil), forCellReuseIdentifier: pdfCellIdentifier)
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         formatter.unitsStyle = .positional
         let _ = fetchedResultsController
         
@@ -99,7 +99,7 @@ class CurriculumViewController : UIViewController, UITableViewDelegate, UITableV
             
         } else {
             // Fallback on earlier versions
-            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+            let insets = UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: bottomLayoutGuide.length, right: 0)
             tableView.contentInset = insets
             tableView.scrollIndicatorInsets = insets
         }
@@ -212,7 +212,7 @@ class CurriculumViewController : UIViewController, UITableViewDelegate, UITableV
                 })
                 dispatchGroup.notify(queue: DispatchQueue.main, execute: { [weak movieController] in
                     do {
-                        try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                        try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
                     }
                     catch {
                         // report for an error

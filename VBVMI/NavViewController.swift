@@ -66,7 +66,7 @@ class NavViewController: UINavigationController {
 }
 
 extension NavViewController: UIViewControllerRestoration {
-    static func viewController(withRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {
+    static func viewController(withRestorationIdentifierPath identifierComponents: [String], coder: NSCoder) -> UIViewController? {
         return NavViewController(coder: coder)
     }
 }

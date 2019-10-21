@@ -93,7 +93,7 @@ class StaticSelectionViewController<T: StaticSelectable>: UIViewController, UITa
         
         let cell = tableView.cellForRow(at: indexPath)
         if allowsMultiSelect {
-            if let index = selected.index(of: option) {
+            if let index = selected.firstIndex(of: option) {
                 // Then we are removing that option
                 cell?.accessoryType = .none
                 selected.remove(at: index)
@@ -105,7 +105,7 @@ class StaticSelectionViewController<T: StaticSelectable>: UIViewController, UITa
         } else {
             //deselect the other one if there is one
             selected.forEach({ (selection) in
-                if let index = options.index(of: selection), let oldCell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) {
+                if let index = options.firstIndex(of: selection), let oldCell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) {
                     oldCell.accessoryType = .none
                 }
             })

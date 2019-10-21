@@ -15,7 +15,7 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         
         autoMarkCompleteSwitch.isOn = Settings.sharedInstance.autoMarkLessonsComplete
         // Do any additional setup after loading the view.

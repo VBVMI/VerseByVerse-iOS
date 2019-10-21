@@ -77,7 +77,10 @@ NSString *VIMContentRating_Safe = @"safe";
 {
     return @{@"description": @"videoDescription",
              @"pictures": @"pictureCollection",
-             @"play": @"playRepresentation"};
+             @"play": @"playRepresentation",
+             @"review_page": @"reviewPage",
+             @"file_transfer": @"fileTransfer"
+             };
 }
 
 - (Class)getClassForCollectionKey:(NSString *)key
@@ -141,6 +144,21 @@ NSString *VIMContentRating_Safe = @"safe";
         return [VIMLive class];
     }
     
+    if ([key isEqualToString:@"review_page"])
+    {
+        return [VIMReviewPage class];
+    }
+    
+    if ([key isEqualToString:@"upload"])
+    {
+        return [VIMUpload class];
+    }
+    
+    if ([key isEqualToString:@"file_transfer"])
+    {
+        return [FileTransfer class];
+    }
+    
     return nil;
 }
 
@@ -201,7 +219,7 @@ NSString *VIMContentRating_Safe = @"safe";
 
 // This is only called for unarchived model objects [AH]
 
-- (void)upgradeFromModelVersion:(NSUInteger)fromVersion toModelVersion:(NSUInteger)toVersion
+- (void)upgradeFromModelVersion:(NSUInteger)fromVersion toModelVersion:(NSUInteger)toVersion withCoder:(NSCoder *)aDecoder
 {
     if (fromVersion == 2 && toVersion == 3)
     {
@@ -322,6 +340,7 @@ NSString *VIMContentRating_Safe = @"safe";
                                       [NSNumber numberWithInt:VIMVideoProcessingStatusUploadingError], @"uploading_error",
                                       [NSNumber numberWithInt:VIMVideoProcessingStatusTranscodingError], @"transcoding_error",
                                       [NSNumber numberWithInt:VIMVideoProcessingStatusQuotaExceeded], @"quota_exceeded",
+                                      [NSNumber numberWithInt:VIMVideoProcessingStatusTotalCapExceeded], @"total_cap_exceeded",
                                       nil];
     
     NSNumber *number = [statusDictionary objectForKey:self.status];
@@ -367,7 +386,7 @@ NSString *VIMContentRating_Safe = @"safe";
 - (BOOL)isPrivate
 {
     NSString *privacy = self.privacy.view;
-    return ![privacy isEqualToString:VIMPrivacy_Public] && ![privacy isEqualToString:VIMPrivacy_VOD];
+    return ![privacy isEqualToString:VIMPrivacy_Public] && ![privacy isEqualToString:VIMPrivacy_VOD] && ![privacy isEqualToString:VIMPrivacy_Stock];
 }
 
 - (BOOL)isAvailable
@@ -383,6 +402,12 @@ NSString *VIMContentRating_Safe = @"safe";
 - (BOOL)isUploading
 {
     return self.videoStatus == VIMVideoProcessingStatusUploading;
+}
+
+- (BOOL)isStock
+{
+    NSString *privacy = self.privacy.view;
+    return [privacy isEqualToString:VIMPrivacy_Stock];
 }
 
 // New
@@ -530,6 +555,32 @@ NSString *VIMContentRating_Safe = @"safe";
 - (BOOL)isPostBroadcast
 {
     return self.isLive && ([self.live.status isEqual: VIMLive.LiveStreamStatusDone]);
+}
+
+- (BOOL)hasReviewPage
+{
+    NSString *trimmedReviewLink = [self.reviewPage.link stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    return  self.reviewPage != nil &&
+            self.reviewPage.isActive.boolValue == true &&
+            self.reviewPage.link != nil &&
+            trimmedReviewLink.length > 0;
+}
+
+- (BOOL)canDownloadFromDesktop
+{
+    if ([self.privacy.canDownload respondsToSelector: @selector(boolValue)])
+    {
+        return [self.privacy.canDownload boolValue];
+    }
+    
+    NSAssert(false, @"`video.privacy.canDownload` is an unexpected type.");
+    return false;
+}
+
+- (BOOL)allowsFileTransfer
+{
+    return self.fileTransfer != nil && self.fileTransfer.url != nil && [self canDownloadFromDesktop] == YES;
 }
 
 @end

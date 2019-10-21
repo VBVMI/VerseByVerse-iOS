@@ -64,7 +64,7 @@ class AnswersViewController: UITableViewController {
         searchController.searchBar.delegate = self
         
         dateFormatter.dateStyle = .short
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         self.definesPresentationContext = true
         
         self.tableView.register(UINib(nibName: Cell.NibName.Article, bundle: nil), forCellReuseIdentifier: Cell.Identifier.Article)
@@ -98,8 +98,8 @@ class AnswersViewController: UITableViewController {
         self.aboutActionsController = AboutActionsController(presentingController: self)
         self.navigationItem.leftBarButtonItem = self.aboutActionsController.barButtonItem
         
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
@@ -128,7 +128,7 @@ class AnswersViewController: UITableViewController {
             
         } else {
             if self.parent == nil {
-                let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+                let insets = UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: bottomLayoutGuide.length, right: 0)
                 tableView.contentInset = insets
                 tableView.scrollIndicatorInsets = insets
             }

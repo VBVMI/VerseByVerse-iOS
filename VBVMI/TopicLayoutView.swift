@@ -70,7 +70,7 @@ class TopicLayoutView: UIView {
     }
     
     override var intrinsicContentSize : CGSize {
-        return CGSize(width: UIViewNoIntrinsicMetric, height: lastLayoutSize.height)
+        return CGSize(width: UIView.noIntrinsicMetric, height: lastLayoutSize.height)
     }
     
     func rearrangeViews(_ size: CGSize) {

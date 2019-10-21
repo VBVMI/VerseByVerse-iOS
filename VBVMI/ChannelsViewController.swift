@@ -34,7 +34,7 @@ class ChannelsViewController: UIViewController {
         tableView.register(UINib(nibName: "ChannelTableViewCell", bundle: nil), forCellReuseIdentifier: channelCellIdentifier)
         tableView.register(UINib(nibName: "CurriculumTableViewCell", bundle: nil), forCellReuseIdentifier: curriculumCellIdentifier)
         
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         dateFormatter.dateStyle = .short
         
@@ -102,7 +102,7 @@ class ChannelsViewController: UIViewController {
             
         } else {
             // Fallback on earlier versions
-            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+            let insets = UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: bottomLayoutGuide.length, right: 0)
             tableView.contentInset = insets
             tableView.scrollIndicatorInsets = insets
         }

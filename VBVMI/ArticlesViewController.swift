@@ -105,8 +105,8 @@ class ArticlesViewController: UITableViewController {
         self.navigationItem.leftBarButtonItem = self.aboutActionsController.barButtonItem
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         if topic == nil {
             let refreshControl = UIRefreshControl()
             refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
@@ -136,7 +136,7 @@ class ArticlesViewController: UITableViewController {
             
         } else {
             if self.parent == nil {
-                let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+                let insets = UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: bottomLayoutGuide.length, right: 0)
                 tableView.contentInset = insets
                 tableView.scrollIndicatorInsets = insets
             }

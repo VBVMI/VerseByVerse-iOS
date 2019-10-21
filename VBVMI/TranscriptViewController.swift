@@ -47,7 +47,7 @@ class TranscriptViewController: UIViewController, HidableStatusbarController, WK
     }()
     
     lazy var closeButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.done, target: self, action: #selector(closeTapped))
+        let button = UIBarButtonItem(title: "Close", style: UIBarButtonItem.Style.done, target: self, action: #selector(closeTapped))
         return button
     }()
     let queue = DispatchQueue(label: "TranscriptLoader")
@@ -103,7 +103,7 @@ class TranscriptViewController: UIViewController, HidableStatusbarController, WK
         navigationController?.hidesBarsOnSwipe = true
         navigationController?.hidesBarsOnTap = true
         
-        contentSizeNotificationToken = NotificationCenter.default.addObserver(forName: .UIContentSizeCategoryDidChange, object: nil, queue: nil) { [weak self] (notification) in
+        contentSizeNotificationToken = NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification, object: nil, queue: nil) { [weak self] (notification) in
             self?.loadHTML()
         }
         
@@ -185,7 +185,7 @@ class TranscriptViewController: UIViewController, HidableStatusbarController, WK
 }
 
 extension TranscriptViewController: UIViewControllerRestoration {
-    static func viewController(withRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {
+    static func viewController(withRestorationIdentifierPath identifierComponents: [String], coder: NSCoder) -> UIViewController? {
         return TranscriptViewController(coder: coder)
     }
 }

@@ -64,7 +64,7 @@ class VimeoManager {
         if let account = VimeoClient.defaultClient.currentAccount, account.isAuthenticatedWithUser() {
             completion(Result.success(result: account))
         } else {
-            let vimeoAuth = AuthenticationController(client: VimeoClient.defaultClient, appConfiguration: AppConfiguration.defaultConfiguration)
+            let vimeoAuth = AuthenticationController(client: VimeoClient.defaultClient, appConfiguration: AppConfiguration.defaultConfiguration, configureSessionManagerBlock: nil)
             let token = kVimeoAccessToken
             vimeoAuth.accessToken(token: token) { (result) in
                 logger.info("Vimeo Auth Result: \(result)")

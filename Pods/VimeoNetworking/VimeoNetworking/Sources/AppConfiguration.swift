@@ -25,8 +25,7 @@
 //
 
 /// Stores all static information relevant to a client application
-public struct AppConfiguration
-{
+public struct AppConfiguration {
     public let clientIdentifier: String
     public let clientSecret: String
     public let scopes: [Scope]
@@ -50,15 +49,14 @@ public struct AppConfiguration
                 scopes: [Scope],
                 keychainService: String,
                 keychainAccessGroup: String? = nil,
-                apiVersion: String = VimeoDefaultAPIVersionString,
-                baseUrl: URL = VimeoBaseURL)
-    {
+                apiVersion: String? = nil,
+                baseUrl: URL? = nil) {
         self.clientIdentifier = clientIdentifier
         self.clientSecret = clientSecret
         self.scopes = scopes
         self.keychainService = keychainService
         self.keychainAccessGroup = keychainAccessGroup
-        self.apiVersion = apiVersion
-        self.baseUrl = baseUrl
+        self.apiVersion = apiVersion ?? VimeoDefaultAPIVersionString
+        self.baseUrl = baseUrl ?? VimeoBaseURL
     }
 }

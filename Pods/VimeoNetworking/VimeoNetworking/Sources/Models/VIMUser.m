@@ -31,9 +31,18 @@
 #import "VIMPictureCollection.h"
 #import "VIMPicture.h"
 #import "VIMPreference.h"
-#import "VIMUploadQuota.h"
 #import "VIMUserBadge.h"
 #import <VimeoNetworking/VimeoNetworking-Swift.h>
+
+static NSString *const Basic = @"basic";
+static NSString *const Plus = @"plus";
+static NSString *const Pro = @"pro";
+static NSString *const Business = @"business";
+static NSString *const LivePro = @"live_pro";
+static NSString *const LiveBusiness = @"live_business";
+static NSString *const LivePremium = @"live_premium";
+static NSString *const ProUnlimited = @"pro_unlimited";
+static NSString *const Producer = @"producer";
 
 @interface VIMUser ()
 
@@ -99,6 +108,10 @@
         return [VIMLiveQuota class];
     }
 
+    if ([key isEqualToString:@"membership"]) {
+        return [UserMembership class];
+    }
+    
     return nil;
 }
 
@@ -205,21 +218,41 @@
 
 - (void)parseAccountType
 {
-    if ([self.account isEqualToString:@"plus"])
+    if ([self.membership.type isEqualToString:Plus])
     {
         self.accountType = VIMUserAccountTypePlus;
     }
-    else if ([self.account isEqualToString:@"pro"])
+    else if ([self.membership.type isEqualToString:Pro])
     {
         self.accountType = VIMUserAccountTypePro;
     }
-    else if ([self.account isEqualToString:@"basic"])
+    else if ([self.membership.type isEqualToString:Basic])
     {
         self.accountType = VIMUserAccountTypeBasic;
     }
-    else if ([self.account isEqualToString:@"business"])
+    else if ([self.membership.type isEqualToString:Business])
     {
         self.accountType = VIMUserAccountTypeBusiness;
+    }
+    else if ([self.membership.type isEqualToString:LivePro])
+    {
+        self.accountType = VIMUserAccountTypeLivePro;
+    }
+    else if ([self.membership.type isEqualToString:LiveBusiness])
+    {
+        self.accountType = VIMUserAccountTypeLiveBusiness;
+    }
+    else if ([self.membership.type isEqualToString:LivePremium])
+    {
+        self.accountType = VIMUserAccountTypeLivePremium;
+    }
+    else if ([self.membership.type isEqualToString:ProUnlimited])
+    {
+        self.accountType = VIMUserAccountTypeProUnlimited;
+    }
+    else if ([self.membership.type isEqualToString:Producer])
+    {
+        self.accountType = VIMUserAccountTypeProducer;
     }
 }
 
@@ -276,13 +309,23 @@
     {
         default:
         case VIMUserAccountTypeBasic:
-            return @"basic";
+            return Basic;
         case VIMUserAccountTypePlus:
-            return @"plus";
+            return Plus;
         case VIMUserAccountTypePro:
-            return @"pro";
+            return Pro;
         case VIMUserAccountTypeBusiness:
-            return @"business";
+            return Business;
+        case VIMUserAccountTypeLivePro:
+            return LivePro;
+        case VIMUserAccountTypeLiveBusiness:
+            return LiveBusiness;
+        case VIMUserAccountTypeLivePremium:
+            return LivePremium;
+        case VIMUserAccountTypeProUnlimited:
+            return ProUnlimited;
+        case VIMUserAccountTypeProducer:
+            return Producer;
     }
 }
 
@@ -290,11 +333,16 @@
 
 // This is only called for unarchived model objects [AH]
 
-- (void)upgradeFromModelVersion:(NSUInteger)fromVersion toModelVersion:(NSUInteger)toVersion
+- (void)upgradeFromModelVersion:(NSUInteger)fromVersion toModelVersion:(NSUInteger)toVersion withCoder:(NSCoder *)aDecoder
 {
     if ((fromVersion == 1 && toVersion == 2) || (fromVersion == 2 && toVersion == 3))
     {
         [self checkIntegrityOfPictureCollection];
+    }
+    
+    if(fromVersion < 4)
+    {
+        [self updateMembershipInfo: aDecoder];
     }
 }
 
@@ -326,6 +374,29 @@
     }
 }
 
+// For models prior to version 4, there was a computed property defined in VIMUser+Extension.swift named "membership" which returned a String
+// value.  That computed property has been renamed to "localizedAccountName" and "membership" is now a property defined in VIMUser.h with a type
+// of "UserMembership".  This means that during de-serialization, the wrong type will be put into membership and needs to be fixed.  We check to
+// see if this mismatch has occurred and re-create a correct UserMembership object from the data we have in the decoder object.
+// [MW] 1/18/19
+- (void)updateMembershipInfo:(NSCoder *)aDecoder
+{
+    if(![self.membership isKindOfClass: [UserMembership self]])
+    {
+        self.membership = [[UserMembership alloc] init];
+        
+        VIMUserBadge *badge = [aDecoder decodeObjectForKey: @"badge"];
+        self.membership.badge = badge;
+        
+        NSString *account = [aDecoder decodeObjectForKey: @"account"];
+        self.membership.type = account;
+        
+        // Set new properties to nil since the data didn't exist at the time this model was serialized to disk.
+        self.membership.display = nil;
+        self.membership.subscription = nil;
+    }
+}
+
 - (BOOL)hasSameBadgeCount:(VIMUser *)newUser
 {
     VIMNotificationsConnection *currentAccountConnection = [self notificationsConnection];
@@ -335,6 +406,17 @@
     NSInteger responseTotal = [responseConnection supportedNotificationNewTotal];
     
     return currentAccountTotal == responseTotal;
+}
+
+- (BOOL)hasBeenInFreeTrial
+{
+    if([self.membership.subscription.trial.hasBeenInFreeTrial respondsToSelector: @selector(boolValue)] == NO)
+    {
+        NSAssert(NO, @"hasBeenInFreeTrial is expected to be an NSNumber and should respond to boolValue!");
+        return NO;
+    }
+    
+    return self.membership.subscription.trial.hasBeenInFreeTrial.boolValue;
 }
 
 @end

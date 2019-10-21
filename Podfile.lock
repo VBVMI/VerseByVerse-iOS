@@ -15,77 +15,78 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - Alamofire (4.5.1)
-  - AlamofireImage (3.3.0):
-    - Alamofire (~> 4.5)
+  - Alamofire (4.9.0)
+  - AlamofireImage (3.5.2):
+    - Alamofire (~> 4.8)
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
   - CSStickyHeaderFlowLayout (0.2.11)
   - Decodable (0.6.0)
   - Fabric (1.10.2)
-  - Firebase/Core (6.8.1):
+  - Firebase/Core (6.10.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.1.1)
-  - Firebase/CoreOnly (6.8.1):
-    - FirebaseCore (= 6.2.3)
-  - FirebaseAnalytics (6.1.1):
-    - FirebaseCore (~> 6.2)
+    - FirebaseAnalytics (= 6.1.3)
+  - Firebase/CoreOnly (6.10.0):
+    - FirebaseCore (= 6.3.1)
+  - FirebaseAnalytics (6.1.3):
+    - FirebaseCore (~> 6.3)
     - FirebaseInstanceID (~> 4.2)
-    - GoogleAppMeasurement (= 6.1.1)
+    - GoogleAppMeasurement (= 6.1.3)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (~> 0.3)
-  - FirebaseCore (6.2.3):
+    - nanopb (~> 0.3.901)
+  - FirebaseCore (6.3.1):
     - FirebaseCoreDiagnostics (~> 1.0)
     - FirebaseCoreDiagnosticsInterop (~> 1.0)
     - GoogleUtilities/Environment (~> 6.2)
     - GoogleUtilities/Logger (~> 6.2)
-  - FirebaseCoreDiagnostics (1.0.1):
+  - FirebaseCoreDiagnostics (1.1.1):
     - FirebaseCoreDiagnosticsInterop (~> 1.0)
     - GoogleDataTransportCCTSupport (~> 1.0)
     - GoogleUtilities/Environment (~> 6.2)
     - GoogleUtilities/Logger (~> 6.2)
+    - nanopb (~> 0.3.901)
   - FirebaseCoreDiagnosticsInterop (1.0.0)
   - FirebaseInstanceID (4.2.5):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
-  - FontAwesome.swift (1.3.2)
-  - GoogleAppMeasurement (6.1.1):
+  - FontAwesome.swift (1.8.2)
+  - GoogleAppMeasurement (6.1.3):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (~> 0.3)
-  - GoogleDataTransport (1.2.0)
-  - GoogleDataTransportCCTSupport (1.0.3):
-    - GoogleDataTransport (~> 1.2)
-    - nanopb
-  - GoogleUtilities/AppDelegateSwizzler (6.2.5):
+    - nanopb (~> 0.3.901)
+  - GoogleDataTransport (3.0.1)
+  - GoogleDataTransportCCTSupport (1.2.1):
+    - GoogleDataTransport (~> 3.0)
+    - nanopb (~> 0.3.901)
+  - GoogleUtilities/AppDelegateSwizzler (6.3.1):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.2.5)
-  - GoogleUtilities/Logger (6.2.5):
+  - GoogleUtilities/Environment (6.3.1)
+  - GoogleUtilities/Logger (6.3.1):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.2.5):
+  - GoogleUtilities/MethodSwizzler (6.3.1):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.2.5):
+  - GoogleUtilities/Network (6.3.1):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.2.5)"
-  - GoogleUtilities/Reachability (6.2.5):
+  - "GoogleUtilities/NSData+zlib (6.3.1)"
+  - GoogleUtilities/Reachability (6.3.1):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.2.5):
+  - GoogleUtilities/UserDefaults (6.3.1):
     - GoogleUtilities/Logger
-  - Moya (10.0.1):
-    - Moya/Core (= 10.0.1)
-  - Moya/Core (10.0.1):
+  - Moya (13.0.1):
+    - Moya/Core (= 13.0.1)
+  - Moya/Core (13.0.1):
     - Alamofire (~> 4.1)
-    - Result (~> 3.0)
+    - Result (~> 4.1)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -94,17 +95,17 @@ PODS:
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
-  - ParallaxView (2.0.8)
-  - ReachabilitySwift (4.1.0)
-  - Result (3.2.4)
-  - SnapKit (4.0.0)
+  - ParallaxView (3.0.0)
+  - ReachabilitySwift (5.0.0)
+  - Result (4.1.0)
+  - SnapKit (4.2.0)
   - STRegex (2.1.0)
   - UIImage-Color (1.1.1)
-  - VimeoNetworking (3.0.1):
+  - VimeoNetworking (4.0.0):
     - AFNetworking (= 3.1.0)
-  - XCGLogger (6.1.0):
-    - XCGLogger/Core (= 6.1.0)
-  - XCGLogger/Core (6.1.0):
+  - XCGLogger (7.0.0):
+    - XCGLogger/Core (= 7.0.0)
+  - XCGLogger/Core (7.0.0):
     - ObjcExceptionBridging
 
 DEPENDENCIES:
@@ -123,11 +124,11 @@ DEPENDENCIES:
   - SnapKit
   - STRegex
   - UIImage-Color
-  - VimeoNetworking (from `https://github.com/vimeo/VimeoNetworking.git`, branch `tech/swift-4-support`)
+  - VimeoNetworking
   - XCGLogger
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - ACPDownload
     - AFNetworking
     - Alamofire
@@ -155,55 +156,50 @@ SPEC REPOS:
     - SnapKit
     - STRegex
     - UIImage-Color
+    - VimeoNetworking
     - XCGLogger
 
 EXTERNAL SOURCES:
   FontAwesome.swift:
     :git: "git@github.com:thii/FontAwesome.swift.git"
-  VimeoNetworking:
-    :branch: tech/swift-4-support
-    :git: https://github.com/vimeo/VimeoNetworking.git
 
 CHECKOUT OPTIONS:
   FontAwesome.swift:
-    :commit: 7ccc66c2bba23c2495cff361c7c271bdf89695e9
+    :commit: c597315c4a4d33fadeda566c80f626476cad05f5
     :git: "git@github.com:thii/FontAwesome.swift.git"
-  VimeoNetworking:
-    :commit: a99f50de1995a942473c538606652d8b639d0dae
-    :git: https://github.com/vimeo/VimeoNetworking.git
 
 SPEC CHECKSUMS:
   ACPDownload: 9c6349be96019b6c8c87ad46570af1cbc7106bf4
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
+  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   CSStickyHeaderFlowLayout: e9bcb1762413f49d7d09e5bd0ae5efd1100116b7
   Decodable: f0b95fa2fcf8633dd097aa8f7f09838ab3524f5d
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
-  Firebase: 9cbe4e5b5eaafa05dc932be58b7c8c3820d71e88
-  FirebaseAnalytics: 843c7f64a8f9c79f0d03281197ebe7bb1d58d477
-  FirebaseCore: e9d9bd1dae61c1e82bc1e0e617a9d832392086a0
-  FirebaseCoreDiagnostics: 4c04ae09d0ab027c30179828c6bb47764df1bd13
+  Firebase: 5e6b7b12bf9adb90986688edc06b156c37e109cd
+  FirebaseAnalytics: 0e3ecff2c5d86070f7d4325e21f1edabfbd558dc
+  FirebaseCore: 064c2dd92a8ca5974bbdcb080df9921e46bd34cd
+  FirebaseCoreDiagnostics: af29e43048607588c050889d19204f4d7b758c9f
   FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
   FirebaseInstanceID: 550df9be1f99f751d8fcde3ac342a1e21a0e6c42
-  FontAwesome.swift: 8555e3e689df989f879644966b1bd1172f82abec
-  GoogleAppMeasurement: 86a82f0e1f20b8eedf8e20326530138fd71409de
-  GoogleDataTransport: 8f9897b8e073687f24ca8d3c3a8013dec7d2d1cc
-  GoogleDataTransportCCTSupport: 51134d81fca795c60cc247d1cb6af63c3d67b8d8
-  GoogleUtilities: e7dc37039b19df7fe543479d3e4a02ac8d11bb69
-  Moya: 9e621707ff754eeb51ff3ec51a3d54e517c0733a
+  FontAwesome.swift: 7938d6a03113ff3f39001bde7f50be8a0903d605
+  GoogleAppMeasurement: 434cc7be25e71dc04b8d0e3079125127b330e84a
+  GoogleDataTransport: 166f9b9f82cbf60a204e8fe2daa9db3e3ec1fb15
+  GoogleDataTransportCCTSupport: f6ab1962e9dc05ab1fb938b795e5b310209edeec
+  GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
+  Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
-  ParallaxView: c2df9e49ab58cd8e0cd0b9d449a211d6f76fd53f
-  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
-  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  ParallaxView: 41fd29ccf917e9790ea28e2b5a94527cc33a2b3b
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   STRegex: dfa420d93d8c1402956233b3879ec1fc14b45fbe
   UIImage-Color: 29d79c2acdd1836eae9815836a14fddfcd2db38f
-  VimeoNetworking: 5d30e46c8561e2e0a7472e93b915ec1a26a6acfd
-  XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
+  VimeoNetworking: 62238fe49b7f4982a1bb3e930adc0468ea88cc1c
+  XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
 
-PODFILE CHECKSUM: 420fef1aea772d7e9a03cd04f5d31332400b5b29
+PODFILE CHECKSUM: 0644827d0bb344d8f74af9981a0a6d1e09e6b78f
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4

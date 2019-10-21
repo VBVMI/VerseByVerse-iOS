@@ -37,6 +37,9 @@
 @class VIMBadge;
 @class Spatial;
 @class VIMLive;
+@class VIMReviewPage;
+@class VIMUpload;
+@class FileTransfer;
 
 extern NSString * __nonnull VIMContentRating_Language;
 extern NSString * __nonnull VIMContentRating_Drugs;
@@ -53,7 +56,8 @@ typedef NS_ENUM(NSUInteger, VIMVideoProcessingStatus) {
     VIMVideoProcessingStatusTranscoding,
     VIMVideoProcessingStatusUploadingError,
     VIMVideoProcessingStatusTranscodingError,
-    VIMVideoProcessingStatusQuotaExceeded
+    VIMVideoProcessingStatusQuotaExceeded,
+    VIMVideoProcessingStatusTotalCapExceeded
 };
 
 @interface VIMVideo : VIMModelObject
@@ -87,6 +91,9 @@ typedef NS_ENUM(NSUInteger, VIMVideoProcessingStatus) {
 @property (nonatomic, strong, nullable) VIMBadge *badge;
 @property (nonatomic, strong, nullable) Spatial *spatial;
 @property (nonatomic, strong, nullable) VIMLive *live;
+@property (nonatomic, strong, nullable) VIMReviewPage *reviewPage;
+@property (nonatomic, strong, nullable) VIMUpload *upload;
+@property (nonatomic, strong, nullable) FileTransfer *fileTransfer;
 
 @property (nonatomic, assign) VIMVideoProcessingStatus videoStatus;
 
@@ -102,6 +109,7 @@ typedef NS_ENUM(NSUInteger, VIMVideoProcessingStatus) {
 - (BOOL)isAvailable;
 - (BOOL)isTranscoding;
 - (BOOL)isUploading;
+- (BOOL)isStock;
 
 - (BOOL)isLiked;
 - (BOOL)isWatchLater;
@@ -163,5 +171,17 @@ typedef NS_ENUM(NSUInteger, VIMVideoProcessingStatus) {
 
 - (void)setIsLiked:(BOOL)isLiked;
 - (void)setIsWatchLater:(BOOL)isWatchLater;
+- (BOOL)hasReviewPage;
+
+/**
+ Determines if the video allows file transfer. A video has a file
+ transfer page if @p canDownload privacy is @p true and there is a
+ @p file_transfer response.
+ 
+ 
+ @return @p true if the video has a file transfer page.
+ */
+- (BOOL)allowsFileTransfer;
+- (BOOL)canDownloadFromDesktop;
 
 @end

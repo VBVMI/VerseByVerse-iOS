@@ -51,7 +51,7 @@ extension RecentHistoryCollectionViewCell: UICollectionViewDelegate {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: LessonAttributes.dateLastPlayed.rawValue, ascending: false)];
         fetchRequest.fetchLimit = 1
         
-        if let lessons = try? study.managedObjectContext?.fetch(fetchRequest), let lesson = lessons?.first {
+        if let lessons = ((try? study.managedObjectContext?.fetch(fetchRequest)) as [Lesson]??), let lesson = lessons?.first {
             delegate?.recentHistoryDidSelect(study: study, lesson: lesson)
         }
     }
@@ -78,7 +78,7 @@ extension RecentHistoryCollectionViewCell: UICollectionViewDataSource {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: LessonAttributes.dateLastPlayed.rawValue, ascending: false)];
         fetchRequest.fetchLimit = 1
         
-        if let lessons = try? study.managedObjectContext?.fetch(fetchRequest), let lesson = lessons?.first {
+        if let lessons = ((try? study.managedObjectContext?.fetch(fetchRequest)) as [Lesson]??), let lesson = lessons?.first {
             cell.titleLabel.text = lesson.lessonNumber
             
             // We need to fetch the next one :sigh:
@@ -86,7 +86,7 @@ extension RecentHistoryCollectionViewCell: UICollectionViewDataSource {
             nextFetchRequest.predicate = NSPredicate(format: "%K MATCHES %@ && %K == %d", LessonAttributes.studyIdentifier.rawValue, study.identifier, LessonAttributes.lessonIndex.rawValue, lesson.lessonIndex + 1)
             nextFetchRequest.fetchLimit = 1
             
-            if let lessons = try? study.managedObjectContext?.fetch(nextFetchRequest), let _ = lessons?.first {
+            if let lessons = ((try? study.managedObjectContext?.fetch(nextFetchRequest)) as [Lesson]??), let _ = lessons?.first {
                 cell.nextButton.isHidden = false
             } else {
                 cell.nextButton.isHidden = true
@@ -126,13 +126,13 @@ extension RecentHistoryCollectionViewCell: RecentStudyCollectionViewCellDelegate
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: LessonAttributes.dateLastPlayed.rawValue, ascending: false)];
         fetchRequest.fetchLimit = 1
         
-        if let lessons = try? study.managedObjectContext?.fetch(fetchRequest), let lesson = lessons?.first {
+        if let lessons = ((try? study.managedObjectContext?.fetch(fetchRequest)) as [Lesson]??), let lesson = lessons?.first {
             let lessonIndex = lesson.lessonIndex + 1
             let nextFetchRequest = NSFetchRequest<Lesson>(entityName: Lesson.entityName())
             nextFetchRequest.predicate = NSPredicate(format: "%K MATCHES %@ && %K == %d", LessonAttributes.studyIdentifier.rawValue, study.identifier, LessonAttributes.lessonIndex.rawValue, lessonIndex)
             nextFetchRequest.sortDescriptors = [NSSortDescriptor(key: LessonAttributes.dateLastPlayed.rawValue, ascending: false)];
             nextFetchRequest.fetchLimit = 1
-            if let nextLessons = try? study.managedObjectContext?.fetch(nextFetchRequest), let nextLesson = nextLessons?.first {
+            if let nextLessons = ((try? study.managedObjectContext?.fetch(nextFetchRequest)) as [Lesson]??), let nextLesson = nextLessons?.first {
                 delegate?.recentHistoryDidSelect(study: study, lesson: nextLesson)
             }
         }

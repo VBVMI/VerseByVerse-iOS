@@ -131,13 +131,13 @@ class TopicViewController: UIViewController {
     fileprivate var currentViewController : UIViewController?
     fileprivate func configureSubviewController(_ viewController: UIViewController) {
         if let current = currentViewController {
-            current.willMove(toParentViewController: nil)
-            current.removeFromParentViewController()
+            current.willMove(toParent: nil)
+            current.removeFromParent()
             current.view.removeFromSuperview()
         }
         
-        viewController.willMove(toParentViewController: self)
-        self.addChildViewController(viewController)
+        viewController.willMove(toParent: self)
+        self.addChild(viewController)
 //        viewController.view.frame = self.view.bounds
         self.view.addSubview(viewController.view)
         
@@ -145,7 +145,7 @@ class TopicViewController: UIViewController {
             make.edges.equalTo(0)
         }
         
-        viewController.didMove(toParentViewController: self)
+        viewController.didMove(toParent: self)
         
         currentViewController = viewController
         
@@ -153,7 +153,7 @@ class TopicViewController: UIViewController {
             
         } else {
             if let tableViewController = currentViewController as? UITableViewController {
-                let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+                let insets = UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: bottomLayoutGuide.length, right: 0)
                 tableViewController.tableView.contentInset = insets
                 tableViewController.tableView.scrollIndicatorInsets = insets
                 tableViewController.tableView.contentOffset = CGPoint(x: 0, y: -topLayoutGuide.length)
@@ -167,7 +167,7 @@ class TopicViewController: UIViewController {
             
         } else {
             if let tableViewController = currentViewController as? UITableViewController {
-                let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+                let insets = UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: bottomLayoutGuide.length, right: 0)
                 tableViewController.tableView.contentInset = insets
                 tableViewController.tableView.scrollIndicatorInsets = insets
                 tableViewController.tableView.contentOffset = CGPoint(x: 0, y: -topLayoutGuide.length)
@@ -200,7 +200,7 @@ class TopicViewController: UIViewController {
 }
 
 extension TopicViewController : UIViewControllerRestoration {
-    static func viewController(withRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {
+    static func viewController(withRestorationIdentifierPath identifierComponents: [String], coder: NSCoder) -> UIViewController? {
         let vc = TopicViewController(nibName: "TopicViewController", bundle: nil)
         return vc
     }

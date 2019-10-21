@@ -16,8 +16,8 @@ class TabBarItem: UITabBarItem {
             if let value = value as? String {
                 let scale = UIScreen.main.scale
                 let pointSize: CGFloat = TabBar.pointSize
-                if let raw = FontAwesomeIcons[value], let icon = FontAwesome(rawValue: raw) {
-                    let icon = UIImage.fontAwesomeIcon(name: icon, textColor: StyleKit.white, size: CGSize(width: pointSize * scale, height: pointSize * scale))
+                if let icon = FontAwesome(rawValue: value) {
+                    let icon = UIImage.fontAwesomeIcon(name: icon, style: .regular, textColor: StyleKit.white, size: CGSize(width: pointSize * scale, height: pointSize * scale))
                     self.image = icon
                 }
             }

@@ -22,7 +22,7 @@ class RecentStudyCollectionViewCell: UICollectionViewCell {
     weak var delegate : RecentStudyCollectionViewCellDelegate?
     
     private let overlayView = UIView(frame: .zero)
-    private let activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
+    private let activityView = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.white)
     
     var dateLabelText: String? {
         set {

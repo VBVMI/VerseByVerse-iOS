@@ -28,7 +28,7 @@ class StudyViewController: UITableViewController {
     @IBOutlet var headerImageView: UIImageView!
     private let activity = NSUserActivity(activityType: "org.versebyverseministry.www")
     
-    fileprivate let barButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage.fontAwesomeIcon(name: .ellipsisH, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30)), style: UIBarButtonItemStyle.plain, target: nil, action: #selector(tappedMenu))
+    fileprivate let barButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage.fontAwesomeIcon(name: .ellipsisH, style: .regular, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30)), style: UIBarButtonItem.Style.plain, target: nil, action: #selector(tappedMenu))
     
     fileprivate class ButtonSender {
         let url: URL
@@ -175,10 +175,10 @@ class StudyViewController: UITableViewController {
         
         tableView.register(UINib(nibName: "LessonTableViewCell", bundle: nil), forCellReuseIdentifier: lessonCellReuseIdentifier)
         tableView.register(LessonsHeader.self, forHeaderFooterViewReuseIdentifier: lessonSectionHeaderReuseIdentifier)
-        testDescriptionLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        testDescriptionLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
         testDescriptionLabel.numberOfLines = 0
         
-        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
         if let _ = study {
             configureViewsForSudy()
             let _ = recentHistoryFetchedResultsController
@@ -186,7 +186,7 @@ class StudyViewController: UITableViewController {
         }
         
         tableView.estimatedRowHeight = 60
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
 
         barButtonItem.target = self
         
@@ -216,7 +216,7 @@ class StudyViewController: UITableViewController {
         if #available(iOS 11.0, *) {
             
         } else {
-            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+            let insets = UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: bottomLayoutGuide.length, right: 0)
             tableView.contentInset = insets
             tableView.scrollIndicatorInsets = insets
         }
@@ -420,7 +420,7 @@ class StudyViewController: UITableViewController {
             movieController.player = player
             self.present(movieController, animated: true, completion: {
                 do {
-                    try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
                 }
                 catch {
                     // report for an error
@@ -596,7 +596,7 @@ class StudyViewController: UITableViewController {
         case 1, 2:
             return 91
         default:
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
     }
     

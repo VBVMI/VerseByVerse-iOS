@@ -96,7 +96,7 @@ class LessonTableViewCell: UITableViewCell {
     
     @IBOutlet weak var resourcesStackView: UIStackView!
     
-    fileprivate static let buttonFont = UIFont.fontAwesome(ofSize: 20)
+    fileprivate static let buttonFont = UIFont.fontAwesome(ofSize: 20, style: .regular)
     
     var urlButtonCallback: ((_ downloadView: ACPDownloadView, _ status: ACPDownloadStatus, _ buttonType: ResourceManager.LessonType) -> ())?
     
@@ -126,7 +126,7 @@ class LessonTableViewCell: UITableViewCell {
         
         let buttonTintColor = StyleKit.darkGrey
         
-        let videoImage = IconImages(string: String.fontAwesomeIcon(name: .youTubePlay))
+        let videoImage = IconImages(string: String.fontAwesomeIcon(name: .youtube))
         videoImage.strokeColor = buttonTintColor
         videoView.button.setImages(videoImage)
         videoView.button.tintColor = buttonTintColor
@@ -136,7 +136,7 @@ class LessonTableViewCell: UITableViewCell {
         let videoTapGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.videoTap(_:)))
         videoView.addGestureRecognizer(videoTapGesture)
         
-        let teacherAidImage = IconImages(string: String.fontAwesomeIcon(name: .fileO))
+        let teacherAidImage = IconImages(string: String.fontAwesomeIcon(name: .file))
         teacherAidImage.strokeColor = buttonTintColor
         teacherAidView.button.setImages(teacherAidImage)
         teacherAidView.button.tintColor = buttonTintColor
@@ -146,7 +146,7 @@ class LessonTableViewCell: UITableViewCell {
         let teacherAidGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.teacherAidTap(_:)))
         teacherAidView.addGestureRecognizer(teacherAidGesture)
         
-        let studentAidImage = IconImages(string: String.fontAwesomeIcon(name: .filePowerpointO))
+        let studentAidImage = IconImages(string: String.fontAwesomeIcon(name: .filePowerpoint))
         studentAidImage.strokeColor = buttonTintColor
         studentAidView.button.setImages(studentAidImage)
         studentAidView.button.tintColor = buttonTintColor
@@ -156,7 +156,7 @@ class LessonTableViewCell: UITableViewCell {
         let studentAidGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.studentAidTap(_:)))
         studentAidView.addGestureRecognizer(studentAidGesture)
         
-        let transcriptPDFImage = IconImages(string: String.fontAwesomeIcon(name: .filePdfO))
+        let transcriptPDFImage = IconImages(string: String.fontAwesomeIcon(name: .filePdf))
         transcriptPDFImage.strokeColor = buttonTintColor
         transcriptPDFView.button.setImages(transcriptPDFImage)
         transcriptPDFView.button.tintColor = buttonTintColor
@@ -166,7 +166,7 @@ class LessonTableViewCell: UITableViewCell {
         let transcriptPDFGesture = UITapGestureRecognizer(target: self, action: #selector(LessonTableViewCell.transcriptPDFTap(_:)))
         transcriptPDFView.addGestureRecognizer(transcriptPDFGesture)
         
-        let transcriptHTMLImage = IconImages(string: String.fontAwesomeIcon(name: .fileTextO))
+        let transcriptHTMLImage = IconImages(string: String.fontAwesomeIcon(name: .fileCode))
         transcriptHTMLImage.strokeColor = buttonTintColor
         transcriptHTMLView.button.setImages(transcriptHTMLImage)
         transcriptHTMLView.button.tintColor = buttonTintColor

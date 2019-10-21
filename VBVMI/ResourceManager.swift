@@ -164,7 +164,7 @@ class ResourceManager {
             logger.error("\(#function) must be called from main thread. Unknown unsafe implications abound!")
             return
         }
-        if let index = observers.index(where: { $0.isEqual(observer) }) {
+        if let index = observers.firstIndex(where: { $0.isEqual(observer) }) {
             observers.remove(at: index)
         }
     }
@@ -242,7 +242,7 @@ class ResourceManager {
                     request.cancel()
                 }
             })
-            if bgTask == UIBackgroundTaskInvalid {
+            if bgTask == UIBackgroundTaskIdentifier.invalid {
                 bgTask = nil
             }
             

@@ -53,7 +53,7 @@ extension LatestLessonsCollectionViewCell: UICollectionViewDelegate {
         fetchRequest.predicate = NSPredicate(format: "%K MATCHES %@", StudyAttributes.identifier.rawValue, lesson.studyIdentifier)
         fetchRequest.fetchLimit = 1
         
-        if let studies = try? lesson.managedObjectContext?.fetch(fetchRequest), let study = studies?.first {
+        if let studies = ((try? lesson.managedObjectContext?.fetch(fetchRequest)) as [Study]??), let study = studies?.first {
             delegate?.latestLessonsDidSelect(study: study, lesson: lesson)
         }
     }
@@ -88,7 +88,7 @@ extension LatestLessonsCollectionViewCell: UICollectionViewDataSource {
         }
         
         
-        if let studies = try? lesson.managedObjectContext?.fetch(fetchRequest), let study = studies?.first {
+        if let studies = ((try? lesson.managedObjectContext?.fetch(fetchRequest)) as [Study]??), let study = studies?.first {
             
             if let thumbnailSource = study.image300 {
                 if let url = URL(string: thumbnailSource) {
@@ -119,7 +119,7 @@ extension LatestLessonsCollectionViewCell: RecentStudyCollectionViewCellDelegate
         fetchRequest.predicate = NSPredicate(format: "%K MATCHES %@", StudyAttributes.identifier.rawValue, lesson.studyIdentifier)
         fetchRequest.fetchLimit = 1
         
-        if let studies = try? lesson.managedObjectContext?.fetch(fetchRequest), let study = studies?.first {
+        if let studies = ((try? lesson.managedObjectContext?.fetch(fetchRequest)) as [Study]??), let study = studies?.first {
             cell.isLoading = true
             delegate?.latestLessonsDidPlay(study: study, lesson: lesson)
         }
