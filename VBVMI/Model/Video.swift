@@ -1,6 +1,5 @@
 import Foundation
 import CoreData
-import Decodable
 
 @objc(Video)
 open class Video: _Video {

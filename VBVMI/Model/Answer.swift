@@ -12,7 +12,7 @@ struct APIAnswer : Decodable {
     var category: String?
     var topics: [APITopic]?
     
-    enum CodingKeys : CodingKey, String {
+    enum CodingKeys : String, CodingKey {
         case identifier = "ID"
         case postedDate
         case title

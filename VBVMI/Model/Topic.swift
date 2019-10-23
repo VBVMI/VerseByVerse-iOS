@@ -1,6 +1,5 @@
 import Foundation
 import CoreData
-import Decodable
 
 extension String {
     func latinize() -> String {
@@ -16,9 +15,9 @@ extension String {
 
 struct APITopic : Decodable {
     var identifier: String
-    var name: String
+    var name: String?
     
-    enum CodingKeys: CodingKey, String {
+    enum CodingKeys: String, CodingKey {
         case identifier = "ID"
         case name = "topic"
     }

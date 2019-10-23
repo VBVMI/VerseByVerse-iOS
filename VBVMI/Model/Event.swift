@@ -1,6 +1,5 @@
 import Foundation
 import CoreData
-import Decodable
 
 @objc(Event)
 open class Event: _Event {

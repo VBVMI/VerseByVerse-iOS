@@ -1,7 +1,42 @@
 import Foundation
 
 import CoreData
-import Decodable
+
+struct APILesson : Decodable {
+    var identifier: String
+    var postedDate: String
+    var transcript: String?
+    var transcriptHtmlURL: String?
+    var url: String?
+    var lessonNumber: String?
+    var teacherAid: String?
+    var index: Int?
+    var videoSource: String?
+    var title: String
+    var topics: [APITopic]?
+    var audioSource: String?
+    var audioLength: String?
+    var studentAid: String?
+    var description: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case identifier = "ID"
+        case postedDate
+        case transcript
+        case transcriptHtmlURL = "transcript_html_url"
+        case url
+        case lessonNumber
+        case teacherAid
+        case index
+        case videoSource
+        case title
+        case topics
+        case audioSource
+        case audioLength
+        case studentAid
+        case description
+    }
+}
 
 @objc(Lesson)
 open class Lesson: _Lesson {
@@ -9,58 +44,55 @@ open class Lesson: _Lesson {
 	// Custom logic goes here.
 
     @discardableResult
-    class func decodeJSON(_ JSONDict: [AnyHashable : Any], studyID: String, context: NSManagedObjectContext) throws -> Lesson {
-        guard let identifier = JSONDict["ID"] as? String else {
-            throw APIDataManagerError.missingID
-        }
-        guard let lesson = Lesson.findFirstOrCreateWithDictionary(["identifier": identifier, "studyIdentifier": studyID], context: context) as? Lesson else {
+    class func importLesson(_ object: APILesson, studyID: String, context: NSManagedObjectContext) throws -> Lesson {
+        
+        guard let lesson = Lesson.findFirstOrCreateWithDictionary(["identifier": object.identifier, "studyIdentifier": studyID], context: context) as? Lesson else {
             throw APIDataManagerError.modelCreationFailed
         }
         
-        lesson.identifier = try JSONDict => "ID"
-        let postedDateString: String = try JSONDict => "postedDate"
-        if let number = Double(postedDateString) , postedDateString.count > 0 {
+        lesson.identifier = object.identifier
+        if let number = Double(object.postedDate) , object.postedDate.count > 0 {
             let date = Date(timeIntervalSince1970: number)
             lesson.postedDate = date
         }
         
-        lesson.lessonIndex = (try JSONDict =>? "index") ?? lesson.lessonIndex
+        if let index = object.index {
+            lesson.lessonIndex = Int32(index)
+        }
         
-        let studyDescription: String = try JSONDict => "description"
-        lesson.descriptionText = nullOrString(studyDescription.stringByDecodingHTMLEntities)
+        lesson.descriptionText = nullOrString(object.description?.stringByDecodingHTMLEntities)
         
-        lesson.transcriptURL = nullOrString(try JSONDict => "transcript")
-        lesson.transcriptHtmlURL = nullOrString(try JSONDict =>? "transcript_html_url")
-        lesson.url = nullOrString(try JSONDict => "url")
+        lesson.transcriptURL = nullOrString(object.transcript)
+        lesson.transcriptHtmlURL = nullOrString(object.transcriptHtmlURL)
+        lesson.url = nullOrString(object.url)
         
-        lesson.teacherAid = nullOrString(try JSONDict => "teacherAid")
+        lesson.teacherAid = nullOrString(object.teacherAid)
         
-        let lessonTitle: String = try JSONDict => "title"
-        lesson.title = lessonTitle.stringByDecodingHTMLEntities
+        lesson.title = object.title.stringByDecodingHTMLEntities
         
-        lesson.videoSourceURL = nullOrString(try JSONDict => "videoSource")
+        lesson.videoSourceURL = nullOrString(object.videoSource)
         
-        lesson.audioSourceURL = nullOrString(try JSONDict => "audioSource")
+        lesson.audioSourceURL = nullOrString(object.audioSource)
         
         lesson.isPlaceholder = lesson.audioSourceURL == nil
         
-        lesson.audioLength = nullOrString(try JSONDict => "audioLength")
-        lesson.studentAidURL = nullOrString(try JSONDict => "studentAid")
+        lesson.audioLength = nullOrString(object.audioLength)
+        lesson.studentAidURL = nullOrString(object.studentAid)
         lesson.studyIdentifier = studyID
-        let decodedTitle = lessonTitle.stringByDecodingHTMLEntities
+        let decodedTitle = object.title.stringByDecodingHTMLEntities
         
         let (lessonParsedTitle, _) = TitleParser.components(decodedTitle)
         
         lesson.lessonTitle = lessonParsedTitle
-        lesson.lessonNumber = nullOrString(try JSONDict => "lessonNumber")
+        lesson.lessonNumber = nullOrString(object.lessonNumber)
 
-        if let topicsArray: [[AnyHashable: Any]] = try JSONDict => "topics" as? [[AnyHashable: Any]] {
+        if let topicsArray = object.topics {
             //Then lets process the topics
             var myTopics = Set<Topic>()
             
-            topicsArray.forEach({ (topicJSONDict) -> () in
+            topicsArray.forEach({ (topicAPI) -> () in
                 do {
-                    if let topic = try Topic.decodeJSON(topicJSONDict, context: context) {
+                    if let topic = try Topic.importTopic(topicAPI, context: context) {
                         myTopics.insert(topic)
                     }
                 } catch let error {

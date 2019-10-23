@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Decodable
 
 import CoreData
 import Alamofire
@@ -32,15 +31,19 @@ protocol AssetsDownloadable {
     func directory() -> URL?
 }
 
+typealias Conversion<T> = (NSManagedObjectContext, T) throws ->()
+
 class APIDataManager {
 
     static func categories(completion: @escaping (Error?)->()) {
-        downloadToJSONArray(.categories, conversionBlock: { (context, JSONArray) in
+        
+        
+        downloadToJSONArray(.categories, conversionBlock: { (context, results) in
             let existingCategories: [StudyCategory] = StudyCategory.findAll(context)
             var existingCategoryIds = Set<String>(existingCategories.map({ $0.identifier }))
             
-            try JSONArray.enumerated().forEach({ (index, dict) in
-                let category = try StudyCategory.decodeJSON(dict, context: context)
+            try results.enumerated().forEach({ (index, result) in
+                let category = try StudyCategory.importStudyCategory(result, context: context)
                 existingCategoryIds.remove(category.identifier)
             })
             
@@ -48,7 +51,7 @@ class APIDataManager {
                 let categoriesToDelete: [StudyCategory] = StudyCategory.findAllWithPredicate(NSPredicate(format: "%K in %@", StudyCategoryAttributes.identifier.rawValue, existingCategoryIds), context: context)
                 categoriesToDelete.forEach({ context.delete($0)})
             }
-        }, completion: completion)
+        } as Conversion<[APIStudyCategory]>, completion: completion)
     }
     
     static func core() {
@@ -287,27 +290,22 @@ class APIDataManager {
     }
     
     
-    fileprivate static func downloadToJSONArray(_ request: JsonAPI, arrayNode: String? = nil, conversionBlock: @escaping (_ context: NSManagedObjectContext, _ JSONArray: [[AnyHashable: Any]]) throws ->(), completion: ((Error?)->())? = nil) {
+    fileprivate static func downloadToJSONArray<T: Decodable>(_ request: JsonAPI, conversionBlock: @escaping Conversion<T>, completion: ((Error?)->())? = nil) {
         Provider.sharedProvider.request(request) { (result) -> () in
             switch result {
             case .success(let response):
                 DispatchQueue.global(qos: .background).async {
                     //logger.info("🍕resonse: \(response)")
                     let data = response.data
-                    
-                    if let json = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) {
-                        let modelNodes: [[AnyHashable: Any]]
-                        if let arrayNode = arrayNode, let result = json as? [AnyHashable : Any] {
-                            modelNodes = result[arrayNode] as? [[AnyHashable: Any]] ?? []
-                        } else {
-                            modelNodes = json as? [[AnyHashable: Any]] ?? []
-                        }
+                    let decoder = JSONDecoder()
+                    do {
+                        let results = try decoder.decode(T.self, from: data)
                         
                         let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
                         context.parent = ContextCoordinator.sharedInstance.backgroundManagedObjectContext!
                         context.perform({ () -> Void in
                             do {
-                                try conversionBlock(context, modelNodes)
+                                try conversionBlock(context, results)
                             } catch let error {
                                 logger.error("Error decoding modelJSON \(error)")
                                 completion?(error)
@@ -333,10 +331,13 @@ class APIDataManager {
                                 completion?(error)
                             }
                         })
+                    } catch (let error) {
+                        logger.error("Error Decoding JSON: \(error)")
+                        completion?(error)
                     }
                 }
             case .failure(let error):
-                logger.error("Error downloading articles P: \(error)")
+                logger.error("Error downloading objects : \(error)")
                 completion?(error)
             }
         }

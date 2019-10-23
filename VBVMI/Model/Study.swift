@@ -1,6 +1,5 @@
 import Foundation
 import CoreData
-import Decodable
 
 @objc(Study)
 open class Study: _Study {

@@ -1,49 +1,75 @@
 import Foundation
 import CoreData
 
+struct APIArticle : Decodable {
+    
+    var identifier: String
+    var summary: String?
+    var postedDate: Double?
+    var title: String
+    var authorName: String?
+    var authorThumbnailSource: String?
+    var authorThumbnailAltText: String?
+    var url: String?
+    var body: String
+    var category: String?
+    var topics: [APITopic]?
+    
+    enum CodingKeys : String, CodingKey {
+        case identifier = "ID"
+        case summary
+        case postedDate
+        case title
+        case authorName
+        case authorThumbnailSource
+        case authorThumbnailAltText
+        case url
+        case body
+        case category
+        case topics
+    }
+}
 
 @objc(Article)
 open class Article: _Article {
 
 	// Custom logic goes here.
 
-    class func decodeJSON(_ JSONDict: [AnyHashable : Any], context: NSManagedObjectContext) throws -> (Article) {
-        guard let identifier = JSONDict["ID"] as? String else {
-            throw APIDataManagerError.missingID
-        }
+    class func importArticle(_ object: APIArticle, context: NSManagedObjectContext) throws -> (Article) {
         
-        guard let article = Article.findFirstOrCreateWithDictionary(["identifier": identifier], context: context) as? Article else {
+        guard let article = Article.findFirstOrCreateWithDictionary(["identifier": object.identifier], context: context) as? Article else {
             throw APIDataManagerError.modelCreationFailed
         }
         
-        article.identifier = try JSONDict => "ID"
-        article.category = nullOrString(try JSONDict => "category")
+        article.identifier = object.identifier
+        article.category = nullOrString(object.category)
         
-        if let dateString: TimeInterval = try JSONDict => "postedDate" {
+        if let dateString: TimeInterval = object.postedDate {
             article.postedDate = Date(timeIntervalSince1970: dateString)
         }
         
-        article.authorThumbnailSource = nullOrString(try JSONDict => "authorThumbnailSource")
-        article.authorThumbnailAltText = nullOrString(try JSONDict => "authorThumbnailAltText")
+        article.authorThumbnailSource = nullOrString(object.authorThumbnailSource)
+        article.authorThumbnailAltText = nullOrString(object.authorThumbnailAltText)
         
-        article.summary = nullOrString(try JSONDict =>? "summary")
-        article.authorName = nullOrString(try JSONDict => "authorName")
+        article.summary = nullOrString(object.summary)
+        article.authorName = nullOrString(object.authorName)
         
-        article.url = nullOrString(try? JSONDict => "url")
+        article.url = nullOrString(object.url)
 
-        let articleBody: String = try JSONDict => "body"
+        let articleBody: String = object.body
         article.body = articleBody
         
-        let articleTitle: String = try JSONDict => "title"
+        let articleTitle: String = object.title
         article.title = nullOrString(articleTitle.stringByDecodingHTMLEntities)
         
-        if let topicsArray: [[AnyHashable: Any]] = try JSONDict => "topics" as? [[AnyHashable: Any]] {
+        
+        if let topicsArray = object.topics {
             //Then lets process the topics
             var myTopics = Set<Topic>()
             
-            topicsArray.forEach({ (topicJSONDict) -> () in
+            topicsArray.forEach({ (topicAPI) -> () in
                 do {
-                    if let topic = try Topic.decodeJSON(topicJSONDict, context: context) {
+                    if let topic = try Topic.importTopic(topicAPI, context: context) {
                         myTopics.insert(topic)
                     }
                 } catch let error {

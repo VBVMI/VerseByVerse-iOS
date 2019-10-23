@@ -1,6 +1,5 @@
 import Foundation
 import CoreData
-import Decodable
 
 @objc(Channel)
 open class Channel: _Channel {
