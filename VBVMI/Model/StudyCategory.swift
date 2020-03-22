@@ -7,7 +7,7 @@ struct APIStudyCategory : Decodable {
     var name: String
     
     enum CodingKeys: String, CodingKey {
-        case identifier = "ID"
+        case identifier = "id"
         case order
         case name
     }

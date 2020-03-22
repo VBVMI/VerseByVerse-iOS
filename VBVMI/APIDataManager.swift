@@ -55,14 +55,13 @@ class APIDataManager {
     }
     
     static func core() {
-        downloadToJSONArray(.core, arrayNode: "studies", conversionBlock: { (context, JSONArray) -> () in
-            
+        downloadToJSONArray(.core, conversionBlock: { (context, core) in
             let existingStudies: [Study] = Study.findAll(context)
             
             var existingStudyIds = Set<String>(existingStudies.map( { $0.identifier } ))
             
-            try JSONArray.enumerated().forEach({ (index, studyDict) in
-                let study = try Study.decodeJSON(studyDict, context: context, index: index)
+            try core.studies.enumerated().forEach({ (index, studyDict) in
+                let study = try Study.importStudy(studyDict, context: context, index: index)
                 let _ = existingStudyIds.remove(study.identifier)
             })
             
@@ -76,20 +75,19 @@ class APIDataManager {
                     context.delete(lesson)
                 })
             }
-        })
+        } as Conversion<APICore>)
     }
     
     static func lessons(_ studyID: String) {
-        
-        downloadToJSONArray(JsonAPI.lesson(identifier: studyID), arrayNode: "lessons", conversionBlock: { (context, JSONModels) -> () in
+        downloadToJSONArray(JsonAPI.lesson(identifier: studyID), conversionBlock: { (context, result) in
             //We should fetch old lessons for merging and possible deletion
             let existingLessons = Lesson.findAllWithDictionary([LessonAttributes.studyIdentifier.rawValue: studyID], context: context) as? [Lesson] ?? []
             var existingLessonIds = existingLessons.map({ (lesson) -> String in
                 return lesson.identifier
             })
             
-            try JSONModels.forEach({ (lessonDict) in
-                let lesson = try Lesson.decodeJSON(lessonDict, studyID: studyID, context: context)
+            try result.lessons.forEach({ (lessonDict) in
+                let lesson = try Lesson.importLesson(lessonDict, studyID: studyID, context: context)
                 if let index = existingLessonIds.firstIndex(of: lesson.identifier) {
                     existingLessonIds.remove(at: index)
                 }
@@ -103,49 +101,47 @@ class APIDataManager {
                     }
                 }
             }
-        })
+        } as Conversion<APILessons>)
     }
     
     static func latestLessons() {
-        
-        downloadToJSONArray(JsonAPI.latestLessons, arrayNode: "lessons", conversionBlock: { (context, JSONModels) in
-            try JSONModels.forEach({ (lessonDict) in
-                if let studyIdentifier = lessonDict["studyIdentifier"] as? String {
-                    try Lesson.decodeJSON(lessonDict, studyID: studyIdentifier, context: context)
+        downloadToJSONArray(JsonAPI.latestLessons, conversionBlock: { (context, result) in
+            try result.lessons.forEach({ (lessonDict) in
+                if let studyIdentifier = lessonDict.studyIdentifier {
+                    try Lesson.importLesson(lessonDict, studyID: studyIdentifier, context: context)
                 }
             })
-        })
-        
+            } as Conversion<APILessons>)
     }
     
     static func latestArticles() {
-        // download the articles P
-        downloadToJSONArray(JsonAPI.articlesP, arrayNode: "articles", conversionBlock: { (context, JSONModels) -> () in
+        downloadToJSONArray(JsonAPI.articlesP, conversionBlock: { (context, result) in
             var count = 0
-            for JSONModel in JSONModels {
-                let article = try Article.decodeJSON(JSONModel, context: context)
+            for JSONModel in result.articles {
+                let article = try Article.importArticle(JSONModel, context: context)
                 if article.objectID.isTemporaryID {
                     //Then the object isn't persisted yet
                     count += 1
                 }
             }
-            if count == JSONModels.count {
+            if count == result.articles.count {
                 //Then All of the objects are new... lets DOWNLOAD ALL THE ARTICLES
                 DispatchQueue.main.async { () -> Void in
                     allTheArticles()
                 }
             }
-        })
+        } as Conversion<APIArticles>)
+        // download the articles P
     }
     
     static func allTheArticles(_ completion:(()->())? = nil) {
-        downloadToJSONArray(JsonAPI.articles, arrayNode: "articles", conversionBlock: { (context, JSONArray) -> () in
+        downloadToJSONArray(JsonAPI.articles, conversionBlock: { (context, result) in
             let existingArticles: [Article] = Article.findAll(context)
             
             var existingArticleIds = Set<String>(existingArticles.map( { $0.identifier } ))
             
-            for JSONModel in JSONArray {
-                let article = try Article.decodeJSON(JSONModel, context: context)
+            for JSONModel in result.articles {
+                let article = try Article.importArticle(JSONModel, context: context)
                 let _ = existingArticleIds.remove(article.identifier)
             }
             
@@ -156,42 +152,42 @@ class APIDataManager {
                     context.delete(article)
                 })
             }
-        }, completion: { _ in
-            if let completion = completion {
-                DispatchQueue.main.async { () -> Void in
-                    completion()
+            } as Conversion<APIArticles>) { (error) in
+                if let completion = completion {
+                    DispatchQueue.main.async { () -> Void in
+                        completion()
+                    }
                 }
-            }
-        })
+        }
     }
     
     static func latestAnswers() {
-        downloadToJSONArray(JsonAPI.qAp, arrayNode: "answers", conversionBlock: { (context, JSONArray) -> () in
+        downloadToJSONArray(JsonAPI.qAp, conversionBlock: { (context, result) in
             var count = 0
-            for JSONModel in JSONArray {
-                let article = try Answer.decodeJSON(JSONModel, context: context)
+            for JSONModel in result.answers {
+                let article = try Answer.importAnswer(JSONModel, context: context)
                 if article.objectID.isTemporaryID {
                     //Then the object isn't persisted yet
                     count += 1
                 }
             }
-            if count == JSONArray.count {
+            if count == result.answers.count {
                 //Then All of the objects are new... lets DOWNLOAD ALL THE ANSWERS
                 DispatchQueue.main.async { () -> Void in
                     allTheAnswers()
                 }
             }
-        })
+        } as Conversion<APIAnswers>)
     }
     
     static func allTheAnswers(_ completion:(()->())? = nil) {
-        downloadToJSONArray(JsonAPI.qa, arrayNode: "answers", conversionBlock: { (context, JSONArray) -> () in
+        downloadToJSONArray(JsonAPI.qa, conversionBlock: { (context, result) in
             let existingAnswers: [Answer] = Answer.findAll(context)
             
             var existingAnswerIds = Set<String>(existingAnswers.map( { $0.identifier } ))
             
-            for JSONModel in JSONArray {
-                let answer = try Answer.decodeJSON(JSONModel, context: context)
+            for JSONModel in result.answers {
+                let answer = try Answer.importAnswer(JSONModel, context: context)
                 let _ = existingAnswerIds.remove(answer.identifier)
             }
             
@@ -202,22 +198,22 @@ class APIDataManager {
                     context.delete(article)
                 })
             }
-            
+        } as Conversion<APIAnswers>) { _ in
             if let completion = completion {
                 DispatchQueue.main.async { () -> Void in
                     completion()
                 }
             }
-        })
+        }
     }
     
     static func allTheChannels() {
-        downloadToJSONArray(JsonAPI.channels, arrayNode: "channels", conversionBlock: { (context, JSONArray) in
+        downloadToJSONArray(JsonAPI.channels, conversionBlock: { (context, result) in
             let existingChannels: [Channel] = Channel.findAll(context)
             var existingChannelIds = Set<String>(existingChannels.map({ $0.identifier }))
-                        
-            try JSONArray.enumerated().forEach({ (index, channelDict) in
-                let channel = try Channel.decodeJSON(channelDict, context: context, index: index)
+            
+            try result.channels.enumerated().forEach({ (index, channelDict) in
+                let channel = try Channel.importChannel(channelDict, context: context, index: index)
                 existingChannelIds.remove(channel.identifier)
             })
             
@@ -234,16 +230,16 @@ class APIDataManager {
             orphanedVideos.forEach({ (video) in
                 context.delete(video)
             })
-        })
+        } as Conversion<APIChannels>)
     }
     
     static func allTheCurriculums() {
-        downloadToJSONArray(JsonAPI.curriculum, arrayNode: "channels", conversionBlock:  { (context, JSONArray) in
+        downloadToJSONArray(JsonAPI.curriculum, conversionBlock: { (context, result) in
             let existingChannels: [Curriculum] = Curriculum.findAll(context)
             var existingChannelIds = Set<String>(existingChannels.map({ $0.identifier }))
             
-            try JSONArray.enumerated().forEach({ (index, channelDict) in
-                let channel = try Curriculum.decodeJSON(channelDict, context: context, index: index)
+            try result.channels.enumerated().forEach({ (index, channelDict) in
+                let channel = try Curriculum.importCurriculum(channelDict, context: context, index: index)
                 existingChannelIds.remove(channel.identifier)
             })
             
@@ -260,19 +256,18 @@ class APIDataManager {
             orphanedVideos.forEach({ (video) in
                 context.delete(video)
             })
-        })
+        } as Conversion<APICurriculums>)
     }
     
     static func allTheEvents() {
-        downloadToJSONArray(JsonAPI.events, arrayNode: "events", conversionBlock: { (context, JSONArray) in
-            
+        downloadToJSONArray(JsonAPI.events, conversionBlock: { (context, result) in
             let existingEvents: [Event] = Event.findAll(context)
             var existingEventIds = existingEvents.map({ (event) -> String in
                 return event.identifier
             })
             
-            try JSONArray.enumerated().forEach({ (index, eventDict) in
-                let event = try Event.decodeJSON(eventDict, context: context, index: index)
+            try result.events.enumerated().forEach({ (index, eventDict) in
+                let event = try Event.importEvent(eventDict, context: context, index: index)
                 if let index = existingEventIds.firstIndex(of: event.identifier) {
                     existingEventIds.remove(at: index)
                 }
@@ -286,7 +281,7 @@ class APIDataManager {
                     }
                 }
             }
-        })
+        } as Conversion<APIEvents>)
     }
     
     

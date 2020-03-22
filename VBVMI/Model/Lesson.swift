@@ -2,6 +2,10 @@ import Foundation
 
 import CoreData
 
+struct APILessons: Decodable {
+    var lessons: [APILesson]
+}
+
 struct APILesson : Decodable {
     var identifier: String
     var postedDate: String
@@ -18,6 +22,7 @@ struct APILesson : Decodable {
     var audioLength: String?
     var studentAid: String?
     var description: String?
+    var studyIdentifier: String?
     
     enum CodingKeys: String, CodingKey {
         case identifier = "ID"
@@ -35,6 +40,7 @@ struct APILesson : Decodable {
         case audioLength
         case studentAid
         case description
+        case studyIdentifier
     }
 }
 

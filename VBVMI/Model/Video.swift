@@ -1,38 +1,58 @@
 import Foundation
 import CoreData
 
+struct APIVideo : Decodable {
+    var identifier: String
+    var thumbnailSource: String
+    var serviceIdentifier: String?
+    var service: String?
+    var channelDescription: String
+    var recordedDate: String?
+    var videoSource: String
+    var videoLength: String
+    var videoURL: String?
+    var title: String
+    
+    enum CodingKeys: String, CodingKey {
+        case identifier = "ID"
+        case thumbnailSource
+        case serviceIdentifier = "serviceVideoID"
+        case service
+        case channelDescription = "description"
+        case recordedDate
+        case videoSource
+        case videoLength
+        case videoURL = "url"
+        case title
+    }
+}
+
 @objc(Video)
 open class Video: _Video {
     
-    class func decodeJSON(_ JSONDict: [AnyHashable : Any], context: NSManagedObjectContext, index: Int) throws -> (Video) {
-        guard let identifier = JSONDict["ID"] as? String else {
-            throw APIDataManagerError.missingID
-        }
+    class func importVideo(_ object: APIVideo, context: NSManagedObjectContext, index: Int) throws -> (Video) {
         
-        guard let video = Video.findFirstOrCreateWithDictionary(["identifier": identifier], context: context) as? Video else {
+        guard let video = Video.findFirstOrCreateWithDictionary(["identifier": object.identifier], context: context) as? Video else {
             throw APIDataManagerError.modelCreationFailed
         }
         
-        video.identifier = try JSONDict => "ID"
-        video.thumbnailSource = try JSONDict => "thumbnailSource"
+        video.identifier = object.identifier
+        video.thumbnailSource = object.thumbnailSource
         video.videoIndex = Int32(index)
-        video.serviceVideoIdentifier = try? JSONDict => "serviceVideoID"
-        video.service = try? JSONDict => "service"
+        video.serviceVideoIdentifier = object.serviceIdentifier
+        video.service = object.service
+        video.descriptionText = object.channelDescription.stringByDecodingHTMLEntities
         
-        let channelDescription: String = try JSONDict => "description"
-        video.descriptionText = channelDescription.stringByDecodingHTMLEntities
-        
-        if let dateString: String = try JSONDict => "recordedDate" {
+        if let dateString = object.recordedDate {
             video.recordedDate = Date.dateFromTimeString(dateString)
         }
         
-        video.videoSource = try JSONDict => "videoSource"
-        video.videoLength = try JSONDict => "videoLength"
+        video.videoSource = object.videoSource
+        video.videoLength = object.videoLength
         
-        video.url = nullOrString(try JSONDict => "url")
+        video.url = nullOrString(object.videoURL)
         
-        let studyTitle: String = try JSONDict => "title"
-        video.title = studyTitle.stringByDecodingHTMLEntities
+        video.title = object.title.stringByDecodingHTMLEntities
         
         return video
     }

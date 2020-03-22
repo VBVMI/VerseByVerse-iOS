@@ -1,6 +1,10 @@
 import Foundation
 import CoreData
 
+struct APIAnswers : Decodable {
+    var answers: [APIAnswer]
+}
+
 struct APIAnswer : Decodable {
     
     var identifier: String
