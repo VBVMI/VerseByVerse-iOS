@@ -392,7 +392,7 @@ class StudyViewController: UITableViewController {
                     let controller = TranscriptViewController(study: this.study, lesson: lesson)
                     let nav = NavViewController(rootViewController: controller)
 //                    nav.modalTransitionStyle = .partialCurl
-//                    nav.modalPresentationStyle = .fullScreen
+                    nav.modalPresentationStyle = .fullScreen
                     this.present(nav, animated: true, completion: nil)
                 }
                 
