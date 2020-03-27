@@ -313,8 +313,9 @@ class AudioPlayerViewController: UIViewController {
         configureViews()
         //Configure the views
         
-        let buttonFont = UIFont.fontAwesome(ofSize: 20, style: .regular)
-        self.playPauseButton.titleLabel?.font = buttonFont
+//        let buttonFont = UIFont.fontAwesome(ofSize: 20, style: .regular)
+//        self.playPauseButton.titleLabel?.font = buttonFont
+        playPauseButton.setTitle(nil, for: .normal)
         configurePlayPauseState()
         
         self.jumpForwardButton.setImage(StyleKit.imageOfForward, for: UIControl.State())
@@ -364,9 +365,9 @@ class AudioPlayerViewController: UIViewController {
         let isPlaying = SoundManager.sharedInstance.avPlayer.rate != 0
         if let button = self.playPauseButton {
             if isPlaying {
-                button.setTitle(String.fontAwesomeIcon(name: .pause), for: .normal)
+                button.setImage(#imageLiteral(resourceName: "player_pause"), for: .normal)
             } else {
-                button.setTitle(String.fontAwesomeIcon(name: .play), for: .normal)
+                button.setImage(#imageLiteral(resourceName: "audio.png"), for: .normal)
             }
         }
         

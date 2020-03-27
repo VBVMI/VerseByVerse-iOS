@@ -11,6 +11,10 @@ import CoreData
 import AlamofireImage
 import FirebaseAnalytics
 
+extension UIImage {
+    static let sliders = UIImage(imageLiteralResourceName: "sliders")
+}
+
 class StudiesViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -148,7 +152,7 @@ class StudiesViewController: UIViewController {
         self.aboutActionsController = AboutActionsController(presentingController: self)
         self.navigationItem.leftBarButtonItem = self.aboutActionsController.barButtonItem
         
-        let optionsButton = UIBarButtonItem(image: UIImage.fontAwesomeIcon(name: .slidersH, style: .regular, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30)), style: UIBarButtonItem.Style.plain, target: self, action: #selector(openOptions))
+        let optionsButton = UIBarButtonItem(image: .sliders, style: UIBarButtonItem.Style.plain, target: self, action: #selector(openOptions))
         self.navigationItem.rightBarButtonItem = optionsButton
         
         UserDefaults.standard.addObserver(self, forKeyPath: "StudySortOption", options: [.new], context: nil)

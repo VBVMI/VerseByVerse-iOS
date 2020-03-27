@@ -18,7 +18,7 @@ class AboutActionsController: NSObject {
     
     init(presentingController controller: UIViewController) {
         self.controller = controller
-        let icon = UIImage.fontAwesomeIcon(name: .ellipsisH, style: .regular, textColor: StyleKit.darkGrey, size: CGSize(width: 30, height: 30))
+        let icon = #imageLiteral(resourceName: "ellipsis.png")
         barButtonItem = UIBarButtonItem(image: icon, style: UIBarButtonItem.Style.plain, target: nil, action: #selector(AboutActionsController.tappedMenu))
         super.init()
         barButtonItem.target = self

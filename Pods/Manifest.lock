@@ -52,7 +52,7 @@ PODS:
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
-  - FontAwesome.swift (1.8.2)
+  - FontAwesome.swift (1.8.3)
   - GoogleAppMeasurement (6.1.3):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -162,7 +162,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FontAwesome.swift:
-    :commit: c597315c4a4d33fadeda566c80f626476cad05f5
+    :commit: bf8da84dd83c76bbc6a2724dcc4ee20806ee2014
     :git: "git@github.com:thii/FontAwesome.swift.git"
 
 SPEC CHECKSUMS:
@@ -179,7 +179,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: af29e43048607588c050889d19204f4d7b758c9f
   FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
   FirebaseInstanceID: 550df9be1f99f751d8fcde3ac342a1e21a0e6c42
-  FontAwesome.swift: 7938d6a03113ff3f39001bde7f50be8a0903d605
+  FontAwesome.swift: 2a3235131a6caffc6b2ccba318e94d793b2fd342
   GoogleAppMeasurement: 434cc7be25e71dc04b8d0e3079125127b330e84a
   GoogleDataTransport: 166f9b9f82cbf60a204e8fe2daa9db3e3ec1fb15
   GoogleDataTransportCCTSupport: f6ab1962e9dc05ab1fb938b795e5b310209edeec
@@ -198,4 +198,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: f3371567a2f2bc146a4ee7b7db6dce2d84d350c2
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

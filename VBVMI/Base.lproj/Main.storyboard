@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h14-bl-qjG">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h14-bl-qjG">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,11 +32,7 @@
         <scene sceneID="al8-Ec-E0U">
             <objects>
                 <navigationController storyboardIdentifier="Studies Nav Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="r43-xi-fT6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Studies" id="Jdk-P2-COC" customClass="TabBarItem" customModule="Verse_By_Verse" customModuleProvider="target">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="fontAwesomeKey" value="fa-book"/>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Studies" image="studies" id="Jdk-P2-COC" customClass="TabBarItem" customModule="Verse_By_Verse" customModuleProvider="target"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="hfv-4i-ZXW">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
@@ -135,18 +128,18 @@
                                 <rect key="frame" x="0.0" y="196" width="375" height="87"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vYv-Wy-i9r" id="ede-53-JSy">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="86.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pf2-xQ-ePx" customClass="HideView" customModule="Verse_By_Verse" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="26.666666666666671" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="27" width="375" height="60"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="60" id="C9t-A3-FFa"/>
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1u-wE-HZE">
-                                            <rect key="frame" x="169.66666666666666" y="71" width="36.333333333333343" height="13.666666666666671"/>
+                                            <rect key="frame" x="169.33333333333334" y="71.333333333333329" width="36.333333333333343" height="13.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -255,11 +248,7 @@
         <scene sceneID="BRF-QX-awg">
             <objects>
                 <navigationController storyboardIdentifier="Articles Nav Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qK5-Ll-f3h" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Articles" id="2gl-l9-jOr" customClass="TabBarItem" customModule="Verse_By_Verse" customModuleProvider="target">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="fontAwesomeKey" value="fa-newspaper-o"/>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Articles" image="articles" id="2gl-l9-jOr" customClass="TabBarItem" customModule="Verse_By_Verse" customModuleProvider="target"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="HH9-zV-8Cw">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
@@ -299,11 +288,7 @@
         <scene sceneID="iLS-wQ-WO3">
             <objects>
                 <navigationController storyboardIdentifier="Videos Nav Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8Mn-WK-Xr8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Videos" id="bdr-Kp-ylY" customClass="TabBarItem" customModule="Verse_By_Verse" customModuleProvider="target">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="fontAwesomeKey" value="fa-tv"/>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Videos" image="videos" id="bdr-Kp-ylY" customClass="TabBarItem" customModule="Verse_By_Verse" customModuleProvider="target"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="lG9-Tf-jzy">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -426,11 +411,7 @@
         <scene sceneID="nEZ-cA-Srz">
             <objects>
                 <navigationController storyboardIdentifier="Answers Nav Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2R4-eV-Lll" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Answers" id="WBS-KP-R0Q" customClass="TabBarItem" customModule="Verse_By_Verse" customModuleProvider="target">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="fontAwesomeKey" value="fa-list"/>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Answers" image="questions" id="WBS-KP-R0Q" customClass="TabBarItem" customModule="Verse_By_Verse" customModuleProvider="target"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="K5C-Go-oOC">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
@@ -448,4 +429,10 @@
     <inferredMetricsTieBreakers>
         <segue reference="3XH-Fb-sE3"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="articles" width="24" height="24"/>
+        <image name="questions" width="24" height="24"/>
+        <image name="studies" width="24" height="24"/>
+        <image name="videos" width="24" height="24"/>
+    </resources>
 </document>
