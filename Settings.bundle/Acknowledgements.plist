@@ -90,14 +90,6 @@
         <key>Type</key>
         <string>PSChildPaneSpecifier</string>
         <key>Title</key>
-        <string>FontAwesome</string>
-        <key>File</key>
-        <string>Acknowledgement-FontAwesome</string>
-      </dict>
-      <dict>
-        <key>Type</key>
-        <string>PSChildPaneSpecifier</string>
-        <key>Title</key>
         <string>GoogleDataTransport</string>
         <key>File</key>
         <string>Acknowledgement-GoogleDataTransport</string>

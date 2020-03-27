@@ -91,7 +91,10 @@ class MediaCenterInfo: NSObject, NSCoding {
         info[MPNowPlayingInfoPropertyDefaultPlaybackRate] = defaultPlaybackRate
         info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = elapsedTime
         if let artwork = artwork {
-            info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: artwork)
+            let art = MPMediaItemArtwork(boundsSize: CGSize(width: 1400, height: 1400)) { (size) -> UIImage in
+                return artwork
+            }
+            info[MPMediaItemPropertyArtwork] = art
         }
         
         infoCenter.nowPlayingInfo = info

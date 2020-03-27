@@ -108,7 +108,7 @@ class CurriculumViewController : UIViewController, UITableViewDelegate, UITableV
     
     func orderCopies(cell: CurriculumPDFTableViewCell) {
         if let purchaseURLString = curriculum.purchaseLink, let url = URL(string: purchaseURLString) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
@@ -178,7 +178,7 @@ class CurriculumViewController : UIViewController, UITableViewDelegate, UITableV
         switch sections[indexPath.section] {
         case .studyGuide:
             if let urlString = curriculum.pdfURL, let url = URL(string: urlString) {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         case .videos:
             let video = fetchedResultsController.object(at: IndexPath(row: indexPath.row, section: 0))
@@ -222,7 +222,7 @@ class CurriculumViewController : UIViewController, UITableViewDelegate, UITableV
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 })
             } else {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
     }

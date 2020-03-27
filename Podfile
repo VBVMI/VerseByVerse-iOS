@@ -40,7 +40,6 @@ def ios_pods
 
     pod 'Firebase/Core'
     pod 'UIImage-Color'
-    pod 'FontAwesome.swift', git: 'git@github.com:thii/FontAwesome.swift.git'
 
 end
 

@@ -139,8 +139,10 @@ class TranscriptViewController: UIViewController, HidableStatusbarController, WK
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        textView.contentInset = UIEdgeInsets(top: topLayoutGuide.length, left: view.layoutMargins.left, bottom: bottomLayoutGuide.length, right: view.layoutMargins.right)
+        if #available(iOS 11.0, *) {
+        } else {
+            textView.contentInset = UIEdgeInsets(top: topLayoutGuide.length, left: view.layoutMargins.left, bottom: bottomLayoutGuide.length, right: view.layoutMargins.right)
+        }
     }
     
     override func didReceiveMemoryWarning() {

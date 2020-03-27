@@ -52,7 +52,6 @@ PODS:
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
-  - FontAwesome.swift (1.8.3)
   - GoogleAppMeasurement (6.1.3):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -115,7 +114,6 @@ DEPENDENCIES:
   - CSStickyHeaderFlowLayout
   - Fabric
   - Firebase/Core
-  - "FontAwesome.swift (from `git@github.com:thii/FontAwesome.swift.git`)"
   - Moya
   - ParallaxView
   - ReachabilitySwift
@@ -156,15 +154,6 @@ SPEC REPOS:
     - VimeoNetworking
     - XCGLogger
 
-EXTERNAL SOURCES:
-  FontAwesome.swift:
-    :git: "git@github.com:thii/FontAwesome.swift.git"
-
-CHECKOUT OPTIONS:
-  FontAwesome.swift:
-    :commit: bf8da84dd83c76bbc6a2724dcc4ee20806ee2014
-    :git: "git@github.com:thii/FontAwesome.swift.git"
-
 SPEC CHECKSUMS:
   ACPDownload: 9c6349be96019b6c8c87ad46570af1cbc7106bf4
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -179,7 +168,6 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: af29e43048607588c050889d19204f4d7b758c9f
   FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
   FirebaseInstanceID: 550df9be1f99f751d8fcde3ac342a1e21a0e6c42
-  FontAwesome.swift: 2a3235131a6caffc6b2ccba318e94d793b2fd342
   GoogleAppMeasurement: 434cc7be25e71dc04b8d0e3079125127b330e84a
   GoogleDataTransport: 166f9b9f82cbf60a204e8fe2daa9db3e3ec1fb15
   GoogleDataTransportCCTSupport: f6ab1962e9dc05ab1fb938b795e5b310209edeec
@@ -196,6 +184,6 @@ SPEC CHECKSUMS:
   VimeoNetworking: 62238fe49b7f4982a1bb3e930adc0468ea88cc1c
   XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
 
-PODFILE CHECKSUM: f3371567a2f2bc146a4ee7b7db6dce2d84d350c2
+PODFILE CHECKSUM: a839a50413c9bae512d3af800c561717da01e54b
 
 COCOAPODS: 1.9.1

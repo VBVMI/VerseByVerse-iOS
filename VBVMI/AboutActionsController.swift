@@ -10,8 +10,6 @@ import UIKit
 import SafariServices
 
 class AboutActionsController: NSObject {
-
-    fileprivate static let buttonFont = UIFont.fontAwesome(ofSize: 20, style: .regular)
     
     let barButtonItem: UIBarButtonItem
     weak var controller : UIViewController?

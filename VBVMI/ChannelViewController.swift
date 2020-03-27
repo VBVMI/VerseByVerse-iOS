@@ -154,7 +154,7 @@ extension ChannelViewController: UITableViewDelegate {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 })
             } else {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
     }

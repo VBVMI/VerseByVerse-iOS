@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FontAwesome_swift
 import ACPDownload
 
 extension ResourceManager.LessonType {
@@ -95,8 +94,6 @@ class LessonTableViewCell: UITableViewCell {
     let transcriptHTMLView = ResourceIconView(frame: .zero)
     
     @IBOutlet weak var resourcesStackView: UIStackView!
-    
-    fileprivate static let buttonFont = UIFont.fontAwesome(ofSize: 20, style: .regular)
     
     var urlButtonCallback: ((_ downloadView: ACPDownloadView, _ status: ACPDownloadStatus, _ buttonType: ResourceManager.LessonType) -> ())?
     

@@ -8,10 +8,11 @@
 
 import UIKit
 import FirebaseAnalytics
+import WebKit
 
 class PDFViewController: UIViewController {
 
-    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var webView: WKWebView!
     private var attachedToNavController = false
     private var showStatusBar = true
     private var curFramePosition: Double = 0
@@ -42,8 +43,8 @@ class PDFViewController: UIViewController {
     fileprivate func loadPDF() {
         if let url = urlToLoad {
             let urlRequest = URLRequest(url: url)
-            webView.delegate = self
-            webView.loadRequest(urlRequest)
+            webView.navigationDelegate = self
+            webView.load(urlRequest)
             if self.title == nil {
                 self.title = url.lastPathComponent
             }
@@ -109,12 +110,11 @@ class PDFViewController: UIViewController {
         
         if #available(iOS 11.0, *) {
             return
+        } else {
+            let insets = UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: bottomLayoutGuide.length, right: 0)
+            webView.scrollView.contentInset = insets
+            webView.scrollView.scrollIndicatorInsets = insets
         }
-        let insets = UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: bottomLayoutGuide.length, right: 0)
-        webView.scrollView.contentInset = insets
-        webView.scrollView.scrollIndicatorInsets = insets
-        
-        
     }
 
     /*
@@ -128,11 +128,14 @@ class PDFViewController: UIViewController {
     */
 }
 
-extension PDFViewController : UIWebViewDelegate {
-    func webViewDidFinishLoad(_ webView: UIWebView) {
+extension PDFViewController : WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if #available(iOS 11.0, *) {
             return
+        } else {
+            webView.scrollView.setContentOffset(CGPoint(x:0, y: -self.topLayoutGuide.length), animated: false)
         }
-        webView.scrollView.setContentOffset(CGPoint(x:0, y: -self.topLayoutGuide.length), animated: false)
     }
+    
 }
