@@ -158,7 +158,7 @@ class AudioPlayerViewController: UIViewController {
         playBarButton = UIBarButtonItem(image: UIImage(named: "play"), style: .plain, target: self, action: #selector(AudioPlayerViewController.playPauseToggle(_:)))
         prevBarButton = UIBarButtonItem(image: UIImage(named: "prev"), style: .plain, target: self, action: #selector(AudioPlayerViewController.skipBackward(_:)))
         nextBarButton = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .plain, target: self, action: #selector(AudioPlayerViewController.skipForward(_:)))
-        optionsBarButton = UIBarButtonItem(image: UIImage(named: "action"), style: .plain, target: self, action: #selector(openPlayer(_:)))
+        optionsBarButton = UIBarButtonItem(image: UIImage(named: "action"), style: .plain, target: self, action: #selector(showAudioPlayerOptions(_:)))
         
         popupItem.subtitle = podcastSubTitle
         popupItem.title = podcastName
@@ -191,6 +191,39 @@ class AudioPlayerViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(audioDidFinish(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
+    @objc private func showAudioPlayerOptions(_ sender: AnyObject) {
+        
+        let actionController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionController.addAction(UIAlertAction(title: "Stop Audio", style: .default, handler: { [weak self] (action) in
+            logger.info("Hide the player")
+            
+            self?.stopAudio()
+            
+        }))
+        actionController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+            logger.info("Cancel")
+        }))
+        
+        actionController.popoverPresentationController?.barButtonItem = optionsBarButton
+        
+        present(actionController, animated: true, completion: nil)
+    }
+    
+    private func stopAudio() {
+        //Mark the lesson as complete
+        SoundManager.sharedInstance.pausePlaying(updateCache: false)
+        
+        self.popupPresentationContainer?.dismissPopupBar(animated: true, completion: {
+            if let context = ContextCoordinator.sharedInstance.backgroundManagedObjectContext {
+                context.perform({
+                    let cache: AudioPlayer? = AudioPlayer.findFirst(context) as? AudioPlayer
+                    cache?.clear()
+                    let _ = try? context.save()
+                })
+            }
+        })
+    }
+    
     @objc func openPlayer(_ sender: AnyObject) {
         popupPresentationContainer?.openPopup(animated: true, completion: nil)
     }
@@ -221,7 +254,7 @@ class AudioPlayerViewController: UIViewController {
         }
         
         
-        self.view.window?.rootViewController?.dismissPopupBar(animated: true, completion: nil)
+        self.popupPresentationContainer?.dismissPopupBar(animated: true, completion: nil)
     }
     
     func layoutBarButtons() {
@@ -385,7 +418,7 @@ class AudioPlayerViewController: UIViewController {
     @IBAction func playPauseToggle(_ sender: UIButton) {
         let isPlaying = SoundManager.sharedInstance.avPlayer.rate != 0
         if isPlaying {
-            SoundManager.sharedInstance.pausePlaying()
+            SoundManager.sharedInstance.pausePlaying(updateCache: true)
         } else {
             SoundManager.sharedInstance.startPlaying()
         }

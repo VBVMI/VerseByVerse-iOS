@@ -234,10 +234,10 @@ class SoundManager: NSObject {
                             let lessonId = audioLesson.objectID
                             let studyId = audioStudy.objectID
                             
-                            DispatchQueue.main.async { () -> Void in
-                               guard let mainLesson = ContextCoordinator.sharedInstance.managedObjectContext!.object(with: lessonId) as? Lesson,
-                                let mainStudy = ContextCoordinator.sharedInstance.managedObjectContext!.object(with: studyId) as? Study else {
-                                    return
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                                guard let mainLesson = ContextCoordinator.sharedInstance.managedObjectContext!.object(with: lessonId) as? Lesson,
+                                    let mainStudy = ContextCoordinator.sharedInstance.managedObjectContext!.object(with: studyId) as? Study else {
+                                        return
                                 }
                                 //We should dispatch a notification to load the audio controller...
                                 if let controller = (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController as? HomeTabBarController {
@@ -379,8 +379,8 @@ class SoundManager: NSObject {
         return true
     }
     
-    func pausePlaying() {
-        self.saveState()
+    func pausePlaying(updateCache: Bool) {
+        self.saveState(updateCache: updateCache)
         stop(unregisterObservers: true)
     }
     
@@ -465,7 +465,7 @@ class SoundManager: NSObject {
                         logger.verbose("Sound Manager Did Play")
                         return MPRemoteCommandHandlerStatus.success
                     } else {
-                        this.pausePlaying()
+                        this.pausePlaying(updateCache: true)
                         this.configureInfo()
                         logger.verbose("Sound Manager Did Pause")
                         return MPRemoteCommandHandlerStatus.success
@@ -487,7 +487,7 @@ class SoundManager: NSObject {
 
             //Pause the player
             if let _ = this.avPlayer.currentItem {
-                this.pausePlaying()
+                this.pausePlaying(updateCache: true)
                 
                 logger.verbose("Sound Manager Did Pause audio")
 //                this.configureInfo()
@@ -578,21 +578,23 @@ class SoundManager: NSObject {
         return true
     }
     
-    fileprivate func saveState() {
+    fileprivate func saveState(updateCache: Bool = true) {
         let duration = self.avPlayer.currentItem?.duration
         let currentTime = self.avPlayer.currentTime()
         
         backgroundQueueContext?.perform({ () -> Void in
             
-            guard let audioCache = self.audioCache else {
-                logger.error("There is no audio-cache for some reason")
-                Crashlytics.sharedInstance().recordError(SoundError.debug(message: "There is no audio-cache for some reason"))
-                return
+            if (updateCache) {
+                guard let audioCache = self.audioCache else {
+                    logger.error("There is no audio-cache for some reason")
+                    Crashlytics.sharedInstance().recordError(SoundError.debug(message: "There is no audio-cache for some reason"))
+                    return
+                }
+                
+                audioCache.lessonIdentifier = self.lesson?.identifier
+                audioCache.studyIdentifier = self.study?.identifier
+                audioCache.currentTime = CMTimeGetSeconds(currentTime)
             }
-            
-            audioCache.lessonIdentifier = self.lesson?.identifier
-            audioCache.studyIdentifier = self.study?.identifier
-            audioCache.currentTime = CMTimeGetSeconds(currentTime)
             
             //calculate progress for the lesson and store that!!
             if let duration = duration {

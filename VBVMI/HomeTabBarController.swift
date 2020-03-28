@@ -15,6 +15,8 @@ class HomeTabBarController: UITabBarController {
         super.viewDidAppear(animated)
         
         popupInteractionStyle = .drag
+        popupBar.barStyle = .prominent
+        popupBar.progressViewStyle = .top
     }
     
     override func encodeRestorableState(with coder: NSCoder) {
