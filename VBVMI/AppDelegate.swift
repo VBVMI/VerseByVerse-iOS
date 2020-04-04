@@ -55,19 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         logger.info("🍕Application will finish with options: \(launchOptions ?? [:])")
-        //Fabric.sharedSDK().debug = true
-        
-//        DDTTYLogger.sharedInstance().colorsEnabled = true
-//        DDLog.addLogger(DDTTYLogger.sharedInstance(), withLevel: .Verbose)
-        //DDLog.addLogger(DDASLLogger.sharedInstance(), withLevel: .Warning)
-//        DDLog.addLogger(CrashlyticsLogger.sharedInstance(), withLevel: .Warning)
-        
-//        let fileLogger: DDFileLogger = DDFileLogger() // File Logger
-//        fileLogger.rollingFrequency = 60*60*24  // 24 hours
-//        fileLogger.logFileManager.maximumNumberOfLogFiles = 7
-//        DDLog.addLogger(fileLogger)
-//        DDTTYLogger.sharedInstance().setForegroundColor(UIColor(red:0.066667, green:0.662745, blue:0.054902, alpha:1.0), backgroundColor: nil, forFlag: DDLogFlag.Info)
-        
+              
         URLCache.shared.removeAllCachedResponses()
         
         //Move all of the old resources to the Application support directory
@@ -82,8 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        
-        
         
         let imageDownloader = ImageDownloader(configuration: ImageDownloader.defaultURLSessionConfiguration(), downloadPrioritization: .fifo, maximumActiveDownloads: 10, imageCache: VBVMIImageCache)
         UIImageView.af_sharedImageDownloader = imageDownloader
@@ -104,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
             APIDataManager.allTheChannels()
             APIDataManager.allTheCurriculums()
-//
+
             let reachability = try? Reachability()
             if reachability?.connection == .wifi {
                 APIDataManager.allTheArticles()
@@ -136,6 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
         logger.info("🍕Resign Active")
+        APICoordinator.instance.stopPollingLivestream()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -154,6 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         logger.info("🍕Active")
+        APICoordinator.instance.startPollingLivestream()
         
     }
 

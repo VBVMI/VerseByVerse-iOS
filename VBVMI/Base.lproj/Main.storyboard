@@ -22,6 +22,7 @@
                         <segue destination="2R4-eV-Lll" kind="relationship" relationship="viewControllers" id="yte-rK-InM"/>
                         <segue destination="qK5-Ll-f3h" kind="relationship" relationship="viewControllers" id="FkN-oX-9Mo"/>
                         <segue destination="8Mn-WK-Xr8" kind="relationship" relationship="viewControllers" id="MEY-Nx-yGs"/>
+                        <segue destination="22z-Vs-uqy" kind="relationship" relationship="viewControllers" id="cYt-mQ-KVh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tp6-0p-u1v" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -288,6 +289,54 @@
             </objects>
             <point key="canvasLocation" x="1418" y="805"/>
         </scene>
+        <!--Livestreams-->
+        <scene sceneID="K3h-Os-3Xm">
+            <objects>
+                <navigationController id="22z-Vs-uqy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Livestreams" image="livestream" id="pip-1v-U61"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ggh-Xd-F9j">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="KjF-BJ-9A7" kind="relationship" relationship="rootViewController" id="T4i-8U-0fl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="28m-CH-3cd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1457" y="1604"/>
+        </scene>
+        <!--Livestreams-->
+        <scene sceneID="a2W-gF-8fy">
+            <objects>
+                <viewController id="KjF-BJ-9A7" customClass="LivestreamsViewController" customModule="Verse_By_Verse" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MIu-gy-olZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eh2-Vo-Myt">
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="eh2-Vo-Myt" firstAttribute="bottom" secondItem="rHc-Hp-EkB" secondAttribute="bottom" id="DXP-UK-HTq"/>
+                            <constraint firstItem="eh2-Vo-Myt" firstAttribute="leading" secondItem="rHc-Hp-EkB" secondAttribute="leading" id="V27-iS-1BS"/>
+                            <constraint firstItem="eh2-Vo-Myt" firstAttribute="trailing" secondItem="rHc-Hp-EkB" secondAttribute="trailing" id="YZV-cv-uyn"/>
+                            <constraint firstItem="eh2-Vo-Myt" firstAttribute="top" secondItem="rHc-Hp-EkB" secondAttribute="top" id="k6W-Hc-iy6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rHc-Hp-EkB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Livestreams" id="BVx-Lk-bcl"/>
+                    <connections>
+                        <outlet property="tableView" destination="eh2-Vo-Myt" id="AFb-08-hOS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xdO-mJ-HEy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-663.20000000000005" y="1614.5320197044337"/>
+        </scene>
         <!--Videos-->
         <scene sceneID="iLS-wQ-WO3">
             <objects>
@@ -435,6 +484,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="articles" width="24" height="24"/>
+        <image name="livestream" width="24" height="24"/>
         <image name="questions" width="24" height="24"/>
         <image name="studies" width="24" height="24"/>
         <image name="videos" width="24" height="24"/>

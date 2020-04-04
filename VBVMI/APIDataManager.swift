@@ -233,6 +233,28 @@ class APIDataManager {
         } as Conversion<APIChannels>)
     }
     
+    static func allTheLivestreams() {
+        downloadToJSONArray(JsonAPI.livestream, conversionBlock: { (context, result) in
+            logger.info("🍕 decoding some live streams")
+            let existingLivestreams: [Livestream] = Livestream.findAll(context)
+            var existingLivestreamIds = Set<String>(existingLivestreams.map({ $0.identifier }))
+            
+            try result.streams.enumerated().forEach({ (index, livestreamObject) in
+                let livestream = try Livestream.importLivestream(livestreamObject, context: context)
+                existingLivestreamIds.remove(livestream.identifier)
+            })
+            
+            if existingLivestreamIds.count > 0 {
+                let livestreamsToDelete: [Livestream] = Livestream.findAllWithPredicate(NSPredicate(format: "%K in %@", LivestreamAttributes.identifier.rawValue, existingLivestreamIds), context: context)
+                
+                livestreamsToDelete.forEach({
+                    context.delete($0)
+                })
+            }
+            
+        } as Conversion<APILivestreams>)
+    }
+    
     static func allTheCurriculums() {
         downloadToJSONArray(JsonAPI.curriculum, conversionBlock: { (context, result) in
             let existingChannels: [Curriculum] = Curriculum.findAll(context)

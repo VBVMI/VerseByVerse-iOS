@@ -48,14 +48,35 @@ class VimeoManager {
                 switch result {
                     case .failure(let error):
                         callback(Result.failure(error: error))
-                    case .success(let result):
-                        if let fileLink : String = (result.model.files?.first(where: { ($0 as? VIMVideoFile)?.quality == quality.vimeoValue }) as? VIMVideoFile)?.link, let url = URL(string: fileLink) {
+                    case .success(let vimeoObject):
+                        logger.info("Video Vimeo Object: \(vimeoObject)")
+                        if let fileLink : String = (vimeoObject.model.files?.first(where: { ($0 as? VIMVideoFile)?.quality == quality.vimeoValue }) as? VIMVideoFile)?.link, let url = URL(string: fileLink) {
                             callback(Result.success(result: url))
                         } else {
                             callback(Result.failure(error: VimeoManagerError.missingQuality as NSError))
                         }
                     }
                 }
+            }
+        }
+    }
+    
+    func getVimeoObject(vimeoVideoId: String,tokenHandler: @escaping (VimeoClient.RequestToken)->(), completion: @escaping (Result<VIMVideo>)->()) {
+        login { (result) in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error: error))
+            case .success(_):
+                let request = Request<VIMVideo>(path: "/videos/\(vimeoVideoId)")
+                let token = VimeoClient.defaultClient.request(request) { (result) in
+                    switch result {
+                    case .failure(let error):
+                        completion(.failure(error: error))
+                    case .success(let response):
+                        completion(.success(result: response.model))
+                    }
+                }
+                tokenHandler(token)
             }
         }
     }

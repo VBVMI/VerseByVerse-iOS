@@ -21,6 +21,7 @@ public enum JsonAPI {
     case qa
     case qAp
     case latestLessons
+    case livestream
 }
 
 extension JsonAPI : TargetType {
@@ -60,6 +61,8 @@ extension JsonAPI : TargetType {
             return "json-curriculum"
         case .latestLessons:
             return "latest-lessons"
+        case .livestream:
+            return "livestream"
         }
     }
     
@@ -101,6 +104,8 @@ extension JsonAPI : TargetType {
             return stubbedResponse("categories")
         case .latestLessons:
             return stubbedResponse("latest-lessons")
+        case .livestream:
+            return stubbedResponse("livestream")
         }
     }
     
@@ -169,9 +174,17 @@ public struct Provider {
                 }
             }
         }
-        let provider = MoyaProvider<JsonAPI>(endpointClosure: endpointsClosure, stubClosure: APIKeysBasedStubBehaviour, plugins: [networkActivityPlugin])
-        
+        let provider = MoyaProvider<JsonAPI>(endpointClosure: endpointsClosure, requestClosure: MoyaProvider<JsonAPI>.defaultRequestMapping, stubClosure: APIKeysBasedStubBehaviour, callbackQueue: nil, manager: defaultAlamofireManager(), plugins: [networkActivityPlugin], trackInflights: false)
         return provider
+    }
+    
+    static func defaultAlamofireManager() -> Manager {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
+        configuration.urlCache = nil
+        let manager = Manager(configuration: configuration)
+        manager.startRequestsImmediately = false
+        return manager
     }
     
     fileprivate struct SharedProvider {
