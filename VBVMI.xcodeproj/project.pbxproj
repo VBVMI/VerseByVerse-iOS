@@ -113,6 +113,7 @@
 		9881317420D7A44A00987DB7 /* LatestLessonsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9881317220D7A44A00987DB7 /* LatestLessonsCollectionViewCell.xib */; };
 		988154C81DC5A4C400D0DD53 /* MediaCenterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988154C71DC5A4C400D0DD53 /* MediaCenterInfo.swift */; };
 		988663F11D55D87E00010728 /* ContextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988663F01D55D87E00010728 /* ContextCoordinator.swift */; };
+		988885F42439C6F00015F9D8 /* LargeTitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988885F32439C6F00015F9D8 /* LargeTitleHeader.swift */; };
 		988D69711C9BEADA000ED16D /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988D69701C9BEADA000ED16D /* ArticleViewController.swift */; };
 		988D69741C9C0D87000ED16D /* ArticleHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988D69721C9C0D87000ED16D /* ArticleHeaderTableViewCell.swift */; };
 		988D69751C9C0D87000ED16D /* ArticleHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 988D69731C9C0D87000ED16D /* ArticleHeaderTableViewCell.xib */; };
@@ -396,6 +397,7 @@
 		988663EB1D55C13200010728 /* CommandCenterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandCenterController.swift; sourceTree = "<group>"; };
 		988663EE1D55C27C00010728 /* AudioContentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContentManager.swift; sourceTree = "<group>"; };
 		988663F01D55D87E00010728 /* ContextCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextCoordinator.swift; sourceTree = "<group>"; };
+		988885F32439C6F00015F9D8 /* LargeTitleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTitleHeader.swift; sourceTree = "<group>"; };
 		988D69701C9BEADA000ED16D /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		988D69721C9C0D87000ED16D /* ArticleHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		988D69731C9C0D87000ED16D /* ArticleHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -815,6 +817,7 @@
 			isa = PBXGroup;
 			children = (
 				984650F31CF0175E00F4A46F /* LessonsHeader.swift */,
+				988885F32439C6F00015F9D8 /* LargeTitleHeader.swift */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -1292,7 +1295,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSUITests/Pods-VBVMI-tvOS-VBVMI-tvOSUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking-tvOS/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-tvOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage-tvOS/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-tvOS/Moya.framework",
@@ -1307,7 +1309,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
@@ -1333,7 +1334,6 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VBVMI/Pods-VBVMI-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ACPDownload/ACPDownload.framework",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking-iOS/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage-iOS/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework",
@@ -1352,7 +1352,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ACPDownload.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CSStickyHeaderFlowLayout.framework",
@@ -1398,7 +1397,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VBVMI-tvOS-VBVMI-tvOSTests/Pods-VBVMI-tvOS-VBVMI-tvOSTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking-tvOS/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-tvOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage-tvOS/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-tvOS/Moya.framework",
@@ -1413,7 +1411,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
@@ -1456,7 +1453,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VBVMI-tvOS/Pods-VBVMI-tvOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking-tvOS/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-tvOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage-tvOS/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-tvOS/Moya.framework",
@@ -1471,7 +1467,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
@@ -1585,7 +1580,6 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VBVMI-VBVMIUITests/Pods-VBVMI-VBVMIUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ACPDownload/ACPDownload.framework",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking-iOS/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage-iOS/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework",
@@ -1604,7 +1598,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ACPDownload.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CSStickyHeaderFlowLayout.framework",
@@ -1651,7 +1644,6 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VBVMI-VBVMITests/Pods-VBVMI-VBVMITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ACPDownload/ACPDownload.framework",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking-iOS/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage-iOS/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework",
@@ -1670,7 +1662,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ACPDownload.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CSStickyHeaderFlowLayout.framework",
@@ -1803,6 +1794,7 @@
 				98E8AFCB200DEBAD00C672F6 /* _StudyCategory.swift in Sources */,
 				9831564020D50EAE0019AEF4 /* FlagView.swift in Sources */,
 				986C37E31C65D6300096BB83 /* Lesson.swift in Sources */,
+				988885F42439C6F00015F9D8 /* LargeTitleHeader.swift in Sources */,
 				98DE6E851CA2A83500C039C0 /* AboutActionsController.swift in Sources */,
 				980579D71D31D9DE001C809C /* ChannelsViewController.swift in Sources */,
 				98213A991DA4F43300E81CBB /* BlurImageView.swift in Sources */,

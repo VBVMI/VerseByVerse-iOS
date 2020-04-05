@@ -233,7 +233,7 @@ class APIDataManager {
         } as Conversion<APIChannels>)
     }
     
-    static func allTheLivestreams() {
+    static func allTheLivestreams(completion: (()->())? = nil ) {
         downloadToJSONArray(JsonAPI.livestream, conversionBlock: { (context, result) in
             logger.info("🍕 decoding some live streams")
             let existingLivestreams: [Livestream] = Livestream.findAll(context)
@@ -252,7 +252,9 @@ class APIDataManager {
                 })
             }
             
-        } as Conversion<APILivestreams>)
+            } as Conversion<APILivestreams>, completion: { (error) in
+                completion?()
+        })
     }
     
     static func allTheCurriculums() {

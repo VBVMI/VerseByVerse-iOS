@@ -197,7 +197,6 @@ if [ -r "${ARTIFACT_LIST_FILE}" ]; then
 fi
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking-tvOS/AFNetworking.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-tvOS/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlamofireImage-tvOS/AlamofireImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-tvOS/Moya.framework"
@@ -211,7 +210,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/ParallaxView/ParallaxView.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking-tvOS/AFNetworking.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-tvOS/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlamofireImage-tvOS/AlamofireImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-tvOS/Moya.framework"

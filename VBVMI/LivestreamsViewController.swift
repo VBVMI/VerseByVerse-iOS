@@ -13,11 +13,20 @@ import AVFoundation
 
 extension String {
     fileprivate static let videoCell = "VideoTableViewCell"
+    fileprivate static let largeHeader = "LargeHeader"
 }
 
 class LivestreamsViewController: UIViewController {
     
+    private static let postedDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .medium
+        return dateFormatter
+    }()
+    
     @IBOutlet weak var tableView: UITableView!
+    private let refreshControl = UIRefreshControl(frame: .zero)
     
     private lazy var previousStreamsResultsController: NSFetchedResultsController<Livestream> = {
         let fetchRequest = NSFetchRequest<Livestream>(entityName: Livestream.entityName())
@@ -58,11 +67,27 @@ class LivestreamsViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.register(UINib(nibName: .videoCell, bundle: .main), forCellReuseIdentifier: .videoCell)
-        
+        tableView.register(LargeTitleHeader.self, forHeaderFooterViewReuseIdentifier: .largeHeader)
         tableView.delegate = self
         tableView.dataSource = self
-        
+        tableView.estimatedSectionHeaderHeight = 30
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
+        tableView.sectionFooterHeight = .leastNormalMagnitude
         refetchData()
+        
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        
+    }
+    
+    @objc private func refresh() {
+        DispatchQueue.global(qos: .background).async {
+            APIDataManager.allTheLivestreams() { [weak self] in
+                DispatchQueue.main.async {
+                    self?.refreshControl.endRefreshing()
+                }
+            }
+        }
         
     }
     
@@ -131,9 +156,6 @@ extension LivestreamsViewController: UITableViewDelegate {
             }
         }
     }
-    
-    
-    
 }
 
 
@@ -166,8 +188,41 @@ extension LivestreamsViewController: UITableViewDataSource {
             
             cell.title = livestream.title
             cell.vimeoId = livestream.videoId
-        
+            if let date = livestream.postedDate {
+                cell.videoDescription = LivestreamsViewController.postedDateFormatter.string(from: date)
+            } else {
+                cell.videoDescription = ""
+            }
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch sections[section] {
+        case .live:
+            return nil
+        case .previous:
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: .largeHeader) as! LargeTitleHeader
+            header.title = "Previous Livestreams"
+            return header
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        switch sections[section] {
+        case .live:
+            return .leastNormalMagnitude
+        case .previous:
+            return 40
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch sections[section] {
+        case .live:
+            return .leastNormalMagnitude
+        case .previous:
+            return UITableView.automaticDimension
         }
     }
     

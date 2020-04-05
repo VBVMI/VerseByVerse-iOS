@@ -52,6 +52,8 @@ class VideoTableViewCell: UITableViewCell {
         timeLabel.textColor = StyleKit.darkGrey
         titleLabel.textColor = StyleKit.darkGrey
         descriptionLabel.textColor = StyleKit.midGrey
+        
+        time = " "
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -73,7 +75,7 @@ class VideoTableViewCell: UITableViewCell {
             case .failure(let error):
                 logger.error("🍕 failure to download vimeo object: \(error)")
             case .success(let vimeoVideo):
-                this.time = "\(vimeoVideo.duration ?? 0)"
+                this.time = (vimeoVideo.duration?.doubleValue)?.timeString
                 if let imageString = vimeoVideo.pictureCollection?.picture(forWidth: Float(this.thumbnailImageView.frame.size.width * UIScreen.main.scale))?.link, let url = URL(string: imageString) {
                     this.thumbnailImageView?.af_setImage(withURL: url)
                 }

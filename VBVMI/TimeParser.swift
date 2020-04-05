@@ -9,6 +9,28 @@
 import Foundation
 import Regex
 
+extension TimeInterval {
+    
+    var timeString: String {
+        let totalSeconds = abs(Int(self))
+        let hours = totalSeconds / 3600
+        let minutes = (totalSeconds - (hours * 3600)) / 60
+        let seconds = totalSeconds - (hours * 3600) - (minutes * 60)
+        
+        var str = self < 0 ? "-" : ""
+        if hours > 0 {
+            str += "\(hours):"
+            str += minutes < 10 ? "0\(minutes):" : "\(minutes):"
+            str += seconds < 10 ? "0\(seconds)" : "\(seconds)"
+        } else {
+            str += "\(minutes):"
+            str += seconds < 10 ? "0\(seconds)" : "\(seconds)"
+        }
+        return str
+    }
+    
+}
+
 enum TimeParser {
     
     //Typical Title = "Galatians - Lesson 16B"
@@ -40,5 +62,7 @@ enum TimeParser {
         }
         return nil
     }
+    
+    
     
 }
