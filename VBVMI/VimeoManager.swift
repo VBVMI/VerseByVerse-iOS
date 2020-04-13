@@ -25,6 +25,10 @@ enum VimeoFileQuality {
     }
 }
 
+enum VideoMode {
+    case url(_ url: URL)
+}
+
 enum VimeoManagerError : Error {
     case missingQuality
 }
@@ -37,7 +41,7 @@ class VimeoManager {
         
     }
     
-    func getVimeoURL(vimeoVideoID: String, quality: VimeoFileQuality = .hls, callback: @escaping (Result<URL>)->()) {
+    func getVimeoURL(vimeoVideoID: String, quality: VimeoFileQuality = .hls, callback: @escaping (Result<VideoMode>)->()) {
         login { (result) in
             switch result {
             case .failure(let error):
@@ -51,7 +55,8 @@ class VimeoManager {
                     case .success(let vimeoObject):
                         logger.info("Video Vimeo Object: \(vimeoObject)")
                         if let fileLink : String = (vimeoObject.model.files?.first(where: { ($0 as? VIMVideoFile)?.quality == quality.vimeoValue }) as? VIMVideoFile)?.link, let url = URL(string: fileLink) {
-                            callback(Result.success(result: url))
+                            let val = VideoMode.url(url)
+                            callback(Result.success(result: val))
                         } else {
                             callback(Result.failure(error: VimeoManagerError.missingQuality as NSError))
                         }

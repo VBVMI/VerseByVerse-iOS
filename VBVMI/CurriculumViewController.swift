@@ -204,9 +204,11 @@ class CurriculumViewController : UIViewController, UITableViewDelegate, UITableV
                     case .failure(let error):
                         logger.error("Error loading video files: \(error)")
                     case .success(let vimeoURL):
-                        let player = AVPlayer(url: vimeoURL)
-                        movieController.player = player
-                        
+                        switch vimeoURL {
+                        case .url(let url):
+                            let player = AVPlayer(url: url)
+                            movieController.player = player
+                        }
                     }
                     dispatchGroup.leave()
                 })

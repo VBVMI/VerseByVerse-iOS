@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 import AVKit
 import AVFoundation
+import SafariServices
 
 extension String {
     fileprivate static let videoCell = "VideoTableViewCell"
@@ -119,9 +120,11 @@ class LivestreamsViewController: UIViewController {
             case .failure(let error):
                 logger.error("Error loading video files: \(error)")
             case .success(let vimeoURL):
-                let player = AVPlayer(url: vimeoURL)
-                movieController.player = player
-                
+                switch vimeoURL {
+                case .url(let url):
+                    let player = AVPlayer(url: url)
+                    movieController.player = player
+                }
             }
             dispatchGroup.leave()
         })
@@ -145,10 +148,8 @@ extension LivestreamsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch sections[indexPath.section] {
         case .live:
-            let livestream = livestreamResultsController.object(at: IndexPath(row: indexPath.row, section: 0))
-            if let id = livestream.videoId {
-                playVimeo(vimeoId: id)
-            }
+            let web = SFSafariViewController(url: URL(string: "https://versebyverseministry.org/livestream")!)
+            present(web, animated: true, completion: nil)
         case .previous:
             let livestream = previousStreamsResultsController.object(at: IndexPath(row: indexPath.row, section: 0))
             if let id = livestream.videoId {

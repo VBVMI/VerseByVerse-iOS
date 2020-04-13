@@ -22,7 +22,7 @@ class APICoordinator {
     func startPollingLivestream() {
         stopPollingLivestream()
         logger.info("🍕 Starting polling")
-        let timer = Timer(fire: Date(), interval: 5, repeats: true, block: { [weak self] (timer) in
+        let timer = Timer(fire: Date(), interval: 60, repeats: true, block: { [weak self] (timer) in
             logger.info("🍕 Firing request for livestreams")
             self?.backgroundQueue.async {
                 APIDataManager.allTheLivestreams()
