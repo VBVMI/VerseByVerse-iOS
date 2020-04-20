@@ -179,8 +179,7 @@ class ArticleViewController: UIViewController, WKNavigationDelegate {
         
         let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
         self.navigationItem.rightBarButtonItem = shareButton
-        
-        
+        self.navigationItem.largeTitleDisplayMode = .never
     }
     
     @objc func shareAction(_ button: Any) {

@@ -42,7 +42,6 @@ class TopicLayoutView: UIView {
             view.addTarget(self, action: #selector(TopicLayoutView.tappedTopicButton(_:)), for: .touchUpInside)
         }
         self.invalidateIntrinsicContentSize()
-//        self.setContentHuggingPriority(400, forAxis: UILayoutConstraintAxis.Vertical)
     }
     
     @objc func tappedTopicButton(_ sender: TopicButton) {
@@ -54,13 +53,9 @@ class TopicLayoutView: UIView {
     var lastLayoutSize: CGSize = CGSize.zero {
         didSet {
             if lastLayoutSize.height != oldValue.height {
-//                logger.info("🍕setting height to: \(lastLayoutSize)")
                 self.invalidateIntrinsicContentSize()
                 self.setNeedsLayout()
             }
-//            self.snp.updateConstraints { (make) in
-//                make.height.equalTo(lastLayoutSize.height)
-//            }
         }
     }
     
