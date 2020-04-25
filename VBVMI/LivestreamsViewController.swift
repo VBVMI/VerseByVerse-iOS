@@ -26,6 +26,13 @@ class LivestreamsViewController: UIViewController {
         return dateFormatter
     }()
     
+    private static let liveDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        return dateFormatter
+    }()
+    
     @IBOutlet weak var tableView: UITableView!
     private let refreshControl = UIRefreshControl(frame: .zero)
     
@@ -178,15 +185,14 @@ extension LivestreamsViewController: UITableViewDataSource {
         case .live:
             let cell = tableView.dequeueReusableCell(withIdentifier: .videoCell, for: indexPath) as! VideoTableViewCell
             let livestream = livestreamResultsController.object(at: IndexPath(row: indexPath.row, section: 0))
-            
             cell.title = livestream.title
             cell.vimeoId = livestream.videoId
-            
+            cell.time = "Live"
+            cell.videoDescription = LivestreamsViewController.liveDateFormatter.string(from: Date())
             return cell
         case .previous:
             let cell = tableView.dequeueReusableCell(withIdentifier: .videoCell, for: indexPath) as! VideoTableViewCell
             let livestream = previousStreamsResultsController.object(at: IndexPath(row: indexPath.row, section: 0))
-            
             cell.title = livestream.title
             cell.vimeoId = livestream.videoId
             if let date = livestream.postedDate {

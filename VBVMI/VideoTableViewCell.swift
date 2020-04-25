@@ -75,7 +75,9 @@ class VideoTableViewCell: UITableViewCell {
             case .failure(let error):
                 logger.error("🍕 failure to download vimeo object: \(error)")
             case .success(let vimeoVideo):
-                this.time = (vimeoVideo.duration?.doubleValue)?.timeString
+                if let value = vimeoVideo.duration?.doubleValue {
+                    this.time = value.timeString
+                }
                 if let imageString = vimeoVideo.pictureCollection?.picture(forWidth: Float(this.thumbnailImageView.frame.size.width * UIScreen.main.scale))?.link, let url = URL(string: imageString) {
                     this.thumbnailImageView?.af_setImage(withURL: url)
                 }
