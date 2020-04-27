@@ -25,8 +25,10 @@ class AboutActionsController: NSObject {
     @objc func tappedMenu() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let donateAction = UIAlertAction(title: "Donate", style: .default) { [weak self] (action) in
-            self?.openURL("https://www.versebyverseministry.org/about/financial_support")
+        let donateAction = UIAlertAction(title: "Donate", style: .default) { (action) in
+            if let url = URL(string: "https://www.versebyverseministry.org/about/financial_support") {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
         }
         
         let aboutAction = UIAlertAction(title: "About", style: .default) { [weak self] (action) in
