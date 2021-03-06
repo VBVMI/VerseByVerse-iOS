@@ -124,6 +124,10 @@
 		988D69881C9D51E6000ED16D /* AnswerBodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988D69861C9D51E6000ED16D /* AnswerBodyTableViewCell.swift */; };
 		988D69891C9D51E6000ED16D /* AnswerBodyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 988D69871C9D51E6000ED16D /* AnswerBodyTableViewCell.xib */; };
 		988D698B1C9E62AA000ED16D /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988D698A1C9E62AA000ED16D /* PDFViewController.swift */; };
+		988FBD1F25F3152A00D3A91E /* Livestream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9802AD162434774500B10417 /* Livestream.swift */; };
+		988FBD2625F3154600D3A91E /* _StudyCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E8AFC9200DEBAD00C672F6 /* _StudyCategory.swift */; };
+		988FBD2725F3154600D3A91E /* _Curriculum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E8AFBF200DEB0900C672F6 /* _Curriculum.swift */; };
+		988FBD2825F3154600D3A91E /* _Livestream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9802AD172434774500B10417 /* _Livestream.swift */; };
 		98923CF624381A5D00E98619 /* APICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98923CF524381A5D00E98619 /* APICoordinator.swift */; };
 		98923CF924388E1100E98619 /* LivestreamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98923CF824388E1100E98619 /* LivestreamsViewController.swift */; };
 		989294CC1C8BCE4500C19095 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989294CB1C8BCE4500C19095 /* SoundManager.swift */; };
@@ -1855,6 +1859,7 @@
 				98C35DBC1DB4CEC30052398E /* TitleParser.swift in Sources */,
 				989AC5491DB4C22700A825EB /* _Answer.swift in Sources */,
 				989AC5421DB4C22200A825EB /* Event.swift in Sources */,
+				988FBD2825F3154600D3A91E /* _Livestream.swift in Sources */,
 				98C35DBD1DB4CF300052398E /* Constants.swift in Sources */,
 				98F389331DDC45D40037B97E /* StudyCollectionViewCell.swift in Sources */,
 				989AC5551DB4C26700A825EB /* NSManagedObject+Extensions.swift in Sources */,
@@ -1882,16 +1887,19 @@
 				98E8AFC7200DEB0F00C672F6 /* Curriculum.swift in Sources */,
 				9846C90C1E45B3C900BDB6C3 /* ResourceManager.swift in Sources */,
 				989AC5531DB4C26700A825EB /* APIDataManager.swift in Sources */,
+				988FBD2725F3154600D3A91E /* _Curriculum.swift in Sources */,
 				989AC53F1DB4C22200A825EB /* Article.swift in Sources */,
 				989AC5501DB4C22C00A825EB /* VBVMI.xcdatamodeld in Sources */,
 				989AC5541DB4C26700A825EB /* StringExtensionHTML.swift in Sources */,
 				989AC5511DB4C23C00A825EB /* ContextCoordinator.swift in Sources */,
 				980D95651EAED6DB000271FE /* Vimeo+Extensions.swift in Sources */,
 				989AC54A1DB4C22700A825EB /* _Video.swift in Sources */,
+				988FBD1F25F3152A00D3A91E /* Livestream.swift in Sources */,
 				989AC5401DB4C22200A825EB /* AudioPlayer.swift in Sources */,
 				989AC5471DB4C22700A825EB /* _Topic.swift in Sources */,
 				989AC54C1DB4C22700A825EB /* _Channel.swift in Sources */,
 				989AC54F1DB4C22700A825EB /* _Study.swift in Sources */,
+				988FBD2625F3154600D3A91E /* _StudyCategory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2231,7 +2239,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Debug;
 		};
@@ -2255,7 +2263,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "VBVMI/VBVMI-tvOS-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Release;
 		};

@@ -40,10 +40,10 @@ class StudiesDataSource : NSObject, UICollectionViewDataSource, UICollectionView
         
         cell.mainTitle.text = study.title
         
-        if let thumbnailSource = study.thumbnailSource {
+        if let thumbnailSource = study.image600 {
             if let url = URL(string: thumbnailSource) {
-                let width = 300
-                let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 10, divideRadiusByImageScale: false)
+                let width = 600
+                let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 20, divideRadiusByImageScale: false)
                 cell.mainImage.af_setImage(withURL: url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: false, completion: { _ in
                     cell.backgroundImage.isHidden = true
                 })
@@ -85,7 +85,7 @@ class StudiesViewController: UIViewController {
         let identifierSort = NSSortDescriptor(key: StudyAttributes.studyIndex.rawValue, ascending: true)
         let bibleStudySort = NSSortDescriptor(key: StudyAttributes.bibleIndex.rawValue, ascending: true)
         
-        var sortDescriptors : [NSSortDescriptor] = [NSSortDescriptor(key: StudyAttributes.studyType.rawValue, ascending: true)]
+        var sortDescriptors : [NSSortDescriptor] = [NSSortDescriptor(key: "studyCategory.order", ascending: true)]
         
         sortDescriptors.append(contentsOf: [bibleStudySort, identifierSort])
         
@@ -96,11 +96,12 @@ class StudiesViewController: UIViewController {
         let fetchRequest = NSFetchRequest<Study>(entityName: Study.entityName())
         let context: NSManagedObjectContext = ContextCoordinator.sharedInstance.managedObjectContext!
         fetchRequest.entity = Study.entity(managedObjectContext: context)
+        fetchRequest.predicate = NSPredicate(format: "%K != NULL", StudyRelationships.studyCategory.rawValue)
         
         configureFetchRequest(fetchRequest)
         
         fetchRequest.shouldRefreshRefetchedObjects = true
-        fetchedResultsController = NSFetchedResultsController<Study>(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: StudyAttributes.studyType.rawValue, cacheName: nil)
+        fetchedResultsController = NSFetchedResultsController<Study>(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: "studyCategory.name", cacheName: nil)
         
         fetchedResultsController.delegate = self
         
@@ -121,6 +122,7 @@ class StudiesViewController: UIViewController {
         
         tableView.register(UINib(nibName: "StudiesTableViewCell", bundle: nil), forCellReuseIdentifier: "StudiesCell")
         tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 60, right: 0)
+//        tableView.backgroundColor = UIColor.darkBackground
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

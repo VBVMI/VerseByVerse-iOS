@@ -36,7 +36,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let _ = ContextCoordinator.sharedInstance
         
         DispatchQueue.global(qos: .background).async {
-            APIDataManager.core()
+            APIDataManager.categories(completion: { (error) in
+                if let error = error {
+                    logger.error("🍕 Error downloading categories: \(error)")
+                } else {
+                    // download the studies
+                    APIDataManager.core()
+                }
+            })
             APIDataManager.allTheChannels()
         }
         

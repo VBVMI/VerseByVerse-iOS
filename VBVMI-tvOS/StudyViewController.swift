@@ -47,10 +47,10 @@ class StudyViewController: UIViewController {
     }
     
     func reloadImageView() {
-        if let thumbnailSource = study.thumbnailSource, let imageView = imageView {
+        if let thumbnailSource = study.image600, let imageView = imageView {
             if let url = URL(string: thumbnailSource) {
-                let width = 460
-                let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 10, divideRadiusByImageScale: false)
+                let width = 600
+                let imageFilter = ScaledToSizeWithRoundedCornersFilter(size: CGSize(width: width, height: width), radius: 20, divideRadiusByImageScale: false)
                 imageView.af_setImage(withURL: url, placeholderImage: nil, filter: imageFilter, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
                 //                cell.coverImageView.af_setImage(withURL: url)
             }
@@ -85,7 +85,7 @@ class StudyViewController: UIViewController {
         reloadImageView()
         // Do any additional setup after loading the view.
         
-        descriptionTextView.text = study.descriptionText
+        descriptionTextView.text = study.descriptionText.strippingHTMLTags.stringByDecodingHTMLEntities
         descriptionTextView.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         descriptionTextView.layer.cornerRadius = 10
         

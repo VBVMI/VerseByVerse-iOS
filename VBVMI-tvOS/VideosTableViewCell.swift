@@ -56,6 +56,8 @@ class VideosTableViewCell: UITableViewCell {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 60)
         collectionView.backgroundColor = .clear
         collectionView.clipsToBounds = false
+        contentView.clipsToBounds = false
+        clipsToBounds = false
         
     }
     

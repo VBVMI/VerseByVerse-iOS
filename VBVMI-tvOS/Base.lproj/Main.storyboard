@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
-    <device id="appleTV" orientation="landscape">
-        <adaptation id="light"/>
-    </device>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+    <device id="appleTV" appearance="light"/>
     <dependencies>
         <deployment identifier="tvOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,19 +20,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="n25-46-ZJx">
-                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="157" width="1920" height="923"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="9pv-A4-QxB" id="taZ-H1-adW"/>
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="cKL-TR-Hfp"/>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="n25-46-ZJx" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="K6Q-gK-f9L"/>
                             <constraint firstItem="n25-46-ZJx" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="KqW-pR-4Ls"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="n25-46-ZJx" secondAttribute="bottom" id="Xtt-W2-4fH"/>
+                            <constraint firstAttribute="bottom" secondItem="n25-46-ZJx" secondAttribute="bottom" id="Xtt-W2-4fH"/>
                             <constraint firstAttribute="trailing" secondItem="n25-46-ZJx" secondAttribute="trailing" id="aLZ-tn-EMs"/>
                         </constraints>
                     </view>
@@ -62,7 +58,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="b4A-lY-uUw">
-                                <rect key="frame" x="0.0" y="0.0" width="1373" height="1080"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1354" height="1080"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="30" minimumInteritemSpacing="10" id="uQp-A0-Ld1">
@@ -109,7 +105,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LessonDescriptionCell" id="4I5-Xf-5Fw" customClass="LessonCollectionViewCell" customModule="VBVMI_tvOS" customModuleProvider="target">
-                                        <rect key="frame" x="833" y="60" width="540" height="217"/>
+                                        <rect key="frame" x="814" y="60" width="540" height="217"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="217"/>
@@ -141,14 +137,14 @@
                                 </connections>
                             </collectionView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kay-ji-mUU">
-                                <rect key="frame" x="1400" y="60" width="460" height="460"/>
+                                <rect key="frame" x="1324" y="217" width="460" height="460"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="460" id="RMe-KI-Oil"/>
                                     <constraint firstAttribute="width" constant="460" id="lbl-GX-OOB"/>
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kH-hK-cXu">
-                                <rect key="frame" x="1380" y="530" width="500" height="530"/>
+                                <rect key="frame" x="1304" y="687" width="500" height="530"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="530" id="S8i-i6-DMN"/>
@@ -190,8 +186,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="x9f-Jy-sGD">
-                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="157" width="1920" height="863"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="8rJ-Kc-sve" id="DR5-Nc-AuQ"/>
                                     <outlet property="delegate" destination="8rJ-Kc-sve" id="0iU-2M-ri5"/>

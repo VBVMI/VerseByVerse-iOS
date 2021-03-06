@@ -58,6 +58,8 @@ class StudiesTableViewCell: UITableViewCell {
         collectionView.backgroundColor = .clear
         collectionView.clipsToBounds = false
         collectionView.contentOffset = CGPoint(x: -60, y: 0)
+        contentView.clipsToBounds = false
+        self.clipsToBounds = false
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

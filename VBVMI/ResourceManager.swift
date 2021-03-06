@@ -238,7 +238,8 @@ class ResourceManager {
                     request.cancel()
                 }
             })
-            if bgTask == UIBackgroundTaskIdentifier.invalid {
+            
+            if bgTask == UIBackgroundTaskInvalid {
                 bgTask = nil
             }
             

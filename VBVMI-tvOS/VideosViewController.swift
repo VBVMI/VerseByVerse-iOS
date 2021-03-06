@@ -82,9 +82,13 @@ class VideosDataSource : NSObject, UICollectionViewDataSource, UICollectionViewD
                 switch result {
                 case .failure(let error):
                     logger.error("Error loading video files: \(error)")
-                case .success(let vimeoURL):
-                    let player = AVPlayer(url: vimeoURL)
-                    movieController.player = player
+                case .success(let vimeoMode):
+                    switch vimeoMode {
+                    case .url(let vimeoUrl):
+                        let player = AVPlayer(url: vimeoUrl)
+                        movieController.player = player
+                    }
+                    
                     
                 }
                 dispatchGroup.leave()
