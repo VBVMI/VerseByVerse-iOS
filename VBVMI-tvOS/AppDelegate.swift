@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             })
             APIDataManager.allTheChannels()
+            APIDataManager.allTheCurriculums()
         }
         
         let audioSession = AVAudioSession.sharedInstance()

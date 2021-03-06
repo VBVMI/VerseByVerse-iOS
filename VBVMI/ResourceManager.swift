@@ -239,9 +239,17 @@ class ResourceManager {
                 }
             })
             
+
+            #if os(tvOS)
             if bgTask == UIBackgroundTaskInvalid {
                 bgTask = nil
             }
+            #else
+            if bgTask == UIBackgroundTaskIdentifier.invalid {
+                bgTask = nil
+            }
+            #endif
+            
             
             dispatchState(lesson, resource: resource, downloadState: .pending)
             let request = APIDataManager.downloadFile(lesson, urlString: urlString, progress: { (progress) -> () in
