@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -105,6 +105,8 @@
 		986C37DD1C657CCE0096BB83 /* HideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37DC1C657CCE0096BB83 /* HideView.swift */; };
 		986C37E21C65D6300096BB83 /* _Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37E01C65D6300096BB83 /* _Lesson.swift */; };
 		986C37E31C65D6300096BB83 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37E11C65D6300096BB83 /* Lesson.swift */; };
+		987943E02642BBDA00330D75 /* LNPopupUI in Frameworks */ = {isa = PBXBuildFile; productRef = 987943DF2642BBDA00330D75 /* LNPopupUI */; };
+		987943E12642BBDA00330D75 /* LNPopupUI in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 987943DF2642BBDA00330D75 /* LNPopupUI */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		987E9B99212D5A32002E8242 /* CurriculumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987E9B97212D5A32002E8242 /* CurriculumTableViewCell.swift */; };
 		987E9B9A212D5A32002E8242 /* CurriculumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 987E9B98212D5A32002E8242 /* CurriculumTableViewCell.xib */; };
 		987F02F91CF0625E00AB61FA /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987F02F81CF0625E00AB61FA /* DotView.swift */; };
@@ -186,8 +188,6 @@
 		98CB0E3D1CA74E7F00C99D34 /* TopicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98CB0E3B1CA74E7F00C99D34 /* TopicViewController.xib */; };
 		98CBFE901C900E5F005F6414 /* StudiesHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CBFE8E1C900E5F005F6414 /* StudiesHeaderReusableView.swift */; };
 		98CBFE911C900E5F005F6414 /* StudiesHeaderReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98CBFE8F1C900E5F005F6414 /* StudiesHeaderReusableView.xib */; };
-		98D45B941C86D22A004BBCBD /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D45B931C86D1EC004BBCBD /* LNPopupController.framework */; };
-		98D45B951C86D22A004BBCBD /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98D45B931C86D1EC004BBCBD /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		98D45B9F1C86D61D004BBCBD /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D45B9D1C86D61D004BBCBD /* AudioPlayerViewController.swift */; };
 		98D45BA01C86D61D004BBCBD /* AudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D45B9E1C86D61D004BBCBD /* AudioPlayerViewController.xib */; };
 		98DE6E851CA2A83500C039C0 /* AboutActionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DE6E841CA2A83500C039C0 /* AboutActionsController.swift */; };
@@ -255,20 +255,6 @@
 			remoteGlobalIDString = 989AC5101DB4C0B600A825EB;
 			remoteInfo = "VBVMI-tvOS";
 		};
-		98D45B921C86D1EC004BBCBD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 98D45B8E1C86D1EC004BBCBD /* LNPopupController.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 39DB52E51B5823330061C589;
-			remoteInfo = LNPopupController;
-		};
-		98D45B961C86D22A004BBCBD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 98D45B8E1C86D1EC004BBCBD /* LNPopupController.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 39DB52E41B5823330061C589;
-			remoteInfo = LNPopupController;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -278,7 +264,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				98D45B951C86D22A004BBCBD /* LNPopupController.framework in Embed Frameworks */,
+				987943E12642BBDA00330D75 /* LNPopupUI in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,7 +439,6 @@
 		98CBFE8F1C900E5F005F6414 /* StudiesHeaderReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudiesHeaderReusableView.xib; sourceTree = "<group>"; };
 		98D16ABF1D3B7512004BF06E /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		98D45B8B1C86C7BE004BBCBD /* VBVMI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = VBVMI.entitlements; sourceTree = "<group>"; };
-		98D45B8E1C86D1EC004BBCBD /* LNPopupController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LNPopupController.xcodeproj; path = LNPopupController/LNPopupController.xcodeproj; sourceTree = "<group>"; };
 		98D45B9D1C86D61D004BBCBD /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
 		98D45B9E1C86D61D004BBCBD /* AudioPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioPlayerViewController.xib; sourceTree = "<group>"; };
 		98D45BA11C86FAB4004BBCBD /* VBVMI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VBVMI-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -512,7 +497,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98D45B941C86D22A004BBCBD /* LNPopupController.framework in Frameworks */,
+				987943E02642BBDA00330D75 /* LNPopupUI in Frameworks */,
 				43F3F530BCD03656741ABA01 /* Pods_VBVMI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -679,7 +664,6 @@
 				989AC5261DB4C0B600A825EB /* VBVMI-tvOSTests */,
 				989AC5311DB4C0B600A825EB /* VBVMI-tvOSUITests */,
 				9828D4111C5D9F4A004FA954 /* Products */,
-				98D45B8E1C86D1EC004BBCBD /* LNPopupController.xcodeproj */,
 				56E691E2EDD19A5EF4B8ACDA /* Frameworks */,
 				CB8E6FC3DC94BA96E9253B28 /* Pods */,
 			);
@@ -950,14 +934,6 @@
 			name = API;
 			sourceTree = "<group>";
 		};
-		98D45B8F1C86D1EC004BBCBD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				98D45B931C86D1EC004BBCBD /* LNPopupController.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		CB8E6FC3DC94BA96E9253B28 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1037,10 +1013,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				98D45B971C86D22A004BBCBD /* PBXTargetDependency */,
 				9848516C1D9F4C1B00500A47 /* PBXTargetDependency */,
 			);
 			name = VBVMI;
+			packageProductDependencies = (
+				987943DF2642BBDA00330D75 /* LNPopupUI */,
+			);
 			productName = VBVMI;
 			productReference = 9828D4101C5D9F4A004FA954 /* Verse By Verse.app */;
 			productType = "com.apple.product-type.application";
@@ -1179,14 +1157,11 @@
 				Base,
 			);
 			mainGroup = 9828D4071C5D9F4A004FA954;
+			packageReferences = (
+				987943DE2642BBDA00330D75 /* XCRemoteSwiftPackageReference "LNPopupUI" */,
+			);
 			productRefGroup = 9828D4111C5D9F4A004FA954 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 98D45B8F1C86D1EC004BBCBD /* Products */;
-					ProjectRef = 98D45B8E1C86D1EC004BBCBD /* LNPopupController.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				9828D40F1C5D9F4A004FA954 /* VBVMI */,
@@ -1199,16 +1174,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		98D45B931C86D1EC004BBCBD /* LNPopupController.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = LNPopupController.framework;
-			remoteRef = 98D45B921C86D1EC004BBCBD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9821380A1D3B8393006F2B79 /* Resources */ = {
@@ -1947,11 +1912,6 @@
 			target = 989AC5101DB4C0B600A825EB /* VBVMI-tvOS */;
 			targetProxy = 989AC52F1DB4C0B600A825EB /* PBXContainerItemProxy */;
 		};
-		98D45B971C86D22A004BBCBD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LNPopupController;
-			targetProxy = 98D45B961C86D22A004BBCBD /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1992,7 +1952,11 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				INFOPLIST_FILE = VBVMITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.versebyverseministry.VBVMITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2009,7 +1973,11 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				INFOPLIST_FILE = VBVMITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.versebyverseministry.VBVMITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2026,7 +1994,11 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				INFOPLIST_FILE = VBVMIUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.versebyverseministry.VBVMIUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2042,7 +2014,11 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				INFOPLIST_FILE = VBVMIUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.versebyverseministry.VBVMIUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2153,7 +2129,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2172,7 +2149,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = VBVMI/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 3.7;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = VBVM.VBVM;
@@ -2193,7 +2173,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = VBVMI/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 3.7;
 				PRODUCT_BUNDLE_IDENTIFIER = VBVM.VBVM;
 				PRODUCT_NAME = "Verse By Verse";
@@ -2230,7 +2213,10 @@
 				DEVELOPMENT_TEAM = 4UDQLK73PW;
 				GCC_DYNAMIC_NO_PIC = NO;
 				INFOPLIST_FILE = "VBVMI-tvOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = VBVM.VBVM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2257,7 +2243,10 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				DEVELOPMENT_TEAM = 4UDQLK73PW;
 				INFOPLIST_FILE = "VBVMI-tvOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = VBVM.VBVM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2281,7 +2270,11 @@
 				DEVELOPMENT_TEAM = 4UDQLK73PW;
 				GCC_DYNAMIC_NO_PIC = NO;
 				INFOPLIST_FILE = "VBVMI-tvOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.versebyverseministry.VBVMI-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -2303,7 +2296,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				DEVELOPMENT_TEAM = 4UDQLK73PW;
 				INFOPLIST_FILE = "VBVMI-tvOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.versebyverseministry.VBVMI-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -2324,7 +2321,11 @@
 				DEVELOPMENT_TEAM = 4UDQLK73PW;
 				GCC_DYNAMIC_NO_PIC = NO;
 				INFOPLIST_FILE = "VBVMI-tvOSUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.versebyverseministry.VBVMI-tvOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -2345,7 +2346,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				DEVELOPMENT_TEAM = 4UDQLK73PW;
 				INFOPLIST_FILE = "VBVMI-tvOSUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.versebyverseministry.VBVMI-tvOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -2431,6 +2436,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		987943DE2642BBDA00330D75 /* XCRemoteSwiftPackageReference "LNPopupUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LeoNatan/LNPopupUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.10;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		987943DF2642BBDA00330D75 /* LNPopupUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 987943DE2642BBDA00330D75 /* XCRemoteSwiftPackageReference "LNPopupUI" */;
+			productName = LNPopupUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		9828D41A1C5D9F4A004FA954 /* VBVMI.xcdatamodeld */ = {
