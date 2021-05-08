@@ -372,7 +372,7 @@ class APIDataManager {
     static func downloadFile(_ model: AssetsDownloadable, urlString: String, progress: @escaping Request.ProgressHandler, completion: @escaping(DefaultDownloadResponse) -> Void) -> Request {
         let destination: DownloadRequest.DownloadFileDestination = { temporaryURL, response in
             if let directory = model.directory() {
-                return (directory.appendingPathComponent(response.suggestedFilename!), [.removePreviousFile, .createIntermediateDirectories])
+                return (directory.appendingPathComponent(response.url?.lastPathComponent ?? response.suggestedFilename!), [.removePreviousFile, .createIntermediateDirectories])
             }
             
             return (temporaryURL, [.removePreviousFile, .createIntermediateDirectories])

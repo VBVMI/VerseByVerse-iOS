@@ -50,6 +50,14 @@
         <key>Type</key>
         <string>PSChildPaneSpecifier</string>
         <key>Title</key>
+        <string>Firebase</string>
+        <key>File</key>
+        <string>Acknowledgement-Firebase</string>
+      </dict>
+      <dict>
+        <key>Type</key>
+        <string>PSChildPaneSpecifier</string>
+        <key>Title</key>
         <string>FirebaseCore</string>
         <key>File</key>
         <string>Acknowledgement-FirebaseCore</string>
@@ -66,17 +74,9 @@
         <key>Type</key>
         <string>PSChildPaneSpecifier</string>
         <key>Title</key>
-        <string>FirebaseCoreDiagnosticsInterop</string>
+        <string>FirebaseInstallations</string>
         <key>File</key>
-        <string>Acknowledgement-FirebaseCoreDiagnosticsInterop</string>
-      </dict>
-      <dict>
-        <key>Type</key>
-        <string>PSChildPaneSpecifier</string>
-        <key>Title</key>
-        <string>FirebaseInstanceID</string>
-        <key>File</key>
-        <string>Acknowledgement-FirebaseInstanceID</string>
+        <string>Acknowledgement-FirebaseInstallations</string>
       </dict>
       <dict>
         <key>Type</key>
@@ -85,14 +85,6 @@
         <string>GoogleDataTransport</string>
         <key>File</key>
         <string>Acknowledgement-GoogleDataTransport</string>
-      </dict>
-      <dict>
-        <key>Type</key>
-        <string>PSChildPaneSpecifier</string>
-        <key>Title</key>
-        <string>GoogleDataTransportCCTSupport</string>
-        <key>File</key>
-        <string>Acknowledgement-GoogleDataTransportCCTSupport</string>
       </dict>
       <dict>
         <key>Type</key>
@@ -133,6 +125,14 @@
         <string>ParallaxView</string>
         <key>File</key>
         <string>Acknowledgement-ParallaxView</string>
+      </dict>
+      <dict>
+        <key>Type</key>
+        <string>PSChildPaneSpecifier</string>
+        <key>Title</key>
+        <string>PromisesObjC</string>
+        <key>File</key>
+        <string>Acknowledgement-PromisesObjC</string>
       </dict>
       <dict>
         <key>Type</key>

@@ -9,8 +9,6 @@
 import UIKit
 import CoreData
 import AlamofireImage
-import Fabric
-import Crashlytics
 import Firebase
 import XCGLogger
 import Reachability
@@ -106,7 +104,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        Fabric.with([Crashlytics.self])
         logger.info("🍕Application did finish Launching with options: \(launchOptions ?? [:])")
         Theme.default.applyTheme()
         
