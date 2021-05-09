@@ -30,8 +30,14 @@ extension JsonAPI : TargetType {
     }
 
     public var base: String {
-//        return "http://localhost:5000/corev2/"
+
+        #if DEBUG
+        // return "http://localhost:5000/corev2/"
         return "https://versebyverseministry.org/corev2/"
+        #else
+        return "https://versebyverseministry.org/corev2/"
+        #endif
+        
     }
     
     public var baseURL: URL {
