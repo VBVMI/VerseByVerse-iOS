@@ -27,7 +27,7 @@ class StudyViewController: UITableViewController {
     @IBOutlet var blurredImageView: UIImageView!
     @IBOutlet var headerImageView: UIImageView!
     private let activity = NSUserActivity(activityType: "org.versebyverseministry.www")
-    
+    private lazy var shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
     fileprivate let barButtonItem: UIBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ellipsis.png"), style: UIBarButtonItem.Style.plain, target: nil, action: #selector(tappedMenu))
     
     fileprivate class ButtonSender {
@@ -191,7 +191,7 @@ class StudyViewController: UITableViewController {
         barButtonItem.target = self
         
         var buttons = [barButtonItem]
-        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
+        
         buttons.append(shareButton)
         
         
@@ -203,6 +203,7 @@ class StudyViewController: UITableViewController {
         guard let urlString = study?.url, let url = URL(string: urlString) else { return }
         
         let actionSheet = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        actionSheet.popoverPresentationController?.barButtonItem = shareButton
         present(actionSheet, animated: true, completion: nil)
     }
     

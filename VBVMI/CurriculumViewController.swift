@@ -21,6 +21,8 @@ class CurriculumViewController : UIViewController, UITableViewDelegate, UITableV
     fileprivate let formatter = DateComponentsFormatter()
     fileprivate let videoCellIdentifier = "ChannelCell"
     fileprivate let pdfCellIdentifier = "PDFCell"
+    private lazy var shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
+    
     var curriculum: Curriculum! {
         didSet {
             if let curriculum = curriculum {
@@ -76,7 +78,7 @@ class CurriculumViewController : UIViewController, UITableViewDelegate, UITableV
         let _ = fetchedResultsController
         
         if let _ = curriculum?.url {
-            let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
+            
             self.navigationItem.rightBarButtonItem = shareButton
         }
     }
@@ -91,6 +93,7 @@ class CurriculumViewController : UIViewController, UITableViewDelegate, UITableV
         guard let urlString = curriculum?.url, let url = URL(string: urlString) else { return }
         
         let actionSheet = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        actionSheet.popoverPresentationController?.barButtonItem = shareButton
         present(actionSheet, animated: true, completion: nil)
     }
     

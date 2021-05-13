@@ -20,6 +20,8 @@ class ChannelViewController: UIViewController {
     private let activity = NSUserActivity(activityType: "org.versebyverseministry.www")
     fileprivate let formatter = DateComponentsFormatter()
     fileprivate let videoCellIdentifier = "ChannelCell"
+    private lazy var shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
+    
     var channel: Channel! {
         didSet {
             if let channel = channel {
@@ -41,7 +43,6 @@ class ChannelViewController: UIViewController {
         formatter.unitsStyle = .positional
         setupFetchedResultsController()
         
-        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
         self.navigationItem.rightBarButtonItem = shareButton
     }
     
@@ -54,6 +55,7 @@ class ChannelViewController: UIViewController {
         guard let urlString = channel?.url, let url = URL(string: urlString) else { return }
         
         let actionSheet = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        actionSheet.popoverPresentationController?.barButtonItem = shareButton
         present(actionSheet, animated: true, completion: nil)
     }
 

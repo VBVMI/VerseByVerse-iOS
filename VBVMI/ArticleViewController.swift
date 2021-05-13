@@ -126,6 +126,7 @@ class ArticleViewController: UIViewController, WKNavigationDelegate {
     private let htmlBody = try! String(contentsOf: Bundle.main.url(forResource: "ArticleBody", withExtension: "html")!, encoding: .utf8)
     
     private let activity = NSUserActivity(activityType: "org.versebyverseministry.www")
+    private lazy var shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
     
     private let webView: WKWebView = {
         let configuration = WKWebViewConfiguration()
@@ -177,7 +178,7 @@ class ArticleViewController: UIViewController, WKNavigationDelegate {
         
         dateFormatter.dateStyle = .medium
         
-        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction(_:)))
+        
         self.navigationItem.rightBarButtonItem = shareButton
         self.navigationItem.largeTitleDisplayMode = .never
     }
@@ -186,6 +187,7 @@ class ArticleViewController: UIViewController, WKNavigationDelegate {
         guard let url = URL(string: article.articleURL) else { return }
         
         let actionSheet = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        actionSheet.popoverPresentationController?.barButtonItem = shareButton
         present(actionSheet, animated: true, completion: nil)
     }
 
