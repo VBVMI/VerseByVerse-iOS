@@ -45,6 +45,8 @@
 		980E6C0E1C814A3E008F23D1 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C0D1C814A3E008F23D1 /* Appearance.swift */; };
 		980E6C111C814E5F008F23D1 /* TitleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C101C814E5F008F23D1 /* TitleParser.swift */; };
 		980E6C141C81AF4C008F23D1 /* LessonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E6C131C81AF4C008F23D1 /* LessonCellViewModel.swift */; };
+		9815C250264CE6CB003A95C9 /* LNPopupController in Frameworks */ = {isa = PBXBuildFile; productRef = 9815C24F264CE6CB003A95C9 /* LNPopupController */; };
+		9815C251264CE6CB003A95C9 /* LNPopupController in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 9815C24F264CE6CB003A95C9 /* LNPopupController */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		98196FEB1DED7A5700654276 /* LessonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98196FEA1DED7A5700654276 /* LessonCollectionViewCell.swift */; };
 		98196FEC1DED825F00654276 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37D91C657C870096BB83 /* StyleKit.swift */; };
 		981DC9CF20C7D09600B120BB /* RecentHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981DC9CD20C7D09600B120BB /* RecentHistoryCollectionViewCell.swift */; };
@@ -105,8 +107,6 @@
 		986C37DD1C657CCE0096BB83 /* HideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37DC1C657CCE0096BB83 /* HideView.swift */; };
 		986C37E21C65D6300096BB83 /* _Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37E01C65D6300096BB83 /* _Lesson.swift */; };
 		986C37E31C65D6300096BB83 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C37E11C65D6300096BB83 /* Lesson.swift */; };
-		987943E02642BBDA00330D75 /* LNPopupUI in Frameworks */ = {isa = PBXBuildFile; productRef = 987943DF2642BBDA00330D75 /* LNPopupUI */; };
-		987943E12642BBDA00330D75 /* LNPopupUI in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 987943DF2642BBDA00330D75 /* LNPopupUI */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		987E9B99212D5A32002E8242 /* CurriculumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987E9B97212D5A32002E8242 /* CurriculumTableViewCell.swift */; };
 		987E9B9A212D5A32002E8242 /* CurriculumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 987E9B98212D5A32002E8242 /* CurriculumTableViewCell.xib */; };
 		987F02F91CF0625E00AB61FA /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987F02F81CF0625E00AB61FA /* DotView.swift */; };
@@ -264,7 +264,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				987943E12642BBDA00330D75 /* LNPopupUI in Embed Frameworks */,
+				9815C251264CE6CB003A95C9 /* LNPopupController in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,8 +497,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				987943E02642BBDA00330D75 /* LNPopupUI in Frameworks */,
 				43F3F530BCD03656741ABA01 /* Pods_VBVMI.framework in Frameworks */,
+				9815C250264CE6CB003A95C9 /* LNPopupController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1017,7 +1017,7 @@
 			);
 			name = VBVMI;
 			packageProductDependencies = (
-				987943DF2642BBDA00330D75 /* LNPopupUI */,
+				9815C24F264CE6CB003A95C9 /* LNPopupController */,
 			);
 			productName = VBVMI;
 			productReference = 9828D4101C5D9F4A004FA954 /* Verse By Verse.app */;
@@ -1158,7 +1158,7 @@
 			);
 			mainGroup = 9828D4071C5D9F4A004FA954;
 			packageReferences = (
-				987943DE2642BBDA00330D75 /* XCRemoteSwiftPackageReference "LNPopupUI" */,
+				9815C24E264CE6CB003A95C9 /* XCRemoteSwiftPackageReference "LNPopupController" */,
 			);
 			productRefGroup = 9828D4111C5D9F4A004FA954 /* Products */;
 			projectDirPath = "";
@@ -2189,7 +2189,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.1;
+				MARKETING_VERSION = 3.7.2;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = VBVM.VBVM;
 				PRODUCT_NAME = "Verse By Verse";
@@ -2213,7 +2213,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7.1;
+				MARKETING_VERSION = 3.7.2;
 				PRODUCT_BUNDLE_IDENTIFIER = VBVM.VBVM;
 				PRODUCT_NAME = "Verse By Verse";
 				PROVISIONING_PROFILE = "";
@@ -2474,21 +2474,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		987943DE2642BBDA00330D75 /* XCRemoteSwiftPackageReference "LNPopupUI" */ = {
+		9815C24E264CE6CB003A95C9 /* XCRemoteSwiftPackageReference "LNPopupController" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LeoNatan/LNPopupUI";
+			repositoryURL = "https://github.com/LeoNatan/LNPopupController.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.10;
+				minimumVersion = 2.10.36;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		987943DF2642BBDA00330D75 /* LNPopupUI */ = {
+		9815C24F264CE6CB003A95C9 /* LNPopupController */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 987943DE2642BBDA00330D75 /* XCRemoteSwiftPackageReference "LNPopupUI" */;
-			productName = LNPopupUI;
+			package = 9815C24E264CE6CB003A95C9 /* XCRemoteSwiftPackageReference "LNPopupController" */;
+			productName = LNPopupController;
 		};
 /* End XCSwiftPackageProductDependency section */
 
