@@ -185,3 +185,5 @@ Keys.xcconfig
 Verse By Verse.app.dSYM.zip
 *.xcappdata
 /VBVMI/GoogleService-Info.plist
+/fastlane/.env
+/fastlane/dSYMs

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Customise this file, documentation can be found here:
 # https://github.com/fastlane/fastlane/tree/master/docs
 # All available actions: https://github.com/fastlane/fastlane/blob/master/docs/Actions.md
@@ -16,7 +18,7 @@
 
 # This is the minimum version number required.
 # Update this, if you use features of a newer version
-fastlane_version "1.59.0"
+fastlane_version '1.59.0'
 
 default_platform :ios
 
@@ -24,19 +26,18 @@ platform :ios do
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
     cocoapods
-
   end
 
-  desc "Runs all the tests"
+  desc 'Runs all the tests'
   lane :test do
     scan
   end
 
-  desc "Submit a new Beta Build to Apple TestFlight"
-  desc "This will also make sure the profile is up to date"
+  desc 'Submit a new Beta Build to Apple TestFlight'
+  desc 'This will also make sure the profile is up to date'
   lane :beta do
     # match(type: "appstore") # more information: https://codesigning.guide
-    gym(scheme: "VBVMI") # Build your app - more options available
+    gym(scheme: 'VBVMI') # Build your app - more options available
     pilot
 
     # sh "your_script.sh"
@@ -51,6 +52,61 @@ platform :ios do
   #   deliver(force: true)
   #   # frameit
   # end
+
+  desc 'Download the latest DSYMs and upload to crashlytics. Usage: bundle exec fastlane dsyms build_number:2262'
+  lane :dsyms do |options|
+    begin
+      `mkdir dSYMs`
+    rescue StandardError
+    end
+    if options[:build_number]
+      download_dsyms(
+        platform: 'ios',
+        output_directory: 'fastlane/dSYMS/',
+        wait_for_dsym_processing: true,
+        app_identifier: ENV['APP_IDENTIFIER'],
+        build_number: options[:build_number],
+        username: ENV['APPLE_ID']
+      )
+    else
+      download_dsyms(
+        version: 'latest',
+        platform: 'ios',
+        output_directory: 'fastlane/dSYMS/',
+        wait_for_dsym_processing: true,
+        app_identifier: ENV['APP_IDENTIFIER'],
+        username: ENV['APPLE_ID']
+      )
+    end
+    upload_symbols_to_crashlytics(
+      gsp_path: 'VBVMI/GoogleService-Info.plist',
+      platform: 'ios',
+      dsym_worker_threads: 5,
+      binary_path: 'Pods/FirebaseCrashlytics/upload-symbols'
+    )
+  end
+
+  desc 'Download the latest DSYMs and upload to crashlytics'
+  lane :dsyms_live do
+    begin
+      `mkdir dSYMs`
+    rescue StandardError
+    end
+    download_dsyms(
+      version: 'live',
+      platform: 'ios',
+      output_directory: 'fastlane/dSYMS/',
+      wait_for_dsym_processing: true,
+      app_identifier: ENV['APP_IDENTIFIER'],
+      username: ENV['APPLE_ID']
+    )
+    upload_symbols_to_crashlytics(
+      gsp_path: 'VBVMI/GoogleService-Info.plist',
+      platform: 'ios',
+      dsym_worker_threads: 5,
+      binary_path: 'Pods/FirebaseCrashlytics/upload-symbols'
+    )
+  end
 
   # You can define as many lanes as you want
 
@@ -69,8 +125,6 @@ platform :ios do
     # )
   end
 end
-
-
 
 # More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/docs/Platforms.md
 # All available actions: https://github.com/fastlane/fastlane/blob/master/docs/Actions.md
